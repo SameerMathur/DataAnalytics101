@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analytics 101 – Exploratory Data Analysis using R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Sameer Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Aryeman Gupta Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/AryemanGuptaMathur/Data_Analytics_101" rel="" target="_blank"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Book’s Github</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring R programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring R Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Data Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Dataframes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08CategoricalData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09CategoricalData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10CategoricalData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12ContinuousData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18LiveCase03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (3 of 3)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-of-this-book" id="toc-overview-of-this-book" class="nav-link active" data-scroll-target="#overview-of-this-book">Overview of this Book</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-exploratory-data-analysis-eda" id="toc-introduction-to-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#introduction-to-exploratory-data-analysis-eda">Introduction to Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#overview-of-the-book-chapters" id="toc-overview-of-the-book-chapters" class="nav-link" data-scroll-target="#overview-of-the-book-chapters">Overview of the Book Chapters</a>
+  <ul class="collapse">
+  <li><a href="#chapter-01-exploring-basic-r-programming" id="toc-chapter-01-exploring-basic-r-programming" class="nav-link" data-scroll-target="#chapter-01-exploring-basic-r-programming">Chapter 01: Exploring basic R Programming</a></li>
+  <li><a href="#chapter-02-exploring-r-packages" id="toc-chapter-02-exploring-r-packages" class="nav-link" data-scroll-target="#chapter-02-exploring-r-packages">Chapter 02: Exploring R Packages</a></li>
+  <li><a href="#chapter-03-exploring-data-structures" id="toc-chapter-03-exploring-data-structures" class="nav-link" data-scroll-target="#chapter-03-exploring-data-structures">Chapter 03: Exploring Data Structures</a></li>
+  <li><a href="#chapter-04-reading-data-into-r" id="toc-chapter-04-reading-data-into-r" class="nav-link" data-scroll-target="#chapter-04-reading-data-into-r">Chapter 04: Reading Data into R</a></li>
+  <li><a href="#chapter-05-exploring-dataframes" id="toc-chapter-05-exploring-dataframes" class="nav-link" data-scroll-target="#chapter-05-exploring-dataframes">Chapter 05: Exploring Dataframes</a></li>
+  <li><a href="#chapter-06-live-case-study---exploring-sp500-data---part-1-of-3" id="toc-chapter-06-live-case-study---exploring-sp500-data---part-1-of-3" class="nav-link" data-scroll-target="#chapter-06-live-case-study---exploring-sp500-data---part-1-of-3">Chapter 06: Live Case Study - Exploring S&amp;P500 Data - Part 1 of 3</a></li>
+  <li><a href="#chapter-07-exploring-tibbles-dplyr" id="toc-chapter-07-exploring-tibbles-dplyr" class="nav-link" data-scroll-target="#chapter-07-exploring-tibbles-dplyr">Chapter 07: Exploring <em>tibbles</em> &amp; <em>dplyr</em></a></li>
+  <li><a href="#chapter-08-categorical-data-part-1-of-3---exploring-univariate-categorical-data" id="toc-chapter-08-categorical-data-part-1-of-3---exploring-univariate-categorical-data" class="nav-link" data-scroll-target="#chapter-08-categorical-data-part-1-of-3---exploring-univariate-categorical-data">Chapter 08: Categorical Data (Part 1 of 3) - Exploring Univariate Categorical Data</a></li>
+  <li><a href="#chapter-09-categorical-data-part-2-of-3---exploring-bivariate-categorical-data" id="toc-chapter-09-categorical-data-part-2-of-3---exploring-bivariate-categorical-data" class="nav-link" data-scroll-target="#chapter-09-categorical-data-part-2-of-3---exploring-bivariate-categorical-data">Chapter 09: Categorical Data (Part 2 of 3) - Exploring Bivariate Categorical Data</a></li>
+  <li><a href="#chapter-10-categorical-data-part-3-of-3---exploring-multivariate-categorical-data" id="toc-chapter-10-categorical-data-part-3-of-3---exploring-multivariate-categorical-data" class="nav-link" data-scroll-target="#chapter-10-categorical-data-part-3-of-3---exploring-multivariate-categorical-data">Chapter 10: Categorical Data (Part 3 of 3) - Exploring Multivariate Categorical Data</a></li>
+  <li><a href="#chapter-11-live-case-study---exploring-sp500-data---part-2-of-3" id="toc-chapter-11-live-case-study---exploring-sp500-data---part-2-of-3" class="nav-link" data-scroll-target="#chapter-11-live-case-study---exploring-sp500-data---part-2-of-3">Chapter 11: Live Case Study - Exploring S&amp;P500 Data - Part 2 of 3</a></li>
+  <li><a href="#chapter-12-continuous-data-part-1-of-6---exploring-continuous-data" id="toc-chapter-12-continuous-data-part-1-of-6---exploring-continuous-data" class="nav-link" data-scroll-target="#chapter-12-continuous-data-part-1-of-6---exploring-continuous-data">Chapter 12: Continuous Data (Part 1 of 6) - Exploring Continuous Data</a></li>
+  <li><a href="#chapter-13-continuous-data-part-2-of-6---exploring-continuous-data-using-ggplot2" id="toc-chapter-13-continuous-data-part-2-of-6---exploring-continuous-data-using-ggplot2" class="nav-link" data-scroll-target="#chapter-13-continuous-data-part-2-of-6---exploring-continuous-data-using-ggplot2">Chapter 13: Continuous Data (Part 2 of 6) - Exploring Continuous Data, using <strong><code>ggplot2</code></strong></a></li>
+  <li><a href="#chapter-14-continuous-data-part-3-of-6---exploring-bivariate-continuous-x-categorical-data" id="toc-chapter-14-continuous-data-part-3-of-6---exploring-bivariate-continuous-x-categorical-data" class="nav-link" data-scroll-target="#chapter-14-continuous-data-part-3-of-6---exploring-bivariate-continuous-x-categorical-data">Chapter 14: Continuous Data (Part 3 of 6) - Exploring bivariate Continuous x Categorical data</a></li>
+  <li><a href="#chapter-15-continuous-data-part-4-of-6---exploring-bivariate-continuous-x-categorical-data-using-ggplot2" id="toc-chapter-15-continuous-data-part-4-of-6---exploring-bivariate-continuous-x-categorical-data-using-ggplot2" class="nav-link" data-scroll-target="#chapter-15-continuous-data-part-4-of-6---exploring-bivariate-continuous-x-categorical-data-using-ggplot2">Chapter 15: Continuous Data (Part 4 of 6) - Exploring bivariate Continuous x Categorical data, using <strong><code>ggplot2</code></strong></a></li>
+  <li><a href="#chapter-16-continuous-data-part-5-of-6---exploring-bivariate-continuous-x-continuous-data" id="toc-chapter-16-continuous-data-part-5-of-6---exploring-bivariate-continuous-x-continuous-data" class="nav-link" data-scroll-target="#chapter-16-continuous-data-part-5-of-6---exploring-bivariate-continuous-x-continuous-data">Chapter 16: Continuous Data (Part 5 of 6) - Exploring bivariate Continuous x Continuous data</a></li>
+  <li><a href="#chapter-17-continuous-data-part-6-of-6---exploring-bivariate-continuous-x-continuous-data-using-ggplot2" id="toc-chapter-17-continuous-data-part-6-of-6---exploring-bivariate-continuous-x-continuous-data-using-ggplot2" class="nav-link" data-scroll-target="#chapter-17-continuous-data-part-6-of-6---exploring-bivariate-continuous-x-continuous-data-using-ggplot2">Chapter 17: Continuous Data (Part 6 of 6) - Exploring bivariate Continuous x Continuous data, using <strong><code>ggplot2</code></strong></a></li>
+  <li><a href="#chapter-18-live-case-study---exploring-sp500-data---part-3-of-3" id="toc-chapter-18-live-case-study---exploring-sp500-data---part-3-of-3" class="nav-link" data-scroll-target="#chapter-18-live-case-study---exploring-sp500-data---part-3-of-3">Chapter 18: Live Case Study - Exploring S&amp;P500 Data - Part 3 of 3</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="index.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="overview-of-this-book" class="level1 unnumbered">
+<h1 class="unnumbered">Overview of this Book</h1>
+<p><em>Aug 3, 2023.</em></p>
+<p>Delve into the world of Exploratory Data Analysis (EDA) - an imperative approach to data analysis that focuses on discovering and summarizing the main features of datasets primarily via statistical graphics and visualization techniques. EDA facilitates a comprehensive understanding of the data prior to initiating formal modeling or hypothesis testing.</p>
+<p><strong>In this comprehensive guide, we illuminate the applications and nuances of utilizing the R programming language for effective Exploratory Data Analysis.</strong></p>
+<p><strong>Live Case:</strong> To highlight the practical usage of the concepts discussed, this book features a live project that employs R for conducting EDA on a real-world dataset. The dataset pertains to the S&amp;P500 stocks, a choice that adds real-world relevance to the techniques and methodologies illustrated. Throughout the book, you will find multiple sample codes that navigate through this data, probing into financial metrics like Return on Equity, Return on Assets, and Return on Invested Capital of S&amp;P500 shares.</p>
+<section id="introduction-to-exploratory-data-analysis-eda" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-exploratory-data-analysis-eda">Introduction to Exploratory Data Analysis (EDA)</h2>
+<p>The journey of EDA can be visualized as a sequence of interrelated steps:</p>
+<p><strong>Data Cleaning:</strong> The journey begins with the purification of data through processes such as handling missing data, eliminating outliers, and other data cleansing procedures.</p>
+<p><strong>Univariate Analysis:</strong> In this phase, individual fields in the dataset are analyzed to better grasp their distribution, outliers, and unique values. It typically involves statistical plots measuring central tendencies like mean, median, mode, frequency distribution, quartiles, and so forth.</p>
+<p><strong>Bivariate Analysis:</strong> This stage is characterized by the exploration of two variables to establish their empirical relationship. Techniques include the usage of scatter plots for continuous variables or crosstabs for categorical data.</p>
+<p><strong>Multivariate Analysis:</strong> This advanced step delves into the analysis involving more than two variables, helping to unearth the interactions between different fields in the dataset.</p>
+<p><strong>Data Visualization:</strong> Here, the creation of plots like histograms, box plots, scatter plots, etc., comes into play. These visual tools are used to identify patterns, relationships, or outliers within the dataset.</p>
+<p><strong>Insight Generation:</strong> The final stage encompasses the generation of insights post visualizations and statistical tests. These insights pave the way for further queries, hypotheses, and model building.</p>
+<p>The EDA process is an integral precursor to more advanced analyses. It equips us with the ability to validate or refute initial hypotheses, enabling us to craft more precise questions or hypotheses that can guide further statistical analysis and testing.</p>
+</section>
+<section id="overview-of-the-book-chapters" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-the-book-chapters">Overview of the Book Chapters</h2>
+<section id="chapter-01-exploring-basic-r-programming" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-01-exploring-basic-r-programming">Chapter 01: Exploring basic R Programming</h3>
+<p>Chapter 01 acts as your compass, guiding you through the R programming language’s multifaceted applications in statistical computations and data analysis. It unravels the basics of R, including its history, usage, and platforms. It guides the reader through the R and RStudio installation processes, while also shedding light on alternatives like Jupyter Notebook and Visual Studio Code. The chapter then dives deeper into the practical aspects of using R, elucidating mathematical and statistical operations through real-world examples.</p>
+</section>
+<section id="chapter-02-exploring-r-packages" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-02-exploring-r-packages">Chapter 02: Exploring R Packages</h3>
+<p>Chapter 02 transports you into the expansive world of R packages, illuminating their significance, sources, and practical applications. It elucidates the process of installing an R package and showcases notable examples such as ggplot2 for creating visualizations. It also provides solutions for addressing challenges users might encounter when using R packages.</p>
+</section>
+<section id="chapter-03-exploring-data-structures" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-03-exploring-data-structures">Chapter 03: Exploring Data Structures</h3>
+<p>Chapter 03 immerses you into the core data structures of R, primarily focusing on vectors. This chapter guides you through creating and operating on vectors - numeric, character, and logical - highlighting their significance in computations and data management. It demonstrates the application of various mathematical, logical, and statistical operations on vectors. The chapter also provides insights into string manipulation within vectors and the key role of vectors in data analysis and modeling.</p>
+</section>
+<section id="chapter-04-reading-data-into-r" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-04-reading-data-into-r">Chapter 04: Reading Data into R</h3>
+<p>Chapter 04 advances our understanding of data frames in R, highlighting techniques to read different file formats into a data frame, manage the working directory, merge data frames, and introduces tibbles. It explains the workings of a ‘working directory’ and showcases how to navigate and alter it for efficient file handling. The chapter illustrates how to read various file formats, such as CSV and Excel, into a data frame and merge multiple data sources. Importantly, it intorduces tibbles, a modern take on data frames, discussing their creation, conversion, and distinct features.</p>
+</section>
+<section id="chapter-05-exploring-dataframes" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-05-exploring-dataframes">Chapter 05: Exploring Dataframes</h3>
+<p>Chapter 05 embarks on a thorough journey into data manipulation in R, offering insights into key tools like ‘dplyr’, logical operations, statistical functions, and the creation of custom functions. It introduces pivotal ‘dplyr’ verbs and the pipe operator for data manipulation, explores logical operations for data subsetting, and presents essential statistical functions to extract valuable insights from data. It delves into the ‘summary()’ function for providing basic descriptive statistics and illustrates the creation and utility of custom functions in R. This chapter empowers the reader to effectively manage, manipulate, and extend the functionalities of R for comprehensive data analysis.</p>
+</section>
+<section id="chapter-06-live-case-study---exploring-sp500-data---part-1-of-3" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-06-live-case-study---exploring-sp500-data---part-1-of-3">Chapter 06: Live Case Study - Exploring S&amp;P500 Data - Part 1 of 3</h3>
+<p>Chapter 06 ushers in a practical exploration of the S&amp;P500, a prominent stock market index of 500 major U.S. publicly traded companies. The chapter involves a deep-dive into a real-world dataset of S&amp;P500 stocks, highlighting the structure and content of the dataset through the lens of R functions and packages. This includes careful data management and data quality steps such as renaming columns, removing rows with null or blank values, and transforming specific columns into factor variables. Through practical examples and code, this chapter provides a comprehensive foundation for further analysis of the S&amp;P500 dataset.</p>
+</section>
+<section id="chapter-07-exploring-tibbles-dplyr" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-07-exploring-tibbles-dplyr">Chapter 07: Exploring <em>tibbles</em> &amp; <em>dplyr</em></h3>
+<p>Chapter 07 thoroughly discusses the tibble data structure and the dplyr package in R. It begins by introducing tibbles, an enhanced version of data frames, known for their user-friendly printing, reliable subsetting, and flexible data type handling. The chapter then shifts to the powerful dplyr package, which offers a cohesive set of functions for efficient data manipulation in R. Key concepts, such as the various dplyr “verbs” and the pipe operator, are illustrated with examples using the mtcars dataset. By touching upon additional dplyr functions like rename(), group_by(), and slice(), this chapter builds a profound understanding of data manipulation and management in R using tibbles and dplyr.</p>
+</section>
+<section id="chapter-08-categorical-data-part-1-of-3---exploring-univariate-categorical-data" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-08-categorical-data-part-1-of-3---exploring-univariate-categorical-data">Chapter 08: Categorical Data (Part 1 of 3) - Exploring Univariate Categorical Data</h3>
+<p>Chapter 08 explores how to summarize and visualize <em>univariate, categorical</em> data.</p>
+<p>It introduces the basic concept behind categorical data, with a deep dive into its two primary types: nominal and ordinal. It explains nominal data as variables with categories without any inherent order, while ordinal data possess categories with specific rankings. The chapter then extensively discusses factor variables in R, a key tool for handling categorical data, with illustrative examples from the mtcars dataset. It further delves into the analysis and visualization of categorical data, discussing the creation of frequency tables, computation of proportions and percentages, and the use of ggplot2 for bar plots. Lastly, it introduces the ggpie() function from the ggpubr package for creating pie charts within the ggplot2 framework.</p>
+</section>
+<section id="chapter-09-categorical-data-part-2-of-3---exploring-bivariate-categorical-data" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-09-categorical-data-part-2-of-3---exploring-bivariate-categorical-data">Chapter 09: Categorical Data (Part 2 of 3) - Exploring Bivariate Categorical Data</h3>
+<p>Chapter 09 explores how to summarize and visualize <em>bivariate, categorical</em> data.</p>
+<p>It expands upon the exploration of categorical data, focusing specifically on visualizing bivariate categorical data using R. The chapter covers grouped bar plots, stacked bar plots, and mosaic plots, distinguishing between the various methods and offering detailed coding examples. Both base R functions and the ggplot2 library are utilized for these visualizations, with ggplot2 providing superior customization capabilities. The chapter introduces mosaic plots, using the base R mosaicplot() function and the mosaic() function in the vcd package for demonstrations. Further, it discusses the ggmosaic package, rounding off a comprehensive exploration of visualization techniques for bivariate categorical data.</p>
+</section>
+<section id="chapter-10-categorical-data-part-3-of-3---exploring-multivariate-categorical-data" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-10-categorical-data-part-3-of-3---exploring-multivariate-categorical-data">Chapter 10: Categorical Data (Part 3 of 3) - Exploring Multivariate Categorical Data</h3>
+<p>Chapter 10 explores how to summarize and visualize <em>multivariate, categorical</em> data.</p>
+<p>It explores multivariate categorical variables and the complex relationships and dependencies they exhibit. The chapter leverages R to construct three-dimensional contingency tables and segment these tables by various variables for unique data perspectives. The chapter elaborates on visualizing this data through three-dimensional bar plots and mosaic plots, which aid in interpreting the frequency of combinations of multiple variables. The chapter also explores four-way relationships between categorical variables, utilizing four-dimensional contingency tables and mosaic plots for this intricate analysis and visualization. As a result, the chapter imparts a robust understanding of handling and visualizing multivariate categorical data, preparing readers to effectively navigate and analyze complex datasets. Together with its predecessors, this chapter completes a comprehensive overview of handling and visualizing multivariate categorical data.</p>
+</section>
+<section id="chapter-11-live-case-study---exploring-sp500-data---part-2-of-3" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-11-live-case-study---exploring-sp500-data---part-2-of-3">Chapter 11: Live Case Study - Exploring S&amp;P500 Data - Part 2 of 3</h3>
+<p><em>to be written</em></p>
+</section>
+<section id="chapter-12-continuous-data-part-1-of-6---exploring-continuous-data" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-12-continuous-data-part-1-of-6---exploring-continuous-data">Chapter 12: Continuous Data (Part 1 of 6) - Exploring Continuous Data</h3>
+<p>Chapter 12 explores how to summarize and visualize <em>univariate, continuous</em> data.</p>
+<p>It demonstrates how to calculate central tendency and variability measures with R’s inbuilt functions and the ‘modeest’ package. The chapter also employs R’s ‘summary()’ and the psych package’s ‘describe()’ functions for a comprehensive data overview. The utilization of various visualization techniques like bee swarm plots, box plots, violin plots, histograms, density plots, and cumulative distribution function (CDF) plots are presented to aid in understanding data patterns and distributions.</p>
+</section>
+<section id="chapter-13-continuous-data-part-2-of-6---exploring-continuous-data-using-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-13-continuous-data-part-2-of-6---exploring-continuous-data-using-ggplot2">Chapter 13: Continuous Data (Part 2 of 6) - Exploring Continuous Data, using <strong><code>ggplot2</code></strong></h3>
+<p>Chapter 13 demonstrates the use of the popular <strong><code>ggplot2</code></strong> package to further explore <em>univariate, continuous</em> data.</p>
+</section>
+<section id="chapter-14-continuous-data-part-3-of-6---exploring-bivariate-continuous-x-categorical-data" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-14-continuous-data-part-3-of-6---exploring-bivariate-continuous-x-categorical-data">Chapter 14: Continuous Data (Part 3 of 6) - Exploring bivariate Continuous x Categorical data</h3>
+<p>Chapter 14 explores how to summarize and visualize <em>bivariate continuous data across categories</em>.</p>
+</section>
+<section id="chapter-15-continuous-data-part-4-of-6---exploring-bivariate-continuous-x-categorical-data-using-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-15-continuous-data-part-4-of-6---exploring-bivariate-continuous-x-categorical-data-using-ggplot2">Chapter 15: Continuous Data (Part 4 of 6) - Exploring bivariate Continuous x Categorical data, using <strong><code>ggplot2</code></strong></h3>
+<p>Chapter 15 demonstrates the use of the popular <strong><code>ggplot2</code></strong> package to further explore <em>bivariate continuous data across categories</em>.</p>
+</section>
+<section id="chapter-16-continuous-data-part-5-of-6---exploring-bivariate-continuous-x-continuous-data" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-16-continuous-data-part-5-of-6---exploring-bivariate-continuous-x-continuous-data">Chapter 16: Continuous Data (Part 5 of 6) - Exploring bivariate Continuous x Continuous data</h3>
+<p>Chapter 16 explores how to summarize and visualize the interaction between <em>bivariate continuous data</em> using correlation analysis, scatter plots, scatter plot matrices and other such techniques.</p>
+</section>
+<section id="chapter-17-continuous-data-part-6-of-6---exploring-bivariate-continuous-x-continuous-data-using-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-17-continuous-data-part-6-of-6---exploring-bivariate-continuous-x-continuous-data-using-ggplot2">Chapter 17: Continuous Data (Part 6 of 6) - Exploring bivariate Continuous x Continuous data, using <strong><code>ggplot2</code></strong></h3>
+<p>Chapter 17 demonstrates the use of the popular <strong><code>ggplot2</code></strong> package to further explore the interaction between <em>bivariate continuous data</em>.</p>
+</section>
+<section id="chapter-18-live-case-study---exploring-sp500-data---part-3-of-3" class="level3">
+<h3 class="anchored" data-anchor-id="chapter-18-live-case-study---exploring-sp500-data---part-3-of-3">Chapter 18: Live Case Study - Exploring S&amp;P500 Data - Part 3 of 3</h3>
+<p><em>to be written</em></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -1,0 +1,132 @@
+# Overview of this Book {.unnumbered}
+
+*Aug 3, 2023.*
+
+Delve into the world of Exploratory Data Analysis (EDA) - an imperative approach to data analysis that focuses on discovering and summarizing the main features of datasets primarily via statistical graphics and visualization techniques. EDA facilitates a comprehensive understanding of the data prior to initiating formal modeling or hypothesis testing. 
+
+**In this comprehensive guide, we illuminate the applications and nuances of utilizing the R programming language for effective Exploratory Data Analysis.**
+
+**Live Case:** To highlight the practical usage of the concepts discussed, this book features a live project that employs R for conducting EDA on a real-world dataset. The dataset pertains to the S&P500 stocks, a choice that adds real-world relevance to the techniques and methodologies illustrated. Throughout the book, you will find multiple sample codes that navigate through this data, probing into financial metrics like Return on Equity, Return on Assets, and Return on Invested Capital of S&P500 shares.
+
+## Introduction to Exploratory Data Analysis (EDA)
+
+The journey of EDA can be visualized as a sequence of interrelated steps:
+
+**Data Cleaning:** The journey begins with the purification of data through processes such as handling missing data, eliminating outliers, and other data cleansing procedures.
+
+**Univariate Analysis:** In this phase, individual fields in the dataset are analyzed to better grasp their distribution, outliers, and unique values. It typically involves statistical plots measuring central tendencies like mean, median, mode, frequency distribution, quartiles, and so forth.
+
+**Bivariate Analysis:** This stage is characterized by the exploration of two variables to establish their empirical relationship. Techniques include the usage of scatter plots for continuous variables or crosstabs for categorical data.
+
+**Multivariate Analysis:** This advanced step delves into the analysis involving more than two variables, helping to unearth the interactions between different fields in the dataset.
+
+**Data Visualization:** Here, the creation of plots like histograms, box plots, scatter plots, etc., comes into play. These visual tools are used to identify patterns, relationships, or outliers within the dataset.
+
+**Insight Generation:** The final stage encompasses the generation of insights post visualizations and statistical tests. These insights pave the way for further queries, hypotheses, and model building.
+
+The EDA process is an integral precursor to more advanced analyses. It equips us with the ability to validate or refute initial hypotheses, enabling us to craft more precise questions or hypotheses that can guide further statistical analysis and testing.
+
+## Overview of the Book Chapters
+
+### Chapter 01: Exploring basic R Programming
+
+Chapter 01 acts as your compass, guiding you through the R programming language's multifaceted applications in statistical computations and data analysis. It unravels the basics of R, including its history, usage, and platforms. It guides the reader through the R and RStudio installation processes, while also shedding light on alternatives like Jupyter Notebook and Visual Studio Code. The chapter then dives deeper into the practical aspects of using R, elucidating mathematical and statistical operations through real-world examples.
+
+### Chapter 02: Exploring R Packages
+
+Chapter 02 transports you into the expansive world of R packages, illuminating their significance, sources, and practical applications. It elucidates the process of installing an R package and showcases notable examples such as ggplot2 for creating visualizations. It also provides solutions for addressing challenges users might encounter when using R packages.
+
+
+### Chapter 03: Exploring Data Structures
+
+Chapter 03 immerses you into the core data structures of R, primarily focusing on vectors. This chapter guides you through creating and operating on vectors - numeric, character, and logical - highlighting their significance in computations and data management. It demonstrates the application of various mathematical, logical, and statistical operations on vectors. The chapter also provides insights into string manipulation within vectors and the key role of vectors in data analysis and modeling.
+
+
+### Chapter 04: Reading Data into R
+
+Chapter 04 advances our understanding of data frames in R, highlighting techniques to read different file formats into a data frame, manage the working directory, merge data frames, and introduces tibbles. It explains the workings of a 'working directory' and showcases how to navigate and alter it for efficient file handling. The chapter illustrates how to read various file formats, such as CSV and Excel, into a data frame and merge multiple data sources. Importantly, it intorduces tibbles, a modern take on data frames, discussing their creation, conversion, and distinct features.
+
+
+### Chapter 05: Exploring Dataframes
+
+Chapter 05 embarks on a thorough journey into data manipulation in R, offering insights into key tools like 'dplyr', logical operations, statistical functions, and the creation of custom functions. It introduces pivotal 'dplyr' verbs and the pipe operator for data manipulation, explores logical operations for data subsetting, and presents essential statistical functions to extract valuable insights from data. It delves into the 'summary()' function for providing basic descriptive statistics and illustrates the creation and utility of custom functions in R. This chapter empowers the reader to effectively manage, manipulate, and extend the functionalities of R for comprehensive data analysis.
+
+
+### Chapter 06: Live Case Study - Exploring S&P500 Data - Part 1 of 3
+
+Chapter 06 ushers in a practical exploration of the S&P500, a prominent stock market index of 500 major U.S. publicly traded companies. The chapter involves a deep-dive into a real-world dataset of S&P500 stocks, highlighting the structure and content of the dataset through the lens of R functions and packages. This includes careful data management and data quality steps such as renaming columns, removing rows with null or blank values, and transforming specific columns into factor variables. Through practical examples and code, this chapter provides a comprehensive foundation for further analysis of the S&P500 dataset.
+
+
+### Chapter 07: Exploring *tibbles* & *dplyr*
+
+Chapter 07 thoroughly discusses the tibble data structure and the dplyr package in R. It begins by introducing tibbles, an enhanced version of data frames, known for their user-friendly printing, reliable subsetting, and flexible data type handling. The chapter then shifts to the powerful dplyr package, which offers a cohesive set of functions for efficient data manipulation in R. Key concepts, such as the various dplyr "verbs" and the pipe operator, are illustrated with examples using the mtcars dataset. By touching upon additional dplyr functions like rename(), group_by(), and slice(), this chapter builds a profound understanding of data manipulation and management in R using tibbles and dplyr.
+
+
+
+### Chapter 08: Categorical Data (Part 1 of 3) - Exploring Univariate Categorical Data 
+
+Chapter 08 explores how to summarize and visualize *univariate, categorical* data. 
+
+It introduces the basic concept behind categorical data, with a deep dive into its two primary types: nominal and ordinal. It explains nominal data as variables with categories without any inherent order, while ordinal data possess categories with specific rankings. The chapter then extensively discusses factor variables in R, a key tool for handling categorical data, with illustrative examples from the mtcars dataset. It further delves into the analysis and visualization of categorical data, discussing the creation of frequency tables, computation of proportions and percentages, and the use of ggplot2 for bar plots. Lastly, it introduces the ggpie() function from the ggpubr package for creating pie charts within the ggplot2 framework.
+
+
+
+### Chapter 09: Categorical Data (Part 2 of 3) - Exploring Bivariate Categorical Data 
+
+Chapter 09 explores how to summarize and visualize *bivariate, categorical* data. 
+
+It expands upon the exploration of categorical data, focusing specifically on visualizing bivariate categorical data using R. The chapter covers grouped bar plots, stacked bar plots, and mosaic plots, distinguishing between the various methods and offering detailed coding examples. Both base R functions and the ggplot2 library are utilized for these visualizations, with ggplot2 providing superior customization capabilities. The chapter introduces mosaic plots, using the base R mosaicplot() function and the mosaic() function in the vcd package for demonstrations. Further, it discusses the ggmosaic package, rounding off a comprehensive exploration of visualization techniques for bivariate categorical data.
+
+
+
+### Chapter 10: Categorical Data (Part 3 of 3) - Exploring Multivariate Categorical Data 
+
+Chapter 10 explores how to summarize and visualize *multivariate, categorical* data. 
+
+It explores multivariate categorical variables and the complex relationships and dependencies they exhibit. The chapter leverages R to construct three-dimensional contingency tables and segment these tables by various variables for unique data perspectives. The chapter elaborates on visualizing this data through three-dimensional bar plots and mosaic plots, which aid in interpreting the frequency of combinations of multiple variables. The chapter also explores four-way relationships between categorical variables, utilizing four-dimensional contingency tables and mosaic plots for this intricate analysis and visualization. As a result, the chapter imparts a robust understanding of handling and visualizing multivariate categorical data, preparing readers to effectively navigate and analyze complex datasets. Together with its predecessors, this chapter completes a comprehensive overview of handling and visualizing multivariate categorical data.
+
+### Chapter 11: Live Case Study - Exploring S&P500 Data - Part 2 of 3
+
+*to be written*
+
+
+### Chapter 12: Continuous Data (Part 1 of 6) - Exploring Continuous Data 
+
+Chapter 12 explores how to summarize and visualize *univariate, continuous* data. 
+
+It demonstrates how to calculate central tendency and variability measures with R's inbuilt functions and the 'modeest' package. The chapter also employs R's 'summary()' and the psych package's 'describe()' functions for a comprehensive data overview. The utilization of various visualization techniques like bee swarm plots, box plots, violin plots, histograms, density plots, and cumulative distribution function (CDF) plots are presented to aid in understanding data patterns and distributions.
+
+
+### Chapter 13: Continuous Data (Part 2 of 6) - Exploring Continuous Data, using **`ggplot2`**
+
+Chapter 13 demonstrates the use of the popular **`ggplot2`** package to further explore *univariate, continuous* data.
+
+
+
+### Chapter 14: Continuous Data (Part 3 of 6) - Exploring bivariate Continuous x Categorical data
+
+Chapter 14 explores how to summarize and visualize *bivariate continuous data across categories*.
+
+
+
+### Chapter 15: Continuous Data (Part 4 of 6) - Exploring bivariate Continuous x Categorical data, using **`ggplot2`**
+
+Chapter 15 demonstrates the use of the popular **`ggplot2`** package to further explore *bivariate continuous data across categories*.
+
+
+
+### Chapter 16: Continuous Data (Part 5 of 6) - Exploring bivariate Continuous x Continuous data
+
+Chapter 16 explores how to summarize and visualize the interaction between *bivariate continuous data* using correlation analysis, scatter plots, scatter plot matrices and other such techniques. 
+
+
+
+### Chapter 17: Continuous Data (Part 6 of 6) - Exploring bivariate Continuous x Continuous data, using **`ggplot2`**
+
+Chapter 17 demonstrates the use of the popular **`ggplot2`** package to further explore the interaction between *bivariate continuous data*.
+
+
+
+### Chapter 18: Live Case Study - Exploring S&P500 Data - Part 3 of 3
+
+*to be written*

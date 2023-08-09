@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analytics 101 -- Exploratory Data Analysis using R – exploringtibbles</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Sameer Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Aryeman Gupta Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/AryemanGuptaMathur/Data_Analytics_101" rel="" target="_blank"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Book’s Github</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07ExploringTibbles.html">Exploring <em>tibbles</em> &amp; <em>dplyr</em></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring R programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring R Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Data Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading Data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring Dataframes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07ExploringTibbles.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08CategoricalData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09CategoricalData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10CategoricalData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12ContinuousData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18LiveCase03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (3 of 3)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exploring-tibbles-dplyr" id="toc-exploring-tibbles-dplyr" class="nav-link active" data-scroll-target="#exploring-tibbles-dplyr">Exploring <em>tibbles</em> &amp; <em>dplyr</em></a>
+  <ul class="collapse">
+  <li><a href="#tibbles" id="toc-tibbles" class="nav-link" data-scroll-target="#tibbles"><strong>tibbles</strong></a></li>
+  <li><a href="#basic-functions-in-the-dplyr-package" id="toc-basic-functions-in-the-dplyr-package" class="nav-link" data-scroll-target="#basic-functions-in-the-dplyr-package">Basic functions in the <strong>dplyr</strong> package</a></li>
+  <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link" data-scroll-target="#the-pipe-operator">The pipe operator <strong>%&gt;%</strong></a></li>
+  <li><a href="#illustration-using-dplyr-on-mtcars-data" id="toc-illustration-using-dplyr-on-mtcars-data" class="nav-link" data-scroll-target="#illustration-using-dplyr-on-mtcars-data">Illustration: Using dplyr on mtcars data</a>
+  <ul class="collapse">
+  <li><a href="#loading-required-r-packages" id="toc-loading-required-r-packages" class="nav-link" data-scroll-target="#loading-required-r-packages">Loading required R packages</a></li>
+  <li><a href="#reading-and-viewing-the-mtcars-dataset-as-a-tibble" id="toc-reading-and-viewing-the-mtcars-dataset-as-a-tibble" class="nav-link" data-scroll-target="#reading-and-viewing-the-mtcars-dataset-as-a-tibble">Reading and Viewing the mtcars dataset as a tibble</a></li>
+  <li><a href="#using-dplyr-to-explore-the-mtcars-tibble" id="toc-using-dplyr-to-explore-the-mtcars-tibble" class="nav-link" data-scroll-target="#using-dplyr-to-explore-the-mtcars-tibble">Using <code>dplyr</code> to explore the <code>mtcars</code> tibble</a></li>
+  </ul></li>
+  <li><a href="#additional-functions-in-the-dplyr-package" id="toc-additional-functions-in-the-dplyr-package" class="nav-link" data-scroll-target="#additional-functions-in-the-dplyr-package">Additional functions in the <strong>dplyr</strong> package</a>
+  <ul class="collapse">
+  <li><a href="#using-dplyr-to-explore-the-mtcars-tibble-more" id="toc-using-dplyr-to-explore-the-mtcars-tibble-more" class="nav-link" data-scroll-target="#using-dplyr-to-explore-the-mtcars-tibble-more">Using <code>dplyr</code> to explore the <code>mtcars</code> tibble more</a></li>
+  </ul></li>
+  <li><a href="#summary-of-chapter-7-exploring-tibbles-dplyr" id="toc-summary-of-chapter-7-exploring-tibbles-dplyr" class="nav-link" data-scroll-target="#summary-of-chapter-7-exploring-tibbles-dplyr">Summary of Chapter 7 – Exploring <em>tibbles</em> &amp; <em>dplyr</em></a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07ExploringTibbles.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="exploring-tibbles-dplyr" class="level1">
+<h1>Exploring <em>tibbles</em> &amp; <em>dplyr</em></h1>
+<p><em>Aug 03, 2023.</em></p>
+<section id="tibbles" class="level2">
+<h2 class="anchored" data-anchor-id="tibbles"><strong>tibbles</strong></h2>
+<p>A <code>tibble</code> is essentially an updated version of the conventional data frame, providing more flexible and effective data management features (Müller &amp; Wickham, 2021).</p>
+<p><code>Tibbles</code>, also recognized as <code>tbl_df</code>, are a component of the tidyverse suite, a collection of R packages geared towards making data science more straightforward. They share many properties with regular data frames but also offer unique benefits that enhance our ability to work with data.</p>
+<ol type="1">
+<li><p><strong>Printing:</strong> When a <code>tibble</code> is printed, only the initial ten rows and the number of columns that fit within our screen’s width are displayed. This feature becomes particularly useful when dealing with extensive datasets having multiple columns, enhancing the data’s readability.</p></li>
+<li><p><strong>Subsetting:</strong> Unlike conventional data frames, subsetting a <code>tibble</code> always maintains its original structure. Consequently, even when we pull out a single column, it remains as a one-column <code>tibble</code>, ensuring a consistent output type.</p></li>
+<li><p><strong>Data types:</strong> <code>tibbles</code> offer a transparent approach towards data types. They avoid hidden conversions, ensuring that the output aligns with our expectations.</p></li>
+<li><p><strong>Non-syntactic names:</strong> <code>tibbles</code> support columns having non-syntactic names (those not following R’s standard naming rules), which is not always the case with standard data frames.</p></li>
+</ol>
+<p>We consider <code>tibbles</code> to be a vital part of our data manipulation arsenal, especially when working within the <code>tidyverse</code> ecosystem [1].</p>
+</section>
+<section id="basic-functions-in-the-dplyr-package" class="level2">
+<h2 class="anchored" data-anchor-id="basic-functions-in-the-dplyr-package">Basic functions in the <strong>dplyr</strong> package</h2>
+<p>The <code>dplyr</code> package is very useful when we are dealing with data manipulation tasks (Wickham et al., 2021). This package offers us a cohesive set of functions, frequently referred to as “verbs,” that are designed to facilitate common data manipulation activities. Below, we review some of the key “verbs” provided by the <code>dplyr</code> package:</p>
+<ol type="1">
+<li><p><strong><code>filter()</code>:</strong> When we want to restrict our data to specific conditions, we can use <code>filter()</code>. For instance, this function allows us to include only those rows in our dataset that fulfill a condition we specify.</p></li>
+<li><p><strong><code>select()</code>:</strong> If we are interested in retaining specific variables (columns) in our data, <code>select()</code> is our function of choice. It is particularly useful when we have datasets with many variables, but we only need a select few.</p></li>
+<li><p><strong><code>arrange()</code>:</strong> If we wish to reorder the rows in our dataset based on our selected variables, we can use <code>arrange()</code>. By default, <code>arrange()</code> sorts in ascending order. However, we can use the <code>desc()</code> function to sort in descending order.</p></li>
+<li><p><strong><code>mutate()</code>:</strong> To create new variables from existing ones, we utilize the <code>mutate()</code> function. It is particularly helpful when we need to conduct transformations or generate new variables that are functions of existing ones.</p></li>
+<li><p><strong><code>summarise()</code>:</strong> To produce summary statistics of various variables, we use <code>summarise()</code>. We frequently use it with <code>group_by()</code>, enabling us to calculate these summary statistics for distinct groups within our data.</p></li>
+</ol>
+<p>Moreover, one of the significant advantages of <code>dplyr</code> is the ability to chain these functions together using the pipe operator <code>%&gt;%</code> for a more streamlined and readable data manipulation workflow. [2]</p>
+</section>
+<section id="the-pipe-operator" class="level2">
+<h2 class="anchored" data-anchor-id="the-pipe-operator">The pipe operator <strong>%&gt;%</strong></h2>
+<p>The <code>%&gt;%</code> operator, colloquially known as the “pipe” operator, plays a vital role in enhancing the effectiveness of the <code>dplyr</code> package. The purpose of this operator is to facilitate a more readable and understandable chaining of multiple operations. Although this operator was originally introduced by the <code>magrittr</code> package, it has since become extensively adopted in <code>dplyr</code> and other tidyverse packages.</p>
+<p>In a typical scenario in R, when we need to carry out multiple operations on a data frame, each function call must be nested within another. This could lead to codes that are difficult to comprehend due to their complex and nested structure. However, the pipe operator comes to our rescue here. It allows us to rewrite these nested operations in a linear, straightforward manner, greatly enhancing the readability of our code. [3]</p>
+</section>
+<section id="illustration-using-dplyr-on-mtcars-data" class="level2">
+<h2 class="anchored" data-anchor-id="illustration-using-dplyr-on-mtcars-data">Illustration: Using dplyr on mtcars data</h2>
+<p>We will now illustrate the crucial functions from the <code>dplyr</code> package, on the <code>mtcars</code> dataset.</p>
+<section id="loading-required-r-packages" class="level3">
+<h3 class="anchored" data-anchor-id="loading-required-r-packages">Loading required R packages</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'dplyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    filter, lag</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><em>Aside:</em> When we load the <code>dplyr</code> package using <code>library(dplyr)</code>, R displays messages indicating that certain functions from <code>dplyr</code> are masking functions from the <code>stats</code> and <code>base</code> packages. We could instead prevent the display of package startup messages by using the <code>suppressPackageStartupMessages()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="reading-and-viewing-the-mtcars-dataset-as-a-tibble" class="level3">
+<h3 class="anchored" data-anchor-id="reading-and-viewing-the-mtcars-dataset-as-a-tibble">Reading and Viewing the mtcars dataset as a tibble</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Here the <code>as_tibble()</code> function is used to convert the built-in <code>mtcars</code> dataset into a tibble object, named <code>tb</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the first few rows of the dataset</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+    mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  21       6   160   110  3.9   2.62  16.5     0     1     4     4
+2  21       6   160   110  3.9   2.88  17.0     0     1     4     4
+3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
+4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
+5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2
+6  18.1     6   225   105  2.76  3.46  20.2     1     0     3     1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the structure of the dataset</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 32
+Columns: 11
+$ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,…
+$ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8,…
+$ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 16…
+$ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180…
+$ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92,…
+$ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.…
+$ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18…
+$ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,…
+$ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0,…
+$ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3,…
+$ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,…</code></pre>
+</div>
+</div>
+<p><strong>Exploring the data</strong>: The <code>head()</code> function is called on <code>tb</code> to display the first six rows of the dataset. This is a quick way to visually inspect the first few entries. Then, the <code>glimpse()</code> function is used to provide a more detailed view of the tb object, showing the column names and their respective data types, along with a few entries for each column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert several numeric columns into factor variables</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Changing data types</strong>: The <code>as.factor()</code> function is used to convert the ‘cyl’, ‘vs’, ‘am’, and ‘gear’ columns from numeric data types to factors. Factors are used in statistical modeling to represent categorical variables. In our case, these four variables are better represented as categories rather than numerical values. For instance, ‘cyl’ represents the number of cylinders in a car’s engine, ‘vs’ is the engine shape, ‘am’ is the transmission type, and ‘gear’ is the number of forward gears; all of these are categorical in nature, hence the conversion to factor.</p>
+<p>At this point, we can call the <code>glimpse()</code> function again to review the data structures.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the structure of the dataset, again</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 32
+Columns: 11
+$ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,…
+$ cyl  &lt;fct&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8,…
+$ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 16…
+$ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180…
+$ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92,…
+$ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.…
+$ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18…
+$ vs   &lt;fct&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,…
+$ am   &lt;fct&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0,…
+$ gear &lt;fct&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3,…
+$ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,…</code></pre>
+</div>
+</div>
+<p>Notice that the datatypes are now modified and the tibble is ready for futher exploration.</p>
+</section>
+<section id="using-dplyr-to-explore-the-mtcars-tibble" class="level3">
+<h3 class="anchored" data-anchor-id="using-dplyr-to-explore-the-mtcars-tibble">Using <code>dplyr</code> to explore the <code>mtcars</code> tibble</h3>
+<ol type="1">
+<li><strong><code>filter()</code>:</strong> Recall that this function is used to select subsets of rows in a tibble. It takes logical conditions as inputs and returns only those rows where the conditions hold true. Suppose we wanted to filter the <code>mtcars</code> dataset for rows where the <code>mpg</code> is greater than 25.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>filtered_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>filtered_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+    mpg cyl    disp    hp  drat    wt  qsec vs    am    gear   carb
+  &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+1  32.4 4      78.7    66  4.08  2.2   19.5 1     1     4         1
+2  30.4 4      75.7    52  4.93  1.62  18.5 1     1     4         2
+3  33.9 4      71.1    65  4.22  1.84  19.9 1     1     4         1
+4  27.3 4      79      66  4.08  1.94  18.9 1     1     4         1
+5  26   4     120.     91  4.43  2.14  16.7 0     1     5         2
+6  30.4 4      95.1   113  3.77  1.51  16.9 1     1     5         2</code></pre>
+</div>
+</div>
+<p>The tibble ‘filtered_data’ contains only the rows where the miles per gallon (mpg) are greater than 25.</p>
+<ol start="2" type="1">
+<li>Suppose we want to filter cars where the miles per gallon (mpg) are greater than 25 AND number of gears is equal to 5.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>filtered_data2 <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span> <span class="sc">&amp;</span> gear <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>filtered_data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 11
+    mpg cyl    disp    hp  drat    wt  qsec vs    am    gear   carb
+  &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+1  26   4     120.     91  4.43  2.14  16.7 0     1     5         2
+2  30.4 4      95.1   113  3.77  1.51  16.9 1     1     5         2</code></pre>
+</div>
+</div>
+<p>Thus, we can impose more than one logical conddition in the filter.</p>
+<ol start="3" type="1">
+<li><strong><code>select()</code></strong>: Recall that this function is used to select specific columns. Suppose we want to select <code>mpg</code>, <code>hp</code>, <code>cyl</code> and <code>am</code> columns from mtcars dataset.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>selected_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg, hp, cyl, am)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>selected_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 4
+     mpg    hp cyl   am   
+   &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;
+ 1  21     110 6     1    
+ 2  21     110 6     1    
+ 3  22.8    93 4     1    
+ 4  21.4   110 6     0    
+ 5  18.7   175 8     0    
+ 6  18.1   105 6     0    
+ 7  14.3   245 8     0    
+ 8  24.4    62 4     0    
+ 9  22.8    95 4     0    
+10  19.2   123 6     0    
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>The tibble <code>selected_data</code> will only contain the <code>mpg</code> (miles per gallon), <code>hp</code> (horsepower), <code>cyl</code> (cylinders) and <code>am</code> transmission columns from the mtcars dataset.</p>
+<ol start="4" type="1">
+<li>Now suppose we wanted to both filter and select. Specificially, suppose we want to:</li>
+</ol>
+<ul>
+<li>filter cars where the miles per gallon (mpg) are greater than 20 AND number of gears is equal to 5</li>
+<li>select <code>mpg</code>, <code>hp</code>, <code>cyl</code> and <code>am</code> columns for these cars.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>filterAndSelect <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mpg <span class="sc">&gt;</span> <span class="dv">20</span> <span class="sc">&amp;</span> gear <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg, hp, cyl, am)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>filterAndSelect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+    mpg    hp cyl   am   
+  &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt;
+1  26      91 4     1    
+2  30.4   113 4     1    </code></pre>
+</div>
+</div>
+<p>Here, we have written code that utilizes two primary functions from the dplyr package, filter() and select(). These two functions, in concert with the pipe operator (%&gt;%), create a pipeline of operations for data transformation. Breaking this down, we observe a two-step process:</p>
+<ul>
+<li><p><code>filter(mpg &gt; 25 &amp; gear == 5)</code>: Here, we are utilizing the filter() function to sift through the dataset tb and retain only those rows where mpg (miles per gallon) is more than 25 and gear is equal to 5. This application effectively creates a subset of tb that satisfies these conditions (Wickham &amp; Francois, 2016).</p></li>
+<li><p><code>select(mpg, hp, cyl, am)</code>: This function is then invoked to choose specific columns from our filtered dataset. In this instance, we have picked the columns mpg, hp (horsepower), cyl (cylinders), and am (transmission type). The resulting dataset, therefore, contains only these four columns from the filtered data</p></li>
+</ul>
+<ol start="5" type="1">
+<li>Suppose we wanted to select all the columns within a range. Specifically, suppose we wanted to select all the columns within cyl and wt, excluding all other columns. Recall that the original mtcars tibble has the following data columns.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "mpg"  "cyl"  "disp" "hp"   "drat" "wt"   "qsec" "vs"   "am"   "gear"
+[11] "carb"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>selected_data2 <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">select</span>(cyl<span class="sc">:</span>wt)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>selected_data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 5
+   cyl    disp    hp  drat    wt
+   &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1 6      160    110  3.9   2.62
+ 2 6      160    110  3.9   2.88
+ 3 4      108     93  3.85  2.32
+ 4 6      258    110  3.08  3.22
+ 5 8      360    175  3.15  3.44
+ 6 6      225    105  2.76  3.46
+ 7 8      360    245  3.21  3.57
+ 8 4      147.    62  3.69  3.19
+ 9 4      141.    95  3.92  3.15
+10 6      168.   123  3.92  3.44
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<ul>
+<li><code>select(cyl:wt)</code>: This instruction tells R to select all columns in the tb dataframe starting from cyl up to and including wt. Only the five columns {cyl, disp, hp, drat, wt} get selected. This is a particularly useful feature when dealing with dataframes that have a large number of columns, and we are interested in a contiguous subset of those columns</li>
+</ul>
+<ol start="6" type="1">
+<li>Alternately, suppose instead that we wanted to select all columns except those within the range of cyl and wt.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>selected_data3 <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>cyl<span class="sc">:</span>wt)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>selected_data3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 6
+     mpg cyl    disp    hp  drat    wt
+   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  21   6      160    110  3.9   2.62
+ 2  21   6      160    110  3.9   2.88
+ 3  22.8 4      108     93  3.85  2.32
+ 4  21.4 6      258    110  3.08  3.22
+ 5  18.7 8      360    175  3.15  3.44
+ 6  18.1 6      225    105  2.76  3.46
+ 7  14.3 8      360    245  3.21  3.57
+ 8  24.4 4      147.    62  3.69  3.19
+ 9  22.8 4      141.    95  3.92  3.15
+10  19.2 6      168.   123  3.92  3.44
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p><code>select(-cyl:wt)</code>: The - sign preceding the cyl:wt range denotes exclusion. Consequently, this command tells R to select all columns in the tb dataframe, excluding those from cyl to wt inclusive.</p>
+<p>As can be seen, the six columns excluding those within the range of cyl and wt, are selected.</p>
+<ol start="7" type="1">
+<li><strong><code>arrange()</code>:</strong> Recall that this function is used to reorder rows in a tibble by one or more variables. By default, it arranges rows in ascending order. Suppose we want to select only the <code>mpg</code> and <code>hp</code> columns from the <code>mtcars</code> data and sort it in descending order of <code>mpg</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>arranged_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">select</span>(mpg, hp) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(mpg))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>arranged_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 2
+     mpg    hp
+   &lt;dbl&gt; &lt;dbl&gt;
+ 1  33.9    65
+ 2  32.4    66
+ 3  30.4    52
+ 4  30.4   113
+ 5  27.3    66
+ 6  26      91
+ 7  24.4    62
+ 8  22.8    93
+ 9  22.8    95
+10  21.5    97
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>The steps in the code can be broken down as follows:</p>
+<p><code>arranged_data &lt;- tb %&gt;% select(mpg, hp)</code>: The select function is used here to extract only the <code>mpg</code> and <code>hp</code> columns from the <code>tb</code> dataframe. The <code>%&gt;%</code> operator is the pipe operator, which is used to chain multiple operations together in a readable manner. This part of the code will create a new dataframe containing only the <code>mpg</code> and <code>hp</code> columns.</p>
+<p><code>arrange(desc(mpg))</code>: The arrange function is then used to order the rows in the newly created dataframe in descending order (<code>desc</code>) based on the <code>mpg</code> column.</p>
+<ol start="8" type="1">
+<li><strong>Benefit from using %&gt;%</strong>: Suppose we wanted to subset the data as follows.</li>
+</ol>
+<ul>
+<li>Select cars with 6 cylinders (<code>cyl</code> == 6).</li>
+<li>Choose only the <code>mpg</code> (miles per gallon), <code>hp</code> (horsepower) and <code>wt</code> (weight) columns.</li>
+<li>Arrange in descending order by <code>mpg</code>.</li>
+</ul>
+<p>Without the pipe operator, we would have to nest your operations like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(<span class="fu">select</span>(<span class="fu">filter</span>(tb, cyl <span class="sc">==</span> <span class="dv">6</span>), mpg, hp, wt), <span class="fu">desc</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+    mpg    hp    wt
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  21.4   110  3.22
+2  21     110  2.62
+3  21     110  2.88
+4  19.7   175  2.77
+5  19.2   123  3.44
+6  18.1   105  3.46
+7  17.8   123  3.44</code></pre>
+</div>
+</div>
+<p>Here’s how we would do the same operations using the pipe operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(cyl <span class="sc">==</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mpg, hp, wt) <span class="sc">%&gt;%</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mpg))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 3
+    mpg    hp    wt
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  21.4   110  3.22
+2  21     110  2.62
+3  21     110  2.88
+4  19.7   175  2.77
+5  19.2   123  3.44
+6  18.1   105  3.46
+7  17.8   123  3.44</code></pre>
+</div>
+</div>
+<p>Here’s what each line is doing:</p>
+<p><code>tb %&gt;%</code> sends the mtcars data frame into the <code>filter()</code> function.</p>
+<p><code>filter(cyl == 6) %&gt;%</code> filters the data frame to include only rows where <code>cyl</code> is equal to 6, then sends this filtered data frame to the <code>select()</code> function.</p>
+<p><code>select(mpg, hp) %&gt;%</code> selects only the <code>mpg</code> and <code>hp</code> columns from the data frame, then sends this subset of the data to the <code>arrange()</code> function.</p>
+<p><code>arrange(desc(mpg))</code> arranges the rows of the data frame in descending order based on the mpg column.</p>
+<p>This way, the pipe operator makes the code more readable and the sequence of operations is easier to follow.</p>
+<ol start="9" type="1">
+<li><strong><code>mutate()</code>:</strong> Recall that this function is used to create new variables (columns) or modify existing ones. Suppose we want to create a new column named ‘efficiency’, defined as the ratio of mpg to hp in the mtcars dataset.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>mutated_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">efficiency =</span> mpg <span class="sc">/</span> hp)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>mutated_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 12
+     mpg cyl    disp    hp  drat    wt  qsec vs    am    gear   carb efficiency
+   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1  21   6      160    110  3.9   2.62  16.5 0     1     4         4     0.191 
+ 2  21   6      160    110  3.9   2.88  17.0 0     1     4         4     0.191 
+ 3  22.8 4      108     93  3.85  2.32  18.6 1     1     4         1     0.245 
+ 4  21.4 6      258    110  3.08  3.22  19.4 1     0     3         1     0.195 
+ 5  18.7 8      360    175  3.15  3.44  17.0 0     0     3         2     0.107 
+ 6  18.1 6      225    105  2.76  3.46  20.2 1     0     3         1     0.172 
+ 7  14.3 8      360    245  3.21  3.57  15.8 0     0     3         4     0.0584
+ 8  24.4 4      147.    62  3.69  3.19  20   1     0     4         2     0.394 
+ 9  22.8 4      141.    95  3.92  3.15  22.9 1     0     4         2     0.24  
+10  19.2 6      168.   123  3.92  3.44  18.3 1     0     4         4     0.156 
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>The tibble <code>mutated_data</code> will contain a new column <code>efficiency</code>, which is the ratio of <code>mpg</code> to <code>hp</code>. The original data columns in <code>tb</code> will be retained.</p>
+<p>Remember that these functions do not modify the original dataset, they create new objects with the results. If we want to modify the original dataset, we would need to save the result back to the original variable, or use the mutate_at, mutate_all, mutate_if functions to modify specific columns directly.</p>
+<ol start="10" type="1">
+<li><strong><code>summarise()</code>:</strong>: Recall that this function is used to create summaries of data. It collapses a tibble to a single row. Suppose we want to calculate the mean of <code>mpg</code> in the <code>mtcars</code> dataset</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_mpg =</span> <span class="fu">mean</span>(mpg))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>summary_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  mean_mpg
+     &lt;dbl&gt;
+1     20.1</code></pre>
+</div>
+</div>
+<p>The tibble <code>summary_data</code> will contain a single row with the mean value of <code>mpg</code> in the mtcars dataset.</p>
+<ol start="11" type="1">
+<li>To include additional statistical measures such as median, quartiles, minimum, and maximum in your summary data, we can use respective R functions within the <code>summarise()</code> function.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>summary_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(mpg),</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(mpg),</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(mpg),</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(mpg, <span class="fl">0.25</span>),</span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(mpg, <span class="fl">0.75</span>),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(mpg),</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(mpg)</span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>summary_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 8
+      N  Mean    SD Median    Q1    Q3   Min   Max
+  &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1    32  20.1  6.03   19.2  15.4  22.8  10.4  33.9</code></pre>
+</div>
+</div>
+<ol start="12" type="1">
+<li>We could convert this back into a standard dataframe and display it.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>summary_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(summary_data)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(summary_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   N     Mean       SD Median     Q1   Q3  Min  Max
+1 32 20.09062 6.026948   19.2 15.425 22.8 10.4 33.9</code></pre>
+</div>
+</div>
+<p>And if we wanted to display only two decimal places, we could code</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>summary_df <span class="sc">%&gt;%</span> <span class="fu">round</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   N  Mean   SD Median    Q1   Q3  Min  Max
+1 32 20.09 6.03   19.2 15.43 22.8 10.4 33.9</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="additional-functions-in-the-dplyr-package" class="level2">
+<h2 class="anchored" data-anchor-id="additional-functions-in-the-dplyr-package">Additional functions in the <strong>dplyr</strong> package</h2>
+<ol type="1">
+<li><p><strong><code>rename()</code>:</strong> The <code>rename()</code> function is utilized whenever we need to modify the names of some variables in our dataset. Without changing the structure of the original dataset, it allows us to give new names to chosen columns.</p></li>
+<li><p><strong><code>group_by()</code>:</strong> The <code>group_by()</code> function comes into play when we need to implement operations on individual groups within our data. By categorizing our data based on one or multiple variables, we are able to apply distinct functions to each group separately.</p></li>
+<li><p><strong><code>slice()</code>:</strong> To select rows by their indices, we use the <code>slice()</code> function. This is especially handy when we need specific rows, for example, the first 10 or last 10 rows, depending on a defined order.</p></li>
+<li><p><strong><code>transmute()</code>:</strong> When we want to generate new variables from existing ones and keep only these new variables, we use the <code>transmute()</code> function. It is similar to <code>mutate()</code>, but it only keeps the newly created variables, making it a powerful tool when we’re only interested in transformed or calculated variables.</p></li>
+<li><p><strong><code>pull()</code>:</strong> The <code>pull()</code> function is used to extract a single variable as a vector from a dataframe. This function becomes very practical when we wish to isolate and work with a single variable outside its dataframe.</p></li>
+<li><p><strong><code>n_distinct()</code>:</strong> To enumerate the unique values in a column or vector, we use the <code>n_distinct()</code> function. It’s an essential function when we want to know the number of distinct elements within a specific categorical variable.</p></li>
+</ol>
+<section id="using-dplyr-to-explore-the-mtcars-tibble-more" class="level3">
+<h3 class="anchored" data-anchor-id="using-dplyr-to-explore-the-mtcars-tibble-more">Using <code>dplyr</code> to explore the <code>mtcars</code> tibble more</h3>
+<ol type="1">
+<li><strong><code>rename()</code>:</strong> Remember that this function is helpful in changing column names in our data. For instance, let us modify the name of the <code>mpg</code> column to <code>MPG</code> in the mtcars dataset.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>renamed_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">MPG =</span> mpg)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>renamed_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 11
+     MPG cyl    disp    hp  drat    wt  qsec vs    am    gear   carb
+   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+ 1  21   6      160    110  3.9   2.62  16.5 0     1     4         4
+ 2  21   6      160    110  3.9   2.88  17.0 0     1     4         4
+ 3  22.8 4      108     93  3.85  2.32  18.6 1     1     4         1
+ 4  21.4 6      258    110  3.08  3.22  19.4 1     0     3         1
+ 5  18.7 8      360    175  3.15  3.44  17.0 0     0     3         2
+ 6  18.1 6      225    105  2.76  3.46  20.2 1     0     3         1
+ 7  14.3 8      360    245  3.21  3.57  15.8 0     0     3         4
+ 8  24.4 4      147.    62  3.69  3.19  20   1     0     4         2
+ 9  22.8 4      141.    95  3.92  3.15  22.9 1     0     4         2
+10  19.2 6      168.   123  3.92  3.44  18.3 1     0     4         4
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>The dataframe renamed_data now includes the <code>MPG</code> column, which was previously named <code>mpg</code>.</p>
+<ol start="2" type="1">
+<li><strong><code>group_by()</code>:</strong> This function is key for performing operations within distinct groups of our data. For example, let us group the <code>mtcars</code> dataset by the <code>cyl</code> (number of cylinders) column.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>grouped_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(cyl)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>grouped_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 11
+# Groups:   cyl [3]
+     mpg cyl    disp    hp  drat    wt  qsec vs    am    gear   carb
+   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+ 1  21   6      160    110  3.9   2.62  16.5 0     1     4         4
+ 2  21   6      160    110  3.9   2.88  17.0 0     1     4         4
+ 3  22.8 4      108     93  3.85  2.32  18.6 1     1     4         1
+ 4  21.4 6      258    110  3.08  3.22  19.4 1     0     3         1
+ 5  18.7 8      360    175  3.15  3.44  17.0 0     0     3         2
+ 6  18.1 6      225    105  2.76  3.46  20.2 1     0     3         1
+ 7  14.3 8      360    245  3.21  3.57  15.8 0     0     3         4
+ 8  24.4 4      147.    62  3.69  3.19  20   1     0     4         2
+ 9  22.8 4      141.    95  3.92  3.15  22.9 1     0     4         2
+10  19.2 6      168.   123  3.92  3.44  18.3 1     0     4         4
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p>The grouped_data dataframe is now grouped by the <code>cyl</code> column, which enables us to carry out operations on each group separately.</p>
+<ol start="3" type="1">
+<li><strong><code>slice()</code>:</strong> Remember that this function is beneficial when we wish to choose rows based on their positions. For example, let’s select the first three rows of the <code>mtcars</code> dataset.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>sliced_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>sliced_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 11
+    mpg cyl    disp    hp  drat    wt  qsec vs    am    gear   carb
+  &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+1  21   6       160   110  3.9   2.62  16.5 0     1     4         4
+2  21   6       160   110  3.9   2.88  17.0 0     1     4         4
+3  22.8 4       108    93  3.85  2.32  18.6 1     1     4         1</code></pre>
+</div>
+</div>
+<p>In this <code>sliced_data</code> tibble, only the first three rows from the mtcars dataset are included.</p>
+<ol start="4" type="1">
+<li><strong><code>transmute()</code>:</strong> Recall that if we desire to create new variables and keep only these variables, we apply the <code>transmute()</code> function. Suppose we want to create a new variable that is the ratio of horsepower (<code>hp</code>) to weight (<code>wt</code>), and keep only this new variable.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>transmuted_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">transmute</span>(<span class="at">hp_to_wt =</span> hp<span class="sc">/</span>wt) <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>transmuted_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  hp_to_wt
+     &lt;dbl&gt;
+1     42.0
+2     38.3
+3     40.1
+4     34.2
+5     50.9
+6     30.3</code></pre>
+</div>
+</div>
+<p>The <code>transmuted_data</code> tibble now includes the newly created <code>hp_to_wt</code> variable, while the other columns have been removed.</p>
+<ol start="5" type="1">
+<li><strong><code>pull()</code></strong>: Recall that this function is employed to remove a single variable from a dataframe as a vector. Let us isolate the <code>mpg</code> (miles per gallon) variable from the <code>mtcars</code> dataset.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>pulled_data <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">pull</span>(mpg)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>pulled_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 21.0 21.0 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 17.8 16.4 17.3 15.2 10.4
+[16] 10.4 14.7 32.4 30.4 33.9 21.5 15.5 15.2 13.3 19.2 27.3 26.0 30.4 15.8 19.7
+[31] 15.0 21.4</code></pre>
+</div>
+</div>
+<p>In the <code>pulled_data</code> vector, only the values from the <code>mpg</code> variable are retained.</p>
+<ol start="6" type="1">
+<li><strong><code>n_distinct()</code></strong>: Recall that this function is used to count the distinct values in a column or vector. Let us count the number of distinct values in the<code>cyl</code>(cylinders) column from the<code>mtcars\</code> dataset.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>distinct_count <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">n_distinct_cyl =</span> <span class="fu">n_distinct</span>(cyl))</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>distinct_count</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  n_distinct_cyl
+           &lt;int&gt;
+1              3</code></pre>
+</div>
+</div>
+<p>The <code>distinct_count</code> dataframe shows the number of unique values in the <code>cyl</code> column of the <code>mtcars</code> dataset.</p>
+</section>
+</section>
+<section id="summary-of-chapter-7-exploring-tibbles-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-7-exploring-tibbles-dplyr">Summary of Chapter 7 – Exploring <em>tibbles</em> &amp; <em>dplyr</em></h2>
+<p>This chapter has provided an overview of the <code>tibble</code> data structure and the <code>dplyr</code> package in the R programming language.</p>
+<p>We started with an introduction to <code>tibble</code>, a data structure in R that is an updated version of data frames with enhanced features for flexible and effective data management. These benefits include more user-friendly printing, reliable subsetting behavior, transparent handling of data types, and support for non-syntactic column names.</p>
+<p>Subsequently, we shifted focus to the <code>dplyr</code> package, which is a powerful tool for data manipulation in R. This package offers a cohesive set of functions, often referred to as “verbs”, which allow for efficient and straightforward manipulation of data. The key “verbs” in <code>dplyr</code>—<code>filter()</code>, <code>select()</code>, <code>arrange()</code>, <code>mutate()</code>, and <code>summarise()</code>— have been explained and illustrated with examples.</p>
+<p>An integral component of the <code>dplyr</code> package, the pipe operator <code>%&gt;%</code>, has also been discussed. This operator allows for a more readable and understandable chaining of multiple operations in R, leading to cleaner and more straightforward code.</p>
+<p>The chapter has given a comprehensive illustration of using <code>dplyr</code> on the <code>mtcars</code> dataset. This practical demonstration has involved applying <code>dplyr</code> functions to a dataset and explaining the process and results.</p>
+<p>In addition to the basics, the chapter has also touched upon additional <code>dplyr</code> functions such as <code>rename()</code>, <code>group_by()</code>, and <code>slice()</code>, enriching readers’ understanding and competency in data manipulation using R.</p>
+<p>Overall, this chapter has provided an in-depth understanding of <code>tibbles</code> and <code>dplyr</code>, their applications, and their importance in data manipulation and management in the R programming environment.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] Müller, K., &amp; Wickham, H. (2021). tibble: Simple Data Frames. R package version 3.1.3. https://CRAN.R-project.org/package=tibble</p>
+<p>[2] Wickham, H., François, R., Henry, L., &amp; Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R package version 1.0.7. https://CRAN.R-project.org/package=dplyr</p>
+<p>[3] Bache, S. M., &amp; Wickham, H. (2020). magrittr: A Forward-Pipe Operator for R. R package version 2.0.1.</p>
+<p>https://CRAN.R-project.org/package=magrittr</p>
+<p>Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23.</p>
+<p>https://www.jstatsoft.org/article/view/v059i10</p>
+<p>Grolemund, G., &amp; Wickham, H. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media, Inc.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
