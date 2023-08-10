@@ -48,22 +48,23 @@ website:
         text: Overview
       - 01GettingStarted.qmd
       - 02RPackages.qmd
-#      - 03DataStructures.qmd
-#      - 04ReadingData.qmd
-#      - 05ExploringDataframes.qmd
-#     - 06LiveCase01.qmd
-#      - 07ExploringTibbles.qmd
-#      - 08CategoricalData01.qmd
-#      - 09CategoricalData02.qmd
-#      - 10CategoricalData03.qmd
-#      - 11LiveCase02.qmd
-#      - 12ContinuousData01.qmd
-#      - 13ContinuousData02.qmd
-#      - 14ContinuousData03.qmd
-#      - 15ContinuousData04.qmd
-#      - 16ContinuousData05.qmd
-#      - 17ContinuousData06.qmd
-#      - 18LiveCase03.qmd
+      - 03DataStructures.qmd
+      - 04ReadingData.qmd
+      - 05ExploringDataframes.qmd
+      - 06LiveCase01.qmd
+      - 07ExploringTibbles.qmd
+      - 08CategoricalData01.qmd
+      - 09CategoricalData02.qmd
+      - 10CategoricalData03.qmd
+      - 11LiveCase02.qmd
+      - 12LiveCase03.qmd
+      - 13ContinuousData01.qmd
+      - 14ContinuousData02.qmd
+      - 15ContinuousData03.qmd
+      - 16ContinuousData04.qmd
+      - 17ContinuousData05.qmd
+      - 18ContinuousData06.qmd
+
 ### END yaml FOR BOOK'S WEBSITE ###
 
 format:

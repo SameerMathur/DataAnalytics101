@@ -1,6 +1,6 @@
 # Live Case: S&P500 (1 of 3)
 
-*Aug 02, 2023*
+*Aug 09, 2023*
 
 ## S&P 500
 
@@ -15,10 +15,6 @@ The performance of the S&P 500 is frequently used to gauge the broader stock mar
 Typically, the S&P 500 index consists of 500 stocks. However, in reality, there are actually 503 stocks included. This discrepancy arises because three of the listed companies have multiple share classes, and each class is considered a separate stock that needs to be included in the index.
 
 Among these 503 stocks, Apple, the technology giant, holds the top position with a market capitalization of \$2.35 billion. Following Apple, Microsoft and Amazon.com rank as the second and third largest stocks in the S&P 500, respectively. The next positions are held by Nvidia Corp, Tesla, Berkshire Hathaway, and two classes of shares from Google's parent company, Alphabet..
-
-
-
-
 
 ## S&P 500 Data - Preliminary Analysis
 

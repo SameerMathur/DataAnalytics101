@@ -1,0 +1,364 @@
+# Live Case: S&P500 (3 of 3)
+
+*Aug 10, 2023 -=-*
+
+Agenda: Analyzing a particular Sector within the S&P500 Index *We have chosen to deeply analyze the HEALTH TECHNOLOGY Sector.*
+
+## S&P 500 Data - PRELIMINARY SETUP
+
+1.  We will continue our analysis of the S&P 500. Load the data, as described in the chapter Live Case: S&P500 (1 of 3)
+
+```{r, warning=FALSE}
+# Read S&P500 stock data present in a Google Sheet.
+library(gsheet)
+prefix <- "https://docs.google.com/spreadsheets/d/"
+sheetID <- "11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"
+url500 <- paste(prefix,sheetID) # Form the URL to connect to
+sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
+```
+
+2.  Rename columns, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+
+# Define a mapping of new column names
+new_names <- c(
+  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "MarketCap", "Price", "Low52Wk", "High52Wk", 
+  "ROE", "ROA", "ROIC", "GrossMargin", 
+  "OperatingMargin", "NetMargin", "PE", 
+  "PB", "EVEBITDA", "EBITDA", "EPS", 
+  "EBITDA_YOY", "EBITDA_QYOY", "EPS_YOY", 
+  "EPS_QYOY", "PFCF", "FCF", 
+  "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
+  "QuickRatio", "DividendYield", 
+  "DividendsPerShare_YOY", "PS", 
+  "Revenue_YOY", "Revenue_QYOY", "Rating"
+)
+# Rename the columns using the new_names vector
+sp500 <- sp500 %>% 
+  rename_with(~ new_names, everything())
+```
+
+```{r, warning=FALSE, eval=TRUE, echo=FALSE}
+library(tibble)
+new_names <- c(
+  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "MarketCap", "Price", "Low52Wk", "High52Wk", 
+  "ROE", "ROA", "ROIC", "GrossMargin", 
+  "OperatingMargin", "NetMargin", "PE", 
+  "PB", "EVEBITDA", "EBITDA", "EPS", 
+  "EBITDA_YOY", "EBITDA_QYOY", "EPS_YOY", 
+  "EPS_QYOY", "PFCF", "FCF", 
+  "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
+  "QuickRatio", "DividendYield", 
+  "DividendsPerShare_YOY", "PS", 
+  "Revenue_YOY", "Revenue_QYOY", "Rating"
+)
+descriptions <- c(
+  "Date (e.g. \"7/15/2023\")",
+  "Stock Ticker (e.g. AAL)",
+  "Name of the company (e.g \"American Airlines Group, Inc.\")",
+  "Sector the stock belongs to (e.g. \"Transportation\")",
+  "Industry the stock belongs to (e.g \"Airlines\")",
+  "Market capitalization of the company",
+  "Recent Stock Price",
+  "52-Week Low Price",
+  "52-Week High Price",
+  "Return on Equity",
+  "Return on Assets",
+  "Return on Invested Capital",
+  "Gross Profit Margin",
+  "Operating Profit Margin",
+  "Net Profit Margin",
+  "Price-to-Earnings Ratio",
+  "Price-to-Book Ratio",
+  "Enterprise Value to EBITDA Ratio",
+  "EBITDA",
+  "Earnings per Share",
+  "EBITDA Year-over-Year Growth",
+  "EBITDA Quarterly Year-over-Year Growth",
+  "EPS Year-over-Year Growth",
+  "EPS Quarterly Year-over-Year Growth",
+  "Price-to-Free Cash Flow",
+  "Free Cash Flow",
+  "Free Cash Flow Quarterly Year-over-Year Growth",
+  "Debt-to-Equity Ratio",
+  "Current Ratio",
+  "Quick Ratio",
+  "Dividend Yield",
+  "Annual Dividends per Share Year-over-Year Growth",
+  "Price-to-Sales Ratio",
+  "Revenue Year-over-Year Growth",
+  "Revenue Quarterly Year-over-Year Growth",
+  "Technical Rating"
+)
+column_info <- tibble(ColumnName = new_names, Description = descriptions)
+```
+
+3.  Remove Rows containing no data or Null values, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+# Check for blank or null values in the "Stock" column
+hasNull <- any(sp500$Stock == "" | is.null(sp500$Stock))
+if (hasNull) { 
+    # Remove rows with null or blank values from the dataframe tibble
+    sp500 <- sp500[!(is.null(sp500$Stock) | sp500$Stock == ""), ]
+}
+```
+
+4.  The S&P500 shares are divided into multiple Sectors. Thus, model Sector as a factor() variable, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$Sector <- as.factor(sp500$Sector)
+```
+
+5.  Stock Ratings: The S&P500 shares have Technical Ratings such as {Buy, Sell, ..}. Model the data column Rating as a factor() variable, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$Rating <- as.factor(sp500$Rating)
+```
+
+6.  Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE}
+sp500 <- sp500 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
+colnames(sp500)
+```
+
+Well done! Our data is now ready for analysis!!
+
+## SECTOR LEVEL ANALYSIS begins here
+
+### Filter the data by sector Health Services, and display the number of stocks in the sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+ts <- sp500 %>%
+		filter(Sector=='Health Services')
+
+nrow(ts)
+```
+
+There are 12 number of of stocks in the sector Health Services
+
+### Select the Specific Coulumns from the filtered dataframe `ts` (Health Services)
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+ts2 <- ts %>%
+		select(Date, Stock, StockName,Sector,  Industry, MarketCap, Price,Low52Wk, High52Wk,
+		       ROE, ROA,ROIC,GrossMargin, GrossMargin, 
+		       NetMargin, Rating)
+
+colnames(ts2)
+```
+
+### Arrange the Dataframe by ROE
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+ts3 <- ts2 %>% arrange(desc(ROE))
+```
+
+### Top 10 Shares in Sector Health Services Based on ROE
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+head(ts3,10)
+```
+
+### Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE}
+ts4 <- ts3 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
+head(ts4[,c(1:3,10,16)],10)
+```
+
+### Summary Statistics of ROE
+
+```{r}
+ts3 <- na.omit(ts3)
+
+ROESum <- ts3 %>%
+  summarise(
+    Mean = mean(ROE),
+    Median= sd(ROE),
+    Median= median(ROE),
+    Q1 = quantile(ROE, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(ROE, probs = 0.75, na.rm = TRUE),
+    Min = min(ROE),
+    max = max(ROE)
+  )
+
+ROESum <- round(ROESum,2)
+ROESum
+```
+
+### Summary Statistics of All key variables in Sector Health Services
+
+```{r}
+ts3 <- na.omit(ts3)
+
+ROESum <- ts3 %>%
+  summarise(
+    Mean = mean(ROE),
+    Median= sd(ROE),
+    Median= median(ROE),
+    Q1 = quantile(ROE, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(ROE, probs = 0.75, na.rm = TRUE),
+    Min = min(ROE),
+    max = max(ROE)
+  )
+
+ROESum <- round(ROESum,2)
+
+
+ROASum <- ts3 %>%
+  summarise(
+    Mean = mean(ROA),
+    Median= sd(ROA),
+    Median= median(ROA),
+    Q1 = quantile(ROA, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(ROA, probs = 0.75, na.rm = TRUE),
+    Min = min(ROA),
+    max = max(ROA)
+  )
+
+ROASum <- round(ROASum,2)
+
+ROICSum <- ts3 %>%
+  summarise(
+    Mean = mean(ROIC),
+    Median= sd(ROIC),
+    Median= median(ROIC),
+    Q1 = quantile(ROIC, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(ROIC, probs = 0.75, na.rm = TRUE),
+    Min = min(ROIC),
+    max = max(ROIC)
+  )
+
+ROICSum <- round(ROICSum,2)
+
+GrossMarginSum <- ts3 %>%
+  summarise(
+    Mean = mean(GrossMargin),
+    Median= sd(GrossMargin),
+    Median= median(GrossMargin),
+    Q1 = quantile(GrossMargin, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(GrossMargin, probs = 0.75, na.rm = TRUE),
+    Min = min(GrossMargin),
+    max = max(GrossMargin)
+  )
+
+GrossMarginSum <- round(GrossMarginSum,2)
+
+NetMarginSum <- ts3 %>%
+  summarise(
+    Mean = mean(NetMargin),
+    Median= sd(NetMargin),
+    Median= median(NetMargin),
+    Q1 = quantile(NetMargin, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(NetMargin, probs = 0.75, na.rm = TRUE),
+    Min = min(NetMargin),
+    max = max(NetMargin)
+  )
+
+NetMarginSum <- round(NetMarginSum,2)
+
+Metrics <- c("ROE","ROA","ROIC","GrossMargin","NetMargin")
+
+ftab <- rbind(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)
+ftab <- cbind(Metrics, ftab)
+ftab
+```
+
+### Summary Statistics of ROE by each Sector of S&P500
+
+```{r}
+
+SectorROE <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(ROE)),
+    Median= sd(na.omit(ROE)),
+    Median= median(na.omit(ROE)),
+    Q1 = quantile(na.omit(ROE), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(ROE), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(ROE)),
+    max = max(na.omit(ROE))
+  )
+
+cbind(Sector = SectorROE$Sector, round(SectorROE[,2:7],2))
+```
+
+## ANALYSIS OF HEALTH SERVICES SECTOR
+
+1.  Market Cap of all companies in Sector Health Services
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(janitor)
+library(kableExtra)
+# Market Cap by Stock
+MCap <- ts3 %>%
+  group_by(Stock) %>%
+  summarise(
+    MarketCapCr = sum(na.omit(MarketCap)/10000000))
+
+# Sp500 Market Cap
+
+SP500MarketCap <- sum(ts3$MarketCap/10000000)
+
+# calculating % market cap
+PercentMarketCap <- round(MCap$MarketCapCr*100/SP500MarketCap,2)
+MCapTab <- cbind(MCap,PercentMarketCap)
+
+# sorting by PercentMarketCap
+MCapTab <- MCapTab %>% arrange(desc(PercentMarketCap))
+
+
+MCapTab <- MCapTab %>%
+  adorn_totals("row")
+
+MCapTab <- knitr::kable(MCapTab, "html") %>% kable_styling() 
+MCapTab 
+```
+
+2.  Shares which are most attractively priced in Sector Health Services
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+AttrShares <- ts4 %>% arrange(Low52WkPerc)
+AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
+
+AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
+AttrShares 
+```
+
+### PROFITABILITY OF HEALTH SERVICES SECTOR
+
+1.  Shares have highest ROE within Sector Technology Services
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+AttrShares <- ts4 %>% arrange(desc(ROE))
+AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
+
+AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
+AttrShares 
+```
+
+2.  Shares have highest ROA within Sector Health Services
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+AttrShares <- ts4 %>% arrange(desc(ROA))
+AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
+
+AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
+AttrShares 
+```
+
+3.  Shares have highest NetMargin within Sector Health Services
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+AttrShares <- ts4 %>% arrange(desc(NetMargin))
+AttrShares <- AttrShares[, c(2:4,7,8,10,11,14,16)]
+
+AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
+AttrShares 
+```

@@ -1,6 +1,6 @@
 # Exploring Dataframes
 
-*July 29, 2023.*
+*Aug 09, 2023.*
 
 The mtcars dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.
 
