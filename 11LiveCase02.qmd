@@ -1,8 +1,18 @@
 # Live Case: S&P500 (2 of 3)
 
-*Aug 10, 2023 -=-*
+*Aug 10, 2023. -=-*
 
 Agenda: Understanding the S&P500 Index
+
+
+
+
+
+
+
+
+
+
 
 ## S&P 500 Data - PRELIMINARY SETUP
 
@@ -136,6 +146,27 @@ sp500 <- sp500 %>% mutate(MarketCapBillions = MarketCap/ 1000000000)
 colnames(sp500)
 
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## ANALYSIS OF S&P500 SECTORS
 
@@ -274,7 +305,7 @@ SMcap
 
 ```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
 Top10 <- sp500 %>% arrange(desc(MarketCapBillions)) %>% head(10)
-Top10 <- `Top10`[,c(1:4,10:13,38)]
+Top10 <- `Top10`[,c(1:4,10:13,37)]
 
 Top10 <- knitr::kable(Top10, "html") %>% kable_styling() 
 Top10 

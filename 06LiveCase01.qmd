@@ -353,6 +353,37 @@ table(sp500$Rating)
 
 Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Strong Buy". This completes our review of Technical Rating.
 
+
+
+
+6.  Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE}
+sp500 <- sp500 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
+colnames(sp500)
+```
+
+
+
+
+
+7.  Creating a new column MarketCapBillions = MarketCap/1000,000,000
+
+```{r}
+sp500 <- sp500 %>% mutate(MarketCapBillions = MarketCap/ 1000000000)
+colnames(sp500)
+
+```
+
+
+
+
+
+
+
+
+
+
 ### Where are we now?
 
 We believe this dataset of S&P500 shares is now ready for futher analysis. We end this stage of our analysis in this chapter, by running the str() function to review the data columns.

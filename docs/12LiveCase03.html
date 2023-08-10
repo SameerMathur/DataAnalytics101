@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.433" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Data Analytics 101 -- Exploratory Data Analysis using R – livecase03</title>
@@ -58,7 +56,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,53 +94,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
 
-<body>
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="/index.html">
-    <span class="navbar-title">Data Analytics 101 -- Exploratory Data Analysis using R</span>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
-  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i 
-  class="bi bi-globe" 
-  role="img" 
->
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
 </i> 
  <span class="menu-text">Sameer Mathur</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true" rel="" target="_blank"><i 
-  class="bi bi-globe" 
-  role="img" 
->
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true" rel="" target="_blank"><i class="bi bi-globe" role="img">
 </i> 
  <span class="menu-text">Aryeman Gupta Mathur</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i 
-  class="bi bi-github" 
-  role="img" 
->
+    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text">Book&#39;s Github</span></a>
+ <span class="menu-text">Book’s Github</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -137,16 +139,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12LiveCase03.html">Live Case: S&amp;P500 (3 of 3)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -159,8 +156,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="/index.html" class="sidebar-logo-link">
-      <img src="/images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"/>
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -172,171 +169,173 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/01GettingStarted.html" class="sidebar-item-text sidebar-link">
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring R programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/02RPackages.html" class="sidebar-item-text sidebar-link">
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring R Packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/03DataStructures.html" class="sidebar-item-text sidebar-link">
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Data Structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/04ReadingData.html" class="sidebar-item-text sidebar-link">
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Data into R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Dataframes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/06LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&P500 (1 of 3)</span></a>
+  <a href="./06LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring *tibbles* & *dplyr*</span></a>
+  <a href="./07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/08CategoricalData01.html" class="sidebar-item-text sidebar-link">
+  <a href="./08CategoricalData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/09CategoricalData02.html" class="sidebar-item-text sidebar-link">
+  <a href="./09CategoricalData02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/10CategoricalData03.html" class="sidebar-item-text sidebar-link">
+  <a href="./10CategoricalData03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/11LiveCase02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&P500 (2 of 3)</span></a>
+  <a href="./11LiveCase02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (2 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/12LiveCase03.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Live Case: S&P500 (3 of 3)</span></a>
+  <a href="./12LiveCase03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Live Case: S&amp;P500 (3 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/13ContinuousData01.html" class="sidebar-item-text sidebar-link">
+  <a href="./13ContinuousData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous Data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/14ContinuousData02.html" class="sidebar-item-text sidebar-link">
+  <a href="./14ContinuousData02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous Data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/15ContinuousData03.html" class="sidebar-item-text sidebar-link">
+  <a href="./15ContinuousData03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/16ContinuousData04.html" class="sidebar-item-text sidebar-link">
+  <a href="./16ContinuousData04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/17ContinuousData05.html" class="sidebar-item-text sidebar-link">
+  <a href="./17ContinuousData05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/18ContinuousData06.html" class="sidebar-item-text sidebar-link">
+  <a href="./18ContinuousData06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous x Continous data (2 of 2)</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#live-case-sp500-3-of-3" id="toc-live-case-sp500-3-of-3" class="nav-link active" data-scroll-target="#live-case-sp500-3-of-3">Live Case: S&amp;P500 (3 of 3)</a>
+  <ul class="collapse">
+  <li><a href="#sp-500-data---preliminary-setup" id="toc-sp-500-data---preliminary-setup" class="nav-link" data-scroll-target="#sp-500-data---preliminary-setup">S&amp;P 500 Data - PRELIMINARY SETUP</a></li>
+  <li><a href="#sector-level-analysis-begins-here" id="toc-sector-level-analysis-begins-here" class="nav-link" data-scroll-target="#sector-level-analysis-begins-here">SECTOR LEVEL ANALYSIS begins here</a>
+  <ul class="collapse">
+  <li><a href="#filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" id="toc-filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" class="nav-link" data-scroll-target="#filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector">Filter the data by sector Health Services, and display the number of stocks in the sector</a></li>
+  <li><a href="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" id="toc-select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" class="nav-link" data-scroll-target="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Health Services)</a></li>
+  <li><a href="#arrange-the-dataframe-by-roe" id="toc-arrange-the-dataframe-by-roe" class="nav-link" data-scroll-target="#arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</a></li>
+  <li><a href="#top-10-shares-in-sector-health-services-based-on-roe" id="toc-top-10-shares-in-sector-health-services-based-on-roe" class="nav-link" data-scroll-target="#top-10-shares-in-sector-health-services-based-on-roe">Top 10 Shares in Sector Health Services Based on ROE</a></li>
+  <li><a href="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" id="toc-mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" class="nav-link" data-scroll-target="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</a></li>
+  <li><a href="#summary-statistics-of-roe" id="toc-summary-statistics-of-roe" class="nav-link" data-scroll-target="#summary-statistics-of-roe">Summary Statistics of ROE</a></li>
+  <li><a href="#summary-statistics-of-all-key-variables-in-sector-health-services" id="toc-summary-statistics-of-all-key-variables-in-sector-health-services" class="nav-link" data-scroll-target="#summary-statistics-of-all-key-variables-in-sector-health-services">Summary Statistics of All key variables in Sector Health Services</a></li>
+  <li><a href="#summary-statistics-of-roe-by-each-sector-of-sp500" id="toc-summary-statistics-of-roe-by-each-sector-of-sp500" class="nav-link" data-scroll-target="#summary-statistics-of-roe-by-each-sector-of-sp500">Summary Statistics of ROE by each Sector of S&amp;P500</a></li>
+  </ul></li>
+  <li><a href="#analysis-of-health-services-sector" id="toc-analysis-of-health-services-sector" class="nav-link" data-scroll-target="#analysis-of-health-services-sector">ANALYSIS OF HEALTH SERVICES SECTOR</a>
+  <ul class="collapse">
+  <li><a href="#profitability-of-health-services-sector" id="toc-profitability-of-health-services-sector" class="nav-link" data-scroll-target="#profitability-of-health-services-sector">PROFITABILITY OF HEALTH SERVICES SECTOR</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="12LiveCase03.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#live-case-sp500-3-of-3" id="toc-live-case-sp500-3-of-3">Live Case: S&amp;P500 (3 of 3)</a>
-  <ul>
-  <li><a href="#sp-500-data---preliminary-setup" id="toc-sp-500-data---preliminary-setup">S&amp;P 500 Data - PRELIMINARY SETUP</a></li>
-  <li><a href="#sector-level-analysis-begins-here" id="toc-sector-level-analysis-begins-here">SECTOR LEVEL ANALYSIS begins here</a>
-  <ul>
-  <li><a href="#filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" id="toc-filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector">Filter the data by sector Health Services, and display the number of stocks in the sector</a></li>
-  <li><a href="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" id="toc-select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Health Services)</a></li>
-  <li><a href="#arrange-the-dataframe-by-roe" id="toc-arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</a></li>
-  <li><a href="#top-10-shares-in-sector-health-services-based-on-roe" id="toc-top-10-shares-in-sector-health-services-based-on-roe">Top 10 Shares in Sector Health Services Based on ROE</a></li>
-  <li><a href="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" id="toc-mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</a></li>
-  <li><a href="#summary-statistics-of-roe" id="toc-summary-statistics-of-roe">Summary Statistics of ROE</a></li>
-  <li><a href="#summary-statistics-of-all-key-variables-in-sector-health-services" id="toc-summary-statistics-of-all-key-variables-in-sector-health-services">Summary Statistics of All key variables in Sector Health Services</a></li>
-  <li><a href="#summary-statistics-of-roe-by-each-sector-of-sp500" id="toc-summary-statistics-of-roe-by-each-sector-of-sp500">Summary Statistics of ROE by each Sector of S&amp;P500</a></li>
-  </ul></li>
-  <li><a href="#analysis-of-health-services-sector" id="toc-analysis-of-health-services-sector">ANALYSIS OF HEALTH SERVICES SECTOR</a>
-  <ul>
-  <li><a href="#profitability-of-health-services-sector" id="toc-profitability-of-health-services-sector">PROFITABILITY OF HEALTH SERVICES SECTOR</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
+
 <section id="live-case-sp500-3-of-3" class="level1">
 <h1>Live Case: S&amp;P500 (3 of 3)</h1>
 <p><em>Aug 10, 2023 -=-</em></p>
 <p>Agenda: Analyzing a particular Sector within the S&amp;P500 Index <em>We have chosen to deeply analyze the HEALTH TECHNOLOGY Sector.</em></p>
 <section id="sp-500-data---preliminary-setup" class="level2">
-<h2>S&amp;P 500 Data - PRELIMINARY SETUP</h2>
+<h2 class="anchored" data-anchor-id="sp-500-data---preliminary-setup">S&amp;P 500 Data - PRELIMINARY SETUP</h2>
 <ol type="1">
 <li>We will continue our analysis of the S&amp;P 500. Load the data, as described in the chapter Live Case: S&amp;P500 (1 of 3)</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">&quot;https://docs.google.com/spreadsheets/d/&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">&quot;11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix,sheetID) <span class="co"># Form the URL to connect to</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>No encoding supplied: defaulting to UTF-8.</code></pre>
 </div>
@@ -345,82 +344,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Rename columns, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Stock&quot;</span>, <span class="st">&quot;StockName&quot;</span>, <span class="st">&quot;Sector&quot;</span>, <span class="st">&quot;Industry&quot;</span>, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;MarketCap&quot;</span>, <span class="st">&quot;Price&quot;</span>, <span class="st">&quot;Low52Wk&quot;</span>, <span class="st">&quot;High52Wk&quot;</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;ROE&quot;</span>, <span class="st">&quot;ROA&quot;</span>, <span class="st">&quot;ROIC&quot;</span>, <span class="st">&quot;GrossMargin&quot;</span>, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;OperatingMargin&quot;</span>, <span class="st">&quot;NetMargin&quot;</span>, <span class="st">&quot;PE&quot;</span>, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;PB&quot;</span>, <span class="st">&quot;EVEBITDA&quot;</span>, <span class="st">&quot;EBITDA&quot;</span>, <span class="st">&quot;EPS&quot;</span>, </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;EBITDA_YOY&quot;</span>, <span class="st">&quot;EBITDA_QYOY&quot;</span>, <span class="st">&quot;EPS_YOY&quot;</span>, </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;EPS_QYOY&quot;</span>, <span class="st">&quot;PFCF&quot;</span>, <span class="st">&quot;FCF&quot;</span>, </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;FCF_QYOY&quot;</span>, <span class="st">&quot;DebtToEquity&quot;</span>, <span class="st">&quot;CurrentRatio&quot;</span>, </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;QuickRatio&quot;</span>, <span class="st">&quot;DividendYield&quot;</span>, </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;DividendsPerShare_YOY&quot;</span>, <span class="st">&quot;PS&quot;</span>, </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Revenue_YOY&quot;</span>, <span class="st">&quot;Revenue_QYOY&quot;</span>, <span class="st">&quot;Rating&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span>, <span class="st">"Stock"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> new_names, <span class="fu">everything</span>())</span></code></pre></div>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> new_names, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li>Remove Rows containing no data or Null values, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the &quot;Stock&quot; column</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">&quot;&quot;</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock))</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the "Stock" column</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hasNull) { </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove rows with null or blank values from the dataframe tibble</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sp500 <span class="ot">&lt;-</span> sp500[<span class="sc">!</span>(<span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock) <span class="sc">|</span> sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">&quot;&quot;</span>), ]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sp500 <span class="ot">&lt;-</span> sp500[<span class="sc">!</span>(<span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock) <span class="sc">|</span> sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">""</span>), ]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
 <li>The S&amp;P500 shares are divided into multiple Sectors. Thus, model Sector as a factor() variable, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Stock Ratings: The S&amp;P500 shares have Technical Ratings such as {Buy, Sell, ..}. Model the data column Rating as a factor() variable, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="6" type="1">
 <li>Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] &quot;Date&quot;                  &quot;Stock&quot;                 &quot;StockName&quot;            
- [4] &quot;Sector&quot;                &quot;Industry&quot;              &quot;MarketCap&quot;            
- [7] &quot;Price&quot;                 &quot;Low52Wk&quot;               &quot;High52Wk&quot;             
-[10] &quot;ROE&quot;                   &quot;ROA&quot;                   &quot;ROIC&quot;                 
-[13] &quot;GrossMargin&quot;           &quot;OperatingMargin&quot;       &quot;NetMargin&quot;            
-[16] &quot;PE&quot;                    &quot;PB&quot;                    &quot;EVEBITDA&quot;             
-[19] &quot;EBITDA&quot;                &quot;EPS&quot;                   &quot;EBITDA_YOY&quot;           
-[22] &quot;EBITDA_QYOY&quot;           &quot;EPS_YOY&quot;               &quot;EPS_QYOY&quot;             
-[25] &quot;PFCF&quot;                  &quot;FCF&quot;                   &quot;FCF_QYOY&quot;             
-[28] &quot;DebtToEquity&quot;          &quot;CurrentRatio&quot;          &quot;QuickRatio&quot;           
-[31] &quot;DividendYield&quot;         &quot;DividendsPerShare_YOY&quot; &quot;PS&quot;                   
-[34] &quot;Revenue_YOY&quot;           &quot;Revenue_QYOY&quot;          &quot;Rating&quot;               
-[37] &quot;Low52WkPerc&quot;          </code></pre>
+<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Low52WkPerc"          </code></pre>
 </div>
 </div>
 <p>Well done! Our data is now ready for analysis!!</p>
+<ol start="7" type="1">
+<li>Creating a new column MarketCapBillions = MarketCap/1000,000,000</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">MarketCapBillions =</span> MarketCap<span class="sc">/</span> <span class="dv">1000000000</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Low52WkPerc"           "MarketCapBillions"    </code></pre>
+</div>
+</div>
 </section>
 <section id="sector-level-analysis-begins-here" class="level2">
-<h2>SECTOR LEVEL ANALYSIS begins here</h2>
+<h2 class="anchored" data-anchor-id="sector-level-analysis-begins-here">SECTOR LEVEL ANALYSIS begins here</h2>
 <section id="filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" class="level3">
-<h3>Filter the data by sector Health Services, and display the number of stocks in the sector</h3>
+<h3 class="anchored" data-anchor-id="filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector">Filter the data by sector Health Services, and display the number of stocks in the sector</h3>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(Sector<span class="sc">==</span><span class="st">&#39;Health Services&#39;</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ts)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(Sector<span class="sc">==</span><span class="st">'Health Services'</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
@@ -428,31 +449,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are 12 number of of stocks in the sector Health Services</p>
 </section>
 <section id="select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" class="level3">
-<h3>Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Health Services)</h3>
+<h3 class="anchored" data-anchor-id="select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Health Services)</h3>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ts2 <span class="ot">&lt;-</span> ts <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(Date, Stock, StockName,Sector,  Industry, MarketCap, Price,Low52Wk, High52Wk,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>               ROE, ROA,ROIC,GrossMargin, GrossMargin, </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>               NetMargin, Rating)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts2)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ts2 <span class="ot">&lt;-</span> ts <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(Date, Stock, StockName,Sector,  Industry, MarketCap, Price,Low52Wk, High52Wk,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>               ROE, ROA,ROIC,GrossMargin, GrossMargin, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>               NetMargin, Rating)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] &quot;Date&quot;        &quot;Stock&quot;       &quot;StockName&quot;   &quot;Sector&quot;      &quot;Industry&quot;   
- [6] &quot;MarketCap&quot;   &quot;Price&quot;       &quot;Low52Wk&quot;     &quot;High52Wk&quot;    &quot;ROE&quot;        
-[11] &quot;ROA&quot;         &quot;ROIC&quot;        &quot;GrossMargin&quot; &quot;NetMargin&quot;   &quot;Rating&quot;     </code></pre>
+<pre><code> [1] "Date"        "Stock"       "StockName"   "Sector"      "Industry"   
+ [6] "MarketCap"   "Price"       "Low52Wk"     "High52Wk"    "ROE"        
+[11] "ROA"         "ROIC"        "GrossMargin" "NetMargin"   "Rating"     </code></pre>
 </div>
 </div>
 </section>
 <section id="arrange-the-dataframe-by-roe" class="level3">
-<h3>Arrange the Dataframe by ROE</h3>
+<h3 class="anchored" data-anchor-id="arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</h3>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> ts2 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> ts2 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="top-10-shares-in-sector-health-services-based-on-roe" class="level3">
-<h3>Top 10 Shares in Sector Health Services Based on ROE</h3>
+<h3 class="anchored" data-anchor-id="top-10-shares-in-sector-health-services-based-on-roe">Top 10 Shares in Sector Health Services Based on ROE</h3>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts3,<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts3,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 15
    Date   Stock StockName Sector Industry MarketCap Price Low52Wk High52Wk   ROE
@@ -473,10 +494,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" class="level3">
-<h3>Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</h3>
+<h3 class="anchored" data-anchor-id="mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</h3>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts4[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">16</span>)],<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts4[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">16</span>)],<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
    Date      Stock StockName                                    ROE Low52WkPerc
@@ -495,35 +516,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="summary-statistics-of-roe" class="level3">
-<h3>Summary Statistics of ROE</h3>
+<h3 class="anchored" data-anchor-id="summary-statistics-of-roe">Summary Statistics of ROE</h3>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROE),</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROE),</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROE),</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROE),</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROE)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>ROESum</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 6
-   Mean Median    Q1    Q3   Min   max
-  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  22.4   12.5  11.6  19.7  8.31    60</code></pre>
-</div>
-</div>
-</section>
-<section id="summary-statistics-of-all-key-variables-in-sector-health-services" class="level3">
-<h3>Summary Statistics of All key variables in Sector Health Services</h3>
-<div class="cell">
-<div class="sourceCode" id="cb20"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
@@ -537,65 +532,91 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
-<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROA),</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROA),</span>
-<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROA),</span>
-<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROA),</span>
-<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROA)</span>
-<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROASum,<span class="dv">2</span>)</span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROIC),</span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROIC),</span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROIC),</span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROIC),</span>
-<span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROIC)</span>
-<span id="cb20-39"><a href="#cb20-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-40"><a href="#cb20-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-41"><a href="#cb20-41" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROICSum,<span class="dv">2</span>)</span>
-<span id="cb20-42"><a href="#cb20-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-43"><a href="#cb20-43" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb20-44"><a href="#cb20-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-45"><a href="#cb20-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(GrossMargin),</span>
-<span id="cb20-46"><a href="#cb20-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(GrossMargin),</span>
-<span id="cb20-47"><a href="#cb20-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(GrossMargin),</span>
-<span id="cb20-48"><a href="#cb20-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-49"><a href="#cb20-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-50"><a href="#cb20-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(GrossMargin),</span>
-<span id="cb20-51"><a href="#cb20-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(GrossMargin)</span>
-<span id="cb20-52"><a href="#cb20-52" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-53"><a href="#cb20-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-54"><a href="#cb20-54" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(GrossMarginSum,<span class="dv">2</span>)</span>
-<span id="cb20-55"><a href="#cb20-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-56"><a href="#cb20-56" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb20-57"><a href="#cb20-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb20-58"><a href="#cb20-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(NetMargin),</span>
-<span id="cb20-59"><a href="#cb20-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(NetMargin),</span>
-<span id="cb20-60"><a href="#cb20-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(NetMargin),</span>
-<span id="cb20-61"><a href="#cb20-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-62"><a href="#cb20-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-63"><a href="#cb20-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(NetMargin),</span>
-<span id="cb20-64"><a href="#cb20-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(NetMargin)</span>
-<span id="cb20-65"><a href="#cb20-65" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb20-66"><a href="#cb20-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-67"><a href="#cb20-67" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(NetMarginSum,<span class="dv">2</span>)</span>
-<span id="cb20-68"><a href="#cb20-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-69"><a href="#cb20-69" aria-hidden="true" tabindex="-1"></a>Metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ROE&quot;</span>,<span class="st">&quot;ROA&quot;</span>,<span class="st">&quot;ROIC&quot;</span>,<span class="st">&quot;GrossMargin&quot;</span>,<span class="st">&quot;NetMargin&quot;</span>)</span>
-<span id="cb20-70"><a href="#cb20-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-71"><a href="#cb20-71" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)</span>
-<span id="cb20-72"><a href="#cb20-72" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Metrics, ftab)</span>
-<span id="cb20-73"><a href="#cb20-73" aria-hidden="true" tabindex="-1"></a>ftab</span></code></pre></div>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>ROESum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+   Mean Median    Q1    Q3   Min   max
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  22.4   12.5  11.6  19.7  8.31    60</code></pre>
+</div>
+</div>
+</section>
+<section id="summary-statistics-of-all-key-variables-in-sector-health-services" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-of-all-key-variables-in-sector-health-services">Summary Statistics of All key variables in Sector Health Services</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROE),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROE),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROE),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROE),</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROE)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROA),</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROA),</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROA),</span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROA),</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROA)</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROASum,<span class="dv">2</span>)</span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROIC),</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROIC),</span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROIC),</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROIC),</span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROIC)</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROICSum,<span class="dv">2</span>)</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(GrossMargin),</span>
+<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(GrossMargin),</span>
+<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(GrossMargin),</span>
+<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(GrossMargin),</span>
+<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(GrossMargin)</span>
+<span id="cb22-52"><a href="#cb22-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-53"><a href="#cb22-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(GrossMarginSum,<span class="dv">2</span>)</span>
+<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(NetMargin),</span>
+<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(NetMargin),</span>
+<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(NetMargin),</span>
+<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(NetMargin),</span>
+<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(NetMargin)</span>
+<span id="cb22-65"><a href="#cb22-65" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-66"><a href="#cb22-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(NetMarginSum,<span class="dv">2</span>)</span>
+<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a>Metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ROE"</span>,<span class="st">"ROA"</span>,<span class="st">"ROIC"</span>,<span class="st">"GrossMargin"</span>,<span class="st">"NetMargin"</span>)</span>
+<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)</span>
+<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Metrics, ftab)</span>
+<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a>ftab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Metrics  Mean Median    Q1    Q3  Min   max
 1         ROE 22.42  12.50 11.60 19.70 8.31 60.00
@@ -607,21 +628,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="summary-statistics-of-roe-by-each-sector-of-sp500" class="level3">
-<h3>Summary Statistics of ROE by each Sector of S&amp;P500</h3>
+<h3 class="anchored" data-anchor-id="summary-statistics-of-roe-by-each-sector-of-sp500">Summary Statistics of ROE by each Sector of S&amp;P500</h3>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>SectorROE <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(ROE)),</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(ROE)),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(ROE)),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(ROE)),</span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(ROE))</span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Sector =</span> SectorROE<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorROE[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>SectorROE <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(ROE))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Sector =</span> SectorROE<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorROE[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                   Sector   Mean Median    Q1    Q3     Min    max
 1     Commercial Services  37.60  26.40 13.40 43.60    3.50  175.0
@@ -648,38 +669,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="analysis-of-health-services-sector" class="level2">
-<h2>ANALYSIS OF HEALTH SERVICES SECTOR</h2>
+<h2 class="anchored" data-anchor-id="analysis-of-health-services-sector">ANALYSIS OF HEALTH SERVICES SECTOR</h2>
 <ol type="1">
 <li>Market Cap of all companies in Sector Health Services</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb24"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Market Cap by Stock</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>MCap <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Stock) <span class="sc">%&gt;%</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">MarketCapCr =</span> <span class="fu">sum</span>(<span class="fu">na.omit</span>(MarketCap)<span class="sc">/</span><span class="dv">10000000</span>))</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sp500 Market Cap</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>SP500MarketCap <span class="ot">&lt;-</span> <span class="fu">sum</span>(ts3<span class="sc">$</span>MarketCap<span class="sc">/</span><span class="dv">10000000</span>)</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating % market cap</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>PercentMarketCap <span class="ot">&lt;-</span> <span class="fu">round</span>(MCap<span class="sc">$</span>MarketCapCr<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>SP500MarketCap,<span class="dv">2</span>)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(MCap,PercentMarketCap)</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="co"># sorting by PercentMarketCap</span></span>
-<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(PercentMarketCap))</span>
-<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span></span>
-<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">&quot;row&quot;</span>)</span>
-<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(MCapTab, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
-<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>MCapTab </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Market Cap by Stock</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>MCap <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Stock) <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">MarketCapCr =</span> <span class="fu">sum</span>(<span class="fu">na.omit</span>(MarketCap)<span class="sc">/</span><span class="dv">10000000</span>))</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sp500 Market Cap</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>SP500MarketCap <span class="ot">&lt;-</span> <span class="fu">sum</span>(ts3<span class="sc">$</span>MarketCap<span class="sc">/</span><span class="dv">10000000</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating % market cap</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>PercentMarketCap <span class="ot">&lt;-</span> <span class="fu">round</span>(MCap<span class="sc">$</span>MarketCapCr<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>SP500MarketCap,<span class="dv">2</span>)</span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(MCap,PercentMarketCap)</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a><span class="co"># sorting by PercentMarketCap</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(PercentMarketCap))</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">"row"</span>)</span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(MCapTab, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>MCapTab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
@@ -728,13 +749,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Shares which are most attractively priced in Sector Health Services</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Low52WkPerc)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Low52WkPerc)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
@@ -875,18 +896,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="profitability-of-health-services-sector" class="level3">
-<h3>PROFITABILITY OF HEALTH SERVICES SECTOR</h3>
+<h3 class="anchored" data-anchor-id="profitability-of-health-services-sector">PROFITABILITY OF HEALTH SERVICES SECTOR</h3>
 <ol type="1">
 <li>Shares have highest ROE within Sector Technology Services</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb26"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
@@ -1030,13 +1051,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Shares have highest ROA within Sector Health Services</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROA))</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROA))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
@@ -1180,13 +1201,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Shares have highest NetMargin within Sector Health Services</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb28"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NetMargin))</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">16</span>)]</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NetMargin))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">16</span>)]</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
@@ -1339,23 +1360,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Data Analytics 101 – Exploratory Data Analysis using R</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span> <span class="hidden" data-render-id="quarto-int-next">Continuous Data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-prev">Live Case: S&amp;P500 (2 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Overview</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01GettingStarted.html">Exploring R programming</span> <span class="hidden" data-render-id="quarto-int-sidebar:/02RPackages.html">Exploring R Packages</span> <span class="hidden" data-render-id="quarto-int-sidebar:/03DataStructures.html">Exploring Data Structures</span> <span class="hidden" data-render-id="quarto-int-sidebar:/04ReadingData.html">Reading Data into R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/05ExploringDataframes.html">Exploring Dataframes</span> <span class="hidden" data-render-id="quarto-int-sidebar:/06LiveCase01.html">Live Case: S&amp;P500 (1 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/07ExploringTibbles.html">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span> <span class="hidden" data-render-id="quarto-int-sidebar:/08CategoricalData01.html">Categorical Data</span> <span class="hidden" data-render-id="quarto-int-sidebar:/09CategoricalData02.html">Categorical x Categorical data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10CategoricalData03.html">Categorical x Categorical data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/11LiveCase02.html">Live Case: S&amp;P500 (2 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/12LiveCase03.html">Live Case: S&amp;P500 (3 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/13ContinuousData01.html">Continuous Data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/14ContinuousData02.html">Continuous Data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/15ContinuousData03.html">Categorical x Continuous data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/16ContinuousData04.html">Categorical x Continuous data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/17ContinuousData05.html">Continuous x Continous data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/18ContinuousData06.html">Continuous x Continous data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-navbar:Sameer Mathur">Sameer Mathur</span> <span class="hidden" data-render-id="quarto-int-navbar:https://www.qatar.cmu.edu/directory/sameer-mathur/">https://www.qatar.cmu.edu/directory/sameer-mathur/</span> <span class="hidden" data-render-id="quarto-int-navbar:Aryeman Gupta Mathur">Aryeman Gupta Mathur</span> <span class="hidden" data-render-id="quarto-int-navbar:https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true</span> <span class="hidden" data-render-id="quarto-int-navbar:Book&#39;s Github">Book’s Github</span> <span class="hidden" data-render-id="quarto-int-navbar:https://github.com/SameerMathur/DataAnalytics101">https://github.com/SameerMathur/DataAnalytics101</span> <span class="hidden" data-render-id="footer-center-https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</span> <span class="hidden" data-render-id="footer-center-https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</span> <span class="hidden" data-render-id="quarto-breadcrumbs-3cabe0663f4d67c731cb3683c293a6ea">Live Case: S&amp;P500 (3 of 3)</span></p>
-<div class="hidden" data-render-id="margin-header">
-<div class="margin-header-item">
-<p><img src="BookCover101.png" class="img-fluid" /></p>
-</div>
-</div>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-twittercardtitle"></span> <span class="hidden" data-render-id="quarto-ogcardtitle"></span> <span class="hidden" data-render-id="quarto-metasitename">Data Analytics 101 – Exploratory Data Analysis using R</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
+
+
 </section>
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1597,14 +1609,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">
- Sameer Mathur
-    </a>
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">
- Aryeman Gupta Mathur
-    </a>
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
   </li>  
 </ul>
     </div>
@@ -1614,6 +1622,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </footer>
 
-</body>
 
-</html>
+
+</body></html>
