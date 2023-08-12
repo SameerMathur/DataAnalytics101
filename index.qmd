@@ -85,6 +85,8 @@ Chapter 10 explores how to summarize and visualize *multivariate, categorical* d
 
 It explores multivariate categorical variables and the complex relationships and dependencies they exhibit. The chapter leverages R to construct three-dimensional contingency tables and segment these tables by various variables for unique data perspectives. The chapter elaborates on visualizing this data through three-dimensional bar plots and mosaic plots, which aid in interpreting the frequency of combinations of multiple variables. The chapter also explores four-way relationships between categorical variables, utilizing four-dimensional contingency tables and mosaic plots for this intricate analysis and visualization. As a result, the chapter imparts a robust understanding of handling and visualizing multivariate categorical data, preparing readers to effectively navigate and analyze complex datasets. Together with its predecessors, this chapter completes a comprehensive overview of handling and visualizing multivariate categorical data.
 
+
+
 ### Chapter 11: Live Case Study - Exploring S&P500 Data - Part 2 of 3
 
 *to be written*
