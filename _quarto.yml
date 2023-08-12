@@ -1,5 +1,5 @@
 
-### BEGIN yaml FOR BOOK'S WEBSITE (Aug 04, 2023) ###
+### BEGIN yaml FOR BOOK'S WEBSITE (Aug 12, 2023) ###
 project:
   type: website
   output-dir: docs
@@ -83,6 +83,7 @@ format:
           \includegraphics[width=5in]{FINALIZED BOOK COVER.png}
         \end{center}
       }
+    prefer-html: true
 
 editor: visual
 

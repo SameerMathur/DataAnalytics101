@@ -1,6 +1,6 @@
 # Live Case: S&P500 (1 of 3)
 
-*Aug 10, 2023*
+*Aug 10, 2023.*
 
 ## S&P 500
 
@@ -29,7 +29,7 @@ The data is disorganized and challenging to understand. We will review the data 
 
 2.  The Google Sheet ID is: `11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM`. We can use the function `gsheet2tbl` in package `gsheet` to read the Google Sheet into a tibble or dataframe, as demonstrated in the following code.
 
-```{r, warning=FALSE}
+```{r Chunk01, warning=FALSE}
 # Read S&P500 stock data present in a Google Sheet.
 library(gsheet)
 prefix <- "https://docs.google.com/spreadsheets/d/"
@@ -261,7 +261,7 @@ table1h
 
 1.  The following code checks if the "Stock" column in the sp500 dataframe contains any null or blank values. If there are null or blank values present, it removes the corresponding rows from the sp500 dataframe, resulting in a filtered dataframe without null or blank values in the "Stock" column.
 
-```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+```{r ChunkNull, warning=FALSE, eval=TRUE, echo=TRUE}
 # Check for blank or null values in the "Stock" column
 hasNull <- any(sp500$Stock == "" | is.null(sp500$Stock))
 if (hasNull) { 
@@ -311,7 +311,7 @@ levels(sp500$Sector)
 
 The table() function allows us to count how many stocks are part of each sector.
 
-```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+```{r chunkSP500, warning=FALSE, eval=TRUE, echo=TRUE}
 table(sp500$Sector)
 ```
 
@@ -355,16 +355,16 @@ Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Str
 
 6.  Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&P500 (1 of 3).
 
-```{r  warning=FALSE, eval=TRUE, echo=TRUE}
+```{r chunkLow52, warning=FALSE, eval=TRUE, echo=TRUE}
 sp500 <- sp500 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
 colnames(sp500)
 ```
 
 7.  Creating a new column MarketCapBillions = MarketCap/1000,000,000
 
-```{r}
-sp500 <- sp500 %>% mutate(MarketCapBillions = MarketCap/ 1000000000)
-colnames(sp500)
+```{r chunkMCap}
+#sp500 <- sp500 %>% mutate(MarketCapBillions = MarketCap/ 1000000000)
+#colnames(sp500)
 
 ```
 
@@ -372,8 +372,8 @@ colnames(sp500)
 
 We believe this dataset of S&P500 shares is now ready for futher analysis. We end this stage of our analysis in this chapter, by running the str() function to review the data columns.
 
-```{r, warning=FALSE, eval=TRUE, echo=TRUE}
-str(sp500)
+```{r chunkStr, warning=FALSE, eval=TRUE, echo=TRUE}
+#str(sp500)
 ```
 
 ## Summary of Chapter 6 -- Exploring S&P500 Data

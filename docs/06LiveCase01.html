@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.433" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Data Analytics 101 -- Exploratory Data Analysis using R – livecase01</title>
@@ -58,7 +56,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -81,45 +94,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
-<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
 
-<body>
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="/index.html">
-    <span class="navbar-title">Data Analytics 101 -- Exploratory Data Analysis using R</span>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
-  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i 
-  class="bi bi-globe" 
-  role="img" 
->
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
 </i> 
  <span class="menu-text">Sameer Mathur</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i 
-  class="bi bi-github" 
-  role="img" 
->
+    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text">Book&#39;s Github</span></a>
+ <span class="menu-text">Book’s Github</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -129,16 +134,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06LiveCase01.html">Live Case: S&amp;P500 (1 of 3)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -151,8 +151,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="/index.html" class="sidebar-logo-link">
-      <img src="/images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"/>
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -164,160 +164,162 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/01GettingStarted.html" class="sidebar-item-text sidebar-link">
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring R programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/02RPackages.html" class="sidebar-item-text sidebar-link">
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring R Packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/03DataStructures.html" class="sidebar-item-text sidebar-link">
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Data Structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/04ReadingData.html" class="sidebar-item-text sidebar-link">
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Data into R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Dataframes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/06LiveCase01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Live Case: S&P500 (1 of 3)</span></a>
+  <a href="./06LiveCase01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring *tibbles* & *dplyr*</span></a>
+  <a href="./07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/08CategoricalData01.html" class="sidebar-item-text sidebar-link">
+  <a href="./08CategoricalData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/09CategoricalData02.html" class="sidebar-item-text sidebar-link">
+  <a href="./09CategoricalData02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/10CategoricalData03.html" class="sidebar-item-text sidebar-link">
+  <a href="./10CategoricalData03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/11LiveCase02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&P500 (2 of 3)</span></a>
+  <a href="./11LiveCase02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (2 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/12LiveCase03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&P500 (3 of 3)</span></a>
+  <a href="./12LiveCase03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (3 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/13ContinuousData01.html" class="sidebar-item-text sidebar-link">
+  <a href="./13ContinuousData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous Data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/14ContinuousData02.html" class="sidebar-item-text sidebar-link">
+  <a href="./14ContinuousData02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous Data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/15ContinuousData03.html" class="sidebar-item-text sidebar-link">
+  <a href="./15ContinuousData03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/16ContinuousData04.html" class="sidebar-item-text sidebar-link">
+  <a href="./16ContinuousData04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/17ContinuousData05.html" class="sidebar-item-text sidebar-link">
+  <a href="./17ContinuousData05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/18ContinuousData06.html" class="sidebar-item-text sidebar-link">
+  <a href="./18ContinuousData06.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Continuous x Continous data (2 of 2)</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#live-case-sp500-1-of-3" id="toc-live-case-sp500-1-of-3" class="nav-link active" data-scroll-target="#live-case-sp500-1-of-3">Live Case: S&amp;P500 (1 of 3)</a>
+  <ul class="collapse">
+  <li><a href="#sp-500" id="toc-sp-500" class="nav-link" data-scroll-target="#sp-500">S&amp;P 500</a></li>
+  <li><a href="#sp-500-data---preliminary-analysis" id="toc-sp-500-data---preliminary-analysis" class="nav-link" data-scroll-target="#sp-500-data---preliminary-analysis">S&amp;P 500 Data - Preliminary Analysis</a>
+  <ul class="collapse">
+  <li><a href="#read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe." id="toc-read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe." class="nav-link" data-scroll-target="#read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe.">Read the S&amp;P500 data from a Google Sheet into a tibble dataframe.</a></li>
+  </ul></li>
+  <li><a href="#review-the-data" id="toc-review-the-data" class="nav-link" data-scroll-target="#review-the-data">Review the data</a>
+  <ul class="collapse">
+  <li><a href="#rename-data-columns" id="toc-rename-data-columns" class="nav-link" data-scroll-target="#rename-data-columns">Rename Data Columns</a></li>
+  <li><a href="#review-the-data-again-after-renaming-columns" id="toc-review-the-data-again-after-renaming-columns" class="nav-link" data-scroll-target="#review-the-data-again-after-renaming-columns">Review the data again after renaming columns</a></li>
+  <li><a href="#understand-the-data-columns" id="toc-understand-the-data-columns" class="nav-link" data-scroll-target="#understand-the-data-columns">Understand the Data Columns</a></li>
+  <li><a href="#remove-rows-containing-no-data-or-null-values" id="toc-remove-rows-containing-no-data-or-null-values" class="nav-link" data-scroll-target="#remove-rows-containing-no-data-or-null-values">Remove Rows containing no data or Null values</a></li>
+  <li><a href="#sp500-sector" id="toc-sp500-sector" class="nav-link" data-scroll-target="#sp500-sector">S&amp;P500 Sector</a></li>
+  <li><a href="#stock-ratings" id="toc-stock-ratings" class="nav-link" data-scroll-target="#stock-ratings">Stock Ratings</a></li>
+  <li><a href="#where-are-we-now" id="toc-where-are-we-now" class="nav-link" data-scroll-target="#where-are-we-now">Where are we now?</a></li>
+  </ul></li>
+  <li><a href="#summary-of-chapter-6-exploring-sp500-data" id="toc-summary-of-chapter-6-exploring-sp500-data" class="nav-link" data-scroll-target="#summary-of-chapter-6-exploring-sp500-data">Summary of Chapter 6 – Exploring S&amp;P500 Data</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="06LiveCase01.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#live-case-sp500-1-of-3" id="toc-live-case-sp500-1-of-3">Live Case: S&amp;P500 (1 of 3)</a>
-  <ul>
-  <li><a href="#sp-500" id="toc-sp-500">S&amp;P 500</a></li>
-  <li><a href="#sp-500-data---preliminary-analysis" id="toc-sp-500-data---preliminary-analysis">S&amp;P 500 Data - Preliminary Analysis</a>
-  <ul>
-  <li><a href="#read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe." id="toc-read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe.">Read the S&amp;P500 data from a Google Sheet into a tibble dataframe.</a></li>
-  </ul></li>
-  <li><a href="#review-the-data" id="toc-review-the-data">Review the data</a>
-  <ul>
-  <li><a href="#rename-data-columns" id="toc-rename-data-columns">Rename Data Columns</a></li>
-  <li><a href="#review-the-data-again-after-renaming-columns" id="toc-review-the-data-again-after-renaming-columns">Review the data again after renaming columns</a></li>
-  <li><a href="#understand-the-data-columns" id="toc-understand-the-data-columns">Understand the Data Columns</a></li>
-  <li><a href="#remove-rows-containing-no-data-or-null-values" id="toc-remove-rows-containing-no-data-or-null-values">Remove Rows containing no data or Null values</a></li>
-  <li><a href="#sp500-sector" id="toc-sp500-sector">S&amp;P500 Sector</a></li>
-  <li><a href="#stock-ratings" id="toc-stock-ratings">Stock Ratings</a></li>
-  <li><a href="#where-are-we-now" id="toc-where-are-we-now">Where are we now?</a></li>
-  </ul></li>
-  <li><a href="#summary-of-chapter-6-exploring-sp500-data" id="toc-summary-of-chapter-6-exploring-sp500-data">Summary of Chapter 6 – Exploring S&amp;P500 Data</a></li>
-  </ul></li>
-  </ul>
-</nav>
+
 <section id="live-case-sp500-1-of-3" class="level1">
 <h1>Live Case: S&amp;P500 (1 of 3)</h1>
-<p><em>Aug 10, 2023</em></p>
+<p><em>Aug 10, 2023.</em></p>
 <section id="sp-500" class="level2">
-<h2>S&amp;P 500</h2>
+<h2 class="anchored" data-anchor-id="sp-500">S&amp;P 500</h2>
 <p>The S&amp;P 500, also called the Standard &amp; Poor’s 500, is a stock market index that tracks the performance of 500 major publicly traded companies listed on U.S. stock exchanges. It serves as a widely accepted benchmark for assessing the overall health and performance of the U.S. stock market.</p>
 <p>S&amp;P Dow Jones Indices, a division of S&amp;P Global, is responsible for maintaining the index. The selection of companies included in the S&amp;P 500 is determined by a committee, considering factors such as market capitalization, liquidity, and industry representation.</p>
 <p>The S&amp;P is a float-weighted index, meaning the market capitalizations of the companies in the index are adjusted by the number of shares available for public trading. https://www.investopedia.com/terms/s/sp500.asp</p>
@@ -326,23 +328,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Among these 503 stocks, Apple, the technology giant, holds the top position with a market capitalization of $2.35 billion. Following Apple, Microsoft and Amazon.com rank as the second and third largest stocks in the S&amp;P 500, respectively. The next positions are held by Nvidia Corp, Tesla, Berkshire Hathaway, and two classes of shares from Google’s parent company, Alphabet..</p>
 </section>
 <section id="sp-500-data---preliminary-analysis" class="level2">
-<h2>S&amp;P 500 Data - Preliminary Analysis</h2>
+<h2 class="anchored" data-anchor-id="sp-500-data---preliminary-analysis">S&amp;P 500 Data - Preliminary Analysis</h2>
 <p>We will analyze a real-world, recent dataset containing information about the S&amp;P500 stocks. The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">Google Sheet</a></p>
 <p>The data is disorganized and challenging to understand. We will review the data and proceed in a step-by-step manner.</p>
 <section id="read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe." class="level3">
-<h3>Read the S&amp;P500 data from a Google Sheet into a tibble dataframe.</h3>
+<h3 class="anchored" data-anchor-id="read-the-sp500-data-from-a-google-sheet-into-a-tibble-dataframe.">Read the S&amp;P500 data from a Google Sheet into a tibble dataframe.</h3>
 <ol type="1">
-<li><p>The complete URL is<br />
+<li><p>The complete URL is<br>
 <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/</a></p></li>
 <li><p>The Google Sheet ID is: <code>11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM</code>. We can use the function <code>gsheet2tbl</code> in package <code>gsheet</code> to read the Google Sheet into a tibble or dataframe, as demonstrated in the following code.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">&quot;https://docs.google.com/spreadsheets/d/&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">&quot;11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix,sheetID) <span class="co"># Form the URL to connect to</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>No encoding supplied: defaulting to UTF-8.</code></pre>
 </div>
@@ -350,19 +352,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="review-the-data" class="level2">
-<h2>Review the data</h2>
+<h2 class="anchored" data-anchor-id="review-the-data">Review the data</h2>
 <ol type="1">
 <li>We want to understand the different data columns and their data structure. For this purpose, we run the <code>str()</code> function.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb3"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   503 obs. of  36 variables:
- $ Date                                   : chr  &quot;8/12/2023&quot; &quot;8/12/2023&quot; &quot;8/12/2023&quot; &quot;8/12/2023&quot; ...
- $ Stock                                  : chr  &quot;A&quot; &quot;AAL&quot; &quot;AAP&quot; &quot;AAPL&quot; ...
- $ Description                            : chr  &quot;Agilent Technologies, Inc.&quot; &quot;American Airlines Group, Inc.&quot; &quot;Advance Auto Parts Inc.&quot; &quot;Apple Inc.&quot; ...
- $ Sector                                 : chr  &quot;Health Technology&quot; &quot;Transportation&quot; &quot;Retail Trade&quot; &quot;Electronic Technology&quot; ...
- $ Industry                               : chr  &quot;Medical Specialties&quot; &quot;Airlines&quot; &quot;Specialty Stores&quot; &quot;Telecommunications Equipment&quot; ...
+<pre><code>Classes 'tbl_df', 'tbl' and 'data.frame':   503 obs. of  36 variables:
+ $ Date                                   : chr  "8/12/2023" "8/12/2023" "8/12/2023" "8/12/2023" ...
+ $ Stock                                  : chr  "A" "AAL" "AAP" "AAPL" ...
+ $ Description                            : chr  "Agilent Technologies, Inc." "American Airlines Group, Inc." "Advance Auto Parts Inc." "Apple Inc." ...
+ $ Sector                                 : chr  "Health Technology" "Transportation" "Retail Trade" "Electronic Technology" ...
+ $ Industry                               : chr  "Medical Specialties" "Airlines" "Specialty Stores" "Telecommunications Equipment" ...
  $ Market.Capitalization                  : num  3.70e+10 1.03e+10 4.16e+09 3.01e+12 2.63e+11 ...
  $ Price                                  : num  125.2 15.8 69.9 191.2 148.9 ...
  $ X52.Week.Low                           : num  113.3 11.7 63.6 124.2 131 ...
@@ -393,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  $ Price.to.Sales..FY.                    : num  5.487 0.212 0.381 7.915 4.56 ...
  $ Revenue..TTM.YoY.Growth.               : num  7.86 29.909 1.415 -0.254 -2.312 ...
  $ Revenue..Quarterly.YoY.Growth.         : num  6.85 4.72 1.29 -2.51 -4.92 ...
- $ Technical.Rating                       : chr  &quot;Strong Sell&quot; &quot;Strong Sell&quot; &quot;Buy&quot; &quot;Sell&quot; ...</code></pre>
+ $ Technical.Rating                       : chr  "Strong Sell" "Strong Sell" "Buy" "Sell" ...</code></pre>
 </div>
 </div>
 <ol start="2" type="1">
@@ -410,29 +412,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>By examining the <code>str(sp500)</code> output, we gain a preliminary understanding of the data types and column names present in the <code>sp500</code> tibble, enabling us to grasp the structure of the dataset.</li>
 </ol>
 <section id="rename-data-columns" class="level3">
-<h3>Rename Data Columns</h3>
+<h3 class="anchored" data-anchor-id="rename-data-columns">Rename Data Columns</h3>
 <ol type="1">
 <li><p>The names of the data columns are lengthy and confusing.</p></li>
 <li><p>We will rename the data columns to make it easier to work with the data, using the <code>rename_with()</code> function.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb5"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Date&quot;</span>, <span class="st">&quot;Stock&quot;</span>, <span class="st">&quot;StockName&quot;</span>, <span class="st">&quot;Sector&quot;</span>, <span class="st">&quot;Industry&quot;</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;MarketCap&quot;</span>, <span class="st">&quot;Price&quot;</span>, <span class="st">&quot;Low52Wk&quot;</span>, <span class="st">&quot;High52Wk&quot;</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;ROE&quot;</span>, <span class="st">&quot;ROA&quot;</span>, <span class="st">&quot;ROIC&quot;</span>, <span class="st">&quot;GrossMargin&quot;</span>, </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;OperatingMargin&quot;</span>, <span class="st">&quot;NetMargin&quot;</span>, <span class="st">&quot;PE&quot;</span>, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;PB&quot;</span>, <span class="st">&quot;EVEBITDA&quot;</span>, <span class="st">&quot;EBITDA&quot;</span>, <span class="st">&quot;EPS&quot;</span>, </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;EBITDA_YOY&quot;</span>, <span class="st">&quot;EBITDA_QYOY&quot;</span>, <span class="st">&quot;EPS_YOY&quot;</span>, </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;EPS_QYOY&quot;</span>, <span class="st">&quot;PFCF&quot;</span>, <span class="st">&quot;FCF&quot;</span>, </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;FCF_QYOY&quot;</span>, <span class="st">&quot;DebtToEquity&quot;</span>, <span class="st">&quot;CurrentRatio&quot;</span>, </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;QuickRatio&quot;</span>, <span class="st">&quot;DividendYield&quot;</span>, </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;DividendsPerShare_YOY&quot;</span>, <span class="st">&quot;PS&quot;</span>, </span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Revenue_YOY&quot;</span>, <span class="st">&quot;Revenue_QYOY&quot;</span>, <span class="st">&quot;Rating&quot;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span>, <span class="st">"Stock"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> </span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> new_names, <span class="fu">everything</span>())</span></code></pre></div>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> new_names, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This code is designed to rename the columns of the <code>sp500</code> tibble using a predefined mapping of new column names. Let’s go through the code step by step:</p>
 <ol type="1">
@@ -445,36 +447,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We could also use the following code to rename the columns.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500) <span class="ot">&lt;-</span> new_names</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500) <span class="ot">&lt;-</span> new_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In essence, the code uses the <code>new_names</code> vector as a mapping to assign new column names to the <code>sp500</code> tibble, ensuring that each column is given the desired new name specified in <code>new_names</code>.</p>
 </section>
 <section id="review-the-data-again-after-renaming-columns" class="level3">
-<h3>Review the data again after renaming columns</h3>
+<h3 class="anchored" data-anchor-id="review-the-data-again-after-renaming-columns">Review the data again after renaming columns</h3>
 <ol type="1">
 <li>We review the column names again after renaming them, using the <code>colnames()</code> function can help.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb7"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] &quot;Date&quot;                  &quot;Stock&quot;                 &quot;StockName&quot;            
- [4] &quot;Sector&quot;                &quot;Industry&quot;              &quot;MarketCap&quot;            
- [7] &quot;Price&quot;                 &quot;Low52Wk&quot;               &quot;High52Wk&quot;             
-[10] &quot;ROE&quot;                   &quot;ROA&quot;                   &quot;ROIC&quot;                 
-[13] &quot;GrossMargin&quot;           &quot;OperatingMargin&quot;       &quot;NetMargin&quot;            
-[16] &quot;PE&quot;                    &quot;PB&quot;                    &quot;EVEBITDA&quot;             
-[19] &quot;EBITDA&quot;                &quot;EPS&quot;                   &quot;EBITDA_YOY&quot;           
-[22] &quot;EBITDA_QYOY&quot;           &quot;EPS_YOY&quot;               &quot;EPS_QYOY&quot;             
-[25] &quot;PFCF&quot;                  &quot;FCF&quot;                   &quot;FCF_QYOY&quot;             
-[28] &quot;DebtToEquity&quot;          &quot;CurrentRatio&quot;          &quot;QuickRatio&quot;           
-[31] &quot;DividendYield&quot;         &quot;DividendsPerShare_YOY&quot; &quot;PS&quot;                   
-[34] &quot;Revenue_YOY&quot;           &quot;Revenue_QYOY&quot;          &quot;Rating&quot;               </code></pre>
+<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               </code></pre>
 </div>
 </div>
 </section>
 <section id="understand-the-data-columns" class="level3">
-<h3>Understand the Data Columns</h3>
+<h3 class="anchored" data-anchor-id="understand-the-data-columns">Understand the Data Columns</h3>
 <ol type="1">
 <li><p>The complete data has 36 columns. Our goal is to gain a deeper understanding of what the data columns mean.</p></li>
 <li><p>We reorganize the column names into eight tables, labeled Table 1a, 1b.. 1h.</p></li>
@@ -484,10 +486,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -540,10 +542,10 @@ Table 1a: Data Columns giving basic Company Information
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -580,10 +582,10 @@ Table 1b: Data Columns related to Pricing and Technical Analysis
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -630,10 +632,10 @@ Table 1c: Data Columns related to Profitability
 <p>The column names described in Table 1d are related to the <strong>Earnings</strong> of each stock.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -692,10 +694,10 @@ Table 1d: Data Columns related to Earnings
 <p>The column names described in Table 1e are related to the <strong>Free Cash Flow</strong> of each stock.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -730,10 +732,10 @@ Table 1e: Data Columns related to Free Cash Flow
 <p>The column names described in Table 1f concern the <strong>Liquidity</strong> of each stock.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -768,10 +770,10 @@ Table 1f: Data Columns related to Liquidiy
 <p>The column names described in Table 1g are related to the <strong>Revenue</strong> of each stock.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -806,10 +808,10 @@ Table 1g: Data Columns related to Revenue
 <p>The column names described in Table 1h are related to the <strong>Dividends</strong> of each stock.</p>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
+<col style="width: 50%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -839,31 +841,31 @@ Table 1h: Data Columns related to Dividends
 </div>
 </section>
 <section id="remove-rows-containing-no-data-or-null-values" class="level3">
-<h3>Remove Rows containing no data or Null values</h3>
+<h3 class="anchored" data-anchor-id="remove-rows-containing-no-data-or-null-values">Remove Rows containing no data or Null values</h3>
 <ol type="1">
 <li>The following code checks if the “Stock” column in the sp500 dataframe contains any null or blank values. If there are null or blank values present, it removes the corresponding rows from the sp500 dataframe, resulting in a filtered dataframe without null or blank values in the “Stock” column.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb9"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the &quot;Stock&quot; column</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">&quot;&quot;</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock))</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the "Stock" column</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hasNull) { </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove rows with null or blank values from the dataframe tibble</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    sp500 <span class="ot">&lt;-</span> sp500[<span class="sc">!</span>(<span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock) <span class="sc">|</span> sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">&quot;&quot;</span>), ]</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    sp500 <span class="ot">&lt;-</span> sp500[<span class="sc">!</span>(<span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock) <span class="sc">|</span> sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">""</span>), ]</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here’s an alternate code using <code>dplyr</code> to achieve the same result:</p>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the &quot;Stock&quot; column</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500 <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Stock) <span class="sc">==</span> <span class="st">&quot;&quot;</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500 <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Stock)))</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the "Stock" column</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500 <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Stock) <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500 <span class="sc">%&gt;%</span> <span class="fu">pull</span>(Stock)))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hasNull) { </span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remove rows with null or blank values from the dataframe tibble</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">is.null</span>(Stock) <span class="sc">|</span> Stock <span class="sc">==</span> <span class="st">&quot;&quot;</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(<span class="fu">is.null</span>(Stock) <span class="sc">|</span> Stock <span class="sc">==</span> <span class="st">""</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb11"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the filtered dataframe</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(sp500)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View the filtered dataframe</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 503</code></pre>
 </div>
@@ -871,34 +873,34 @@ Table 1h: Data Columns related to Dividends
 <p>Thus, we have 502 stocks of the S&amp;P500 in our dataset.</p>
 </section>
 <section id="sp500-sector" class="level3">
-<h3>S&amp;P500 Sector</h3>
+<h3 class="anchored" data-anchor-id="sp500-sector">S&amp;P500 Sector</h3>
 <p>The S&amp;P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.</p>
 <div class="cell">
-<div class="sourceCode" id="cb13"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>It makes sense to convert Sector to a factor variable, since there are 19 distinct Sectors in the S&amp;P500 and each stock belongs to a unique sector. We confirm that Sector is now modelled as a factor variable, by running the str() function.</p>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Sector)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Factor w/ 19 levels &quot;Commercial Services&quot;,..: 11 18 16 7 11 6 11 9 17 17 ...</code></pre>
+<pre><code> Factor w/ 19 levels "Commercial Services",..: 11 18 16 7 11 6 11 9 17 17 ...</code></pre>
 </div>
 </div>
 <p>Now that Sectors is a factor variable, we can use the levels() function to review the different levels it can take.</p>
 <div class="cell">
-<div class="sourceCode" id="cb16"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Sector)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] &quot;Commercial Services&quot;    &quot;Communications&quot;         &quot;Consumer Durables&quot;     
- [4] &quot;Consumer Non-Durables&quot;  &quot;Consumer Services&quot;      &quot;Distribution Services&quot; 
- [7] &quot;Electronic Technology&quot;  &quot;Energy Minerals&quot;        &quot;Finance&quot;               
-[10] &quot;Health Services&quot;        &quot;Health Technology&quot;      &quot;Industrial Services&quot;   
-[13] &quot;Non-Energy Minerals&quot;    &quot;Process Industries&quot;     &quot;Producer Manufacturing&quot;
-[16] &quot;Retail Trade&quot;           &quot;Technology Services&quot;    &quot;Transportation&quot;        
-[19] &quot;Utilities&quot;             </code></pre>
+<pre><code> [1] "Commercial Services"    "Communications"         "Consumer Durables"     
+ [4] "Consumer Non-Durables"  "Consumer Services"      "Distribution Services" 
+ [7] "Electronic Technology"  "Energy Minerals"        "Finance"               
+[10] "Health Services"        "Health Technology"      "Industrial Services"   
+[13] "Non-Energy Minerals"    "Process Industries"     "Producer Manufacturing"
+[16] "Retail Trade"           "Technology Services"    "Transportation"        
+[19] "Utilities"             </code></pre>
 </div>
 </div>
 <p>The table() function allows us to count how many stocks are part of each sector.</p>
 <div class="cell">
-<div class="sourceCode" id="cb18"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Sector)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    Commercial Services         Communications      Consumer Durables 
@@ -920,7 +922,7 @@ Table 1h: Data Columns related to Dividends
 <p>Thus, we can see how many stocks are part of each one of the 19 sectors.</p>
 <p>We can sum them to confirm that they add up to 502.</p>
 <div class="cell">
-<div class="sourceCode" id="cb20"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">table</span>(sp500<span class="sc">$</span>Sector))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">table</span>(sp500<span class="sc">$</span>Sector))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 503</code></pre>
 </div>
@@ -928,28 +930,28 @@ Table 1h: Data Columns related to Dividends
 <p>This completes our review of the Sector variable.</p>
 </section>
 <section id="stock-ratings" class="level3">
-<h3>Stock Ratings</h3>
+<h3 class="anchored" data-anchor-id="stock-ratings">Stock Ratings</h3>
 <p>In the data, the S&amp;P500 shares have Technical Ratings such as {Buy, Sell, ..}. Since each Stock has a unique Technical Rating, it makes sense to model the data column Rating as a factor() variable.</p>
 <div class="cell">
-<div class="sourceCode" id="cb22"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We confirm that Rating is now modelled as a factor variable, by running the str() function.</p>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Rating)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Factor w/ 5 levels &quot;Buy&quot;,&quot;Neutral&quot;,..: 5 5 1 3 1 3 3 3 5 5 ...</code></pre>
+<pre><code> Factor w/ 5 levels "Buy","Neutral",..: 5 5 1 3 1 3 3 3 5 5 ...</code></pre>
 </div>
 </div>
 <p>We can use the levels() function to review the different levels it can take.</p>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Rating)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;Buy&quot;         &quot;Neutral&quot;     &quot;Sell&quot;        &quot;Strong Buy&quot;  &quot;Strong Sell&quot;</code></pre>
+<pre><code>[1] "Buy"         "Neutral"     "Sell"        "Strong Buy"  "Strong Sell"</code></pre>
 </div>
 </div>
 <p>The table() function allows us to count how many stocks have each Rating.</p>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Rating)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
         Buy     Neutral        Sell  Strong Buy Strong Sell 
@@ -961,118 +963,53 @@ Table 1h: Data Columns related to Dividends
 <li>Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] &quot;Date&quot;                  &quot;Stock&quot;                 &quot;StockName&quot;            
- [4] &quot;Sector&quot;                &quot;Industry&quot;              &quot;MarketCap&quot;            
- [7] &quot;Price&quot;                 &quot;Low52Wk&quot;               &quot;High52Wk&quot;             
-[10] &quot;ROE&quot;                   &quot;ROA&quot;                   &quot;ROIC&quot;                 
-[13] &quot;GrossMargin&quot;           &quot;OperatingMargin&quot;       &quot;NetMargin&quot;            
-[16] &quot;PE&quot;                    &quot;PB&quot;                    &quot;EVEBITDA&quot;             
-[19] &quot;EBITDA&quot;                &quot;EPS&quot;                   &quot;EBITDA_YOY&quot;           
-[22] &quot;EBITDA_QYOY&quot;           &quot;EPS_YOY&quot;               &quot;EPS_QYOY&quot;             
-[25] &quot;PFCF&quot;                  &quot;FCF&quot;                   &quot;FCF_QYOY&quot;             
-[28] &quot;DebtToEquity&quot;          &quot;CurrentRatio&quot;          &quot;QuickRatio&quot;           
-[31] &quot;DividendYield&quot;         &quot;DividendsPerShare_YOY&quot; &quot;PS&quot;                   
-[34] &quot;Revenue_YOY&quot;           &quot;Revenue_QYOY&quot;          &quot;Rating&quot;               
-[37] &quot;Low52WkPerc&quot;          </code></pre>
+<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Low52WkPerc"          </code></pre>
 </div>
 </div>
 <ol start="7" type="1">
 <li>Creating a new column MarketCapBillions = MarketCap/1000,000,000</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">MarketCapBillions =</span> MarketCap<span class="sc">/</span> <span class="dv">1000000000</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] &quot;Date&quot;                  &quot;Stock&quot;                 &quot;StockName&quot;            
- [4] &quot;Sector&quot;                &quot;Industry&quot;              &quot;MarketCap&quot;            
- [7] &quot;Price&quot;                 &quot;Low52Wk&quot;               &quot;High52Wk&quot;             
-[10] &quot;ROE&quot;                   &quot;ROA&quot;                   &quot;ROIC&quot;                 
-[13] &quot;GrossMargin&quot;           &quot;OperatingMargin&quot;       &quot;NetMargin&quot;            
-[16] &quot;PE&quot;                    &quot;PB&quot;                    &quot;EVEBITDA&quot;             
-[19] &quot;EBITDA&quot;                &quot;EPS&quot;                   &quot;EBITDA_YOY&quot;           
-[22] &quot;EBITDA_QYOY&quot;           &quot;EPS_YOY&quot;               &quot;EPS_QYOY&quot;             
-[25] &quot;PFCF&quot;                  &quot;FCF&quot;                   &quot;FCF_QYOY&quot;             
-[28] &quot;DebtToEquity&quot;          &quot;CurrentRatio&quot;          &quot;QuickRatio&quot;           
-[31] &quot;DividendYield&quot;         &quot;DividendsPerShare_YOY&quot; &quot;PS&quot;                   
-[34] &quot;Revenue_YOY&quot;           &quot;Revenue_QYOY&quot;          &quot;Rating&quot;               
-[37] &quot;Low52WkPerc&quot;           &quot;MarketCapBillions&quot;    </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sp500 &lt;- sp500 %&gt;% mutate(MarketCapBillions = MarketCap/ 1000000000)</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co">#colnames(sp500)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="where-are-we-now" class="level3">
-<h3>Where are we now?</h3>
+<h3 class="anchored" data-anchor-id="where-are-we-now">Where are we now?</h3>
 <p>We believe this dataset of S&amp;P500 shares is now ready for futher analysis. We end this stage of our analysis in this chapter, by running the str() function to review the data columns.</p>
 <div class="cell">
-<div class="sourceCode" id="cb33"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>tibble [503 × 38] (S3: tbl_df/tbl/data.frame)
- $ Date                 : chr [1:503] &quot;8/12/2023&quot; &quot;8/12/2023&quot; &quot;8/12/2023&quot; &quot;8/12/2023&quot; ...
- $ Stock                : chr [1:503] &quot;A&quot; &quot;AAL&quot; &quot;AAP&quot; &quot;AAPL&quot; ...
- $ StockName            : chr [1:503] &quot;Agilent Technologies, Inc.&quot; &quot;American Airlines Group, Inc.&quot; &quot;Advance Auto Parts Inc.&quot; &quot;Apple Inc.&quot; ...
- $ Sector               : Factor w/ 19 levels &quot;Commercial Services&quot;,..: 11 18 16 7 11 6 11 9 17 17 ...
- $ Industry             : chr [1:503] &quot;Medical Specialties&quot; &quot;Airlines&quot; &quot;Specialty Stores&quot; &quot;Telecommunications Equipment&quot; ...
- $ MarketCap            : num [1:503] 3.70e+10 1.03e+10 4.16e+09 3.01e+12 2.63e+11 ...
- $ Price                : num [1:503] 125.2 15.8 69.9 191.2 148.9 ...
- $ Low52Wk              : num [1:503] 113.3 11.7 63.6 124.2 131 ...
- $ High52Wk             : num [1:503] 160 19.1 212 198 168 195 116 84.8 328 553 ...
- $ ROE                  : num [1:503] 24.8 NA 14.6 146 NA 295 NA NA 30.7 33.7 ...
- $ ROA                  : num [1:503] 12.7 3.9 3.35 27.6 NA 2.86 NA NA 14.9 17.9 ...
- $ ROIC                 : num [1:503] 16.51 8.01 6.17 57.18 NA ...
- $ GrossMargin          : num [1:503] 54.1 23.8 43.8 43.2 87 ...
- $ OperatingMargin      : num [1:503] 23.78 9.39 5.63 29.16 40.28 ...
- $ NetMargin            : num [1:503] 19.19 4.98 3.61 24.49 15.46 ...
- $ PE                   : num [1:503] 27.6 4.29 10.41 32.48 30.54 ...
- $ PB                   : num [1:503] 6.97 NA 1.55 60.15 15.27 ...
- $ EVEBITDA             : num [1:503] 20 5.58 8.78 24.9 NA 12.3 NA NA 17.6 34.2 ...
- $ EBITDA               : num [1:503] 1.97e+09 7.16e+09 9.21e+08 1.24e+11 NA ...
- $ EPS                  : num [1:503] 4.54 3.69 6.72 5.89 4.88 ...
- $ EBITDA_YOY           : num [1:503] 10.52 1074.1 -16 -5.36 NA ...
- $ EBITDA_QYOY          : num [1:503] 8.2 72.2 -39.01 -4.58 NA ...
- $ EPS_YOY              : num [1:503] 9.17 NA -25.21 -4.33 -31.01 ...
- $ EPS_QYOY             : num [1:503] 11.69944 156.4148 -68.3683 -0.00656 122.3108 ...
- $ PFCF                 : num [1:503] 31.44 7.12 NA 31.08 NA ...
- $ FCF                  : num [1:503] 11.81 NA -100.23 -7.85 NA ...
- $ FCF_QYOY             : num [1:503] 55.7078 -10.2542 -176.135 -0.0312 NA ...
- $ DebtToEquity         : num [1:503] 0.473 NA 1.582 1.763 NA ...
- $ CurrentRatio         : num [1:503] 2.37 0.749 1.244 0.94 NA ...
- $ QuickRatio           : num [1:503] 1.708 0.656 0.238 0.878 NA ...
- $ DividendYield        : num [1:503] 0.705 NA 1.436 0.498 3.963 ...
- $ DividendsPerShare_YOY: num [1:503] 8.25 NA 84.62 5.88 7.53 ...
- $ PS                   : num [1:503] 5.487 0.212 0.381 7.915 4.56 ...
- $ Revenue_YOY          : num [1:503] 7.86 29.909 1.415 -0.254 -2.312 ...
- $ Revenue_QYOY         : num [1:503] 6.85 4.72 1.29 -2.51 -4.92 ...
- $ Rating               : Factor w/ 5 levels &quot;Buy&quot;,&quot;Neutral&quot;,..: 5 5 1 3 1 3 3 3 5 5 ...
- $ Low52WkPerc          : num [1:503] 10.6 35.8 10 54 13.7 ...
- $ MarketCapBillions    : num [1:503] 37 10.3 4.16 3010 263 38.9 188 28.8 209 239 ...</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(sp500)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="summary-of-chapter-6-exploring-sp500-data" class="level2">
-<h2>Summary of Chapter 6 – Exploring S&amp;P500 Data</h2>
+<h2 class="anchored" data-anchor-id="summary-of-chapter-6-exploring-sp500-data">Summary of Chapter 6 – Exploring S&amp;P500 Data</h2>
 <p>Chapter 6 embarks on an exploration of the S&amp;P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index’s role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&amp;P Dow Jones Indices.</p>
 <p>Part 1 of the chapter delves into a real-world dataset containing information about S&amp;P500 stocks. The data is loaded into a tibble using the R package <code>gsheet</code>, and its structure is examined using the <code>str()</code> function. To facilitate data management, column names are renamed using the <code>rename_with()</code> function from <code>dplyr</code>, and a detailed breakdown of column information is presented across eight tables.</p>
 <p>Part 2 addresses data quality, ensuring a cleaner dataset by removing rows with null or blank values in the “Stock” column. Additionally, the “Sector” and “Rating” columns are transformed into factor variables, reflecting the distinct sectors and technical ratings each stock holds. The distribution of sectors and ratings is analyzed using various functions. After data preparation, the dataset is considered ready for further analysis.</p>
 <p>Chapter 6 skillfully guides readers through the intricacies of exploring S&amp;P500 data, employing practical examples and R code to foster a deeper understanding of the dataset’s structure and content. Further exploration is encouraged with a wealth of references for continued learning and analysis.</p>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Data Analytics 101 – Exploratory Data Analysis using R</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span> <span class="hidden" data-render-id="quarto-int-next">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span> <span class="hidden" data-render-id="quarto-int-prev">Exploring Dataframes</span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Overview</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01GettingStarted.html">Exploring R programming</span> <span class="hidden" data-render-id="quarto-int-sidebar:/02RPackages.html">Exploring R Packages</span> <span class="hidden" data-render-id="quarto-int-sidebar:/03DataStructures.html">Exploring Data Structures</span> <span class="hidden" data-render-id="quarto-int-sidebar:/04ReadingData.html">Reading Data into R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/05ExploringDataframes.html">Exploring Dataframes</span> <span class="hidden" data-render-id="quarto-int-sidebar:/06LiveCase01.html">Live Case: S&amp;P500 (1 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/07ExploringTibbles.html">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span> <span class="hidden" data-render-id="quarto-int-sidebar:/08CategoricalData01.html">Categorical Data</span> <span class="hidden" data-render-id="quarto-int-sidebar:/09CategoricalData02.html">Categorical x Categorical data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10CategoricalData03.html">Categorical x Categorical data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/11LiveCase02.html">Live Case: S&amp;P500 (2 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/12LiveCase03.html">Live Case: S&amp;P500 (3 of 3)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/13ContinuousData01.html">Continuous Data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/14ContinuousData02.html">Continuous Data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/15ContinuousData03.html">Categorical x Continuous data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/16ContinuousData04.html">Categorical x Continuous data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/17ContinuousData05.html">Continuous x Continous data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/18ContinuousData06.html">Continuous x Continous data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-navbar:Sameer Mathur">Sameer Mathur</span> <span class="hidden" data-render-id="quarto-int-navbar:https://www.qatar.cmu.edu/directory/sameer-mathur/">https://www.qatar.cmu.edu/directory/sameer-mathur/</span> <span class="hidden" data-render-id="quarto-int-navbar:Book&#39;s Github">Book’s Github</span> <span class="hidden" data-render-id="quarto-int-navbar:https://github.com/SameerMathur/DataAnalytics101">https://github.com/SameerMathur/DataAnalytics101</span> <span class="hidden" data-render-id="footer-center-https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</span> <span class="hidden" data-render-id="footer-center-https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</span> <span class="hidden" data-render-id="quarto-breadcrumbs-662c73f6628b675433b12de1ebd39661">Live Case: S&amp;P500 (1 of 3)</span></p>
-<div class="hidden" data-render-id="margin-header">
-<div class="margin-header-item">
-<p><img src="BookCover101.png" class="img-fluid" /></p>
-</div>
-</div>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-twittercardtitle"></span> <span class="hidden" data-render-id="quarto-ogcardtitle"></span> <span class="hidden" data-render-id="quarto-metasitename">Data Analytics 101 – Exploratory Data Analysis using R</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1314,14 +1251,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">
- Sameer Mathur
-    </a>
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">
- Aryeman Gupta Mathur
-    </a>
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
   </li>  
 </ul>
     </div>
@@ -1331,6 +1264,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </footer>
 
-</body>
 
-</html>
+
+</body></html>
