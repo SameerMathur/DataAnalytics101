@@ -25,10 +25,10 @@ website:
         href: https://www.qatar.cmu.edu/directory/sameer-mathur/
         text: "Sameer Mathur"
         target: "_blank"  
-      - icon: globe
-        href: https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&ouid=100224206438187222136&rtpof=true&sd=true
-        text: "Aryeman Gupta Mathur"
-        target: "_blank"
+#      - icon: globe
+#        href: https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&ouid=100224206438187222136&rtpof=true&sd=true
+#        text: "Aryeman Gupta Mathur"
+#        target: "_blank"
       - icon: github
         href: https://github.com/SameerMathur/DataAnalytics101
         text: "Book's Github"
