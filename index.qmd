@@ -1,6 +1,6 @@
 # Overview of this Book {.unnumbered}
 
-*Aug 10, 2023.*
+*Aug 10, 2023*
 
 Delve into the world of Exploratory Data Analysis (EDA) - an imperative approach to data analysis that focuses on discovering and summarizing the main features of datasets primarily via statistical graphics and visualization techniques. EDA facilitates a comprehensive understanding of the data prior to initiating formal modeling or hypothesis testing. 
 
@@ -89,7 +89,7 @@ It explores multivariate categorical variables and the complex relationships and
 
 ### Chapter 11: Live Case Study - Exploring S&P500 Data - Part 2 of 3
 
-*to be written*
+*to be written.*
 
 
 ### Chapter 12: Continuous Data (Part 1 of 6) - Exploring Continuous Data 

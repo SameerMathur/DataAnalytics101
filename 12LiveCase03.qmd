@@ -1,6 +1,6 @@
 # Live Case: S&P500 (3 of 3)
 
-*Aug 10, 2023 -=-*
+*Aug 10, 2023. -=-*
 
 Agenda: Analyzing a particular Sector within the S&P500 Index *We have chosen to deeply analyze the HEALTH TECHNOLOGY Sector.*
 

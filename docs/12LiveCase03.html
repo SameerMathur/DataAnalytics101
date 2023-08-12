@@ -122,11 +122,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Sameer Mathur</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true" rel="" target="_blank"><i class="bi bi-globe" role="img">
-</i> 
- <span class="menu-text">Aryeman Gupta Mathur</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text">Book’s Github</span></a>
@@ -322,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="live-case-sp500-3-of-3" class="level1">
 <h1>Live Case: S&amp;P500 (3 of 3)</h1>
-<p><em>Aug 10, 2023 -=-</em></p>
+<p><em>Aug 10, 2023. -=-</em></p>
 <p>Agenda: Analyzing a particular Sector within the S&amp;P500 Index <em>We have chosen to deeply analyze the HEALTH TECHNOLOGY Sector.</em></p>
 <section id="sp-500-data---preliminary-setup" class="level2">
 <h2 class="anchored" data-anchor-id="sp-500-data---preliminary-setup">S&amp;P 500 Data - PRELIMINARY SETUP</h2>
@@ -478,16 +473,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10 × 15
    Date   Stock StockName Sector Industry MarketCap Price Low52Wk High52Wk   ROE
    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;     &lt;fct&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
- 1 8/10/… DVA   DaVita I… Healt… Medical…   9.26e 9 102.     65.3    107   60   
- 2 8/10/… MOH   Molina H… Healt… Managed…   1.77e10 303.    256.     374   28.4 
- 3 8/10/… IQV   IQVIA Ho… Healt… Service…   3.95e10 216.    166.     249   19.7 
- 4 8/10/… HUM   Humana I… Healt… Managed…   6.05e10 484.    423.     571   19.5 
- 5 8/10/… ELV   Elevance… Healt… Managed…   1.10e11 467.    412      550   17.3 
- 6 8/10/… CI    The Cign… Healt… Managed…   8.49e10 287.    240.     340   14.9 
- 7 8/10/… DGX   Quest Di… Healt… Service…   1.51e10 135.    120.     158   12.5 
- 8 8/10/… UHS   Universa… Healt… Hospita…   8.54e 9 136.     82.5    159   11.6 
- 9 8/10/… CNC   Centene … Healt… Managed…   3.60e10  66.4    61.3     98.5 10.4 
-10 8/10/… LH    Laborato… Healt… Service…   1.9 e10 214.    172.     226    8.31
+ 1 8/12/… DVA   DaVita I… Healt… Medical…   9.26e 9 102.     65.3    107   60   
+ 2 8/12/… MOH   Molina H… Healt… Managed…   1.77e10 303.    256.     374   28.4 
+ 3 8/12/… IQV   IQVIA Ho… Healt… Service…   3.95e10 216.    166.     249   19.7 
+ 4 8/12/… HUM   Humana I… Healt… Managed…   6.05e10 484.    423.     571   19.5 
+ 5 8/12/… ELV   Elevance… Healt… Managed…   1.10e11 467.    412      550   17.3 
+ 6 8/12/… CI    The Cign… Healt… Managed…   8.49e10 287.    240.     340   14.9 
+ 7 8/12/… DGX   Quest Di… Healt… Service…   1.51e10 135.    120.     158   12.5 
+ 8 8/12/… UHS   Universa… Healt… Hospita…   8.54e 9 136.     82.5    159   11.6 
+ 9 8/12/… CNC   Centene … Healt… Managed…   3.60e10  66.4    61.3     98.5 10.4 
+10 8/12/… LH    Laborato… Healt… Service…   1.9 e10 214.    172.     226    8.31
 # ℹ 5 more variables: ROA &lt;dbl&gt;, ROIC &lt;dbl&gt;, GrossMargin &lt;dbl&gt;,
 #   NetMargin &lt;dbl&gt;, Rating &lt;fct&gt;</code></pre>
 </div>
@@ -502,16 +497,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10 × 5
    Date      Stock StockName                                    ROE Low52WkPerc
    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                                      &lt;dbl&gt;       &lt;dbl&gt;
- 1 8/10/2023 DVA   DaVita Inc.                                60           56.4
- 2 8/10/2023 MOH   Molina Healthcare Inc                      28.4         18.2
- 3 8/10/2023 IQV   IQVIA Holdings, Inc.                       19.7         30.2
- 4 8/10/2023 HUM   Humana Inc.                                19.5         14.4
- 5 8/10/2023 ELV   Elevance Health, Inc.                      17.3         13.5
- 6 8/10/2023 CI    The Cigna Group                            14.9         19.3
- 7 8/10/2023 DGX   Quest Diagnostics Incorporated             12.5         12.0
- 8 8/10/2023 UHS   Universal Health Services, Inc.            11.6         64.4
- 9 8/10/2023 CNC   Centene Corporation                        10.4          8.3
-10 8/10/2023 LH    Laboratory Corporation of America Holdings  8.31        24.4</code></pre>
+ 1 8/12/2023 DVA   DaVita Inc.                                60           56.4
+ 2 8/12/2023 MOH   Molina Healthcare Inc                      28.4         18.2
+ 3 8/12/2023 IQV   IQVIA Holdings, Inc.                       19.7         30.2
+ 4 8/12/2023 HUM   Humana Inc.                                19.5         14.4
+ 5 8/12/2023 ELV   Elevance Health, Inc.                      17.3         13.5
+ 6 8/12/2023 CI    The Cigna Group                            14.9         19.3
+ 7 8/12/2023 DGX   Quest Diagnostics Incorporated             12.5         12.0
+ 8 8/12/2023 UHS   Universal Health Services, Inc.            11.6         64.4
+ 9 8/12/2023 CNC   Centene Corporation                        10.4          8.3
+10 8/12/2023 LH    Laboratory Corporation of America Holdings  8.31        24.4</code></pre>
 </div>
 </div>
 </section>
