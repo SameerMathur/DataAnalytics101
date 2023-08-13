@@ -12,6 +12,7 @@ THIS CHAPTER demonstrates the use of the popular **`ggplot2`** package to furthe
 # Load the required libraries, suppressing annoying startup messages
 library(tibble) 
 suppressPackageStartupMessages(library(dplyr))
+library(knitr) # For formatting tables
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)

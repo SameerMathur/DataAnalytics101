@@ -1,8 +1,8 @@
 # Categorical x Continuous data (1 of 2)
 
-*Aug 9, 2023.*
+*Aug 13, 2023*
 
-1.  THIS CHAPTER explains how to summarize and visualize *bivariate continuous data across categories*. Here, we delve into the intersection of continuous data and categorical variables, examining how the former can be split, summarized, and compared across different levels of one or more categorical variables.
+1.  THIS CHAPTER explores **Categorical** x **Continuous** data. It explains how to summarize and visualize *bivariate continuous data across categories*. Here, we delve into the intersection of continuous data and categorical variables, examining how the former can be split, summarized, and compared across different levels of one or more categorical variables.
 
 2.  We bring to light methods for generating statistics per group and data manipulation techniques. This includes processes like grouping, filtering, and summarizing continuous data, contingent on categorical variables. We visualize such data by creating juxtaposed box plots, segmented histograms, and density plots that reveal the distribution of continuous data across varied categories.
 
@@ -12,6 +12,7 @@
 # Load the required libraries, suppressing annoying startup messages
 library(tibble) 
 suppressPackageStartupMessages(library(dplyr))
+library(knitr) # For formatting tables
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
@@ -34,12 +35,12 @@ attach(tb)
 
 -   We use the `aggregate()` function to investigate the bivariate relationship between mileage (`mpg`) and number of cylinders (`cyl`). The following code displays a summary table showing the average mileage of the cars broken down by number of cylinders (`cyl` = 4, 6, 8) using `aggregate()`.
 
-```{r}
-agg <- aggregate(tb$mpg, 
+```{r, warning=FALSE}
+A0 <- aggregate(tb$mpg, 
           by = list(tb$cyl), 
           FUN = mean)
-names(agg) <- c("Cylinders", "Mean_mpg")
-agg
+names(A0) <- c("Cylinders", "Mean_mpg")
+kable(A0, digits=2, caption = "Mean of Mileage (mpg) by Cylinder (cyl=4,6,8)") 
 ```
 
 2.  **Discussion**:
@@ -57,7 +58,10 @@ agg
 -   The `tapply()` function is another convenient tool to apply a function to subsets of a vector, grouped by some factors.
 
 ```{r}
-tapply(tb$mpg, tb$cyl, mean)
+A1 <- tapply(tb$mpg, 
+             tb$cyl, 
+             mean)
+A1
 ```
 
 4.  **Discussion**:
@@ -78,9 +82,8 @@ tapply(tb$mpg, tb$cyl, mean)
 
 ```{r}
 library(psych)
-stats0 <- describeBy(mpg, cyl)
-stats0
-
+A2 <- describeBy(mpg, cyl)
+print(A2)
 ```
 
 6.  **Discussion**:
@@ -100,11 +103,12 @@ stats0
 -   Distribution of Mileage (`mpg`) by Cylinders (`cyl` = {4,6,8}) and Transmisson Type (`am` = {0,1})
 
 ```{r}
-agg2 <- aggregate(tb$mpg, 
+B0 <- aggregate(tb$mpg, 
           by = list(tb$cyl, tb$am),
           FUN = mean)
-names(agg2) <- c("Cylinders","Transmission","Mean_mpg")
-agg2
+names(B0) <- c("Cylinders","Transmission","Mean_mpg")
+kable(B0, 
+      digits=2, caption = "Mean of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") 
 ```
 
 2.  **Discussion**:
@@ -120,11 +124,12 @@ agg2
 -   Distribution of Mileage (`mpg`), Weight (`wt`), Horsepower (`hp`) by Cylinders (`cyl` = {4,6,8}) and Transmisson Type (`am` = {0,1})
 
 ```{r}
-agg3 <- aggregate(list(tb$mpg, tb$wt, tb$hp), 
+B1 <- aggregate(list(tb$mpg, tb$wt, tb$hp), 
           by = list(tb$am, tb$cyl),
           FUN = mean)
-names(agg3) <- c("Transmission","Cylinders","Mean_mpg","Mean_wt","Mean_hp")
-agg3
+names(B1) <- c("Transmission","Cylinders","Mean_mpg","Mean_wt","Mean_hp")
+kable(B1, 
+      digits=2, caption = "Mean of Mileage (mpg), Weight (wt), Horsepower (hp) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)") 
 ```
 
 4.  **Discussion**:
@@ -149,12 +154,16 @@ agg_median <- aggregate(tb$mpg,
                         FUN = median)
 
 # Merge them together, two data frames at a time
-merged_data <- merge(agg_mean, agg_sd, by = c("Group.1", "Group.2"))
-merged_data <- merge(merged_data, agg_median, by = c("Group.1", "Group.2"))
+B2 <- merge(agg_mean, agg_sd, 
+            by = c("Group.1", "Group.2"))
+B2 <- merge(B2, agg_median, 
+            by = c("Group.1", "Group.2"))
 
 # Rename columns for clarity
-names(merged_data) <- c("Cylinders", "Transmission", "Mean_mpg", "SD_mpg", "Median_mpg")
-merged_data 
+names(B2) <- c("Cylinders", "Transmission", "Mean_mpg", "SD_mpg", "Median_mpg")
+
+kable(B2, 
+      digits=2, caption = "Mean, SD, Median of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") 
 ```
 
 6.  **Discussion**:
@@ -171,10 +180,12 @@ merged_data
 
 ```{r}
 tb_columns <- tb[c("mpg", "wt", "hp")]
-tb_factors <- list(tb$am, tb$cyl)
+tb_factors <- list(tb$am, 
+                   tb$cyl)
 # Use describeBy()
-stats <- describeBy(tb_columns, tb_factors)
-print(stats)
+B3 <- describeBy(tb_columns, 
+                    tb_factors)
+print(B3)
 ```
 
 7.  **Discussion**:
@@ -184,6 +195,8 @@ print(stats)
 -   Next, we create a list, `tb_factors`, that contains the factors `am` and `cyl`.
 
 -   After that, we call the `describeBy()` function from the `psych` package. This function calculates descriptive statistics for each combination of levels of the factors `am` and `cyl` and for each of the continuous variables `mpg`, `wt`, and `hp`.
+
+
 
 ## Visualizing Continuous Data
 
@@ -214,7 +227,7 @@ Let's take a closer look at some of the most effective ways of visualizing univa
 library(beeswarm)
 # Create a bee swarm plot of wt column split by cyl
 beeswarm(tb$wt ~ tb$cyl, 
-         main="Bee Swarm Plot of Weight (wt) by Number of Cylinders", 
+         main="Bee Swarm Plot of Weight (wt) by Cylinders (cyl=4,6,8)", 
          xlab="Number of Cylinders",
          ylab="Weight ('000 kg)",
          pch=16,  # type of points
@@ -280,7 +293,7 @@ color_vector <- c("skyblue", "gold") # Define the color vector
 
 # Create a histogram for subset with am = 0
 hist(split_data[[1]], 
-     main = "Histogram of mpg for am = 0", 
+     main = "Histogram of mpg (am = 0)", 
      breaks = seq(10, 35, by = 5), # This creates bins with ranges 10-15, 15-20, etc.
      xlab = "Miles per gallon", 
      col = color_vector[1], # Use the color vector, 
@@ -289,7 +302,7 @@ hist(split_data[[1]],
 
 # Create a histogram for subset with am = 1
 hist(split_data[[2]], 
-     main = "Histogram of mpg for am = 1", 
+     main = "Histogram of mpg (am = 1)", 
      breaks = seq(10, 35, by = 5), # This creates bins with ranges 10-15, 15-20, etc.
      xlab = "Miles per gallon", 
      col = color_vector[2], # Use the color vector, 
@@ -367,7 +380,7 @@ polygon(dens_1, col = color_vector[2], border = "black")  # Fill under the curve
 
 ```{r}
 boxplot(mpg~cyl,
-        main = "Boxplot of Miles Per Gallon (mpg) by Cylinders",
+        main = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8)",
         xlab = "Mileage (mpg)",
         ylab = "Cylinders (cyl)",
         col = c("skyblue"),
@@ -427,7 +440,7 @@ legend("topright",
 
 Visualizing Means -- mean plot showing the average weight of the cars, broken down by transmission (`am`= 0 or 1)
 
-```{r, warn}
+```{r, warning=FALSE}
 library(gplots)
 plotmeans(data = tb,
           mpg ~ cyl, 
@@ -443,14 +456,16 @@ We show a mean plot showing the mean weight of the cars broken down by Transmiss
 
 ```{r warning=FALSE, message=FALSE}
 library(gplots)
-plotmeans(mpg ~ interaction(am, cyl, sep = ", ")
-          , data = mtcars
-          , mean.labels = TRUE
-          , digits=2
-          , connect = FALSE
-          , main = "Mean (mpg) by cyl = {4,6,8} & am = {0,1}"
-          , xlab= "cyl = {4,6,8} & am = {0,1}"
-          , ylab="Average MPG"
+plotmeans(mpg ~ interaction(am, 
+                            cyl, 
+                            sep = ", "),
+          data = tb,
+          mean.labels = TRUE,
+          digits=2,
+          connect = FALSE,
+          main = "Mean (mpg) by cyl = {4,6,8} & am = {0,1}",
+          xlab= "cyl = {4,6,8} & am = {0,1}",
+          ylab="Average MPG"
           )
 ```
 

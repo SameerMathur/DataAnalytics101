@@ -1,8 +1,8 @@
 # Categorical x Continuous data (2 of 2)
 
-*Aug 9, 2023*
+*Aug 13, 2023*
 
-1.  THIS CHAPTER explores **Continuous x Categorical** data using the **`ggplot2`** package. Specifically, it demonstrates the use of **`ggplot2`** package to further explore *bivariate continuous data across categories*.
+1.  THIS CHAPTER explores **Categorical** x **Continuous** data using the **`dplyr`** and **`ggplot2`** packages.
 
 2.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
 
@@ -10,6 +10,7 @@
 # Load the required libraries, suppressing annoying startup messages
 library(tibble) 
 suppressPackageStartupMessages(library(dplyr))
+library(knitr) # For formatting tables
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
@@ -22,37 +23,40 @@ tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
 attach(tb)
 ```
 
-## Summarizing Continuous Data using `ggplot2`
+## Summarizing Continuous Data using `dplyr` and `ggplot2`
 
-### Across one Category using `ggplot2`
+### Across one Category using `dplyr` and `ggplot2`
 
-1.  We demonstrate the bivariate relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) using `ggplot2`.
+1.  Calculating the mean and standard deviation
 
-```{r}
-library(dplyr)
+-   We demonstrate the bivariate relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) using `ggplot2`.
+
+```{r, warning=FALSE}
+suppressPackageStartupMessages(library(dplyr))
 s1 <- tb %>%
   group_by(cyl) %>%
   summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
-            SD_mpg = sd(mpg, na.rm = TRUE)) 
-print(s1)
+            SD_mpg = sd(mpg, na.rm = TRUE))
+  
+kable(s1, digits=2, caption = "Summary Statistics of Mileage (mpg) by Cylinders (cyl=4,6,8)") 
 ```
 
-2.  Discussion:
+2.  **Discussion:**
 
 -   In this code, we use the pipe operator `%\>%` to perform a series of operations. We first group the data by the `cyl` column using the `group_by()` function. We then use `summarise()` to apply the `mean()` and `sd()` functions to the `mpg` column.
 
 -   The results are stored in new columns, aptly named `Mean_mpg` and `SD_mpg`.
 
--   We set `na.rm = TRUE` in both `mean()` and `sd()` function calls, to remove any missing values before calculation. \[1\]
+-   We set `na.rm = TRUE` in both `mean()` and `sd()` function calls, to remove any missing values before calculation. 
 
-3.  Visualizing the mean and standard deviation
+-   The data resulting from the above code consists of grouped cylinder counts (`cyl`), their corresponding mean miles per gallon (`Mean_mpg`), and the standard deviation of miles per gallon (`SD_mpg`).\[1\]
 
--   The data resulting from the above code consists of grouped cylinder counts (`cyl`), their corresponding mean miles per gallon (`Mean_mpg`), and the standard deviation of miles per gallon (`SD_mpg`).
+3.  **Visualizing the mean and standard deviation**
 
--   A simple way to visualize this data would be to create a **line plot** for the mean miles per gallon with **error bars** to indicate standard deviation. Here is an example of how we could do this with `ggplot2`:
+-   A simple way to visualize this data is to create a **line plot** for the mean miles per gallon with **error bars**  indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
 
-```{r}
-library(ggplot2)
+```{r, warning=FALSE}
+suppressPackageStartupMessages(library(ggplot2))
 ggplot(s1, 
        aes(x = cyl, y = Mean_mpg)) +
   geom_line(group=1, color = "blue") +
@@ -60,12 +64,12 @@ ggplot(s1,
   geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
                     ymax = Mean_mpg + SD_mpg), 
                 width = .2, colour = "black") +
-  labs(x = "Cylinders", y = "Mean mpg") +
+  labs(x = "Cylinders", y = "Mean mpg",
+       title = "Mean and SD of Mileage(mpg) by #Cylinders") +
   theme_minimal()
-
 ```
 
-4.  Discussion:
+4.  **Discussion**:
 
 -   `aes(x = cyl, y = Mean_mpg)` assigns the `cyl` values to the x-axis and `Mean_mpg` to the y-axis.
 
@@ -81,38 +85,39 @@ ggplot(s1,
 
 -   `theme_minimal()` applies a minimal theme to the plot.
 
-5.  Alternate visualization:
+5.  **Visualizing the mean and standard deviation - Alternate Method**
+
+* An alternate method is to visualize this mean by creating a **bar plot**, with **error bars**  indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
 
 ```{r}
 library(ggplot2)
-
 # mpg plot
-ggplot(s1, aes(x = cyl, y = Mean_mpg)) +
+ggplot(s1, 
+       aes(x = cyl, 
+           y = Mean_mpg)) +
   geom_bar(stat = "identity", 
-           fill = "gold", 
-           alpha = 0.7) +
+           fill = "gold") +
   geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
                     ymax = Mean_mpg + SD_mpg), 
                 width = .2) +
-  labs(x = "Cylinders", y = "Mean mpg") +
+  labs(x = "Cylinders", y = "Mean mpg",
+       title = "Mean and SD of Mileage(mpg) by #Cylinders") +
   theme_minimal()
 ```
 
-6.  Discussion:
+6.  **Discussion**:
 
--   `ggplot(s1, aes(x = cyl, y = Mean_mpg))`: The `ggplot()` function initializes a ggplot object. It's specifying the data to use (`s1` data frame) and mapping aesthetic elements to variables in the data. Here, `aes(x = cyl, y = Mean_mpg)` specifies that the x-axis represents `cyl` (number of cylinders) and the y-axis represents `Mean_mpg` (mean miles per gallon).
+-   `ggplot(s1, aes(x = cyl, y = Mean_mpg))`: The `ggplot()` function initializes a ggplot object using dataframe `s1` and mapping aesthetic elements. Here, `aes(x = cyl, y = Mean_mpg)` specifies that the x-axis represents `cyl` (number of cylinders) and the y-axis represents `Mean_mpg` (mean miles per gallon).
 
--   `geom_bar(stat = "identity", fill = "skyblue", alpha = 0.7)`: The `geom_bar()` function is used to create a bar chart. Setting `stat = "identity"` indicates that the heights of the bars represent the values in the data (in this case, `Mean_mpg`). The `fill = "skyblue"` argument sets the color of the bars to sky blue, and `alpha = 0.7` sets the transparency of the bars.
+-   `geom_bar(stat = "identity", fill = "gold")`: The `geom_bar()` function is used to create a bar chart. Setting `stat = "identity"` indicates that the heights of the bars represent the values in the data (in this case, `Mean_mpg`). The `fill = "gold"` argument sets the color of the bars.
 
--   `geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg), width = .2)`: The `geom_errorbar()` function adds error bars to the plot. The arguments `aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg)` set the bottom (`ymin`) and top (`ymax`) of the error bars to represent one standard deviation below and above the mean, respectively. `width = .2` sets the horizontal width of the error bars.
+-   `geom_errorbar()` adds error bars to the plot. The arguments `aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg)` set the bottom (`ymin`) and top (`ymax`) of the error bars to represent one standard deviation below and above the mean, respectively. `width = .2` sets the horizontal width of the error bars.
 
 -   `labs(x = "Cylinders", y = "Mean mpg")`: The `labs()` function is used to specify the labels for the x-axis and y-axis.
 
 -   `theme_minimal()`: The `theme_minimal()` function is used to set a minimalistic theme for the plot.
 
--   This plot provides a clear visual representation of the mean miles per gallon for different numbers of cylinders, with the variation in each group indicated by the error bars.
-
-7.  We extend this code to demonstrate how to measure the bivariate relationships between multiple continuous variables from the mtcars data and the categorical variable number of Cylinders (`cyl`), using `ggplot2`. Specifically, we consider the continuous variables (i) Miles Per Gallon (`mpg`); (ii) Weight (`wt`); (iii) Horsepower (`hp`) across the number of Cylinders (`cyl`).
+7.  We extend this code to demonstrate how to measure the bivariate relationships between multiple continuous variables from the mtcars data and the categorical variable number of Cylinders (`cyl`), using `ggplot2`. Specifically, we want to measure the mean and SD of continuous variables (i) Miles Per Gallon (`mpg`); (ii) Weight (`wt`); (iii) Horsepower (`hp`) across the number of Cylinders (`cyl`).
 
 ```{r}
 library(dplyr)
@@ -126,16 +131,18 @@ s3 <- tb %>%
     Mean_hp = mean(hp, na.rm = TRUE),
     SD_hp = sd(hp, na.rm = TRUE)
     ) 
-print(s3)
+kable(s3, 
+      digits=2, 
+      caption = "Summary of Mileage (mpg), Weight (wt), Horsepower (hp) by Cylinders (cyl=4,6,8)")
 ```
 
-8.  Discussion:
+8. **Discussion**:
 
--   With `tb %>%`, we indicate that we are going to perform a series of operations on the `tb` data frame. The next operation is `group_by(cyl)`, which groups the data by the `cyl` variable.
+-   With `tb %>%`, we indicate that we are going to perform a series of operations on the `tb` data frame. The `group_by(cyl)` groups the data by the `cyl` variable.
 
--   The `summarise()` function is then used to create a new data frame that summarizes the grouped data. Inside `summarise()`, we calculate the mean and standard deviation (SD) of three variables (`mpg`, `wt`, and `hp`). The`na.rm = TRUE` argument inside `mean()` and `sd()` functions is used to exclude any NA values from these calculations.
+-   The `summarise()` function calculates the mean and standard deviation (SD) of three variables (`mpg`, `wt`, and `hp`). The`na.rm = TRUE` argument inside `mean()` and `sd()` functions is used to exclude any NA values from these calculations.
 
--   The resulting calculations are assigned to new variables (`Mean_mpg`, `SD_mpg`, `Mean_wt`, `SD_wt`, `Mean_hp`, and `SD_hp`) which will be the columns in the summarised data frame. The summarised data will contain one row for each group (in this case, each unique value of `cyl`), and columns for each of the summary statistics.
+-   The resulting calculations are assigned to new variables (`Mean_mpg`, `SD_mpg`, `Mean_wt`, `SD_wt`, `Mean_hp`, and `SD_hp`) which will be the columns in the summarised data frame. 
 
 -   To summarize, this script groups the data in the `tb` tibble by `cyl` and then calculates the mean and standard deviation of the `mpg`, `wt`, and `hp` variables for each group. \[1\]
 
@@ -143,33 +150,37 @@ print(s3)
 
 1.  We demonstrate the relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) and Transmission type (`am`) using `ggplot2`. Recall that a car's transmission may be automatic (`am=0`) or manual (`am=1`).
 
-```{r}
-library(dplyr)
-tb_grouped <- tb %>%
+```{r, warning=FALSE}
+s4 <- tb %>%
   group_by(cyl, am) %>%
   summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
             SD_mpg = sd(mpg, na.rm = TRUE))
-
-tb_grouped
+kable(s4, 
+      digits=2, 
+      caption = "Summary of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)")
 ```
 
-2.  Discussion:
+2.  **Discussion**:
 
--   In the above code, we are grouping by both `cyl` and `am` before summarizing. This will provide the mean and standard deviation of `mpg` for each unique combination of `cyl` and `am`.
+-   The above code provides the mean and standard deviation of `mpg` for each unique combination of `cyl` and `am`.
 
 -   Here is how it can be visualized:
 
 ```{r}
 # Create the plot
-ggplot(tb_grouped, aes(x = interaction(cyl, am), y = Mean_mpg, fill = as.factor(am))) +
+ggplot(s4, aes(x = interaction(cyl, am), 
+               y = Mean_mpg, 
+               fill = as.factor(am))) +
   geom_bar(stat = "identity", 
-           alpha = 0.7, 
            position = position_dodge()) +
   geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
                     ymax = Mean_mpg + SD_mpg), 
                 width = .2, 
                 position = position_dodge(.9)) +
-  labs(x = "Cylinders and Transmission", y = "Mean mpg", fill = "Transmission") +
+  labs(x = "Cylinders and Transmission", 
+       y = "Mean mpg", 
+       fill = "Transmission",
+       title = "Summary of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") +
   theme_minimal()
 ```
 
@@ -177,17 +188,22 @@ ggplot(tb_grouped, aes(x = interaction(cyl, am), y = Mean_mpg, fill = as.factor(
 
 ```{r}
 library(dplyr)
-tb_grouped2 <- tb %>%
+s5 <- tb %>%
   group_by(am, cyl) %>%
   summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
-            SD_mpg = sd(mpg, na.rm = TRUE))
+            SD_mpg = sd(mpg, na.rm = TRUE)) 
+kable(s5, 
+      digits=2, caption = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)")
 ```
 
 -   Here is how it can be visualized:
 
 ```{r}
 # Create the plot
-ggplot(tb_grouped2, aes(x = interaction(am, cyl), y = Mean_mpg, fill = as.factor(cyl))) +
+ggplot(s5, 
+       aes(x = interaction(am, cyl), 
+           y = Mean_mpg, 
+           fill = as.factor(cyl))) +
   geom_bar(stat = "identity", 
            alpha = 0.7, 
            position = position_dodge()) +
@@ -195,15 +211,17 @@ ggplot(tb_grouped2, aes(x = interaction(am, cyl), y = Mean_mpg, fill = as.factor
                     ymax = Mean_mpg + SD_mpg), 
                 width = .2, 
                 position = position_dodge(.9)) +
-  labs(x = "Transmission and Cylinders", y = "Mean mpg", fill = "Cylinders") +
+  labs(x = "Transmission and Cylinders", 
+       y = "Mean mpg", 
+       fill = "Cylinders",
+       title = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)") +
   theme_minimal()
 ```
 
 4.  The following code produces a new data frame that contains the mean and standard deviation of the continuous variables `mpg`, `wt`, and `hp` for each combination of the factor variables `am` and `cyl`. \[1\]
 
-```{r}
-library(dplyr)
-tb %>%
+```{r, warning=FALSE}
+s6 <- tb %>%
   group_by(am, cyl) %>%
   summarise(
     Mean_mpg = mean(mpg, na.rm = TRUE),
@@ -212,28 +230,56 @@ tb %>%
     SD_wt = sd(wt, na.rm = TRUE),
     Mean_hp = mean(hp, na.rm = TRUE),
     SD_hp = sd(hp, na.rm = TRUE)
-    ) 
+    )
+kable(s6, 
+      digits=2, caption = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinder (cyl=4,6,8)")
 ```
 
 ## Visualizing Continuous Data using `ggplot2`
 
 Let's take a closer look at some of the most effective ways of visualizing continuous data, across one Category, **using ggplot2**, including
 
-(i) Histograms, using ggplot2;
+(i) Bee Swarm plots, using ggplot2;
 
-(ii) PDF and CDF Density plots, using ggplot2;
+(ii) Histograms, using ggplot2;
 
-(iii) Box plots, using ggplot2;
+(iii) PDF and CDF Density plots, using ggplot2;
 
-(iv) Bee Swarm plots, using ggplot2;
+(iv) Box plots, using ggplot2;
 
 (v) Violin plots, using ggplot2;
 
-(vi) Q-Q plots, using ggplot2.
+
+
+
+### Bee Swarm Plot across one Category using `ggbeeswarm`
+
+* Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8)
+
+```{r}
+library(ggplot2)
+library(ggbeeswarm)
+# Create the beeswarm plot
+ggplot(mtcars, 
+       aes(x = factor(cyl), 
+           y = mpg)) +
+  geom_beeswarm() +
+  labs(title = "Bee Swarm plot of Mileage (mpg) by Cylinders (cyl=4,6,8)",
+       x = "Cylinders (cyl)",
+       y = "Miles per gallon (mpg)") +
+  theme_minimal() 
+```
+
+
+
+
+
+
+
 
 ### Histograms across one Category using `ggplot2`
 
-Visualizing histograms of car milegage (`mpg`) broken down by transmission (`am`=0,1)
+* Visualizing histograms of car milegage (`mpg`) broken down by transmission (`am`=0,1)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -245,8 +291,8 @@ ggplot(tb, aes(x = mpg,
        x = "Miles Per Gallon (mpg)",
        y = "Frequency")
 ```
-
--   If we want separate histograms, we can set facet_wrap(\~ am)
+* **Discussion**:
+If we want separate histograms, we can set facet_wrap(\~ am)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -259,6 +305,7 @@ ggplot(tb, aes(x = mpg,
        x = "Miles Per Gallon (mpg)",
        y = "Frequency")
 ```
+
 
 #### Histogram across one Category using `ggpubr`
 
@@ -272,12 +319,13 @@ gghistogram(tb,
             color = "am", 
             fill = "am", 
             alpha = 0.8,
-            palette = c("gold", "lightblue"))
+            palette = c("gold", "lightblue"),
+            title = "Histogram of Mileage (mpg) by Transmission (am=0,1)")
 ```
 
 ### Histograms across two Categories using `ggplot2`
 
-Visualizing histograms of car milegage (`mpg`) broken down by transmission (`am`=0,1) and cylinders (`cyl`=4,6,8)
+* Visualizing histograms of car milegage (`mpg`) by transmission (`am`=0,1) and cylinders (`cyl`=4,6,8)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -286,13 +334,15 @@ ggplot(tb, aes(x = mpg,
   scale_fill_manual(values = c("gold", "lightblue")) +
   facet_grid(cyl ~ am) +
   theme_minimal() +
-  labs(title = "Histogram of Miles Per Gallon (mpg) by Transmission Type (am=0,1) and Cylinder (cyl=4,6,8)",
+  labs(title = "Histogram of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)",
        x = "Miles Per Gallon (mpg)",
        y = "Frequency")
 
 ```
 
 ### PDF across one Category using `ggplot2`
+
+* Visualizing the Probability Density Functions (PDF) of car milegage (`mpg`) by transmission (`am`=0,1)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -301,7 +351,7 @@ ggplot(tb, aes(x = mpg,
   scale_fill_manual(values = c("gold", "lightblue")) +
   facet_wrap(~ am) +
   theme_minimal() +
-  labs(title = "Density Plot of Miles Per Gallon (mpg) by Transmission Type (am)",
+  labs(title = "Density Plot of Mileage (mpg) by Transmission (am=0,1)",
        x = "Miles Per Gallon (mpg)",
        y = "Density")
 
@@ -320,7 +370,7 @@ ggdensity(tb,
           add = "mean",
           rug = TRUE,
           palette = c("gold", "skyblue"),
-          title = "PDF of Miles Per Gallon (mpg), using ggpubr::ggdensity()",
+          title = "PDF of Mileage (mpg) by Transmission (am=0,1), using ggpubr::ggdensity()",
           ylab = "Miles Per Gallon (mpg)",
           xlab = "Transmission (am)"
 )
@@ -328,33 +378,33 @@ ggdensity(tb,
 
 ### CDF across one Category using `ggplot2`
 
+* Visualizing the Cumulative Density Functions (CDF) of car milegage (`mpg`) by transmission (`am`=0,1)
+
 ```{r}
 library(ggplot2)
-
 # Create separate CDFs for 'am = 0' and 'am = 1'
 ggplot(tb, aes(x = mpg, 
                color = factor(am))) +
   stat_ecdf(geom = "line") +
   scale_color_manual(values = c("blue", "black")) +
   labs(x = "Miles Per Gallon (mpg)", y = "CDF", 
-       title = "Cumulative Distribution Function (CDF) of Mileage (mpg) for Transmission (am)",
+       title = "Cumulative Distribution Function (CDF) of Mileage (mpg) by Transmission (am=0,1)",
        color = "am") +
   theme_minimal() 
 ```
 
 ### Box Plot across one Category using `ggplot2`
 
-Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8)
+* Visualizing Boxplots of car milegage (`mpg`) broken down by cylinders (`cyl`=4,6,8)
 
 ```{r}
 library(ggplot2)
-
 ggplot(tb, aes(x = cyl, 
                y = mpg)) +
   geom_boxplot(fill = c("gold","lightblue","lightpink"), 
                color = "black") +
   coord_flip() +
-  labs(title = "Boxplot of Miles Per Gallon (mpg) by Cylinders",
+  labs(title = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8)",
        y = "Miles Per Gallon (mpg)",
        x = "Cylinders") +
   theme_minimal()
@@ -375,13 +425,15 @@ ggboxplot(tb,
           shape = "cyl",
           orientation = "horizontal",
           add = "jitter", #jitter helps display the data points
-          title = "Boxplot of Miles Per Gallon (mpg), using ggpubr::ggboxplot()",
+          title = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8), using ggpubr::ggboxplot()",
           ylab = "Miles Per Gallon (mpg)",
           xlab = "Cylinders"
 )
 ```
 
 ### Box Plot across two Categories using `ggplot2`
+
+* Visualizing Boxplots of car milegage (`mpg`) broken down by cylinders (`cyl`=4,6,8) and Transmission (am=0,1)
 
 ```{r}
 ggplot(tb, aes(x = as.factor(am), y = mpg, fill = as.factor(am))) +
@@ -403,6 +455,7 @@ ggplot(tb, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) +
   scale_fill_manual(values = c("gold", "lightblue", "lightpink"), name = "Cylinders") +
   facet_grid(~ am) +
   theme_minimal() +
+  coord_flip() +
   labs(title = "Boxplot of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)",
        x = "Number of Cylinders (cyl)",
        y = "Miles Per Gallon (mpg)")
@@ -410,6 +463,9 @@ ggplot(tb, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) +
 ```
 
 #### Box Plot across two Categories using `ggpubr`
+
+-   The provided R code creates Boxplots of the `mpg` (miles per gallon) variable in the `tb` dataset, using the `ggboxplot()` function from the `ggpubr` package.
+
 
 ```{r, warning=FALSE}
 library(ggpubr)
@@ -423,7 +479,7 @@ ggboxplot(tb,
           orientation = "horizontal",
           add = "jitter", #jitter helps display the data points
           facet.by = "am", #split data by "am"
-          title = "Boxplot of Miles Per Gallon (mpg), using ggpubr::ggboxplot()",
+          title = "Boxplot of Mileage by Cylinders, Transmission, with ggpubr::ggboxplot()",
           ylab = "Miles Per Gallon (mpg)",
           xlab = "Cylinders"
 )
@@ -441,56 +497,20 @@ ggboxplot(tb,
           orientation = "horizontal",
           add = "jitter", #jitter helps display the data points
           facet.by = "cyl", #split data by "cyl"
-          title = "Boxplot of Miles Per Gallon (mpg), using ggpubr::ggboxplot()",
+          title = "Boxplot of Mileage by Transmission, Cylinders, with ggpubr::ggboxplot()",
           ylab = "Miles Per Gallon (mpg)",
           xlab = "Transmission"
 )
 ```
 
-### Bee Swarm Plot across one Category using `ggbeeswarm`
 
-Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8)
-
-```{r}
-library(ggplot2)
-library(ggbeeswarm)
-# Create the beeswarm plot
-ggplot(mtcars, 
-       aes(x = factor(cyl), 
-           y = mpg)) +
-  geom_beeswarm() +
-  labs(title = "Bee Swarm plot of Miles Per Gallon (mpg) by Cylinders",
-       x = "Cylinders (cyl)",
-       y = "Mileage (mpg)") +
-  theme_minimal() +
-  theme(panel.background = element_rect(fill = "lightblue"))
-```
 
 ### Violin Plot across one Category using `ggplot2`
 
-Visualizing using Violin Plot -- distribution of mpg of the cars broken down by cylinders (`cyl`=4,6,8)
+* We can embed boxplots within the above Violin plots, as follows.
 
 ```{r}
 library(ggplot2)
-
-ggplot(tb, aes(x = factor(cyl), 
-               y = mpg)) +
-  geom_violin(aes(fill = factor(cyl)), 
-              color = "black") +
-  scale_fill_manual(values = c("gold","lightblue","lightpink"), 
-                    name = "Cylinders") +
-  coord_flip() +
-  labs(title = "Violin plot of Miles Per Gallon (mpg) by Cylinders",
-       y = "Miles Per Gallon (mpg)",
-       x = "Cylinders") +
-  theme_minimal()
-```
-
-We can embed boxplots within the above Violin plots, as follows.
-
-```{r}
-library(ggplot2)
-
 ggplot(tb, aes(x = factor(cyl), 
                y = mpg)) +
   geom_violin(aes(fill = factor(cyl)), 
@@ -500,12 +520,15 @@ ggplot(tb, aes(x = factor(cyl),
   geom_boxplot(width=0.2, 
                fill="white") +
   coord_flip() +
-  labs(title = "Violin plot of Miles Per Gallon (mpg) by Cylinders",
+  labs(title = "Violin Plot and Box Plot of Mileage (mpg) by Cylinders (cyl=4,6,8)",
        y = "Miles Per Gallon (mpg)",
        x = "Cylinders") +
   theme_minimal()
-
 ```
+
+
+
+
 
 ## References
 
@@ -518,3 +541,61 @@ Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag
 \[2\]
 
 Kassambara A (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.
+
+
+
+
+
+
+
+## Appendix A
+
+### Appendix A1: Violin Plot across two Categories using `ggplot2`
+
+* We can embed boxplots within the above Violin plots, as follows.
+
+```{r}
+library(ggplot2)
+
+ggplot(tb, aes(x = factor(cyl), y = mpg)) +
+  geom_violin(aes(fill = factor(cyl)), color = "black") +
+  scale_fill_manual(values = c("gold", "lightblue", "lightpink"), name = "Cylinders") +
+  geom_boxplot(width = 0.2, fill = "white") +
+  coord_flip() +
+  labs(title = "Violin Plot and Box Plot of Mileage (mpg) by Cylinders and Transmission",
+       y = "Miles Per Gallon (mpg)",
+       x = "Cylinders") +
+  facet_grid(am ~ ., scales = "free_y", space = "free_y", labeller = labeller(am = function(x) ifelse(x == 0, "Automatic", "Manual"))) +
+  theme_minimal()
+
+```
+
+* Alternately, We can embed boxplots within the above Violin plots, as follows.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Modify the data first
+tb_modified <- tb %>%
+  mutate(am = factor(am, levels = c(0, 1), labels = c("Automatic", "Manual")))
+
+# Create the plot
+ggplot(tb_modified, 
+       aes(x = factor(cyl), 
+           y = mpg)) +
+  geom_violin(aes(fill = factor(cyl)), 
+              color = "black") +
+  scale_fill_manual(values = c("gold", "lightblue", "lightpink"), 
+                    name = "Cylinders") +
+  geom_boxplot(width = 0.2, fill = "white") +
+  coord_flip() +
+  labs(title = "Violin Plot and Box Plot of Mileage (mpg) by Cylinders and Transmission",
+       y = "Miles Per Gallon (mpg)",
+       x = "Cylinders") +
+  facet_grid(am ~ ., 
+             scales = "free_y", 
+             space = "free_y") +
+  theme_minimal()
+```
+
