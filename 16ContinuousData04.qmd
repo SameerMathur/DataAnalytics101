@@ -47,13 +47,13 @@ kable(s1, digits=2, caption = "Summary Statistics of Mileage (mpg) by Cylinders 
 
 -   The results are stored in new columns, aptly named `Mean_mpg` and `SD_mpg`.
 
--   We set `na.rm = TRUE` in both `mean()` and `sd()` function calls, to remove any missing values before calculation. 
+-   We set `na.rm = TRUE` in both `mean()` and `sd()` function calls, to remove any missing values before calculation.
 
 -   The data resulting from the above code consists of grouped cylinder counts (`cyl`), their corresponding mean miles per gallon (`Mean_mpg`), and the standard deviation of miles per gallon (`SD_mpg`).\[1\]
 
 3.  **Visualizing the mean and standard deviation**
 
--   A simple way to visualize this data is to create a **line plot** for the mean miles per gallon with **error bars**  indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
+-   A simple way to visualize this data is to create a **line plot** for the mean miles per gallon with **error bars** indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
 
 ```{r, warning=FALSE}
 suppressPackageStartupMessages(library(ggplot2))
@@ -87,7 +87,7 @@ ggplot(s1,
 
 5.  **Visualizing the mean and standard deviation - Alternate Method**
 
-* An alternate method is to visualize this mean by creating a **bar plot**, with **error bars**  indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
+-   An alternate method is to visualize this mean by creating a **bar plot**, with **error bars** indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
 
 ```{r}
 library(ggplot2)
@@ -136,13 +136,13 @@ kable(s3,
       caption = "Summary of Mileage (mpg), Weight (wt), Horsepower (hp) by Cylinders (cyl=4,6,8)")
 ```
 
-8. **Discussion**:
+8.  **Discussion**:
 
 -   With `tb %>%`, we indicate that we are going to perform a series of operations on the `tb` data frame. The `group_by(cyl)` groups the data by the `cyl` variable.
 
 -   The `summarise()` function calculates the mean and standard deviation (SD) of three variables (`mpg`, `wt`, and `hp`). The`na.rm = TRUE` argument inside `mean()` and `sd()` functions is used to exclude any NA values from these calculations.
 
--   The resulting calculations are assigned to new variables (`Mean_mpg`, `SD_mpg`, `Mean_wt`, `SD_wt`, `Mean_hp`, and `SD_hp`) which will be the columns in the summarised data frame. 
+-   The resulting calculations are assigned to new variables (`Mean_mpg`, `SD_mpg`, `Mean_wt`, `SD_wt`, `Mean_hp`, and `SD_hp`) which will be the columns in the summarised data frame.
 
 -   To summarize, this script groups the data in the `tb` tibble by `cyl` and then calculates the mean and standard deviation of the `mpg`, `wt`, and `hp` variables for each group. \[1\]
 
@@ -249,12 +249,9 @@ Let's take a closer look at some of the most effective ways of visualizing conti
 
 (v) Violin plots, using ggplot2;
 
-
-
-
 ### Bee Swarm Plot across one Category using `ggbeeswarm`
 
-* Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8)
+-   Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8)
 
 ```{r}
 library(ggplot2)
@@ -270,16 +267,9 @@ ggplot(mtcars,
   theme_minimal() 
 ```
 
-
-
-
-
-
-
-
 ### Histograms across one Category using `ggplot2`
 
-* Visualizing histograms of car milegage (`mpg`) broken down by transmission (`am`=0,1)
+-   Visualizing histograms of car milegage (`mpg`) broken down by transmission (`am`=0,1)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -291,8 +281,8 @@ ggplot(tb, aes(x = mpg,
        x = "Miles Per Gallon (mpg)",
        y = "Frequency")
 ```
-* **Discussion**:
-If we want separate histograms, we can set facet_wrap(\~ am)
+
+-   **Discussion**: If we want separate histograms, we can set facet_wrap(\~ am)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -305,7 +295,6 @@ ggplot(tb, aes(x = mpg,
        x = "Miles Per Gallon (mpg)",
        y = "Frequency")
 ```
-
 
 #### Histogram across one Category using `ggpubr`
 
@@ -325,7 +314,7 @@ gghistogram(tb,
 
 ### Histograms across two Categories using `ggplot2`
 
-* Visualizing histograms of car milegage (`mpg`) by transmission (`am`=0,1) and cylinders (`cyl`=4,6,8)
+-   Visualizing histograms of car milegage (`mpg`) by transmission (`am`=0,1) and cylinders (`cyl`=4,6,8)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -342,7 +331,7 @@ ggplot(tb, aes(x = mpg,
 
 ### PDF across one Category using `ggplot2`
 
-* Visualizing the Probability Density Functions (PDF) of car milegage (`mpg`) by transmission (`am`=0,1)
+-   Visualizing the Probability Density Functions (PDF) of car milegage (`mpg`) by transmission (`am`=0,1)
 
 ```{r}
 ggplot(tb, aes(x = mpg, 
@@ -378,7 +367,7 @@ ggdensity(tb,
 
 ### CDF across one Category using `ggplot2`
 
-* Visualizing the Cumulative Density Functions (CDF) of car milegage (`mpg`) by transmission (`am`=0,1)
+-   Visualizing the Cumulative Density Functions (CDF) of car milegage (`mpg`) by transmission (`am`=0,1)
 
 ```{r}
 library(ggplot2)
@@ -395,7 +384,7 @@ ggplot(tb, aes(x = mpg,
 
 ### Box Plot across one Category using `ggplot2`
 
-* Visualizing Boxplots of car milegage (`mpg`) broken down by cylinders (`cyl`=4,6,8)
+-   Visualizing Boxplots of car milegage (`mpg`) broken down by cylinders (`cyl`=4,6,8)
 
 ```{r}
 library(ggplot2)
@@ -433,7 +422,7 @@ ggboxplot(tb,
 
 ### Box Plot across two Categories using `ggplot2`
 
-* Visualizing Boxplots of car milegage (`mpg`) broken down by cylinders (`cyl`=4,6,8) and Transmission (am=0,1)
+-   Visualizing Boxplots of car milegage (`mpg`) broken down by cylinders (`cyl`=4,6,8) and Transmission (am=0,1)
 
 ```{r}
 ggplot(tb, aes(x = as.factor(am), y = mpg, fill = as.factor(am))) +
@@ -465,7 +454,6 @@ ggplot(tb, aes(x = as.factor(cyl), y = mpg, fill = as.factor(cyl))) +
 #### Box Plot across two Categories using `ggpubr`
 
 -   The provided R code creates Boxplots of the `mpg` (miles per gallon) variable in the `tb` dataset, using the `ggboxplot()` function from the `ggpubr` package.
-
 
 ```{r, warning=FALSE}
 library(ggpubr)
@@ -503,11 +491,9 @@ ggboxplot(tb,
 )
 ```
 
-
-
 ### Violin Plot across one Category using `ggplot2`
 
-* We can embed boxplots within the above Violin plots, as follows.
+-   We can embed boxplots within the above Violin plots, as follows.
 
 ```{r}
 library(ggplot2)
@@ -526,10 +512,6 @@ ggplot(tb, aes(x = factor(cyl),
   theme_minimal()
 ```
 
-
-
-
-
 ## References
 
 \[1\]
@@ -542,17 +524,11 @@ Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag
 
 Kassambara A (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.
 
-
-
-
-
-
-
 ## Appendix A
 
 ### Appendix A1: Violin Plot across two Categories using `ggplot2`
 
-* We can embed boxplots within the above Violin plots, as follows.
+-   We can embed boxplots within the above Violin plots, as follows.
 
 ```{r}
 library(ggplot2)
@@ -570,7 +546,7 @@ ggplot(tb, aes(x = factor(cyl), y = mpg)) +
 
 ```
 
-* Alternately, We can embed boxplots within the above Violin plots, as follows.
+-   Alternately, We can embed boxplots within the above Violin plots, as follows.
 
 ```{r}
 library(ggplot2)
@@ -598,4 +574,3 @@ ggplot(tb_modified,
              space = "free_y") +
   theme_minimal()
 ```
-

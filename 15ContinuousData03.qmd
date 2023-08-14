@@ -196,8 +196,6 @@ print(B3)
 
 -   After that, we call the `describeBy()` function from the `psych` package. This function calculates descriptive statistics for each combination of levels of the factors `am` and `cyl` and for each of the continuous variables `mpg`, `wt`, and `hp`.
 
-
-
 ## Visualizing Continuous Data
 
 Let's take a closer look at some of the most effective ways of visualizing univariate continuous data, including
@@ -281,6 +279,17 @@ lapply(tb_split,
 -   Data Splitting: It then divides `tb3` into subsets based on `am` values, resulting in separate groups for each transmission type.
 
 -   Visualization: Using `lapply()`, the code generates stem-and-leaf plots for the `wt` values in each subset, showcasing weight distributions for different transmission types. In this context, it shows the distribution of vehicle weights for each transmission type (automatic and manual).
+
+
+
+
+
+
+
+
+
+
+
 
 ### Histograms across one Category
 

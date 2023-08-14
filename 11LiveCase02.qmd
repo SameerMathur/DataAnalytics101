@@ -4,16 +4,6 @@
 
 Agenda: Understanding the S&P500 Index
 
-
-
-
-
-
-
-
-
-
-
 ## S&P 500 Data - PRELIMINARY SETUP
 
 1.  We will continue our analysis of the S&P 500. Load the data, as described in the chapter Live Case: S&P500 (1 of 3)
@@ -146,27 +136,6 @@ sp500 <- sp500 %>% mutate(MarketCapBillions = MarketCap/ 1000000000)
 colnames(sp500)
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## ANALYSIS OF S&P500 SECTORS
 
