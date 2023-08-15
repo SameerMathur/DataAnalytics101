@@ -1,0 +1,106 @@
+---
+title: "Slides01-Getting Started"
+format: beamer
+---
+
+
+#  **Arithmetic Operations**: 
+
+```{r, echo=TRUE, eval=FALSE}
+# Addition and Subtraction 
+5+9-3 
+# Multiplication and Division (5 + 3) * 7 /2
+(5+3)*7/2
+```
+#  **Arithmetic Operations**: 
+
+```{r, echo=FALSE, eval=TRUE}
+# Addition and Subtraction 
+5+9-3 
+# Multiplication and Division (5 + 3) * 7 /2
+(5+3)*7/2
+```
+
+
+#  **Arithmetic Operations 3**: 
+
+```{r, echo=TRUE, eval=TRUE}
+# Addition and Subtraction 
+5+9-3 
+# Multiplication and Division (5 + 3) * 7 /2
+(5+3)*7/2
+```
+
+
+# **Exponentiation and Logarithms**:
+
+```{r}
+# Exponentiation 
+2^6 
+# Exponential of x=2 i.e. e^2 
+exp(2)  
+# logarithms base 2 and base 10 
+log2(64) + log10(100)
+```
+#  **Data**: 
+
+```{r, echo=TRUE, eval=TRUE}
+# Load the required libraries, suppressing annoying startup messages
+library(tibble) 
+suppressPackageStartupMessages(library(dplyr))
+# Read the mtcars dataset into a tibble called tb
+data(mtcars)
+tb <- as_tibble(mtcars)
+# Convert relevant columns into factor variables
+tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
+tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
+tb$vs <- as.factor(tb$vs) # vs = {0,1}, v-shaped engine, 0:no, 1:yes
+tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
+# Directly access the data columns of tb, without tb$mpg
+attach(tb)
+```
+
+
+#  **Data 2**: 
+
+```{r, echo=TRUE, eval=TRUE}
+library(dplyr)
+library(ggthemes)
+suppressPackageStartupMessages(library(ggplot2))
+```
+
+# Bee Swarm plot using `ggbeeswarm`
+
+1.  The bee swarm plot is an alternative to the box plot, where each point is plotted in a manner that avoids overlap.
+
+2.  We use the `ggbeeswarm` package on the `mpg` column of the `tb` tibble.
+
+
+#  Bee Swarm plot (1)
+
+```{r, echo=FALSE, eval=TRUE}
+library(ggplot2)
+library(ggbeeswarm) # Necessary for geom_beeswarm() 
+ggplot(tb, 
+       aes(x = 1, 
+           y = mpg)) +
+  geom_beeswarm() +
+  labs(title = "Bee Swarm plot of Miles Per Gallon (mpg)",
+       y = "Miles Per Gallon (mpg)") +
+  theme_minimal() 
+```
+
+#  Bee Swarm plot (2)
+
+```{r, echo=TRUE, eval=FALSE}
+library(ggplot2)
+library(ggbeeswarm) # Necessary for geom_beeswarm() 
+ggplot(tb, 
+       aes(x = 1, 
+           y = mpg)) +
+  geom_beeswarm() +
+  labs(title = "Bee Swarm plot of Miles Per Gallon (mpg)",
+       y = "Miles Per Gallon (mpg)") +
+  theme_minimal() 
+```
+

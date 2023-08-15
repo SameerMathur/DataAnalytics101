@@ -256,25 +256,6 @@ ggdensity(tb,
 
 -   `title = ...` : This provides a descriptive title to our plot, aiding in clarity and understanding.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Cumulative Distribution Function (CDF) Plot using `ggplot2`
 
 1.  The following code generates a CDF using `ggplot2`:
