@@ -280,17 +280,6 @@ lapply(tb_split,
 
 -   Visualization: Using `lapply()`, the code generates stem-and-leaf plots for the `wt` values in each subset, showcasing weight distributions for different transmission types. In this context, it shows the distribution of vehicle weights for each transmission type (automatic and manual).
 
-
-
-
-
-
-
-
-
-
-
-
 ### Histograms across one Category
 
 1.  Visualizing histograms of car mileage (`mpg`) broken down by transmission (`am`=0,1)

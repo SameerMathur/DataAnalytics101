@@ -1,0 +1,237 @@
+# Live Case: S&P500 (1 of 3)
+
+*Aug 15, 2023..*
+
+## Overview of the S&P 500
+
+1. The S&P 500, also called the Standard & Poor's 500, is a stock market index that tracks the performance of 500 major publicly traded companies listed on U.S. stock exchanges. It serves as a widely accepted benchmark for assessing the overall health and performance of the U.S. stock market.
+
+2. S&P Dow Jones Indices, a division of S&P Global, is responsible for maintaining the index. The selection of companies included in the S&P 500 is determined by a committee, considering factors such as market capitalization, liquidity, and industry representation.
+
+3. The S&P is a float-weighted index, meaning the market capitalization of the companies in the index are adjusted by the number of shares available for public trading. \[1\]
+
+4. The performance of the S&P 500 is frequently used to gauge the broader stock market and is commonly referenced by investors, analysts, and financial media. It provides a snapshot of how large-cap U.S. stocks are faring and is considered a reliable indicator of overall market sentiment.
+
+5. Companies that relatively have the highest Market Capitalization include Apple, Microsoft, Amazon, Google's parent company, Alphabet. \[1\]
+
+## S&P 500 Data - Preliminary Setup
+
+1. We will analyze a real-world, recent dataset containing information about the S&P500 stocks. The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">Google Sheet</a> \[2\]
+
+2. Load necessary libraries, suppressing annoying start up messages.
+
+```{r, warning=FALSE}
+library(knitr)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(lubridate))
+library(gsheet)
+```
+
+### Read the S&P500 data from a Google Sheet into a tibble
+
+1.  The complete URL is\
+    <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/</a>
+
+2.  The Google Sheet ID is: `11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM`. We can use the function `gsheet2tbl` in package `gsheet` to read the Google Sheet into a tibble or dataframe, as demonstrated in the following code.
+
+```{r Chunk01, warning=FALSE}
+# Read S&P500 stock data present in a Google Sheet.
+library(gsheet)
+prefix <- "https://docs.google.com/spreadsheets/d/"
+sheetID <- "11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"
+url500 <- paste(prefix,sheetID) # Form the URL to connect to
+sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
+```
+
+3. **Discussion**: 
+
+* We load the `gsheet` library to fetch Google Sheets as data frames.
+
+* We create the URL for the specific Google Sheet containing S&P500 stock data.
+
+* Using the `gsheet2tbl` function, we read the data from this Google Sheet into a tibble named `sp500`.
+
+
+### Date
+
+4. We identify the date of the data.
+
+```{r ChunkDate, warning=FALSE, eval=TRUE, echo=TRUE}
+d1 <- unique(sp500$Date)
+d2 <- mdy(d1)
+date <- format(d2, "%d %B %Y") #Save the date
+```
+
+* We have `r nrow(sp500)` stocks of the S&P500 in our dataset, as of `r date`.
+
+
+## Reviewing the data types
+
+1.  We need to understand the different data columns and their data types. 
+
+```{r, warning=FALSE}
+dataTypes <- tibble(
+  ColumnName = names(sp500),
+  DataType = sapply(sp500, class)
+)
+kable(dataTypes, caption = "Data Columns and their data types") 
+```
+
+3.  **Discussion**:
+
+* We create a tibble named `dataTypes` that lists the column names from the `sp500` tibble and the corresponding data types for each column.
+
+* We use `kable` to display this information as a neatly formatted table.
+
+* Note that we use the `sapply()` function to apply the `class()` function to every column in the `sp500` dataset. This will retrieve the data type of each column.
+
+
+4.  **Data Columns**:
+
+-   The columns labeled `Date`, `Stock`, `Description`, `Sector`, and `Industry` are character columns. They respectively represent the date, stock ticker symbol, description, sector, and industry of each S&P500 stock.
+
+-   Columns such as `Market Capitalization`, `Price`, `52 Week Low`, `52 Week High`, and other numeric columns contain diverse financial metrics and stock prices related to the S&P500 stocks.
+
+-   The column labeled `Technical Rating` gives a Buy / Sell technical rating for each stock.
+
+### Remove Rows containing no data or Null values
+
+* We check if the "Stock" column in the sp500 dataframe contains any null or blank values and removes them.
+
+```{r ChunkNull, warning=FALSE, eval=TRUE, echo=TRUE}
+hasNull <- any(sp500$Stock == "" | is.null(sp500$Stock)) # Check for blank or null values 
+if (hasNull) { 
+    sp500 <- sp500[!(is.null(sp500$Stock) | sp500$Stock == ""), ] # Remove any null or blank values
+}
+```
+
+
+### S&P500 Sectors
+
+1. The S&P500 shares are divided into multiple sectors. Each stock belongs to a unique sector. Thus, it makes sense to model `Sector` as a `factor`.
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$Sector <- as.factor(sp500$Sector)
+```
+
+2. The `table()` function allows us to count how many stocks are part of each sector.
+
+```{r chunkSectorsCount, warning=FALSE, eval=TRUE, echo=TRUE}
+A1 <- table(sp500$Sector)
+A2 <- as.data.frame(A1)
+colnames(A2) <- c("Sector", "Stocks")
+# Sort the data by number of "Stocks" in descending order
+A2 <- A2[order(-A2$Stocks), ]
+kable(A2, caption = paste0("S&P500 by Sectors, as of ", date))
+```
+
+
+
+### Stock Ratings
+
+```{r chunkRating3, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$`Technical Rating` <- as.factor(sp500$`Technical Rating`)
+```
+
+2. The levels of the `Technical Rating` are as folows.
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+levels(sp500$`Technical Rating`)
+```
+
+3. We count the number of stocks for each level of Rating.
+
+```{r chunkRatings, warning=FALSE, eval=TRUE, echo=TRUE}
+A1 <- table(sp500$`Technical Rating`)
+A2 <- as.data.frame(A1)
+colnames(A2) <- c("Rating", "Stocks")
+# Sort the data by number of "Stocks" in descending order
+#A2 <- A2[order(-A2$Stocks), ]
+kable(A2, caption = paste0("S&P500 by Technical Ratings, as of ", date))
+```
+
+4. We count the number of stocks for each level of Rating.
+
+```{r chunkSP500, warning=FALSE, eval=TRUE, echo=TRUE}
+A3 <- addmargins(table(sp500$Sector, sp500$`Technical Rating`))
+kable(A3, caption = paste0("S&P500 Sector Stocks by Technical Ratings, as of ", date))
+```
+
+This completes our review of Technical Rating.
+
+
+
+
+
+
+### Create New Columns 
+
+1.  **Low52WkPerc**: Create a new column to track Share Prices relative to their 52 Week Low.
+
+```{r chunkLow52, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500 <- sp500 %>% mutate(Low52WkPerc = round((Price - `52 Week Low`)*100 / `52 Week Low`,2))
+#colnames(sp500)
+```
+
+
+
+2.  **MarketCapBillions**: Creating a new column MarketCapBillions = MarketCap/1000,000,000
+
+```{r chunkMCap}
+sp500 <- sp500 %>% mutate(MarketCapBillions = `Market Capitalization`/ 1000000000)
+
+```
+
+
+```{r ChunkNames, warning=FALSE, eval=TRUE, echo=TRUE}
+colnames(sp500)
+
+```
+
+
+
+
+
+
+### Rename Data Columns
+
+1.  The names of the data columns are potentially confusing. We rename the data columns to make it easier to work with the data.
+
+2.  We define a vector of revised column names.
+
+```{r, warning=FALSE}
+# Define a mapping of new column names
+new_names <- c(
+  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "MarketCap", "Price", "Low52Wk", "High52Wk", 
+  "ROE", "ROA", "ROIC", "GrossMargin", 
+  "OperatingMargin", "NetMargin", "PE", 
+  "PB", "EVEBITDA", "EBITDA", "EPS", 
+  "EBITDA_YOY", "EBITDA_QYOY", "EPS_YOY", 
+  "EPS_QYOY", "PFCF", "FCF", 
+  "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
+  "QuickRatio", "DividendYield", 
+  "DividendsPerShare_YOY", "PS", 
+  "Revenue_YOY", "Revenue_QYOY", "Rating",
+  "Low52WkPerc", "MarketCapBillions"
+)
+```
+
+3. We rename the columns using the `colnames()` or `names()` function.
+
+```{r, warning=FALSE, eval=FALSE, echo=TRUE}
+# Rename the columns 
+colnames(sp500) <- new_names
+#sp500 <- sp500 %>% rename_all(~new_names)
+```
+
+
+```{r chunkNewNames}
+
+colnames(sp500)
+
+```
+
+
+

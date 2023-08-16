@@ -200,14 +200,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
+  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  <a href="./07LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -473,16 +473,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10 × 15
    Date   Stock StockName Sector Industry MarketCap Price Low52Wk High52Wk   ROE
    &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;     &lt;fct&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
- 1 8/12/… DVA   DaVita I… Healt… Medical…   9.26e 9 102.     65.3    107   60   
- 2 8/12/… MOH   Molina H… Healt… Managed…   1.77e10 303.    256.     374   28.4 
- 3 8/12/… IQV   IQVIA Ho… Healt… Service…   3.95e10 216.    166.     249   19.7 
- 4 8/12/… HUM   Humana I… Healt… Managed…   6.05e10 484.    423.     571   19.5 
- 5 8/12/… ELV   Elevance… Healt… Managed…   1.10e11 467.    412      550   17.3 
- 6 8/12/… CI    The Cign… Healt… Managed…   8.49e10 287.    240.     340   14.9 
- 7 8/12/… DGX   Quest Di… Healt… Service…   1.51e10 135.    120.     158   12.5 
- 8 8/12/… UHS   Universa… Healt… Hospita…   8.54e 9 136.     82.5    159   11.6 
- 9 8/12/… CNC   Centene … Healt… Managed…   3.60e10  66.4    61.3     98.5 10.4 
-10 8/12/… LH    Laborato… Healt… Service…   1.9 e10 214.    172.     226    8.31
+ 1 8/15/… DVA   DaVita I… Healt… Medical…   9.89e 9 108.     65.3    117    56  
+ 2 8/15/… MOH   Molina H… Healt… Managed…   1.84e10 316.    256.     374    28.4
+ 3 8/15/… UNH   UnitedHe… Healt… Managed…   4.71e11 508.    446.     558    27.2
+ 4 8/15/… HUM   Humana I… Healt… Managed…   6.12e10 494.    423.     571    20.9
+ 5 8/15/… IQV   IQVIA Ho… Healt… Service…   4.03e10 220.    166.     249    19.7
+ 6 8/15/… ELV   Elevance… Healt… Managed…   1.12e11 474.    412      550    17.3
+ 7 8/15/… CI    The Cign… Healt… Managed…   8.57e10 290.    240.     340    14.6
+ 8 8/15/… DGX   Quest Di… Healt… Service…   1.52e10 135.    120.     158    12.5
+ 9 8/15/… UHS   Universa… Healt… Hospita…   8.18e 9 132.     82.5    159    11.6
+10 8/15/… CNC   Centene … Healt… Managed…   3.56e10  65.8    61.3     98.5  10.4
 # ℹ 5 more variables: ROA &lt;dbl&gt;, ROIC &lt;dbl&gt;, GrossMargin &lt;dbl&gt;,
 #   NetMargin &lt;dbl&gt;, Rating &lt;fct&gt;</code></pre>
 </div>
@@ -495,18 +495,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts4[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">16</span>)],<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 5
-   Date      Stock StockName                                    ROE Low52WkPerc
-   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                                      &lt;dbl&gt;       &lt;dbl&gt;
- 1 8/12/2023 DVA   DaVita Inc.                                60           56.4
- 2 8/12/2023 MOH   Molina Healthcare Inc                      28.4         18.2
- 3 8/12/2023 IQV   IQVIA Holdings, Inc.                       19.7         30.2
- 4 8/12/2023 HUM   Humana Inc.                                19.5         14.4
- 5 8/12/2023 ELV   Elevance Health, Inc.                      17.3         13.5
- 6 8/12/2023 CI    The Cigna Group                            14.9         19.3
- 7 8/12/2023 DGX   Quest Diagnostics Incorporated             12.5         12.0
- 8 8/12/2023 UHS   Universal Health Services, Inc.            11.6         64.4
- 9 8/12/2023 CNC   Centene Corporation                        10.4          8.3
-10 8/12/2023 LH    Laboratory Corporation of America Holdings  8.31        24.4</code></pre>
+   Date      Stock StockName                         ROE Low52WkPerc
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                           &lt;dbl&gt;       &lt;dbl&gt;
+ 1 8/15/2023 DVA   DaVita Inc.                      56         66.0 
+ 2 8/15/2023 MOH   Molina Healthcare Inc            28.4       23.2 
+ 3 8/15/2023 UNH   UnitedHealth Group Incorporated  27.2       14.0 
+ 4 8/15/2023 HUM   Humana Inc.                      20.9       16.7 
+ 5 8/15/2023 IQV   IQVIA Holdings, Inc.             19.7       32.6 
+ 6 8/15/2023 ELV   Elevance Health, Inc.            17.3       15.1 
+ 7 8/15/2023 CI    The Cigna Group                  14.6       20.4 
+ 8 8/15/2023 DGX   Quest Diagnostics Incorporated   12.5       12.1 
+ 9 8/15/2023 UHS   Universal Health Services, Inc.  11.6       59.5 
+10 8/15/2023 CNC   Centene Corporation              10.4        7.19</code></pre>
 </div>
 </div>
 </section>
@@ -532,7 +532,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 1 × 6
    Mean Median    Q1    Q3   Min   max
   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  22.4   12.5  11.6  19.7  8.31    60</code></pre>
+1  21.6   12.5  11.6  19.7  8.31    56</code></pre>
 </div>
 </div>
 </section>
@@ -614,11 +614,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a>ftab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      Metrics  Mean Median    Q1    Q3  Min   max
-1         ROE 22.42  12.50 11.60 19.70 8.31 60.00
-2         ROA  4.50   4.34  4.18  5.12 2.96  5.91
-3        ROIC  5.81   5.98  5.14  6.35 4.20  7.37
-4 GrossMargin 23.27  25.55 22.96 27.09 7.94 32.83
-5   NetMargin  6.15   5.65  5.01  7.48 4.29  8.33</code></pre>
+1         ROE 21.62  12.50 11.60 19.70 8.31 56.00
+2         ROA  4.44   4.34  4.18  5.12 2.67  5.91
+3        ROIC  5.71   5.98  5.13  6.35 3.74  7.37
+4 GrossMargin 23.28  25.55 23.00 27.09 7.94 32.83
+5   NetMargin  6.07   5.65  5.01  7.48 3.87  8.33</code></pre>
 </div>
 </div>
 </section>
@@ -639,26 +639,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Sector =</span> SectorROE<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorROE[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                   Sector   Mean Median    Q1    Q3     Min    max
-1     Commercial Services  37.60  26.40 13.40 43.60    3.50  175.0
-2          Communications   8.08   9.05  0.52 16.12   -8.01   23.2
-3       Consumer Durables  13.56  17.75  8.11 25.38  -51.40   45.2
-4   Consumer Non-Durables 132.99  18.15  7.45 32.12  -10.80 2880.0
-5       Consumer Services  25.25  10.90  1.82 38.68 -186.00  360.0
-6   Distribution Services  81.18  39.15 32.17 62.62   13.50  295.0
-7   Electronic Technology  31.39  18.90  9.63 35.40  -14.20  157.0
-8         Energy Minerals  90.99  33.80 26.62 41.25   19.30  954.0
-9                 Finance  22.29  10.80  7.64 15.97  -30.00  714.0
-10        Health Services  20.26  16.10 11.82 19.65    8.31   60.0
-11      Health Technology  23.04  13.30  6.89 24.25  -51.00  253.0
-12    Industrial Services  20.71  22.50  9.42 31.10    7.67   36.3
-13    Non-Energy Minerals  13.64  13.50  2.69 21.80   -3.83   36.8
-14     Process Industries  27.85  18.00 13.85 26.80  -11.70  151.0
-15 Producer Manufacturing  23.96  18.00 12.80 29.40  -13.60   95.9
-16           Retail Trade  30.05  25.50 15.10 40.00    2.98   66.9
-17    Technology Services  53.07  18.85 11.17 31.83  -70.60  844.0
-18         Transportation  37.20  34.60 19.90 50.20    4.13  104.0
-19              Utilities   7.96   8.70  7.64 10.60  -45.60   44.6</code></pre>
+<pre><code>                   Sector   Mean Median    Q1    Q3      Min    max
+1     Commercial Services  37.95  26.40 16.40 43.60     3.50  175.0
+2          Communications   8.08   9.05  0.52 16.12    -8.01   23.2
+3       Consumer Durables  12.42  17.75  6.87 25.38   -51.40   45.2
+4   Consumer Non-Durables 129.59  19.60  6.41 34.60   -11.50 2880.0
+5       Consumer Services  31.10   9.41  1.46 42.88  -186.00  360.0
+6   Distribution Services  81.08  34.20 22.15 56.45     5.14  371.0
+7   Electronic Technology  30.51  18.75  8.12 35.18   -14.20  160.0
+8         Energy Minerals  43.11  26.95 23.78 41.45    18.00  230.0
+9                 Finance  21.52  10.95  7.64 16.67   -39.20  714.0
+10        Health Services  20.63  17.30 12.05 24.05     8.31   56.0
+11      Health Technology  20.08  13.10  6.80 23.33   -49.30  173.0
+12    Industrial Services  21.04  22.60 10.70 31.10     7.67   36.5
+13    Non-Energy Minerals  13.84  13.50  3.40 21.80    -3.83   36.8
+14     Process Industries  25.59  18.60 15.35 22.85   -13.20  126.0
+15 Producer Manufacturing  24.24  19.40 12.80 29.40   -13.60   95.9
+16           Retail Trade -39.08  25.15 14.72 39.38 -1220.00   66.9
+17    Technology Services  33.07  17.85 10.70 31.08   -70.60  417.0
+18         Transportation  36.32  33.50 20.85 49.08     4.13  104.0
+19              Utilities   8.12   8.70  7.66 10.60   -47.60   35.5</code></pre>
 </div>
 </div>
 </section>
@@ -706,32 +706,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">IQV</td>
-<td style="text-align: right;">3950</td>
-<td style="text-align: right;">43.22</td>
+<td style="text-align: right;">4030</td>
+<td style="text-align: right;">43.39</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">LH</td>
-<td style="text-align: right;">1900</td>
-<td style="text-align: right;">20.79</td>
+<td style="text-align: right;">1930</td>
+<td style="text-align: right;">20.78</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DGX</td>
-<td style="text-align: right;">1510</td>
-<td style="text-align: right;">16.52</td>
+<td style="text-align: right;">1520</td>
+<td style="text-align: right;">16.37</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DVA</td>
-<td style="text-align: right;">926</td>
-<td style="text-align: right;">10.13</td>
+<td style="text-align: right;">989</td>
+<td style="text-align: right;">10.65</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">UHS</td>
-<td style="text-align: right;">854</td>
-<td style="text-align: right;">9.34</td>
+<td style="text-align: right;">818</td>
+<td style="text-align: right;">8.81</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Total</td>
-<td style="text-align: right;">9140</td>
+<td style="text-align: right;">9287</td>
 <td style="text-align: right;">100.00</td>
 </tr>
 </tbody>
@@ -768,121 +768,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">CNC</td>
 <td style="text-align: left;">Centene Corporation</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">66.430</td>
+<td style="text-align: right;">65.75</td>
 <td style="text-align: right;">61.3400</td>
 <td style="text-align: right;">10.40</td>
 <td style="text-align: right;">3.31</td>
-<td style="text-align: right;">8.30</td>
+<td style="text-align: right;">7.19</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DGX</td>
 <td style="text-align: left;">Quest Diagnostics Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">134.830</td>
+<td style="text-align: right;">134.99</td>
 <td style="text-align: right;">120.4000</td>
 <td style="text-align: right;">12.50</td>
 <td style="text-align: right;">5.91</td>
-<td style="text-align: right;">11.99</td>
+<td style="text-align: right;">12.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">UNH</td>
 <td style="text-align: left;">UnitedHealth Group Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">503.250</td>
+<td style="text-align: right;">508.12</td>
 <td style="text-align: right;">445.6800</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: right;">27.20</td>
 <td style="text-align: right;">8.27</td>
-<td style="text-align: right;">12.92</td>
+<td style="text-align: right;">14.01</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ELV</td>
 <td style="text-align: left;">Elevance Health, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">467.445</td>
+<td style="text-align: right;">474.30</td>
 <td style="text-align: right;">412.0000</td>
 <td style="text-align: right;">17.30</td>
 <td style="text-align: right;">6.10</td>
-<td style="text-align: right;">13.46</td>
+<td style="text-align: right;">15.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">HUM</td>
 <td style="text-align: left;">Humana Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">484.165</td>
+<td style="text-align: right;">493.79</td>
 <td style="text-align: right;">423.2900</td>
-<td style="text-align: right;">19.50</td>
-<td style="text-align: right;">6.16</td>
-<td style="text-align: right;">14.38</td>
+<td style="text-align: right;">20.90</td>
+<td style="text-align: right;">6.54</td>
+<td style="text-align: right;">16.66</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">MOH</td>
-<td style="text-align: left;">Molina Healthcare Inc</td>
-<td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">302.885</td>
-<td style="text-align: right;">256.1900</td>
-<td style="text-align: right;">28.40</td>
-<td style="text-align: right;">6.98</td>
-<td style="text-align: right;">18.23</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">CI</td>
 <td style="text-align: left;">The Cigna Group</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">286.890</td>
+<td style="text-align: right;">289.61</td>
 <td style="text-align: right;">240.5000</td>
-<td style="text-align: right;">14.90</td>
-<td style="text-align: right;">4.65</td>
-<td style="text-align: right;">19.29</td>
+<td style="text-align: right;">14.60</td>
+<td style="text-align: right;">4.55</td>
+<td style="text-align: right;">20.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MOH</td>
+<td style="text-align: left;">Molina Healthcare Inc</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">315.73</td>
+<td style="text-align: right;">256.1900</td>
+<td style="text-align: right;">28.40</td>
+<td style="text-align: right;">6.98</td>
+<td style="text-align: right;">23.24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">LH</td>
 <td style="text-align: left;">Laboratory Corporation of America Holdings</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">214.060</td>
+<td style="text-align: right;">218.05</td>
 <td style="text-align: right;">172.0895</td>
 <td style="text-align: right;">8.31</td>
 <td style="text-align: right;">4.18</td>
-<td style="text-align: right;">24.39</td>
+<td style="text-align: right;">26.71</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">IQV</td>
 <td style="text-align: left;">IQVIA Holdings, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">215.880</td>
+<td style="text-align: right;">219.83</td>
 <td style="text-align: right;">165.7500</td>
 <td style="text-align: right;">19.70</td>
 <td style="text-align: right;">4.34</td>
-<td style="text-align: right;">30.24</td>
+<td style="text-align: right;">32.63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">HCA</td>
 <td style="text-align: left;">HCA Healthcare, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">269.820</td>
+<td style="text-align: right;">269.63</td>
 <td style="text-align: right;">178.3200</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">11.00</td>
-<td style="text-align: right;">51.31</td>
+<td style="text-align: right;">51.21</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">DVA</td>
-<td style="text-align: left;">DaVita Inc.</td>
-<td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">102.100</td>
-<td style="text-align: right;">65.2800</td>
-<td style="text-align: right;">60.00</td>
-<td style="text-align: right;">2.96</td>
-<td style="text-align: right;">56.40</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">UHS</td>
 <td style="text-align: left;">Universal Health Services, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">135.670</td>
+<td style="text-align: right;">131.58</td>
 <td style="text-align: right;">82.5000</td>
 <td style="text-align: right;">11.60</td>
 <td style="text-align: right;">5.12</td>
-<td style="text-align: right;">64.45</td>
+<td style="text-align: right;">59.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: left;">DaVita Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">108.36</td>
+<td style="text-align: right;">65.2800</td>
+<td style="text-align: right;">56.00</td>
+<td style="text-align: right;">2.67</td>
+<td style="text-align: right;">65.99</td>
 </tr>
 </tbody>
 </table>
@@ -920,121 +920,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">DVA</td>
 <td style="text-align: left;">DaVita Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">102.100</td>
+<td style="text-align: right;">108.36</td>
 <td style="text-align: right;">65.2800</td>
-<td style="text-align: right;">60.00</td>
-<td style="text-align: right;">2.96</td>
-<td style="text-align: right;">56.40</td>
+<td style="text-align: right;">56.00</td>
+<td style="text-align: right;">2.67</td>
+<td style="text-align: right;">65.99</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">MOH</td>
 <td style="text-align: left;">Molina Healthcare Inc</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">302.885</td>
+<td style="text-align: right;">315.73</td>
 <td style="text-align: right;">256.1900</td>
 <td style="text-align: right;">28.40</td>
 <td style="text-align: right;">6.98</td>
-<td style="text-align: right;">18.23</td>
+<td style="text-align: right;">23.24</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">IQV</td>
-<td style="text-align: left;">IQVIA Holdings, Inc.</td>
+<td style="text-align: left;">UNH</td>
+<td style="text-align: left;">UnitedHealth Group Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">215.880</td>
-<td style="text-align: right;">165.7500</td>
-<td style="text-align: right;">19.70</td>
-<td style="text-align: right;">4.34</td>
-<td style="text-align: right;">30.24</td>
+<td style="text-align: right;">508.12</td>
+<td style="text-align: right;">445.6800</td>
+<td style="text-align: right;">27.20</td>
+<td style="text-align: right;">8.27</td>
+<td style="text-align: right;">14.01</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">HUM</td>
 <td style="text-align: left;">Humana Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">484.165</td>
+<td style="text-align: right;">493.79</td>
 <td style="text-align: right;">423.2900</td>
-<td style="text-align: right;">19.50</td>
-<td style="text-align: right;">6.16</td>
-<td style="text-align: right;">14.38</td>
+<td style="text-align: right;">20.90</td>
+<td style="text-align: right;">6.54</td>
+<td style="text-align: right;">16.66</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: left;">IQVIA Holdings, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">219.83</td>
+<td style="text-align: right;">165.7500</td>
+<td style="text-align: right;">19.70</td>
+<td style="text-align: right;">4.34</td>
+<td style="text-align: right;">32.63</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">ELV</td>
 <td style="text-align: left;">Elevance Health, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">467.445</td>
+<td style="text-align: right;">474.30</td>
 <td style="text-align: right;">412.0000</td>
 <td style="text-align: right;">17.30</td>
 <td style="text-align: right;">6.10</td>
-<td style="text-align: right;">13.46</td>
+<td style="text-align: right;">15.12</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">CI</td>
 <td style="text-align: left;">The Cigna Group</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">286.890</td>
+<td style="text-align: right;">289.61</td>
 <td style="text-align: right;">240.5000</td>
-<td style="text-align: right;">14.90</td>
-<td style="text-align: right;">4.65</td>
-<td style="text-align: right;">19.29</td>
+<td style="text-align: right;">14.60</td>
+<td style="text-align: right;">4.55</td>
+<td style="text-align: right;">20.42</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">DGX</td>
 <td style="text-align: left;">Quest Diagnostics Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">134.830</td>
+<td style="text-align: right;">134.99</td>
 <td style="text-align: right;">120.4000</td>
 <td style="text-align: right;">12.50</td>
 <td style="text-align: right;">5.91</td>
-<td style="text-align: right;">11.99</td>
+<td style="text-align: right;">12.12</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">UHS</td>
 <td style="text-align: left;">Universal Health Services, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">135.670</td>
+<td style="text-align: right;">131.58</td>
 <td style="text-align: right;">82.5000</td>
 <td style="text-align: right;">11.60</td>
 <td style="text-align: right;">5.12</td>
-<td style="text-align: right;">64.45</td>
+<td style="text-align: right;">59.49</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">CNC</td>
 <td style="text-align: left;">Centene Corporation</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">66.430</td>
+<td style="text-align: right;">65.75</td>
 <td style="text-align: right;">61.3400</td>
 <td style="text-align: right;">10.40</td>
 <td style="text-align: right;">3.31</td>
-<td style="text-align: right;">8.30</td>
+<td style="text-align: right;">7.19</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">LH</td>
 <td style="text-align: left;">Laboratory Corporation of America Holdings</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">214.060</td>
+<td style="text-align: right;">218.05</td>
 <td style="text-align: right;">172.0895</td>
 <td style="text-align: right;">8.31</td>
 <td style="text-align: right;">4.18</td>
-<td style="text-align: right;">24.39</td>
+<td style="text-align: right;">26.71</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">HCA</td>
 <td style="text-align: left;">HCA Healthcare, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">269.820</td>
+<td style="text-align: right;">269.63</td>
 <td style="text-align: right;">178.3200</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">11.00</td>
-<td style="text-align: right;">51.31</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UNH</td>
-<td style="text-align: left;">UnitedHealth Group Incorporated</td>
-<td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">503.250</td>
-<td style="text-align: right;">445.6800</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">8.27</td>
-<td style="text-align: right;">12.92</td>
+<td style="text-align: right;">51.21</td>
 </tr>
 </tbody>
 </table>
@@ -1070,121 +1070,121 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">HCA</td>
 <td style="text-align: left;">HCA Healthcare, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">269.820</td>
+<td style="text-align: right;">269.63</td>
 <td style="text-align: right;">178.3200</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">11.00</td>
-<td style="text-align: right;">51.31</td>
+<td style="text-align: right;">51.21</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UNH</td>
 <td style="text-align: left;">UnitedHealth Group Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">503.250</td>
+<td style="text-align: right;">508.12</td>
 <td style="text-align: right;">445.6800</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: right;">27.20</td>
 <td style="text-align: right;">8.27</td>
-<td style="text-align: right;">12.92</td>
+<td style="text-align: right;">14.01</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MOH</td>
 <td style="text-align: left;">Molina Healthcare Inc</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">302.885</td>
+<td style="text-align: right;">315.73</td>
 <td style="text-align: right;">256.1900</td>
 <td style="text-align: right;">28.40</td>
 <td style="text-align: right;">6.98</td>
-<td style="text-align: right;">18.23</td>
+<td style="text-align: right;">23.24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">HUM</td>
 <td style="text-align: left;">Humana Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">484.165</td>
+<td style="text-align: right;">493.79</td>
 <td style="text-align: right;">423.2900</td>
-<td style="text-align: right;">19.50</td>
-<td style="text-align: right;">6.16</td>
-<td style="text-align: right;">14.38</td>
+<td style="text-align: right;">20.90</td>
+<td style="text-align: right;">6.54</td>
+<td style="text-align: right;">16.66</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ELV</td>
 <td style="text-align: left;">Elevance Health, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">467.445</td>
+<td style="text-align: right;">474.30</td>
 <td style="text-align: right;">412.0000</td>
 <td style="text-align: right;">17.30</td>
 <td style="text-align: right;">6.10</td>
-<td style="text-align: right;">13.46</td>
+<td style="text-align: right;">15.12</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DGX</td>
 <td style="text-align: left;">Quest Diagnostics Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">134.830</td>
+<td style="text-align: right;">134.99</td>
 <td style="text-align: right;">120.4000</td>
 <td style="text-align: right;">12.50</td>
 <td style="text-align: right;">5.91</td>
-<td style="text-align: right;">11.99</td>
+<td style="text-align: right;">12.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">UHS</td>
 <td style="text-align: left;">Universal Health Services, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">135.670</td>
+<td style="text-align: right;">131.58</td>
 <td style="text-align: right;">82.5000</td>
 <td style="text-align: right;">11.60</td>
 <td style="text-align: right;">5.12</td>
-<td style="text-align: right;">64.45</td>
+<td style="text-align: right;">59.49</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CI</td>
 <td style="text-align: left;">The Cigna Group</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">286.890</td>
+<td style="text-align: right;">289.61</td>
 <td style="text-align: right;">240.5000</td>
-<td style="text-align: right;">14.90</td>
-<td style="text-align: right;">4.65</td>
-<td style="text-align: right;">19.29</td>
+<td style="text-align: right;">14.60</td>
+<td style="text-align: right;">4.55</td>
+<td style="text-align: right;">20.42</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">IQV</td>
 <td style="text-align: left;">IQVIA Holdings, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">215.880</td>
+<td style="text-align: right;">219.83</td>
 <td style="text-align: right;">165.7500</td>
 <td style="text-align: right;">19.70</td>
 <td style="text-align: right;">4.34</td>
-<td style="text-align: right;">30.24</td>
+<td style="text-align: right;">32.63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">LH</td>
 <td style="text-align: left;">Laboratory Corporation of America Holdings</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">214.060</td>
+<td style="text-align: right;">218.05</td>
 <td style="text-align: right;">172.0895</td>
 <td style="text-align: right;">8.31</td>
 <td style="text-align: right;">4.18</td>
-<td style="text-align: right;">24.39</td>
+<td style="text-align: right;">26.71</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CNC</td>
 <td style="text-align: left;">Centene Corporation</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">66.430</td>
+<td style="text-align: right;">65.75</td>
 <td style="text-align: right;">61.3400</td>
 <td style="text-align: right;">10.40</td>
 <td style="text-align: right;">3.31</td>
-<td style="text-align: right;">8.30</td>
+<td style="text-align: right;">7.19</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DVA</td>
 <td style="text-align: left;">DaVita Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">102.100</td>
+<td style="text-align: right;">108.36</td>
 <td style="text-align: right;">65.2800</td>
-<td style="text-align: right;">60.00</td>
-<td style="text-align: right;">2.96</td>
-<td style="text-align: right;">56.40</td>
+<td style="text-align: right;">56.00</td>
+<td style="text-align: right;">2.67</td>
+<td style="text-align: right;">65.99</td>
 </tr>
 </tbody>
 </table>
@@ -1221,133 +1221,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">HCA</td>
 <td style="text-align: left;">HCA Healthcare, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">269.820</td>
+<td style="text-align: right;">269.63</td>
 <td style="text-align: right;">178.3200</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">11.00</td>
 <td style="text-align: right;">9.320090</td>
-<td style="text-align: right;">51.31</td>
+<td style="text-align: right;">51.21</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">DGX</td>
 <td style="text-align: left;">Quest Diagnostics Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">134.830</td>
+<td style="text-align: right;">134.99</td>
 <td style="text-align: right;">120.4000</td>
 <td style="text-align: right;">12.50</td>
 <td style="text-align: right;">5.91</td>
 <td style="text-align: right;">8.326307</td>
-<td style="text-align: right;">11.99</td>
+<td style="text-align: right;">12.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">IQV</td>
 <td style="text-align: left;">IQVIA Holdings, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">215.880</td>
+<td style="text-align: right;">219.83</td>
 <td style="text-align: right;">165.7500</td>
 <td style="text-align: right;">19.70</td>
 <td style="text-align: right;">4.34</td>
 <td style="text-align: right;">7.478166</td>
-<td style="text-align: right;">30.24</td>
+<td style="text-align: right;">32.63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UNH</td>
 <td style="text-align: left;">UnitedHealth Group Incorporated</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">503.250</td>
+<td style="text-align: right;">508.12</td>
 <td style="text-align: right;">445.6800</td>
-<td style="text-align: right;">NA</td>
+<td style="text-align: right;">27.20</td>
 <td style="text-align: right;">8.27</td>
 <td style="text-align: right;">6.056554</td>
-<td style="text-align: right;">12.92</td>
+<td style="text-align: right;">14.01</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">LH</td>
 <td style="text-align: left;">Laboratory Corporation of America Holdings</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">214.060</td>
+<td style="text-align: right;">218.05</td>
 <td style="text-align: right;">172.0895</td>
 <td style="text-align: right;">8.31</td>
 <td style="text-align: right;">4.18</td>
 <td style="text-align: right;">5.654312</td>
-<td style="text-align: right;">24.39</td>
+<td style="text-align: right;">26.71</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UHS</td>
 <td style="text-align: left;">Universal Health Services, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">135.670</td>
+<td style="text-align: right;">131.58</td>
 <td style="text-align: right;">82.5000</td>
 <td style="text-align: right;">11.60</td>
 <td style="text-align: right;">5.12</td>
 <td style="text-align: right;">5.011623</td>
-<td style="text-align: right;">64.45</td>
+<td style="text-align: right;">59.49</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DVA</td>
 <td style="text-align: left;">DaVita Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">102.100</td>
+<td style="text-align: right;">108.36</td>
 <td style="text-align: right;">65.2800</td>
-<td style="text-align: right;">60.00</td>
-<td style="text-align: right;">2.96</td>
-<td style="text-align: right;">4.289510</td>
-<td style="text-align: right;">56.40</td>
+<td style="text-align: right;">56.00</td>
+<td style="text-align: right;">2.67</td>
+<td style="text-align: right;">3.869738</td>
+<td style="text-align: right;">65.99</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ELV</td>
 <td style="text-align: left;">Elevance Health, Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">467.445</td>
+<td style="text-align: right;">474.30</td>
 <td style="text-align: right;">412.0000</td>
 <td style="text-align: right;">17.30</td>
 <td style="text-align: right;">6.10</td>
 <td style="text-align: right;">3.867553</td>
-<td style="text-align: right;">13.46</td>
+<td style="text-align: right;">15.12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CI</td>
 <td style="text-align: left;">The Cigna Group</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">286.890</td>
+<td style="text-align: right;">289.61</td>
 <td style="text-align: right;">240.5000</td>
-<td style="text-align: right;">14.90</td>
-<td style="text-align: right;">4.65</td>
-<td style="text-align: right;">3.693735</td>
-<td style="text-align: right;">19.29</td>
+<td style="text-align: right;">14.60</td>
+<td style="text-align: right;">4.55</td>
+<td style="text-align: right;">3.576440</td>
+<td style="text-align: right;">20.42</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">HUM</td>
 <td style="text-align: left;">Humana Inc.</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">484.165</td>
+<td style="text-align: right;">493.79</td>
 <td style="text-align: right;">423.2900</td>
-<td style="text-align: right;">19.50</td>
-<td style="text-align: right;">6.16</td>
-<td style="text-align: right;">3.256937</td>
-<td style="text-align: right;">14.38</td>
+<td style="text-align: right;">20.90</td>
+<td style="text-align: right;">6.54</td>
+<td style="text-align: right;">3.421556</td>
+<td style="text-align: right;">16.66</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MOH</td>
 <td style="text-align: left;">Molina Healthcare Inc</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">302.885</td>
+<td style="text-align: right;">315.73</td>
 <td style="text-align: right;">256.1900</td>
 <td style="text-align: right;">28.40</td>
 <td style="text-align: right;">6.98</td>
 <td style="text-align: right;">2.807577</td>
-<td style="text-align: right;">18.23</td>
+<td style="text-align: right;">23.24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CNC</td>
 <td style="text-align: left;">Centene Corporation</td>
 <td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">66.430</td>
+<td style="text-align: right;">65.75</td>
 <td style="text-align: right;">61.3400</td>
 <td style="text-align: right;">10.40</td>
 <td style="text-align: right;">3.31</td>
 <td style="text-align: right;">1.834062</td>
-<td style="text-align: right;">8.30</td>
+<td style="text-align: right;">7.19</td>
 </tr>
 </tbody>
 </table>
