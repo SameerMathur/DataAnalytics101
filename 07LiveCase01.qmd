@@ -1,6 +1,6 @@
 # Live Case: S&P500 (1 of 3)
 
-*Aug 15, 2023..*
+*Aug 18, 2023.*
 
 ## Overview of the S&P 500
 
