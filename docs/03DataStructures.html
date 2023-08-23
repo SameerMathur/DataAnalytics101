@@ -307,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="exploring-data-structures" class="level1">
 <h1>Exploring Data Structures</h1>
-<p><em>Aug 09, 2023</em></p>
+<p><em>Aug 23, 2023.</em></p>
 <p>The R programming language includes a number of data structures that are frequently employed in data analysis and statistical modeling. These are some of the most popular data structures in R:</p>
 <ol type="1">
 <li><p><strong>Vector</strong>: A vector is a one-dimensional array that stores identical data types, such as numeric, character, or logical. The <code>c()</code> function can be used to create vectors, and indexing can be used to access individual vector elements.</p></li>
@@ -341,8 +341,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="2" type="1">
 <li>The <code>c()</code> function is employed to combine the four character elements into a single vector.</li>
 <li>Commas separate the elements of the vector within the parentheses.</li>
-<li>Individual elements of the vector can be accessed via indexing, which utilizes square brackets []. For instance, <code>names\[1\]</code> returns <code>Ashok</code>, while <code>names\[3\]</code> returns <code>Charu</code>.</li>
-<li>We can also perform operations such as categorizing and filtering on the entire vector. For instance, <code>sort(names)</code> returns a vector of sorted names, whereas names[names!= “Bullu”] returns a vector of names excluding <code>Bullu</code>.</li>
+<li>Individual elements of the vector can be accessed via indexing, which utilizes square brackets <code>[]</code>. For instance, <code>names[1]</code> returns <code>Ashok</code>, while <code>names[3]</code> returns <code>Charu</code>.</li>
+<li>We can also perform operations such as categorizing and filtering on the entire vector. For instance, <code>sort(names)</code> returns a vector of sorted names, whereas <code>names[names!= "Bullu"]</code> returns a vector of names excluding <code>Bullu</code>.</li>
 </ol>
 </section>
 <section id="vector-operations" class="level3">
@@ -357,7 +357,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "Bullu"</code></pre>
 </div>
 </div>
-<p>This returns <code>Bullu</code>, the second element of the <code>people</code> vector.</p>
+<ul>
+<li>This returns <code>Bullu</code>, the second element of the <code>people</code> vector.</li>
+</ul>
 <ol start="2" type="1">
 <li><strong>Concatenation:</strong> The <code>c()</code> function can be used to combine multiple vectors into a single vector. For instance, to combine the <code>names</code> and <code>ages</code> vectors into the “people” vector, we can use:</li>
 </ol>
@@ -368,7 +370,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "Ashok" "Bullu" "Charu" "Divya" "72"    "49"    "46"    "42"   </code></pre>
 </div>
 </div>
-<p>This generates an eight-element vector containing the names and ages of the four people.</p>
+<ul>
+<li>This generates an eight-element vector containing the names and ages of the four people.</li>
+</ul>
 <ol start="3" type="1">
 <li><strong>Subsetting:</strong> We can use indexing with a logical condition to construct a new vector that contains a subset of elements from an existing vector. For instance, to construct a new vector named <code>female_names</code> containing only the female names, we can use:</li>
 </ol>
@@ -379,7 +383,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] "Bullu" "Charu" "Divya"</code></pre>
 </div>
 </div>
-<p>This generates a new vector comprising three elements containing the names of the three females <code>Bullu</code>, <code>Charu</code>, and <code>Divya</code>.</p>
+<ul>
+<li>This generates a new vector comprising three elements containing the names of the three females <code>Bullu</code>, <code>Charu</code>, and <code>Divya</code>.</li>
+</ul>
 <ol start="4" type="1">
 <li><strong>Arithmetic Operations:</strong> We can perform element-wise arithmetic operations on vectors.</li>
 </ol>
@@ -415,8 +421,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 5184 2401 2116 1764</code></pre>
 </div>
 </div>
-<p>In the above code, we perform addition, subtraction, multiplication, division, and exponentiation on these vectors using the arithmetic operators +, -, *, /, and ^ respectively.</p>
-<p>In addition to the common arithmetic operations (addition, subtraction, multiplication, division, and exponentiation), R also supports other arithmetic operations such as modulus, integer division, and absolute value. Let’s demonstrate these operations</p>
+<ul>
+<li><p>We perform addition, subtraction, multiplication, division, and exponentiation on these vectors using the arithmetic operators +, -, *, /, and ^ respectively.</p></li>
+<li><p>R also supports other arithmetic operations such as modulus, integer division, and absolute value:</p></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modulus</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>modulus <span class="ot">&lt;-</span> ages <span class="sc">%%</span> income</span>
@@ -437,7 +445,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 72 49 46 42</code></pre>
 </div>
 </div>
-<p>Let’s explore a few additional arithmetic operations:</p>
+<ul>
+<li>R also supports additional arithmetic operations:</li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Floor Division</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>floor_division <span class="ot">&lt;-</span> <span class="fu">floor</span>(ages <span class="sc">/</span> income)</span>
@@ -445,24 +455,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -36   6   2   0</code></pre>
 </div>
+</div>
+<ul>
+<li><code>floor</code> calculates the largest integer not exceeding the quotient.</li>
+</ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ceiling Division</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ceiling_division <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(ages <span class="sc">/</span> income)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(ceiling_division)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -36   7   3   1</code></pre>
 </div>
+</div>
+<ul>
+<li><code>ceiling</code> calculates the smallest integer not less than the quotient.</li>
+</ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logarithm</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>logarithm <span class="ot">&lt;-</span> <span class="fu">log</span>(ages)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(logarithm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.276666 3.891820 3.828641 3.737670</code></pre>
 </div>
+</div>
+<ul>
+<li><code>log</code> calculates the natural logarithm of each element.</li>
+</ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Square Root</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>square_root <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(ages)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(square_root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8.485281 7.000000 6.782330 6.480741</code></pre>
 </div>
+</div>
+<ul>
+<li><code>sqrt</code> calculates the square root of all the elements.</li>
+</ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sum_total <span class="ot">&lt;-</span> <span class="fu">sum</span>(ages)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sum_total)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -470,10 +500,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 209</code></pre>
 </div>
 </div>
-<p><code>floor</code> calculates the largest integer not exceeding the quotient.</p>
-<p><code>ceiling</code> calculates the smallest integer not less than the quotient.</p>
-<p><code>log</code> calculates the natural logarithm of each element.</p>
-<p><code>sum</code> calculates the sum of all the elements.</p>
+<ul>
+<li><code>sum</code> calculates the sum of all the elements.</li>
+</ul>
 <ol start="5" type="1">
 <li><strong>Logical Operations:</strong> We can perform logical operations on vectors, which are also executed element-by-element.</li>
 </ol>
@@ -484,158 +513,176 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE  TRUE FALSE</code></pre>
 </div>
+</div>
+<ul>
+<li><strong>Equality Comparison (==)</strong>: It checks if the elements of the ages vector are equal to 46. The resulting vector, age_equal_46, contains TRUE for elements that are equal to 46 and FALSE otherwise.</li>
+</ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inequality comparison</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>weight_not_equal_54 <span class="ot">&lt;-</span> (weights <span class="sc">!=</span> <span class="dv">54</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_not_equal_54)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE  TRUE FALSE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical AND</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>female_and_income <span class="ot">&lt;-</span> females <span class="sc">&amp;</span> (income <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(female_and_income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical OR</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>age_or_weight_greater_50 <span class="ot">&lt;-</span> (ages <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|</span> (weights <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_or_weight_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Inequality Comparison (!=)</strong>: It checks if the elements of the weights vector are not equal to 54. The resulting vector, weight_not_equal_54, contains TRUE for elements that are not equal to 54 and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Greater than Comparison</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>weight_greaterthan_50 <span class="ot">&lt;-</span> (weights <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_greaterthan_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical NOT</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>not_female <span class="ot">&lt;-</span> <span class="sc">!</span>females</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(not_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
 </div>
-</div>
-<p>In the above code, we perform the following logical operations:</p>
-<p>Equality Comparison (==): It checks if the elements of the ages vector are equal to 46. The resulting vector, age_equal_46, contains TRUE for elements that are equal to 46 and FALSE otherwise.</p>
-<p>Inequality Comparison (!=): It checks if the elements of the weights vector are not equal to 54. The resulting vector, weight_not_equal_54, contains TRUE for elements that are not equal to 54 and FALSE otherwise.</p>
-<p>Logical AND (&amp;): It performs a logical AND operation between the females vector and the condition (income &gt; 0). The resulting vector, female_and_income, contains TRUE for elements that satisfy both conditions and FALSE otherwise.</p>
-<p>Logical OR (|): It performs a logical OR operation between the conditions (ages &gt; 50) and (weights &gt; 50). The resulting vector, age_or_weight_greater_50, contains TRUE for elements that satisfy either condition or both.</p>
-<p>Logical NOT (!): It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.</p>
+<ul>
+<li><strong>Greater than Comparison (&gt;)</strong>: It checks if each element of the ages vector is greater than 50. The resulting vector, age_greater_50, contains TRUE for elements that satisfy the condition and FALSE otherwise.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Greater than comparison</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>age_greater_50 <span class="ot">&lt;-</span> ages <span class="sc">&gt;</span> <span class="dv">50</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Less than or equal to comparison</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>weight_less_equal_54 <span class="ot">&lt;-</span> weights <span class="sc">&lt;=</span> <span class="dv">54</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_less_equal_54)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Less than or Equal to Comparison</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>weight_lessthan_54 <span class="ot">&lt;-</span> (weights <span class="sc">&lt;=</span> <span class="dv">54</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(weight_lessthan_54)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Element-wise AND</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>age_and_weight_greater_50 <span class="ot">&lt;-</span> (ages <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">&amp;</span> (weights <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_and_weight_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Element-wise OR</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>age_or_weight_less_equal_50 <span class="ot">&lt;-</span> (ages <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|</span> (weights <span class="sc">&lt;=</span> <span class="dv">50</span>)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_or_weight_less_equal_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Element-wise XOR</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>age_xor_weight_greater_50 <span class="ot">&lt;-</span> <span class="fu">xor</span>(ages <span class="sc">&gt;</span> <span class="dv">50</span>, weights <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_xor_weight_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Less than or Equal to Comparison (&lt;=)</strong>: It checks if each element of the weights vector is less than or equal to 54. The resulting vector, weight_less_equal_54, contains TRUE for elements that satisfy the condition and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical AND</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>female_and_income <span class="ot">&lt;-</span> females <span class="sc">&amp;</span> (income <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(female_and_income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Any True</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>any_female <span class="ot">&lt;-</span> <span class="fu">any</span>(females)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(any_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All True</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>all_female <span class="ot">&lt;-</span> <span class="fu">all</span>(females)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] FALSE</code></pre>
-</div>
-</div>
-<p>Greater than Comparison (&gt;): It checks if each element of the ages vector is greater than 50. The resulting vector, age_greater_50, contains TRUE for elements that satisfy the condition and FALSE otherwise.</p>
-<p>Less than or Equal to Comparison (&lt;=): It checks if each element of the weights vector is less than or equal to 54. The resulting vector, weight_less_equal_54, contains TRUE for elements that satisfy the condition and FALSE otherwise.</p>
-<p>Element-wise AND (&amp;): It performs an element-wise logical AND operation between the conditions (ages &gt; 50) and (weights &gt; 50). The resulting vector, age_and_weight_greater_50, contains TRUE for elements that satisfy both conditions and FALSE otherwise.</p>
-<p>Element-wise OR (|): It performs an element-wise logical OR operation between the conditions (ages &gt; 50) and (weights &lt;= 50). The resulting vector, age_or_weight_less_equal_50, contains TRUE for elements that satisfy either condition or both.</p>
-<p>Element-wise XOR (xor()): It performs an element-wise exclusive OR operation between the conditions (ages &gt; 50) and (weights &gt; 50). The resulting vector, age_xor_weight_greater_50, contains TRUE for elements where exactly one condition is true and FALSE otherwise.</p>
-<p>Any True (any()): It checks if at least one element in the females vector is TRUE. The result, any_female, is TRUE if there is at least one TRUE value in the vector and FALSE otherwise.</p>
-<p>All True (all()): It checks if all elements in the females vector are TRUE. The result, all_female, is TRUE if all values in the vector are TRUE and FALSE otherwise.</p>
+<ul>
+<li><strong>Logical AND (&amp;)</strong>: It performs a logical AND operation between the females vector and the condition (income &gt; 0). The resulting vector, female_and_income, contains TRUE for elements that satisfy both conditions and FALSE otherwise.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Negation</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>not_female <span class="ot">&lt;-</span> <span class="sc">!</span>females</span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(not_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical OR</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>age_or_weight_greater_50 <span class="ot">&lt;-</span> (ages <span class="sc">&gt;</span> <span class="dv">50</span>) <span class="sc">|</span> (weights <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_or_weight_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE TRUE TRUE TRUE</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Logical OR (|)</strong>: It performs a logical OR operation between the conditions (ages &gt; 50) and (weights &gt; 50). The resulting vector, age_or_weight_greater_50, contains TRUE for elements that satisfy either condition or both.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical NOT</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>not_female <span class="ot">&lt;-</span> <span class="sc">!</span>females</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(not_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Any True</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>any_age_greater_50 <span class="ot">&lt;-</span> <span class="fu">any</span>(ages <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(any_age_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Logical NOT (!)</strong>: It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Negation</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>not_female <span class="ot">&lt;-</span> <span class="sc">!</span>females</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(not_female)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Negation (!)</strong>: It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Any True</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>any_age_greater_50 <span class="ot">&lt;-</span> <span class="fu">any</span>(ages <span class="sc">&gt;</span> <span class="dv">50</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(any_age_greater_50)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All True</span></span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>all_income_positive <span class="ot">&lt;-</span> <span class="fu">all</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_income_positive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Any True (any())</strong>: It checks if there is at least one TRUE value in the logical vector ages &gt; 50. The result, any_age_greater_50, is TRUE if at least one element in ages is greater than 50 and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># All True</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>all_income_positive <span class="ot">&lt;-</span> <span class="fu">all</span>(income <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all_income_positive)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset with Logical Vector</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>female_names <span class="ot">&lt;-</span> names[females]</span>
-<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(female_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>All True (all())</strong>: It checks if all elements in the logical vector income &gt; 0 are TRUE. The result, all_income_positive, is TRUE if all values in the income vector are greater than 0 and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset with Logical Vector</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>female_names <span class="ot">&lt;-</span> names[females]</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(female_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Bullu" "Charu" "Divya"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined Logical Operation</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>combined_condition <span class="ot">&lt;-</span> (ages <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> weights <span class="sc">&lt;=</span> <span class="dv">54</span>) <span class="sc">|</span> (income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> females)</span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Subset with Logical Vector</strong>: It uses a logical vector females to subset the names vector. The resulting vector, female_names, contains only the names where the corresponding element in females is TRUE.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Combined Logical Operation</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>combined_condition <span class="ot">&lt;-</span> (ages <span class="sc">&gt;</span> <span class="dv">50</span> <span class="sc">&amp;</span> weights <span class="sc">&lt;=</span> <span class="dv">54</span>) <span class="sc">|</span> (income <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> females)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical Function anyNA()</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>has_na <span class="ot">&lt;-</span> <span class="fu">anyNA</span>(names)</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(has_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Combined Logical Operation</strong>: It combines multiple conditions using logical AND (&amp;) and logical OR (|). The resulting vector, combined_condition, contains TRUE for elements that satisfy the combined condition and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical Function anyNA()</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>has_na <span class="ot">&lt;-</span> <span class="fu">anyNA</span>(names)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(has_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical Function is.na()</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>is_na <span class="ot">&lt;-</span> <span class="fu">is.na</span>(ages)</span>
-<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(is_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Logical Function anyNA()</strong>: It checks if there are any missing values (NA) in the names vector. The result, has_na, is TRUE if there is at least one NA value and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical Function is.na()</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>is_na <span class="ot">&lt;-</span> <span class="fu">is.na</span>(ages)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(is_na)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE FALSE FALSE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding unique values</span></span>
-<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Logical Function is.na()</strong>: It checks if each element of the ages vector is NA. The resulting vector, is_na, contains TRUE for elements that are NA and FALSE otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Finding unique values</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 72 49 46 42</code></pre>
 </div>
 </div>
-<p>Negation (!): It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.</p>
-<p>Any True (any()): It checks if there is at least one TRUE value in the logical vector ages &gt; 50. The result, any_age_greater_50, is TRUE if at least one element in ages is greater than 50 and FALSE otherwise.</p>
-<p>All True (all()): It checks if all elements in the logical vector income &gt; 0 are TRUE. The result, all_income_positive, is TRUE if all values in the income vector are greater than 0 and FALSE otherwise.</p>
-<p>Subset with Logical Vector: It uses a logical vector females to subset the names vector. The resulting vector, female_names, contains only the names where the corresponding element in females is TRUE.</p>
-<p>Combined Logical Operation: It combines multiple conditions using logical AND (&amp;) and logical OR (|). The resulting vector, combined_condition, contains TRUE for elements that satisfy the combined condition and FALSE otherwise.</p>
-<p>Logical Function anyNA(): It checks if there are any missing values (NA) in the names vector. The result, has_na, is TRUE if there is at least one NA value and FALSE otherwise.</p>
-<p>Logical Function is.na(): It checks if each element of the ages vector is NA. The resulting vector, is_na, contains TRUE for elements that are NA and FALSE otherwise.</p>
-<p>unique(): It finds the unique values in the <code>ages</code> vector</p>
+<ul>
+<li><strong>unique()</strong>: It finds the unique values in the <code>ages</code> vector</li>
+</ul>
 <ol start="6" type="1">
 <li><strong>Sorting:</strong> We can sort a vector in ascending or descending order using the <code>sort()</code> function. For example, to sort the <code>ages</code> vector in descending order, we can use:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort in ascending order</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>sorted_names <span class="ot">&lt;-</span> <span class="fu">sort</span>(names)</span>
-<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sorted_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort in ascending order</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>sorted_names <span class="ot">&lt;-</span> <span class="fu">sort</span>(names)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sorted_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ashok" "Bullu" "Charu" "Divya"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort in descending order</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>sorted_names_desc <span class="ot">&lt;-</span> <span class="fu">sort</span>(names, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sorted_names_desc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort in descending order</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>sorted_names_desc <span class="ot">&lt;-</span> <span class="fu">sort</span>(names, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(sorted_names_desc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Divya" "Charu" "Bullu" "Ashok"</code></pre>
 </div>
@@ -648,7 +695,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Length</strong>: The length represents the count of the number of elements in a vector.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
@@ -658,15 +705,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Range</strong>: The range is a measure of the spread that represents the difference between the maximum and minimum values in a vector.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 42</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 72</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 42 72</code></pre>
 </div>
@@ -676,11 +723,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Standard Deviation</strong>: The standard deviation is a measure of dispersion that reflects the amount of variation in a vector’s elements.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 52.25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 13.47529</code></pre>
 </div>
@@ -689,7 +736,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Median</strong>: The median is a measure of central tendency that represents the middle value of a sorted vector.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 47.5</code></pre>
 </div>
@@ -698,7 +745,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Quantiles</strong>: The quantiles are a set of cut-off points that divide a sorted vector into equal-sized groups.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   0%   25%   50%   75%  100% 
 42.00 45.00 47.50 54.75 72.00 </code></pre>
@@ -706,31 +753,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This will return a set of five values, representing the minimum, first quartile, median, third quartile, and maximum of the four ages.</p>
 <ol start="8" type="1">
-<li>Additional Functionality:</li>
+<li><strong>Standard Error of the Mean</strong>: It calculates the standard error of the mean for the ages vector. The result is stored in se_ages.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Error of the Mean</span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>se_ages <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(ages) <span class="sc">/</span> <span class="fu">length</span>(ages))</span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(se_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Error of the Mean</span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>se_ages <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">var</span>(ages) <span class="sc">/</span> <span class="fu">length</span>(ages))</span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(se_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.737643</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative Sum</span></span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>cumulative_sum_ages <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(ages)</span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cumulative_sum_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="9" type="1">
+<li><strong>Cumulative Sum</strong>: It calculates the cumulative sum of the elements in the ages vector. The cumulative sum is stored in cumulative_sum_ages.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative Sum</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>cumulative_sum_ages <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(ages)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(cumulative_sum_ages)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  72 121 167 209</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation Coefficient</span></span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>correlation_ages_females <span class="ot">&lt;-</span> <span class="fu">cor</span>(ages, females)</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_ages_females)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="10" type="1">
+<li><strong>Correlation Coefficient</strong>: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Correlation Coefficient</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>correlation_ages_females <span class="ot">&lt;-</span> <span class="fu">cor</span>(ages, females)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(correlation_ages_females)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.9770974</code></pre>
 </div>
 </div>
-<p>Standard Error of the Mean: It calculates the standard error of the mean for the ages vector. The result is stored in se_ages.</p>
-<p>Cumulative Sum: It calculates the cumulative sum of the elements in the ages vector. The cumulative sum is stored in cumulative_sum_ages.</p>
-<p>Correlation Coefficient: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T</p>
 <p>Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways.</p>
 </section>
 <section id="strings" class="level3">
@@ -740,8 +794,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Substring</strong>: The <code>substr()</code> function can be used to extract a substring from a character vector. To extract the first three characters of each name in the “names” vector, for instance, we can use:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>substring_names <span class="ot">&lt;-</span> <span class="fu">substr</span>(names, <span class="at">start =</span> <span class="dv">2</span>, <span class="at">stop =</span> <span class="dv">4</span>)</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(substring_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>substring_names <span class="ot">&lt;-</span> <span class="fu">substr</span>(names, <span class="at">start =</span> <span class="dv">2</span>, <span class="at">stop =</span> <span class="dv">4</span>)</span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(substring_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "sho" "ull" "har" "ivy"</code></pre>
 </div>
@@ -751,13 +805,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Concatenation</strong>: Using the <code>paste()</code> function, we can concatenate two or more character vectors into a singular vector. To create a new vector containing the names and ages of the individuals, for instance, we can use:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>persons <span class="ot">&lt;-</span> <span class="fu">paste</span>(names, ages)</span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(persons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>persons <span class="ot">&lt;-</span> <span class="fu">paste</span>(names, ages)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(persons)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ashok 72" "Bullu 49" "Charu 46" "Divya 42"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>full_names <span class="ot">&lt;-</span> <span class="fu">paste</span>(names, <span class="st">"Kumar"</span>)</span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>full_names <span class="ot">&lt;-</span> <span class="fu">paste</span>(names, <span class="st">"Kumar"</span>)</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(full_names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ashok Kumar" "Bullu Kumar" "Charu Kumar" "Divya Kumar"</code></pre>
 </div>
@@ -767,53 +821,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Case Conversion:</strong> The <code>toupper()</code> and <code>tolower()</code> functions can be used to convert the case of characters within a character vector. To convert the “names” vector to uppercase letters, for instance, we can use:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toupper</span>(names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "ASHOK" "BULLU" "CHARU" "DIVYA"</code></pre>
 </div>
 </div>
 <p>This will generate a new character vector with all of the names converted to uppercase.</p>
 <ol start="4" type="1">
-<li><strong>Pattern Matching:</strong> Using the <code>grep()</code> and <code>grepl()</code> functions, we can search for a pattern within the elements of a character vector. To find the names in the “names” vector that contain the letter “a”, for instance, we can use:</li>
+<li><strong>Pattern Matching:</strong> Using the <code>grep()</code> function, we can search for a pattern within the elements of a character vector.</li>
 </ol>
+<ul>
+<li>To find the names in the “names” vector that contain the letter “a”, for instance, we can write the following code, which returns a vector containing the indexes of the “names” vector elements that contain the letter “a”:</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"a"</span>, names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"a"</span>, names)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3 4</code></pre>
 </div>
 </div>
-<p>This returns a vector containing the indexes of the “names” vector elements that contain the letter “a.”</p>
+<ul>
+<li>The following code returns the text of the “names” vector elements that contain the letter “a”:</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>pattern_match <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"l"</span>, names, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pattern_match)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>pattern_match <span class="ot">&lt;-</span> <span class="fu">grep</span>(<span class="st">"l"</span>, names, <span class="at">value =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pattern_match)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Bullu"</code></pre>
 </div>
 </div>
+<ol start="5" type="1">
+<li><strong>String Length:</strong>: The <code>nchar()</code> function can be used to find the length of a string.</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Length of Strings</span></span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>name_lengths <span class="ot">&lt;-</span> <span class="fu">nchar</span>(names)</span>
-<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(name_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Length of Strings</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>name_lengths <span class="ot">&lt;-</span> <span class="fu">nchar</span>(names)</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(name_lengths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5 5 5 5</code></pre>
 </div>
 </div>
+<ol start="6" type="1">
+<li><code>%in%</code> <strong>Operator</strong>: It checks if each element in the names vector is present in the specified set of names.</li>
+</ol>
+<ul>
+<li>In this example, the resulting vector, names_found, contains TRUE for elements that are found in the set and FALSE otherwise.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% Operator</span></span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>names_found <span class="ot">&lt;-</span> names <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Ashok"</span>, <span class="st">"Charu"</span>)</span>
-<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(names_found)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %in% Operator</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>names_found <span class="ot">&lt;-</span> names <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Ashok"</span>, <span class="st">"Charu"</span>)</span>
+<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(names_found)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  TRUE FALSE  TRUE FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical Function ifelse()</span></span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>age_category <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(ages <span class="sc">&gt;</span> <span class="dv">50</span>, <span class="st">"Old"</span>, <span class="st">"Young"</span>)</span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="7" type="1">
+<li><strong>Logical Function</strong> <code>ifelse()</code>: It evaluates a logical condition and returns values based on the condition.</li>
+</ol>
+<ul>
+<li>In this example, we use <code>ifelse()</code> to assign the value “Old” to elements in the age_category vector where the corresponding element in ages is greater than 50, and “Young” otherwise.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Logical Function ifelse()</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>age_category <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(ages <span class="sc">&gt;</span> <span class="dv">50</span>, <span class="st">"Old"</span>, <span class="st">"Young"</span>)</span>
+<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(age_category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Old"   "Young" "Young" "Young"</code></pre>
 </div>
 </div>
-<p>%in% Operator: It checks if each element in the names vector is present in the specified set of names. The resulting vector, names_found, contains TRUE for elements that are found in the set and FALSE otherwise.</p>
-<p>Logical Function ifelse(): It evaluates a logical condition and returns values based on the condition. In this example, we use ifelse() to assign the value “Old” to elements in the age_category vector where the corresponding element in ages is greater than 50, and “Young” otherwise.</p>
 </section>
 </section>
 <section id="summary-of-chapter-3-data-structures-in-r" class="level2">
@@ -827,9 +901,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p>[1] R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. <strong>https://www.R-project.org/</strong></p>
+<p>[1] R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. https://www.R-project.org/</p>
 <p>R Core Team. (2022). Vectors, Lists, and Arrays. R Documentation. https://cran.r-project.org/doc/manuals/r-release/R-intro.html#vectors-lists-and-arrays</p>
-<p>Wickham, H., &amp; Grolemund, G. (2016). R for data science: Import, tidy, transform, visualize, and model data. O’Reilly Media, Inc.</p>
 
 
 </section>

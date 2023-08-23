@@ -1,6 +1,6 @@
 # Exploring Data Structures
 
-*Aug 09, 2023*
+*Aug 23, 2023.*
 
 The R programming language includes a number of data structures that are frequently employed in data analysis and statistical modeling. These are some of the most popular data structures in R:
 
@@ -41,8 +41,8 @@ females <- c(FALSE, TRUE, TRUE, TRUE)
 
 2.  The `c()` function is employed to combine the four character elements into a single vector.
 3.  Commas separate the elements of the vector within the parentheses.
-4.  Individual elements of the vector can be accessed via indexing, which utilizes square brackets \[\]. For instance, `names\[1\]` returns `Ashok`, while `names\[3\]` returns `Charu`.
-5.  We can also perform operations such as categorizing and filtering on the entire vector. For instance, `sort(names)` returns a vector of sorted names, whereas names\[names!= "Bullu"\] returns a vector of names excluding `Bullu`.
+4.  Individual elements of the vector can be accessed via indexing, which utilizes square brackets `[]`. For instance, `names[1]` returns `Ashok`, while `names[3]` returns `Charu`.
+5.  We can also perform operations such as categorizing and filtering on the entire vector. For instance, `sort(names)` returns a vector of sorted names, whereas `names[names!= "Bullu"]` returns a vector of names excluding `Bullu`.
 
 ### Vector Operations
 
@@ -54,7 +54,7 @@ Vectors can be used to perform the following vector operations:
 names[2]
 ```
 
-This returns `Bullu`, the second element of the `people` vector.
+-   This returns `Bullu`, the second element of the `people` vector.
 
 2.  **Concatenation:** The `c()` function can be used to combine multiple vectors into a single vector. For instance, to combine the `names` and `ages` vectors into the "people" vector, we can use:
 
@@ -63,7 +63,7 @@ persons <- c(names, ages)
 persons
 ```
 
-This generates an eight-element vector containing the names and ages of the four people.
+-   This generates an eight-element vector containing the names and ages of the four people.
 
 3.  **Subsetting:** We can use indexing with a logical condition to construct a new vector that contains a subset of elements from an existing vector. For instance, to construct a new vector named `female_names` containing only the female names, we can use:
 
@@ -72,7 +72,7 @@ female_names <- names[females == TRUE]
 female_names
 ```
 
-This generates a new vector comprising three elements containing the names of the three females `Bullu`, `Charu`, and `Divya`.
+-   This generates a new vector comprising three elements containing the names of the three females `Bullu`, `Charu`, and `Divya`.
 
 4.  **Arithmetic Operations:** We can perform element-wise arithmetic operations on vectors.
 
@@ -98,9 +98,9 @@ exponentiation <- ages^2
 print(exponentiation)
 ```
 
-In the above code, we perform addition, subtraction, multiplication, division, and exponentiation on these vectors using the arithmetic operators +, -, \*, /, and \^ respectively.
+-   We perform addition, subtraction, multiplication, division, and exponentiation on these vectors using the arithmetic operators +, -, \*, /, and \^ respectively.
 
-In addition to the common arithmetic operations (addition, subtraction, multiplication, division, and exponentiation), R also supports other arithmetic operations such as modulus, integer division, and absolute value. Let's demonstrate these operations
+-   R also supports other arithmetic operations such as modulus, integer division, and absolute value:
 
 ```{r}
 # Modulus
@@ -116,37 +116,50 @@ absolute_value <- abs(ages)
 print(absolute_value)
 ```
 
-Let's explore a few additional arithmetic operations:
-
+-   R also supports additional arithmetic operations:
 ```{r}
 # Floor Division
 floor_division <- floor(ages / income)
 print(floor_division)
+```
 
+-   `floor` calculates the largest integer not exceeding the quotient.
+
+```{r}
 # Ceiling Division
 ceiling_division <- ceiling(ages / income)
 print(ceiling_division)
+```
 
+-   `ceiling` calculates the smallest integer not less than the quotient.
+
+```{r}
 # Logarithm
 logarithm <- log(ages)
 print(logarithm)
+```
 
+-   `log` calculates the natural logarithm of each element.
+
+```{r}
 # Square Root
 square_root <- sqrt(ages)
 print(square_root)
+```
 
+-   `sqrt` calculates the square root of all the elements.
+
+```{r}
 # Sum
 sum_total <- sum(ages)
 print(sum_total)
 ```
 
-`floor` calculates the largest integer not exceeding the quotient.
+-   `sum` calculates the sum of all the elements.
 
-`ceiling` calculates the smallest integer not less than the quotient.
 
-`log` calculates the natural logarithm of each element.
 
-`sum` calculates the sum of all the elements.
+
 
 5.  **Logical Operations:** We can perform logical operations on vectors, which are also executed element-by-element.
 
@@ -154,129 +167,129 @@ print(sum_total)
 # Equality comparison
 age_equal_46 <- (ages == 46)
 print(age_equal_46)
+```
 
+-   **Equality Comparison (==)**: It checks if the elements of the ages vector are equal to 46. The resulting vector, age_equal_46, contains TRUE for elements that are equal to 46 and FALSE otherwise.
+
+```{r}
 # Inequality comparison
 weight_not_equal_54 <- (weights != 54)
 print(weight_not_equal_54)
+```
 
+-   **Inequality Comparison (!=)**: It checks if the elements of the weights vector are not equal to 54. The resulting vector, weight_not_equal_54, contains TRUE for elements that are not equal to 54 and FALSE otherwise.
+
+```{r}
+# Greater than Comparison
+weight_greaterthan_50 <- (weights > 50)
+print(weight_greaterthan_50)
+```
+
+-   **Greater than Comparison (\>)**: It checks if each element of the ages vector is greater than 50. The resulting vector, age_greater_50, contains TRUE for elements that satisfy the condition and FALSE otherwise.
+
+```{r}
+# Less than or Equal to Comparison
+weight_lessthan_54 <- (weights <= 54)
+print(weight_lessthan_54)
+```
+
+-   **Less than or Equal to Comparison (\<=)**: It checks if each element of the weights vector is less than or equal to 54. The resulting vector, weight_less_equal_54, contains TRUE for elements that satisfy the condition and FALSE otherwise.
+
+```{r}
 # Logical AND
 female_and_income <- females & (income > 0)
 print(female_and_income)
+```
 
+-   **Logical AND (&)**: It performs a logical AND operation between the females vector and the condition (income \> 0). The resulting vector, female_and_income, contains TRUE for elements that satisfy both conditions and FALSE otherwise.
+
+```{r}
 # Logical OR
 age_or_weight_greater_50 <- (ages > 50) | (weights > 50)
 print(age_or_weight_greater_50)
+```
 
+-   **Logical OR (\|)**: It performs a logical OR operation between the conditions (ages \> 50) and (weights \> 50). The resulting vector, age_or_weight_greater_50, contains TRUE for elements that satisfy either condition or both.
+
+```{r}
 # Logical NOT
 not_female <- !females
 print(not_female)
 ```
 
-In the above code, we perform the following logical operations:
-
-Equality Comparison (==): It checks if the elements of the ages vector are equal to 46. The resulting vector, age_equal_46, contains TRUE for elements that are equal to 46 and FALSE otherwise.
-
-Inequality Comparison (!=): It checks if the elements of the weights vector are not equal to 54. The resulting vector, weight_not_equal_54, contains TRUE for elements that are not equal to 54 and FALSE otherwise.
-
-Logical AND (&): It performs a logical AND operation between the females vector and the condition (income \> 0). The resulting vector, female_and_income, contains TRUE for elements that satisfy both conditions and FALSE otherwise.
-
-Logical OR (\|): It performs a logical OR operation between the conditions (ages \> 50) and (weights \> 50). The resulting vector, age_or_weight_greater_50, contains TRUE for elements that satisfy either condition or both.
-
-Logical NOT (!): It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.
-
-```{r}
-# Greater than comparison
-age_greater_50 <- ages > 50
-print(age_greater_50)
-
-# Less than or equal to comparison
-weight_less_equal_54 <- weights <= 54
-print(weight_less_equal_54)
-
-# Element-wise AND
-age_and_weight_greater_50 <- (ages > 50) & (weights > 50)
-print(age_and_weight_greater_50)
-
-# Element-wise OR
-age_or_weight_less_equal_50 <- (ages > 50) | (weights <= 50)
-print(age_or_weight_less_equal_50)
-
-# Element-wise XOR
-age_xor_weight_greater_50 <- xor(ages > 50, weights > 50)
-print(age_xor_weight_greater_50)
-
-# Any True
-any_female <- any(females)
-print(any_female)
-
-# All True
-all_female <- all(females)
-print(all_female)
-```
-
-Greater than Comparison (\>): It checks if each element of the ages vector is greater than 50. The resulting vector, age_greater_50, contains TRUE for elements that satisfy the condition and FALSE otherwise.
-
-Less than or Equal to Comparison (\<=): It checks if each element of the weights vector is less than or equal to 54. The resulting vector, weight_less_equal_54, contains TRUE for elements that satisfy the condition and FALSE otherwise.
-
-Element-wise AND (&): It performs an element-wise logical AND operation between the conditions (ages \> 50) and (weights \> 50). The resulting vector, age_and_weight_greater_50, contains TRUE for elements that satisfy both conditions and FALSE otherwise.
-
-Element-wise OR (\|): It performs an element-wise logical OR operation between the conditions (ages \> 50) and (weights \<= 50). The resulting vector, age_or_weight_less_equal_50, contains TRUE for elements that satisfy either condition or both.
-
-Element-wise XOR (xor()): It performs an element-wise exclusive OR operation between the conditions (ages \> 50) and (weights \> 50). The resulting vector, age_xor_weight_greater_50, contains TRUE for elements where exactly one condition is true and FALSE otherwise.
-
-Any True (any()): It checks if at least one element in the females vector is TRUE. The result, any_female, is TRUE if there is at least one TRUE value in the vector and FALSE otherwise.
-
-All True (all()): It checks if all elements in the females vector are TRUE. The result, all_female, is TRUE if all values in the vector are TRUE and FALSE otherwise.
+-   **Logical NOT (!)**: It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.
 
 ```{r}
 # Negation
 not_female <- !females
 print(not_female)
+```
 
+-   **Negation (!)**: It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.
+
+
+```{r}
 # Any True
 any_age_greater_50 <- any(ages > 50)
 print(any_age_greater_50)
+```
 
+-   **Any True (any())**: It checks if there is at least one TRUE value in the logical vector ages \> 50. The result, any_age_greater_50, is TRUE if at least one element in ages is greater than 50 and FALSE otherwise.
+
+```{r}
 # All True
 all_income_positive <- all(income > 0)
 print(all_income_positive)
+```
 
+-   **All True (all())**: It checks if all elements in the logical vector income \> 0 are TRUE. The result, all_income_positive, is TRUE if all values in the income vector are greater than 0 and FALSE otherwise.
+
+```{r}
 # Subset with Logical Vector
 female_names <- names[females]
 print(female_names)
+```
 
+-   **Subset with Logical Vector**: It uses a logical vector females to subset the names vector. The resulting vector, female_names, contains only the names where the corresponding element in females is TRUE.
+
+```{r}
 # Combined Logical Operation
 combined_condition <- (ages > 50 & weights <= 54) | (income > 0 & females)
 print(combined_condition)
+```
 
+-   **Combined Logical Operation**: It combines multiple conditions using logical AND (&) and logical OR (\|). The resulting vector, combined_condition, contains TRUE for elements that satisfy the combined condition and FALSE otherwise.
+
+```{r}
 # Logical Function anyNA()
 has_na <- anyNA(names)
 print(has_na)
+```
 
+-   **Logical Function anyNA()**: It checks if there are any missing values (NA) in the names vector. The result, has_na, is TRUE if there is at least one NA value and FALSE otherwise.
+
+```{r}
 # Logical Function is.na()
 is_na <- is.na(ages)
 print(is_na)
-
-# Finding unique values
-unique(ages)
-
 ```
 
-Negation (!): It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.
+-   **Logical Function is.na()**: It checks if each element of the ages vector is NA. The resulting vector, is_na, contains TRUE for elements that are NA and FALSE otherwise.
 
-Any True (any()): It checks if there is at least one TRUE value in the logical vector ages \> 50. The result, any_age_greater_50, is TRUE if at least one element in ages is greater than 50 and FALSE otherwise.
+```{r}
+# Finding unique values
+unique(ages)
+```
 
-All True (all()): It checks if all elements in the logical vector income \> 0 are TRUE. The result, all_income_positive, is TRUE if all values in the income vector are greater than 0 and FALSE otherwise.
+-   **unique()**: It finds the unique values in the `ages` vector
 
-Subset with Logical Vector: It uses a logical vector females to subset the names vector. The resulting vector, female_names, contains only the names where the corresponding element in females is TRUE.
 
-Combined Logical Operation: It combines multiple conditions using logical AND (&) and logical OR (\|). The resulting vector, combined_condition, contains TRUE for elements that satisfy the combined condition and FALSE otherwise.
 
-Logical Function anyNA(): It checks if there are any missing values (NA) in the names vector. The result, has_na, is TRUE if there is at least one NA value and FALSE otherwise.
 
-Logical Function is.na(): It checks if each element of the ages vector is NA. The resulting vector, is_na, contains TRUE for elements that are NA and FALSE otherwise.
 
-unique(): It finds the unique values in the `ages` vector
+
+
+
 
 6.  **Sorting:** We can sort a vector in ascending or descending order using the `sort()` function. For example, to sort the `ages` vector in descending order, we can use:
 
@@ -333,30 +346,39 @@ quantile(ages)
 
 This will return a set of five values, representing the minimum, first quartile, median, third quartile, and maximum of the four ages.
 
-8.  Additional Functionality:
+
+
+8.  **Standard Error of the Mean**: It calculates the standard error of the mean for the ages vector. The result is stored in se_ages.
 
 ```{r}
 # Standard Error of the Mean
 se_ages <- sqrt(var(ages) / length(ages))
 print(se_ages)
+```
 
+9.  **Cumulative Sum**: It calculates the cumulative sum of the elements in the ages vector. The cumulative sum is stored in cumulative_sum_ages.
+
+```{r}
 # Cumulative Sum
 cumulative_sum_ages <- cumsum(ages)
 print(cumulative_sum_ages)
+```
 
+10.  **Correlation Coefficient**: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T
+
+```{r}
 # Correlation Coefficient
 correlation_ages_females <- cor(ages, females)
 print(correlation_ages_females)
-
 ```
 
-Standard Error of the Mean: It calculates the standard error of the mean for the ages vector. The result is stored in se_ages.
-
-Cumulative Sum: It calculates the cumulative sum of the elements in the ages vector. The cumulative sum is stored in cumulative_sum_ages.
-
-Correlation Coefficient: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T
-
 Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways.
+
+
+
+
+
+
 
 ### Strings
 
@@ -391,18 +413,20 @@ toupper(names)
 
 This will generate a new character vector with all of the names converted to uppercase.
 
-4.  **Pattern Matching:** Using the `grep()` and `grepl()` functions, we can search for a pattern within the elements of a character vector. To find the names in the "names" vector that contain the letter "a", for instance, we can use:
+4.  **Pattern Matching:** Using the `grep()` function, we can search for a pattern within the elements of a character vector. 
+
+* To find the names in the "names" vector that contain the letter "a", for instance, we can write the following code, which returns a vector containing the indexes of the "names" vector elements that contain the letter "a":
 
 ```{r}
 grep("a", names)
 ```
-
-This returns a vector containing the indexes of the "names" vector elements that contain the letter "a."
+* The following code returns the text of the "names" vector elements that contain the letter "a":
 
 ```{r}
 pattern_match <- grep("l", names, value = TRUE)
 print(pattern_match)
 ```
+5.  **String Length:**: The `nchar()` function can be used to find the length of a string.
 
 ```{r}
 # Length of Strings
@@ -410,20 +434,38 @@ name_lengths <- nchar(names)
 print(name_lengths)
 ```
 
+6. `%in%` **Operator**: It checks if each element in the names vector is present in the specified set of names. 
+
+* In this example, the resulting vector, names_found, contains TRUE for elements that are found in the set and FALSE otherwise.
+
 ```{r}
 # %in% Operator
 names_found <- names %in% c("Ashok", "Charu")
 print(names_found)
+```
+
+7. **Logical Function** `ifelse()`: It evaluates a logical condition and returns values based on the condition. 
+
+* In this example, we use `ifelse()` to assign the value "Old" to elements in the age_category vector where the corresponding element in ages is greater than 50, and "Young" otherwise.
 
 
+```{r}
 # Logical Function ifelse()
 age_category <- ifelse(ages > 50, "Old", "Young")
 print(age_category)
 ```
 
-%in% Operator: It checks if each element in the names vector is present in the specified set of names. The resulting vector, names_found, contains TRUE for elements that are found in the set and FALSE otherwise.
 
-Logical Function ifelse(): It evaluates a logical condition and returns values based on the condition. In this example, we use ifelse() to assign the value "Old" to elements in the age_category vector where the corresponding element in ages is greater than 50, and "Young" otherwise.
+
+
+
+
+
+
+
+
+
+
 
 ## Summary of Chapter 3 -- Data Structures in R
 
@@ -441,8 +483,8 @@ In essence, Chapter 3 provides a practical exploration of vectors in R, shedding
 
 ## References
 
-\[1\] R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. **https://www.R-project.org/**
+\[1\] R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. https://www.R-project.org/
 
 R Core Team. (2022). Vectors, Lists, and Arrays. R Documentation. https://cran.r-project.org/doc/manuals/r-release/R-intro.html#vectors-lists-and-arrays
 
-Wickham, H., & Grolemund, G. (2016). R for data science: Import, tidy, transform, visualize, and model data. O'Reilly Media, Inc.
+
