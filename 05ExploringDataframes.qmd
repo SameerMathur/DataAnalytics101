@@ -1,10 +1,10 @@
 # Exploring Dataframes
 
-*Aug 09, 2023*
+*Aug 23, 2023.*
 
-The mtcars dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.
+* The `mtcars` dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.
 
-To load the mtcars dataset in R, use this command:
+1. To load the mtcars dataset in R, use this command:
 
 ```{r}
 data(mtcars)
@@ -12,39 +12,45 @@ data(mtcars)
 
 ## Reviewing a dataframe
 
-View(): This function opens the dataset in a spreadsheet-style data viewer.
+2. `View()`: This function opens the dataset in a spreadsheet-style data viewer.
 
 ```{r, eval=FALSE}
 View(mtcars)
 ```
 
-head(): This function prints the first six rows of the dataframe.
+3. `head()`: This function prints the first six rows of the dataframe.
 
 ```{r}
 head(mtcars)
 ```
 
-tail(): This function prints the last six rows of the dataframe.
+4. `tail()`: This function prints the last six rows of the dataframe.
 
 ```{r}
 tail(mtcars)
 ```
 
-dim(): This function retrieves the dimensions of a dataframe, i.e., the number of rows and columns.
-
-nrow(): This function retrieves the number of rows in the dataframe.
-
-ncol(): This function retrieves the number of columns in the dataframe.
+5. `dim()`: This function retrieves the dimensions of a dataframe, i.e., the number of rows and columns.
 
 ```{r}
 dim(mtcars)
+```
+
+6. `nrow()`: This function retrieves the number of rows in the dataframe.
+
+```{r}
 nrow(mtcars)
+```
+
+7. `ncol()`: This function retrieves the number of columns in the dataframe.
+
+```{r}
 ncol(mtcars)
 ```
 
-names(): This function retrieves the column names of a dataframe.
+8. `names()`: This function retrieves the column names of a dataframe.
 
-colnames(): This function also retrieves the column names of a dataframe.
+`colnames()`: This function also retrieves the column names of a dataframe.
 
 ```{r}
 names(mtcars)
@@ -56,28 +62,27 @@ colnames(mtcars)
 
 ## Accessing data within a dataframe
 
-\$: In R, the dollar sign \$ is a unique operator that lets us retrieve specific columns from a dataframe or elements from a list.
+1. `$`: In R, the dollar sign `$` is a unique operator that lets us retrieve specific columns from a dataframe or elements from a list.
 
-For instance, consider the dataframe mtcars. If we wish to fetch the data from the mpg (miles per gallon) column, we would use mtcars\$mpg. This action will yield a vector containing the data from the mpg column.
+* For instance, consider the dataframe `mtcars`. If we wish to fetch the data from the data column `mpg` (miles per gallon), we would use the code `mtcars$mpg`. This will yield a vector containing the data from the `mpg` column.
 
 ```{r}
 # Extract the mpg column in mtcars dataframe as a vector
 mpg_vector <- mtcars$mpg
-
 # Print the mpg vector
 print(mpg_vector)
 ```
 
-This operator offers a simple and readable shortcut for accessing data.
 
-\[\[: The usage of \$ is limited since it doesn't support character substitution for dynamic column access inside functions. In such cases, we resort to using double square brackets \[\[ or single square brackets \[.
+2. `[[` or `[`: The usage of `$` is limited since it doesn't support character substitution for dynamic column access inside functions. In such cases, we can use the double square brackets `[[` or single square brackets `[`.
 
-As an example, if we have a character string stored in a variable var as var \<- "mpg", using mtcars\$var will not return the mpg column. But if we use mtcars\[\[var\]\] or mtcars\[, var\], we will correctly get the mpg column.
+* As an example, suppose we have a character string stored in a variable `var` as `var<-"mpg"`. 
+
+* Here, the code `mtcars\$var` will **not** return the `mpg` column. However, if we instead use the code `mtcars[[var]]` or `mtcars[var]`, we will get the `mpg` column.
 
 ```{r}
 # Let's say we have a variable var
 var <- "mpg"
-
 # Now we can access the mpg column in mtcars dataframe using [[
 mpg_data1 <- mtcars[[var]]
 print(mpg_data1)
@@ -89,15 +94,18 @@ mpg_data2 <- mtcars[, var]
 print(mpg_data2)
 ```
 
+
+
+
 ## Data Structures
 
-str(): This function displays the internal structure of an R object.
+1. `str()`: This function displays the internal structure of an R object.
 
 ```{r}
 str(mtcars)
 ```
 
-class(): This function is used to determine the class or data type of an object. It returns a character vector specifying the class or classes of the object.
+2. `class()`: This function is used to determine the class or data type of an object. It returns a character vector specifying the class or classes of the object.
 
 ```{r}
 x <- c(1, 2, 3)  # Create a numeric vector
@@ -109,14 +117,14 @@ y <- "Hello, My name is Sameer Mathur!"  # Create a character vector
 class(y)             # Output: "character"
 ```
 
-class(x) returns "numeric" because x is a numeric vector. Similarly, class(y) returns "character" because y is a character vector.
+* `class(x)` returns "numeric" because x is a numeric vector. Similarly, class(y) returns "character" because y is a character vector.
 
 ```{r}
 z <- data.frame(a = 1:5, b = letters[1:5])  # Create a data frame
 class(z) # Output: "data.frame"
 ```
 
-class(z) returns "data.frame" because z is a data frame.
+* `class(z)` returns "data.frame" because z is a data frame.
 
 ```{r}
 sapply(mtcars, class)
@@ -124,11 +132,11 @@ sapply(mtcars, class)
 
 ## Factors
 
-In R, factors are a specific data type used for representing categorical variables or data with discrete levels or categories. They are employed to store data that has a limited number of distinct values, such as "male" or "female," "red," "green," or "blue," or "low," "medium," or "high."
+1. In R, factors are a specific data type used for representing categorical variables or data with discrete levels or categories. They are employed to store data that has a limited number of distinct values, such as "male" or "female," "red," "green," or "blue," or "low," "medium," or "high."
 
-Factors in R consist of both values and levels. The values represent the actual data, while the levels correspond to the distinct categories or levels within the factor. Factors are particularly useful for statistical analysis as they facilitate the representation and analysis of categorical data efficiently.
+2. Factors in R consist of both values and levels. The values represent the actual data, while the levels correspond to the distinct categories or levels within the factor. Factors are particularly useful for statistical analysis as they facilitate the representation and analysis of categorical data efficiently.
 
-To change the data type of the am, cyl, vs, and gear variables in the mtcars dataset to factors, you can utilize the factor() function. Here's an example demonstrating how to achieve this:
+3. For example, in order to change the data type of the `am`, `cyl`, `vs`, and `gear` variables in the `mtcars` dataset to factors, you can utilize the `factor()` function. Here's an example demonstrating how to achieve this:
 
 ```{r}
 # Convert variables to factors
@@ -138,49 +146,47 @@ mtcars$vs <- factor(mtcars$vs)
 mtcars$gear <- factor(mtcars$gear)
 ```
 
-The code above applies the factor() function to each variable, thereby converting them to factors. By assigning the result back to the respective variables, we effectively change their data type to factors. This conversion retains the original values while establishing levels based on the distinct values present in each variable.
+* The code above applies the `factor()` function to each variable, thereby converting them to factors. By assigning the result back to the respective variables, we effectively change their data type to factors. This conversion retains the original values while establishing levels based on the distinct values present in each variable.
 
-After executing this code, the am, cyl, vs, and gear variables in the mtcars dataset will be of the factor data type. And we can verify this by re-running the str() function
+* After executing this code, the `am`, `cyl`, `vs`, and `gear` data variables in the `mtcars` dataset will be of the `factor` data type. And we can verify this by re-running the `str()` function
 
 ```{r}
 str(mtcars)
 ```
 
-When the cyl variable in the mtcars dataset is converted to a factor, the levels() function can be used to extract the distinct levels or categories of that factor. By executing levels(mtcars\$cyl), you will receive an output that reveals the levels present in the cyl variable.
+4. Levels of a factor variable: 
 
-For example, if the cyl variable has been transformed into a factor with levels "4", "6", and "8", the result of levels(mtcars\$cyl) will be a character vector displaying these three levels:
+* The `levels()` function can be used to extract the distinct levels or categories of a factor variable.
+
+* For example, after the `cyl` variable is converted to a factor, the `levels()` function can be used to extract the distinct levels or categories of that factor. By executing `levels(mtcars\$cyl)`, we see the levels present in the `cyl` variable. For example, if the `cyl` variable has been transformed into a factor with levels "4", "6", and "8", the result of `levels(mtcars$cyl)` will be a character vector displaying these three levels:
 
 ```{r}
 levels(mtcars$cyl)
 ```
 
-It is important to note that the order of the levels in the output corresponds to their appearance in the original data.
+* It is important to note that the order of the levels in the output corresponds to their appearance in the original data.
 
-Utilizing the levels() function on factor variables in R allows you to examine the particular categories or levels present within a factor, aiding in understanding the data's composition and facilitating operations that target specific levels if necessary.
+* To change the base level of a factor variable in R, we can use the `relevel()` function. This function allows us to reassign a new base level by rearranging the order of the levels in the factor variable.
 
-To change the base level of a factor variable in R, you can use the relevel() function. This function allows you to reassign a new base level by rearranging the order of the levels in the factor variable.
-
-Here's an example of how you can change the base level of a factor variable:
+* Here's an example of how you can change the base level of a factor variable:
 
 ```{r}
 # Assuming 'cyl' is a factor variable with levels "4", "6", and "8"
 mtcars$cyl <- relevel(mtcars$cyl, ref = "6")
 ```
 
-In the code above, we apply the relevel() function to the cyl variable, specifying ref = "6" to set "6" as the new base level.
+* In the code above, we apply the 'relevel()' function to the 'cyl' variable, specifying 'ref = "6"' to set "6" as the new base level.
 
-After executing this code, the levels of the mtcars\$cyl factor variable will be reordered, with "6" becoming the new base level. The order of the levels will be "6", "4", and "8" instead of the original order.
+* After executing this code, the levels of the 'mtcars$cyl' factor variable will be reordered, with "6" becoming the new base level. The order of the levels will be "6", "4", and "8" instead of the original order.
 
-Changing the base level can be particularly useful when conducting statistical modeling or interpreting the effects of categorical variables in regression models. By selecting a specific level as the base, we can compare the effects of the other levels relative to the chosen base level, facilitating more meaningful analysis and interpretation.
-
-For convenience, we will change the base level back to "4".
+* For convenience, we will change the base level back to "4".
 
 ```{r}
 # Assuming 'cyl' is a factor variable with levels "4", "6", and "8"
 mtcars$cyl <- relevel(mtcars$cyl, ref = "4")
 ```
 
-droplevels(): This function is helpful for removing unused factor levels. It removes levels from a factor variable that do not appear in the data, reducing unnecessary levels and ensuring that the factor only includes relevant levels.
+* 'droplevels()': This function is helpful for removing unused factor levels. It removes levels from a factor variable that do not appear in the data, reducing unnecessary levels and ensuring that the factor only includes relevant levels.
 
 ```{r}
 # Assuming 'cyl' is a factor variable with levels "4", "6", and "8"
@@ -194,42 +200,37 @@ mtcars$cyl <- droplevels(mtcars$cyl)
 levels(mtcars$cyl)
 ```
 
-We apply droplevels() to mtcars\$cyl to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.
+* We apply 'droplevels()' to 'mtcars$cyl' to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.
 
-cut(): The cut() function allows you to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when you want to group numeric data into categories or levels.
+* 'cut()': This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.
 
 ```{r}
 # Create a new factor variable 'mpg_category' by cutting 'mpg' into intervals
 mtcars$mpg_category <- cut(mtcars$mpg, 
                            breaks = c(0, 20, 30, Inf), 
                            labels = c("Low", "Medium", "High"))
-
 # Summarize  the resulting 'mpg_category' variable
 summary(mtcars$mpg_category)
 ```
 
-In the provided code, a new factor variable called mpg_category is generated based on the mpg (miles per gallon) variable from the mtcars dataset. This is achieved using the cut() function, which segments the mpg values into distinct intervals and assigns appropriate factor labels.
+* In the provided code, a new factor variable called 'mpg_category' is generated based on the 'mpg' (miles per gallon) variable from the 'mtcars' dataset. This is achieved using the 'cut()' function, which segments the 'mpg' values into distinct intervals and assigns appropriate factor labels.
 
-The cut() function takes several arguments:
+* The 'cut()' function takes several arguments: 'mtcars\$mpg' represents the variable to be divided; 'breaks' specifies the cutoff points for interval creation. Here, we define three intervals: values up to 20, values between 20 and 30 (inclusive), and values greater than 30. Here, the 'breaks' argument is defined as 'c(0, 20, 30, Inf)' to indicate these intervals; `labels` assigns labels to the resulting factor levels. In this instance, the labels "Low", "Medium", and "High" are provided to correspond with the respective intervals.
 
-mtcars\$mpg represents the variable to be divided.
-
-breaks specifies the cutoff points for interval creation. Here, we define three intervals: values up to 20, values between 20 and 30 (inclusive), and values greater than 30. The breaks argument is defined as c(0, 20, 30, Inf) to indicate these intervals.
-
-`labels` assigns labels to the resulting factor levels. In this instance, the labels "Low", "Medium", and "High" are provided to correspond with the respective intervals.
-
-Having demonstrated how to create the new colums `mpg_category`, we will now drop this column from the dataframe.
+* Having demonstrated how to create the new colums `mpg_category`, we will now drop this column from the dataframe.
 
 ```{r}
 # drop the column `mpg_category`
 mtcars$mpg_category = NULL
 ```
 
+
+
 ## Logical operations
 
 Here are some logical operations functions in R.
 
-subset(): This function returns a subset of a data frame according to condition(s).
+* 'subset()': This function returns a subset of a data frame according to condition(s).
 
 ```{r}
 # Find cars that have cyl = 4 and mpg < 28
@@ -239,7 +240,7 @@ subset(mtcars, cyl == 4 & mpg < 22)
 subset(mtcars, wt > 5 | mpg < 15)
 ```
 
-which(): This function returns the indexes of a vector's members that satisfy a condition.
+* 'which()': This function returns the indexes of a vector's members that satisfy a condition.
 
 ```{r}
 # Find the indices of rows where mpg > 20
@@ -247,37 +248,37 @@ indices <- which(mtcars$mpg > 20)
 indices
 ```
 
-ifelse(): This function applies a logical condition to a vector and returns a new vector with values depending on whether the condition is TRUE or FALSE.
+* 'ifelse()': This function applies a logical condition to a vector and returns a new vector with values depending on whether the condition is TRUE or FALSE.
 
 ```{r}
 # Create a new column "high_mpg" based on mpg > 20
 mtcars$high_mpg <- ifelse(mtcars$mpg > 20, "Yes", "No")
 ```
 
-Dropping a column: We can drop a column by setting it to NULL.
+* Dropping a column: We can drop a column by setting it to NULL.
 
 ```{r}
 # Drop the column "high_mpg"
 mtcars$high_mpg <- NULL
 ```
 
-all(): If every element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
+* 'all()': If every element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
 
 ```{r}
 # Check if all values in mpg column are greater than 20
 all(mtcars$mpg > 20)
 ```
 
-any(): If at least one element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
+* 'any()': If at least one element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
 
 ```{r}
 # Check if any of the values in the mpg column are greater than 20
 any(mtcars$mpg > 20)
 ```
 
-Subsetting based on a condition:
+* **Subsetting based on a condition:**
 
-The logical expression \[\] and square bracket notation can be used to subset the mtcars dataset according to one or more conditions.
+The logical expression '[]' and square bracket notation can be used to subset the 'mtcars' dataset according to one or more conditions.
 
 ```{r}
 # Subset mtcars based on mpg > 20
@@ -285,14 +286,14 @@ mtcars_subset <- mtcars[mtcars$mpg > 20, ]
 mtcars_subset
 ```
 
-sort(): This function arranges a vector in an increasing or decreasing sequence.
+* 'sort()': This function arranges a vector in an increasing or decreasing sequence.
 
 ```{r}
 sort(mtcars$mpg) # increasing order
 sort(mtcars$mpg, decreasing = TRUE) # decreasing order
 ```
 
-order(): This function provides an arrangement which sorts its initial argument into ascending or descending order.
+* 'order()': This function provides an arrangement which sorts its initial argument into ascending or descending order.
 
 ```{r}
 mtcars[order(mtcars$mpg), ] # ascending order
@@ -301,37 +302,37 @@ mtcars[order(-mtcars$mpg), ] # descending order
 
 ## Statistical functions
 
-mean(): This function computes the arithmetic mean.
+* mean(): This function computes the arithmetic mean.
 
 ```{r}
 mean(mtcars$mpg)
 ```
 
-median(): This function computes the median.
+* 'median()': This function computes the median.
 
 ```{r}
 median(mtcars$mpg)
 ```
 
-sd(): This function computes the standard deviation.
+* 'sd()': This function computes the standard deviation.
 
 ```{r}
 sd(mtcars$mpg)
 ```
 
-var(): This function computes the variance.
+* 'var()': This function computes the variance.
 
 ```{r}
 var(mtcars$mpg)
 ```
 
-cor(): This function computes the correlation between variables.
+* 'cor()': This function computes the correlation between variables.
 
 ```{r}
 cor(mtcars$mpg, mtcars$wt)
 ```
 
-unique(): This function extracts the unique elements of a vector.
+* 'unique()': This function extracts the unique elements of a vector.
 
 ```{r}
 unique(mtcars$mpg)
@@ -339,43 +340,50 @@ unique(mtcars$mpg)
 
 ## Summarizing a dataframe
 
-summary(): This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.
+### Summarizing a continuous data column
+
+1. 'summary()': This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.
 
 ```{r}
 summary(mtcars$mpg)
 ```
 
-When applied to a vector or a specific column in a dataframe, it generates the following:
+2. When applied to a vector or a specific column in a dataframe, it generates the following:
 
-Min: This represents the smallest recorded value in the mpg column.
+* Min: This represents the smallest recorded value in the mpg column.
 
-1st Qu: This indicates the first quartile or the 25th percentile of the mpg column. It implies that 25% of all mpg values fall below this threshold.
+* 1st Qu: This indicates the first quartile or the 25th percentile of the mpg column. It implies that 25% of all mpg values fall below this threshold.
 
-Median: This value signifies the median or the middle value of the mpg column, also known as the 50th percentile. Half of the mpg values are less than this value.
+* Median: This value signifies the median or the middle value of the mpg column, also known as the 50th percentile. Half of the mpg values are less than this value.
 
-Mean: This denotes the average value of the mpg column.
+* Mean: This denotes the average value of the mpg column.
 
-3rd Qu: This represents the third quartile or the 75th percentile of the mpg column. It shows that 75% of all mpg values are less than this value.
+* 3rd Qu: This represents the third quartile or the 75th percentile of the mpg column. It shows that 75% of all mpg values are less than this value.
 
-Max: This indicates the highest value observed in the mpg column.
+* Max: This indicates the highest value observed in the mpg column.
 
-When we use summary(mtcars\$mpg), it returns these six statistics for the mpg (miles per gallon) column in the mtcars dataset.
+* When we use summary(mtcars\$mpg), it returns these six statistics for the mpg (miles per gallon) column in the mtcars dataset.
 
-When used with an entire dataframe, it applies to each column individually and provides a quick overview of the data.
+* When used with an entire dataframe, it applies to each column individually and provides a quick overview of the data.
+
+
+### Summarizing a categorical data column
 
 ```{r}
 summary(mtcars$cyl)
 ```
 
-The output of summary(mtcars\$cyl) displays the frequency distribution of the levels within the cyl factor variable. It shows the count or frequency of each level, which in this case are "4", "6", and "8". The summary will provide a concise overview of the distribution of these levels within the dataset.
+* The output of 'summary(mtcars$cyl)' displays the frequency distribution of the levels within the 'cyl' factor variable. It shows the count or frequency of each level, which in this case are "4", "6", and "8". The summary will provide a concise overview of the distribution of these levels within the dataset.
 
 ```{r}
 summary(mtcars)
 ```
 
+
+
 ## Creating new functions in R
 
-We illustrate how to create a custom function in R that computes the mean of any given numeric column in the mtcars dataframe:
+* We illustrate how to create a custom function in R that computes the mean of any given numeric column in the mtcars dataframe:
 
 ```{r}
 # Function creation
@@ -386,23 +394,19 @@ compute_average <- function(df, column) {
   # Return the computed average
   return(average_val)
 }
-
 # Utilize the created function
 average_mpg <- compute_average(mtcars, "mpg")
 print(average_mpg)
 
 average_hp <- compute_average(mtcars, "hp")
 print(average_hp)
-
 ```
 
-In the above code, compute_average is a custom function which takes two arguments: a dataframe (df) and a column name (as a string) column. The function computes the mean of the specified column in the provided dataframe, with na.rm = TRUE ensuring that NA values (if any) are removed before the mean calculation.
+* In the above code, compute_average is a custom function which takes two arguments: a dataframe (df) and a column name (as a string) column. The function computes the mean of the specified column in the provided dataframe, with na.rm = TRUE ensuring that NA values (if any) are removed before the mean calculation.
 
-After defining the function, we utilize it to calculate the average values of the "mpg" and "hp" columns in the mtcars dataframe. These computed averages are then printed.
+* After defining the function, we utilize it to calculate the average values of the "mpg" and "hp" columns in the mtcars dataframe. These computed averages are then printed.
 
-This demonstrates a simple way to create a custom function in R.
-
-Function to calculate average mileage for cars with a specific number of cylinders:
+* Function to calculate average mileage for cars with a specific number of cylinders:
 
 ```{r}
 avg_mileage_by_cyl <- function(data, cyl) {
@@ -416,7 +420,6 @@ avg_mileage_by_cyl(mtcars, 4)
 
 # Returns the average mileage of cars with 6 cylinders
 avg_mileage_by_cyl(mtcars, 6) 
-
 ```
 
 ## Summary of Chapter 5 -- Exploring Dataframes
