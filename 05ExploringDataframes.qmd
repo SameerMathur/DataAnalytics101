@@ -1,6 +1,6 @@
 # Exploring Dataframes
 
-*Aug 23, 2023.*
+*Aug 24, 2023.*
 
 * The `mtcars` dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.
 
@@ -175,47 +175,47 @@ levels(mtcars$cyl)
 mtcars$cyl <- relevel(mtcars$cyl, ref = "6")
 ```
 
-* In the code above, we apply the 'relevel()' function to the 'cyl' variable, specifying 'ref = "6"' to set "6" as the new base level.
+* In the code above, we apply the `relevel()` function to the `cyl` variable, specifying `ref = "6"` to set "6" as the new base level.
 
-* After executing this code, the levels of the 'mtcars$cyl' factor variable will be reordered, with "6" becoming the new base level. The order of the levels will be "6", "4", and "8" instead of the original order.
+* After executing this code, the levels of the `mtcars$cyl` factor variable will be reordered, with "6" becoming the new base level. The order of the levels will be "6", "4", and "8" instead of the original order.
 
 * For convenience, we will change the base level back to "4".
 
 ```{r}
-# Assuming 'cyl' is a factor variable with levels "4", "6", and "8"
+# Assuming `cyl` is a factor variable with levels "4", "6", and "8"
 mtcars$cyl <- relevel(mtcars$cyl, ref = "4")
 ```
 
-* 'droplevels()': This function is helpful for removing unused factor levels. It removes levels from a factor variable that do not appear in the data, reducing unnecessary levels and ensuring that the factor only includes relevant levels.
+* `droplevels()`: This function is helpful for removing unused factor levels. It removes levels from a factor variable that do not appear in the data, reducing unnecessary levels and ensuring that the factor only includes relevant levels.
 
 ```{r}
-# Assuming 'cyl' is a factor variable with levels "4", "6", and "8"
-# Check the levels of 'cyl' before removing unused levels
+# Assuming `cyl` is a factor variable with levels "4", "6", and "8"
+# Check the levels of `cyl` before removing unused levels
 levels(mtcars$cyl)
 
-# Remove unused levels from 'cyl'
+# Remove unused levels from `cyl`
 mtcars$cyl <- droplevels(mtcars$cyl)
 
-# Check the levels of 'cyl' after removing unused levels
+# Check the levels of `cyl` after removing unused levels
 levels(mtcars$cyl)
 ```
 
-* We apply 'droplevels()' to 'mtcars$cyl' to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.
+* We apply `droplevels()` to `mtcars$cyl` to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.
 
-* 'cut()': This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.
+* `cut()`: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.
 
 ```{r}
-# Create a new factor variable 'mpg_category' by cutting 'mpg' into intervals
+# Create a new factor variable `mpg_category` by cutting `mpg` into intervals
 mtcars$mpg_category <- cut(mtcars$mpg, 
                            breaks = c(0, 20, 30, Inf), 
                            labels = c("Low", "Medium", "High"))
-# Summarize  the resulting 'mpg_category' variable
+# Summarize  the resulting `mpg_category` variable
 summary(mtcars$mpg_category)
 ```
 
-* In the provided code, a new factor variable called 'mpg_category' is generated based on the 'mpg' (miles per gallon) variable from the 'mtcars' dataset. This is achieved using the 'cut()' function, which segments the 'mpg' values into distinct intervals and assigns appropriate factor labels.
+* In the provided code, a new factor variable called `mpg_category` is generated based on the `mpg` (miles per gallon) variable from the `mtcars` dataset. This is achieved using the `cut()` function, which segments the `mpg` values into distinct intervals and assigns appropriate factor labels.
 
-* The 'cut()' function takes several arguments: 'mtcars\$mpg' represents the variable to be divided; 'breaks' specifies the cutoff points for interval creation. Here, we define three intervals: values up to 20, values between 20 and 30 (inclusive), and values greater than 30. Here, the 'breaks' argument is defined as 'c(0, 20, 30, Inf)' to indicate these intervals; `labels` assigns labels to the resulting factor levels. In this instance, the labels "Low", "Medium", and "High" are provided to correspond with the respective intervals.
+* The `cut()` function takes several arguments: `mtcars\$mpg` represents the variable to be divided; `breaks` specifies the cutoff points for interval creation. Here, we define three intervals: values up to 20, values between 20 and 30 (inclusive), and values greater than 30. Here, the `breaks` argument is defined as `c(0, 20, 30, Inf)` to indicate these intervals; `labels` assigns labels to the resulting factor levels. In this instance, the labels "Low", "Medium", and "High" are provided to correspond with the respective intervals.
 
 * Having demonstrated how to create the new colums `mpg_category`, we will now drop this column from the dataframe.
 
@@ -230,7 +230,7 @@ mtcars$mpg_category = NULL
 
 Here are some logical operations functions in R.
 
-* 'subset()': This function returns a subset of a data frame according to condition(s).
+* `subset()`: This function returns a subset of a data frame according to condition(s).
 
 ```{r}
 # Find cars that have cyl = 4 and mpg < 28
@@ -240,7 +240,7 @@ subset(mtcars, cyl == 4 & mpg < 22)
 subset(mtcars, wt > 5 | mpg < 15)
 ```
 
-* 'which()': This function returns the indexes of a vector's members that satisfy a condition.
+* `which()`: This function returns the indexes of a vector's members that satisfy a condition.
 
 ```{r}
 # Find the indices of rows where mpg > 20
@@ -248,28 +248,28 @@ indices <- which(mtcars$mpg > 20)
 indices
 ```
 
-* 'ifelse()': This function applies a logical condition to a vector and returns a new vector with values depending on whether the condition is TRUE or FALSE.
+* `ifelse()`: This function applies a logical condition to a vector and returns a new vector with values depending on whether the condition is TRUE or FALSE.
 
 ```{r}
 # Create a new column "high_mpg" based on mpg > 20
 mtcars$high_mpg <- ifelse(mtcars$mpg > 20, "Yes", "No")
 ```
 
-* Dropping a column: We can drop a column by setting it to NULL.
+* Dropping a column: We can drop a column by setting it to `NULL`.
 
 ```{r}
 # Drop the column "high_mpg"
 mtcars$high_mpg <- NULL
 ```
 
-* 'all()': If every element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
+* `all()`: If every element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
 
 ```{r}
 # Check if all values in mpg column are greater than 20
 all(mtcars$mpg > 20)
 ```
 
-* 'any()': If at least one element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
+* `any()`: If at least one element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.
 
 ```{r}
 # Check if any of the values in the mpg column are greater than 20
@@ -278,7 +278,7 @@ any(mtcars$mpg > 20)
 
 * **Subsetting based on a condition:**
 
-The logical expression '[]' and square bracket notation can be used to subset the 'mtcars' dataset according to one or more conditions.
+The logical expression `[]` and square bracket notation can be used to subset the `mtcars` dataset according to one or more conditions.
 
 ```{r}
 # Subset mtcars based on mpg > 20
@@ -286,14 +286,14 @@ mtcars_subset <- mtcars[mtcars$mpg > 20, ]
 mtcars_subset
 ```
 
-* 'sort()': This function arranges a vector in an increasing or decreasing sequence.
+* `sort()`: This function arranges a vector in an increasing or decreasing sequence.
 
 ```{r}
 sort(mtcars$mpg) # increasing order
 sort(mtcars$mpg, decreasing = TRUE) # decreasing order
 ```
 
-* 'order()': This function provides an arrangement which sorts its initial argument into ascending or descending order.
+* `order()`: This function provides an arrangement which sorts its initial argument into ascending or descending order.
 
 ```{r}
 mtcars[order(mtcars$mpg), ] # ascending order
@@ -302,37 +302,37 @@ mtcars[order(-mtcars$mpg), ] # descending order
 
 ## Statistical functions
 
-* mean(): This function computes the arithmetic mean.
+* `mean()`: This function computes the arithmetic mean.
 
 ```{r}
 mean(mtcars$mpg)
 ```
 
-* 'median()': This function computes the median.
+* `median()`: This function computes the median.
 
 ```{r}
 median(mtcars$mpg)
 ```
 
-* 'sd()': This function computes the standard deviation.
+* `sd()`: This function computes the standard deviation.
 
 ```{r}
 sd(mtcars$mpg)
 ```
 
-* 'var()': This function computes the variance.
+* `var()`': This function computes the variance.
 
 ```{r}
 var(mtcars$mpg)
 ```
 
-* 'cor()': This function computes the correlation between variables.
+* `cor()`: This function computes the correlation between variables.
 
 ```{r}
 cor(mtcars$mpg, mtcars$wt)
 ```
 
-* 'unique()': This function extracts the unique elements of a vector.
+* `unique()`: This function extracts the unique elements of a vector.
 
 ```{r}
 unique(mtcars$mpg)
@@ -342,7 +342,7 @@ unique(mtcars$mpg)
 
 ### Summarizing a continuous data column
 
-1. 'summary()': This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.
+1. `summary()`: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.
 
 ```{r}
 summary(mtcars$mpg)
@@ -426,7 +426,7 @@ avg_mileage_by_cyl(mtcars, 6)
 
 Chapter 5 guides the reader through a comprehensive understanding of data manipulation, logical operations, statistical functions, and custom function creation in R. The chapter highlights a number of significant elements integral to any data analysis task in R.
 
-Firstly, the chapter introduces an essential toolbox for data manipulation in R, focusing on 'dplyr'. It provides a step-by-step tutorial on using key 'dplyr' verbs such as select(), filter(), arrange(), mutate(), and summarise(). The lesson is further enriched with a discussion on the grouping data with the 'group_by()' function and the application of the pipe operator '%\>%', which provides a more readable and organized approach to data manipulation.
+Firstly, the chapter introduces an essential toolbox for data manipulation in R, focusing on 'dplyr'. It provides a step-by-step tutorial on using key 'dplyr' verbs such as select(), filter(), arrange(), mutate(), and summarise(). The lesson is further enriched with a discussion on the grouping data with the group_by() function and the application of the pipe operator '%\>%', which provides a more readable and organized approach to data manipulation.
 
 Secondly, the chapter explains logical operations in R, demonstrating how they can be employed in subsetting and data extraction tasks. It covers the workings of various functions including subset(), which(), ifelse(), all(), and any(). The chapter elaborates on data subsetting using square brackets and logical expressions, and introduces the sort() and order() functions, essential for arranging data in a particular sequence.
 

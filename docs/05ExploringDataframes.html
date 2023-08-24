@@ -311,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="exploring-dataframes" class="level1">
 <h1>Exploring Dataframes</h1>
-<p><em>Aug 23, 2023.</em></p>
+<p><em>Aug 24, 2023.</em></p>
 <ul>
 <li>The <code>mtcars</code> dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.</li>
 </ul>
@@ -574,43 +574,43 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">relevel</span>(mtcars<span class="sc">$</span>cyl, <span class="at">ref =</span> <span class="st">"6"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li><p>In the code above, we apply the ‘relevel()’ function to the ‘cyl’ variable, specifying ‘ref = “6”’ to set “6” as the new base level.</p></li>
-<li><p>After executing this code, the levels of the ‘mtcars$cyl’ factor variable will be reordered, with “6” becoming the new base level. The order of the levels will be “6”, “4”, and “8” instead of the original order.</p></li>
+<li><p>In the code above, we apply the <code>relevel()</code> function to the <code>cyl</code> variable, specifying <code>ref = "6"</code> to set “6” as the new base level.</p></li>
+<li><p>After executing this code, the levels of the <code>mtcars$cyl</code> factor variable will be reordered, with “6” becoming the new base level. The order of the levels will be “6”, “4”, and “8” instead of the original order.</p></li>
 <li><p>For convenience, we will change the base level back to “4”.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'cyl' is a factor variable with levels "4", "6", and "8"</span></span>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming `cyl` is a factor variable with levels "4", "6", and "8"</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">relevel</span>(mtcars<span class="sc">$</span>cyl, <span class="at">ref =</span> <span class="st">"4"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>‘droplevels()’: This function is helpful for removing unused factor levels. It removes levels from a factor variable that do not appear in the data, reducing unnecessary levels and ensuring that the factor only includes relevant levels.</li>
+<li><code>droplevels()</code>: This function is helpful for removing unused factor levels. It removes levels from a factor variable that do not appear in the data, reducing unnecessary levels and ensuring that the factor only includes relevant levels.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'cyl' is a factor variable with levels "4", "6", and "8"</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the levels of 'cyl' before removing unused levels</span></span>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming `cyl` is a factor variable with levels "4", "6", and "8"</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the levels of `cyl` before removing unused levels</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "4" "6" "8"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unused levels from 'cyl'</span></span>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove unused levels from `cyl`</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">droplevels</span>(mtcars<span class="sc">$</span>cyl)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the levels of 'cyl' after removing unused levels</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the levels of `cyl` after removing unused levels</span></span>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(mtcars<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "4" "6" "8"</code></pre>
 </div>
 </div>
 <ul>
-<li><p>We apply ‘droplevels()’ to ‘mtcars$cyl’ to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.</p></li>
-<li><p>‘cut()’: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.</p></li>
+<li><p>We apply <code>droplevels()</code> to <code>mtcars$cyl</code> to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.</p></li>
+<li><p><code>cut()</code>: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new factor variable 'mpg_category' by cutting 'mpg' into intervals</span></span>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new factor variable `mpg_category` by cutting `mpg` into intervals</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>mpg_category <span class="ot">&lt;-</span> <span class="fu">cut</span>(mtcars<span class="sc">$</span>mpg, </span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="cn">Inf</span>), </span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Medium"</span>, <span class="st">"High"</span>))</span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize  the resulting 'mpg_category' variable</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize  the resulting `mpg_category` variable</span></span>
 <span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars<span class="sc">$</span>mpg_category)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Low Medium   High 
@@ -618,8 +618,8 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 </div>
 </div>
 <ul>
-<li><p>In the provided code, a new factor variable called ‘mpg_category’ is generated based on the ‘mpg’ (miles per gallon) variable from the ‘mtcars’ dataset. This is achieved using the ‘cut()’ function, which segments the ‘mpg’ values into distinct intervals and assigns appropriate factor labels.</p></li>
-<li><p>The ‘cut()’ function takes several arguments: ‘mtcars$mpg’ represents the variable to be divided; ‘breaks’ specifies the cutoff points for interval creation. Here, we define three intervals: values up to 20, values between 20 and 30 (inclusive), and values greater than 30. Here, the ‘breaks’ argument is defined as ‘c(0, 20, 30, Inf)’ to indicate these intervals; <code>labels</code> assigns labels to the resulting factor levels. In this instance, the labels “Low”, “Medium”, and “High” are provided to correspond with the respective intervals.</p></li>
+<li><p>In the provided code, a new factor variable called <code>mpg_category</code> is generated based on the <code>mpg</code> (miles per gallon) variable from the <code>mtcars</code> dataset. This is achieved using the <code>cut()</code> function, which segments the <code>mpg</code> values into distinct intervals and assigns appropriate factor labels.</p></li>
+<li><p>The <code>cut()</code> function takes several arguments: <code>mtcars\$mpg</code> represents the variable to be divided; <code>breaks</code> specifies the cutoff points for interval creation. Here, we define three intervals: values up to 20, values between 20 and 30 (inclusive), and values greater than 30. Here, the <code>breaks</code> argument is defined as <code>c(0, 20, 30, Inf)</code> to indicate these intervals; <code>labels</code> assigns labels to the resulting factor levels. In this instance, the labels “Low”, “Medium”, and “High” are provided to correspond with the respective intervals.</p></li>
 <li><p>Having demonstrated how to create the new colums <code>mpg_category</code>, we will now drop this column from the dataframe.</p></li>
 </ul>
 <div class="cell">
@@ -631,7 +631,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 <h2 class="anchored" data-anchor-id="logical-operations">Logical operations</h2>
 <p>Here are some logical operations functions in R.</p>
 <ul>
-<li>‘subset()’: This function returns a subset of a data frame according to condition(s).</li>
+<li><code>subset()</code>: This function returns a subset of a data frame according to condition(s).</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find cars that have cyl = 4 and mpg &lt; 28</span></span>
@@ -653,7 +653,7 @@ Camaro Z28          13.3   8  350 245 3.73 3.840 15.41  0  0    3    4</code></p
 </div>
 </div>
 <ul>
-<li>‘which()’: This function returns the indexes of a vector’s members that satisfy a condition.</li>
+<li><code>which()</code>: This function returns the indexes of a vector’s members that satisfy a condition.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find the indices of rows where mpg &gt; 20</span></span>
@@ -664,21 +664,21 @@ Camaro Z28          13.3   8  350 245 3.73 3.840 15.41  0  0    3    4</code></p
 </div>
 </div>
 <ul>
-<li>‘ifelse()’: This function applies a logical condition to a vector and returns a new vector with values depending on whether the condition is TRUE or FALSE.</li>
+<li><code>ifelse()</code>: This function applies a logical condition to a vector and returns a new vector with values depending on whether the condition is TRUE or FALSE.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column "high_mpg" based on mpg &gt; 20</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>high_mpg <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(mtcars<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="dv">20</span>, <span class="st">"Yes"</span>, <span class="st">"No"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Dropping a column: We can drop a column by setting it to NULL.</li>
+<li>Dropping a column: We can drop a column by setting it to <code>NULL</code>.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Drop the column "high_mpg"</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>mtcars<span class="sc">$</span>high_mpg <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>‘all()’: If every element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.</li>
+<li><code>all()</code>: If every element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if all values in mpg column are greater than 20</span></span>
@@ -688,7 +688,7 @@ Camaro Z28          13.3   8  350 245 3.73 3.840 15.41  0  0    3    4</code></p
 </div>
 </div>
 <ul>
-<li>‘any()’: If at least one element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.</li>
+<li><code>any()</code>: If at least one element in a vector satisfies a logical criterion, this function returns TRUE; otherwise, it returns FALSE.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if any of the values in the mpg column are greater than 20</span></span>
@@ -700,7 +700,7 @@ Camaro Z28          13.3   8  350 245 3.73 3.840 15.41  0  0    3    4</code></p
 <ul>
 <li><strong>Subsetting based on a condition:</strong></li>
 </ul>
-<p>The logical expression ‘[]’ and square bracket notation can be used to subset the ‘mtcars’ dataset according to one or more conditions.</p>
+<p>The logical expression <code>[]</code> and square bracket notation can be used to subset the <code>mtcars</code> dataset according to one or more conditions.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset mtcars based on mpg &gt; 20</span></span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>mtcars_subset <span class="ot">&lt;-</span> mtcars[mtcars<span class="sc">$</span>mpg <span class="sc">&gt;</span> <span class="dv">20</span>, ]</span>
@@ -724,7 +724,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
 </div>
 </div>
 <ul>
-<li>‘sort()’: This function arranges a vector in an increasing or decreasing sequence.</li>
+<li><code>sort()</code>: This function arranges a vector in an increasing or decreasing sequence.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(mtcars<span class="sc">$</span>mpg) <span class="co"># increasing order</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -741,7 +741,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2</code></pre>
 </div>
 </div>
 <ul>
-<li>‘order()’: This function provides an arrangement which sorts its initial argument into ascending or descending order.</li>
+<li><code>order()</code>: This function provides an arrangement which sorts its initial argument into ascending or descending order.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>mtcars[<span class="fu">order</span>(mtcars<span class="sc">$</span>mpg), ] <span class="co"># ascending order</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -821,7 +821,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <section id="statistical-functions" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-functions">Statistical functions</h2>
 <ul>
-<li>mean(): This function computes the arithmetic mean.</li>
+<li><code>mean()</code>: This function computes the arithmetic mean.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -830,7 +830,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li>‘median()’: This function computes the median.</li>
+<li><code>median()</code>: This function computes the median.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -839,7 +839,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li>‘sd()’: This function computes the standard deviation.</li>
+<li><code>sd()</code>: This function computes the standard deviation.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -848,7 +848,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li>‘var()’: This function computes the variance.</li>
+<li><code>var()</code>’: This function computes the variance.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -857,7 +857,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li>‘cor()’: This function computes the correlation between variables.</li>
+<li><code>cor()</code>: This function computes the correlation between variables.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(mtcars<span class="sc">$</span>mpg, mtcars<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -866,7 +866,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li>‘unique()’: This function extracts the unique elements of a vector.</li>
+<li><code>unique()</code>: This function extracts the unique elements of a vector.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -881,7 +881,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <section id="summarizing-a-continuous-data-column" class="level3">
 <h3 class="anchored" data-anchor-id="summarizing-a-continuous-data-column">Summarizing a continuous data column</h3>
 <ol type="1">
-<li>‘summary()’: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.</li>
+<li><code>summary()</code>: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -990,7 +990,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <section id="summary-of-chapter-5-exploring-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-5-exploring-dataframes">Summary of Chapter 5 – Exploring Dataframes</h2>
 <p>Chapter 5 guides the reader through a comprehensive understanding of data manipulation, logical operations, statistical functions, and custom function creation in R. The chapter highlights a number of significant elements integral to any data analysis task in R.</p>
-<p>Firstly, the chapter introduces an essential toolbox for data manipulation in R, focusing on ‘dplyr’. It provides a step-by-step tutorial on using key ‘dplyr’ verbs such as select(), filter(), arrange(), mutate(), and summarise(). The lesson is further enriched with a discussion on the grouping data with the ‘group_by()’ function and the application of the pipe operator ‘%&gt;%’, which provides a more readable and organized approach to data manipulation.</p>
+<p>Firstly, the chapter introduces an essential toolbox for data manipulation in R, focusing on ‘dplyr’. It provides a step-by-step tutorial on using key ‘dplyr’ verbs such as select(), filter(), arrange(), mutate(), and summarise(). The lesson is further enriched with a discussion on the grouping data with the group_by() function and the application of the pipe operator ‘%&gt;%’, which provides a more readable and organized approach to data manipulation.</p>
 <p>Secondly, the chapter explains logical operations in R, demonstrating how they can be employed in subsetting and data extraction tasks. It covers the workings of various functions including subset(), which(), ifelse(), all(), and any(). The chapter elaborates on data subsetting using square brackets and logical expressions, and introduces the sort() and order() functions, essential for arranging data in a particular sequence.</p>
 <p>Thirdly, the chapter transitions into an examination of key statistical functions, showcasing the usage of mean(), median(), sd(), var(), and cor(). An interesting aspect is the inclusion of the unique() function, which allows extraction of distinct elements from a vector.</p>
 <p>Fourthly, the chapter discusses the utility of the summary() function, providing basic descriptive statistics. This function furnishes a snapshot of dataset characteristics by generating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values for a specified dataset or column.</p>
