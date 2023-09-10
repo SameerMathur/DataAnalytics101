@@ -14,8 +14,8 @@ THIS CHAPTER demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** 
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
-library(tibble) 
-suppressPackageStartupMessages(library(dplyr))
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+library(tibble, quietly = TRUE, warn.conflicts = FALSE)
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)

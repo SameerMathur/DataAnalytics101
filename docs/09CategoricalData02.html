@@ -197,14 +197,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
+  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  <a href="./07LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#using-ggplot2" id="toc-using-ggplot2" class="nav-link" data-scroll-target="#using-ggplot2">Using <strong>ggplot2</strong></a></li>
   <li><a href="#mosaic-plots-for-bivariate-categorical-data" id="toc-mosaic-plots-for-bivariate-categorical-data" class="nav-link" data-scroll-target="#mosaic-plots-for-bivariate-categorical-data"><strong>Mosaic Plots</strong> for Bivariate Categorical Data</a></li>
   </ul></li>
-  <li><a href="#summary-of-chapter-9-categorical-data-2-of-3" id="toc-summary-of-chapter-9-categorical-data-2-of-3" class="nav-link" data-scroll-target="#summary-of-chapter-9-categorical-data-2-of-3">Summary of Chapter 9 – Categorical Data (2 of 3)</a></li>
+  <li><a href="#summary-of-chapter-9-categorical-x-categorical-data-1-of-2" id="toc-summary-of-chapter-9-categorical-x-categorical-data-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-9-categorical-x-categorical-data-1-of-2">Summary of Chapter 9 – Categorical x Categorical data (1 of 2)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -311,10 +311,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="categorical-x-categorical-data-1-of-2" class="level1">
 <h1>Categorical x Categorical data (1 of 2)</h1>
-<p><em>Aug 7, 2023.</em></p>
+<p><em>Sep 10, 2023</em></p>
 <section id="exploring-bivariate-categorical-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</h2>
-<p>THIS CHAPTER explores how to summarize and visualize <em>Bivariate, categorical</em> data.</p>
+<p>This chapter explores how to summarize and visualize <em>Bivariate, categorical</em> data.</p>
 <ol type="1">
 <li><p>Bivariate analysis involves examining the <strong>relationship between two variables</strong>. For instance, we might examine the relationship between a person’s gender (male, female, or non-binary) and whether they own a car (yes or no). By exploring these two categorical variables together, we can discern potential correlations or associations.</p></li>
 <li><p>As an extension, multivariate analysis involves the simultaneous observation and analysis of more than two variables. We study multivariate data in the next chapter.</p></li>
@@ -323,8 +323,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble) </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
@@ -357,8 +357,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong><code>addmargins()</code></strong>: The <code>addmargins()</code> function is used to add row and/or column totals to a table.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(t0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
        0  1 Sum
@@ -369,8 +369,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(t0,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
        0  1
@@ -381,11 +381,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>In this variation, the <code>1</code> in the function call indicates that we want to add row totals. So, this command adds the totals (Sum) of each row as a row in the contingency table.</li>
+<li>In this variation, the <code>1</code> in the function call indicates that we want to add <strong>row totals</strong>. So, this command adds the totals (Sum) of each row as a row in the contingency table.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(t0,<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   
      0  1 Sum
@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>In this variation, the <code>2</code> specifies that we want to add column totals. Thus, it adds the totals (Sum) of each column to the contingency table.</li>
+<li>In this variation, the <code>2</code> specifies that we want to add <strong>column totals</strong>. Thus, it adds the totals (Sum) of each column to the contingency table.</li>
 </ul>
 <ol start="3" type="1">
 <li><strong><code>xtabs()</code></strong>: This function provides a more versatile way to generate cross tabulations or contingency tables. It differs from the <code>table()</code> function by allowing the use of weights and formulas. Here’s how we can use it:</li>
@@ -435,10 +435,10 @@ cyl  0  1
 <li><p>Do note, like <code>xtabs()</code>, <code>ftable()</code> also handles missing values or NAs effectively, making it a reliable choice for real-world data that might contain missing values.</p></li>
 </ul>
 <ol start="5" type="1">
-<li>We can also use package <code>dplyr</code> to generate contingency tables.</li>
+<li>We can also use <code>group_by()</code> and <code>summarize()</code> functions from package <code>dplyr</code> to generate contingency tables.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -480,77 +480,78 @@ argument.</code></pre>
 <ul>
 <li><p>In this code, we first generate a frequency table with the <code>table()</code> function, using <code>cyl</code> and <code>am</code> as our variables. Then, we employ the <code>prop.table()</code> function to convert this frequency table (<code>freq_table</code>) into a proportions table (<code>prop_table</code>).</p></li>
 <li><p>This resulting <code>prop_table</code> reveals the proportion of each combination of <code>cyl</code> and <code>am</code> categories relative to the total number of observations. This can provide insightful context, allowing us to see how each combination fits into the overall distribution. For instance, we could learn what proportion of cars in our dataset have 4 cylinders and a manual transmission.</p></li>
-<li><p>A noteworthy benefit of <code>prop.table()</code> is its ability to normalize the data, providing a perspective based on relative proportions instead of absolute numbers, which can often provide a clearer view of the underlying patterns in the data.</p></li>
+<li><p>Here is a more efficient method of writing the above code using the pipe operator.</p></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   
+        0     1
+  4 0.094 0.250
+  6 0.125 0.094
+  8 0.375 0.062</code></pre>
+</div>
+</div>
 <ol start="7" type="1">
-<li>We can alternately use package <code>dplyr</code> to achieve this as follows.</li>
+<li>We can alternately use package <code>dplyr</code> to showcase the frequency and proportions in tabular form, instead of a contingency table.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Proportion =</span> Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'cyl'. You can override using the `.groups`
-argument.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Proportion =</span> Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-# Groups:   cyl [3]
   cyl   am    Frequency Proportion
   &lt;fct&gt; &lt;fct&gt;     &lt;int&gt;      &lt;dbl&gt;
-1 4     0             3      0.273
-2 4     1             8      0.727
-3 6     0             4      0.571
-4 6     1             3      0.429
-5 8     0            12      0.857
-6 8     1             2      0.143</code></pre>
+1 4     0             3     0.0938
+2 4     1             8     0.25  
+3 6     0             4     0.125 
+4 6     1             3     0.0938
+5 8     0            12     0.375 
+6 8     1             2     0.0625</code></pre>
 </div>
 </div>
 <ul>
-<li><p>In this code, <code>group_by(cyl, am)</code> groups the data by <code>cyl</code> and <code>am</code>, <code>summarise(Frequency = n())</code> calculates the frequency for each group, and <code>mutate(Proportion = Frequency / sum(Frequency))</code> calculates the proportions by dividing each frequency by the total sum of frequencies.</p></li>
+<li><p>In this code, <code>group_by(cyl, am)</code> groups the data by <code>cyl</code> and <code>am</code>, <code>summarise(Frequency = n())</code> calculates the frequency for each group, <code>.groups = "drop"</code> drops the grouping structure.</p></li>
+<li><p><code>mutate(Proportion = Frequency / sum(Frequency))</code> calculates the proportions by dividing each frequency by the total sum of frequencies.</p></li>
 <li><p>The <code>mutate()</code> function adds a new column to the dataframe, keeping the original data intact.</p></li>
-<li><p><strong>Rounding</strong>: If we wanted to round-off the proportion up to 4 decimal places, we could write the following code.</p></li>
+<li><p><strong>Percentages and Rounding</strong>: If we wanted to display the proportions as percentages, we could round-off the proportion up to 4 decimal places, as follows:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Proportion =</span> <span class="fu">round</span>(Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'cyl'. You can override using the `.groups`
-argument.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Percentage =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">round</span>(Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-# Groups:   cyl [3]
-  cyl   am    Frequency Proportion
+  cyl   am    Frequency Percentage
   &lt;fct&gt; &lt;fct&gt;     &lt;int&gt;      &lt;dbl&gt;
-1 4     0             3      0.273
-2 4     1             8      0.727
-3 6     0             4      0.571
-4 6     1             3      0.429
-5 8     0            12      0.857
-6 8     1             2      0.143</code></pre>
+1 4     0             3       9.38
+2 4     1             8      25   
+3 6     0             4      12.5 
+4 6     1             3       9.38
+5 8     0            12      37.5 
+6 8     1             2       6.25</code></pre>
 </div>
 </div>
 </section>
 <section id="margins-in-proportions-tables" class="level3">
 <h3 class="anchored" data-anchor-id="margins-in-proportions-tables">Margins in Proportions Tables</h3>
 <ol type="1">
-<li><p>Different proportions provide various perspectives on the relationship between categorical variables in our dataset. We can calculate the i) Proportions for <strong>Each Cell</strong>; (ii) <strong>Row-Wise* Proportions; (iii)</strong> Column-Wise** Proportions. This forms a crucial part of exploratory data analysis.</p></li>
+<li><p>Different proportions provide various perspectives on the relationship between categorical variables in our dataset. We can calculate the i) Proportions for <strong>Each Cell</strong>; (ii) <strong>Row-Wise* Proportions; (iii)</strong> <strong>Column-Wise</strong> Proportions. This forms a crucial part of exploratory data analysis.</p></li>
 <li><p><strong>Proportions for Each Cell</strong>: This calculates the ratio of each cell to the overall total.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute cell-wise proportions</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>cellprop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(freq)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add totals for each row and column</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>cellprop <span class="ot">&lt;-</span> <span class="fu">addmargins</span>(cellprop)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Round off the results to three decimal places and display as percentages</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">round</span>(cellprop, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
           0     1   Sum
@@ -564,12 +565,11 @@ argument.</code></pre>
 <li><strong>Row-Wise Proportions</strong>: Here, we compute the proportion of each cell relative to the total of its row.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute row-wise proportions</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>rowprop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(freq, <span class="at">margin =</span> <span class="dv">1</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Append totals for each row and column</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>rowprop <span class="ot">&lt;-</span> <span class="fu">addmargins</span>(rowprop,<span class="dv">2</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Round off the results to three decimal places and display as percentages</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">round</span>(rowprop, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   
         0     1   Sum
@@ -582,12 +582,11 @@ argument.</code></pre>
 <li><strong>Column-Wise Proportions</strong>: Here, we determine the proportion of each cell relative to the total of its column.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute column-wise proportions</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>colprop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(freq, <span class="at">margin =</span> <span class="dv">2</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Append totals for each row and column</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>colprop <span class="ot">&lt;-</span> <span class="fu">addmargins</span>(colprop,<span class="dv">1</span>)</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Round off the results to three decimal places and display as percentages</span></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="dv">100</span><span class="sc">*</span><span class="fu">round</span>(colprop, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
           0     1
@@ -597,17 +596,14 @@ argument.</code></pre>
   Sum 100.0 100.0</code></pre>
 </div>
 </div>
-<ul>
-<li>In this code, the <code>prop.table()</code> function is initially applied with the margin parameter to calculate cell, row, and column proportions from the contingency table. We then invoke <code>addmargins()</code> to sum up and include the marginal totals for each row and column. Lastly, the <code>round()</code> function aids in displaying the proportions with one decimal place.</li>
-</ul>
 </section>
 </section>
 <section id="visualizing-bivariate-categorical-data" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-bivariate-categorical-data">Visualizing Bivariate Categorical Data</h2>
 <ol type="1">
-<li><p>Grouped Barplots and Stacked Barplots serve as powerful tools for representing and understanding bivariate categorical data, where both variables are categorical in nature.</p></li>
-<li><p>Grouped Barplots, often referred to as side-by-side bar plots, illustrate the relationship between two categorical variables by placing bars corresponding to one category of a variable next to each other, differentiated by color or pattern. This layout facilitates a direct comparison between categories of the second variable. Grouped bar plots are particularly effective when we are interested in comparing the distribution of a categorical variable across different groups</p></li>
-<li><p>On the other hand, stacked bar plots present a similar relationship between two categorical variables, but rather than aligning bars side by side, they stack bars on top of one another. This results in a single bar for each category of one variable, with the length of different segments in each bar corresponding to the counts or proportions of the categories of the other variable. Stacked bar plots are advantageous when we’re interested in the total size of groups as well as the distribution of a variable across groups. [2]</p></li>
+<li><p><strong>Grouped Barplots</strong> and <strong>Stacked Barplots</strong> serve as powerful tools for representing and understanding bivariate categorical data, where both variables are categorical in nature.</p></li>
+<li><p>Grouped Barplots, often referred to as <strong>side-by-side bar plots</strong>, illustrate the relationship between two categorical variables by placing bars corresponding to one category of a variable next to each other, differentiated by color or pattern. This layout facilitates a direct comparison between categories of the second variable. Grouped bar plots are particularly effective when we are interested in comparing the distribution of a categorical variable across different groups</p></li>
+<li><p>On the other hand, <strong>stacked bar plots</strong> present a similar relationship between two categorical variables, but rather than aligning bars side by side, they stack bars on top of one another. This results in a single bar for each category of one variable, with the length of different segments in each bar corresponding to the counts or proportions of the categories of the other variable. Stacked bar plots are advantageous when we’re interested in the total size of groups as well as the distribution of a variable across groups. [2]</p></li>
 <li><p><strong>Grouped Barplot</strong></p></li>
 </ol>
 <div class="cell">
@@ -630,11 +626,11 @@ argument.</code></pre>
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freq), </span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Cylinders"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="5" type="1">
-<li>Here’s a detailed explanation of each argument passed to the barplot() function:</li>
+<li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
 <li><p><code>freq</code>: This is the dataset being visualized, which we anticipate to be a contingency table of am and cyl variables.</p></li>
@@ -667,10 +663,12 @@ argument.</code></pre>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freqInverted), </span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Transmission"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-<p>The most significant differences from the previous Grouped Barplot and this one are as follows:</p>
+<ol start="5" type="1">
+<li><strong>Discussion</strong>: The most significant differences from the previous Grouped Barplot and this one are as follows.</li>
+</ol>
 <ul>
 <li><p><code>freqInverted</code>: The contingency table’s axes have been swapped or inverted. Hence, the table’s rows now correspond to the am variable (transmission), and its columns correspond to the cyl variable (cylinders).</p></li>
 <li><p><code>xlab = "Cylinders"</code> and <code>ylab = "Count"</code>: These arguments set the labels for the x and y-axes, respectively. This is a departure from the previous plot where the x-axis represented ‘Transmission’. In this case, the x-axis corresponds to ‘Cylinders’.</p></li>
@@ -700,7 +698,7 @@ argument.</code></pre>
 <span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freq), </span>
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Cylinders"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>There are a few key differences between this Stacked Barplot and the original Grouped Barplot:</p>
@@ -728,7 +726,7 @@ argument.</code></pre>
 <span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freqInverted), </span>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Transmission"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="6" type="1">
@@ -737,11 +735,26 @@ argument.</code></pre>
 <section id="using-ggplot2" class="level3">
 <h3 class="anchored" data-anchor-id="using-ggplot2">Using <strong>ggplot2</strong></h3>
 <p><strong>Grouped Barplot using ggplot2</strong></p>
+<ul>
+<li>We demonstrate how to create a Grouped Barplot of Car Count by transmission and cylinders</li>
+</ul>
+<ol type="1">
+<li>Set up the data</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required library</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to 'long' format</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freq)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>, <span class="st">"Transmission"</span>, <span class="st">"Frequency"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Cylinders)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Create a Grouped Barplot using ggplot2</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required library</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
 Attaching package: 'ggplot2'</code></pre>
@@ -751,27 +764,27 @@ Attaching package: 'ggplot2'</code></pre>
 
     mpg</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to 'long' format</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freq)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>, <span class="st">"Transmission"</span>, <span class="st">"Frequency"</span>)</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Cylinders)</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot using ggplot2</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Transmission, <span class="at">y =</span> Frequency, <span class="at">fill =</span> Cylinders)) <span class="sc">+</span> </span>
-<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
-<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
-<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Frequency), </span>
-<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="fl">1.6</span>, <span class="at">color=</span><span class="st">"black"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), <span class="at">size=</span><span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, <span class="at">fill =</span> <span class="st">"Cylinders"</span>,</span>
-<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Grouped Barplot of Frequency by transmission and cylinders"</span>) <span class="sc">+</span></span>
-<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Transmission, <span class="at">y =</span> Frequency, <span class="at">fill =</span> Cylinders)) <span class="sc">+</span> </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Frequency), </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="fl">1.6</span>, </span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">"black"</span>, </span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), </span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, </span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Cylinders"</span>,</span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Grouped Barplot of Car Count by transmission and cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-<p>In this code:</p>
+<ol start="3" type="1">
+<li><strong>Discussion</strong>:</li>
+</ol>
 <ul>
 <li><p>We first convert the frequency table into a data frame that <code>ggplot2</code> can use. This involves converting the table to a data frame and then reshaping it to long format.</p></li>
 <li><p>We then use the <code>ggplot()</code> function to initiate the plot and specify the aesthetic mappings. Here, we map ‘Transmission’ to the x-axis, ‘Frequency’ to the y-axis, and ‘Cylinders’ to the fill aesthetic which controls the color of the bars.</p></li>
@@ -779,58 +792,75 @@ Attaching package: 'ggplot2'</code></pre>
 <li><p><code>position = position_dodge()</code> ensures the bars are placed side by side, which creates the grouped effect.</p></li>
 <li><p><code>labs()</code> is used to add labels to the plot.</p></li>
 <li><p><code>scale_fill_manual()</code> allows us to manually specify the colors for the bars.</p></li>
+<li><p>We demonstrate how to create a Grouped Barplot of Car Count by cylinders and transmission</p></li>
 </ul>
+<ol start="4" type="1">
+<li>Set up the data</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to 'long' format</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>df_inverted <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freqInverted)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_inverted) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Transmission"</span>, <span class="st">"Cylinders"</span>, <span class="st">"Count"</span>)</span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Cylinders)</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot using ggplot2</span></span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_inverted, </span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Cylinders, <span class="at">y =</span> Count, <span class="at">fill =</span> Transmission)) <span class="sc">+</span> </span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Count), <span class="at">vjust =</span> <span class="fl">1.6</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cylinders"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Transmission"</span>,</span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Grouped Barplot of Frequency by cylinders and transmission"</span>) <span class="sc">+</span></span>
-<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>freqInverted <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>am, tb<span class="sc">$</span>cyl)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to 'long' format</span></span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>df_inverted <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freqInverted)</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_inverted) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Transmission"</span>, <span class="st">"Cylinders"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Cylinders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>Create a Grouped Barplot using ggplot2</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot using ggplot2</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_inverted, </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Cylinders, <span class="at">y =</span> Count, <span class="at">fill =</span> Transmission)) <span class="sc">+</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Count), </span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="fl">1.6</span>, </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), </span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cylinders"</span>, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">fill =</span> <span class="st">"Transmission"</span>,</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Grouped Barplot of Frequency by cylinders and transmission"</span>) <span class="sc">+</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-<p>In this plot:</p>
+<ol start="6" type="1">
+<li><strong>Discussion</strong>:</li>
+</ol>
 <ul>
 <li><p>The <code>geom_text()</code> function is used in the same way as in the previous example to add frequency labels to the bars.</p></li>
 <li><p>The <code>scale_fill_manual()</code> function is used to specify the colors for the different transmission types.</p></li>
 </ul>
 <p><strong>Stacked Barplots using ggplot2</strong></p>
 <ul>
-<li>To replicate the stacked bar plot with <code>ggplot2</code>, we can utilize the same dataframe transformation as before. Then, we apply the <code>geom_bar()</code> function but without the dodge positioning this time, since we want the bars stacked. Here is how we can accomplish this:</li>
+<li><p>We demonstrate how to create a Stacked Barplot of Car Count by cylinders and transmission</p></li>
+<li><p>To create a stacked bar plot with <code>ggplot2</code>, we apply the <code>geom_bar()</code> function but without the dodge positioning this time, since we want the bars stacked.</p></li>
 </ul>
+<ol start="7" type="1">
+<li>Create a Stacked Barplot using ggplot2</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required library</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to 'long' format</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freq)</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>, <span class="st">"Transmission"</span>, <span class="st">"Frequency"</span>)</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Cylinders)</span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Stacked Barplot using ggplot2</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Transmission, <span class="at">y =</span> Frequency, <span class="at">fill =</span> Cylinders)) <span class="sc">+</span> </span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Frequency), <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, <span class="at">fill =</span> <span class="st">"Cylinders"</span>,</span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Stacked Barplot of Frequency by transmission and cylinders"</span>) <span class="sc">+</span></span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Stacked Barplot using ggplot2</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Transmission, <span class="at">y =</span> Frequency, <span class="at">fill =</span> Cylinders)) <span class="sc">+</span> </span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Frequency), </span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), </span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>, </span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>, </span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Cylinders"</span>,</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Stacked Barplot of Frequency by transmission and cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-<p>In this code:</p>
+<ol start="8" type="1">
+<li><strong>Discussion</strong>:</li>
+</ol>
 <ul>
 <li><p>The <code>geom_bar(stat = "identity")</code> is used to create a stacked bar plot.</p></li>
 <li><p>The <code>scale_fill_manual()</code> function is used to specify the colors for the different cylinder categories. Again, we changed the order of the Transmission and Cylinders columns to suit this specific plot.</p></li>
@@ -846,19 +876,26 @@ Attaching package: 'ggplot2'</code></pre>
 <li><p>The following code generates a mosaic plot from a contingency table of two variables: <code>cyl</code> (cylinders) and <code>am</code> (transmission).</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot </span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am), </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"Mosaic of Cylinder count and Transmission type"</span>,</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Cylinders (cyl)"</span>,</span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">"Transmission (am)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot </span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am), </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"Mosaic of Cylinder count and Transmission type"</span>,</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Cylinders (cyl)"</span>,</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">"Transmission (am)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="2" type="1">
-<li><p>In a mosaic plot, we interpret two categorical variables on two axes. The <strong>width</strong> of each section on one axis signifies the proportion of that particular category in our dataset. Conversely, the <strong>height</strong> of a section on the other axis illustrates the proportion of that category, contingent on the specific category from the first variable. Therefore, the <strong>area</strong> of each rectangle directly corresponds to the frequency or proportion of observations falling within that specific combination of categories (Hartigan &amp; Kleiner, 1981).</p></li>
+<li>In a mosaic plot, we interpret two categorical variables on two axes.</li>
+</ol>
+<ul>
+<li><p>The <strong>width</strong> of each section on one axis signifies the proportion of that particular category in our dataset.</p></li>
+<li><p>Conversely, the <strong>height</strong> of a section on the other axis illustrates the proportion of that category, contingent on the specific category from the first variable.</p></li>
+<li><p>Therefore, the <strong>area</strong> of each rectangle directly corresponds to the frequency or proportion of observations falling within that specific combination of categories (Hartigan &amp; Kleiner, 1981).</p></li>
+</ul>
+<ol start="3" type="1">
 <li><p>By combining both the height and width of the rectangles, a mosaic plot gives us a visual representation of the joint distribution of the two categorical variables. It helps us to identify patterns, associations, and dependencies between the two variables.</p></li>
-<li><p>In the above code:</p></li>
+<li><p><strong>Discussion</strong>:</p></li>
 </ol>
 <ul>
 <li><p>The <code>table()</code> function is used to create a contingency table of the <code>cyl</code> and <code>am</code> columns of the <code>tb</code> tibble. This contingency table represents the counts of all combinations of <code>cyl</code> and <code>am</code> in the data.</p></li>
@@ -867,24 +904,24 @@ Attaching package: 'ggplot2'</code></pre>
 </ul>
 <ol start="5" type="1">
 <li><p>They can be used to identify breaks in independence or test hypotheses regarding the connections between the variables. They are especially helpful for examining interactions between two or more categorical variables.</p></li>
-<li><p>The <code>vcd</code> package, short for Visualizing Categorical Data, provides alternative visual and analytical methods for categorical data (Meyer, Zeileis, &amp; Hornik, 2020). Following this, a mosaic plot is created from the variables <code>cyl</code> (cylinders) and <code>am</code> (transmission type) using the <code>mosaic()</code> function.</p></li>
+<li><p>The <code>vcd</code> package, short for Visualizing Categorical Data, provides alternative visual and analytical methods for categorical data (Meyer, Zeileis, &amp; Hornik, 2020). A mosaic plot is created from the variables <code>cyl</code> (cylinders) and <code>am</code> (transmission type) using the <code>mosaic()</code> function.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the vcd package</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the vcd package</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: grid</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot of mpg (miles per gallon) vs. am (transmission)</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic of Cylinder count and Transmission type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot of mpg (miles per gallon) vs. am (transmission)</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic Plot of cars by Cylinder count and Transmission type"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="7" type="1">
-<li>In this code:</li>
+<li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
 <li><p><code>library(vcd)</code> is used to import the vcd package which includes the mosaic() function that is superior to the base R mosaicplot() in its handling of labeling and legends.</p></li>
@@ -895,26 +932,26 @@ Attaching package: 'ggplot2'</code></pre>
 <li>We can customize the shading color of the mosaic plot by setting the color using the <code>col</code> argument inside the <code>mosaic()</code> function. To specify shades of blue, we can use the <code>RColorBrewer</code> package and its <code>brewer.pal()</code> function to generate a color palette:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the color palette</span></span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">4</span>, <span class="st">"Blues"</span>)</span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic of Cylinder count and Transmission type"</span>,</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting =</span> <span class="st">"cyl"</span>, </span>
-<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting_fill =</span> cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the color palette</span></span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">4</span>, <span class="st">"Blues"</span>)</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot</span></span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic Plots of cars by Cylinder count and Transmission type"</span>,</span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting_fill =</span> cols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="9" type="1">
-<li>In this code:</li>
+<li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
 <li><p><code>brewer.pal(4, "Blues")</code> creates a color palette of 4 different shades of blue.</p></li>
@@ -925,32 +962,24 @@ Attaching package: 'ggplot2'</code></pre>
 <li>We can also recreate the previous mosaic plot using <code>ggplot2</code> and <code>ggmosaic</code> packages. Here is how to do it:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the packages</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'ggmosaic'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:vcd':
-
-    mosaic, spine</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mosaic plot</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb) <span class="sc">+</span></span>
-<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(cyl, am), <span class="at">fill =</span> cyl)) <span class="sc">+</span></span>
-<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mosaic of Cylinder count and Transmission type"</span>, </span>
-<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Transmission"</span>, </span>
-<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cylinders"</span>) <span class="sc">+</span></span>
-<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the packages</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mosaic plot</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb) <span class="sc">+</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(cyl, am), <span class="at">fill =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mosaic Plot of Cars by Cylinder count and Transmission type"</span>, </span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Transmission"</span>, </span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="768"></p>
+<p><img src="09CategoricalData02_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="11" type="1">
-<li>In this code:</li>
+<li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
 <li><p><code>geom_mosaic(aes(x = product(cyl, am), fill = cyl))</code> creates the mosaic plot with <code>cyl</code> and <code>am</code> as the categorical variables.</p></li>
@@ -961,8 +990,8 @@ Attaching package: 'ggmosaic'</code></pre>
 </ul>
 </section>
 </section>
-<section id="summary-of-chapter-9-categorical-data-2-of-3" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-chapter-9-categorical-data-2-of-3">Summary of Chapter 9 – Categorical Data (2 of 3)</h2>
+<section id="summary-of-chapter-9-categorical-x-categorical-data-1-of-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-9-categorical-x-categorical-data-1-of-2">Summary of Chapter 9 – Categorical x Categorical data (1 of 2)</h2>
 <p>In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.</p>
 <p>An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage.</p>
 <p>The <code>ggplot2</code> library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.</p>
