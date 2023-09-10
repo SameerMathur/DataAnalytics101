@@ -4,7 +4,7 @@
 
 ## Exploring Univariate Continuous Data
 
-THIS CHAPTER explores how to summarize and visualize *univariate, continuous* data.
+This chapter explores how to summarize and visualize *univariate, continuous* data.
 
 1.  **Univariate** continuous data refers to data coming from **one feature or variable**, which could take on an infinite number of possible values, typically within an interval \[1\].
 
