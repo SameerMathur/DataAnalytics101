@@ -203,12 +203,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./08CategoricalData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Data</span></a>
   </div>
@@ -223,18 +217,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./10CategoricalData03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11LiveCase02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (2 of 3)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12LiveCase03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (3 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -311,7 +293,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="continuous-x-continous-data-1-of-2" class="level1">
 <h1>Continuous x Continous data (1 of 2)</h1>
-<p><em>Aug 7, 2023</em></p>
+<p><em>Sep 17, 2023</em></p>
 <section id="exploring-bivariate-continuous-x-continuous-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-bivariate-continuous-x-continuous-data">Exploring bivariate Continuous x Continuous data</h2>
 <p>THIS CHAPTER explores how to summarize and visualize the interaction between <em>bivariate continuous data</em> using correlation analysis, scatter plots, scatter plot matrices and other such techniques.</p>
@@ -336,8 +318,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="scatterplots" class="level2">
 <h2 class="anchored" data-anchor-id="scatterplots">Scatterplots</h2>
 <ol type="1">
-<li><p>A scatter plot is used to display the relationship between two continuous variables. It is a graphical representation of a bivariate distribution, where the values of two variables are plotted as points on a two-dimensional coordinate system.</p></li>
-<li><p>A scatter plot can be used to identify trends, clusters, outliers, and other patterns in the data. It is also useful for detecting the presence of any outliers or influential observations that may affect the analysis. [1]</p></li>
+<li><p>A scatter plot is used to display the relationship between <strong>two continuous variables</strong>. It is a graphical representation of a bivariate distribution, where the values of two variables are plotted as points on a two-dimensional coordinate system.</p></li>
+<li><p>A scatter plot can be used to <strong>identify trends, clusters</strong>, and other patterns in the data. It is also useful for detecting the presence of any <strong>outliers</strong> or i<strong>nfluential observations</strong> that may affect the analysis. [1]</p></li>
 <li><p>To create a scatter plot of <code>mpg</code> (miles per gallon) against <code>wt</code> (weight) in the <code>mtcars</code> data set, we can use the following code:</p></li>
 </ol>
 <section id="scatterplot-using-plot" class="level3">
@@ -357,9 +339,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
-<li><p>This code will first load the mtcars data set, then create a scatter plot of <code>mpg</code> against <code>wt</code> using the <code>plot()</code> function.</p></li>
+<li><p>This code will create a scatter plot of <code>mpg</code> against <code>wt</code> using the <code>plot()</code> function.</p></li>
 <li><p>The <code>main</code> argument adds a title to the plot, the <code>xlab</code> and <code>ylab</code> arguments add axis labels</p></li>
-<li><p>The <code>pch</code> argument sets the shape of the points to a solid circle. pch = 15 gives a filled square. Recall other popular values: pch = 16 gives a filled circle, pch = 17 gives a filled triangle (pointing upwards), pch = 18 gives a filled diamond, pch = 19 gives a solid circle, pch = 20 gives a filled bullet (smaller than pch = 19)</p></li>
+<li><p>The <code>pch</code> argument sets the shape of the points to a solid circle. <code>pch = 15</code> gives a filled square. Recall other popular values: <code>pch = 16</code> gives a filled circle, <code>pch = 17</code> gives a filled triangle (pointing upwards), <code>pch = 18</code> gives a filled diamond, <code>pch = 19</code> gives a solid circle, <code>pch = 20</code> gives a filled bullet (smaller than <code>pch = 19</code>)</p></li>
 <li><p>the <code>col</code> argument specifies the color of the data points. Recall we can use any named color in R, or we can use hexadecimal color codes. For instance, <code>col = "#FF0000"</code> would give us red points. [2]</p></li>
 </ul>
 <ol start="5" type="1">
@@ -374,13 +356,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     tb<span class="sc">$</span>mpg, </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatter Plot of MPG vs. Weight"</span>,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Weight"</span>, <span class="at">ylab =</span> <span class="st">"Mileage (mpg)"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">1.5</span>, <span class="at">col=</span><span class="st">"blue"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">col.lab=</span><span class="st">"red"</span>, <span class="at">cex.lab=</span><span class="fl">1.5</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col.main=</span><span class="st">"darkgreen"</span>, <span class="at">cex.main=</span><span class="dv">2</span>,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg =</span> <span class="st">"gray"</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a grid</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray"</span>, <span class="at">lty =</span> <span class="st">"dashed"</span>, <span class="at">lwd =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">1.5</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"blue"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col.lab=</span><span class="st">"red"</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.lab=</span><span class="fl">1.5</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">col.main=</span><span class="st">"darkgreen"</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex.main=</span><span class="dv">2</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">bg =</span> <span class="st">"gray"</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a grid</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"black"</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty =</span> <span class="st">"dashed"</span>, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="17ContinuousData05_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -389,11 +377,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Discussion</strong></li>
 </ol>
 <ul>
-<li><p>Point Size: In the second plot, the size of the points is 1.5 times the default size (<code>cex = 1.5</code>), while in the first plot, the size of the points is the default size as <code>cex</code> is not specified.</p></li>
-<li><p>Axis Labels’ Color and Size: The second plot has red-colored, larger size axis labels (<code>col.lab="red", cex.lab=1.5</code>), while the first plot uses the default color and size as these parameters are not specified.</p></li>
-<li><p>Title’s Color and Size: The second plot has a dark green title that is twice the default size (<code>col.main="darkgreen", cex.main=2</code>), while the first plot uses the default color and size for the title as these parameters are not specified.</p></li>
-<li><p>Background Color: The second plot has a light gray background (<code>bg = "lightgray"</code>), while the first plot uses the default background color as the bg parameter is not specified.</p></li>
-<li><p>Grid: The second plot includes a grid with gray dotted lines (<code>grid(col = "gray", lty = "dotted", lwd = 0.5)</code>), while the first plot does not have a grid as the grid() function is not called. [2]</p></li>
+<li><p><strong>Point Size</strong>: In the second plot, the size of the points is 1.5 times the default size (<code>cex = 1.5</code>), while in the first plot, the size of the points is the default size as <code>cex</code> is not specified.</p></li>
+<li><p><strong>Axis Labels’ Color and Size</strong>: The second plot has red-colored, larger size axis labels (<code>col.lab="red", cex.lab=1.5</code>), while the first plot uses the default color and size as these parameters are not specified.</p></li>
+<li><p><strong>Title’s Color and Size</strong>: The second plot has a dark green title that is twice the default size (<code>col.main="darkgreen", cex.main=2</code>), while the first plot uses the default color and size for the title as these parameters are not specified.</p></li>
+<li><p><strong>Background Color</strong>: The second plot has a light gray background (<code>bg = "lightgray"</code>), while the first plot uses the default background color as the bg parameter is not specified.</p></li>
+<li><p><strong>Grid</strong>: The second plot includes a grid with gray dotted lines (<code>grid(col = "gray", lty = "dotted", lwd = 0.5)</code>), while the first plot does not have a grid as the grid() function is not called. [2]</p></li>
 </ul>
 <ol start="7" type="1">
 <li><strong>Scatterplot with best fit line</strong></li>
@@ -460,8 +448,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="scatterplot-matrix" class="level2">
 <h2 class="anchored" data-anchor-id="scatterplot-matrix">Scatterplot Matrix</h2>
 <ol type="1">
-<li><p>A scatter plot matrix, also known as a pairs plot or SPLOM, is a powerful visual tool that helps us in depicting the pair-wise relationships among a group of variables. In this matrix, every distinct variable from the dataset is charted against each other in a grid-like structure. This enables us to delve into the associations between variable pairs and identify possible trends or patterns in the dataset.</p></li>
-<li><p>When dealing with multivariate datasets, scatter plot matrices can be remarkably handy. They equip us with a rapid way to discern potential correlations among variable pairs – whether they are strong, weak, or non-existent. It’s also a convenient method to spot non-linear relationships between variables. In addition, it’s a beneficial tool to recognize outliers or peculiar data points and to observe clusters or collections of observations. [4]</p></li>
+<li><p>A scatter plot matrix, also known as a pairs plot or <strong>SPLOM</strong>, is a powerful visual tool that helps us in depicting the <strong>pair-wise relationships</strong> among a group of variables. In this matrix, every distinct variable from the dataset is charted against each other in a grid-like structure. This enables us to delve into the associations between variable pairs and identify possible trends or patterns in the dataset.</p></li>
+<li><p>When dealing with multivariate datasets, scatter plot matrices can be remarkably handy. They equip us with a rapid way to <strong>discern potential correlations among variable pairs</strong> – whether they are strong, weak, or non-existent. It’s also a convenient method to spot non-linear relationships between variables. In addition, it’s a beneficial tool to recognize outliers or peculiar data points and to observe clusters or collections of observations. [4]</p></li>
 </ol>
 <section id="scatterplot-matrix-using-pairs" class="level3">
 <h3 class="anchored" data-anchor-id="scatterplot-matrix-using-pairs">Scatterplot Matrix using <code>pairs()</code></h3>
@@ -482,7 +470,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
-<li><p>The <code>pairs()</code> function in R is designed to take a subset of the tb data frame consisting of the columns specified in the columns vector and construct a matrix of scatter plots.</p></li>
+<li><p>The <code>pairs()</code> function in R is designed to take a subset of the <code>tb</code> data frame consisting of the columns specified in the columns vector and construct a matrix of scatter plots.</p></li>
 <li><p>The plots are arranged in a grid format, where the variable for each row is plotted against the variable for each column. [5]</p></li>
 </ul>
 <ol start="3" type="1">
@@ -505,10 +493,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
-<li><p>Symbol: The <code>pch</code> parameter is used to specify the symbol that represents data points in a plot.</p></li>
-<li><p>Labels: The <code>labels</code> parameter lets us customize the variable labels that appear on the diagonal:</p></li>
-<li><p>Color: We can specify different colors for the points in each scatter plot with the <code>col</code> parameter.</p></li>
-<li><p>Point Size: The <code>cex</code> parameter controls the size of the points in the scatter plot.</p></li>
+<li><p><strong>Symbol</strong>: The <code>pch</code> parameter is used to specify the symbol that represents data points in a plot.</p></li>
+<li><p><strong>Labels</strong>: The <code>labels</code> parameter lets us customize the variable labels that appear on the diagonal:</p></li>
+<li><p><strong>Color</strong>: We can specify different colors for the points in each scatter plot with the <code>col</code> parameter.</p></li>
+<li><p><strong>Point Size</strong>: The <code>cex</code> parameter controls the size of the points in the scatter plot.</p></li>
 </ul>
 </section>
 <section id="scatter-plot-matrix-using-scatterplotmatrix-from-package-car" class="level3">
@@ -532,10 +520,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <ul>
 <li><p>The <code>car</code> package, short for Companion to Applied Regression, contains numerous functions and datasets that are helpful for regression analysis.</p></li>
-<li><p>The next step is creating a scatterplot matrix. For this, we use the <code>scatterplotMatrix()</code> function from the <code>car</code> package. This function creates a scatter plot matrix, which is a grid of scatter plots that shows pairwise relationships between several variables.</p></li>
+<li><p>For creating a scatterplot matrix,, we use the <code>scatterplotMatrix()</code> function.</p></li>
 <li><p>Here, the <code>data</code> argument specifies the data frame we are working with, <code>tb</code>.</p></li>
 <li><p>The formula <code>~ mpg + disp + drat + wt</code> indicates the variables to be included in the scatter plot matrix. Recall <code>mpg</code>, <code>disp</code>, <code>drat</code>, and <code>wt</code> represent miles per gallon, displacement, rear axle ratio, and weight, respectively.</p></li>
-<li><p>The <code>col</code> argument is used to set the color of the points in the scatter plots. Here, all points are colored red. [6]</p></li>
+<li><p>The <code>col</code> argument is used to set the color of the points in the scatter plots. Here, all points are colored red. [3]</p></li>
 </ul>
 </section>
 <section id="scatter-plot-matrix-using-pairs.panels-in-package-psych" class="level3">
@@ -554,29 +542,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Discussion</strong>:</p>
 <ul>
 <li><p>The <code>psych</code> package contains a variety of functions useful for psychological, psychometric, and personality research.</p></li>
-<li><p>We utilize the <code>pairs.panels()</code> function from the <code>psych</code> package to create a scatterplot matrix. This function is very helpful as it produces a matrix of bivariate scatter plots on the lower panels, histograms or kernel density plots on the diagonals, and correlations on the upper panels.</p></li>
-<li><p>The <code>tb[,c("mpg","wt","hp","drat")]</code> in the code specifies the subset of the <code>tb</code> data frame that we want to include in the scatterplot matrix. In this case, it refers to the columns <code>mpg</code> (miles per gallon), <code>wt</code> (weight), <code>hp</code> (horsepower), and <code>drat</code> (rear axle ratio).</p></li>
-<li><p>The <code>main</code> parameter sets the main title for the plot, which in this instance is “Scatterplot Matrix”. [7]</p></li>
+<li><p>We utilize the <code>pairs.panels()</code> function from the <code>psych</code> package to create a scatterplot matrix. This function is very helpful as it produces:</p>
+<ul>
+<li><p><strong>Histograms</strong>: The diagonal often contains histograms or density plots of the individual variables. This provides insights about the distribution of each variable.</p></li>
+<li><p><strong>Scatterplots</strong>: The lower triangle (below the diagonal) of the plot matrix contains scatterplots of each variable against the other. This helps to visualize the bivariate relationships between variables.</p></li>
+<li><p><strong>Correlation Coefficients</strong>: The upper triangle (above the diagonal) often contains correlation coefficients or other statistics that describe the relationship between the two variables. The size (and sometimes color) of these numbers typically changes based on the strength of the correlation.</p></li>
+<li><p><strong>Red Dot</strong>: In the scatterplots of the lower triangle, the red dot signifies the bivariate mean of the two variables being plotted. In other words, it represents the average value on the x-axis and the average value on the y-axis. The red dot helps you to quickly gauge where the center of the data is in relation to the scatter of the rest of the points. If the red dot (bivariate mean) is centrally located, it may suggest that the variables are symmetrically distributed around their means. If it’s located towards one of the corners, it could suggest a skew in the data or a strong correlation between the variables.</p></li>
+<li><p><code>tb[,c("mpg","wt","hp","drat")]</code> in the code specifies the subset of the <code>tb</code> data frame that we want to include in the scatterplot matrix. In this case, it refers to the columns <code>mpg</code> (miles per gallon), <code>wt</code> (weight), <code>hp</code> (horsepower), and <code>drat</code> (rear axle ratio).</p></li>
+<li><p>The <code>main</code> parameter sets the main title for the plot, which in this instance is “Scatterplot Matrix”. [6]</p></li>
+</ul></li>
 </ul>
 </section>
 </section>
 <section id="summary-of-chapter" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter">Summary of Chapter</h2>
+<p>In this chapter, we explore the analysis of relationships between continuous variables. We begin by preparing a sample dataset and converting it to a structured format. As we move forward, we emphasize the importance of visual tools like scatter plots for understanding correlations and patterns between variables. These visual tools can reveal underlying trends, groupings, anomalies, and influential data points.</p>
+<p>Using practical examples, we demonstrate how to create and customize these visualizations for clearer insights. Additionally, we introduce methods for enhancing scatter plots, including adding trend lines. The chapter also touches on the visualization of interactions between multiple variables, including the integration of categorical data, by means of color differentiation.</p>
+<p>Transitioning from scatter plots, we explore the concept of a scatter plot matrix, or SPLOM. This tool is instrumental in showcasing pairwise relationships between a set of variables in a matrix format. Scatter plot matrices are incredibly helpful when navigating multivariate datasets, allowing quick visual recognition of potential correlations and relationships among variable pairs.</p>
+<p>We then demonstrate how to create scatter plot matrices using R functions like pairs(), scatterplotMatrix(), and pairs.panels(). Each method offers a different visual experience and comes with its unique set of features. For example, using pairs.panels() from the psych package, the matrix not only contains scatter plots but also histograms on the diagonal, correlation coefficients, and other enlightening statistical visualizations.</p>
+<p>Overall, this chapter equips us with the knowledge to visualize and analyze bivariate continuous data effectively, aiding in more profound data interpretation and insights.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p>[1]</p>
-<p>Everitt, B. S., &amp; Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC. (</p>
-<p>[2]</p>
-<p>R Core Team. (2023). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org/</p>
-<p>[3]</p>
-<p>Fox, J., &amp; Weisberg, S. (2019). An R Companion to Applied Regression (3rd ed.). Sage.</p>
-<p>[4]</p>
-<p>Everitt, B., &amp; Hothorn, T. (2011). An introduction to applied multivariate analysis with R. Springer.</p>
+<p>[1] Everitt, B. S., &amp; Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC.</p>
+<p>[2] R Core Team. (2023). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org/</p>
+<p>[3] Fox, J., &amp; Weisberg, S. (2019). An R Companion to Applied Regression (3rd ed.). Sage Publications.</p>
+<p>[4] Everitt, B., &amp; Hothorn, T. (2011). An introduction to applied multivariate analysis with R. Springer.</p>
 <p>[5] Chick, J. (2020). Data visualisation with R: 100 Examples. CRC Press.</p>
-<p>[6] Fox, J., &amp; Weisberg, S. (2019). An R Companion to Applied Regression (3rd ed.). SAGE Publications.</p>
-<p>Revelle, W. (2020). Procedures for Psychological, Psychometric, and Personality Research. Northwestern University.</p>
-<p>[7] Revelle, W. (2020). Procedures for personality and psychological research. Northwestern University, Evanston. Retrieved from https://CRAN.R-project.org/package=psych.</p>
+<p>[6] Revelle, W. (2020). Procedures for personality and psychological research. Northwestern University, Evanston. Retrieved from https://CRAN.R-project.org/package=psych.</p>
 
 
 </section>
