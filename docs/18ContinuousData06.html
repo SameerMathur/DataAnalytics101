@@ -271,13 +271,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#exploring-bivariate-continuous-x-continuous-data-using-ggplot2" id="toc-exploring-bivariate-continuous-x-continuous-data-using-ggplot2" class="nav-link" data-scroll-target="#exploring-bivariate-continuous-x-continuous-data-using-ggplot2">Exploring bivariate Continuous x Continuous data, using <strong><code>ggplot2</code></strong></a>
   <ul class="collapse">
-  <li><a href="#scatterplots-using-ggplot2" id="toc-scatterplots-using-ggplot2" class="nav-link" data-scroll-target="#scatterplots-using-ggplot2">Scatterplots using ggplot2</a></li>
+  <li><a href="#scatterplot-using-ggplot2" id="toc-scatterplot-using-ggplot2" class="nav-link" data-scroll-target="#scatterplot-using-ggplot2">Scatterplot using <code>ggplot2</code></a></li>
+  <li><a href="#scatterplot-with-regression-line-using-ggplot2" id="toc-scatterplot-with-regression-line-using-ggplot2" class="nav-link" data-scroll-target="#scatterplot-with-regression-line-using-ggplot2">Scatterplot with Regression line using <code>ggplot2</code></a></li>
   </ul></li>
-  <li><a href="#scatterplots-broken-down-by-categorical-variables" id="toc-scatterplots-broken-down-by-categorical-variables" class="nav-link" data-scroll-target="#scatterplots-broken-down-by-categorical-variables">Scatterplots broken down by Categorical Variables</a>
+  <li><a href="#scatterplots-with-categorical-variables" id="toc-scatterplots-with-categorical-variables" class="nav-link" data-scroll-target="#scatterplots-with-categorical-variables">Scatterplots with Categorical Variables</a>
   <ul class="collapse">
-  <li><a href="#scatterplot-with-colored-by-categorical-variable-using-ggplot" id="toc-scatterplot-with-colored-by-categorical-variable-using-ggplot" class="nav-link" data-scroll-target="#scatterplot-with-colored-by-categorical-variable-using-ggplot">Scatterplot with colored by Categorical Variable Using ggplot()</a></li>
-  <li><a href="#scatterplot-with-broken-down-by-categorical-variable-using-ggplot" id="toc-scatterplot-with-broken-down-by-categorical-variable-using-ggplot" class="nav-link" data-scroll-target="#scatterplot-with-broken-down-by-categorical-variable-using-ggplot">Scatterplot with broken down by Categorical Variable Using ggplot()</a></li>
+  <li><a href="#scatterplot-colored-by-a-categorical-variable-using-ggplot" id="toc-scatterplot-colored-by-a-categorical-variable-using-ggplot" class="nav-link" data-scroll-target="#scatterplot-colored-by-a-categorical-variable-using-ggplot">Scatterplot colored by a Categorical variable, using <code>ggplot()</code></a></li>
+  <li><a href="#scatterplot-faceted-by-a-categorical-variable-using-ggplot" id="toc-scatterplot-faceted-by-a-categorical-variable-using-ggplot" class="nav-link" data-scroll-target="#scatterplot-faceted-by-a-categorical-variable-using-ggplot">Scatterplot faceted by a Categorical variable, using <code>ggplot()</code></a></li>
+  <li><a href="#scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr" id="toc-scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr" class="nav-link" data-scroll-target="#scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr">Scatterplot colored by a Categorical variable, with textual annotation, using <code>ggpubr()</code></a></li>
   </ul></li>
+  <li><a href="#bubble-chart" id="toc-bubble-chart" class="nav-link" data-scroll-target="#bubble-chart">Bubble Chart</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="18ContinuousData06.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -307,69 +311,344 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from package:ggplot2:
-
-    mpg</code></pre>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<section id="scatterplots-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="scatterplots-using-ggplot2">Scatterplots using ggplot2</h3>
+<section id="scatterplot-using-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-using-ggplot2">Scatterplot using <code>ggplot2</code></h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Horsepower of Engline"</span>) <span class="sc">+</span> </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Miles per gallon"</span>) <span class="sc">+</span> </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Horsepower of Engine"</span>) <span class="sc">+</span> </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Miles per gallon"</span>) <span class="sc">+</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-<p>This code creates a scatter plot of the wt variable (weight in 1000 lbs) on the x-axis and the mpg variable (miles per gallon) on the y-axis. The geom_point() function is used to add the points to the plot, and xlab(), ylab(), and ggtitle() are used to add axis labels and a plot title, respectively. You can adjust the aesthetics of the plot, such as the color and size of the points, by adding additional arguments to the geom_point() function.</p>
-</section>
-</section>
-<section id="scatterplots-broken-down-by-categorical-variables" class="level2">
-<h2 class="anchored" data-anchor-id="scatterplots-broken-down-by-categorical-variables">Scatterplots broken down by Categorical Variables</h2>
-<section id="scatterplot-with-colored-by-categorical-variable-using-ggplot" class="level3">
-<h3 class="anchored" data-anchor-id="scatterplot-with-colored-by-categorical-variable-using-ggplot">Scatterplot with colored by Categorical Variable Using ggplot()</h3>
-<p>This will create a scatterplot of miles per gallon (mpg) against weight, with each point colored according to the number of cylinders in the engine (cyl).</p>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>The <code>ggplot2</code> package uses a layering approach, enabling users to build plots incrementally, piece by piece, using a combination of data, aesthetics, and geometric objects.</p></li>
+<li><p>The function <code>ggplot()</code> initializes the plotting system. It requires a dataset to operate on and an aesthetic mapping to determine how data variables will be plotted. Here, the dataset is represented by <code>tb</code>.</p></li>
+<li><p>Inside the <code>aes()</code> function, which stands for aesthetics, the code specifies that the variable <code>hp</code> from the <code>tb</code> data frame will be plotted on the x-axis and the variable <code>mpg</code> will be plotted on the y-axis. Hence, the resulting plot will display a relationship between horsepower (<code>hp</code>) and miles per gallon (<code>mpg</code>).</p></li>
+<li><p>The <code>geom_point()</code> function is an added layer, instructing <code>ggplot2</code> to render the relationship between <code>hp</code> and <code>mpg</code> as a scatter plot, with individual data points being represented as points.</p></li>
+<li><p>The functions <code>xlab()</code> and <code>ylab()</code> are used to set custom labels for the x and y axes, respectively. In this code, the x-axis is labeled as “Horsepower of Engine” and the y-axis is labeled as “Miles per gallon”.</p></li>
+<li><p>Finally, the <code>ggtitle()</code> function is used to assign a title to the entire plot. In this instance, the title is set as “Scatter Plot of mpg vs.&nbsp;hp”, clearly indicating the purpose and content of the visualization.</p></li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggplot2 package</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot of mpg vs. wt, colored by cyl</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight (lbs/1000)"</span>, <span class="at">y =</span> <span class="st">"Miles per gallon"</span>) <span class="sc">+</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="dv">17</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-</section>
-<section id="scatterplot-with-broken-down-by-categorical-variable-using-ggplot" class="level3">
-<h3 class="anchored" data-anchor-id="scatterplot-with-broken-down-by-categorical-variable-using-ggplot">Scatterplot with broken down by Categorical Variable Using ggplot()</h3>
-<p>This will create a scatterplot of miles per gallon (mpg) against weight, with each plot faceted by the number of cylinders in the engine (cyl).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggplot2 package</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot matrix using ggplot()</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> mpg, <span class="at">y =</span> disp)) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color by continuous variable</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"mpg"</span>) <span class="sc">+</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"gray"</span>, <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
-
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add density distribution as marginal plot</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggExtra"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(tb, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="dv">17</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Change marginal plot type</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">"boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add density distribution as marginal plot</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"ggExtra"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggscatter</span>(tb, </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Change marginal plot type</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggMarginal</span>(p, <span class="at">type =</span> <span class="st">"boxplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
 </section>
+<section id="scatterplot-with-regression-line-using-ggplot2" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-with-regression-line-using-ggplot2">Scatterplot with Regression line using <code>ggplot2</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Added this line for the regression</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Horsepower of Engine"</span>) <span class="sc">+</span>  </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Miles per gallon"</span>) <span class="sc">+</span> </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp with Regression Line"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span>  <span class="co"># Added this line for the regression</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Horsepower of Engine"</span>) <span class="sc">+</span>  </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Miles per gallon"</span>) <span class="sc">+</span> </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp with Regression Line"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><code>geom_smooth(method = "lm", se = FALSE, color = "blue")</code>: This function adds a smoothed conditional mean.
+<ul>
+<li>The <code>method = "lm"</code> argument indicates that a linear model (i.e., a regression line) should be used for smoothing. This line will depict the overall trend in the data.</li>
+<li>If <code>se = FALSE</code> then the standard error bands (which show the uncertainty around the regression line) aren’t plotted. This determines whether or not the standard error bands (or confidence interval bands) are displayed around the smoothing line. In the case of linear regression (method = “lm”), these bands represent the 95% confidence interval around the predicted values. This means that if you were to repeatedly sample from the population and fit a regression model each time, you’d expect about 95% of the confidence intervals to contain the true regression line.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"reg.line"</span>,                                 <span class="co"># Add regression line</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf.int =</span> <span class="cn">TRUE</span>,                                  <span class="co"># Add confidence interval</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">"blue"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">fill =</span> <span class="st">"lightgray"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>          )<span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="at">method =</span> <span class="st">"pearson"</span>, <span class="at">label.x =</span> <span class="dv">3</span>, <span class="at">label.y =</span> <span class="dv">30</span>)  <span class="co"># Add correlation coefficient</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="scatterplots-with-categorical-variables" class="level2">
+<h2 class="anchored" data-anchor-id="scatterplots-with-categorical-variables">Scatterplots with Categorical Variables</h2>
+<section id="scatterplot-colored-by-a-categorical-variable-using-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-colored-by-a-categorical-variable-using-ggplot">Scatterplot colored by a Categorical variable, using <code>ggplot()</code></h3>
+<p>This will create a scatterplot of miles per gallon (<code>mpg</code>) against horsepower (<code>hp</code>), with each point colored according to the number of cylinders (<code>cyl</code>) in the engine.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Scatterplot of mpg vs. hp, colored by cyl</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> hp, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> mpg, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Horsepower"</span>, <span class="at">y =</span> <span class="st">"Miles per gallon"</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>)  <span class="sc">+</span> </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp, for cyl={4,6,8}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>The <code>aes()</code> function, short for aesthetics, designates the variables and their roles in the plot. In this code:</p>
+<ul>
+<li>The <code>hp</code> variable is plotted on the x-axis.</li>
+<li>The <code>mpg</code> variable is mapped to the y-axis.</li>
+<li>The <code>color</code> attribute is set based on the <code>cyl</code> variable, which presumably indicates the number of cylinders in a car engine. The use of <code>factor(cyl)</code> ensures that the <code>cyl</code> variable is treated as a discrete factor rather than a continuous variable, which is essential for color differentiation.</li>
+</ul></li>
+<li><p><code>geom_point()</code> introduces a scatter plot layer, meaning that the relationship between <code>hp</code> and <code>mpg</code> will be represented using individual points, with each point’s color reflecting the number of cylinders as specified in the aesthetic mapping.</p></li>
+<li><p>The <code>labs()</code> function provides a convenient way to label the axes. Here, the x-axis receives the label “Horsepower” and the y-axis is labeled “Miles per gallon”.</p></li>
+<li><p>The <code>scale_color_discrete()</code> function customizes the color scale for discrete variables. By specifying the <code>name</code> argument as “Cylinders”, it ensures that the legend accompanying the color scale in the plot will be labeled as “Cylinders”, making it clear to viewers that the colors of the points represent different cylinder counts.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>, <span class="co"># Color by groups "cyl"</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="st">"cyl"</span>,  <span class="co"># Change point shape by groups "cyl"</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">rug =</span> <span class="cn">TRUE</span>               <span class="co"># Add marginal rug</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extending the regression line --&gt; fullrange = TRUE</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Add marginal rug (marginal density) ---&gt; rug = TRUE</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"reg.line"</span>,        <span class="co"># Add regression line</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>,           <span class="co"># Color by groups "cyl"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="st">"cyl"</span>,           <span class="co"># Change point shape by groups "cyl"</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">fullrange =</span> <span class="cn">TRUE</span>,        <span class="co"># Extending the regression line</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">rug =</span> <span class="cn">TRUE</span>               <span class="co"># Add marginal rug</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>          ) <span class="sc">+</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_cor</span>(<span class="fu">aes</span>(<span class="at">color =</span> cyl), </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label.x =</span> <span class="dv">3</span>)           <span class="co"># Add correlation coefficient</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"reg.line"</span>,  <span class="co"># Add regression line</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">conf.int =</span> <span class="cn">TRUE</span>,   <span class="co"># Add confidence interval</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>,     <span class="co"># Color by groups "cyl"</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">shape =</span> <span class="st">"cyl"</span>      <span class="co"># Change point shape by groups "cyl"</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="scatterplot-faceted-by-a-categorical-variable-using-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-faceted-by-a-categorical-variable-using-ggplot">Scatterplot faceted by a Categorical variable, using <code>ggplot()</code></h3>
+<p>This will create a scatterplot of miles per gallon (mpg) against weight, with each plot faceted by the number of cylinders in the engine (cyl).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Scatterplot of mpg vs. hp, faceted by cyl</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> hp, </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mpg, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(. <span class="sc">~</span> cyl) <span class="sc">+</span> </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp, for cyl={4,6,8}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>The foundational layer is initialized with the <code>ggplot()</code> function. This function takes in a dataset, <code>tb</code>, and aesthetic mappings that determine how variables are displayed. In this piece of code:</p>
+<ul>
+<li><code>hp</code> is chosen to be plotted on the x-axis.</li>
+<li><code>mpg</code> is selected for the y-axis.</li>
+<li>The color of the points will be determined by the <code>cyl</code> variable.</li>
+</ul></li>
+<li><p>The addition of the <code>geom_point()</code> layer ensures that a scatter plot will represent the relationship between <code>hp</code> and <code>mpg</code>. Each point’s color will correspond to the value of the <code>cyl</code> variable.</p></li>
+<li><p>The <code>facet_grid()</code> function introduces the concept of faceting. Faceting divides a plot into multiple panels based on the levels of one or more factors. In this case, the plot is faceted horizontally (<code>~ cyl</code>), meaning that separate panels are created for each unique value of <code>cyl</code>. The <code>.</code> before the <code>~</code> indicates that there’s no faceting vertically.</p></li>
+<li><p>Finally, the <code>ggtitle()</code> function provides the entire plot with a title, which is “Scatter Plot of mpg vs.&nbsp;hp, for cyl={4,6,8}”. This title clearly communicates the main theme of the plot and indicates that it showcases relationships for cars with 4, 6, or 8 cylinders.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color by continuous variable</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">facet.by =</span> <span class="st">"cyl"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> hp, </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mpg, </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(cyl <span class="sc">~</span> .) <span class="sc">+</span> </span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp, Faceted Vertically by cyl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>The primary difference between the two code snippets lies in how the faceting is implemented using the <code>facet_grid()</code> function.</p></li>
+<li><p>In the original code, <code>facet_grid(. ~ cyl)</code> is used, which means the scatter plots are faceted horizontally based on the unique values of the <code>cyl</code> variable; each unique cylinder count gets its own column.</p></li>
+<li><p>Conversely, in the updated code with <code>facet_grid(cyl ~ .)</code>, the scatter plots are faceted vertically based on the unique values of the <code>cyl</code> variable; each unique cylinder count gets its own row.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> hp, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mpg, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cyl, <span class="at">ncol =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp, Wrapped Facets by cyl"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>This approach creates a wrapped grid of facets based on <code>cyl</code>.</p></li>
+<li><p>The <code>ncol = 3</code> argument specifies that up to three facets will be placed in a row before wrapping to the next row. You can adjust this as needed based on the number of levels in the faceting variable and the desired layout.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> hp, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mpg, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(cyl <span class="sc">~</span> gear) <span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"Scatter Plot of mpg vs. hp, Faceted by cyl and gear"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>In this code, within the <code>aes()</code> aesthetics function:</p>
+<ul>
+<li>The variable <code>hp</code> is mapped to the x-axis.</li>
+<li>The variable <code>mpg</code> is mapped to the y-axis.</li>
+<li>The color of individual points is determined by the <code>cyl</code> variable, which probably represents the number of cylinders in an engine.</li>
+</ul></li>
+<li><p>The <code>geom_point()</code> function is introduced to represent the relationship between <code>hp</code> and <code>mpg</code> as a scatter plot. The colors of the individual points will correspond to the values of the <code>cyl</code> variable.</p></li>
+<li><p>The <code>facet_grid(cyl ~ gear)</code> function is the standout feature in this code. Here, the plots are faceted based on two categorical variables:</p>
+<ul>
+<li><code>cyl</code>, which is mapped to rows. Each unique value of <code>cyl</code> will generate a new row of plots.</li>
+<li><code>gear</code>, which is mapped to columns. Each unique value of <code>gear</code> will generate a new column of plots.</li>
+<li>The resultant grid will represent combinations of <code>cyl</code> and <code>gear</code> values, with each cell in the grid showing the relationship between <code>hp</code> and <code>mpg</code> for a specific combination of <code>cyl</code> and <code>gear</code>.</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color by continuous variable</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">facet.by =</span> <span class="fu">c</span>(<span class="st">"cyl"</span>,<span class="st">"gear"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>          ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr" class="level3">
+<h3 class="anchored" data-anchor-id="scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr">Scatterplot colored by a Categorical variable, with textual annotation, using <code>ggpubr()</code></h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Textual annotation</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>   <span class="at">color =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>   <span class="at">palette =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>   <span class="at">label =</span> <span class="st">"mpg"</span>, </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>   <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="bubble-chart" class="level2">
+<h2 class="anchored" data-anchor-id="bubble-chart">Bubble Chart</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(tb, </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"hp"</span>, <span class="at">y =</span> <span class="st">"mpg"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"cyl"</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"wt"</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="dv">15</span>))    <span class="co"># Adjust the range of points size</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18ContinuousData06_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] Everitt, B. S., &amp; Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC.</p>
+
+
 </section>
 </section>
 
