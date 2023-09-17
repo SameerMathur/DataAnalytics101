@@ -209,12 +209,12 @@
 \date{}
 
 \begin{document}
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, breakable, enhanced, sharp corners, borderline west={3pt}{0pt}{shadecolor}, interior hidden, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, frame hidden, boxrule=0pt, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced]}{\end{tcolorbox}}\fi
 
 \hypertarget{live-case-sp500-1-of-3}{%
 \chapter{Live Case: S\&P500 (1 of 3)}\label{live-case-sp500-1-of-3}}
 
-\emph{Aug 15, 2023.}
+\emph{Aug 18, 2023.}
 
 \hypertarget{overview-of-the-sp-500}{%
 \section{Overview of the S\&P 500}\label{overview-of-the-sp-500}}
@@ -342,7 +342,7 @@ tibble}\label{read-the-sp500-data-from-a-google-sheet-into-a-tibble}}
 \begin{itemize}
 \tightlist
 \item
-  We have 503 stocks of the S\&P500 in our dataset, as of 16 August
+  We have 503 stocks of the S\&P500 in our dataset, as of 13 September
   2023.
 \end{itemize}
 
@@ -555,7 +555,7 @@ values}\label{remove-rows-containing-no-data-or-null-values}}
 
 \begin{table}
 
-\caption{S&P500 by Sectors, as of 16 August 2023}
+\caption{S&P500 by Sectors, as of 13 September 2023}
 \centering
 \begin{tabular}[t]{l|l|r}
 \hline
@@ -569,7 +569,7 @@ values}\label{remove-rows-containing-no-data-or-null-values}}
 \hline
 11 & Health Technology & 47\\
 \hline
-4 & Consumer Non-Durables & 31\\
+4 & Consumer Non-Durables & 32\\
 \hline
 15 & Producer Manufacturing & 31\\
 \hline
@@ -579,7 +579,7 @@ values}\label{remove-rows-containing-no-data-or-null-values}}
 \hline
 14 & Process Industries & 24\\
 \hline
-16 & Retail Trade & 23\\
+16 & Retail Trade & 22\\
 \hline
 8 & Energy Minerals & 16\\
 \hline
@@ -650,21 +650,21 @@ values}\label{remove-rows-containing-no-data-or-null-values}}
 
 \begin{table}
 
-\caption{S&P500 by Technical Ratings, as of 16 August 2023}
+\caption{S&P500 by Technical Ratings, as of 13 September 2023}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
 Rating & Stocks\\
 \hline
-Buy & 163\\
+Buy & 148\\
 \hline
-Neutral & 71\\
+Neutral & 62\\
 \hline
-Sell & 97\\
+Sell & 234\\
 \hline
-Strong Buy & 156\\
+Strong Buy & 37\\
 \hline
-Strong Sell & 16\\
+Strong Sell & 22\\
 \hline
 \end{tabular}
 \end{table}
@@ -686,51 +686,51 @@ Strong Sell & 16\\
 
 \begin{table}
 
-\caption{S&P500 Sector Stocks by Technical Ratings, as of 16 August 2023}
+\caption{S&P500 Sector Stocks by Technical Ratings, as of 13 September 2023}
 \centering
 \begin{tabular}[t]{l|r|r|r|r|r|r}
 \hline
   & Buy & Neutral & Sell & Strong Buy & Strong Sell & Sum\\
 \hline
-Commercial Services & 4 & 4 & 5 & 0 & 0 & 13\\
+Commercial Services & 2 & 1 & 9 & 1 & 0 & 13\\
 \hline
-Communications & 1 & 1 & 1 & 0 & 0 & 3\\
+Communications & 0 & 0 & 3 & 0 & 0 & 3\\
 \hline
-Consumer Durables & 6 & 2 & 1 & 3 & 0 & 12\\
+Consumer Durables & 5 & 0 & 7 & 0 & 0 & 12\\
 \hline
-Consumer Non-Durables & 5 & 2 & 3 & 21 & 0 & 31\\
+Consumer Non-Durables & 7 & 4 & 20 & 0 & 1 & 32\\
 \hline
-Consumer Services & 8 & 5 & 7 & 8 & 1 & 29\\
+Consumer Services & 8 & 4 & 9 & 7 & 1 & 29\\
 \hline
-Distribution Services & 1 & 1 & 2 & 4 & 1 & 9\\
+Distribution Services & 0 & 1 & 6 & 0 & 2 & 9\\
 \hline
-Electronic Technology & 16 & 6 & 16 & 10 & 1 & 49\\
+Electronic Technology & 13 & 4 & 29 & 2 & 1 & 49\\
 \hline
-Energy Minerals & 4 & 0 & 0 & 12 & 0 & 16\\
+Energy Minerals & 8 & 3 & 4 & 1 & 0 & 16\\
 \hline
-Finance & 37 & 9 & 10 & 29 & 7 & 92\\
+Finance & 29 & 13 & 34 & 13 & 3 & 92\\
 \hline
-Health Services & 2 & 3 & 1 & 5 & 1 & 12\\
+Health Services & 3 & 2 & 6 & 0 & 1 & 12\\
 \hline
-Health Technology & 17 & 11 & 10 & 9 & 0 & 47\\
+Health Technology & 17 & 8 & 18 & 0 & 4 & 47\\
 \hline
-Industrial Services & 3 & 0 & 1 & 5 & 0 & 9\\
+Industrial Services & 4 & 2 & 1 & 2 & 0 & 9\\
 \hline
-Non-Energy Minerals & 3 & 1 & 1 & 2 & 0 & 7\\
+Non-Energy Minerals & 2 & 1 & 4 & 0 & 0 & 7\\
 \hline
-Process Industries & 7 & 4 & 6 & 7 & 0 & 24\\
+Process Industries & 3 & 4 & 15 & 1 & 1 & 24\\
 \hline
-Producer Manufacturing & 14 & 3 & 6 & 7 & 1 & 31\\
+Producer Manufacturing & 3 & 3 & 19 & 3 & 3 & 31\\
 \hline
-Retail Trade & 10 & 2 & 5 & 4 & 2 & 23\\
+Retail Trade & 8 & 3 & 10 & 0 & 1 & 22\\
 \hline
-Technology Services & 14 & 10 & 18 & 8 & 0 & 50\\
+Technology Services & 14 & 5 & 27 & 0 & 4 & 50\\
 \hline
-Transportation & 4 & 4 & 2 & 3 & 2 & 15\\
+Transportation & 4 & 2 & 9 & 0 & 0 & 15\\
 \hline
-Utilities & 7 & 3 & 2 & 19 & 0 & 31\\
+Utilities & 18 & 2 & 4 & 7 & 0 & 31\\
 \hline
-Sum & 163 & 71 & 97 & 156 & 16 & 503\\
+Sum & 148 & 62 & 234 & 37 & 22 & 503\\
 \hline
 \end{tabular}
 \end{table}
@@ -767,6 +767,102 @@ This completes our review of Technical Rating.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{sp500 }\OtherTok{\textless{}{-}}\NormalTok{ sp500 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{MarketCapBillions =} \StringTok{\textasciigrave{}}\AttributeTok{Market Capitalization}\StringTok{\textasciigrave{}}\SpecialCharTok{/} \DecValTok{1000000000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colnames}\NormalTok{(sp500)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+ [1] "Date"                                   
+ [2] "Stock"                                  
+ [3] "Description"                            
+ [4] "Sector"                                 
+ [5] "Industry"                               
+ [6] "Market Capitalization"                  
+ [7] "Price"                                  
+ [8] "52 Week Low"                            
+ [9] "52 Week High"                           
+[10] "Return on Equity (TTM)"                 
+[11] "Return on Assets (TTM)"                 
+[12] "Return on Invested Capital (TTM)"       
+[13] "Gross Margin (TTM)"                     
+[14] "Operating Margin (TTM)"                 
+[15] "Net Margin (TTM)"                       
+[16] "Price to Earnings Ratio (TTM)"          
+[17] "Price to Book (FY)"                     
+[18] "Enterprise Value/EBITDA (TTM)"          
+[19] "EBITDA (TTM)"                           
+[20] "EPS Diluted (TTM)"                      
+[21] "EBITDA (TTM YoY Growth)"                
+[22] "EBITDA (Quarterly YoY Growth)"          
+[23] "EPS Diluted (TTM YoY Growth)"           
+[24] "EPS Diluted (Quarterly YoY Growth)"     
+[25] "Price to Free Cash Flow (TTM)"          
+[26] "Free Cash Flow (TTM YoY Growth)"        
+[27] "Free Cash Flow (Quarterly YoY Growth)"  
+[28] "Debt to Equity Ratio (MRQ)"             
+[29] "Current Ratio (MRQ)"                    
+[30] "Quick Ratio (MRQ)"                      
+[31] "Dividend Yield Forward"                 
+[32] "Dividends per share (Annual YoY Growth)"
+[33] "Price to Sales (FY)"                    
+[34] "Revenue (TTM YoY Growth)"               
+[35] "Revenue (Quarterly YoY Growth)"         
+[36] "Technical Rating"                       
+[37] "Low52WkPerc"                            
+[38] "MarketCapBillions"                      
+\end{verbatim}
+
+\hypertarget{rename-data-columns}{%
+\subsection{Rename Data Columns}\label{rename-data-columns}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The names of the data columns are potentially confusing. We rename the
+  data columns to make it easier to work with the data.
+\item
+  We define a vector of revised column names.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Define a mapping of new column names}
+\NormalTok{new\_names }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+  \StringTok{"Date"}\NormalTok{, }\StringTok{"Stock"}\NormalTok{, }\StringTok{"StockName"}\NormalTok{, }\StringTok{"Sector"}\NormalTok{, }\StringTok{"Industry"}\NormalTok{, }
+  \StringTok{"MarketCap"}\NormalTok{, }\StringTok{"Price"}\NormalTok{, }\StringTok{"Low52Wk"}\NormalTok{, }\StringTok{"High52Wk"}\NormalTok{, }
+  \StringTok{"ROE"}\NormalTok{, }\StringTok{"ROA"}\NormalTok{, }\StringTok{"ROIC"}\NormalTok{, }\StringTok{"GrossMargin"}\NormalTok{, }
+  \StringTok{"OperatingMargin"}\NormalTok{, }\StringTok{"NetMargin"}\NormalTok{, }\StringTok{"PE"}\NormalTok{, }
+  \StringTok{"PB"}\NormalTok{, }\StringTok{"EVEBITDA"}\NormalTok{, }\StringTok{"EBITDA"}\NormalTok{, }\StringTok{"EPS"}\NormalTok{, }
+  \StringTok{"EBITDA\_YOY"}\NormalTok{, }\StringTok{"EBITDA\_QYOY"}\NormalTok{, }\StringTok{"EPS\_YOY"}\NormalTok{, }
+  \StringTok{"EPS\_QYOY"}\NormalTok{, }\StringTok{"PFCF"}\NormalTok{, }\StringTok{"FCF"}\NormalTok{, }
+  \StringTok{"FCF\_QYOY"}\NormalTok{, }\StringTok{"DebtToEquity"}\NormalTok{, }\StringTok{"CurrentRatio"}\NormalTok{, }
+  \StringTok{"QuickRatio"}\NormalTok{, }\StringTok{"DividendYield"}\NormalTok{, }
+  \StringTok{"DividendsPerShare\_YOY"}\NormalTok{, }\StringTok{"PS"}\NormalTok{, }
+  \StringTok{"Revenue\_YOY"}\NormalTok{, }\StringTok{"Revenue\_QYOY"}\NormalTok{, }\StringTok{"Rating"}\NormalTok{,}
+  \StringTok{"Low52WkPerc"}\NormalTok{, }\StringTok{"MarketCapBillions"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  We rename the columns using the \texttt{colnames()} or
+  \texttt{names()} function.
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Rename the columns }
+\FunctionTok{colnames}\NormalTok{(sp500) }\OtherTok{\textless{}{-}}\NormalTok{ new\_names}
+\CommentTok{\#sp500 \textless{}{-} sp500 \%\textgreater{}\% rename\_all(\textasciitilde{}new\_names)}
 \end{Highlighting}
 \end{Shaded}
 

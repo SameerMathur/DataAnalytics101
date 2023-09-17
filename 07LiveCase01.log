@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2023.7.21)  16 AUG 2023 14:45
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2023.8.25)  13 SEP 2023 11:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1332,8 +1332,8 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [3] [4]
 ! Misplaced alignment tab character &.
 <argument> S&
-             P500 by Sectors, as of 16 August 2023
-l.558 ...{S&P500 by Sectors, as of 16 August 2023}
+             P500 by Sectors, as of 13 September 2023
+l.558 ...P500 by Sectors, as of 13 September 2023}
                                                    
 Here is how much of TeX's memory you used:
  37241 strings out of 479819

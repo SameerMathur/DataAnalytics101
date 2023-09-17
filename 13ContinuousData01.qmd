@@ -1,6 +1,6 @@
 # Continuous Data (1 of 2)
 
-*Aug 8, 2023*
+*Aug 8, 2023.*
 
 ## Exploring Univariate Continuous Data
 
