@@ -4,7 +4,7 @@
 
 ## Exploring bivariate Continuous x Continuous data
 
-THIS CHAPTER explores how to summarize and visualize the interaction between *bivariate continuous data* using correlation analysis, scatter plots, scatter plot matrices and other such techniques.
+This chapter explores how to summarize and visualize the interaction between *bivariate continuous data* using correlation analysis, scatter plots, scatter plot matrices and other such techniques.
 
 **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
 
@@ -12,7 +12,12 @@ THIS CHAPTER explores how to summarize and visualize the interaction between *bi
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
-library(knitr) # For formatting tables
+library(knitr, quietly = TRUE, warn.conflicts = FALSE) 
+library(ggplot2, quietly = TRUE, warn.conflicts = FALSE)
+library(car, quietly = TRUE, warn.conflicts = FALSE) 
+library(psych, quietly = TRUE, warn.conflicts = FALSE) 
+library(GGally, quietly = TRUE, warn.conflicts = FALSE)
+
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
@@ -135,6 +140,8 @@ legend("topright",
        pch = 16)
 ```
 
+
+
 10. Discussion
 
 -   In the snippet `col=c("red","green","blue")[tb$cyl]`, we assign the color of the data points according to the `cyl` variable. It translates to distinct colors for different `cyl` values in the plot.
@@ -241,6 +248,35 @@ pairs.panels(tb[,c("mpg","wt","hp","drat")],
     -    `tb[,c("mpg","wt","hp","drat")]` in the code specifies the subset of the `tb` data frame that we want to include in the scatterplot matrix. In this case, it refers to the columns `mpg` (miles per gallon), `wt` (weight), `hp` (horsepower), and `drat` (rear axle ratio).
 
     -   The `main` parameter sets the main title for the plot, which in this instance is "Scatterplot Matrix". \[6\]
+
+
+
+
+
+
+
+### Scatterplot Matrix Using `ggpairs()` in package `GGally`
+
+```{r warning=FALSE,message=FALSE}
+# Load the GGally package
+library(GGally)
+
+# Create a scatterplot matrix using ggpairs()
+ggpairs(tb[,c("mpg","wt","hp","drat")])
+```
+
+**Discussion**:
+
+- The `GGally` package is an extension of the renowned `ggplot2` package in R. It offers enhanced functionalities to create specific types of plots, especially when dealing with relationships between multiple variables.
+  
+- The `ggpairs()` function is a standout tool from `GGally`. It is designed to generate scatterplot matrices (often known as pairs plots) in a visually appealing format, providing insights into the pairwise relationships between variables.
+  
+- In the given code, the data frame being operated on is denoted by `tb`.
+  
+- The selection `tb[,c("mpg","wt","hp","drat")]` specifically picks out the columns named "mpg", "wt", "hp", and "drat". This means that our scatterplot matrix will show the relationships among these four variables. As a reminder, assuming typical automotive datasets: "mpg" might signify miles per gallon, "wt" would be the weight of the vehicle, "hp" indicates horsepower, and "drat" could represent the drive axle ratio.
+  
+- The output plot, produced by `ggpairs()`, will display a 4x4 grid. The diagonal of this grid usually portrays histograms or density plots for the individual variables, while the off-diagonal segments demonstrate scatter plots between two variables, giving a comprehensive overview of how each variable relates to the others.
+
 
 ## Summary of Chapter
 

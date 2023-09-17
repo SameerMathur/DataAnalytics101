@@ -1,10 +1,10 @@
-# Continuous x Continous data (2 of 2)
+# Continuous x Continuous data (2 of 2)
 
-*Aug 7, 2023.*
+*Sep 17, 2023.*
 
 ## Exploring bivariate Continuous x Continuous data, using **`ggplot2`**
 
-THIS CHAPTER demonstrates the use of the popular **`ggplot2`** package to further explore the interaction between *bivariate continuous data*.
+This chapter demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** packages to further explore the interaction between *bivariate continuous data*.
 
 **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
 
@@ -12,7 +12,8 @@ THIS CHAPTER demonstrates the use of the popular **`ggplot2`** package to furthe
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
-library(knitr) # For formatting tables
+library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
@@ -25,39 +26,21 @@ tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
 attach(tb)
 ```
 
-### Scatterplot using ggplot2
+### Scatterplots using ggplot2
 
 ```{r}
-# Load the ggplot2 package
-library(ggplot2)
-
-# Create the scatter plot
-ggplot(tb, aes(x = wt, y = mpg)) + 
+# Create a scatter plot
+ggplot(tb, 
+       aes(x = hp, y = mpg)) + 
   geom_point() + 
-  xlab("Weight (1000 lbs)") + 
+  xlab("Horsepower of Engline") + 
   ylab("Miles per gallon") + 
-  ggtitle("Scatter Plot of Weight vs. MPG")
+  ggtitle("Scatter Plot of mpg vs. hp")
 
 ```
 
 This code creates a scatter plot of the wt variable (weight in 1000 lbs) on the x-axis and the mpg variable (miles per gallon) on the y-axis. The geom_point() function is used to add the points to the plot, and xlab(), ylab(), and ggtitle() are used to add axis labels and a plot title, respectively. You can adjust the aesthetics of the plot, such as the color and size of the points, by adding additional arguments to the geom_point() function.
 
-## Scatterplot Matrix
-
-Recall that a scatter plot matrix (also called a pairs plot or a SPLOM) is a graphical display of pairwise scatter plots of a set of variables. In a scatter plot matrix, each variable in the dataset is plotted against every other variable in a matrix format. This allows us to visualize the relationships between pairs of variables and explore potential patterns or trends in the data.
-
-A scatter plot matrix is particularly useful for exploring multivariate datasets, as it allows us to quickly identify which pairs of variables may be strongly correlated, which may have weak or no correlation, and which may exhibit nonlinear relationships. It can also be used to identify outliers or unusual observations, and to visualize clusters or groups of observations based on patterns in the scatter plots.
-
-### Scatterplot Matrix Using ggpairs()
-
-```{r warning=FALSE,message=FALSE}
-# Load the GGally package
-library(GGally)
-
-# Create a scatterplot matrix using ggpairs()
-ggpairs(tb[,c("mpg","wt","hp","drat")])
-
-```
 
 ## Scatterplots broken down by Categorical Variables
 
