@@ -203,12 +203,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./07LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (1 of 3)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./08CategoricalData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Data</span></a>
   </div>
@@ -223,18 +217,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./10CategoricalData03.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11LiveCase02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (2 of 3)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12LiveCase03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (3 of 3)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -270,7 +252,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18ContinuousData06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continous data (2 of 2)</span></a>
+ <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
   </div>
 </li>
     </ul>
@@ -318,30 +300,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><strong><code>ggplot2</code></strong>: In the <code>ggplot2</code> package for instance, the function <code>geom_boxplot()</code> produces box plots, <code>geom_violin()</code> creates violin plots, and <code>geom_histogram()</code> and <code>geom_density()</code> generate histograms and density plots, respectively. The related <code>ggbeeswarm</code> package can be used for creating bee swarm plots.</p></li>
 <li><p><strong><code>ggpubr</code></strong>: The <code>ggpubr</code> package in R augments <code>ggplot2</code> by offering tools for creating publication-ready plots. It enables simplified plotting with easy-to-use functions like gghistogram(), ggdensity(), ggboxplot(), ggviolin, and makes it easy to merge multiple plots with <code>ggarrange()</code>, and provides specialized themes for a polished look. Essentially, <code>ggpubr</code> merges <code>ggplot2</code>’s extensive customization with the ease of creating visually appealing and informative plots.</p></li>
-<li><p><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</p></li>
+<li><p>We load the necessary packages, including <code>ggplot2</code>, <code>dplyr</code> and <code>ggthemes</code> packages. The package <code>ggthemes</code> allows us to use a variety of themes.</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For data visualization</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For data visualization</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ol start="4" type="1">
-<li>We load the <code>ggplot2</code>, <code>dplyr</code> and <code>ggthemes</code> packages. The package <code>ggthemes</code> allows us to use a variety of themes.</li>
+<ol start="5" type="1">
+<li><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(ggplot2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Let’s take a closer look at some of the most effective ways of Visualizing Univariate Continuous Data using <code>ggplot2</code> and related packages, including</li>
@@ -350,6 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Bee Swarm plots using <code>ggbeeswarm</code></p></li>
 <li><p>Histograms using <code>ggplot2</code> and <code>ggpubr</code></p></li>
 <li><p>PDF and CDF Density plots using <code>ggplot2</code> and <code>ggpubr</code></p></li>
+<li><p>Bar plots using <code>ggplot2</code></p></li>
 <li><p>Box plots using <code>ggplot2</code> and <code>ggpubr</code></p></li>
 <li><p>Violin plots using <code>ggplot2</code> and <code>ggpubr</code></p></li>
 <li><p>Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></p></li>

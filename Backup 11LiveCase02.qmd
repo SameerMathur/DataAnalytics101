@@ -1,0 +1,383 @@
+# Live Case: S&P500 (2 of 3)
+
+*Aug 10, 2023. -=-*
+
+Agenda: Understanding the S&P500 Index
+
+## S&P 500 Data - PRELIMINARY SETUP
+
+1.  We will continue our analysis of the S&P 500. Load the data, as described in the chapter Live Case: S&P500 (1 of 3)
+
+```{r, warning=FALSE}
+# Read S&P500 stock data present in a Google Sheet.
+library(gsheet)
+prefix <- "https://docs.google.com/spreadsheets/d/"
+sheetID <- "11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"
+url500 <- paste(prefix,sheetID) # Form the URL to connect to
+sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
+```
+
+2.  Rename columns, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+
+# Define a mapping of new column names
+new_names <- c(
+  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "MarketCap", "Price", "Low52Wk", "High52Wk", 
+  "ROE", "ROA", "ROIC", "GrossMargin", 
+  "OperatingMargin", "NetMargin", "PE", 
+  "PB", "EVEBITDA", "EBITDA", "EPS", 
+  "EBITDA_YOY", "EBITDA_QYOY", "EPS_YOY", 
+  "EPS_QYOY", "PFCF", "FCF", 
+  "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
+  "QuickRatio", "DividendYield", 
+  "DividendsPerShare_YOY", "PS", 
+  "Revenue_YOY", "Revenue_QYOY", "Rating"
+)
+# Rename the columns using the new_names vector
+sp500 <- sp500 %>% 
+  rename_with(~ new_names, everything())
+```
+
+```{r, warning=FALSE, eval=TRUE, echo=FALSE}
+library(tibble)
+new_names <- c(
+  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "MarketCap", "Price", "Low52Wk", "High52Wk", 
+  "ROE", "ROA", "ROIC", "GrossMargin", 
+  "OperatingMargin", "NetMargin", "PE", 
+  "PB", "EVEBITDA", "EBITDA", "EPS", 
+  "EBITDA_YOY", "EBITDA_QYOY", "EPS_YOY", 
+  "EPS_QYOY", "PFCF", "FCF", 
+  "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
+  "QuickRatio", "DividendYield", 
+  "DividendsPerShare_YOY", "PS", 
+  "Revenue_YOY", "Revenue_QYOY", "Rating"
+)
+descriptions <- c(
+  "Date (e.g. \"7/15/2023\")",
+  "Stock Ticker (e.g. AAL)",
+  "Name of the company (e.g \"American Airlines Group, Inc.\")",
+  "Sector the stock belongs to (e.g. \"Transportation\")",
+  "Industry the stock belongs to (e.g \"Airlines\")",
+  "Market capitalization of the company",
+  "Recent Stock Price",
+  "52-Week Low Price",
+  "52-Week High Price",
+  "Return on Equity",
+  "Return on Assets",
+  "Return on Invested Capital",
+  "Gross Profit Margin",
+  "Operating Profit Margin",
+  "Net Profit Margin",
+  "Price-to-Earnings Ratio",
+  "Price-to-Book Ratio",
+  "Enterprise Value to EBITDA Ratio",
+  "EBITDA",
+  "Earnings per Share",
+  "EBITDA Year-over-Year Growth",
+  "EBITDA Quarterly Year-over-Year Growth",
+  "EPS Year-over-Year Growth",
+  "EPS Quarterly Year-over-Year Growth",
+  "Price-to-Free Cash Flow",
+  "Free Cash Flow",
+  "Free Cash Flow Quarterly Year-over-Year Growth",
+  "Debt-to-Equity Ratio",
+  "Current Ratio",
+  "Quick Ratio",
+  "Dividend Yield",
+  "Annual Dividends per Share Year-over-Year Growth",
+  "Price-to-Sales Ratio",
+  "Revenue Year-over-Year Growth",
+  "Revenue Quarterly Year-over-Year Growth",
+  "Technical Rating"
+)
+column_info <- tibble(ColumnName = new_names, Description = descriptions)
+```
+
+3.  Remove Rows containing no data or Null values, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+# Check for blank or null values in the "Stock" column
+hasNull <- any(sp500$Stock == "" | is.null(sp500$Stock))
+if (hasNull) { 
+    # Remove rows with null or blank values from the dataframe tibble
+    sp500 <- sp500[!(is.null(sp500$Stock) | sp500$Stock == ""), ]
+}
+```
+
+4.  The S&P500 shares are divided into multiple Sectors. Thus, model Sector as a factor() variable, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$Sector <- as.factor(sp500$Sector)
+```
+
+5.  Stock Ratings: The S&P500 shares have Technical Ratings such as {Buy, Sell, ..}. Model the data column Rating as a factor() variable, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$Rating <- as.factor(sp500$Rating)
+```
+
+6.  Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&P500 (1 of 3).
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE}
+sp500 <- sp500 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
+colnames(sp500)
+```
+
+Well done! Our data is now ready for analysis!!
+
+7.  Creating a new column MarketCapBillions = MarketCap/1000,000,000
+
+```{r}
+sp500 <- sp500 %>% mutate(MarketCapBillions = MarketCap/ 1000000000)
+colnames(sp500)
+
+```
+
+## ANALYSIS OF S&P500 SECTORS
+
+1.  Number of shares in Each Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+library(kableExtra)
+library(janitor)  # This package helps us auto generate the total at the bottom of a table. 
+tab1 <- table(Sector = sp500$Sector)
+tab2 <- as.data.frame(tab1)
+tab3 <- tab2 %>% arrange(desc(Freq))
+tab4 <- tab3 %>%   
+  adorn_totals("row")
+tab5 <- knitr::kable(tab4, "html") %>% kable_styling() 
+tab5
+
+```
+
+2.  Barplot for Showing Number of Stocks in Each Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector)) + geom_bar() + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))  +
+  geom_text(aes(label = ..count..), stat = "count", vjust = 1.5, colour = "white")
+
+```
+
+3.  Number of shares By Rating
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(janitor)  # This package helps us auto generate the total at the bottom of a table. 
+tab1 <- table(Rating = sp500$Rating)
+tab2 <- as.data.frame(tab1)
+tab3 <- tab2 %>% arrange(desc(Freq))
+tab4 <- tab3 %>%   
+  adorn_totals("row")
+tab5 <- knitr::kable(tab4, "html") %>% kable_styling() 
+tab5
+
+```
+
+4.  Pie Chart Showing Number of shares By Rating
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggpubr)
+# Compute counts of each Rating
+Rating_count <- as.data.frame(table(sp500$Rating))
+colnames(Rating_count) <- c("Rating", "n")
+
+
+# Calculate proportions
+Rating_count$prop <- Rating_count$n / sum(Rating_count$n)
+
+# Create labels that display proportions as percentages
+Rating_count$labels <- paste0(round(Rating_count$prop*100, 2), "%")
+
+# Create the pie chart
+ggpie(data = Rating_count, 
+      x = "n", 
+      fill = "Rating", 
+      label = "labels", 
+      palette = "jco", 
+      title = "Pie Chart of Rating")
+
+```
+
+5.  Number of shares in Each Sector By Rating
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(janitor)  # This package helps us auto generate the total at the bottom of a table. 
+tab1 <- table(Rating = sp500$Rating, Sector = sp500$Sector)
+tab2 <- as.data.frame(tab1)
+tab3 <- tab2 %>% arrange(desc(Freq))
+# excluding rows having 0 counts
+tab3 <- subset(tab3 ,Freq > 0 )
+tab4 <- tab3 %>%   
+  adorn_totals("row")
+tab5 <- knitr::kable(tab4, "html") %>% kable_styling() 
+tab5
+
+```
+
+### MARKET CAP
+
+1.  Market Cap of all companies by Sector
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(janitor)  # This package helps us auto generate the total at the bottom of a table. 
+library(kableExtra)
+
+# Market Cap by Sector
+MCap <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    MarketCapBi = sum(MarketCapBillions))
+
+# Total Market Cap of the entire S&P 500 (in Millions)
+SP500MarketCapBi <- sum(sp500$MarketCapBillions)
+
+# calculating % market cap
+PercentMarketCap <- round(MCap$MarketCapBi*100/SP500MarketCapBi,2)
+MCapTab <- cbind(MCap,PercentMarketCap)
+
+# sorting by PercentMarketCap
+MCapTab <- MCapTab %>% arrange(desc(PercentMarketCap))
+
+# Use package janitor to add sums at the bottom of the table
+MCapTab <- MCapTab %>%   
+  adorn_totals("row")
+
+# Use package knittr to format the appearance of the table
+MCapTab <- knitr::kable(MCapTab, "html") %>% kable_styling() 
+MCapTab 
+```
+
+2.  Summary Statistics of Market Cap (in Billion) by each Sector of S&P500
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+
+SectorMC <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Total = sum(na.omit(MarketCapBillions)),
+    Median= median(na.omit(MarketCapBillions)),
+    Mean= mean(na.omit(MarketCapBillions)))
+
+tab <- cbind(Sector = SectorMC$Sector, round(SectorMC[,2:4],2))
+
+SMcap <- knitr::kable(tab, "html") %>% kable_styling() 
+SMcap 
+```
+
+3.  Top 10 companies having highest Market Cap
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+Top10 <- sp500 %>% arrange(desc(MarketCapBillions)) %>% head(10)
+Top10 <- `Top10`[,c(1:4,10:13,37)]
+
+Top10 <- knitr::kable(Top10, "html") %>% kable_styling() 
+Top10 
+```
+
+### PRICE RELATIVE TO 52 WEEK LOW
+
+1.  Summary Statistics of Low52WkPerc by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+
+SM <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(Low52WkPerc)),
+    Median= sd(na.omit(Low52WkPerc)),
+    Median= median(na.omit(Low52WkPerc)),
+    Q1 = quantile(na.omit(Low52WkPerc), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(Low52WkPerc), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(Low52WkPerc)),
+    Max = max(na.omit(Low52WkPerc))
+  )
+
+tab <- cbind(Sector = SM$Sector, round(SM[,2:7],2))
+
+tab <- tab %>% arrange(Median)
+
+SM <- knitr::kable(tab, "html") %>% kable_styling() 
+SM 
+```
+
+Sector Communications and Utilities are closest to its 52 week low.
+
+2.  Box Plot for Low52WkPerc by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector, Low52WkPerc)) + geom_boxplot() + 
+  scale_y_continuous(limits=c(0,100)) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+### PROFITABILITY BY SECTOR
+
+### ROE
+
+1.  Summary Statistics of ROE by each Sector of S&P500
+
+```{r}
+
+SectorROE <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(ROE)),
+    Median= sd(na.omit(ROE)),
+    Median= median(na.omit(ROE)),
+    Min = min(na.omit(ROE)),
+    Max = max(na.omit(ROE))
+  )
+
+tab <- cbind(Sector = SectorROE$Sector, round(SectorROE[,2:5],2))
+
+tab <- knitr::kable(tab, "html") %>% kable_styling() 
+tab 
+```
+
+2.  Box Plot for ROE by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector, ROE)) + geom_boxplot() + 
+  scale_y_continuous(limits=c(0,500)) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+### ROA
+
+1.  Summary Statistics of ROA by each Sector of S&P500
+
+```{r}
+SectorROA <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(ROA)),
+    Median= sd(na.omit(ROA)),
+    Median= median(na.omit(ROA)),
+    Min = min(na.omit(ROA)),
+    max = max(na.omit(ROA))
+  )
+
+tab <- cbind(Sector = SectorROA$Sector, round(SectorROA[,2:5],2))
+
+tab <- knitr::kable(tab, "html") %>% kable_styling() 
+tab 
+```
+
+2.  Box Plot for ROA by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector, ROA)) + geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```

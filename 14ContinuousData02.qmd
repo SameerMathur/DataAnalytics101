@@ -10,12 +10,25 @@ THIS CHAPTER demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** 
 
 2.  **`ggpubr`**: The `ggpubr` package in R augments `ggplot2` by offering tools for creating publication-ready plots. It enables simplified plotting with easy-to-use functions like gghistogram(), ggdensity(), ggboxplot(), ggviolin, and makes it easy to merge multiple plots with `ggarrange()`, and provides specialized themes for a polished look. Essentially, `ggpubr` merges `ggplot2`'s extensive customization with the ease of creating visually appealing and informative plots.
 
-3.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
+3.  We load the necessary packages, including `ggplot2`, `dplyr` and `ggthemes` packages. The package `ggthemes` allows us to use a variety of themes.
 
-```{r, warning=FALSE}
+```{r}
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
+library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+
+library(rmarkdown, quietly = TRUE, warn.conflicts = FALSE) 
+library(knitr, quietly = TRUE, warn.conflicts = FALSE) 
+library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) 
+
+library(ggthemes)
+```
+
+5.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
+
+```{r, warning=FALSE}
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
@@ -24,17 +37,9 @@ tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
 tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
 tb$vs <- as.factor(tb$vs) # vs = {0,1}, v-shaped engine, 0:no, 1:yes
 tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
-# Directly access the data columns of tb, without tb$mpg
-attach(tb)
 ```
 
-4.  We load the `ggplot2`, `dplyr` and `ggthemes` packages. The package `ggthemes` allows us to use a variety of themes.
 
-```{r}
-library(dplyr)
-library(ggthemes)
-suppressPackageStartupMessages(library(ggplot2))
-```
 
 5.  Let's take a closer look at some of the most effective ways of Visualizing Univariate Continuous Data using `ggplot2` and related packages, including
 
@@ -43,6 +48,8 @@ suppressPackageStartupMessages(library(ggplot2))
 -   Histograms using `ggplot2` and `ggpubr`
 
 -   PDF and CDF Density plots using `ggplot2` and `ggpubr`
+
+-   Bar plots using `ggplot2`
 
 -   Box plots using `ggplot2` and `ggpubr`
 
