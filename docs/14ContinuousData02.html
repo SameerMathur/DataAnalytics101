@@ -272,14 +272,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#exploring-univariate-continuous-data-using-ggplot2-and-ggpubr" id="toc-exploring-univariate-continuous-data-using-ggplot2-and-ggpubr" class="nav-link" data-scroll-target="#exploring-univariate-continuous-data-using-ggplot2-and-ggpubr">Exploring Univariate Continuous Data using <strong><code>ggplot2</code></strong> and <strong><code>ggpubr</code></strong></a>
   <ul class="collapse">
   <li><a href="#bee-swarm-plot-using-ggbeeswarm" id="toc-bee-swarm-plot-using-ggbeeswarm" class="nav-link" data-scroll-target="#bee-swarm-plot-using-ggbeeswarm">Bee Swarm plot using <code>ggbeeswarm</code></a></li>
-  <li><a href="#histogram-using-ggplot2" id="toc-histogram-using-ggplot2" class="nav-link" data-scroll-target="#histogram-using-ggplot2">Histogram using <code>ggplot2</code></a></li>
+  </ul></li>
+  <li><a href="#histogram-using-ggplot2" id="toc-histogram-using-ggplot2" class="nav-link" data-scroll-target="#histogram-using-ggplot2">Histogram using <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#histogram-with-binwidth" id="toc-histogram-with-binwidth" class="nav-link" data-scroll-target="#histogram-with-binwidth">Histogram with binwidth</a></li>
+  <li><a href="#histogram-with-bins" id="toc-histogram-with-bins" class="nav-link" data-scroll-target="#histogram-with-bins">Histogram with bins</a></li>
+  <li><a href="#histogram-with-bin-range" id="toc-histogram-with-bin-range" class="nav-link" data-scroll-target="#histogram-with-bin-range">Histogram with bin range</a></li>
+  <li><a href="#histogram-using-ggpubr" id="toc-histogram-using-ggpubr" class="nav-link" data-scroll-target="#histogram-using-ggpubr">Histogram using <code>ggpubr</code></a></li>
+  </ul></li>
   <li><a href="#probability-density-function-pdf-plot-using-ggplot2" id="toc-probability-density-function-pdf-plot-using-ggplot2" class="nav-link" data-scroll-target="#probability-density-function-pdf-plot-using-ggplot2">Probability Density Function (PDF) plot using <code>ggplot2</code></a></li>
   <li><a href="#cumulative-distribution-function-cdf-plot-using-ggplot2" id="toc-cumulative-distribution-function-cdf-plot-using-ggplot2" class="nav-link" data-scroll-target="#cumulative-distribution-function-cdf-plot-using-ggplot2">Cumulative Distribution Function (CDF) Plot using <code>ggplot2</code></a></li>
-  <li><a href="#boxplots-using-ggplot2" id="toc-boxplots-using-ggplot2" class="nav-link" data-scroll-target="#boxplots-using-ggplot2">Boxplots using <code>ggplot2</code></a></li>
-  <li><a href="#violin-plot-using-ggplot2" id="toc-violin-plot-using-ggplot2" class="nav-link" data-scroll-target="#violin-plot-using-ggplot2">Violin plot using <code>ggplot2</code></a></li>
-  <li><a href="#quantile-quantile-q-q-plots-using-ggplot2" id="toc-quantile-quantile-q-q-plots-using-ggplot2" class="nav-link" data-scroll-target="#quantile-quantile-q-q-plots-using-ggplot2">Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></a></li>
+  <li><a href="#boxplots-using-ggplot2" id="toc-boxplots-using-ggplot2" class="nav-link" data-scroll-target="#boxplots-using-ggplot2">Boxplots using <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#boxplot-using-ggpubr" id="toc-boxplot-using-ggpubr" class="nav-link" data-scroll-target="#boxplot-using-ggpubr">Boxplot using <code>ggpubr</code></a></li>
   </ul></li>
-  <li><a href="#combine-plots-efficiently-using-ggarrange" id="toc-combine-plots-efficiently-using-ggarrange" class="nav-link" data-scroll-target="#combine-plots-efficiently-using-ggarrange">Combine Plots efficiently using <code>ggarrange()</code></a></li>
+  <li><a href="#violin-plot-using-ggplot2" id="toc-violin-plot-using-ggplot2" class="nav-link" data-scroll-target="#violin-plot-using-ggplot2">Violin plot using <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#violin-plot-using-ggpubr" id="toc-violin-plot-using-ggpubr" class="nav-link" data-scroll-target="#violin-plot-using-ggpubr">Violin plot using <code>ggpubr</code></a></li>
+  </ul></li>
+  <li><a href="#quantile-quantile-q-q-plots-using-ggplot2" id="toc-quantile-quantile-q-q-plots-using-ggplot2" class="nav-link" data-scroll-target="#quantile-quantile-q-q-plots-using-ggplot2">Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></a></li>
+  <li><a href="#bar-plot-visualizing-the-mean-and-sd-using-ggplot2" id="toc-bar-plot-visualizing-the-mean-and-sd-using-ggplot2" class="nav-link" data-scroll-target="#bar-plot-visualizing-the-mean-and-sd-using-ggplot2">Bar Plot visualizing the Mean and SD using <code>ggplot2</code></a></li>
+  <li><a href="#combining-plots-using-ggarrange" id="toc-combining-plots-using-ggarrange" class="nav-link" data-scroll-target="#combining-plots-using-ggarrange">Combining Plots using <code>ggarrange()</code></a></li>
   <li><a href="#summary-of-chapter-13-continuous-data-2-of-2" id="toc-summary-of-chapter-13-continuous-data-2-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-13-continuous-data-2-of-2">Summary of Chapter 13 – Continuous Data (2 of 2)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
@@ -293,10 +306,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="continuous-data-2-of-2" class="level1">
 <h1>Continuous Data (2 of 2)</h1>
-<p><em>Aug 8, 2023</em></p>
+<p><em>Sep 23, 2023</em></p>
 <section id="exploring-univariate-continuous-data-using-ggplot2-and-ggpubr" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-univariate-continuous-data-using-ggplot2-and-ggpubr">Exploring Univariate Continuous Data using <strong><code>ggplot2</code></strong> and <strong><code>ggpubr</code></strong></h2>
-<p>THIS CHAPTER demonstrates the use of the popular <strong><code>ggplot2</code></strong> and <strong><code>ggpubr</code></strong> packages to further explore <em>univariate, continuous</em> data.</p>
+<p>This chapter demonstrates the use of the popular <strong><code>ggplot2</code></strong> and <strong><code>ggpubr</code></strong> packages to further explore <em>univariate, continuous</em> data.</p>
 <ol type="1">
 <li><p><strong><code>ggplot2</code></strong>: In the <code>ggplot2</code> package for instance, the function <code>geom_boxplot()</code> produces box plots, <code>geom_violin()</code> creates violin plots, and <code>geom_histogram()</code> and <code>geom_density()</code> generate histograms and density plots, respectively. The related <code>ggbeeswarm</code> package can be used for creating bee swarm plots.</p></li>
 <li><p><strong><code>ggpubr</code></strong>: The <code>ggpubr</code> package in R augments <code>ggplot2</code> by offering tools for creating publication-ready plots. It enables simplified plotting with easy-to-use functions like gghistogram(), ggdensity(), ggboxplot(), ggviolin, and makes it easy to merge multiple plots with <code>ggarrange()</code>, and provides specialized themes for a polished look. Essentially, <code>ggpubr</code> merges <code>ggplot2</code>’s extensive customization with the ease of creating visually appealing and informative plots.</p></li>
@@ -371,8 +384,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We then adopt a minimalist theme by using <code>theme_minimal()</code> to give our plot a sleek and simple look.</p></li>
 </ul>
 </section>
-<section id="histogram-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="histogram-using-ggplot2">Histogram using <code>ggplot2</code></h3>
+</section>
+<section id="histogram-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="histogram-using-ggplot2">Histogram using <code>ggplot2</code></h2>
+<section id="histogram-with-binwidth" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-with-binwidth">Histogram with binwidth</h3>
 <ol type="1">
 <li>The following code creates a histogram using the <code>ggplot2</code> package. Here, we pre-specify the bin width and the resulting number of bins in the histogram depend on the range of the data.</li>
 </ol>
@@ -399,6 +415,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We use <code>fill</code> and <code>color</code> to set the bar colors to be gold with a black border.</p></li>
 <li><p>A clean appearance is achieved with <code>theme_minimal()</code>, and titles and labels are added using <code>labs()</code>. [1]</p></li>
 </ul>
+</section>
+<section id="histogram-with-bins" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-with-bins">Histogram with bins</h3>
 <ol start="3" type="1">
 <li>We could alternately set the number of bins in the histogram, instead of specifying the bin width. In this case, the bin-width gets calculated depending on the range of the data and the specified number of bins.</li>
 </ol>
@@ -422,6 +441,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We instruct R to create a histogram having 8 bins of equal width, by setting <code>bins = 8 in</code>geom_histogram()`</p></li>
 <li><p>The width of each bin is adjusted by dividing the range of <code>mpg</code> by the number of specified bins.</p></li>
 </ul>
+</section>
+<section id="histogram-with-bin-range" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-with-bin-range">Histogram with bin range</h3>
 <ol start="5" type="1">
 <li>Alternately, we can specify custom bin ranges in a histogram. In this this approach, we supply a vector of breakpoints which defines the range of each bin. For example, the following code defines histogram bins with ranges of 5-10, 10-15, 15-20, 20-25, 25-30, 30-35, 35-40, for the <code>mpg</code> variable</li>
 </ol>
@@ -445,10 +467,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>ggplot(tb, aes(x = mpg))</code> initializes a ggplot object with the <code>tb</code> data frame and sets the <code>mpg</code> column as the x-axis variable.</p></li>
 <li><p><code>geom_histogram()</code> adds a histogram layer, in which <code>breaks = seq(5, 40, by = 5)</code> specifies bin edges using a sequence that starts at 5, ends at 40, and increases by 5 units. This results in bins like [5,10), [10,15), and so on.</p></li>
 </ul>
-<section id="histogram-using-ggpubr" class="level4">
-<h4 class="anchored" data-anchor-id="histogram-using-ggpubr">Histogram using <code>ggpubr</code></h4>
+</section>
+<section id="histogram-using-ggpubr" class="level3">
+<h3 class="anchored" data-anchor-id="histogram-using-ggpubr">Histogram using <code>ggpubr</code></h3>
 <ol start="7" type="1">
-<li>Recreating a histogram with binwidth of 4, using package <code>ggpubr</code>:</li>
+<li>Recreating a histogram with binwidth of 4, using <code>ggpubr</code>:</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
@@ -503,8 +526,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In essence, the difference is that this code visualizes the mpg data from the <code>tb</code> dataset as a histogram with 8 bins, set using <code>bins = 8</code>.</p>
 </section>
 </section>
-<section id="probability-density-function-pdf-plot-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="probability-density-function-pdf-plot-using-ggplot2">Probability Density Function (PDF) plot using <code>ggplot2</code></h3>
+<section id="probability-density-function-pdf-plot-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="probability-density-function-pdf-plot-using-ggplot2">Probability Density Function (PDF) plot using <code>ggplot2</code></h2>
 <ol type="1">
 <li>Recall that this type of plot shows the distribution of a single variable, and the area under the curve represents the probability of an observation falling within a particular range of values. The following code generates it using <code>ggplot2</code>:</li>
 </ol>
@@ -561,8 +584,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="cumulative-distribution-function-cdf-plot-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="cumulative-distribution-function-cdf-plot-using-ggplot2">Cumulative Distribution Function (CDF) Plot using <code>ggplot2</code></h3>
+<section id="cumulative-distribution-function-cdf-plot-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="cumulative-distribution-function-cdf-plot-using-ggplot2">Cumulative Distribution Function (CDF) Plot using <code>ggplot2</code></h2>
 <ol type="1">
 <li>The following code generates a CDF using <code>ggplot2</code>:</li>
 </ol>
@@ -590,8 +613,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>To sum up, this code creates a plot depicting the cumulative distribution function (CDF) of the <code>mpg</code> data from the <code>tb</code> dataset.</p></li>
 </ul>
 </section>
-<section id="boxplots-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="boxplots-using-ggplot2">Boxplots using <code>ggplot2</code></h3>
+<section id="boxplots-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="boxplots-using-ggplot2">Boxplots using <code>ggplot2</code></h2>
 <ol type="1">
 <li>The following code generates a boxplot using <code>ggplot2</code>:</li>
 </ol>
@@ -618,8 +641,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>labs(...)</code>: Sets the plot title to “Boxplot of Mileage (mpg)” and labels the x-axis as “Miles Per Gallon (mpg)”.</p></li>
 <li><p>In summary, this code creates a horizontal boxplot of the mpg values from the tb data frame, with the boxes filled in gold color, presented with a minimalistic theme, and labeled appropriately.</p></li>
 </ul>
-<section id="boxplot-using-ggpubr" class="level4">
-<h4 class="anchored" data-anchor-id="boxplot-using-ggpubr">Boxplot using <code>ggpubr</code></h4>
+<section id="boxplot-using-ggpubr" class="level3">
+<h3 class="anchored" data-anchor-id="boxplot-using-ggpubr">Boxplot using <code>ggpubr</code></h3>
 <ol type="1">
 <li>The following code recreates the boxplot using the <code>ggboxplot()</code> function from the <code>ggpubr</code> package.</li>
 </ol>
@@ -652,8 +675,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="violin-plot-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="violin-plot-using-ggplot2">Violin plot using <code>ggplot2</code></h3>
+<section id="violin-plot-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="violin-plot-using-ggplot2">Violin plot using <code>ggplot2</code></h2>
 <ol type="1">
 <li>The following code generates a violin plot using <code>ggplot2</code>, adding a boxplot to the violin plot:</li>
 </ol>
@@ -676,8 +699,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>geom_violin()</code> generates the violin plot</p></li>
 <li><p><code>geom_boxplot()</code> embeds a box plot within it</p></li>
 </ul>
-<section id="violin-plot-using-ggpubr" class="level4">
-<h4 class="anchored" data-anchor-id="violin-plot-using-ggpubr">Violin plot using <code>ggpubr</code></h4>
+<section id="violin-plot-using-ggpubr" class="level3">
+<h3 class="anchored" data-anchor-id="violin-plot-using-ggpubr">Violin plot using <code>ggpubr</code></h3>
 <ol start="3" type="1">
 <li>The following code recreates the violin plot using the <code>ggviolin()</code> function from the <code>ggpubr</code> package.</li>
 </ol>
@@ -713,8 +736,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="quantile-quantile-q-q-plots-using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="quantile-quantile-q-q-plots-using-ggplot2">Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></h3>
+<section id="quantile-quantile-q-q-plots-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="quantile-quantile-q-q-plots-using-ggplot2">Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></h2>
 <ol type="1">
 <li>Recall that a Q-Q plot is a graphical method for comparing two probability distributions by plotting their quantiles against each other. The following code generates a Quantile-Quantile (Q-Q) plot using <code>ggplot2</code>,</li>
 </ol>
@@ -740,38 +763,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>In summary, this code produces a Q-Q plot for the “mpg” variable from the <code>tb</code> dataset. The plot compares the quantiles of “mpg” against the quantiles of a theoretical distribution, often the standard normal distribution.</p></li>
 </ul>
 </section>
+<section id="bar-plot-visualizing-the-mean-and-sd-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="bar-plot-visualizing-the-mean-and-sd-using-ggplot2">Bar Plot visualizing the Mean and SD using <code>ggplot2</code></h2>
+<ol type="1">
+<li>We can create a Bar Plot to visualize the mean of a continuous variable.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary data frame</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mpgSummary <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MeanMpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SDMpg =</span> <span class="fu">sd</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a box plot visualizing the mean</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpgSummary, </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> MeanMpg)) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">width =</span> <span class="fl">0.3</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"mpg"</span>, <span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Bar Plot showing Mean of Mileage (mpg)"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14ContinuousData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li>We can extend this to create a Bar Plot with Error Bars to visualization the Mean and the Standard Deviation of a continuous variable.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary data frame</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mpgSummary <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MeanMpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SDMpg =</span> <span class="fu">sd</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a box plot visualizing the mean and error bars visualizing the SD</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpgSummary, </span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> MeanMpg)) <span class="sc">+</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">width =</span> <span class="fl">0.3</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> MeanMpg <span class="sc">-</span> SDMpg, </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xmax =</span> MeanMpg <span class="sc">+</span> SDMpg), </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">width =</span> <span class="fl">0.3</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"mpg"</span>, <span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Bar Plot showing (Mean +/- SD) of Mileage (mpg)"</span>) <span class="sc">+</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="14ContinuousData02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Discussion</strong></li>
+</ol>
+<p><strong>Summary Data Frame (<code>mpgSummary</code>) Creation:</strong></p>
+<ul>
+<li><p><strong><code>mpgSummary &lt;- tb %&gt;% summarise(...)</code></strong>: This line is initializing the creation of <code>mpgSummary</code> data frame using the data in <code>tb</code> (which is assumed to contain the <code>mtcars</code> dataset) and the <code>summarise</code> function from the <code>dplyr</code> package.</p></li>
+<li><p><strong><code>MeanMpg = mean(mpg, na.rm = TRUE)</code></strong>: Calculates the mean of the <code>mpg</code> column, ignoring any NA values, and creates a new column <code>MeanMpg</code> in <code>mpgSummary</code> to store this value.</p></li>
+<li><p><strong><code>SDMpg = sd(mpg, na.rm = TRUE)</code></strong>: Calculates the standard deviation of the <code>mpg</code> column, ignoring any NA values, and creates a new column <code>SDMpg</code> in <code>mpgSummary</code> to store this value.</p></li>
+</ul>
+<p><strong>Bar Plot with Error Bars Creation:</strong></p>
+<ul>
+<li><p><strong><code>ggplot(mpgSummary, aes(y = "", x = MeanMpg)) +</code></strong>: Initializes the creation of a ggplot object using the <code>mpgSummary</code> data frame and sets the aesthetic mappings where <code>x</code> is mapped to <code>MeanMpg</code> and <code>y</code> is set to an empty string.</p></li>
+<li><p><strong><code>geom_bar(stat = "identity", fill = "lightblue", color = "blue", width = 0.3)</code></strong>: Adds a bar geometry to represent the mean mpg (<code>MeanMpg</code>). The bar is colored light blue with a blue border and has a width of 0.3.</p></li>
+<li><p><strong><code>geom_errorbar(aes(xmin = MeanMpg - SDMpg, xmax = MeanMpg + SDMpg), color = "red", width = 0.3)</code></strong>: Adds error bars to represent the variability of mpg. The error bars extend from <code>MeanMpg - SDMpg</code> to <code>MeanMpg + SDMpg</code> and are colored red with a width of 0.3.</p></li>
+<li><p><strong><code>labs(x = "mpg", y = "", title = "Bar Plot showing (Mean +/- SD) of Mileage (mpg)")</code></strong>: Adds labels to the plot, with “mpg” as the x-axis label, no y-axis label, and a title indicating that the plot shows the mean and standard deviation of mileage.</p></li>
+<li><p><strong><code>theme_minimal()</code></strong>: Applies a minimal theme to the plot for a clean and uncluttered appearance.</p></li>
+<li><p>The end result of executing this code is a bar plot visualizing the mean of the <code>mpg</code> column and error bars representing one standard deviation above and below the mean, giving a sense of the variability of the miles per gallon in the <code>mtcars</code> dataset.</p></li>
+</ul>
 </section>
-<section id="combine-plots-efficiently-using-ggarrange" class="level2">
-<h2 class="anchored" data-anchor-id="combine-plots-efficiently-using-ggarrange">Combine Plots efficiently using <code>ggarrange()</code></h2>
+<section id="combining-plots-using-ggarrange" class="level2">
+<h2 class="anchored" data-anchor-id="combining-plots-using-ggarrange">Combining Plots using <code>ggarrange()</code></h2>
 <ol type="1">
 <li>The following code showcases two plots side-by-side.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>PlotHist <span class="ot">&lt;-</span> <span class="fu">gghistogram</span>(tb, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">binwidth =</span> <span class="dv">4</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>, </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram (binwidth = 4) "</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>PlotBox <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(tb, </span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"jitter"</span>,</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Boxplot of Mileage, using ggpubr"</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots using ggarrange()</span></span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(PlotHist, PlotBox, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
-<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>PlotHist <span class="ot">&lt;-</span> <span class="fu">gghistogram</span>(tb, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">binwidth =</span> <span class="dv">4</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram (binwidth = 4) "</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>PlotBox <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(tb, </span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">"mpg"</span>, </span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"jitter"</span>,</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Boxplot of Mileage, using ggpubr"</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots using ggarrange()</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(PlotHist, PlotBox, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="14ContinuousData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
+<p><img src="14ContinuousData02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="2" type="1">

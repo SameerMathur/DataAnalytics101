@@ -1,10 +1,10 @@
 # Continuous Data (2 of 2)
 
-*Aug 8, 2023*
+*Sep 23, 2023*
 
 ## Exploring Univariate Continuous Data using **`ggplot2`** and **`ggpubr`**
 
-THIS CHAPTER demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** packages to further explore *univariate, continuous* data.
+This chapter demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** packages to further explore *univariate, continuous* data.
 
 1.  **`ggplot2`**: In the `ggplot2` package for instance, the function `geom_boxplot()` produces box plots, `geom_violin()` creates violin plots, and `geom_histogram()` and `geom_density()` generate histograms and density plots, respectively. The related `ggbeeswarm` package can be used for creating bee swarm plots.
 
@@ -87,7 +87,12 @@ ggplot(tb,
 
 -   We then adopt a minimalist theme by using `theme_minimal()` to give our plot a sleek and simple look.
 
-### Histogram using `ggplot2`
+
+
+
+## Histogram using `ggplot2`
+
+### Histogram with binwidth
 
 1.  The following code creates a histogram using the `ggplot2` package. Here, we pre-specify the bin width and the resulting number of bins in the histogram depend on the range of the data.
 
@@ -115,6 +120,9 @@ ggplot(tb,
 
 -   A clean appearance is achieved with `theme_minimal()`, and titles and labels are added using `labs()`. \[1\]
 
+
+### Histogram with bins
+
 3.  We could alternately set the number of bins in the histogram, instead of specifying the bin width. In this case, the bin-width gets calculated depending on the range of the data and the specified number of bins.
 
 ```{r}
@@ -135,6 +143,8 @@ ggplot(tb,
 
 -   The width of each bin is adjusted by dividing the range of `mpg` by the number of specified bins.
 
+### Histogram with bin range
+
 5.  Alternately, we can specify custom bin ranges in a histogram. In this this approach, we supply a vector of breakpoints which defines the range of each bin. For example, the following code defines histogram bins with ranges of 5-10, 10-15, 15-20, 20-25, 25-30, 30-35, 35-40, for the `mpg` variable
 
 ```{r}
@@ -154,9 +164,12 @@ ggplot(tb,
 
 -   `geom_histogram()` adds a histogram layer, in which `breaks = seq(5, 40, by = 5)` specifies bin edges using a sequence that starts at 5, ends at 40, and increases by 5 units. This results in bins like \[5,10), \[10,15), and so on.
 
-#### Histogram using `ggpubr`
 
-7.  Recreating a histogram with binwidth of 4, using package `ggpubr`:
+
+
+### Histogram using `ggpubr`
+
+7.  Recreating a histogram with binwidth of 4, using `ggpubr`:
 
 ```{r, warning=FALSE}
 library(ggpubr)
@@ -210,7 +223,11 @@ gghistogram(tb,
 
 In essence, the difference is that this code visualizes the mpg data from the `tb` dataset as a histogram with 8 bins, set using `bins = 8`.
 
-### Probability Density Function (PDF) plot using `ggplot2`
+
+
+
+
+## Probability Density Function (PDF) plot using `ggplot2`
 
 1.  Recall that this type of plot shows the distribution of a single variable, and the area under the curve represents the probability of an observation falling within a particular range of values. The following code generates it using `ggplot2`:
 
@@ -263,7 +280,8 @@ ggdensity(tb,
 
 -   `title = ...` : This provides a descriptive title to our plot, aiding in clarity and understanding.
 
-### Cumulative Distribution Function (CDF) Plot using `ggplot2`
+
+## Cumulative Distribution Function (CDF) Plot using `ggplot2`
 
 1.  The following code generates a CDF using `ggplot2`:
 
@@ -290,7 +308,7 @@ ggplot(tb, aes(x = mpg)) +
 
 -   To sum up, this code creates a plot depicting the cumulative distribution function (CDF) of the `mpg` data from the `tb` dataset.
 
-### Boxplots using `ggplot2`
+## Boxplots using `ggplot2`
 
 1.  The following code generates a boxplot using `ggplot2`:
 
@@ -318,7 +336,7 @@ ggplot(tb,
 
 -   In summary, this code creates a horizontal boxplot of the mpg values from the tb data frame, with the boxes filled in gold color, presented with a minimalistic theme, and labeled appropriately.
 
-#### Boxplot using `ggpubr`
+### Boxplot using `ggpubr`
 
 1.  The following code recreates the boxplot using the `ggboxplot()` function from the `ggpubr` package.
 
@@ -351,7 +369,7 @@ ggboxplot(tb,
 
 -   `title = .."`: Sets the plot's title.
 
-### Violin plot using `ggplot2`
+## Violin plot using `ggplot2`
 
 1.  The following code generates a violin plot using `ggplot2`, adding a boxplot to the violin plot:
 
@@ -371,7 +389,7 @@ ggplot(tb, aes(x = "", y = mpg)) +
 
 -   `geom_boxplot()` embeds a box plot within it
 
-#### Violin plot using `ggpubr`
+### Violin plot using `ggpubr`
 
 3.  The following code recreates the violin plot using the `ggviolin()` function from the `ggpubr` package.
 
@@ -410,7 +428,7 @@ ggviolin(tb,
 
 -   In summary, the code generates a horizontal violin plot for the "mpg" variable from the `tb` dataset. The violin plot showcases the distribution of the "mpg" variable, colored in light pink with a light blue boxplot added inside. The rug adds an additional layer of visualization, showing the actual data points along the axis.
 
-### Quantile-Quantile (Q-Q) Plots using `ggplot2`
+## Quantile-Quantile (Q-Q) Plots using `ggplot2`
 
 1.  Recall that a Q-Q plot is a graphical method for comparing two probability distributions by plotting their quantiles against each other. The following code generates a Quantile-Quantile (Q-Q) plot using `ggplot2`,
 
@@ -435,7 +453,90 @@ ggplot(tb,
 
 -   In summary, this code produces a Q-Q plot for the "mpg" variable from the `tb` dataset. The plot compares the quantiles of "mpg" against the quantiles of a theoretical distribution, often the standard normal distribution.
 
-## Combine Plots efficiently using `ggarrange()`
+
+
+
+
+## Bar Plot visualizing the Mean and SD using `ggplot2`
+
+1. We can create a Bar Plot to visualize the mean of a continuous variable. 
+
+```{r}
+# Create a summary data frame
+mpgSummary <- tb %>%
+  summarise(
+    MeanMpg = mean(mpg, na.rm = TRUE),
+    SDMpg = sd(mpg, na.rm = TRUE)
+  )
+# Create a box plot visualizing the mean
+ggplot(mpgSummary, 
+       aes(y = "", 
+           x = MeanMpg)) +
+  geom_bar(stat = "identity", 
+           fill = "lightblue", color = "blue", width = 0.3
+           ) +
+  labs(x = "mpg", y = "",
+       title = "Bar Plot showing Mean of Mileage (mpg)") +
+  theme_minimal() 
+```
+
+2. We can extend this to create a Bar Plot with Error Bars to visualization the Mean and the Standard Deviation of a continuous variable. 
+
+```{r}
+# Create a summary data frame
+mpgSummary <- tb %>%
+  summarise(
+    MeanMpg = mean(mpg, na.rm = TRUE),
+    SDMpg = sd(mpg, na.rm = TRUE)
+  )
+# Create a box plot visualizing the mean and error bars visualizing the SD
+ggplot(mpgSummary, 
+       aes(y = "", 
+           x = MeanMpg)) +
+  geom_bar(stat = "identity", 
+           fill = "lightblue", color = "blue", width = 0.3
+           ) +
+  geom_errorbar(aes(xmin = MeanMpg - SDMpg, 
+                    xmax = MeanMpg + SDMpg), 
+                color = "red", width = 0.3
+                ) +
+  labs(x = "mpg", y = "",
+       title = "Bar Plot showing (Mean +/- SD) of Mileage (mpg)") +
+  theme_minimal() 
+```
+
+3. **Discussion**
+
+
+**Summary Data Frame (`mpgSummary`) Creation:**
+
+   - **`mpgSummary <- tb %>% summarise(...)`**: This line is initializing the creation of `mpgSummary` data frame using the data in `tb` (which is assumed to contain the `mtcars` dataset) and the `summarise` function from the `dplyr` package.
+   
+   - **`MeanMpg = mean(mpg, na.rm = TRUE)`**: Calculates the mean of the `mpg` column, ignoring any NA values, and creates a new column `MeanMpg` in `mpgSummary` to store this value.
+   
+   - **`SDMpg = sd(mpg, na.rm = TRUE)`**: Calculates the standard deviation of the `mpg` column, ignoring any NA values, and creates a new column `SDMpg` in `mpgSummary` to store this value.
+   
+
+**Bar Plot with Error Bars Creation:**
+
+   - **`ggplot(mpgSummary, aes(y = "", x = MeanMpg)) +`**: Initializes the creation of a ggplot object using the `mpgSummary` data frame and sets the aesthetic mappings where `x` is mapped to `MeanMpg` and `y` is set to an empty string.
+   
+   - **`geom_bar(stat = "identity", fill = "lightblue", color = "blue", width = 0.3)`**: Adds a bar geometry to represent the mean mpg (`MeanMpg`). The bar is colored light blue with a blue border and has a width of 0.3.
+   
+   - **`geom_errorbar(aes(xmin = MeanMpg - SDMpg, xmax = MeanMpg + SDMpg), color = "red", width = 0.3)`**: Adds error bars to represent the variability of mpg. The error bars extend from `MeanMpg - SDMpg` to `MeanMpg + SDMpg` and are colored red with a width of 0.3.
+   
+   - **`labs(x = "mpg", y = "", title = "Bar Plot showing (Mean +/- SD) of Mileage (mpg)")`**: Adds labels to the plot, with "mpg" as the x-axis label, no y-axis label, and a title indicating that the plot shows the mean and standard deviation of mileage.
+   
+   - **`theme_minimal()`**: Applies a minimal theme to the plot for a clean and uncluttered appearance.
+
+* The end result of executing this code is a bar plot visualizing the mean of the `mpg` column and error bars representing one standard deviation above and below the mean, giving a sense of the variability of the miles per gallon in the `mtcars` dataset.
+
+
+
+
+
+
+## Combining Plots using `ggarrange()`
 
 1.  The following code showcases two plots side-by-side.
 
@@ -472,6 +573,11 @@ print(combined_plot)
 -   `ggarrange(PlotHist, PlotBox, ncol = 2)` : This code helps us combine multiple plots into one. Here, `PlotHist` (the histogram) and `PlotBox` (the boxplot) are arranged side by side, as indicated by `ncol = 2`.
 
 -   In essence, this code facilitates a side-by-side comparison of the distribution of the `mpg` variable from the `tb` dataset using two different types of visualizations: a histogram and a boxplot.
+
+
+
+
+
 
 ## Summary of Chapter 13 -- Continuous Data (2 of 2)
 
