@@ -1,8 +1,8 @@
 # Categorical x Continuous data (2 of 2)
 
-*Aug 13, 2023*
+*Sep 23, 2023*
 
-1.  THIS CHAPTER explores **Categorical** x **Continuous** data using the **`dplyr`** and **`ggplot2`** packages.
+1.  This chapter explores **Categorical** x **Continuous** data using the **`dplyr`** and **`ggplot2`** packages.
 
 2.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
 
@@ -23,217 +23,11 @@ tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
 attach(tb)
 ```
 
-## Summarizing Continuous Data using `dplyr` and `ggplot2`
 
-### Across one Category using `dplyr` and `ggplot2`
 
-1.  Calculating the mean and standard deviation
 
--   We demonstrate the bivariate relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) using `ggplot2`.
 
-```{r, warning=FALSE}
-suppressPackageStartupMessages(library(dplyr))
-s1 <- tb %>%
-  group_by(cyl) %>%
-  summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
-            SD_mpg = sd(mpg, na.rm = TRUE))
-  
-kable(s1, digits=2, caption = "Summary Statistics of Mileage (mpg) by Cylinders (cyl=4,6,8)") 
-```
 
-2.  **Discussion:**
-
--   In this code, we use the pipe operator `%\>%` to perform a series of operations. We first group the data by the `cyl` column using the `group_by()` function. We then use `summarise()` to apply the `mean()` and `sd()` functions to the `mpg` column.
-
--   The results are stored in new columns, aptly named `Mean_mpg` and `SD_mpg`.
-
--   We set `na.rm = TRUE` in both `mean()` and `sd()` function calls, to remove any missing values before calculation.
-
--   The data resulting from the above code consists of grouped cylinder counts (`cyl`), their corresponding mean miles per gallon (`Mean_mpg`), and the standard deviation of miles per gallon (`SD_mpg`).\[1\]
-
-3.  **Visualizing the mean and standard deviation**
-
--   A simple way to visualize this data is to create a **line plot** for the mean miles per gallon with **error bars** indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
-
-```{r, warning=FALSE}
-suppressPackageStartupMessages(library(ggplot2))
-ggplot(s1, 
-       aes(x = cyl, y = Mean_mpg)) +
-  geom_line(group=1, color = "blue") +
-  geom_point(size = 2, color = "red") +
-  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
-                    ymax = Mean_mpg + SD_mpg), 
-                width = .2, colour = "black") +
-  labs(x = "Cylinders", y = "Mean mpg",
-       title = "Mean and SD of Mileage(mpg) by #Cylinders") +
-  theme_minimal()
-```
-
-4.  **Discussion**:
-
--   `aes(x = cyl, y = Mean_mpg)` assigns the `cyl` values to the x-axis and `Mean_mpg` to the y-axis.
-
--   `geom_line(group=1, color = "blue")` adds a blue line connecting the data points.
-
--   `geom_point(size = 2, color = "red")` adds red points for each data point.
-
--   `geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg), width = .2, colour = "black")` adds error bars, where the error is the standard deviation.
-
--   The `ymin` and `ymax` arguments define the range of the error bars.
-
--   `labs(x = "Cylinders", y = "Mean mpg")` labels the x and y axes.
-
--   `theme_minimal()` applies a minimal theme to the plot.
-
-5.  **Visualizing the mean and standard deviation - Alternate Method**
-
--   An alternate method is to visualize this mean by creating a **bar plot**, with **error bars** indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
-
-```{r}
-library(ggplot2)
-# mpg plot
-ggplot(s1, 
-       aes(x = cyl, 
-           y = Mean_mpg)) +
-  geom_bar(stat = "identity", 
-           fill = "gold") +
-  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
-                    ymax = Mean_mpg + SD_mpg), 
-                width = .2) +
-  labs(x = "Cylinders", y = "Mean mpg",
-       title = "Mean and SD of Mileage(mpg) by #Cylinders") +
-  theme_minimal()
-```
-
-6.  **Discussion**:
-
--   `ggplot(s1, aes(x = cyl, y = Mean_mpg))`: The `ggplot()` function initializes a ggplot object using dataframe `s1` and mapping aesthetic elements. Here, `aes(x = cyl, y = Mean_mpg)` specifies that the x-axis represents `cyl` (number of cylinders) and the y-axis represents `Mean_mpg` (mean miles per gallon).
-
--   `geom_bar(stat = "identity", fill = "gold")`: The `geom_bar()` function is used to create a bar chart. Setting `stat = "identity"` indicates that the heights of the bars represent the values in the data (in this case, `Mean_mpg`). The `fill = "gold"` argument sets the color of the bars.
-
--   `geom_errorbar()` adds error bars to the plot. The arguments `aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg)` set the bottom (`ymin`) and top (`ymax`) of the error bars to represent one standard deviation below and above the mean, respectively. `width = .2` sets the horizontal width of the error bars.
-
--   `labs(x = "Cylinders", y = "Mean mpg")`: The `labs()` function is used to specify the labels for the x-axis and y-axis.
-
--   `theme_minimal()`: The `theme_minimal()` function is used to set a minimalistic theme for the plot.
-
-7.  We extend this code to demonstrate how to measure the bivariate relationships between multiple continuous variables from the mtcars data and the categorical variable number of Cylinders (`cyl`), using `ggplot2`. Specifically, we want to measure the mean and SD of continuous variables (i) Miles Per Gallon (`mpg`); (ii) Weight (`wt`); (iii) Horsepower (`hp`) across the number of Cylinders (`cyl`).
-
-```{r}
-library(dplyr)
-s3 <- tb %>%
-  group_by(cyl) %>%
-  summarise(
-    Mean_mpg = mean(mpg, na.rm = TRUE),
-    SD_mpg = sd(mpg, na.rm = TRUE),
-    Mean_wt = mean(wt, na.rm = TRUE),
-    SD_wt = sd(wt, na.rm = TRUE),
-    Mean_hp = mean(hp, na.rm = TRUE),
-    SD_hp = sd(hp, na.rm = TRUE)
-    ) 
-kable(s3, 
-      digits=2, 
-      caption = "Summary of Mileage (mpg), Weight (wt), Horsepower (hp) by Cylinders (cyl=4,6,8)")
-```
-
-8.  **Discussion**:
-
--   With `tb %>%`, we indicate that we are going to perform a series of operations on the `tb` data frame. The `group_by(cyl)` groups the data by the `cyl` variable.
-
--   The `summarise()` function calculates the mean and standard deviation (SD) of three variables (`mpg`, `wt`, and `hp`). The`na.rm = TRUE` argument inside `mean()` and `sd()` functions is used to exclude any NA values from these calculations.
-
--   The resulting calculations are assigned to new variables (`Mean_mpg`, `SD_mpg`, `Mean_wt`, `SD_wt`, `Mean_hp`, and `SD_hp`) which will be the columns in the summarised data frame.
-
--   To summarize, this script groups the data in the `tb` tibble by `cyl` and then calculates the mean and standard deviation of the `mpg`, `wt`, and `hp` variables for each group. \[1\]
-
-### Across two Categories using `ggplot2`
-
-1.  We demonstrate the relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) and Transmission type (`am`) using `ggplot2`. Recall that a car's transmission may be automatic (`am=0`) or manual (`am=1`).
-
-```{r, warning=FALSE}
-s4 <- tb %>%
-  group_by(cyl, am) %>%
-  summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
-            SD_mpg = sd(mpg, na.rm = TRUE))
-kable(s4, 
-      digits=2, 
-      caption = "Summary of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)")
-```
-
-2.  **Discussion**:
-
--   The above code provides the mean and standard deviation of `mpg` for each unique combination of `cyl` and `am`.
-
--   Here is how it can be visualized:
-
-```{r}
-# Create the plot
-ggplot(s4, aes(x = interaction(cyl, am), 
-               y = Mean_mpg, 
-               fill = as.factor(am))) +
-  geom_bar(stat = "identity", 
-           position = position_dodge()) +
-  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
-                    ymax = Mean_mpg + SD_mpg), 
-                width = .2, 
-                position = position_dodge(.9)) +
-  labs(x = "Cylinders and Transmission", 
-       y = "Mean mpg", 
-       fill = "Transmission",
-       title = "Summary of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") +
-  theme_minimal()
-```
-
-3.  In the below code, the order of the variables is reversed - the data is first grouped by `am`, then by `cyl`. So, the function first sorts the data by the `am` variable, and within each `am` group, it further groups the data by `cyl`.
-
-```{r}
-library(dplyr)
-s5 <- tb %>%
-  group_by(am, cyl) %>%
-  summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
-            SD_mpg = sd(mpg, na.rm = TRUE)) 
-kable(s5, 
-      digits=2, caption = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)")
-```
-
--   Here is how it can be visualized:
-
-```{r}
-# Create the plot
-ggplot(s5, 
-       aes(x = interaction(am, cyl), 
-           y = Mean_mpg, 
-           fill = as.factor(cyl))) +
-  geom_bar(stat = "identity", 
-           alpha = 0.7, 
-           position = position_dodge()) +
-  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
-                    ymax = Mean_mpg + SD_mpg), 
-                width = .2, 
-                position = position_dodge(.9)) +
-  labs(x = "Transmission and Cylinders", 
-       y = "Mean mpg", 
-       fill = "Cylinders",
-       title = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)") +
-  theme_minimal()
-```
-
-4.  The following code produces a new data frame that contains the mean and standard deviation of the continuous variables `mpg`, `wt`, and `hp` for each combination of the factor variables `am` and `cyl`. \[1\]
-
-```{r, warning=FALSE}
-s6 <- tb %>%
-  group_by(am, cyl) %>%
-  summarise(
-    Mean_mpg = mean(mpg, na.rm = TRUE),
-    SD_mpg = sd(mpg, na.rm = TRUE),
-    Mean_wt = mean(wt, na.rm = TRUE),
-    SD_wt = sd(wt, na.rm = TRUE),
-    Mean_hp = mean(hp, na.rm = TRUE),
-    SD_hp = sd(hp, na.rm = TRUE)
-    )
-kable(s6, 
-      digits=2, caption = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinder (cyl=4,6,8)")
-```
 
 ## Visualizing Continuous Data using `ggplot2`
 
@@ -512,6 +306,228 @@ ggplot(tb, aes(x = factor(cyl),
   theme_minimal()
 ```
 
+
+
+
+
+
+
+## Summarizing Continuous Data using `dplyr` and `ggplot2`
+
+### Across one Category using `dplyr` and `ggplot2`
+
+1.  Calculating the mean and standard deviation
+
+-   We demonstrate the bivariate relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) using `ggplot2`.
+
+```{r, warning=FALSE}
+suppressPackageStartupMessages(library(dplyr))
+s1 <- tb %>%
+  group_by(cyl) %>%
+  summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
+            SD_mpg = sd(mpg, na.rm = TRUE))
+  
+kable(s1, digits=2, caption = "Summary Statistics of Mileage (mpg) by Cylinders (cyl=4,6,8)") 
+```
+
+2.  **Discussion:**
+
+-   In this code, we use the pipe operator `%\>%` to perform a series of operations. We first group the data by the `cyl` column using the `group_by()` function. We then use `summarise()` to apply the `mean()` and `sd()` functions to the `mpg` column.
+
+-   The results are stored in new columns, aptly named `Mean_mpg` and `SD_mpg`.
+
+-   We set `na.rm = TRUE` in both `mean()` and `sd()` function calls, to remove any missing values before calculation.
+
+-   The data resulting from the above code consists of grouped cylinder counts (`cyl`), their corresponding mean miles per gallon (`Mean_mpg`), and the standard deviation of miles per gallon (`SD_mpg`).\[1\]
+
+3.  **Visualizing the mean and standard deviation**
+
+-   A simple way to visualize this data is to create a **line plot** for the mean miles per gallon with **error bars** indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
+
+```{r, warning=FALSE}
+suppressPackageStartupMessages(library(ggplot2))
+ggplot(s1, 
+       aes(x = cyl, y = Mean_mpg)) +
+  geom_line(group=1, color = "blue") +
+  geom_point(size = 2, color = "red") +
+  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
+                    ymax = Mean_mpg + SD_mpg), 
+                width = .2, colour = "black") +
+  labs(x = "Cylinders", y = "Mean mpg",
+       title = "Mean and SD of Mileage(mpg) by #Cylinders") +
+  theme_minimal()
+```
+
+4.  **Discussion**:
+
+-   `aes(x = cyl, y = Mean_mpg)` assigns the `cyl` values to the x-axis and `Mean_mpg` to the y-axis.
+
+-   `geom_line(group=1, color = "blue")` adds a blue line connecting the data points.
+
+-   `geom_point(size = 2, color = "red")` adds red points for each data point.
+
+-   `geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg), width = .2, colour = "black")` adds error bars, where the error is the standard deviation.
+
+-   The `ymin` and `ymax` arguments define the range of the error bars.
+
+-   `labs(x = "Cylinders", y = "Mean mpg")` labels the x and y axes.
+
+-   `theme_minimal()` applies a minimal theme to the plot.
+
+5.  **Visualizing the mean and standard deviation - Alternate Method**
+
+-   An alternate method is to visualize this mean by creating a **bar plot**, with **error bars** indicating the standard deviation. Here is an example of how we could do this with `ggplot2`:
+
+```{r}
+library(ggplot2)
+# mpg plot
+ggplot(s1, 
+       aes(x = cyl, 
+           y = Mean_mpg)) +
+  geom_bar(stat = "identity", 
+           fill = "gold") +
+  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
+                    ymax = Mean_mpg + SD_mpg), 
+                width = .2) +
+  labs(x = "Cylinders", y = "Mean mpg",
+       title = "Mean and SD of Mileage(mpg) by #Cylinders") +
+  theme_minimal()
+```
+
+6.  **Discussion**:
+
+-   `ggplot(s1, aes(x = cyl, y = Mean_mpg))`: The `ggplot()` function initializes a ggplot object using dataframe `s1` and mapping aesthetic elements. Here, `aes(x = cyl, y = Mean_mpg)` specifies that the x-axis represents `cyl` (number of cylinders) and the y-axis represents `Mean_mpg` (mean miles per gallon).
+
+-   `geom_bar(stat = "identity", fill = "gold")`: The `geom_bar()` function is used to create a bar chart. Setting `stat = "identity"` indicates that the heights of the bars represent the values in the data (in this case, `Mean_mpg`). The `fill = "gold"` argument sets the color of the bars.
+
+-   `geom_errorbar()` adds error bars to the plot. The arguments `aes(ymin = Mean_mpg - SD_mpg, ymax = Mean_mpg + SD_mpg)` set the bottom (`ymin`) and top (`ymax`) of the error bars to represent one standard deviation below and above the mean, respectively. `width = .2` sets the horizontal width of the error bars.
+
+-   `labs(x = "Cylinders", y = "Mean mpg")`: The `labs()` function is used to specify the labels for the x-axis and y-axis.
+
+-   `theme_minimal()`: The `theme_minimal()` function is used to set a minimalistic theme for the plot.
+
+7.  We extend this code to demonstrate how to measure the bivariate relationships between multiple continuous variables from the mtcars data and the categorical variable number of Cylinders (`cyl`), using `ggplot2`. Specifically, we want to measure the mean and SD of continuous variables (i) Miles Per Gallon (`mpg`); (ii) Weight (`wt`); (iii) Horsepower (`hp`) across the number of Cylinders (`cyl`).
+
+```{r}
+library(dplyr)
+s3 <- tb %>%
+  group_by(cyl) %>%
+  summarise(
+    Mean_mpg = mean(mpg, na.rm = TRUE),
+    SD_mpg = sd(mpg, na.rm = TRUE),
+    Mean_wt = mean(wt, na.rm = TRUE),
+    SD_wt = sd(wt, na.rm = TRUE),
+    Mean_hp = mean(hp, na.rm = TRUE),
+    SD_hp = sd(hp, na.rm = TRUE)
+    ) 
+kable(s3, 
+      digits=2, 
+      caption = "Summary of Mileage (mpg), Weight (wt), Horsepower (hp) by Cylinders (cyl=4,6,8)")
+```
+
+8.  **Discussion**:
+
+-   With `tb %>%`, we indicate that we are going to perform a series of operations on the `tb` data frame. The `group_by(cyl)` groups the data by the `cyl` variable.
+
+-   The `summarise()` function calculates the mean and standard deviation (SD) of three variables (`mpg`, `wt`, and `hp`). The`na.rm = TRUE` argument inside `mean()` and `sd()` functions is used to exclude any NA values from these calculations.
+
+-   The resulting calculations are assigned to new variables (`Mean_mpg`, `SD_mpg`, `Mean_wt`, `SD_wt`, `Mean_hp`, and `SD_hp`) which will be the columns in the summarised data frame.
+
+-   To summarize, this script groups the data in the `tb` tibble by `cyl` and then calculates the mean and standard deviation of the `mpg`, `wt`, and `hp` variables for each group. \[1\]
+
+### Across two Categories using `ggplot2`
+
+1.  We demonstrate the relationship between Miles Per Gallon (`mpg`) and Cylinders (`cyl`) and Transmission type (`am`) using `ggplot2`. Recall that a car's transmission may be automatic (`am=0`) or manual (`am=1`).
+
+```{r, warning=FALSE}
+s4 <- tb %>%
+  group_by(cyl, am) %>%
+  summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
+            SD_mpg = sd(mpg, na.rm = TRUE))
+kable(s4, 
+      digits=2, 
+      caption = "Summary of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)")
+```
+
+2.  **Discussion**:
+
+-   The above code provides the mean and standard deviation of `mpg` for each unique combination of `cyl` and `am`.
+
+-   Here is how it can be visualized:
+
+```{r}
+# Create the plot
+ggplot(s4, aes(x = interaction(cyl, am), 
+               y = Mean_mpg, 
+               fill = as.factor(am))) +
+  geom_bar(stat = "identity", 
+           position = position_dodge()) +
+  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
+                    ymax = Mean_mpg + SD_mpg), 
+                width = .2, 
+                position = position_dodge(.9)) +
+  labs(x = "Cylinders and Transmission", 
+       y = "Mean mpg", 
+       fill = "Transmission",
+       title = "Summary of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") +
+  theme_minimal()
+```
+
+3.  In the below code, the order of the variables is reversed - the data is first grouped by `am`, then by `cyl`. So, the function first sorts the data by the `am` variable, and within each `am` group, it further groups the data by `cyl`.
+
+```{r}
+library(dplyr)
+s5 <- tb %>%
+  group_by(am, cyl) %>%
+  summarise(Mean_mpg = mean(mpg, na.rm = TRUE),
+            SD_mpg = sd(mpg, na.rm = TRUE)) 
+kable(s5, 
+      digits=2, caption = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)")
+```
+
+-   Here is how it can be visualized:
+
+```{r}
+# Create the plot
+ggplot(s5, 
+       aes(x = interaction(am, cyl), 
+           y = Mean_mpg, 
+           fill = as.factor(cyl))) +
+  geom_bar(stat = "identity", 
+           alpha = 0.7, 
+           position = position_dodge()) +
+  geom_errorbar(aes(ymin = Mean_mpg - SD_mpg, 
+                    ymax = Mean_mpg + SD_mpg), 
+                width = .2, 
+                position = position_dodge(.9)) +
+  labs(x = "Transmission and Cylinders", 
+       y = "Mean mpg", 
+       fill = "Cylinders",
+       title = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)") +
+  theme_minimal()
+```
+
+4.  The following code produces a new data frame that contains the mean and standard deviation of the continuous variables `mpg`, `wt`, and `hp` for each combination of the factor variables `am` and `cyl`. \[1\]
+
+```{r, warning=FALSE}
+s6 <- tb %>%
+  group_by(am, cyl) %>%
+  summarise(
+    Mean_mpg = mean(mpg, na.rm = TRUE),
+    SD_mpg = sd(mpg, na.rm = TRUE),
+    Mean_wt = mean(wt, na.rm = TRUE),
+    SD_wt = sd(wt, na.rm = TRUE),
+    Mean_hp = mean(hp, na.rm = TRUE),
+    SD_hp = sd(hp, na.rm = TRUE)
+    )
+kable(s6, 
+      digits=2, caption = "Summary of Mileage (mpg) by Transmission (am=0,1) and Cylinder (cyl=4,6,8)")
+```
+
+
+
+
+
 ## References
 
 \[1\]
@@ -574,3 +590,7 @@ ggplot(tb_modified,
              space = "free_y") +
   theme_minimal()
 ```
+
+
+
+
