@@ -1,6 +1,6 @@
 # Live Case: S&P500 (1 of 3)
 
-*Sep 22, 2023.*
+*Sep 22, 2023*
 
 ## S&P 500
 
@@ -22,7 +22,6 @@ We will analyze a real-world, recent dataset containing information about the S&
 
 The data is disorganized and challenging to understand. We will review the data and proceed in a step-by-step manner.
 
-
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
@@ -35,7 +34,6 @@ library(rmarkdown, quietly = TRUE, warn.conflicts = FALSE)
 library(knitr, quietly = TRUE, warn.conflicts = FALSE) 
 library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) 
 ```
-
 
 ### Read the S&P500 data from a Google Sheet into a tibble dataframe.
 
@@ -298,7 +296,7 @@ The table() function allows us to count how many stocks are part of each sector.
 table(sp500$Sector)
 ```
 
-* The S&P500 consists of `r nrow(sp500)` stocks, divided across `r length(unique(sp500$Sector))` sectors. 
+-   The S&P500 consists of `r nrow(sp500)` stocks, divided across `r length(unique(sp500$Sector))` sectors.
 
 ```{r}
 ggplot(data = sp500, 
@@ -310,7 +308,6 @@ ggplot(data = sp500,
        x = "No. of Stocks", 
        y = "Sector")
 ```
-
 
 Thus, we can see how many stocks are part of each one of the 19 sectors.
 
@@ -348,7 +345,6 @@ table(sp500$Rating)
 
 Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Strong Buy". This completes our review of Technical Rating.
 
-
 ## Summary of Chapter 7 -- Exploring S&P500 Data
 
 Chapter 6 embarks on an exploration of the S&P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index's role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&P Dow Jones Indices.
@@ -358,15 +354,3 @@ Part 1 of the chapter delves into a real-world dataset containing information ab
 Part 2 addresses data quality, ensuring a cleaner dataset by removing rows with null or blank values in the "Stock" column. Additionally, the "Sector" and "Rating" columns are transformed into factor variables, reflecting the distinct sectors and technical ratings each stock holds. The distribution of sectors and ratings is analyzed using various functions. After data preparation, the dataset is considered ready for further analysis.
 
 Chapter 6 skillfully guides readers through the intricacies of exploring S&P500 data, employing practical examples and R code to foster a deeper understanding of the dataset's structure and content. Further exploration is encouraged with a wealth of references for continued learning and analysis.
-
-
-
-
-
-
-
-
-
-
-
-
