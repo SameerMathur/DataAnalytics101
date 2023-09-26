@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analytics 101 -- Exploratory Data Analysis using R – categoricaldata03</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Sameer Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Book’s Github</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09CategoricalData03.html">09: Categorical x Categorical data (2 of 2)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: Exploring R programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Exploring R Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Exploring Data Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Reading Data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Exploring Dataframes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07: Categorical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Categorical x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">09: Categorical x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10: Continuous Data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11: Continuous Data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12: Categorical x Continuous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13: Categorical x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14: Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15: Continuous x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#categorical-x-categorical-data-2-of-2" id="toc-categorical-x-categorical-data-2-of-2" class="nav-link active" data-scroll-target="#categorical-x-categorical-data-2-of-2">09: Categorical x Categorical data (2 of 2)</a>
+  <ul class="collapse">
+  <li><a href="#exploring-multivariate-categorical-data" id="toc-exploring-multivariate-categorical-data" class="nav-link" data-scroll-target="#exploring-multivariate-categorical-data">Exploring Multivariate Categorical Data</a></li>
+  <li><a href="#three-way-relationships" id="toc-three-way-relationships" class="nav-link" data-scroll-target="#three-way-relationships">Three Way Relationships</a>
+  <ul class="collapse">
+  <li><a href="#three-dimensional-contingency-tables" id="toc-three-dimensional-contingency-tables" class="nav-link" data-scroll-target="#three-dimensional-contingency-tables">Three-Dimensional Contingency Tables</a></li>
+  <li><a href="#visualization-using-a-faceted-bar-plot-in-ggplot" id="toc-visualization-using-a-faceted-bar-plot-in-ggplot" class="nav-link" data-scroll-target="#visualization-using-a-faceted-bar-plot-in-ggplot">Visualization using a Faceted Bar Plot in <code>ggplot</code></a></li>
+  <li><a href="#visualization-using-a-mosaic-plot" id="toc-visualization-using-a-mosaic-plot" class="nav-link" data-scroll-target="#visualization-using-a-mosaic-plot">Visualization using a Mosaic Plot</a></li>
+  </ul></li>
+  <li><a href="#four-way-relationships" id="toc-four-way-relationships" class="nav-link" data-scroll-target="#four-way-relationships">Four-Way Relationships</a>
+  <ul class="collapse">
+  <li><a href="#four-dimensional-contingency-tables" id="toc-four-dimensional-contingency-tables" class="nav-link" data-scroll-target="#four-dimensional-contingency-tables">Four-Dimensional Contingency Tables</a></li>
+  <li><a href="#visualization-using-a-mosaic-plot-1" id="toc-visualization-using-a-mosaic-plot-1" class="nav-link" data-scroll-target="#visualization-using-a-mosaic-plot-1">Visualization using a Mosaic Plot</a></li>
+  </ul></li>
+  <li><a href="#summary-of-chapter-10-categorical-x-categorical-data-2-of-2" id="toc-summary-of-chapter-10-categorical-x-categorical-data-2-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-10-categorical-x-categorical-data-2-of-2">Summary of Chapter 10 – Categorical x Categorical data (2 of 2)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="09CategoricalData03.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="categorical-x-categorical-data-2-of-2" class="level1">
+<h1>09: Categorical x Categorical data (2 of 2)</h1>
+<p><em>Sep 10, 2023.</em></p>
+<section id="exploring-multivariate-categorical-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-multivariate-categorical-data">Exploring Multivariate Categorical Data</h2>
+<p>This chapter explores how to summarize and visualize <em>multivariate, categorical</em> data.</p>
+<ol type="1">
+<li><p>Multivariate categorical variables allow us to analyze relationships between <strong>three or more</strong> categorical variables respectively.</p></li>
+<li><p>This form of analysis can help <strong>reveal complex interactions and dependencies</strong> between multiple variables that cannot be detected in bivariate analyses. Both bivariate and multivariate analyses are essential in statistical and data analysis as they allow us to uncover relationships and patterns in data</p></li>
+<li><p><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="three-way-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="three-way-relationships">Three Way Relationships</h2>
+<ol type="1">
+<li><p>A Three-Dimensional Contingency Table, often referred to as a <strong>3-way contingency table</strong>, is a statistical tool that helps analyze the relationship between three categorical variables. It builds upon the concept of a standard two-dimensional contingency table, which shows the distribution of two categorical variables, by adding a third dimension to the analysis.</p></li>
+<li><p>Imagine a grid-like structure with three axes representing the three variables. The <strong>rows</strong> correspond to the categories of the first variable, the <strong>columns</strong> represent the categories of the second variable, and the <strong>layers</strong> (sheets) represent the categories of the third variable. Each cell within the table contains the frequency or count of observations that belong to a specific combination of the three variables.</p></li>
+<li><p>When dealing with a three-way relationship, our focus is on three categorical variables and how they <strong>interact</strong> with each other. Such interactions can be manifest in the form of changes in the relationship between two variables based on the values of the third variable. Alternatively, we might seek to comprehend how all three variables collectively influence the observed data.</p></li>
+<li><p>Graphically, three-way relationships can be represented in various forms, such as <strong>three-dimensional contingency tables</strong>, <strong>side-by-side mosaic plots</strong>, or even <strong>three-dimensional bar plots</strong>. However, it’s crucial to note that these visual representations can become complicated and challenging to decipher as the number of categories within each variable rises. [1].</p></li>
+</ol>
+<section id="three-dimensional-contingency-tables" class="level3">
+<h3 class="anchored" data-anchor-id="three-dimensional-contingency-tables">Three-Dimensional Contingency Tables</h3>
+<ol type="1">
+<li><p>The R language, versatile as it is, provides multiple functions for creating contingency tables for multivariate categorical data. In this case, we’re focusing on the <code>table()</code>, <code>xtabs()</code>, and <code>ftable()</code> functions for forming a three-way contingency table. [2]</p></li>
+<li><p>We can create a three-way contingency table of <code>cyl</code>, <code>gear</code>, and <code>am</code> using the <code>table()</code> function.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      gear,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>      am)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , am = 0
+
+   gear
+cyl  3  4  5
+  4  1  2  0
+  6  2  2  0
+  8 12  0  0
+
+, , am = 1
+
+   gear
+cyl  3  4  5
+  4  0  6  2
+  6  0  2  1
+  8  0  0  2</code></pre>
+</div>
+</div>
+<ul>
+<li><p>When we run this code, the output is a <strong>three-dimensional contingency table</strong> showing the frequencies of all combinations of the three variables. Each cell in the resulting table represents the number of observations for a particular combination of <code>cyl</code>, <code>gear</code>, and <code>am</code> categories.</p></li>
+<li><p>Notice that we are segmenting the tables based on the 3rd argument given the table function, which is the transmission <code>am</code>.</p></li>
+</ul>
+<ol start="3" type="1">
+<li>We could alternately run the following code and instead segment the tables based on the cylinders <code>cyl</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(am,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>      gear,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , cyl = 4
+
+   gear
+am   3  4  5
+  0  1  2  0
+  1  0  6  2
+
+, , cyl = 6
+
+   gear
+am   3  4  5
+  0  2  2  0
+  1  0  2  1
+
+, , cyl = 8
+
+   gear
+am   3  4  5
+  0 12  0  0
+  1  0  0  2</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><code>xtabs()</code>: We can also create a three-way contingency table of <code>cyl</code>, <code>gear</code>, and <code>am</code> using the <code>xtabs()</code> function</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> cyl <span class="sc">+</span> gear <span class="sc">+</span> am,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , am = 0
+
+   gear
+cyl  3  4  5
+  4  1  2  0
+  6  2  2  0
+  8 12  0  0
+
+, , am = 1
+
+   gear
+cyl  3  4  5
+  4  0  6  2
+  6  0  2  1
+  8  0  0  2</code></pre>
+</div>
+</div>
+<ul>
+<li>Here, the formula <code>~ cyl + gear + am</code> defines the three variables we are interested in.</li>
+</ul>
+<ol start="5" type="1">
+<li><code>ftable()</code>: The <code>ftable()</code> function is employed to generate a ‘flat’ contingency table, which is essentially a higher-dimensional contingency table displayed in a two-dimensional format. We can also create a three-way contingency table of <code>gear</code>, <code>cyl</code>, and <code>am</code> using the following code:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(gear <span class="sc">+</span> cyl <span class="sc">~</span> am, </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   gear  3        4        5      
+   cyl   4  6  8  4  6  8  4  6  8
+am                                
+0        1  2 12  2  2  0  0  0  0
+1        0  0  0  6  2  0  2  1  2</code></pre>
+</div>
+</div>
+<ul>
+<li><p>In this code, <code>ftable(gear + cyl \~ am, data = tb)</code>, we arrange the <code>gear</code> and <code>cyl</code> variables in the rows and the <code>am</code> variable in the columns.</p></li>
+<li><p>The <code>~</code> operator separates the variables that will be displayed in rows (on the left) and columns (on the right) in the resulting table.</p></li>
+<li><p>The <code>+</code> operator denotes that both <code>gear</code> and <code>cyl</code> will be included in the row labels. [2]</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(gear <span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       gear  3  4  5
+cyl am              
+4   0        1  2  0
+    1        0  6  2
+6   0        2  2  0
+    1        0  2  1
+8   0       12  0  0
+    1        0  0  2</code></pre>
+</div>
+</div>
+<ul>
+<li><p>This variation of code, <code>ftable(gear ~ cyl + am, data = tb)</code>, it is structured slightly differently. Here, the <code>gear</code> variable forms the row and both <code>cyl</code> and <code>am</code> variables form the columns of the flat contingency table.</p></li>
+<li><p>In both scenarios, a <code>ftable</code> provides a more compact view of the three-way relationship among the <code>gear</code>, <code>cyl</code>, and <code>am</code> variables. However, the orientation of the variables in the rows and columns changes, providing different views of the data and potentially making certain patterns more evident depending on the question we’re trying to answer.</p></li>
+<li><p>The exact choice between <code>ftable(gear + cyl ~ am, data = tb)</code> and <code>ftable(gear ~ cyl + am, data = tb)</code> will depend on what specific relationships you’re most interested in exploring in your data.</p></li>
+</ul>
+</section>
+<section id="visualization-using-a-faceted-bar-plot-in-ggplot" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-using-a-faceted-bar-plot-in-ggplot">Visualization using a Faceted Bar Plot in <code>ggplot</code></h3>
+<ol type="1">
+<li><p>A Three-Dimensional Bar Plot is a generalization of a conventional two-dimensional bar graph, expanded into a third dimension. Rather than using bars at specific x coordinates in a two-dimensional plane, we utilize a grid of bars on the x-y plane, extending upwards in the z direction to indicate the data’s magnitude. [6]</p></li>
+<li><p>Here is some sample code:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary package</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'ggplot2'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'tb':
+
+    mpg</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with count of each combination</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>                  tb<span class="sc">$</span>am, </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                  tb<span class="sc">$</span>gear)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert table to a data frame for plotting</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(count_df)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(count_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cyl"</span>, <span class="st">"am"</span>, <span class="st">"gear"</span>, <span class="st">"count"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(count_df, </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>cyl, <span class="at">y=</span>count, </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill=</span>gear)) <span class="sc">+</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, </span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">position=</span><span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>am) <span class="sc">+</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Count by Transmission (1 = Manual, 0 = Automatic), Cylinders and Gears"</span>, </span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Cylinders"</span>,</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Gears"</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add count labels to the bars</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> count), </span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>), </span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09CategoricalData03_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li><p>This code creates a faceted bar plot to visually represent the frequency of combinations of three categorical variables: <code>cyl</code> (Cylinders), <code>am</code> (Transmission), and <code>gear</code> (Gears).</p></li>
+<li><p>The line <code>count_df &lt;- table(tb$cyl, tb$am, tb$gear)</code> generates a contingency table of the frequencies at each level of the three categorical variables (<code>cyl</code>, <code>am</code>, <code>gear</code>), using the <code>table()</code> function.</p></li>
+<li><p>Next, <code>count_df &lt;- as.data.frame.table(count_df)</code> is used to convert the generated contingency table into a data frame, which can be more conveniently manipulated and visualized using <code>ggplot2.</code> [7]</p></li>
+<li><p>The names of the data frame’s columns are then reassigned using <code>names(count_df) &lt;- c("cyl", "am", "gear", "count")</code>. The ‘count’ column represents the frequency of each combination of the levels of the <code>cyl</code>, <code>am</code>, and <code>gear</code> variables.</p></li>
+<li><p>The plot is created using the <code>ggplot()</code> function, which initializes a ggplot object. The aesthetic mapping <code>aes(x=cyl, y=count, fill=gear)</code> specifies that the x-axis represents <code>cyl</code>, the y-axis represents <code>count</code>, and the color fill of the bars is based on <code>gear</code>.</p></li>
+<li><p>The <code>geom_bar(stat="identity", position="dodge")</code> function call adds a layer to the plot that depicts the data as a bar chart. The argument <code>stat="identity"</code> informs ggplot that the heights of the bars are given in the data (i.e., in the <code>count</code> variable), and <code>position="dodge"</code> causes bars associated with different levels of <code>gear</code> to be drawn side-by-side.</p></li>
+<li><p>The <code>facet_grid(~am)</code> function call adds facets to the plot based on the <code>am</code> variable, creating a separate subplot for each level of <code>am</code>.</p></li>
+<li><p>The <code>labs()</code> function call specifies the labels for the plot, including the title and the x-, y-, and fill-axis labels. The <code>theme_minimal()</code> call is used to apply a minimalist aesthetic theme to the plot.</p></li>
+<li><p>The <code>aes(label = count)</code> inside <code>geom_text()</code> tells ggplot to use the <code>count</code> column in the data frame as the labels for each bar. The <code>position_dodge(width = 0.9)</code> argument ensures that the labels are properly aligned with the corresponding bars in the grouped plot, and <code>vjust = -0.5</code> adjusts the vertical position of the labels to make them appear just above the bars.</p></li>
+<li><p>This code thus provides a clear and insightful visualization of the frequency of each combination of <code>cyl</code>, <code>am</code>, and <code>gear</code>. [7]</p></li>
+</ul>
+<ol start="3" type="1">
+<li>Here is some alternate sample code:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary package</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with count of each combination</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am, tb<span class="sc">$</span>gear)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert table to a data frame for plotting</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>count_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(count_df)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(count_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cyl"</span>, <span class="st">"am"</span>, <span class="st">"gear"</span>, <span class="st">"count"</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(count_df, <span class="fu">aes</span>(<span class="at">x=</span>am, <span class="at">y=</span>count, <span class="at">fill=</span>gear)) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"identity"</span>, </span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">position=</span><span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>cyl) <span class="sc">+</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Frequency by Cylinders, Transmission and Gears"</span>, </span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Tranmission"</span>,</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Gears"</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Add count labels to the bars</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> count), </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.9</span>), </span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09CategoricalData03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li><p>This code is similar to the previous one; both create a faceted bar plot to display the frequencies of the levels of three categorical variables. The main difference between the two lies in the aesthetic mappings and the facet specification in the <code>ggplot()</code> function call.</p></li>
+<li><p>In this new code, the x-axis mapping in <code>aes()</code> is changed from <code>cyl</code> (Cylinders) to <code>am</code> (Transmission). Hence, the x-axis of the bar plot will now depict the Transmission type instead of Cylinders.</p></li>
+<li><p>Similarly, the <code>facet_grid()</code> function, which was previously applied to <code>am</code>, is now applied to <code>cyl</code>. This means that the plot will now be faceted by the Cylinders variable. Each facet (or subplot) will correspond to a different number of Cylinders (4, 6, or 8). [7]</p></li>
+</ul>
+</section>
+<section id="visualization-using-a-mosaic-plot" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-using-a-mosaic-plot">Visualization using a Mosaic Plot</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: grid</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span>gear<span class="sc">+</span>cyl<span class="sc">+</span>am, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic Plot of 3 variables"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting =</span> <span class="st">"cyl"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09CategoricalData03_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ol type="1">
+<li>The provided R code generates a mosaic plot using the <code>vcd</code> package, specifically focusing on the <code>gear</code>, <code>cyl</code>, and <code>am</code> variables. A mosaic plot is a visual representation of the frequencies or proportions of combinations of categorical variables.</li>
+</ol>
+<ul>
+<li><p><code>vcd::mosaic(~gear+cyl+am, data = tb, main = "Mosaic of Gears, Cylinders and Transmission type", shade = TRUE, highlighting = "cyl" )</code> generates the mosaic plot. The <code>~gear+cyl+am</code> formula indicates that the mosaic plot should visualize the <code>gear</code>, <code>cyl</code>, and <code>am</code> variables.</p></li>
+<li><p><code>data = tb</code> specifies the dataset to be used, which is <code>tb</code> in this case.</p></li>
+<li><p><code>main = "Mosaic of Gears, Cylinders and Transmission type"</code> sets the main title of the plot.</p></li>
+<li><p><code>shade = TRUE</code> means that shading is applied to the cells in the plot. The shading can help to differentiate the cells visually based on the residuals from a model of independence.</p></li>
+<li><p><code>highlighting = "cyl"</code> means that the <code>cyl</code> variable’s levels will be distinctly colored. This highlighting helps to visually emphasize the differences among <code>cyl</code> categories in the plot. [7]</p></li>
+</ul>
+<ol start="2" type="1">
+<li>The generated mosaic plot provides an effective visual exploration of the joint distribution of <code>gear</code>, <code>cyl</code>, and <code>am</code> variables in the <code>tb</code> dataset, highlighting the <code>cyl</code> variable.</li>
+</ol>
+</section>
+</section>
+<section id="four-way-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="four-way-relationships">Four-Way Relationships</h2>
+<ul>
+<li>Studying a four-way relationship between four categorical variables, involves looking at their interactions to see how they work together</li>
+</ul>
+<section id="four-dimensional-contingency-tables" class="level3">
+<h3 class="anchored" data-anchor-id="four-dimensional-contingency-tables">Four-Dimensional Contingency Tables</h3>
+<ol type="1">
+<li>Recall that <code>am</code>, <code>cyl</code>, <code>gear</code>, and <code>vs</code> are all categorical / factor variables.</li>
+</ol>
+<ul>
+<li><code>am</code> indicates the type of transmission (0 = automatic, 1 = manual).</li>
+<li><code>cyl</code> represents the number of cylinders in the car’s engine.</li>
+<li><code>gear</code> is the number of forward gears in the car.</li>
+<li><code>vs</code> indicates the engine shape (0 = V-shaped, 1 = straight).</li>
+</ul>
+<ol start="2" type="1">
+<li>Suppose we wish to create a 4-way Contingency Table. Recall that the <code>ftable()</code> function provides an easy way to summarize categorical data in a “flat” table, which can make the data easier to understand and interpret. [8]</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(am <span class="sc">+</span> cyl <span class="sc">~</span> gear <span class="sc">+</span> vs,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        am   0        1      
+        cyl  4  6  8  4  6  8
+gear vs                      
+3    0       0  0 12  0  0  0
+     1       1  2  0  0  0  0
+4    0       0  0  0  0  2  0
+     1       2  2  0  6  0  0
+5    0       0  0  0  1  1  2
+     1       0  0  0  1  0  0</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><strong>Discussion</strong>:</li>
+</ol>
+<ul>
+<li>In the formula <code>am + cyl ~ gear + vs</code>, the tilde (<code>~</code>) separates the rows and columns of the table.</li>
+<li>The variables to the left of the tilde (<code>am</code> and <code>cyl</code>) form the rows, and the variables to the right of the tilde (<code>gear</code> and <code>vs</code>) form the columns.</li>
+<li>The plus sign (+) between variables indicates that we want to consider all combinations of these variables.</li>
+<li>The resulting table shows the counts of each combination of <code>am</code> and <code>cyl</code> for each combination of gear and vs.</li>
+</ul>
+<ol start="4" type="1">
+<li>We can personalize the 4-way contingency table in several ways. Consider this alternate code. [8]</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(am <span class="sc">+</span> cyl <span class="sc">+</span> vs <span class="sc">~</span> gear,</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     am   0                 1               
+     cyl  4     6     8     4     6     8   
+     vs   0  1  0  1  0  1  0  1  0  1  0  1
+gear                                        
+3         0  1  0  2 12  0  0  0  0  0  0  0
+4         0  2  0  2  0  0  0  6  2  0  0  0
+5         0  0  0  0  0  0  1  1  1  0  2  0</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li><strong>Discussion</strong>:</li>
+</ol>
+<ul>
+<li><p>This code <code>ftable(am + cyl + vs ~ gear, data = tb)</code> also uses the <code>ftable</code> function in R to generate a contingency table. However, there is a significant difference in the configuration of variables compared to the previous code.</p></li>
+<li><p>In the previous code, <code>am + cyl ~ gear + vs</code>, the row variables (<code>am</code> and <code>cyl</code>) were cross-tabulated against the combinations of column variables (<code>gear</code> and <code>vs</code>).</p></li>
+<li><p>In this new code, we have <code>am + cyl + vs ~ gear</code>, which means that we now have three row variables (<code>am</code>, <code>cyl</code>, and <code>vs</code>) and one column variable (<code>gear</code>). This will result in a table showing the counts of each combination of <code>am</code>, <code>cyl</code>, and <code>vs</code> for each level of <code>gear</code>.</p></li>
+<li><p>In short, the new code has added <code>vs</code> as a third row variable and removed it from the column variables, thus changing the structure and the interpretation of the resulting table.</p></li>
+</ul>
+</section>
+<section id="visualization-using-a-mosaic-plot-1" class="level3">
+<h3 class="anchored" data-anchor-id="visualization-using-a-mosaic-plot-1">Visualization using a Mosaic Plot</h3>
+<ol type="1">
+<li>We can visualize four dimensional Contingency Tables using a Mosaic Plot. This is an extension to our previous discussions about two-way and three-way contingency tables. Consider the following code:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot of cyl vs, gear, am</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> vs <span class="sc">+</span> gear <span class="sc">+</span> am, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> tb, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">main =</span> <span class="st">"Mosaic Plot of 4 variables"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">highlighting =</span> <span class="st">"cyl"</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09CategoricalData03_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Discussion</strong>:</li>
+</ol>
+<ul>
+<li><p><code>~ cyl + vs + gear + am</code> is a formula that indicates the categorical variables to be plotted. Each variable will be represented as a dimension in the plot, and their combined proportions will make up the whole plot.</p></li>
+<li><p>The <code>data = tb</code> argument informs the dataframe.</p></li>
+<li><p>The <code>main = "Mosaic Plot of 4 variables"</code> line sets the main title of the plot.</p></li>
+<li><p><code>shade = TRUE</code> means that the cells in the mosaic plot will be shaded. The shading adds an extra visual element, which can make it easier to compare proportions.</p></li>
+<li><p>Finally, <code>highlighting = "cyl"</code> means that the cells in the plot will be highlighted based on the levels of the <code>cyl</code> variable. This can help to visually differentiate the categories of this variable.</p></li>
+</ul>
+</section>
+</section>
+<section id="summary-of-chapter-10-categorical-x-categorical-data-2-of-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-10-categorical-x-categorical-data-2-of-2">Summary of Chapter 10 – Categorical x Categorical data (2 of 2)</h2>
+<p>In the third installment of our “Categorical Data” series, we explore the world of multivariate categorical variables. Specifically, we focus on three-dimensional analyses that unveil complex relationships and dependencies between numerous variables.</p>
+<p>We utilize the R programming language, demonstrating a range of functions for constructing three-dimensional contingency tables. We also delve into segmenting these tables based on various variables, offering unique perspectives on the data.</p>
+<p>Further, we expand on visualizing this data, discussing the creation of three-dimensional bar plots and mosaic plots. These powerful visual tools assist in data interpretation by representing the frequency of combinations of multiple variables.</p>
+<p>We don’t limit ourselves to three-dimensional analysis; we advance into examining four-way relationships between categorical variables. Here, we utilize four-dimensional contingency tables and mosaic plots for analysis and visualization.</p>
+<p>In essence, this chapter provides a robust understanding of multivariate categorical data handling and visualization, preparing readers to navigate and analyze complex datasets effectively.</p>
+<p>Overall, these three chapters together provide a comprehensive understanding of handling and visualizing multivariate categorical data.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
+<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>Hair, J. F., Black, W. C., Babin, B. J., &amp; Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.</p>
+<p>[2] R Core Team. (2020). ftable: Flat Contingency Tables. In R Documentation. Retrieved from https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ftable</p>
+<p>Unwin, A. (2015). Graphical data analysis with R. CRC Press.</p>
+<p>Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.</p>
+<p>Hartigan, J. A., &amp; Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp.&nbsp;268-273).</p>
+<p>[3] Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
+<p>[4] Meyer, D., Zeileis, A., &amp; Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd</p>
+<p>Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.</p>
+<p>Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
+<p>[5] R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
+<p>[6] Unwin, A., Theus, M., &amp; Hofmann, H. (2006). Graphics of large datasets: visualizing a million. Springer Science &amp; Business Media.</p>
+<p>[7] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag.</p>
+<p>Meyer, D., Zeileis, A., &amp; Hornik, K. (2006). The strucplot framework: Visualizing multi-way contingency tables with vcd. Journal of Statistical Software, 17(3), 1-48.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

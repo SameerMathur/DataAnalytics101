@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analytics 101 -- Exploratory Data Analysis using R – categoricaldata01</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Sameer Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Book’s Github</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07CategoricalData01.html">07: Categorical Data</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: Exploring R programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Exploring R Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Exploring Data Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Reading Data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Exploring Dataframes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">07: Categorical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Categorical x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09: Categorical x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10: Continuous Data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11: Continuous Data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12: Categorical x Continuous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13: Categorical x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14: Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15: Continuous x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#categorical-data" id="toc-categorical-data" class="nav-link active" data-scroll-target="#categorical-data">07: Categorical Data</a>
+  <ul class="collapse">
+  <li><a href="#exploring-univariate-categorical-data" id="toc-exploring-univariate-categorical-data" class="nav-link" data-scroll-target="#exploring-univariate-categorical-data">Exploring Univariate Categorical Data</a></li>
+  <li><a href="#types-of-categorical-data-nominal-ordinal-data" id="toc-types-of-categorical-data-nominal-ordinal-data" class="nav-link" data-scroll-target="#types-of-categorical-data-nominal-ordinal-data">Types of Categorical Data – Nominal, Ordinal Data</a></li>
+  <li><a href="#factor-variables-in-r" id="toc-factor-variables-in-r" class="nav-link" data-scroll-target="#factor-variables-in-r">Factor Variables in R</a></li>
+  <li><a href="#analysis-of-a-univariate-factor-variable" id="toc-analysis-of-a-univariate-factor-variable" class="nav-link" data-scroll-target="#analysis-of-a-univariate-factor-variable">Analysis of a univariate Factor Variable</a></li>
+  <li><a href="#summarizing-a-univariate-factor-variable" id="toc-summarizing-a-univariate-factor-variable" class="nav-link" data-scroll-target="#summarizing-a-univariate-factor-variable">Summarizing a univariate Factor Variable</a></li>
+  <li><a href="#visualization-of-a-univariate-factor-variable" id="toc-visualization-of-a-univariate-factor-variable" class="nav-link" data-scroll-target="#visualization-of-a-univariate-factor-variable">Visualization of a univariate Factor Variable</a>
+  <ul class="collapse">
+  <li><a href="#barplot" id="toc-barplot" class="nav-link" data-scroll-target="#barplot">Barplot</a></li>
+  <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart">Pie chart</a></li>
+  </ul></li>
+  <li><a href="#visualization-of-a-univariate-factor-data-using-ggplot2-package" id="toc-visualization-of-a-univariate-factor-data-using-ggplot2-package" class="nav-link" data-scroll-target="#visualization-of-a-univariate-factor-data-using-ggplot2-package">Visualization of a univariate Factor data using <code>ggplot2</code> package</a>
+  <ul class="collapse">
+  <li><a href="#overview-of-ggplot2-package" id="toc-overview-of-ggplot2-package" class="nav-link" data-scroll-target="#overview-of-ggplot2-package">Overview of <strong>ggplot2</strong> package</a></li>
+  <li><a href="#bar-plot-using-ggplot2-package" id="toc-bar-plot-using-ggplot2-package" class="nav-link" data-scroll-target="#bar-plot-using-ggplot2-package">Bar Plot using <code>ggplot2</code> package</a></li>
+  <li><a href="#pie-chart-using-ggpie" id="toc-pie-chart-using-ggpie" class="nav-link" data-scroll-target="#pie-chart-using-ggpie">Pie chart using <strong>ggpie</strong></a></li>
+  </ul></li>
+  <li><a href="#summary-of-chapter-8-categorical-data" id="toc-summary-of-chapter-8-categorical-data" class="nav-link" data-scroll-target="#summary-of-chapter-8-categorical-data">Summary of Chapter 8 – Categorical Data</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="07CategoricalData01.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="categorical-data" class="level1">
+<h1>07: Categorical Data</h1>
+<p><em>Sep 4, 2023.</em></p>
+<section id="exploring-univariate-categorical-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-univariate-categorical-data">Exploring Univariate Categorical Data</h2>
+<p>THIS CHAPTER explores how to summarize and visualize <em>univariate, categorical</em> data.</p>
+<ol type="1">
+<li><p>Categorical data is a type of data that can be divided into categories or groups. labels or categorical codes like “male” and “female,” “red,” “green,” and “blue,” or “A,” “B,” and “C” are frequently used to describe category data. This data type is commonly employed in research and statistics where you can categorize the data under various headings depending on their features, characteristics, or any other parameters [1]</p></li>
+<li><p>There are several typical examples of categorical data.:</p>
+<ul>
+<li>Gender (male, female)</li>
+<li>Marital status (married, single, divorced)</li>
+<li>Education level (high school, college, graduate school)</li>
+<li>Occupation (teacher, doctor, engineer)</li>
+<li>Hair color (brown, blonde, red, black)</li>
+<li>Eye color (brown, blue, green, hazel)</li>
+<li>Type of car (sedan, SUV, truck) [2]</li>
+</ul></li>
+</ol>
+</section>
+<section id="types-of-categorical-data-nominal-ordinal-data" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-categorical-data-nominal-ordinal-data">Types of Categorical Data – Nominal, Ordinal Data</h2>
+<ol type="1">
+<li><p>`<strong>Nominal data</strong>`: This data type is characterized by variables that have two or more categories without having any kind of order or priority. This name-based categorization means that nominal data represents whether a variable belongs to a certain category or not, but it does not convey any qualitative value about the variable itself. For example, ‘gender’ is a nominal data type, as it categorizes data into ‘male’ or ‘female’, and neither category is intrinsically superior to the other. Nominal data is usually represented by text labels or categorical codes. [2]</p></li>
+<li><p>`<strong>Ordinal data</strong>`: Unlike nominal data, ordinal data categories have an <strong>inherent order</strong>. This order, however, does not provide any information about the exact differences between the categories. Common examples of ordinal data include the <strong>Likert scale</strong> in surveys, which ranges from “very dissatisfied” to “very satisfied,” or clothing sizes, which are typically “small,” “medium,” or “large.” While we know that “large” is bigger than “medium” and “medium” is bigger than “small,” we don’t know exactly how much bigger one is compared to the other (McCrum-Gardner, 2008).</p>
+<ul>
+<li>Ordinal data is frequently utilised to describe groups or categories that can be rated or sorted, such as educational level {high school, college, graduate school}, or movie reviews {G, PG, PG-13, R, NC-17}. [2]</li>
+</ul></li>
+</ol>
+</section>
+<section id="factor-variables-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="factor-variables-in-r">Factor Variables in R</h2>
+<ol type="1">
+<li><p>“<strong>Factor</strong>” is a term specifically used in R programming language to handle categorical data. Factors are the data objects which are used to categorize the data and store it as levels. They can store both strings and integers. They are useful in data analysis for statistical modeling. [4]</p></li>
+<li><p>A factor variable has <strong>levels</strong>, which are the distinct categories of the variable. For instance, if we have a factor variable named “color”, the levels might be “red,” “blue,” and “green.” Each level corresponds to a category in the categorical data. Creation of a factor variable in R can be done as follows:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>color <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>, <span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"yellow"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>color_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(color)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>In this example, <code>color_factor</code> is a factor variable with four levels - “red”, “blue”, “yellow” and “green”.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(color_factor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "blue"   "green"  "red"    "yellow"</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>The above code reads the <code>mtcars</code> data into a tibble named <code>tb</code> and transforms certain variables from the tibble into factors (categorical variables), using the <code>as.factor()</code> function. Specifically, the <code>cyl</code> (cylinders), <code>vs</code> (engine shape), <code>am</code> (transmission type), and <code>gear</code> (number of gears) variables are transformed into factors. This change is useful for subsequent analyses that need to recognize these variables as categorical data, rather than numerical data.</li>
+</ol>
+</section>
+<section id="analysis-of-a-univariate-factor-variable" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-a-univariate-factor-variable">Analysis of a univariate Factor Variable</h2>
+<ol type="1">
+<li><p>Recall that in the <code>mtcars</code> dataset, <code>cyl</code> stands for the number of cylinders in the car’s engine. By transforming <code>cyl</code> into a factor variable, we’re recognizing it as a categorical variable, which means we’re acknowledging that it consists of several distinct categories or levels. Each category or level corresponds to a specific number of cylinders a car might have. [4]</p></li>
+<li><p>Notice that in order to convert <code>cyl</code> into a factor variable in R, we have used the following line of code, which modifies the <code>cyl</code> column in the mtcars data frame (or tibble), transforming it from a numerical variable into a factor variable.</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>As a univariate factor variable, <code>cyl</code> represents a single, categorical characteristic of each car in the dataset: the number of cylinders in the engine. In this context, “univariate” means that we’re only considering one variable at a time, without reference to any other variables. [3]</li>
+<li>In the case of <code>cyl</code>, the unique categories (or levels) would correspond to the different numbers of cylinders in the cars’ engines. The following R code give us the levels of <code>cyl</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(tb<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "4" "6" "8"</code></pre>
+</div>
+</div>
+<p>This code could be alternately written as follows, giving the same result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="sc">%&gt;%</span> <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>The <code>levels()</code> function retrieves the levels of a factor variable. When it is applied to tb$cyl in the given context, it provides the unique categories of the <code>cyl</code> factor variable from the tb tibble, which are “4”, “6”, and “8”. These values correspond to the distinct number of cylinders in the cars’ engines that are represented in the mtcars dataset (Wickham &amp; Grolemund, 2016).</li>
+</ol>
+</section>
+<section id="summarizing-a-univariate-factor-variable" class="level2">
+<h2 class="anchored" data-anchor-id="summarizing-a-univariate-factor-variable">Summarizing a univariate Factor Variable</h2>
+<ol type="1">
+<li><p><strong>Frequency Table</strong>: A simple way to summarize categorical (or factor) data is by using a frequency table. It represents the count (frequency) of each category (level) in the factor variable. Essentially, a frequency table gives us a snapshot of the data distribution by indicating how many data points fall into each category [5]</p></li>
+<li><p>We can create a frequency table using the <code>table()</code> function. For example, to create a frequency table for the <code>cyl</code> variable in the tb tibble, we could write the following code whose output shows the number of cars that fall into each <code>cyl</code> category (4, 6, or 8 cylinders).</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 4  6  8 
+11  7 14 </code></pre>
+</div>
+</div>
+<p>This code could be alternately written as follows, giving the same result:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="sc">%&gt;%</span> <span class="fu">table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p><code>tb$cyl</code>: This piece of code is specifying the <code>cyl</code> column in the <code>tb</code> tibble, where <code>cyl</code> represents the number of cylinders in the car’s engine.</p></li>
+<li><p><code>%&gt;% table()</code>: The output of <code>tb$cyl</code> (i.e., the <code>cyl</code> column of <code>tb</code>) is then passed to the <code>table()</code> function via the pipe operator <code>%&gt;%</code>. The <code>table()</code> function creates a frequency table of the <code>cyl</code> column, counting the number of occurrences of each level (i.e., each distinct number of cylinders).</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Proportions</strong>: In contrast to the <code>table()</code> function, which generates a count of each category, the <code>prop.table()</code> function gives the proportions of each category. The subsequent code computes the proportions of each unique count of cylinders in the <code>cyl</code> column from the <code>tb</code> tibble.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>.
+      4       6       8 
+0.34375 0.21875 0.43750 </code></pre>
+</div>
+</div>
+<p><code>%&gt;% prop.table()</code>: The output of <code>table()</code>, a frequency table, is passed to the <code>prop.table()</code> function. This function converts the frequency table into a proportion table, showing the proportion of the total for each level rather than the raw count.</p>
+<ul>
+<li>This code could be alternately written as follows, giving the same result.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>p0 <span class="ot">=</span> <span class="fu">prop.table</span>(<span class="fu">table</span>(cyl))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>p0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>The <code>prop.table()</code> function is used in this example to determine the percentage of each category in the <code>cyl</code> variable of the mtcars dataset. For example, we find that the proportion of cars with 4 cylinders are 0.34375.</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>Percentages</strong>: Suppose we wanted to express the proportions as percentages, rounded to two decimal places. We could calculate the percentages using the <code>round()</code> function, as follows:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste0</span>(<span class="st">"%"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "34.38%" "21.88%" "43.75%"</code></pre>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p><code>%&gt;%</code>*<code>(100)</code>: Multiplies these proportions by 100, effectively converting them to percentage format.</p></li>
+<li><p><code>%&gt;% round(digits = 2)</code>: Rounds these percentages to two decimal places.</p></li>
+<li><p><code>%&gt;% paste0("%")</code>: Concatenates a <code>%</code> symbol to denote percentages .</p></li>
+<li><p>The final output will be a table displaying the percentage of cars that have 4, 6, and 8 cylinders, respectively. Each percentage is rounded to two decimal places. The proportion of each category or group of categories, rounded to two decimal places, is presented. For instance, 43.75% of automobiles have 8 cylinders.</p></li>
+</ul>
+</section>
+<section id="visualization-of-a-univariate-factor-variable" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-of-a-univariate-factor-variable">Visualization of a univariate Factor Variable</h2>
+<section id="barplot" class="level3">
+<h3 class="anchored" data-anchor-id="barplot">Barplot</h3>
+<ul>
+<li><p>The <code>barplot()</code> function in base R can be used to create a simple bar plot.</p></li>
+<li><p>We usually feed it a frequency table, which can be created with the <code>table()</code> function. Here’s an example of how to create a bar plot for the <code>cyl</code> variable:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table of the counts of cars by number of cylinders</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>cyl_table <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a barplot of the table</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(cyl_table, </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Number of cars by cylinder count"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Cylinders"</span>,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Number of cars"</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"gold"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li>In this code, <code>table(tb$cyl)</code> creates a frequency table for the <code>cyl</code> variable. The <code>xlab</code>, <code>ylab</code>, and <code>main</code> arguments are used to set the x-axis label, y-axis label, and the plot title, respectively. The color of the bars can be altered with the <code>col</code> option.</li>
+</ul>
+</section>
+<section id="pie-chart" class="level3">
+<h3 class="anchored" data-anchor-id="pie-chart">Pie chart</h3>
+<ul>
+<li><p>Pie charts can be created with the <code>pie()</code> function in base R.</p></li>
+<li><p>Just like with <code>barplot()</code>, we typically provide a frequency table to <code>pie()</code>.</p></li>
+<li><p>Here’s how to create a pie chart for the <code>cyl</code> variable:</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of cars with each number of cylinders</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cyl_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(mtcars<span class="sc">$</span>cyl)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a pie chart</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(cyl_counts, </span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Pie Chart of Cars by Number of Cylinders"</span>, </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"4 cylinders"</span>, <span class="st">"6 cylinders"</span>, <span class="st">"8 cylinders"</span>), </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li>Alternately, if we wanted to display the percentages, we could write the following code:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count the number of cars with each number of cylinders</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cyl_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(mtcars<span class="sc">$</span>cyl)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>percentages <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl))<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>mylabels <span class="ot">&lt;-</span> <span class="fu">paste</span>(percentages, <span class="st">"%"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a pie chart</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(cyl_counts, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">"Pie Chart of Cars by Number of Cylinders"</span>, </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> mylabels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p><code>percentages &lt;- round(prop.table(table(tb$cyl))*100, 2)</code>: This line calculates the proportions of each unique number of cylinders, multiplies these proportions by 100 to convert them into percentages, and rounds these percentages to two decimal places. The resulting percentages are saved to the percentages variable.</p></li>
+<li><p><code>mylabels &lt;- paste(percentages, "%")</code>: This line creates labels for each slice of the pie chart. These labels are made up of the percentages calculated in the previous step, followed by a percentage sign (%). The labels are saved to a <code>mylabels</code> variable.</p></li>
+<li><p>The <code>pie()</code> function then creates a pie chart using the frequency counts (<code>cyl_counts</code>) and the labels (<code>mylabels</code>). The main argument is used to set the title of the pie chart.</p></li>
+<li><p>While both bar plots and pie charts can be used to visualize the same data, they each have their strengths and limitations. Bar plots are typically better for comparing absolute counts or proportions across levels, whereas pie charts may be more intuitive when demonstrating the part-whole relationship. [7]</p></li>
+</ul>
+</section>
+</section>
+<section id="visualization-of-a-univariate-factor-data-using-ggplot2-package" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-of-a-univariate-factor-data-using-ggplot2-package">Visualization of a univariate Factor data using <code>ggplot2</code> package</h2>
+<section id="overview-of-ggplot2-package" class="level3">
+<h3 class="anchored" data-anchor-id="overview-of-ggplot2-package">Overview of <strong>ggplot2</strong> package</h3>
+<ul>
+<li><p>The <code>ggplot2</code> package, part of the tidyverse collection of R packages, is a powerful and flexible tool for creating a wide range of visualizations in R. It is built on the principles of the Grammar of Graphics, which provides a coherent system for describing and building graphs. [8]</p></li>
+<li><p>At the heart of <code>ggplot2</code> is the idea of mapping data to visual elements. This approach encourages you to think about the relationship between your data and the visual representation, making it easier to create complex and customized graphs.</p></li>
+</ul>
+<p>Key elements of <code>ggplot2</code> include:</p>
+<ol type="1">
+<li><code>Data</code>: The data frame that is to be visualized.</li>
+<li><code>Aesthetics</code>: These are mappings from data to visual elements (like position, color, and size).</li>
+<li><code>Geoms</code>: Geometric objects that represent the data (like points, lines, and bars).</li>
+<li><code>Scales</code>: These control how data values are translated to visual elements.</li>
+<li><code>Facets</code>: For creating multiple sub-plots, each showing a subset of the data.</li>
+</ol>
+<p>In a <code>ggplot2</code> graph, these elements are combined in layers, enabling a high degree of customization. [8]</p>
+</section>
+<section id="bar-plot-using-ggplot2-package" class="level3">
+<h3 class="anchored" data-anchor-id="bar-plot-using-ggplot2-package">Bar Plot using <code>ggplot2</code> package</h3>
+<ol type="1">
+<li>Here is an example of how to use ggplot2 to create a bar plot of the <code>cyl</code> factor:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'ggplot2'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following object is masked from 'tb':
+
+    mpg</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb, </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cyl)) <span class="sc">+</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Plot of Cars by Cylinders"</span>, </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cylinders"</span>, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p><code>library(ggplot2)</code>: This line loads the ggplot2 package into your R session. The ggplot2 package provides a powerful framework for creating diverse and sophisticated graphics in R.</p></li>
+<li><p><code>ggplot(data = tb, aes(x = cyl)) +</code>: This line initiates the creation of a ggplot object. The ggplot() function takes as arguments the data frame to use (tb in this case) and an aesthetics mapping function aes(), which maps the cyl variable to the x-axis of the plot. The + sign indicates that more layers will be added to this initial ggplot object.</p></li>
+<li><p><code>geom_bar() +</code>: This line adds a layer to the ggplot object to create a bar plot. The geom_bar() function by default will create a bar plot where the height of the bars corresponds to the count of each category in the data.</p></li>
+<li><p><code>labs(title = "Bar Plot of Cylinders", x = "Cylinders", y = "Count")</code>: This line adds labels to the plot. The <code>labs()</code> function is used to set the title of the plot and the labels for the x and y axes. The title of the plot is set as “Bar Plot of Cylinders”, the x-axis is labeled as “Cylinders”, and the y-axis is labeled as “Count”.</p></li>
+<li><p>To summarize, this code is loading the <code>ggplot2</code> package, initializing a ggplot object with data from the <code>tb</code> tibble and mapping the <code>cyl</code> variable to the x-axis, adding a bar plot layer to the ggplot object, and finally adding a title and labels to the x and y axes.</p></li>
+</ul>
+<ol start="2" type="1">
+<li>Suppose we wanted to add labels to the bars showing the count of each category. We can do this by using the geom_text() function in ggplot2. Here’s how we can modify our code to include labels:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb, <span class="fu">aes</span>(<span class="at">x =</span> cyl)) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cyl)) <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count)), </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Plot of Cylinders"</span>, </span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cylinders"</span>, </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p><code>geom_text(stat='count', aes(label=after_stat(count)), vjust=-0.5)</code>: This line adds a text layer to the plot.</p></li>
+<li><p>The <code>stat='count'</code> argument tells geom_text() to calculate the count of each category, and <code>aes(label=after_stat(count))</code> maps these counts to the text labels.</p></li>
+<li><p>The <code>vjust=-0.5</code> argument adjusts the vertical position of the labels to be slightly above the top of each bar.</p></li>
+<li><p>We can also customize the appearance of the text labels using the various arguments to <code>geom_text()</code>, such as <code>size</code>, <code>color</code>, <code>fontface</code>, and so on. [8]</p></li>
+</ul>
+</section>
+<section id="pie-chart-using-ggpie" class="level3">
+<h3 class="anchored" data-anchor-id="pie-chart-using-ggpie">Pie chart using <strong>ggpie</strong></h3>
+<ol type="1">
+<li><p><em>Aside</em>: Unfortunately, the <code>ggplot2</code> package doesn’t directly support pie charts, because they are generally not as effective at displaying data as other types of plots.</p></li>
+<li><p>The <code>ggpie()</code> function is part of the <code>ggpubr</code> package in R, a package that provides a set of functions to enhance the visual appeal and usability of <code>ggplot2</code> plots It specifically enables the creation of pie charts within the <code>ggplot2</code> framework. It accepts the following key arguments:</p></li>
+</ol>
+<ul>
+<li><p><code>data</code>: The data frame containing the variables to be used in the pie chart.</p></li>
+<li><p><code>x</code>: The variable in the data frame that determines the size (area) of the pie slices.</p></li>
+<li><p><code>fill</code>: The variable that determines the fill color of the pie slices.</p></li>
+<li><p><code>label</code>: The variable to use for the labels of the slices.</p></li>
+<li><p>Additional aesthetic details like the title of the chart, color palette, and other ggplot2 functionalities like adding layers, changing themes, etc., can also be utilized with <code>ggpie()</code>. [9]</p></li>
+</ul>
+<ol start="3" type="1">
+<li>Let us use <code>ggpie()</code> to create a boxplot of <code>cyl</code>.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counts of each cylinder type</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>cyl_counts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cyl_counts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cyl"</span>, <span class="st">"n"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the pie chart</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpie</span>(<span class="at">data =</span> cyl_counts, </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"n"</span>, </span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">"jco"</span>, </span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Pie Chart of Cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>The <code>library(ggpubr)</code> line loads the ggpubr package. This package contains the <code>ggpie</code> function which is used to create pie charts in <code>ggplot2</code>.</p></li>
+<li><p>The command <code>table(tb$cyl)</code> calculates the frequency of each type of <code>cyl</code> (cylinders) present in the tb dataset. <code>as.data.frame()</code> is then used to convert this table into a data frame, which is stored in the <code>cyl_counts</code> object. The column names of <code>cyl_counts</code> are then set to “cyl” and “n” using the <code>colnames()</code> function.</p></li>
+<li><p>The <code>ggpie()</code> function is used here to generate a pie chart. The arguments to <code>ggpie()</code> specify the data frame <code>(data = cyl_counts)</code>, the variable that determines the size of the pie slices <code>(x = "n")</code>, the variable that determines the fill color of the slices <code>(fill = "cyl")</code>, the variable used for the labels of the slices <code>(label = "cyl")</code>, the color palette <code>(palette = "jco")</code>, and the title of the chart <code>(title = "Pie Chart of Cylinders")</code>.</p></li>
+<li><p>This code results in a pie chart where each slice represents a different number of cylinders (<code>cyl</code>), the size of each slice is determined by the frequency of each number of cylinders (<code>n</code>), and the color of each slice is determined by the number of cylinders (<code>cyl</code>). The labels for each slice also represent the number of cylinders, and the color palette <code>jco</code> is used for the colors of the slices. [10]</p></li>
+</ul>
+<ol start="4" type="1">
+<li>If we wanted to instead display the percentages for each pie, we could modify this code as follows:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counts and proportions of each cylinder type</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>cyl_counts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl))</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cyl_counts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"cyl"</span>, <span class="st">"n"</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate proportions</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>cyl_counts<span class="sc">$</span>prop <span class="ot">&lt;-</span> cyl_counts<span class="sc">$</span>n <span class="sc">/</span> <span class="fu">sum</span>(cyl_counts<span class="sc">$</span>n)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create labels that display proportions as percentages</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>cyl_counts<span class="sc">$</span>labels <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">round</span>(cyl_counts<span class="sc">$</span>prop<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>)</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the pie chart with proportions</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpie</span>(<span class="at">data =</span> cyl_counts, </span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"prop"</span>, </span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"cyl"</span>, </span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"labels"</span>, </span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">"jco"</span>, </span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Pie Chart of Cylinders"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<p><strong>Discussion</strong>:</p>
+<ul>
+<li><p>This version of the code calculates the proportion of each cylinder type by dividing the count of each type by the total count i.e., <code>cyl_counts$n / sum(cyl_counts$n)</code>.</p></li>
+<li><p>These proportions are then stored in a new column in the <code>cyl_counts</code> data frame.</p></li>
+<li><p>Labels are created that display these proportions as percentages, and these labels are used in the pie chart instead of the raw counts.</p></li>
+<li><p>The <code>x</code> argument in <code>ggpie()</code> is updated to use these proportions, so the size of each slice in the pie chart corresponds to the proportion of each cylinder type.</p></li>
+</ul>
+</section>
+</section>
+<section id="summary-of-chapter-8-categorical-data" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-8-categorical-data">Summary of Chapter 8 – Categorical Data</h2>
+<p>In this chapter, we explored the fundamental concept of categorical data and its two primary types: nominal and ordinal data. Categorical data involves organizing information into distinct categories or groups using labels or codes, making it a crucial data type in various fields, including research, statistics, and data analysis.</p>
+<p>We delved into nominal data, which represents variables with categories that lack any inherent order or hierarchy. Examples such as gender (male, female), marital status (married, single, divorced), and hair color (brown, blonde, red, black) exemplify nominal data. These categories are characterized by their name-based grouping, without conveying any intrinsic quantitative information. Next, we discussed ordinal data, which differs from nominal data by possessing categories with a specific order or ranking, but without exact quantitative distinctions. The Likert scale used in surveys (ranging from “very dissatisfied” to “very satisfied”) and clothing sizes (small, medium, large) are instances of ordinal data. While we can determine the order, we lack precise knowledge of the differences between categories.</p>
+<p>Factor variables in R played a significant role in the chapter, as they are essential for handling and storing categorical data. Factor variables allow us to map levels to distinct categories, facilitating efficient data organization and manipulation. We learned how to create factor variables in R using the factor() function, which was then applied to the mtcars dataset.</p>
+<p>Additionally, we explored the analysis of univariate factor variables in R, focusing on summarizing the data through frequency tables. These tables provided counts of each category, allowing us to understand the distribution of categorical data better. Moreover, we computed proportions and percentages to gain a more insightful view of the data distribution, enhancing the interpretation of results.</p>
+<p>The chapter proceeded to introduce powerful visualization techniques for univariate factor variables using the ggplot2 package. As part of the tidyverse collection of R packages, ggplot2 is known for its flexibility and capability to create diverse and customizable visualizations. We specifically looked at creating bar plots using ggplot2. By utilizing the ggplot() function to initialize a ggplot object and the aes() function to map the factor variable to the x-axis, we effectively represented categorical data. The geom_bar() function enabled the generation of bar plots, while geom_text() facilitated the addition of count labels for each category, enhancing the visual representation.</p>
+<p>Although ggplot2 does not natively support pie charts due to their limited effectiveness in data visualization, we introduced the ggpie() function from the ggpubr package as an alternative. Using ggpie(), we demonstrated how to create pie charts within the ggplot2 framework. The function allowed us to represent proportions or percentages as slices in the pie chart, providing a comprehensive understanding of the distribution of the categorical data.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] Diez, D. M., Barr, C. D., &amp; Çetinkaya-Rundel, M. (2012). OpenIntro Statistics (2nd ed.). OpenIntro.</p>
+<p>[2] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
+<p>[3] Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.</p>
+<p>[4] Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>[5] Crawley, M. J. (2007). The R Book. Wiley.</p>
+<p>[6] Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
+<p>[7] Heiberger, R. M., &amp; Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.</p>
+<p>[8] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.</p>
+<p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
+<p>[9] Alboukadel Kassambara (2020). ggpubr: ‘ggplot2’ Based Publication Ready Plots. R package version 0.4.0. https://CRAN.R-project.org/package=ggpubr</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

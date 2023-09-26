@@ -52,18 +52,18 @@ website:
       - 04ReadingData.qmd
       - 05ExploringDataframes.qmd
       - 06ExploringTibbles.qmd
-      - 07LiveCase01.qmd
-      - 08CategoricalData01.qmd
-      - 09CategoricalData02.qmd
-      - 10CategoricalData03.qmd
-#      - 11LiveCase02.qmd
-#      - 12LiveCase03.qmd
-      - 13ContinuousData01.qmd
-      - 14ContinuousData02.qmd
-      - 15ContinuousData03.qmd
-      - 16ContinuousData04.qmd
-      - 17ContinuousData05.qmd
-      - 18ContinuousData06.qmd
+      - 07CategoricalData01.qmd
+      - 08CategoricalData02.qmd
+      - 09CategoricalData03.qmd
+      - 10ContinuousData01.qmd
+      - 11ContinuousData02.qmd
+      - 12ContinuousData03.qmd
+      - 13ContinuousData04.qmd
+      - 14ContinuousData05.qmd
+      - 15ContinuousData06.qmd
+#      - 16LiveCase01.qmd
+#      - 17LiveCase02.qmd
+#      - 18LiveCase03.qmd
 
 ### END yaml FOR BOOK'S WEBSITE ###
 

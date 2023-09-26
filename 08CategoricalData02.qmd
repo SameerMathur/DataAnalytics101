@@ -1,0 +1,559 @@
+# 08: Categorical x Categorical data (1 of 2)
+
+*Sep 10, 2023*
+
+## Exploring Bivariate Categorical Data
+
+This chapter explores how to summarize and visualize *Bivariate, categorical* data.
+
+1.  Bivariate analysis involves examining the **relationship between two variables**. For instance, we might examine the relationship between a person's gender (male, female, or non-binary) and whether they own a car (yes or no). By exploring these two categorical variables together, we can discern potential correlations or associations.
+
+2.  As an extension, multivariate analysis involves the simultaneous observation and analysis of more than two variables. We study multivariate data in the next chapter.
+
+3.  **Contingency Table**: A contingency table, also known as a **cross-tabulation** or **crosstab**, is a type of table in a matrix format that displays the frequency distribution of the variables. In the case of a univariate factor variable, a contingency table is essentially the same as a frequency table, as there's only one variable involved. In more complex analyses involving two or more variables, contingency tables provide a way to examine the interactions between the variables. \[1\]
+
+4.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
+
+```{r, warning=FALSE}
+# Load the required libraries, suppressing annoying startup messages
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+library(tibble, quietly = TRUE, warn.conflicts = FALSE)
+# Read the mtcars dataset into a tibble called tb
+data(mtcars)
+tb <- as_tibble(mtcars)
+# Convert relevant columns into factor variables
+tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
+tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
+tb$vs <- as.factor(tb$vs) # vs = {0,1}, v-shaped engine, 0:no, 1:yes
+tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
+# Directly access the data columns of tb, without tb$mpg
+attach(tb)
+```
+
+### Frequency Tables for Bivariate Categorical Data
+
+1.  As an illustration, let us investigate the bivariate relationship between the number of cylinders (`cyl`) and whether the car has an automatic or manual transmission, (`am=1` for manual, `am=0` for automatic).
+
+2.  **`table()`**: We can use this function to generate a contingency table of these two variables.
+
+```{r}
+table(tb$cyl, tb$am)
+```
+
+-   In this code, a two-way frequency table of `am` and `cyl` is created using the `table()` function. The frequency of each grouping of categories is displayed in the table that results. As an illustration, there are 8 cars with a manual gearbox and 4 cylinders.
+
+-   **`addmargins()`**: The `addmargins()` function is used to add row and/or column totals to a table.
+
+```{r}
+table(tb$cyl, tb$am) %>% 
+  addmargins()
+```
+
+```{r}
+table(tb$cyl, tb$am) %>% 
+  addmargins(1)
+```
+
+-   In this variation, the `1` in the function call indicates that we want to add **row totals**. So, this command adds the totals (Sum) of each row as a row in the contingency table.
+
+```{r}
+table(tb$cyl, tb$am) %>% 
+  addmargins(2)
+```
+
+-   In this variation, the `2` specifies that we want to add **column totals**. Thus, it adds the totals (Sum) of each column to the contingency table.
+
+3.  **`xtabs()`**: This function provides a more versatile way to generate cross tabulations or contingency tables. It differs from the `table()` function by allowing the use of weights and formulas. Here's how we can use it:
+
+```{r}
+xtabs(~ cyl + am, 
+      data = tb)
+```
+
+-   In the code, we have used `xtabs()` to construct a cross-tabulation of `am` and `cyl`.
+
+-   The syntax `~ cyl + am` is interpreted as a formula, signifying that we aim to cross-tabulate these variables. The output is a table akin to what we obtain with `table()`, but with the added advantage of accommodating more intricate analyses.
+
+-   An important advantage of `xtabs()` over `table()` is its superior handling of missing values or NAs; it doesn't automatically exclude them, which is beneficial when dealing with real-world data that often includes missing values. \[1\]
+
+4.  **`ftable()`**: This function is a powerful tool that offers an advanced way to create and display contingency tables. Here's an example of its use:
+
+```{r}
+ftable(tb$cyl, tb$am)
+```
+
+-   In this code, we've employed the `ftable()` function to create a contingency table of `am` and `cyl`. The output of this function is similar to what we get using `table()`, but it presents the information in a flat, compact layout, which can be particularly helpful especially when dealing with more than two variables.
+
+-   One key advantage of `ftable()` is that it creates contingency tables in a more readable format when dealing with more than two categorical variables, making it easier to visualize and understand complex multivariate relationships.
+
+-   Do note, like `xtabs()`, `ftable()` also handles missing values or NAs effectively, making it a reliable choice for real-world data that might contain missing values.
+
+5.  We can also use `group_by()` and `summarize()` functions from package `dplyr` to generate contingency tables.
+
+```{r}
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+tb %>% 
+  group_by(cyl, am) %>%
+  summarise(Frequency = n()) 
+```
+
+### Proportions Table for Bivariate Categorical Data
+
+6.  **`prop.table()`**: This function is an advantageous tool to understand the relative proportions rather than raw frequencies. It converts a contingency table into a table of proportions. Here is how we could utilize this function:
+
+```{r}
+freq <- table(tb$cyl, tb$am)
+prop <- prop.table(freq)
+round(prop,3)
+```
+
+-   In this code, we first generate a frequency table with the `table()` function, using `cyl` and `am` as our variables. Then, we employ the `prop.table()` function to convert this frequency table (`freq_table`) into a proportions table (`prop_table`).
+
+-   This resulting `prop_table` reveals the proportion of each combination of `cyl` and `am` categories relative to the total number of observations. This can provide insightful context, allowing us to see how each combination fits into the overall distribution. For instance, we could learn what proportion of cars in our dataset have 4 cylinders and a manual transmission.
+
+-   Here is a more efficient method of writing the above code using the pipe operator.
+
+```{r}
+table(tb$cyl, tb$am) %>%
+  prop.table() %>% 
+  round(3)
+```
+
+7.  We can alternately use package `dplyr` to showcase the frequency and proportions in tabular form, instead of a contingency table.
+
+```{r, warning=FALSE}
+library(dplyr)
+tb %>%
+  group_by(cyl, am) %>%
+  summarise(Frequency = n(), .groups = "drop") %>%
+  mutate(Proportion = Frequency / sum(Frequency)) 
+```
+
+-   In this code, `group_by(cyl, am)` groups the data by `cyl` and `am`, `summarise(Frequency = n())` calculates the frequency for each group, `.groups = "drop"` drops the grouping structure.
+
+-   `mutate(Proportion = Frequency / sum(Frequency))` calculates the proportions by dividing each frequency by the total sum of frequencies.
+
+-   The `mutate()` function adds a new column to the dataframe, keeping the original data intact.
+
+-   **Percentages and Rounding**: If we wanted to display the proportions as percentages, we could round-off the proportion up to 4 decimal places, as follows:
+
+```{r}
+library(dplyr)
+tb %>%
+  group_by(cyl, am) %>%
+  summarise(Frequency = n(), .groups = "drop") %>%
+  mutate(Percentage = 100*round(Frequency / sum(Frequency), 4))
+```
+
+### Margins in Proportions Tables
+
+1.  Different proportions provide various perspectives on the relationship between categorical variables in our dataset. We can calculate the i) Proportions for **Each Cell**; (ii) **Row-Wise\* Proportions; (iii)** **Column-Wise** Proportions. This forms a crucial part of exploratory data analysis.
+
+2.  **Proportions for Each Cell**: This calculates the ratio of each cell to the overall total.
+
+```{r}
+table(tb$cyl, tb$am) %>%
+  prop.table() %>% 
+  addmargins() %>%
+  round(3) %>%
+  `*`(100)
+```
+
+3.  **Row-Wise Proportions**: Here, we compute the proportion of each cell relative to the total of its row.
+
+```{r}
+table(tb$cyl, tb$am) %>%
+  prop.table(1) %>% 
+  addmargins(2) %>%
+  round(3) %>%
+  `*`(100)
+```
+
+4.  **Column-Wise Proportions**: Here, we determine the proportion of each cell relative to the total of its column.
+
+```{r}
+table(tb$cyl, tb$am) %>%
+  prop.table(2) %>% 
+  addmargins(1) %>%
+  round(3) %>%
+  `*`(100)
+```
+
+## Visualizing Bivariate Categorical Data
+
+1.  **Grouped Barplots** and **Stacked Barplots** serve as powerful tools for representing and understanding bivariate categorical data, where both variables are categorical in nature.
+
+2.  Grouped Barplots, often referred to as **side-by-side bar plots**, illustrate the relationship between two categorical variables by placing bars corresponding to one category of a variable next to each other, differentiated by color or pattern. This layout facilitates a direct comparison between categories of the second variable. Grouped bar plots are particularly effective when we are interested in comparing the distribution of a categorical variable across different groups
+
+3.  On the other hand, **stacked bar plots** present a similar relationship between two categorical variables, but rather than aligning bars side by side, they stack bars on top of one another. This results in a single bar for each category of one variable, with the length of different segments in each bar corresponding to the counts or proportions of the categories of the other variable. Stacked bar plots are advantageous when we're interested in the total size of groups as well as the distribution of a variable across groups. \[2\]
+
+4.  **Grouped Barplot**
+
+```{r}
+# Create a table with count by transmission and number of cylinders
+freq <- table(tb$cyl, tb$am)
+freq
+# Create a Grouped bar plot
+barplot(freq, 
+        beside = TRUE, 
+        col = c("pink", "lightblue", "green"), 
+        xlab = "Transmission", ylab = "Frequency", 
+        main = "Grouped Barplot of Frequency by transmission and cylinders", 
+        legend.text = rownames(freq), 
+        args.legend = list(title = "Cylinders"))
+```
+
+5.  **Discussion**:
+
+-   `freq`: This is the dataset being visualized, which we anticipate to be a contingency table of am and cyl variables.
+
+-   `beside` = TRUE: This argument is specifying that the bars should be positioned next to each other, which means that for each level of `am`, there will be a distinct bar for each level of `cyl`.
+
+-   `col = c("pink", "lightblue", "green")`: Here, we are setting the colors of the bars to pink, light blue, and green.
+
+-   `xlab = "Transmission"` and `ylab = "Frequency"`: These arguments set the labels for the x and y-axes, respectively.
+
+-   `main` = "Grouped Barplot of Frequency by transmission and cylinders": This argument assigns a title to the plot.
+
+-   `legend.text = rownames(freq)`: This creates a legend for the plot, using the row names of freq as the legend text.
+
+-   `args.legend = list(title = "Cylinders")`: This sets the title of the legend to "Cylinders".
+
+6.  Consider this alternate barplot.
+
+```{r}
+# Create a table with count by transmission and number of cylinders
+freqInverted <- table(tb$am, tb$cyl)
+freqInverted
+
+# Create the bar plot
+barplot(freqInverted, 
+        beside = TRUE, 
+        col = c("pink", "lightblue"), 
+        xlab = "Cylinders", ylab = "Count", 
+        main = "Grouped Barplot of Frequency by cylinders and transmission", 
+        legend.text = rownames(freqInverted), 
+        args.legend = list(title = "Transmission"))
+```
+
+5.  **Discussion**: The most significant differences from the previous Grouped Barplot and this one are as follows.
+
+-   `freqInverted`: The contingency table's axes have been swapped or inverted. Hence, the table's rows now correspond to the am variable (transmission), and its columns correspond to the cyl variable (cylinders).
+
+-   `xlab = "Cylinders"` and `ylab = "Count"`: These arguments set the labels for the x and y-axes, respectively. This is a departure from the previous plot where the x-axis represented 'Transmission'. In this case, the x-axis corresponds to 'Cylinders'.
+
+-   `legend.text = rownames(freqInverted)` and `args.legend = list(title = "Transmission")`: In the legend, the roles of 'Transmission' and 'Cylinders' are reversed compared to the previous plot.
+
+-   To put it succinctly, the main distinction between the two plots is the swapping of the roles of the cyl and am variables. In the second plot, 'Cylinders' is on the x-axis, which was occupied by 'Transmission' in the first plot. This perspective shift helps to understand the data in a different light, adding another dimension to our exploratory data analysis. \[2\]
+
+5.  **Stacked Barplot**
+
+```{r}
+# Create a table with count by transmission and number of cylinders
+freq <- table(tb$cyl, tb$am)
+freq
+# Create a Stacked bar plot
+barplot(freq, 
+        beside = FALSE, 
+        col = c("pink", "lightblue", "green"), 
+        xlab = "Transmission", ylab = "Frequency", 
+        main = "Stacked Barplot of Frequency by transmission and cylinders", 
+        legend.text = rownames(freq), 
+        args.legend = list(title = "Cylinders"))
+```
+
+There are a few key differences between this Stacked Barplot and the original Grouped Barplot:
+
+-   `beside = FALSE`: In the original code, beside = TRUE was used to generate a grouped bar plot, where each set of bars corresponding to each transmission type (automatic or manual) were displayed side by side. However, with beside = FALSE, we obtain a stacked bar plot. In this plot, the bars corresponding to each cylinder category (4, 6, or 8 cylinders) are stacked on top of one another for each transmission type.
+
+-   `main = "Stacked Barplot of Frequency by transmission and cylinders"`: The title of the plot also reflects this change, mentioning now that it's a stacked bar plot instead of a grouped bar plot.
+
+-   Finally, here is a Stacked Barplot, corresponding to the second Grouped Barplot discussed above.
+
+```{r}
+# Create a table with count by transmission and number of cylinders
+freqInverted <- table(tb$am, tb$cyl)
+freqInverted
+
+# Create the bar plot
+barplot(freqInverted, 
+        beside = FALSE, 
+        col = c("pink", "lightblue"), 
+        xlab = "Cylinders", ylab = "Count", 
+        main = "Stacked Barplot of Frequency by cylinders and transmission", 
+        legend.text = rownames(freqInverted), 
+        args.legend = list(title = "Transmission"))
+```
+
+6.  The grouped bar plot helps in comparing the number of cylinders across transmission types side by side, while the stacked bar plot gives an overall comparison in terms of total number of cars, with the frequency of each cylinder type stacked on top of the other. The choice between a stacked and a grouped bar plot would depend on the specific aspects of the data one would want to highlight. Taken together, grouped and stacked bar plots offer visually appealing and intuitive methods for presenting bivariate categorical data, allowing us to understand and analyze relationships between categorical variables in a meaningful way. \[3\]
+
+### Using **ggplot2**
+
+**Grouped Barplot using ggplot2**
+
+-   We demonstrate how to create a Grouped Barplot of Car Count by transmission and cylinders
+
+1.  Set up the data
+
+```{r}
+# Convert the table to a data frame and reshape to 'long' format
+freq <- table(tb$cyl, tb$am)
+df <- as.data.frame.table(freq)
+names(df) <- c("Cylinders", "Transmission", "Frequency")
+df$Cylinders <- factor(df$Cylinders)
+df$Transmission <- factor(df$Transmission, labels = c("Automatic", "Manual"))
+```
+
+2.  Create a Grouped Barplot using ggplot2
+
+```{r}
+# Load required library
+library(ggplot2)
+
+# Create the Grouped Barplot
+ggplot(df, 
+       aes(x = Transmission, y = Frequency, fill = Cylinders)) + 
+  geom_bar(stat = "identity", 
+           position = position_dodge()) +
+  geom_text(aes(label=Frequency), 
+            vjust=1.6, 
+            color="black", 
+            position = position_dodge(0.9), 
+            size=5) +
+  labs(x = "Transmission", y = "Frequency", 
+       fill = "Cylinders",
+       title = "Grouped Barplot of Car Count by transmission and cylinders") +
+  scale_fill_manual(values = c("pink", "lightblue", "green"))
+```
+
+3.  **Discussion**:
+
+-   We first convert the frequency table into a data frame that `ggplot2` can use. This involves converting the table to a data frame and then reshaping it to long format.
+
+-   We then use the `ggplot()` function to initiate the plot and specify the aesthetic mappings. Here, we map 'Transmission' to the x-axis, 'Frequency' to the y-axis, and 'Cylinders' to the fill aesthetic which controls the color of the bars.
+
+-   `geom_bar()` with `stat = "identity"` is used to add the bar geometry to the plot.
+
+-   `position = position_dodge()` ensures the bars are placed side by side, which creates the grouped effect.
+
+-   `labs()` is used to add labels to the plot.
+
+-   `scale_fill_manual()` allows us to manually specify the colors for the bars.
+
+-   We demonstrate how to create a Grouped Barplot of Car Count by cylinders and transmission
+
+4.  Set up the data
+
+```{r}
+freqInverted <- table(tb$am, tb$cyl)
+# Convert the table to a data frame and reshape to 'long' format
+df_inverted <- as.data.frame.table(freqInverted)
+names(df_inverted) <- c("Transmission", "Cylinders", "Count")
+df_inverted$Transmission <- factor(df_inverted$Transmission, labels = c("Automatic", "Manual"))
+df_inverted$Cylinders <- factor(df_inverted$Cylinders)
+```
+
+5.  Create a Grouped Barplot using ggplot2
+
+```{r}
+# Create the Grouped Barplot using ggplot2
+ggplot(df_inverted, 
+       aes(x = Cylinders, y = Count, fill = Transmission)) + 
+  geom_bar(stat = "identity", 
+           position = position_dodge()) +
+  geom_text(aes(label = Count), 
+            vjust = 1.6, 
+            color = "black", 
+            position = position_dodge(0.9), 
+            size = 5) +
+  labs(x = "Cylinders", y = "Count", fill = "Transmission",
+       title = "Grouped Barplot of Frequency by cylinders and transmission") +
+  scale_fill_manual(values = c("pink", "lightblue"))
+
+```
+
+6.  **Discussion**:
+
+-   The `geom_text()` function is used in the same way as in the previous example to add frequency labels to the bars.
+
+-   The `scale_fill_manual()` function is used to specify the colors for the different transmission types.
+
+**Stacked Barplots using ggplot2**
+
+-   We demonstrate how to create a Stacked Barplot of Car Count by cylinders and transmission
+
+-   To create a stacked bar plot with `ggplot2`, we apply the `geom_bar()` function but without the dodge positioning this time, since we want the bars stacked.
+
+7.  Create a Stacked Barplot using ggplot2
+
+```{r}
+library(ggplot2)
+# Create the Stacked Barplot using ggplot2
+ggplot(df, aes(x = Transmission, y = Frequency, fill = Cylinders)) + 
+  geom_bar(stat = "identity") +
+  geom_text(aes(label = Frequency), 
+            position = position_stack(vjust = 0.5), 
+            color = "black", 
+            size = 3.5) +
+  labs(x = "Transmission", y = "Frequency", 
+       fill = "Cylinders",
+       title = "Stacked Barplot of Frequency by transmission and cylinders") +
+  scale_fill_manual(values = c("pink", "lightblue", "green"))
+```
+
+8.  **Discussion**:
+
+-   The `geom_bar(stat = "identity")` is used to create a stacked bar plot.
+
+-   The `scale_fill_manual()` function is used to specify the colors for the different cylinder categories. Again, we changed the order of the Transmission and Cylinders columns to suit this specific plot.
+
+-   The `geom_text()` function is used to add the labels to the stacked bars. We use position_stack() to position the labels in the middle of the stacked sections.
+
+-   The `vjust` argument inside position_stack() controls the vertical positioning of the labels, and 0.5 puts them in the middle.
+
+-   As before, `scale_fill_manual()` allows us to specify the colors for the different cylinder categories.
+
+### **Mosaic Plots** for Bivariate Categorical Data
+
+1.  A mosaic plot is a graphical method for visualizing data from two or more qualitative variables / categorical data. It is a form of area plot that can provide a visual representation of the frequency or proportion of the different categories within the variables.
+
+2.  The following code generates a mosaic plot from a contingency table of two variables: `cyl` (cylinders) and `am` (transmission).
+
+```{r}
+# Create a mosaic plot 
+mosaicplot(table(tb$cyl, tb$am), 
+           main = "Mosaic of Cylinder count and Transmission type",
+           xlab = "Cylinders (cyl)",
+           ylab = "Transmission (am)")
+```
+
+2.  In a mosaic plot, we interpret two categorical variables on two axes.
+
+-   The **width** of each section on one axis signifies the proportion of that particular category in our dataset.
+
+-   Conversely, the **height** of a section on the other axis illustrates the proportion of that category, contingent on the specific category from the first variable.
+
+-   Therefore, the **area** of each rectangle directly corresponds to the frequency or proportion of observations falling within that specific combination of categories (Hartigan & Kleiner, 1981).
+
+3.  By combining both the height and width of the rectangles, a mosaic plot gives us a visual representation of the joint distribution of the two categorical variables. It helps us to identify patterns, associations, and dependencies between the two variables.
+
+4.  **Discussion**:
+
+-   The `table()` function is used to create a contingency table of the `cyl` and `am` columns of the `tb` tibble. This contingency table represents the counts of all combinations of `cyl` and `am` in the data.
+
+-   The `mosaicplot()` function then creates a mosaic plot from this contingency table. The `main`, `xlab`, and `ylab` arguments are used to set the main title, x-axis label, and y-axis label of the plot, respectively.
+
+-   This code gives a mosaic plot that visualizes the distribution of the number of cylinders by the type of transmission. Each block's width in the plot would be proportional to the number of cylinders, and the height would be proportional to the transmission type.
+
+5.  They can be used to identify breaks in independence or test hypotheses regarding the connections between the variables. They are especially helpful for examining interactions between two or more categorical variables.
+
+6.  The `vcd` package, short for Visualizing Categorical Data, provides alternative visual and analytical methods for categorical data (Meyer, Zeileis, & Hornik, 2020). A mosaic plot is created from the variables `cyl` (cylinders) and `am` (transmission type) using the `mosaic()` function.
+
+```{r}
+# Load the vcd package
+library(vcd)
+# Create a mosaic plot of mpg (miles per gallon) vs. am (transmission)
+vcd::mosaic(~ cyl + am, 
+       data = tb, 
+       main = "Mosaic Plot of cars by Cylinder count and Transmission type")
+```
+
+7.  **Discussion**:
+
+-   `library(vcd)` is used to import the vcd package which includes the mosaic() function that is superior to the base R mosaicplot() in its handling of labeling and legends.
+
+-   `mosaic(\~ cyl + am, data = tb, main = "Mosaic of Cylinder count and Transmission type")` creates a mosaic plot.
+
+-   In this command, the formula `~ cyl + am` tells R to plot `cyl` against `am`. The argument `data = tb` specifies that the variables for the plot come from the `tb` data frame. The `main` argument sets the title of the plot.
+
+8.  We can customize the shading color of the mosaic plot by setting the color using the `col` argument inside the `mosaic()` function. To specify shades of blue, we can use the `RColorBrewer` package and its `brewer.pal()` function to generate a color palette:
+
+```{r}
+# Load necessary packages
+library(vcd)
+library(RColorBrewer)
+
+# Define the color palette
+cols <- brewer.pal(4, "Blues")
+
+# Create a mosaic plot
+vcd::mosaic(~ cyl + am, 
+       data = tb, 
+       main = "Mosaic Plots of cars by Cylinder count and Transmission type",
+       shade = TRUE,
+       highlighting = "cyl", 
+       highlighting_fill = cols)
+```
+
+9.  **Discussion**:
+
+-   `brewer.pal(4, "Blues")` creates a color palette of 4 different shades of blue.
+
+-   `highlighting = "cyl"` means that the shading will differentiate the categories in the cyl variable.
+
+-   `highlighting_fill = cols` applies the cols color palette to the shading.
+
+10. We can also recreate the previous mosaic plot using `ggplot2` and `ggmosaic` packages. Here is how to do it:
+
+```{r, warning=FALSE}
+# Load the packages
+library(ggplot2)
+library(ggmosaic, quietly = TRUE, warn.conflicts = FALSE)
+
+# Create the mosaic plot
+ggplot(data = tb) +
+  geom_mosaic(aes(x = product(cyl, am), fill = cyl)) +
+  theme_minimal() +
+  labs(title = "Mosaic Plot of Cars by Cylinder count and Transmission type", 
+       x = "Transmission", 
+       y = "Cylinders") +
+  scale_fill_brewer(palette = "Blues")
+```
+
+11. **Discussion**:
+
+-   `geom_mosaic(aes(x = product(cyl, am), fill = cyl))` creates the mosaic plot with `cyl` and `am` as the categorical variables.
+
+-   The `fill = cyl` part means that the color fill will differentiate the categories in the `cyl` variable.
+
+-   `theme_minimal()` applies a minimal theme to the plot.
+
+-   `labs()` is used to specify the labels for the plot, including the `title`, x-axis label, and y-axis label.
+
+-   `scale_fill_brewer(palette = "Blues")` specifies the color palette to be used for the fill color, in this case, a palette of blues.
+
+## Summary of Chapter 9 -- Categorical x Categorical data (1 of 2)
+
+In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.
+
+An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage.
+
+The `ggplot2` library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.
+
+The chapter also introduces mosaic plots as another way of visualizing bivariate categorical data and discusses how mosaic plots can provide a visual representation of the frequency or proportion of different categories within variables. The use of the base R `mosaicplot()` function is exemplified, followed by the demonstration of the `mosaic()` function in the `vcd` package and the `ggmosaic` package, bringing full circle the spectrum of visualizations covered for bivariate categorical data.
+
+## References
+
+\[1\] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
+
+Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
+
+Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.
+
+\[2\] Unwin, A. (2015). Graphical data analysis with R. CRC Press.
+
+Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.
+
+Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
+
+\[3\] Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
+
+\[4\] Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd
+
+Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.
+
+Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
+
+\[5\] R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
