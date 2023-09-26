@@ -1,4 +1,4 @@
-# Exploring R Packages
+# 02: Exploring R Packages
 
 *Aug 09, 2023.*
 

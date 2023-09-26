@@ -1,4 +1,4 @@
-# Exploring Data Structures
+# 03: Exploring Data Structures
 
 *Aug 23, 2023.*
 
@@ -117,6 +117,7 @@ print(absolute_value)
 ```
 
 -   R also supports additional arithmetic operations:
+
 ```{r}
 # Floor Division
 floor_division <- floor(ages / income)
@@ -156,10 +157,6 @@ print(sum_total)
 ```
 
 -   `sum` calculates the sum of all the elements.
-
-
-
-
 
 5.  **Logical Operations:** We can perform logical operations on vectors, which are also executed element-by-element.
 
@@ -227,7 +224,6 @@ print(not_female)
 
 -   **Negation (!)**: It negates the values in the females vector. The resulting vector, not_female, contains TRUE for elements that were originally FALSE and FALSE for elements that were originally TRUE.
 
-
 ```{r}
 # Any True
 any_age_greater_50 <- any(ages > 50)
@@ -282,14 +278,6 @@ unique(ages)
 ```
 
 -   **unique()**: It finds the unique values in the `ages` vector
-
-
-
-
-
-
-
-
 
 6.  **Sorting:** We can sort a vector in ascending or descending order using the `sort()` function. For example, to sort the `ages` vector in descending order, we can use:
 
@@ -346,8 +334,6 @@ quantile(ages)
 
 This will return a set of five values, representing the minimum, first quartile, median, third quartile, and maximum of the four ages.
 
-
-
 8.  **Standard Error of the Mean**: It calculates the standard error of the mean for the ages vector. The result is stored in se_ages.
 
 ```{r}
@@ -364,7 +350,7 @@ cumulative_sum_ages <- cumsum(ages)
 print(cumulative_sum_ages)
 ```
 
-10.  **Correlation Coefficient**: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T
+10. **Correlation Coefficient**: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T
 
 ```{r}
 # Correlation Coefficient
@@ -373,12 +359,6 @@ print(correlation_ages_females)
 ```
 
 Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways.
-
-
-
-
-
-
 
 ### Strings
 
@@ -413,19 +393,21 @@ toupper(names)
 
 This will generate a new character vector with all of the names converted to uppercase.
 
-4.  **Pattern Matching:** Using the `grep()` function, we can search for a pattern within the elements of a character vector. 
+4.  **Pattern Matching:** Using the `grep()` function, we can search for a pattern within the elements of a character vector.
 
-* To find the names in the "names" vector that contain the letter "a", for instance, we can write the following code, which returns a vector containing the indexes of the "names" vector elements that contain the letter "a":
+-   To find the names in the "names" vector that contain the letter "a", for instance, we can write the following code, which returns a vector containing the indexes of the "names" vector elements that contain the letter "a":
 
 ```{r}
 grep("a", names)
 ```
-* The following code returns the text of the "names" vector elements that contain the letter "a":
+
+-   The following code returns the text of the "names" vector elements that contain the letter "a":
 
 ```{r}
 pattern_match <- grep("l", names, value = TRUE)
 print(pattern_match)
 ```
+
 5.  **String Length:**: The `nchar()` function can be used to find the length of a string.
 
 ```{r}
@@ -434,9 +416,9 @@ name_lengths <- nchar(names)
 print(name_lengths)
 ```
 
-6. `%in%` **Operator**: It checks if each element in the names vector is present in the specified set of names. 
+6.  `%in%` **Operator**: It checks if each element in the names vector is present in the specified set of names.
 
-* In this example, the resulting vector, names_found, contains TRUE for elements that are found in the set and FALSE otherwise.
+-   In this example, the resulting vector, names_found, contains TRUE for elements that are found in the set and FALSE otherwise.
 
 ```{r}
 # %in% Operator
@@ -444,28 +426,15 @@ names_found <- names %in% c("Ashok", "Charu")
 print(names_found)
 ```
 
-7. **Logical Function** `ifelse()`: It evaluates a logical condition and returns values based on the condition. 
+7.  **Logical Function** `ifelse()`: It evaluates a logical condition and returns values based on the condition.
 
-* In this example, we use `ifelse()` to assign the value "Old" to elements in the age_category vector where the corresponding element in ages is greater than 50, and "Young" otherwise.
-
+-   In this example, we use `ifelse()` to assign the value "Old" to elements in the age_category vector where the corresponding element in ages is greater than 50, and "Young" otherwise.
 
 ```{r}
 # Logical Function ifelse()
 age_category <- ifelse(ages > 50, "Old", "Young")
 print(age_category)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Summary of Chapter 3 -- Data Structures in R
 
@@ -486,5 +455,3 @@ In essence, Chapter 3 provides a practical exploration of vectors in R, shedding
 \[1\] R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. https://www.R-project.org/
 
 R Core Team. (2022). Vectors, Lists, and Arrays. R Documentation. https://cran.r-project.org/doc/manuals/r-release/R-intro.html#vectors-lists-and-arrays
-
-

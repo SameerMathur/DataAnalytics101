@@ -1,4 +1,4 @@
-# Reading Data into R
+# 04: Reading Data into R
 
 *Aug 09, 2023*
 
@@ -254,7 +254,7 @@ my_tibble <- tibble(
 my_tibble
 ```
 
-* This generates a tibble consisting of three columns (name, age, and gender) and three rows of data. Note that the column names are preserved and the tibble is printed in a compact and legible manner.
+-   This generates a tibble consisting of three columns (name, age, and gender) and three rows of data. Note that the column names are preserved and the tibble is printed in a compact and legible manner.
 
 ### Converting a dataframe into a tibble using `as_tibble()`
 
@@ -271,9 +271,9 @@ my_tibble <- as_tibble(my_df)
 my_tibble
 ```
 
-* This assigns the tibble representation of the data frame `my_df` to the variable `my_tibble`.
+-   This assigns the tibble representation of the data frame `my_df` to the variable `my_tibble`.
 
-* Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble.
+-   Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble.
 
 ### Converting a tibble into a dataframe
 
@@ -287,7 +287,7 @@ my_df <- as.data.frame(my_tibble)
 my_df
 ```
 
-7. A tibble offers several advantages over a data frame in R:
+7.  A tibble offers several advantages over a data frame in R:
 
 -   Large datasets can be printed with greater clarity and precision using Tibbles. By default, they only print the first few rows and columns, making it simpler to read and comprehend the data structure.
 
@@ -298,16 +298,6 @@ my_df
 -   More informative errors: Tibbles provides more informative error messages that make it simpler to diagnose and resolve data-related problems.
 
 -   Fewer surprises: Tibbles have more stringent constraints than data frames, resulting in fewer surprises and unexpected behavior.
-
-
-
-
-
-
-
-
-
-
 
 ## Summary of Chapter 4 -- Reading Data in R
 
