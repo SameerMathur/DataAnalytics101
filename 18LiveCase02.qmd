@@ -1,4 +1,4 @@
-# Live Case: S&P500 (2 of 3)
+# Live Case: S&P500 (2)
 
 *Aug 7, 2023*
 

@@ -62,9 +62,9 @@ website:
       - 14ContinuousData05.qmd
       - 15ContinuousData06.qmd
       - 16ThreeDimensions01.qmd
-#      - 16LiveCase01.qmd
-#      - 17LiveCase02.qmd
-#      - 18LiveCase03.qmd
+      - 17LiveCase01.qmd
+#      - 18LiveCase02.qmd
+#      - 19LiveCase03.qmd
 
 ### END yaml FOR BOOK'S WEBSITE ###
 
