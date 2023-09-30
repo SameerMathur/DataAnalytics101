@@ -1,0 +1,3016 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.433">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Analytics 101 -- Exploratory Data Analysis using R – livecase02</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
+</i> 
+ <span class="menu-text">Sameer Mathur</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Book’s Github</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01: Exploring R programming</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02: Exploring R Packages</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03: Exploring Data Structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04: Reading Data into R</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05: Exploring Dataframes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06: Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07: Categorical Data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08: Categorical x Categorical data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09: Categorical x Categorical data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10: Continuous Data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11: Continuous Data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12: Categorical x Continuous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13: Categorical x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14: Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15: Continuous x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#live-case-sp500-2-of-3" id="toc-live-case-sp500-2-of-3" class="nav-link active" data-scroll-target="#live-case-sp500-2-of-3">Live Case: S&amp;P500 (2 of 3)</a>
+  <ul class="collapse">
+  <li><a href="#sp-500-data---preliminary-setup" id="toc-sp-500-data---preliminary-setup" class="nav-link" data-scroll-target="#sp-500-data---preliminary-setup">S&amp;P 500 Data - PRELIMINARY SETUP</a></li>
+  <li><a href="#analysis-of-sp500-sectors" id="toc-analysis-of-sp500-sectors" class="nav-link" data-scroll-target="#analysis-of-sp500-sectors">ANALYSIS OF S&amp;P500 SECTORS</a>
+  <ul class="collapse">
+  <li><a href="#market-cap" id="toc-market-cap" class="nav-link" data-scroll-target="#market-cap">MARKET CAP</a></li>
+  <li><a href="#price-relative-to-52-week-low" id="toc-price-relative-to-52-week-low" class="nav-link" data-scroll-target="#price-relative-to-52-week-low">PRICE RELATIVE TO 52 WEEK LOW</a></li>
+  <li><a href="#profitability-by-sector" id="toc-profitability-by-sector" class="nav-link" data-scroll-target="#profitability-by-sector">PROFITABILITY BY SECTOR</a></li>
+  <li><a href="#roe" id="toc-roe" class="nav-link" data-scroll-target="#roe">ROE</a></li>
+  <li><a href="#roa" id="toc-roa" class="nav-link" data-scroll-target="#roa">ROA</a></li>
+  </ul></li>
+  <li><a href="#live-case-sp500-2b-of-3" id="toc-live-case-sp500-2b-of-3" class="nav-link" data-scroll-target="#live-case-sp500-2b-of-3">Live Case: S&amp;P500 (2b of 3)</a></li>
+  <li><a href="#sector-level-analysis-begins-here" id="toc-sector-level-analysis-begins-here" class="nav-link" data-scroll-target="#sector-level-analysis-begins-here">SECTOR LEVEL ANALYSIS begins here</a>
+  <ul class="collapse">
+  <li><a href="#filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" id="toc-filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" class="nav-link" data-scroll-target="#filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector">Filter the data by sector Health Services, and display the number of stocks in the sector</a></li>
+  <li><a href="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" id="toc-select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" class="nav-link" data-scroll-target="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Health Services)</a></li>
+  <li><a href="#arrange-the-dataframe-by-roe" id="toc-arrange-the-dataframe-by-roe" class="nav-link" data-scroll-target="#arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</a></li>
+  <li><a href="#top-10-shares-in-sector-health-services-based-on-roe" id="toc-top-10-shares-in-sector-health-services-based-on-roe" class="nav-link" data-scroll-target="#top-10-shares-in-sector-health-services-based-on-roe">Top 10 Shares in Sector Health Services Based on ROE</a></li>
+  <li><a href="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" id="toc-mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" class="nav-link" data-scroll-target="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</a></li>
+  <li><a href="#summary-statistics-of-roe" id="toc-summary-statistics-of-roe" class="nav-link" data-scroll-target="#summary-statistics-of-roe">Summary Statistics of ROE</a></li>
+  <li><a href="#top-10-shares-in-health-sector-with-highest-roe" id="toc-top-10-shares-in-health-sector-with-highest-roe" class="nav-link" data-scroll-target="#top-10-shares-in-health-sector-with-highest-roe">Top 10 Shares in Health Sector with highest ROE</a></li>
+  <li><a href="#roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" id="toc-roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" class="nav-link" data-scroll-target="#roe-versus-roa-and-colored-by-price-rel.-to-52-week-low">ROE versus ROA and colored by Price rel. to 52 Week Low</a></li>
+  <li><a href="#summary-statistics-of-all-key-variables-in-sector-health-services" id="toc-summary-statistics-of-all-key-variables-in-sector-health-services" class="nav-link" data-scroll-target="#summary-statistics-of-all-key-variables-in-sector-health-services">Summary Statistics of All key variables in Sector Health Services</a></li>
+  <li><a href="#summary-statistics-of-roe-by-each-sector-of-sp500" id="toc-summary-statistics-of-roe-by-each-sector-of-sp500" class="nav-link" data-scroll-target="#summary-statistics-of-roe-by-each-sector-of-sp500">Summary Statistics of ROE by each Sector of S&amp;P500</a></li>
+  </ul></li>
+  <li><a href="#analysis-of-health-services-sector" id="toc-analysis-of-health-services-sector" class="nav-link" data-scroll-target="#analysis-of-health-services-sector">ANALYSIS OF HEALTH SERVICES SECTOR</a>
+  <ul class="collapse">
+  <li><a href="#profitability-of-health-services-sector" id="toc-profitability-of-health-services-sector" class="nav-link" data-scroll-target="#profitability-of-health-services-sector">PROFITABILITY OF HEALTH SERVICES SECTOR</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="18LiveCase02.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="live-case-sp500-2-of-3" class="level1">
+<h1>Live Case: S&amp;P500 (2 of 3)</h1>
+<p><em>Aug 7, 2023</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For data visualization</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For data visualization</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ISSUE: Understanding the S&amp;P500 as a whole <em>Aug 06, 2023 -=- This chapter is being heavily edited</em></p>
+<section id="sp-500-data---preliminary-setup" class="level2">
+<h2 class="anchored" data-anchor-id="sp-500-data---preliminary-setup">S&amp;P 500 Data - PRELIMINARY SETUP</h2>
+<ol type="1">
+<li>We will continue our analysis of the S&amp;P 500. Load the data, as described in the chapter Live Case: S&amp;P500 (1 of 3)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix,sheetID) <span class="co"># Form the URL to connect to</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="2" type="1">
+<li>Rename columns, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(dplyr))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span>, <span class="st">"Stock"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_with</span>(<span class="sc">~</span> new_names, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="3" type="1">
+<li>Remove Rows containing no data or Null values, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for blank or null values in the "Stock" column</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>hasNull <span class="ot">&lt;-</span> <span class="fu">any</span>(sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">""</span> <span class="sc">|</span> <span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (hasNull) { </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove rows with null or blank values from the dataframe tibble</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    sp500 <span class="ot">&lt;-</span> sp500[<span class="sc">!</span>(<span class="fu">is.null</span>(sp500<span class="sc">$</span>Stock) <span class="sc">|</span> sp500<span class="sc">$</span>Stock <span class="sc">==</span> <span class="st">""</span>), ]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="4" type="1">
+<li>The S&amp;P500 shares are divided into multiple Sectors. Thus, model Sector as a factor() variable, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="5" type="1">
+<li>Stock Ratings: The S&amp;P500 shares have Technical Ratings such as {Buy, Sell, ..}. Model the data column Rating as a factor() variable, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol start="6" type="1">
+<li>Low52WkPerc: Create a new column to track Share Prices relative to their 52 Week Low, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Low52WkPerc"          </code></pre>
+</div>
+</div>
+<p>Well done! Our data is now ready for analysis!!</p>
+<ol start="7" type="1">
+<li>Low52WkPerc: Create a new column MarketCapBillions = MarketCap/1000,000,000, as described in the chapter Live Case: S&amp;P500 (1 of 3).</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">MarketCapBillions =</span> <span class="fu">round</span>(MarketCap<span class="sc">/</span><span class="dv">1000000000</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Low52WkPerc"           "MarketCapBillions"    </code></pre>
+</div>
+</div>
+</section>
+<section id="analysis-of-sp500-sectors" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-sp500-sectors">ANALYSIS OF S&amp;P500 SECTORS</h2>
+<ul>
+<li>The table() function allows us to count how many stocks are part of each sector.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span> <span class="fu">addmargins</span>(<span class="fu">table</span>(sp500<span class="sc">$</span>Sector))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Var1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Commercial Services</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communications</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Non-Durables</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Services</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribution Services</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Energy Minerals</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Industrial Services</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-Energy Minerals</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Process Industries</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Producer Manufacturing</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transportation</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">503</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ul>
+<li>The S&amp;P500 consists of 503 stocks, divided across 19 sectors.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sp500, </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> Sector)) <span class="sc">+</span> </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Sector)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>, </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count))) <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stocks by Sector"</span>, </span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"No. of Stocks"</span>, </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sector"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li>Numbers of shares by Rating</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span> <span class="fu">addmargins</span>(<span class="fu">table</span>(sp500<span class="sc">$</span>Rating))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Var1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Buy</td>
+<td style="text-align: right;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Neutral</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sell</td>
+<td style="text-align: right;">297</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Strong Buy</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Strong Sell</td>
+<td style="text-align: right;">126</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">503</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ul>
+<li>Pie Chart Showing Proportion of shares by Rating</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute counts and proportions of each cylinder type</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>Rating_counts <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(sp500<span class="sc">$</span>Rating))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(Rating_counts) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Rating"</span>, <span class="st">"n"</span>)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate proportions</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>Rating_counts<span class="sc">$</span>prop <span class="ot">&lt;-</span> Rating_counts<span class="sc">$</span>n <span class="sc">/</span> <span class="fu">sum</span>(Rating_counts<span class="sc">$</span>n)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create labels that display proportions as percentages</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>Rating_counts<span class="sc">$</span>labels <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">round</span>(Rating_counts<span class="sc">$</span>prop<span class="sc">*</span><span class="dv">100</span>, <span class="dv">2</span>), <span class="st">"%"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the pie chart with proportions</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpie</span>(<span class="at">data =</span> Rating_counts, </span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">x =</span> <span class="st">"prop"</span>, </span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">fill =</span> <span class="st">"Rating"</span>, </span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"labels"</span>, </span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">palette =</span> <span class="st">"jco"</span>, </span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Pie Chart of Rating"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li>Count Shares by Sector*Rating</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tab<span class="ot">&lt;-</span> <span class="fu">addmargins</span>(<span class="fu">table</span>(<span class="at">Sector =</span> sp500<span class="sc">$</span>Sector, <span class="at">Rating =</span> sp500<span class="sc">$</span>Rating))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(tab)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Buy</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Neutral</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sell</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Strong Buy</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Strong Sell</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Sum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Commercial Services</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communications</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Non-Durables</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">32</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Services</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribution Services</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Energy Minerals</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">16</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">92</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">47</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Industrial Services</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-Energy Minerals</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Process Industries</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">24</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Producer Manufacturing</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">22</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transportation</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sum</td>
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">297</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">126</td>
+<td style="text-align: right;">503</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<section id="market-cap" class="level3">
+<h3 class="anchored" data-anchor-id="market-cap">MARKET CAP</h3>
+<p>TODO: Work in Billions; 1. Market Cap of all companies by Sector</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)  <span class="co"># This package helps us auto generate the total at the bottom of a table. </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Market Cap by Sector</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>MCap <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">MarketCapCr =</span> <span class="fu">sum</span>(<span class="fu">na.omit</span>(MarketCap)<span class="sc">/</span><span class="dv">10000000</span>))</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Total Market Cap of the entire S&amp;P 500 (in Millions)</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>SP500MarketCap <span class="ot">&lt;-</span> <span class="fu">sum</span>(sp500<span class="sc">$</span>MarketCap<span class="sc">/</span><span class="dv">10000000</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating % market cap</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>PercentMarketCap <span class="ot">&lt;-</span> <span class="fu">round</span>(MCap<span class="sc">$</span>MarketCapCr<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>SP500MarketCap,<span class="dv">2</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(MCap,PercentMarketCap)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># sorting by PercentMarketCap</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(PercentMarketCap))</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Use package janitor to add sums at the bottom of the table</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span>   </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">"row"</span>)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Use package knittr to format the appearance of the table</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(MCapTab, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>MCapTab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MarketCapCr</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">PercentMarketCap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">927656</td>
+<td style="text-align: right;">23.04</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">634384</td>
+<td style="text-align: right;">15.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">478923</td>
+<td style="text-align: right;">11.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">379280</td>
+<td style="text-align: right;">9.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">301184</td>
+<td style="text-align: right;">7.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Non-Durables</td>
+<td style="text-align: right;">201771</td>
+<td style="text-align: right;">5.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Energy Minerals</td>
+<td style="text-align: right;">143110</td>
+<td style="text-align: right;">3.55</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Services</td>
+<td style="text-align: right;">142202</td>
+<td style="text-align: right;">3.53</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Producer Manufacturing</td>
+<td style="text-align: right;">130605</td>
+<td style="text-align: right;">3.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Commercial Services</td>
+<td style="text-align: right;">125701</td>
+<td style="text-align: right;">3.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">103213</td>
+<td style="text-align: right;">2.56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">95587</td>
+<td style="text-align: right;">2.37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">93160</td>
+<td style="text-align: right;">2.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Process Industries</td>
+<td style="text-align: right;">74559</td>
+<td style="text-align: right;">1.85</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Transportation</td>
+<td style="text-align: right;">62630</td>
+<td style="text-align: right;">1.56</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communications</td>
+<td style="text-align: right;">41200</td>
+<td style="text-align: right;">1.02</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Industrial Services</td>
+<td style="text-align: right;">40070</td>
+<td style="text-align: right;">1.00</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribution Services</td>
+<td style="text-align: right;">30595</td>
+<td style="text-align: right;">0.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-Energy Minerals</td>
+<td style="text-align: right;">19783</td>
+<td style="text-align: right;">0.49</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">4025613</td>
+<td style="text-align: right;">99.97</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>TODO: Work in Billions; Show “Sum”, “Median”, “Mean” Delete Q1, Q3 all others 2. Summary Statistics of Market Cap (in Cr of USD) by each Sector of S&amp;P500</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>SectorMC <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>)),</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>)),</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>)),</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>)),</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(MarketCap<span class="sc">/</span><span class="dv">10000000</span>))</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Sector =</span> SectorMC<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorMC[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>SMcap <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(tab, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>SMcap </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Median</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Commercial Services</td>
+<td style="text-align: right;">9669.31</td>
+<td style="text-align: right;">3100</td>
+<td style="text-align: right;">1460.0</td>
+<td style="text-align: right;">6360.0</td>
+<td style="text-align: right;">781</td>
+<td style="text-align: right;">47800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communications</td>
+<td style="text-align: right;">13733.33</td>
+<td style="text-align: right;">14000</td>
+<td style="text-align: right;">12400.0</td>
+<td style="text-align: right;">15200.0</td>
+<td style="text-align: right;">10800</td>
+<td style="text-align: right;">16400</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">8601.08</td>
+<td style="text-align: right;">1785</td>
+<td style="text-align: right;">1310.0</td>
+<td style="text-align: right;">3895.0</td>
+<td style="text-align: right;">718</td>
+<td style="text-align: right;">77700</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Non-Durables</td>
+<td style="text-align: right;">6305.34</td>
+<td style="text-align: right;">3855</td>
+<td style="text-align: right;">1707.5</td>
+<td style="text-align: right;">5780.0</td>
+<td style="text-align: right;">679</td>
+<td style="text-align: right;">35700</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Services</td>
+<td style="text-align: right;">4740.07</td>
+<td style="text-align: right;">2090</td>
+<td style="text-align: right;">1372.5</td>
+<td style="text-align: right;">5642.5</td>
+<td style="text-align: right;">666</td>
+<td style="text-align: right;">19800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribution Services</td>
+<td style="text-align: right;">3399.44</td>
+<td style="text-align: right;">3100</td>
+<td style="text-align: right;">2060.0</td>
+<td style="text-align: right;">3730.0</td>
+<td style="text-align: right;">955</td>
+<td style="text-align: right;">7850</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">12946.61</td>
+<td style="text-align: right;">3860</td>
+<td style="text-align: right;">1740.0</td>
+<td style="text-align: right;">7540.0</td>
+<td style="text-align: right;">802</td>
+<td style="text-align: right;">273000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Energy Minerals</td>
+<td style="text-align: right;">8944.38</td>
+<td style="text-align: right;">5165</td>
+<td style="text-align: right;">2510.0</td>
+<td style="text-align: right;">6390.0</td>
+<td style="text-align: right;">1240</td>
+<td style="text-align: right;">46000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">5205.68</td>
+<td style="text-align: right;">2375</td>
+<td style="text-align: right;">1580.0</td>
+<td style="text-align: right;">4885.0</td>
+<td style="text-align: right;">505</td>
+<td style="text-align: right;">78500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">7763.33</td>
+<td style="text-align: right;">3680</td>
+<td style="text-align: right;">1712.5</td>
+<td style="text-align: right;">7287.5</td>
+<td style="text-align: right;">789</td>
+<td style="text-align: right;">46900</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">8069.79</td>
+<td style="text-align: right;">3260</td>
+<td style="text-align: right;">1675.0</td>
+<td style="text-align: right;">10400.0</td>
+<td style="text-align: right;">467</td>
+<td style="text-align: right;">52300</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Industrial Services</td>
+<td style="text-align: right;">4452.22</td>
+<td style="text-align: right;">3700</td>
+<td style="text-align: right;">3570.0</td>
+<td style="text-align: right;">4630.0</td>
+<td style="text-align: right;">2740</td>
+<td style="text-align: right;">8390</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-Energy Minerals</td>
+<td style="text-align: right;">2826.14</td>
+<td style="text-align: right;">2670</td>
+<td style="text-align: right;">2090.0</td>
+<td style="text-align: right;">3525.0</td>
+<td style="text-align: right;">553</td>
+<td style="text-align: right;">5330</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Process Industries</td>
+<td style="text-align: right;">3106.62</td>
+<td style="text-align: right;">1640</td>
+<td style="text-align: right;">1280.0</td>
+<td style="text-align: right;">3560.0</td>
+<td style="text-align: right;">454</td>
+<td style="text-align: right;">18200</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Producer Manufacturing</td>
+<td style="text-align: right;">4353.50</td>
+<td style="text-align: right;">3300</td>
+<td style="text-align: right;">1352.5</td>
+<td style="text-align: right;">5262.5</td>
+<td style="text-align: right;">664</td>
+<td style="text-align: right;">13900</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">13690.18</td>
+<td style="text-align: right;">3530</td>
+<td style="text-align: right;">2027.5</td>
+<td style="text-align: right;">9935.0</td>
+<td style="text-align: right;">656</td>
+<td style="text-align: right;">132000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">18553.12</td>
+<td style="text-align: right;">3415</td>
+<td style="text-align: right;">1660.0</td>
+<td style="text-align: right;">10940.0</td>
+<td style="text-align: right;">417</td>
+<td style="text-align: right;">236000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Transportation</td>
+<td style="text-align: right;">4175.33</td>
+<td style="text-align: right;">2420</td>
+<td style="text-align: right;">1540.0</td>
+<td style="text-align: right;">5430.0</td>
+<td style="text-align: right;">477</td>
+<td style="text-align: right;">13100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">3083.45</td>
+<td style="text-align: right;">2190</td>
+<td style="text-align: right;">1720.0</td>
+<td style="text-align: right;">3565.0</td>
+<td style="text-align: right;">882</td>
+<td style="text-align: right;">13900</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ol start="3" type="1">
+<li>Top 10 companies having highest Market Cap</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>Top10 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(MarketCap)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>Top10 <span class="ot">&lt;-</span> Top10[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="dv">6</span>,<span class="dv">10</span><span class="sc">:</span><span class="dv">13</span>)]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>Top10 <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(Top10, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>Top10 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MarketCap</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROIC</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GrossMargin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">AAPL</td>
+<td style="text-align: left;">Apple Inc.</td>
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">2.73e+12</td>
+<td style="text-align: right;">160.1</td>
+<td style="text-align: right;">28.2</td>
+<td style="text-align: right;">60.9</td>
+<td style="text-align: right;">43.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">MSFT</td>
+<td style="text-align: left;">Microsoft Corporation</td>
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">2.36e+12</td>
+<td style="text-align: right;">38.8</td>
+<td style="text-align: right;">18.6</td>
+<td style="text-align: right;">28.1</td>
+<td style="text-align: right;">68.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">GOOG</td>
+<td style="text-align: left;">Alphabet Inc.</td>
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">1.65e+12</td>
+<td style="text-align: right;">23.3</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">21.2</td>
+<td style="text-align: right;">55.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">GOOGL</td>
+<td style="text-align: left;">Alphabet Inc.</td>
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">1.65e+12</td>
+<td style="text-align: right;">23.3</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">21.2</td>
+<td style="text-align: right;">55.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">AMZN</td>
+<td style="text-align: left;">Amazon.com, Inc.</td>
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">1.32e+12</td>
+<td style="text-align: right;">8.7</td>
+<td style="text-align: right;">2.9</td>
+<td style="text-align: right;">4.6</td>
+<td style="text-align: right;">45.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">NVDA</td>
+<td style="text-align: left;">NVIDIA Corporation</td>
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">1.03e+12</td>
+<td style="text-align: right;">40.2</td>
+<td style="text-align: right;">22.2</td>
+<td style="text-align: right;">29.0</td>
+<td style="text-align: right;">64.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">BRK.B</td>
+<td style="text-align: left;">Berkshire Hathaway Inc. New</td>
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">7.85e+11</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">8.9</td>
+<td style="text-align: right;">13.9</td>
+<td style="text-align: right;">19.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">TSLA</td>
+<td style="text-align: left;">Tesla, Inc.</td>
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">7.77e+11</td>
+<td style="text-align: right;">28.0</td>
+<td style="text-align: right;">15.4</td>
+<td style="text-align: right;">25.5</td>
+<td style="text-align: right;">21.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">META</td>
+<td style="text-align: left;">Meta Platforms, Inc.</td>
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">7.70e+11</td>
+<td style="text-align: right;">17.4</td>
+<td style="text-align: right;">12.0</td>
+<td style="text-align: right;">14.5</td>
+<td style="text-align: right;">79.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9/29/2023</td>
+<td style="text-align: left;">LLY</td>
+<td style="text-align: left;">Eli Lilly and Company</td>
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">5.23e+11</td>
+<td style="text-align: right;">66.3</td>
+<td style="text-align: right;">12.8</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">77.8</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="price-relative-to-52-week-low" class="level3">
+<h3 class="anchored" data-anchor-id="price-relative-to-52-week-low">PRICE RELATIVE TO 52 WEEK LOW</h3>
+<ol type="1">
+<li>Summary Statistics of Low52WkPerc by Sector</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>SM <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(Low52WkPerc)),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(Low52WkPerc)),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(Low52WkPerc)),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(Low52WkPerc), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(Low52WkPerc), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(Low52WkPerc)),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(Low52WkPerc))</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">Sector =</span> SM<span class="sc">$</span>Sector, <span class="fu">round</span>(SM[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> tab <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Median)</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>SM <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(tab, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>SM </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Mean</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Median</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Q3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Min</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Consumer Non-Durables</td>
+<td style="text-align: right;">11.52</td>
+<td style="text-align: right;">7.57</td>
+<td style="text-align: right;">3.72</td>
+<td style="text-align: right;">16.72</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">36.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">13.94</td>
+<td style="text-align: right;">8.47</td>
+<td style="text-align: right;">5.18</td>
+<td style="text-align: right;">14.79</td>
+<td style="text-align: right;">0.63</td>
+<td style="text-align: right;">55.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Communications</td>
+<td style="text-align: right;">10.23</td>
+<td style="text-align: right;">11.61</td>
+<td style="text-align: right;">9.00</td>
+<td style="text-align: right;">12.15</td>
+<td style="text-align: right;">6.39</td>
+<td style="text-align: right;">12.69</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">19.55</td>
+<td style="text-align: right;">12.30</td>
+<td style="text-align: right;">2.77</td>
+<td style="text-align: right;">27.16</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">80.46</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Transportation</td>
+<td style="text-align: right;">21.80</td>
+<td style="text-align: right;">13.83</td>
+<td style="text-align: right;">0.81</td>
+<td style="text-align: right;">34.34</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">83.93</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">19.37</td>
+<td style="text-align: right;">14.54</td>
+<td style="text-align: right;">7.12</td>
+<td style="text-align: right;">26.21</td>
+<td style="text-align: right;">0.09</td>
+<td style="text-align: right;">58.60</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">21.20</td>
+<td style="text-align: right;">16.93</td>
+<td style="text-align: right;">9.71</td>
+<td style="text-align: right;">30.53</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">96.84</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Process Industries</td>
+<td style="text-align: right;">21.52</td>
+<td style="text-align: right;">19.37</td>
+<td style="text-align: right;">8.23</td>
+<td style="text-align: right;">33.11</td>
+<td style="text-align: right;">0.29</td>
+<td style="text-align: right;">47.07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">24.12</td>
+<td style="text-align: right;">19.56</td>
+<td style="text-align: right;">13.43</td>
+<td style="text-align: right;">33.22</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">53.94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Commercial Services</td>
+<td style="text-align: right;">30.59</td>
+<td style="text-align: right;">29.14</td>
+<td style="text-align: right;">14.74</td>
+<td style="text-align: right;">40.75</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">66.91</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Energy Minerals</td>
+<td style="text-align: right;">33.29</td>
+<td style="text-align: right;">30.55</td>
+<td style="text-align: right;">22.92</td>
+<td style="text-align: right;">39.94</td>
+<td style="text-align: right;">5.91</td>
+<td style="text-align: right;">71.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Industrial Services</td>
+<td style="text-align: right;">39.74</td>
+<td style="text-align: right;">31.09</td>
+<td style="text-align: right;">20.86</td>
+<td style="text-align: right;">73.53</td>
+<td style="text-align: right;">3.75</td>
+<td style="text-align: right;">74.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Producer Manufacturing</td>
+<td style="text-align: right;">40.53</td>
+<td style="text-align: right;">31.69</td>
+<td style="text-align: right;">16.10</td>
+<td style="text-align: right;">58.74</td>
+<td style="text-align: right;">1.43</td>
+<td style="text-align: right;">130.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribution Services</td>
+<td style="text-align: right;">27.82</td>
+<td style="text-align: right;">32.25</td>
+<td style="text-align: right;">23.59</td>
+<td style="text-align: right;">37.60</td>
+<td style="text-align: right;">0.76</td>
+<td style="text-align: right;">42.18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Services</td>
+<td style="text-align: right;">39.46</td>
+<td style="text-align: right;">32.83</td>
+<td style="text-align: right;">19.07</td>
+<td style="text-align: right;">46.56</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">147.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">39.30</td>
+<td style="text-align: right;">34.12</td>
+<td style="text-align: right;">11.20</td>
+<td style="text-align: right;">48.99</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">285.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">45.72</td>
+<td style="text-align: right;">34.90</td>
+<td style="text-align: right;">11.77</td>
+<td style="text-align: right;">63.18</td>
+<td style="text-align: right;">4.82</td>
+<td style="text-align: right;">140.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">42.85</td>
+<td style="text-align: right;">36.14</td>
+<td style="text-align: right;">20.46</td>
+<td style="text-align: right;">55.37</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">239.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-Energy Minerals</td>
+<td style="text-align: right;">31.16</td>
+<td style="text-align: right;">36.31</td>
+<td style="text-align: right;">22.22</td>
+<td style="text-align: right;">43.81</td>
+<td style="text-align: right;">1.05</td>
+<td style="text-align: right;">48.69</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Sector Communications and Utilities are closest to its 52 week low.</p>
+<ol start="2" type="1">
+<li>Box Plot for Low52WkPerc by Sector TODO: Truncate at 100; Rotate by 90 degrees; Sort Sectors by Median(Low52WkPerc)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sp500, <span class="fu">aes</span>(Sector, Low52WkPerc)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="profitability-by-sector" class="level3">
+<h3 class="anchored" data-anchor-id="profitability-by-sector">PROFITABILITY BY SECTOR</h3>
+</section>
+<section id="roe" class="level3">
+<h3 class="anchored" data-anchor-id="roe">ROE</h3>
+<ol type="1">
+<li>Summary Statistics of ROE by each Sector of S&amp;P500</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>SectorROE <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(ROE))</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Sector =</span> SectorROE<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorROE[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Sector   Mean Median    Q1    Q3     Min    max
+1     Commercial Services  37.98  26.40 16.40 43.60     3.5  175.2
+2          Communications   8.10   9.10  0.55 16.15    -8.0   23.2
+3       Consumer Durables  12.23  16.65  6.85 25.38   -51.4   45.2
+4   Consumer Non-Durables 129.56  19.60  6.40 34.60   -11.5 2878.8
+5       Consumer Services  31.79  11.40  1.55 44.95  -185.6  359.9
+6   Distribution Services  81.10  34.20 22.15 56.45     5.1  371.2
+7   Electronic Technology  31.65  18.75  8.10 36.80   -14.8  160.1
+8         Energy Minerals  43.12  26.95 23.78 41.45    18.0  230.2
+9                 Finance  22.13  11.00  7.82 16.67   -14.7  714.3
+10        Health Services  20.63  17.30 12.05 24.05     8.3   56.0
+11      Health Technology  19.87  13.10  6.80 22.73   -49.3  173.5
+12    Industrial Services  21.04  22.60 10.70 31.10     7.7   36.5
+13    Non-Energy Minerals  13.84  13.50  3.40 21.80    -3.8   36.8
+14     Process Industries  25.72  18.60 15.35 24.62   -13.2  125.5
+15 Producer Manufacturing  25.42  20.20 13.02 30.00   -13.6   95.9
+16           Retail Trade  74.36  28.75 14.47 44.00 -1224.5 2065.3
+17    Technology Services  33.21  18.00 10.70 31.82   -70.6  416.6
+18         Transportation  36.39  33.50 20.85 49.08     4.1  104.4
+19              Utilities   8.12   8.70  7.65 10.60   -47.6   35.5</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Box Plot for ROE by Sector</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sp500, <span class="fu">aes</span>(Sector, ROE)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="roa" class="level3">
+<h3 class="anchored" data-anchor-id="roa">ROA</h3>
+<ol type="1">
+<li>Summary Statistics of ROA by each Sector of S&amp;P500</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>SectorROA <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(ROA)),</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(ROA)),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(ROA)),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROA), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROA), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(ROA)),</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(ROA))</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Sector =</span> SectorROA<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorROA[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Sector  Mean Median    Q1    Q3   Min  max
+1     Commercial Services 10.25   6.20  5.30 18.10   1.7 27.2
+2          Communications  2.13   2.90  0.40  4.25  -2.1  5.6
+3       Consumer Durables  8.65   9.10  1.13 15.53  -8.8 27.9
+4   Consumer Non-Durables  7.14   6.60  3.10 10.75  -5.9 18.9
+5       Consumer Services  6.57   3.40  0.83 12.83  -6.6 29.0
+6   Distribution Services  9.79   5.90  2.90 15.50   0.6 24.5
+7   Electronic Technology  9.46   8.80  3.90 13.60  -6.7 28.2
+8         Energy Minerals 14.32  14.15 11.70 15.98   7.4 21.9
+9                 Finance  3.32   2.40  1.17  4.23  -2.9 24.1
+10        Health Services  5.74   5.50  4.27  6.62   2.7 11.0
+11      Health Technology  6.66   6.70  2.95 10.70 -30.8 28.9
+12    Industrial Services  6.58   5.70  4.20  9.00   3.3 10.6
+13    Non-Energy Minerals  7.10   5.20  1.05 11.70  -2.2 21.2
+14     Process Industries  7.01   6.25  5.32  7.43  -5.0 24.8
+15 Producer Manufacturing  9.39   8.85  5.55 10.95  -3.1 25.1
+16           Retail Trade  8.83   8.80  5.38 13.65 -23.2 24.8
+17    Technology Services  9.26   8.65  5.15 13.75 -35.4 41.5
+18         Transportation  8.77   7.90  3.95 10.70   1.1 26.2
+19              Utilities  2.33   2.30  2.00  3.20  -6.5  5.6</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Box Plot for ROA by Sector</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sp500, <span class="fu">aes</span>(Sector, ROA)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="live-case-sp500-2b-of-3" class="level2">
+<h2 class="anchored" data-anchor-id="live-case-sp500-2b-of-3">Live Case: S&amp;P500 (2b of 3)</h2>
+<p><em>Aug 06, 2023 -=- This chapter is being heavily edited</em></p>
+<p>ISSUE: Analysis of a particular SECTOR We have chosen to deeply analyze the HEALTH TECHNOLOGY Sector</p>
+</section>
+<section id="sector-level-analysis-begins-here" class="level2">
+<h2 class="anchored" data-anchor-id="sector-level-analysis-begins-here">SECTOR LEVEL ANALYSIS begins here</h2>
+<section id="filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector" class="level3">
+<h3 class="anchored" data-anchor-id="filter-the-data-by-sector-health-services-and-display-the-number-of-stocks-in-the-sector">Filter the data by sector Health Services, and display the number of stocks in the sector</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ts <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(Sector<span class="sc">==</span><span class="st">'Health Services'</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(ts)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+</div>
+<p>There are 12 number of of stocks in the sector Health Services</p>
+</section>
+<section id="select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services" class="level3">
+<h3 class="anchored" data-anchor-id="select-the-specific-coulumns-from-the-filtered-dataframe-ts-health-services">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Health Services)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>ts2 <span class="ot">&lt;-</span> ts <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(Date, Stock, StockName,Sector,  Industry, MarketCap, Price,Low52Wk, High52Wk,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>               ROE, ROA,ROIC,GrossMargin, GrossMargin, </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>               NetMargin, Rating)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Date"        "Stock"       "StockName"   "Sector"      "Industry"   
+ [6] "MarketCap"   "Price"       "Low52Wk"     "High52Wk"    "ROE"        
+[11] "ROA"         "ROIC"        "GrossMargin" "NetMargin"   "Rating"     </code></pre>
+</div>
+</div>
+</section>
+<section id="arrange-the-dataframe-by-roe" class="level3">
+<h3 class="anchored" data-anchor-id="arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> ts2 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="top-10-shares-in-sector-health-services-based-on-roe" class="level3">
+<h3 class="anchored" data-anchor-id="top-10-shares-in-sector-health-services-based-on-roe">Top 10 Shares in Sector Health Services Based on ROE</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts3,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 15
+   Date   Stock StockName Sector Industry MarketCap Price Low52Wk High52Wk   ROE
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;     &lt;fct&gt;  &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+ 1 9/29/… DVA   DaVita I… Healt… Medical…   9.01e 9  98.7    65.3    117    56  
+ 2 9/29/… MOH   Molina H… Healt… Managed…   1.95e10 334.    256.     374    28.4
+ 3 9/29/… UNH   UnitedHe… Healt… Managed…   4.69e11 506.    446.     558.   27.2
+ 4 9/29/… HUM   Humana I… Healt… Managed…   6.12e10 494.    423.     571.   20.9
+ 5 9/29/… IQV   IQVIA Ho… Healt… Service…   3.64e10 199.    166.     242.   19.7
+ 6 9/29/… ELV   Elevance… Healt… Managed…   1.05e11 447.    412      550.   17.3
+ 7 9/29/… CI    The Cign… Healt… Managed…   8.57e10 289.    240.     340.   14.6
+ 8 9/29/… DGX   Quest Di… Healt… Service…   1.39e10 124.    122.     158.   12.5
+ 9 9/29/… UHS   Universa… Healt… Hospita…   7.89e 9 127      82.5    159.   11.6
+10 9/29/… CNC   Centene … Healt… Managed…   3.72e10  68.7    60.8     87.8  10.4
+# ℹ 5 more variables: ROA &lt;dbl&gt;, ROIC &lt;dbl&gt;, GrossMargin &lt;dbl&gt;,
+#   NetMargin &lt;dbl&gt;, Rating &lt;fct&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" class="level3">
+<h3 class="anchored" data-anchor-id="mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts4[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">16</span>)],<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 5
+   Date      Stock StockName                         ROE Low52WkPerc
+   &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                           &lt;dbl&gt;       &lt;dbl&gt;
+ 1 9/29/2023 DVA   DaVita Inc.                      56         51.2 
+ 2 9/29/2023 MOH   Molina Healthcare Inc            28.4       30.5 
+ 3 9/29/2023 UNH   UnitedHealth Group Incorporated  27.2       13.6 
+ 4 9/29/2023 HUM   Humana Inc.                      20.9       16.6 
+ 5 9/29/2023 IQV   IQVIA Holdings, Inc.             19.7       19.9 
+ 6 9/29/2023 ELV   Elevance Health, Inc.            17.3        8.54
+ 7 9/29/2023 CI    The Cigna Group                  14.6       20.3 
+ 8 9/29/2023 DGX   Quest Diagnostics Incorporated   12.5        1.31
+ 9 9/29/2023 UHS   Universal Health Services, Inc.  11.6       53.9 
+10 9/29/2023 CNC   Centene Corporation              10.4       13.0 </code></pre>
+</div>
+</div>
+<p><em>Low52WkPerc for all the Health Sector Stocks, as shown below</em></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="summary-statistics-of-roe" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-of-roe">Summary Statistics of ROE</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROE),</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROE),</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROE),</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROE),</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROE)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>ROESum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 6
+   Mean Median    Q1    Q3   Min   max
+  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  21.6   12.5  11.6  19.7   8.3    56</code></pre>
+</div>
+</div>
+<ul>
+<li>ROE for all the Stocks in Health Sector, as shown below*</li>
+</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="top-10-shares-in-health-sector-with-highest-roe" class="level3">
+<h3 class="anchored" data-anchor-id="top-10-shares-in-health-sector-with-highest-roe">Top 10 Shares in Health Sector with highest ROE</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))<span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Top 10 Shares in Health Sector with highest ROE"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Top 10 Shares in Health Sector with highest ROE</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: right;">98.7</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">51.15</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">56.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MOH</td>
+<td style="text-align: right;">334.3</td>
+<td style="text-align: right;">256.2</td>
+<td style="text-align: right;">30.48</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">28.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UNH</td>
+<td style="text-align: right;">506.2</td>
+<td style="text-align: right;">445.7</td>
+<td style="text-align: right;">13.57</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">27.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HUM</td>
+<td style="text-align: right;">493.8</td>
+<td style="text-align: right;">423.3</td>
+<td style="text-align: right;">16.65</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">20.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: right;">198.8</td>
+<td style="text-align: right;">165.8</td>
+<td style="text-align: right;">19.90</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">19.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ELV</td>
+<td style="text-align: right;">447.2</td>
+<td style="text-align: right;">412.0</td>
+<td style="text-align: right;">8.54</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">17.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CI</td>
+<td style="text-align: right;">289.3</td>
+<td style="text-align: right;">240.5</td>
+<td style="text-align: right;">20.29</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">14.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DGX</td>
+<td style="text-align: right;">123.5</td>
+<td style="text-align: right;">121.9</td>
+<td style="text-align: right;">1.31</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">12.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UHS</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">53.94</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">11.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CNC</td>
+<td style="text-align: right;">68.7</td>
+<td style="text-align: right;">60.8</td>
+<td style="text-align: right;">12.99</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">10.4</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</section>
+<section id="roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" class="level3">
+<h3 class="anchored" data-anchor-id="roe-versus-roa-and-colored-by-price-rel.-to-52-week-low">ROE versus ROA and colored by Price rel. to 52 Week Low</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  ts4 <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))<span class="sc">%&gt;%</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>top10<span class="sc">$</span>name <span class="ot">&lt;-</span> top10<span class="sc">$</span>Stock</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(top10, </span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"ROA"</span>, </span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"ROE"</span>, </span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Low52WkPerc"</span>,</span>
+<span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Low52WkPerc"</span>,</span>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">label =</span> <span class="st">"name"</span>, </span>
+<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb39-17"><a href="#cb39-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"ROE vs ROA, Low52WkPerc for Health Sector with highest ROE"</span>) <span class="sc">+</span> </span>
+<span id="cb39-18"><a href="#cb39-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">"darkgreen"</span>,  <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18LiveCase02_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+</section>
+<section id="summary-statistics-of-all-key-variables-in-sector-health-services" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-of-all-key-variables-in-sector-health-services">Summary Statistics of All key variables in Sector Health Services</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROE),</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROE),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROE),</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROE),</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROE)</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROA),</span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROA),</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROA),</span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROA),</span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROA)</span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROASum,<span class="dv">2</span>)</span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-32"><a href="#cb40-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROIC),</span>
+<span id="cb40-33"><a href="#cb40-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(ROIC),</span>
+<span id="cb40-34"><a href="#cb40-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROIC),</span>
+<span id="cb40-35"><a href="#cb40-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-36"><a href="#cb40-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-37"><a href="#cb40-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROIC),</span>
+<span id="cb40-38"><a href="#cb40-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROIC)</span>
+<span id="cb40-39"><a href="#cb40-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-40"><a href="#cb40-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-41"><a href="#cb40-41" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROICSum,<span class="dv">2</span>)</span>
+<span id="cb40-42"><a href="#cb40-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-43"><a href="#cb40-43" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb40-44"><a href="#cb40-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-45"><a href="#cb40-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(GrossMargin),</span>
+<span id="cb40-46"><a href="#cb40-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(GrossMargin),</span>
+<span id="cb40-47"><a href="#cb40-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(GrossMargin),</span>
+<span id="cb40-48"><a href="#cb40-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-49"><a href="#cb40-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-50"><a href="#cb40-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(GrossMargin),</span>
+<span id="cb40-51"><a href="#cb40-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(GrossMargin)</span>
+<span id="cb40-52"><a href="#cb40-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-53"><a href="#cb40-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-54"><a href="#cb40-54" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(GrossMarginSum,<span class="dv">2</span>)</span>
+<span id="cb40-55"><a href="#cb40-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-56"><a href="#cb40-56" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb40-57"><a href="#cb40-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb40-58"><a href="#cb40-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(NetMargin),</span>
+<span id="cb40-59"><a href="#cb40-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(NetMargin),</span>
+<span id="cb40-60"><a href="#cb40-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(NetMargin),</span>
+<span id="cb40-61"><a href="#cb40-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-62"><a href="#cb40-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb40-63"><a href="#cb40-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(NetMargin),</span>
+<span id="cb40-64"><a href="#cb40-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(NetMargin)</span>
+<span id="cb40-65"><a href="#cb40-65" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb40-66"><a href="#cb40-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-67"><a href="#cb40-67" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(NetMarginSum,<span class="dv">2</span>)</span>
+<span id="cb40-68"><a href="#cb40-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-69"><a href="#cb40-69" aria-hidden="true" tabindex="-1"></a>Metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ROE"</span>,<span class="st">"ROA"</span>,<span class="st">"ROIC"</span>,<span class="st">"GrossMargin"</span>,<span class="st">"NetMargin"</span>)</span>
+<span id="cb40-70"><a href="#cb40-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-71"><a href="#cb40-71" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)</span>
+<span id="cb40-72"><a href="#cb40-72" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Metrics, ftab)</span>
+<span id="cb40-73"><a href="#cb40-73" aria-hidden="true" tabindex="-1"></a>ftab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Metrics  Mean Median   Q1   Q3 Min  max
+1         ROE 21.62   12.5 11.6 19.7 8.3 56.0
+2         ROA  4.44    4.3  4.2  5.1 2.7  5.9
+3        ROIC  5.70    6.0  5.1  6.3 3.7  7.4
+4 GrossMargin 23.26   25.5 23.0 27.1 7.9 32.8
+5   NetMargin  6.08    5.7  5.0  7.5 3.9  8.3</code></pre>
+</div>
+</div>
+</section>
+<section id="summary-statistics-of-roe-by-each-sector-of-sp500" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-of-roe-by-each-sector-of-sp500">Summary Statistics of ROE by each Sector of S&amp;P500</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>SectorROE <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">sd</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(<span class="fu">na.omit</span>(ROE), <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(<span class="fu">na.omit</span>(ROE)),</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(<span class="fu">na.omit</span>(ROE))</span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(<span class="at">Sector =</span> SectorROE<span class="sc">$</span>Sector, <span class="fu">round</span>(SectorROE[,<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>],<span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   Sector   Mean Median    Q1    Q3     Min    max
+1     Commercial Services  37.98  26.40 16.40 43.60     3.5  175.2
+2          Communications   8.10   9.10  0.55 16.15    -8.0   23.2
+3       Consumer Durables  12.23  16.65  6.85 25.38   -51.4   45.2
+4   Consumer Non-Durables 129.56  19.60  6.40 34.60   -11.5 2878.8
+5       Consumer Services  31.79  11.40  1.55 44.95  -185.6  359.9
+6   Distribution Services  81.10  34.20 22.15 56.45     5.1  371.2
+7   Electronic Technology  31.65  18.75  8.10 36.80   -14.8  160.1
+8         Energy Minerals  43.12  26.95 23.78 41.45    18.0  230.2
+9                 Finance  22.13  11.00  7.82 16.67   -14.7  714.3
+10        Health Services  20.63  17.30 12.05 24.05     8.3   56.0
+11      Health Technology  19.87  13.10  6.80 22.73   -49.3  173.5
+12    Industrial Services  21.04  22.60 10.70 31.10     7.7   36.5
+13    Non-Energy Minerals  13.84  13.50  3.40 21.80    -3.8   36.8
+14     Process Industries  25.72  18.60 15.35 24.62   -13.2  125.5
+15 Producer Manufacturing  25.42  20.20 13.02 30.00   -13.6   95.9
+16           Retail Trade  74.36  28.75 14.47 44.00 -1224.5 2065.3
+17    Technology Services  33.21  18.00 10.70 31.82   -70.6  416.6
+18         Transportation  36.39  33.50 20.85 49.08     4.1  104.4
+19              Utilities   8.12   8.70  7.65 10.60   -47.6   35.5</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="analysis-of-health-services-sector" class="level2">
+<h2 class="anchored" data-anchor-id="analysis-of-health-services-sector">ANALYSIS OF HEALTH SERVICES SECTOR</h2>
+<ol type="1">
+<li>Market Cap of all companies in Sector Health Services</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Market Cap by Stock</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>MCap <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Stock) <span class="sc">%&gt;%</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">MarketCapCr =</span> <span class="fu">sum</span>(<span class="fu">na.omit</span>(MarketCap)<span class="sc">/</span><span class="dv">10000000</span>))</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Sp500 Market Cap</span></span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>SP500MarketCap <span class="ot">&lt;-</span> <span class="fu">sum</span>(ts3<span class="sc">$</span>MarketCap<span class="sc">/</span><span class="dv">10000000</span>)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-13"><a href="#cb44-13" aria-hidden="true" tabindex="-1"></a><span class="co"># calculating % market cap</span></span>
+<span id="cb44-14"><a href="#cb44-14" aria-hidden="true" tabindex="-1"></a>PercentMarketCap <span class="ot">&lt;-</span> <span class="fu">round</span>(MCap<span class="sc">$</span>MarketCapCr<span class="sc">*</span><span class="dv">100</span><span class="sc">/</span>SP500MarketCap,<span class="dv">2</span>)</span>
+<span id="cb44-15"><a href="#cb44-15" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(MCap,PercentMarketCap)</span>
+<span id="cb44-16"><a href="#cb44-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-17"><a href="#cb44-17" aria-hidden="true" tabindex="-1"></a><span class="co"># sorting by PercentMarketCap</span></span>
+<span id="cb44-18"><a href="#cb44-18" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(PercentMarketCap))</span>
+<span id="cb44-19"><a href="#cb44-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-20"><a href="#cb44-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-21"><a href="#cb44-21" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> MCapTab <span class="sc">%&gt;%</span></span>
+<span id="cb44-22"><a href="#cb44-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="st">"row"</span>)</span>
+<span id="cb44-23"><a href="#cb44-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-24"><a href="#cb44-24" aria-hidden="true" tabindex="-1"></a>MCapTab <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(MCapTab, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb44-25"><a href="#cb44-25" aria-hidden="true" tabindex="-1"></a>MCapTab </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MarketCapCr</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">PercentMarketCap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: right;">3640</td>
+<td style="text-align: right;">42.62</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LH</td>
+<td style="text-align: right;">1820</td>
+<td style="text-align: right;">21.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DGX</td>
+<td style="text-align: right;">1390</td>
+<td style="text-align: right;">16.28</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: right;">901</td>
+<td style="text-align: right;">10.55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UHS</td>
+<td style="text-align: right;">789</td>
+<td style="text-align: right;">9.24</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">8540</td>
+<td style="text-align: right;">100.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ol start="2" type="1">
+<li>Shares which are most attractively priced in Sector Health Services</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(Low52WkPerc)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DGX</td>
+<td style="text-align: left;">Quest Diagnostics Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">123.5</td>
+<td style="text-align: right;">121.9</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">1.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ELV</td>
+<td style="text-align: left;">Elevance Health, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">447.2</td>
+<td style="text-align: right;">412.0</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">8.54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CNC</td>
+<td style="text-align: left;">Centene Corporation</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">68.7</td>
+<td style="text-align: right;">60.8</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">12.99</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UNH</td>
+<td style="text-align: left;">UnitedHealth Group Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">506.2</td>
+<td style="text-align: right;">445.7</td>
+<td style="text-align: right;">27.2</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">13.57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">HUM</td>
+<td style="text-align: left;">Humana Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">493.8</td>
+<td style="text-align: right;">423.3</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">16.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LH</td>
+<td style="text-align: left;">Laboratory Corporation of America Holdings</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">205.2</td>
+<td style="text-align: right;">172.1</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">19.23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: left;">IQVIA Holdings, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">198.8</td>
+<td style="text-align: right;">165.8</td>
+<td style="text-align: right;">19.7</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">19.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CI</td>
+<td style="text-align: left;">The Cigna Group</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">289.3</td>
+<td style="text-align: right;">240.5</td>
+<td style="text-align: right;">14.6</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">20.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MOH</td>
+<td style="text-align: left;">Molina Healthcare Inc</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">334.3</td>
+<td style="text-align: right;">256.2</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">30.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HCA</td>
+<td style="text-align: left;">HCA Healthcare, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">252.2</td>
+<td style="text-align: right;">178.3</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">41.45</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: left;">DaVita Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">98.7</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">56.0</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">51.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UHS</td>
+<td style="text-align: left;">Universal Health Services, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">53.94</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<section id="profitability-of-health-services-sector" class="level3">
+<h3 class="anchored" data-anchor-id="profitability-of-health-services-sector">PROFITABILITY OF HEALTH SERVICES SECTOR</h3>
+<ol type="1">
+<li>Shares have highest ROE within Sector Technology Services</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: left;">DaVita Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">98.7</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">56.0</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">51.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MOH</td>
+<td style="text-align: left;">Molina Healthcare Inc</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">334.3</td>
+<td style="text-align: right;">256.2</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">30.48</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UNH</td>
+<td style="text-align: left;">UnitedHealth Group Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">506.2</td>
+<td style="text-align: right;">445.7</td>
+<td style="text-align: right;">27.2</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">13.57</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HUM</td>
+<td style="text-align: left;">Humana Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">493.8</td>
+<td style="text-align: right;">423.3</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">16.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: left;">IQVIA Holdings, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">198.8</td>
+<td style="text-align: right;">165.8</td>
+<td style="text-align: right;">19.7</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">19.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ELV</td>
+<td style="text-align: left;">Elevance Health, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">447.2</td>
+<td style="text-align: right;">412.0</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">8.54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CI</td>
+<td style="text-align: left;">The Cigna Group</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">289.3</td>
+<td style="text-align: right;">240.5</td>
+<td style="text-align: right;">14.6</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">20.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DGX</td>
+<td style="text-align: left;">Quest Diagnostics Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">123.5</td>
+<td style="text-align: right;">121.9</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">1.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UHS</td>
+<td style="text-align: left;">Universal Health Services, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">53.94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CNC</td>
+<td style="text-align: left;">Centene Corporation</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">68.7</td>
+<td style="text-align: right;">60.8</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">12.99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LH</td>
+<td style="text-align: left;">Laboratory Corporation of America Holdings</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">205.2</td>
+<td style="text-align: right;">172.1</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">19.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HCA</td>
+<td style="text-align: left;">HCA Healthcare, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">252.2</td>
+<td style="text-align: right;">178.3</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">41.45</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ol start="2" type="1">
+<li>Shares have highest ROA within Sector Health Services</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROA))</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">16</span>)]</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">HCA</td>
+<td style="text-align: left;">HCA Healthcare, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">252.2</td>
+<td style="text-align: right;">178.3</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">41.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UNH</td>
+<td style="text-align: left;">UnitedHealth Group Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">506.2</td>
+<td style="text-align: right;">445.7</td>
+<td style="text-align: right;">27.2</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">13.57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MOH</td>
+<td style="text-align: left;">Molina Healthcare Inc</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">334.3</td>
+<td style="text-align: right;">256.2</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">30.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HUM</td>
+<td style="text-align: left;">Humana Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">493.8</td>
+<td style="text-align: right;">423.3</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">16.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ELV</td>
+<td style="text-align: left;">Elevance Health, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">447.2</td>
+<td style="text-align: right;">412.0</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">8.54</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DGX</td>
+<td style="text-align: left;">Quest Diagnostics Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">123.5</td>
+<td style="text-align: right;">121.9</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">1.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UHS</td>
+<td style="text-align: left;">Universal Health Services, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">53.94</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CI</td>
+<td style="text-align: left;">The Cigna Group</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">289.3</td>
+<td style="text-align: right;">240.5</td>
+<td style="text-align: right;">14.6</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">20.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: left;">IQVIA Holdings, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">198.8</td>
+<td style="text-align: right;">165.8</td>
+<td style="text-align: right;">19.7</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">19.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">LH</td>
+<td style="text-align: left;">Laboratory Corporation of America Holdings</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">205.2</td>
+<td style="text-align: right;">172.1</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">19.23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CNC</td>
+<td style="text-align: left;">Centene Corporation</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">68.7</td>
+<td style="text-align: right;">60.8</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">12.99</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: left;">DaVita Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">98.7</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">56.0</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">51.15</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<ol start="3" type="1">
+<li>Shares have highest NetMargin within Sector Health Services</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(NetMargin))</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> AttrShares[, <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>,<span class="dv">10</span>,<span class="dv">11</span>,<span class="dv">14</span>,<span class="dv">16</span>)]</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>AttrShares <span class="ot">&lt;-</span> knitr<span class="sc">::</span><span class="fu">kable</span>(AttrShares, <span class="st">"html"</span>) <span class="sc">%&gt;%</span> <span class="fu">kable_styling</span>() </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>AttrShares </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">NetMargin</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">HCA</td>
+<td style="text-align: left;">HCA Healthcare, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">252.2</td>
+<td style="text-align: right;">178.3</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">9.3</td>
+<td style="text-align: right;">41.45</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DGX</td>
+<td style="text-align: left;">Quest Diagnostics Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">123.5</td>
+<td style="text-align: right;">121.9</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">5.9</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">1.31</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">IQV</td>
+<td style="text-align: left;">IQVIA Holdings, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">198.8</td>
+<td style="text-align: right;">165.8</td>
+<td style="text-align: right;">19.7</td>
+<td style="text-align: right;">4.3</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">19.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UNH</td>
+<td style="text-align: left;">UnitedHealth Group Incorporated</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">506.2</td>
+<td style="text-align: right;">445.7</td>
+<td style="text-align: right;">27.2</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">13.57</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">LH</td>
+<td style="text-align: left;">Laboratory Corporation of America Holdings</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">205.2</td>
+<td style="text-align: right;">172.1</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">4.2</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">19.23</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UHS</td>
+<td style="text-align: left;">Universal Health Services, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">127.0</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">11.6</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">53.94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DVA</td>
+<td style="text-align: left;">DaVita Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">98.7</td>
+<td style="text-align: right;">65.3</td>
+<td style="text-align: right;">56.0</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">51.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ELV</td>
+<td style="text-align: left;">Elevance Health, Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">447.2</td>
+<td style="text-align: right;">412.0</td>
+<td style="text-align: right;">17.3</td>
+<td style="text-align: right;">6.1</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">8.54</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">CI</td>
+<td style="text-align: left;">The Cigna Group</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">289.3</td>
+<td style="text-align: right;">240.5</td>
+<td style="text-align: right;">14.6</td>
+<td style="text-align: right;">4.5</td>
+<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">20.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HUM</td>
+<td style="text-align: left;">Humana Inc.</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">493.8</td>
+<td style="text-align: right;">423.3</td>
+<td style="text-align: right;">20.9</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">16.65</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">MOH</td>
+<td style="text-align: left;">Molina Healthcare Inc</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">334.3</td>
+<td style="text-align: right;">256.2</td>
+<td style="text-align: right;">28.4</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">30.48</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CNC</td>
+<td style="text-align: left;">Centene Corporation</td>
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">68.7</td>
+<td style="text-align: right;">60.8</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">3.3</td>
+<td style="text-align: right;">1.8</td>
+<td style="text-align: right;">12.99</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
+  </li>  
+</ul>
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>
