@@ -420,6 +420,40 @@ ggplot(data = sp500,
 
 
 
+### MarketCap by Sector
+
+1. The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
+
+We review the Market Cap of S&P500 stocks across Sectors.
+
+```{r}
+MarketCapbySector <- sp500 %>%
+  mutate(Market_Cap_Billions = round(MarketCap/1000000000, 2)) %>%
+  group_by(Sector) %>%
+  summarise(MarketCapBillions = sum(Market_Cap_Billions, na.rm = TRUE))  %>%
+  arrange(-MarketCapBillions)  
+
+# Create a summary row
+summary_row <- tibble(
+  Sector = "Total",
+  MarketCapBillions = sum(MarketCapbySector$Market_Cap_Billions)
+)
+# Append the summary row to the result
+MarketCapbySector <- bind_rows(MarketCapbySector, summary_row)
+
+# Render the table
+MarketCapbySector %>%
+  kable("html", caption = "Market Capitalization (Billions of USD) by S&P500 Sector") %>% 
+  kable_styling()
+```
+
+
+
+
+
+
+
+
 ## Summary of Chapter -- Exploring S&P500 Data
 
 This chapter embarks on an exploration of the S&P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index's role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&P Dow Jones Indices.

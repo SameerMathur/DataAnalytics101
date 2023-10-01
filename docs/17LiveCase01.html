@@ -297,6 +297,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#stock-ratings" id="toc-stock-ratings" class="nav-link" data-scroll-target="#stock-ratings">Stock Ratings</a></li>
   <li><a href="#sectors-within-the-sp500" id="toc-sectors-within-the-sp500" class="nav-link" data-scroll-target="#sectors-within-the-sp500">Sectors within the S&amp;P500</a></li>
   <li><a href="#analysis-of-sp-500-sectors" id="toc-analysis-of-sp-500-sectors" class="nav-link" data-scroll-target="#analysis-of-sp-500-sectors">Analysis of S&amp;P 500 Sectors</a></li>
+  <li><a href="#marketcap-by-sector" id="toc-marketcap-by-sector" class="nav-link" data-scroll-target="#marketcap-by-sector">MarketCap by Sector</a></li>
   </ul></li>
   <li><a href="#summary-of-chapter-exploring-sp500-data" id="toc-summary-of-chapter-exploring-sp500-data" class="nav-link" data-scroll-target="#summary-of-chapter-exploring-sp500-data">Summary of Chapter – Exploring S&amp;P500 Data</a></li>
   </ul></li>
@@ -1073,6 +1074,131 @@ Table 1h: Data Columns related to Dividends
 <ul>
 <li>Thus, we can see how many stocks are part of each one of the 19 sectors. We can sum them to confirm that they add up to 503 stocks.</li>
 </ul>
+</section>
+<section id="marketcap-by-sector" class="level3">
+<h3 class="anchored" data-anchor-id="marketcap-by-sector">MarketCap by Sector</h3>
+<ol type="1">
+<li>The S&amp;P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.</li>
+</ol>
+<p>We review the Market Cap of S&amp;P500 stocks across Sectors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Market_Cap_Billions =</span> <span class="fu">round</span>(MarketCap<span class="sc">/</span><span class="dv">1000000000</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MarketCapBillions =</span> <span class="fu">sum</span>(Market_Cap_Billions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))  <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>MarketCapBillions)  </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary row</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>summary_row <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sector =</span> <span class="st">"Total"</span>,</span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">MarketCapBillions =</span> <span class="fu">sum</span>(MarketCapbySector<span class="sc">$</span>Market_Cap_Billions)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Unknown or uninitialised column: `Market_Cap_Billions`.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the summary row to the result</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(MarketCapbySector, summary_row)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the table</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="sc">%&gt;%</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Market Capitalization (Billions of USD) by S&amp;P500 Sector"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Market Capitalization (Billions of USD) by S&amp;P500 Sector</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MarketCapBillions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Technology Services</td>
+<td style="text-align: right;">9253.42</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Electronic Technology</td>
+<td style="text-align: right;">6354.28</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finance</td>
+<td style="text-align: right;">4746.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Technology</td>
+<td style="text-align: right;">3752.43</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Retail Trade</td>
+<td style="text-align: right;">2981.37</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Non-Durables</td>
+<td style="text-align: right;">1975.61</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Energy Minerals</td>
+<td style="text-align: right;">1455.78</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Services</td>
+<td style="text-align: right;">1411.99</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Producer Manufacturing</td>
+<td style="text-align: right;">1304.14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Commercial Services</td>
+<td style="text-align: right;">1235.92</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Durables</td>
+<td style="text-align: right;">1049.33</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Services</td>
+<td style="text-align: right;">921.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">890.46</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Process Industries</td>
+<td style="text-align: right;">746.42</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Transportation</td>
+<td style="text-align: right;">621.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communications</td>
+<td style="text-align: right;">408.39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Industrial Services</td>
+<td style="text-align: right;">403.77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Distribution Services</td>
+<td style="text-align: right;">303.21</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Non-Energy Minerals</td>
+<td style="text-align: right;">197.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
 </section>
 </section>
 <section id="summary-of-chapter-exploring-sp500-data" class="level2">
