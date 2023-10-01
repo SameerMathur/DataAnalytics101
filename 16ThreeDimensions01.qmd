@@ -1,6 +1,6 @@
 # 16: Three Dimensions (3D)
 
-*Sep 30, 2023*
+*Oct 01, 2023*
 
 ## Overview of R packages for 3D Plots
 
@@ -235,18 +235,7 @@ sp36$plane3d(model)
     -   `model <- lm(hp ~ wt + mpg, data = tb)`: A linear model is fitted using the `lm` function with `hp` as the dependent variable and `wt` and `mpg` as the independent variables. The resulting model object is stored in the variable `model`.
 -   **Add a Regression Plane to the Plot**
     -   `sp36$plane3d(model)`: The `plane3d` function is accessed from the `s3d` object and is used to add a regression plane to the existing 3D scatter plot. The plane is based on the coefficients of the linear model stored in `model`.
--  The resulting output will be a 3D scatter plot visualizing the relationships among weight (`wt`), miles per gallon (`mpg`), and horsepower (`hp`), with a regression plane fitted to these points, representing the linear relationship between the dependent and independent variables.
-
-
-
-
-
-
-
-
-
-
-
+-   The resulting output will be a 3D scatter plot visualizing the relationships among weight (`wt`), miles per gallon (`mpg`), and horsepower (`hp`), with a regression plane fitted to these points, representing the linear relationship between the dependent and independent variables.
 
 ## Summary
 
