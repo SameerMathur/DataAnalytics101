@@ -221,6 +221,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">15: Continuous x Continuous data (2 of 2)</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16: Three Dimensions (3D)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: S&amp;P500 (1)</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -253,9 +265,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#chapter-13-categorical-x-continuous-data-1-of-2--exploring-bivariate-data-using-ggplot2" id="toc-chapter-13-categorical-x-continuous-data-1-of-2--exploring-bivariate-data-using-ggplot2" class="nav-link" data-scroll-target="#chapter-13-categorical-x-continuous-data-1-of-2--exploring-bivariate-data-using-ggplot2">Chapter 13: Categorical x Continuous data (1 of 2)- Exploring bivariate data, using <strong><code>ggplot2</code></strong></a></li>
   <li><a href="#chapter-14-continuous-x-continuous-data-1-of-2--exploring-bivariate-continuous-data" id="toc-chapter-14-continuous-x-continuous-data-1-of-2--exploring-bivariate-continuous-data" class="nav-link" data-scroll-target="#chapter-14-continuous-x-continuous-data-1-of-2--exploring-bivariate-continuous-data">Chapter 14: Continuous x Continuous data (1 of 2)- Exploring bivariate continuous data</a></li>
   <li><a href="#chapter-15-continuous-x-continuous-data-2-of-2--exploring-bivariate-continuous-data-using-ggplot2" id="toc-chapter-15-continuous-x-continuous-data-2-of-2--exploring-bivariate-continuous-data-using-ggplot2" class="nav-link" data-scroll-target="#chapter-15-continuous-x-continuous-data-2-of-2--exploring-bivariate-continuous-data-using-ggplot2">Chapter 15: Continuous x Continuous data (2 of 2)- Exploring bivariate continuous data, using <strong><code>ggplot2</code></strong></a></li>
-  <li><a href="#live-case-study---exploring-sp500-data-1-of-3" id="toc-live-case-study---exploring-sp500-data-1-of-3" class="nav-link" data-scroll-target="#live-case-study---exploring-sp500-data-1-of-3">Live Case Study - Exploring S&amp;P500 Data (1 of 3)</a></li>
-  <li><a href="#live-case-study---exploring-sp500-data-2-of-3" id="toc-live-case-study---exploring-sp500-data-2-of-3" class="nav-link" data-scroll-target="#live-case-study---exploring-sp500-data-2-of-3">Live Case Study - Exploring S&amp;P500 Data (2 of 3)</a></li>
-  <li><a href="#live-case-study---exploring-sp500-data-3-of-3" id="toc-live-case-study---exploring-sp500-data-3-of-3" class="nav-link" data-scroll-target="#live-case-study---exploring-sp500-data-3-of-3">Live Case Study - Exploring S&amp;P500 Data (3 of 3)</a></li>
+  <li><a href="#live-case-study---exploring-sp500-data-1-of-2" id="toc-live-case-study---exploring-sp500-data-1-of-2" class="nav-link" data-scroll-target="#live-case-study---exploring-sp500-data-1-of-2">Live Case Study - Exploring S&amp;P500 Data (1 of 2)</a></li>
+  <li><a href="#live-case-study---exploring-sp500-data-2-of-2" id="toc-live-case-study---exploring-sp500-data-2-of-2" class="nav-link" data-scroll-target="#live-case-study---exploring-sp500-data-2-of-2">Live Case Study - Exploring S&amp;P500 Data (2 of 2)</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -268,7 +279,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview-of-this-book" class="level1 unnumbered">
 <h1 class="unnumbered">Overview of this Book</h1>
-<p><em>Aug 22, 2023.</em></p>
+<p><em>Oct 2, 2023.</em></p>
 <p>Delve into the world of Exploratory Data Analysis (EDA) - an imperative approach to data analysis that focuses on discovering and summarizing the main features of datasets primarily via statistical graphics and visualization techniques. EDA facilitates a comprehensive understanding of the data prior to initiating formal modeling or hypothesis testing.</p>
 <p><strong>In this comprehensive guide, we illuminate the applications and nuances of utilizing the R programming language for effective Exploratory Data Analysis.</strong></p>
 <p><strong>Live Case:</strong> To highlight the practical usage of the concepts discussed, this book features a live project that employs R for conducting EDA on a real-world dataset. The dataset pertains to the S&amp;P500 stocks, a choice that adds real-world relevance to the techniques and methodologies illustrated. Throughout the book, you will find multiple sample codes that navigate through this data, probing into financial metrics like Return on Equity, Return on Assets, and Return on Invested Capital of S&amp;P500 shares.</p>
@@ -345,17 +356,14 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="chapter-15-continuous-x-continuous-data-2-of-2--exploring-bivariate-continuous-data-using-ggplot2">Chapter 15: Continuous x Continuous data (2 of 2)- Exploring bivariate continuous data, using <strong><code>ggplot2</code></strong></h3>
 <p>Chapter 15 explores bivariate continuous data using the <strong><code>ggplot2</code></strong> package. In particular, we demonstrate scatterplots and scatterplot matrices, as effective tools to analyze pairwise relationships among multiple variables. Scatterplot matrices help us identify correlations, patterns, and potential outliers. We further illustrate the enhancement of scatter plots by integrating categorical variables, using color distinctions or faceting. Throughout, <strong><code>ggplot2</code></strong> proves vital in making these visual explorations straightforward and insightful.</p>
 </section>
-<section id="live-case-study---exploring-sp500-data-1-of-3" class="level3">
-<h3 class="anchored" data-anchor-id="live-case-study---exploring-sp500-data-1-of-3">Live Case Study - Exploring S&amp;P500 Data (1 of 3)</h3>
+<section id="live-case-study---exploring-sp500-data-1-of-2" class="level3">
+<h3 class="anchored" data-anchor-id="live-case-study---exploring-sp500-data-1-of-2">Live Case Study - Exploring S&amp;P500 Data (1 of 2)</h3>
 <p>This study offers a practical exploration of the S&amp;P500, a prominent stock market index of 500 major U.S. publicly traded companies. The chapter involves a deep-dive into a real-world dataset of S&amp;P500 stocks, highlighting the structure and content of the dataset through the lens of R functions and packages. This includes careful data management and data quality steps such as renaming columns, removing rows with null or blank values, and transforming specific columns into factor variables. Through practical examples and code, this chapter provides a comprehensive foundation for further analysis of the S&amp;P500 dataset.</p>
+<p>We analyze the technical rating (e.g., Buy, Sell) and compute the share prices in relation to their 52-week lows. We also analyze the distribution of S&amp;P500 shares across different sectors, visualize the data. Market capitalization is another focal point: we break down the market cap by sectors, offer summary statistics. Lastly, we compute price statistics relative to each stock’s 52-week low across various sectors.</p>
 </section>
-<section id="live-case-study---exploring-sp500-data-2-of-3" class="level3">
-<h3 class="anchored" data-anchor-id="live-case-study---exploring-sp500-data-2-of-3">Live Case Study - Exploring S&amp;P500 Data (2 of 3)</h3>
-<p>This part of the Case Study dives deep into our live case study of understanding the S&amp;P 500 Index. We begin by setting up our data. We introduce a technical rating (e.g., Buy, Sell) and compute the share prices in relation to their 52-week lows. We then analyze the distribution of S&amp;P500 shares across different sectors, visualize the data, and assess shares by their ratings. Market capitalization is another focal point: we break down the market cap by sectors, offer summary statistics, and list the top 10 companies based on their market cap. Lastly, we compute price statistics relative to each stock’s 52-week low across various sectors.</p>
-</section>
-<section id="live-case-study---exploring-sp500-data-3-of-3" class="level3">
-<h3 class="anchored" data-anchor-id="live-case-study---exploring-sp500-data-3-of-3">Live Case Study - Exploring S&amp;P500 Data (3 of 3)</h3>
-<p>This part of the Case Study conducts a comprehensive review of the Health Technology segment within the S&amp;P 500. Narrowing our focus to the Health Services category, we zeroed in on 12 notable stocks. We then ranked these primarily based on Return on Equity (ROE). The data analysis suggests that while ROE stands out as a prime marker, elements like Return on Assets (ROA), Return on Invested Capital (ROIC), Gross Margin, and Net Margin hold comparable importance. We also determine the market value of each company, shedding light on their individual significance in the overall S&amp;P 500 market cap.</p>
+<section id="live-case-study---exploring-sp500-data-2-of-2" class="level3">
+<h3 class="anchored" data-anchor-id="live-case-study---exploring-sp500-data-2-of-2">Live Case Study - Exploring S&amp;P500 Data (2 of 2)</h3>
+<p>This part of the Case Study conducts a comprehensive review of the Health Technology segment within the S&amp;P 500. Narrowing our focus to the REIT Industry within the Finance Sector, we zeroed in on 29 notable stocks. We tWe analyze which one is the best investment opportunity.</p>
 
 
 </section>
