@@ -1,6 +1,6 @@
-# 07: Categorical Data
+# Categorical Data
 
-*Sep 4, 2023.*
+*Dec 30, 2023*
 
 ## Exploring Univariate Categorical Data
 

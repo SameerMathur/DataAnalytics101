@@ -1,6 +1,6 @@
-# 06: Exploring *tibbles* & *dplyr*
+# Exploring *tibbles* & *dplyr*
 
-*Sep 08, 2023.*
+*Dec 30, 2023*
 
 ## **tibbles**
 

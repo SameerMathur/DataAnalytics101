@@ -1,6 +1,6 @@
-# 01: Exploring R programming
+# Exploring R programming
 
-*Dec 30, 2023.*
+*Dec 30, 2023*
 
 ## Overview of R programming
 

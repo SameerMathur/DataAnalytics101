@@ -1,6 +1,6 @@
-# 08: Categorical x Categorical data (1 of 2)
+# Categorical x Categorical data (1 of 2)
 
-*Sep 10, 2023*
+*Dec 30, 2023*
 
 ## Exploring Bivariate Categorical Data
 

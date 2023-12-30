@@ -1,6 +1,6 @@
-# 02: Exploring R Packages
+# Exploring R Packages
 
-*Dec 30, 2023.*
+*Dec 30, 2023*
 
 1.  R packages are collections of code, data, and documentation that enhance the capabilities of R, a programming language and software environment used for statistical computing and graphics.
 

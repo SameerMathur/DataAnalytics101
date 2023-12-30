@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Analytics 101 -- Exploratory Data Analysis using R – readingdata</title>
+<title>Data Analytics 101 -- Exploratory Data Analysis using R. – readingdata</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R</span>
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R.</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04ReadingData.html">04: Reading Data into R</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04ReadingData.html">Reading Data into R</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -168,109 +168,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">01: Exploring R programming</span></a>
+ <span class="menu-text">Exploring R programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">02: Exploring R Packages</span></a>
+ <span class="menu-text">Exploring R Packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">03: Exploring Data Structures</span></a>
+ <span class="menu-text">Exploring Data Structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">04: Reading Data into R</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">05: Exploring Dataframes</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">06: Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">07: Categorical Data</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">08: Categorical x Categorical data (1 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">09: Categorical x Categorical data (2 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10: Continuous Data (1 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11: Continuous Data (2 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12: Categorical x Continuous data (1 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">13: Categorical x Continuous data (2 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">14: Continuous x Continous data (1 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">15: Continuous x Continuous data (2 of 2)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">16: Three Dimensions (3D)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./17LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (Overview)</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./18LiveCaseREIT.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: S&amp;P500 (REITs)</span></a>
+ <span class="menu-text">Reading Data into R</span></a>
   </div>
 </li>
     </ul>
@@ -285,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reading-data-into-r" id="toc-reading-data-into-r" class="nav-link active" data-scroll-target="#reading-data-into-r">04: Reading Data into R</a>
+  <li><a href="#reading-data-into-r" id="toc-reading-data-into-r" class="nav-link active" data-scroll-target="#reading-data-into-r">Reading Data into R</a>
   <ul class="collapse">
   <li><a href="#dataframes" id="toc-dataframes" class="nav-link" data-scroll-target="#dataframes">Dataframes</a>
   <ul class="collapse">
@@ -321,8 +237,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="reading-data-into-r" class="level1">
-<h1>04: Reading Data into R</h1>
-<p><em>Aug 09, 2023</em></p>
+<h1>Reading Data into R</h1>
+<p><em>Dec 30, 2023</em></p>
 <p>Dataframes and Tibbles are frequently employed data structures in R for storing and manipulating data. They facilitate the organization, exploration, and analysis of data.</p>
 <section id="dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="dataframes">Dataframes</h2>
@@ -467,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Using R’s <code>setwd()</code> function, we can change our current working directory. For example, the following code will set our working directory to the Desktop:</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/YourUserName/Desktop"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd("C:/Users/YourUserName/Desktop")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="6" type="1">
 <li>We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. [2]</li>
@@ -517,13 +433,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Form the URL to connect to</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix, sheetID) </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Google Sheet located at the URL into a dataframe called sp500</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#sheetID &lt;- "11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"1F5KvFATcehrdJuGjYVqppNYC9hEKSww9rXYHCk2g6OA"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Form the URL to connect to</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix, sheetID) </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the Google Sheet located at the URL into a dataframe called sp500</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>The first line imports the <code>gsheet</code> package required to access Google Sheets into R.</p></li>
@@ -559,7 +476,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merging dataframes</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">merge</span>(sp500, gf , <span class="at">id =</span> <span class="st">"Stock"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- merge(sp500, gf , id = "Stock")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>We now have a new dataframe named <code>df</code>, which contains the data got from merging the two dataframes <code>sp500</code> and <code>gf</code>.</li>

@@ -5,7 +5,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Data Analytics 101 -- Exploratory Data Analysis using R"
+  title: "Data Analytics 101 -- Exploratory Data Analysis using R."
 
   margin-header: |
     ![](BookCover101.png)  
@@ -54,16 +54,16 @@ website:
       - 06ExploringTibbles.qmd
       - 07CategoricalData01.qmd
       - 08CategoricalData02.qmd
-      - 09CategoricalData03.qmd
-      - 10ContinuousData01.qmd
-      - 11ContinuousData02.qmd
-      - 12ContinuousData03.qmd
-      - 13ContinuousData04.qmd
-      - 14ContinuousData05.qmd
-      - 15ContinuousData06.qmd
-      - 16ThreeDimensions01.qmd
-      - 17LiveCase01.qmd
-      - 18LiveCaseREIT.qmd
+#      - 09CategoricalData03.qmd
+#      - 10ContinuousData01.qmd
+#      - 11ContinuousData02.qmd
+#      - 12ContinuousData03.qmd
+#      - 13ContinuousData04.qmd
+#      - 14ContinuousData05.qmd
+#      - 15ContinuousData06.qmd
+#      - 16ThreeDimensions01.qmd
+#      - 17LiveCase01.qmd
+#      - 18LiveCaseREIT.qmd
 #      - 19LiveCase03.qmd
 
 ### END yaml FOR BOOK'S WEBSITE ###
