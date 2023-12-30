@@ -1,6 +1,6 @@
-# 16: Three Dimensions (3D)
+# Three Dimensions (3D)
 
-*Oct 01, 2023*
+#### Chapter 16, *Last updated: Dec 30, 2023*
 
 ## Overview of R packages for 3D Plots
 

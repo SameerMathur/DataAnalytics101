@@ -58,10 +58,10 @@ website:
       - 10ContinuousData01.qmd
       - 11ContinuousData02.qmd
       - 12ContinuousData03.qmd
-#      - 13ContinuousData04.qmd
-#      - 14ContinuousData05.qmd
-#      - 15ContinuousData06.qmd
-#      - 16ThreeDimensions01.qmd
+      - 13ContinuousData04.qmd
+      - 14ContinuousData05.qmd
+      - 15ContinuousData06.qmd
+      - 16ThreeDimensions01.qmd
 #      - 17LiveCase01.qmd
 #      - 18LiveCaseREIT.qmd
 #      - 19LiveCase03.qmd
