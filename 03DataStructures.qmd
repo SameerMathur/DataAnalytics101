@@ -1,6 +1,6 @@
 # Exploring Data Structures
 
-*Dec 30, 2023*
+#### Chapter 3, *Last updated: Dec 30, 2023.*
 
 The R programming language includes a number of data structures that are frequently employed in data analysis and statistical modeling. These are some of the most popular data structures in R:
 

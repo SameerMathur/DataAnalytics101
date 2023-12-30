@@ -1,6 +1,6 @@
 # Exploring R programming
 
-*Dec 30, 2023*
+#### Chapter 1, *Last updated: Dec 30, 2023*
 
 ## Overview of R programming
 
