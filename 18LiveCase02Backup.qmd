@@ -1,14 +1,23 @@
 # Live Case: S&P500 (2)
 
-*Sep 05, 2023*
+*Sep 03, 2023..*
 
 ## Objective
 
-TBE...
+**A prestigious investment fund is ready to channel $1 Million into the US finance sector. They've enlisted your expertise to delve into the 29 REITs within the Finance sector of the S&P500.**  
+
+Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property.
+
+**Your mission? Allocate `$1 Million` to the "best" REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities. Dive in and make those data-driven decisions!**
+
+
+## Data
+
+### Load Useful Packages
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
-library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE) # <purpose> 
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
 library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
@@ -19,7 +28,9 @@ library(knitr, quietly = TRUE, warn.conflicts = FALSE)
 library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) 
 ```
 
-## S&P 500 Data - PRELIMINARY SETUP
+
+
+### Setting up REIT data from the S&P 500
 
 1.  We will continue our analysis of the S&P 500. Load the data, as described in the chapter Live Case: S&P500 (1 of 3)
 
@@ -151,7 +162,232 @@ sp500 <- sp500 %>% mutate(MarketCapBillions = round(MarketCap/1000000000))
 colnames(sp500)
 ```
 
-## Live Case: S&P500
+## ANALYSIS OF S&P500 SECTORS
+
+-   The table() function allows us to count how many stocks are part of each sector.
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+tab<- addmargins(table(sp500$Sector))
+kable(tab)
+```
+
+-   The S&P500 consists of `r nrow(sp500)` stocks, divided across `r length(unique(sp500$Sector))` sectors.
+
+```{r}
+ggplot(data = sp500, 
+       aes(y = Sector)) + 
+  geom_bar(aes(fill = Sector)) +
+  geom_text(stat='count', 
+            aes(label=after_stat(count))) +
+  labs(title = "Stocks by Sector", 
+       x = "No. of Stocks", 
+       y = "Sector")
+```
+
+-   Numbers of shares by Rating
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+tab<- addmargins(table(sp500$Rating))
+kable(tab)
+```
+
+-   Pie Chart Showing Proportion of shares by Rating
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+library(ggpubr)
+
+# Compute counts and proportions of each cylinder type
+Rating_counts <- as.data.frame(table(sp500$Rating))
+colnames(Rating_counts) <- c("Rating", "n")
+
+# Calculate proportions
+Rating_counts$prop <- Rating_counts$n / sum(Rating_counts$n)
+
+# Create labels that display proportions as percentages
+Rating_counts$labels <- paste0(round(Rating_counts$prop*100, 2), "%")
+
+# Create the pie chart with proportions
+ggpie(data = Rating_counts, 
+      x = "prop", 
+      fill = "Rating", 
+      label = "labels", 
+      palette = "jco", 
+      title = "Pie Chart of Rating")
+```
+
+-   Count Shares by Sector\*Rating
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+tab<- addmargins(table(Sector = sp500$Sector, Rating = sp500$Rating))
+kable(tab)
+```
+
+### MARKET CAP
+
+TODO: Work in Billions; 1. Market Cap of all companies by Sector
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(janitor)  # This package helps us auto generate the total at the bottom of a table. 
+library(kableExtra)
+
+# Market Cap by Sector
+MCap <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    MarketCapCr = sum(na.omit(MarketCap)/10000000))
+
+# Total Market Cap of the entire S&P 500 (in Millions)
+SP500MarketCap <- sum(sp500$MarketCap/10000000)
+
+# calculating % market cap
+PercentMarketCap <- round(MCap$MarketCapCr*100/SP500MarketCap,2)
+MCapTab <- cbind(MCap,PercentMarketCap)
+
+# sorting by PercentMarketCap
+MCapTab <- MCapTab %>% arrange(desc(PercentMarketCap))
+
+# Use package janitor to add sums at the bottom of the table
+MCapTab <- MCapTab %>%   
+  adorn_totals("row")
+
+# Use package knittr to format the appearance of the table
+MCapTab <- knitr::kable(MCapTab, "html") %>% kable_styling() 
+MCapTab 
+```
+
+TODO: Work in Billions; Show "Sum", "Median", "Mean" Delete Q1, Q3 all others 2. Summary Statistics of Market Cap (in Cr of USD) by each Sector of S&P500
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+
+SectorMC <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(MarketCap/10000000)),
+    Median= sd(na.omit(MarketCap/10000000)),
+    Median= median(na.omit(MarketCap/10000000)),
+    Q1 = quantile(na.omit(MarketCap/10000000), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(MarketCap/10000000), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(MarketCap/10000000)),
+    max = max(na.omit(MarketCap/10000000))
+  )
+
+tab <- cbind(Sector = SectorMC$Sector, round(SectorMC[,2:7],2))
+
+SMcap <- knitr::kable(tab, "html") %>% kable_styling() 
+SMcap 
+```
+
+3.  Top 10 companies having highest Market Cap
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+Top10 <- sp500 %>% arrange(desc(MarketCap)) %>% head(10)
+Top10 <- Top10[,c(1:4, 6,10:13)]
+
+Top10 <- knitr::kable(Top10, "html") %>% kable_styling() 
+Top10 
+```
+
+### PRICE RELATIVE TO 52 WEEK LOW
+
+1.  Summary Statistics of Low52WkPerc by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+
+SM <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(Low52WkPerc)),
+    Median= sd(na.omit(Low52WkPerc)),
+    Median= median(na.omit(Low52WkPerc)),
+    Q1 = quantile(na.omit(Low52WkPerc), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(Low52WkPerc), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(Low52WkPerc)),
+    Max = max(na.omit(Low52WkPerc))
+  )
+
+tab <- cbind(Sector = SM$Sector, round(SM[,2:7],2))
+
+tab <- tab %>% arrange(Median)
+
+SM <- knitr::kable(tab, "html") %>% kable_styling() 
+SM 
+```
+
+Sector Communications and Utilities are closest to its 52 week low.
+
+2.  Box Plot for Low52WkPerc by Sector TODO: Truncate at 100; Rotate by 90 degrees; Sort Sectors by Median(Low52WkPerc)
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector, Low52WkPerc)) + geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+### PROFITABILITY BY SECTOR
+
+### ROE
+
+1.  Summary Statistics of ROE by each Sector of S&P500
+
+```{r}
+
+SectorROE <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(ROE)),
+    Median= sd(na.omit(ROE)),
+    Median= median(na.omit(ROE)),
+    Q1 = quantile(na.omit(ROE), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(ROE), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(ROE)),
+    max = max(na.omit(ROE))
+  )
+
+cbind(Sector = SectorROE$Sector, round(SectorROE[,2:7],2))
+```
+
+2.  Box Plot for ROE by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector, ROE)) + geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+### ROA
+
+1.  Summary Statistics of ROA by each Sector of S&P500
+
+```{r}
+SectorROA <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(ROA)),
+    Median= sd(na.omit(ROA)),
+    Median= median(na.omit(ROA)),
+    Q1 = quantile(na.omit(ROA), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(ROA), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(ROA)),
+    max = max(na.omit(ROA))
+  )
+
+cbind(Sector = SectorROA$Sector, round(SectorROA[,2:7],2))
+```
+
+2.  Box Plot for ROA by Sector
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+library(ggplot2)
+
+ggplot(sp500, aes(Sector, ROA)) + geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+```
+
+## Live Case: S&P500 (2b of 3)
+
+*Aug 06, 2023 -=- This chapter is being heavily edited*
 
 ISSUE: Analysis of a particular SECTOR We have chosen to deeply analyze the HEALTH TECHNOLOGY Sector
 
@@ -191,49 +427,11 @@ ts3 <- ts2 %>% arrange(desc(ROE))
 head(ts3,10)
 ```
 
-### Significance of 52-Week Low Price
-
-The 52-week low price of a stock is a significant indicator for multiple reasons, especially when considering shares listed on major indices like the S&P 500. Here's why this metric is noteworthy:
-
-1.  **Historical Perspective**: The 52-week low offers a snapshot of how low the stock has traded over the past year relative to its current price, providing context about its price journey.
-
-2.  **Potential Entry Point**: Some investors view stocks that are near their 52-week low as potential buying opportunities, under the assumption that the stock might be undervalued and could rebound.
-
-3.  **Psychological Level**: Stocks approaching their 52-week low can be seen as testing a significant support level. If a stock consistently fails to breach its 52-week low, it might indicate that the market values the stock at that level, and it's resistant to falling below it.
-
-4.  **Basis for Technical Analysis**: For technical analysts or traders, the 52-week low serves as a critical reference point. A consistent breach of this level might signify a bearish trend, while a rebound can indicate potential recovery.
-
-5.  **Yield Implications for Dividend Stocks**: For dividend-paying stocks, a price near the 52-week low (assuming the dividend hasn't been cut) would imply a higher dividend yield, potentially making it attractive for income-seeking investors.
-
--   **Note of Caution:** While the 52-week low is a valuable reference point, it's essential to interpret it in conjunction with other financial and market indicators. A stock trading near its 52-week low doesn't automatically make it a good buy, just as a stock trading near its 52-week high doesn't automatically make it overvalued. Comprehensive analysis, should inform investment decisions.
-
 ### Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks
 
 ```{r  warning=FALSE, eval=TRUE, echo=TRUE}
 ts4 <- ts3 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
 head(ts4[,c(1:3,10,16)],10)
-```
-
-## Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)
-
-```{r eval=TRUE, echo=TRUE, warning=FALSE}
-summaryStats <- ts4 %>% summarise(
-  N = n(),
-  Mean = mean(Low52WkPerc),
-  SD = sd(Low52WkPerc),
-  Median = median(Low52WkPerc),
-  Q1 = quantile(Low52WkPerc, 0.25),
-  Q3 = quantile(Low52WkPerc, 0.75),
-  Min = min(Low52WkPerc),
-  Max = max(Low52WkPerc)
-) 
-
-Low52WkPercQ1 <- summaryStats$Q1 # Save Q1 of Low52WkPerc
-
-summaryStats %>% 
-  round(2) %>%
-  kable("html", caption = "Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)") %>% 
-  kable_styling()
 ```
 
 *Low52WkPerc for all the Health Sector Stocks, as shown below*
@@ -276,40 +474,27 @@ PlotBar <- ggplot(data_summary,
 ggarrange(PlotBox, PlotBar, nrow = 2)
 ```
 
-## Inexpensive Stocks with Low52WkPerc \< Q1(Low52WkPerc)
-
-```{r eval=TRUE, echo=TRUE, warning=FALSE}
-ts4 %>% 
-  select(Stock, StockName, Price, Low52Wk, Low52WkPerc) %>% 
-  filter(Low52WkPerc < Low52WkPercQ1) %>% 
-  arrange(Low52WkPerc)%>%
-  kable("html", caption = "Inexpensive Stocks with Low52WkPerc < Q1(Low52WkPerc)") %>% 
-  kable_styling()
-```
-
-### Summary Statistics of Return on Equity (ROE)
+### Summary Statistics of ROE
 
 ```{r}
-summaryStats <- ts4 %>% summarise(
-  N = n(),
-  Mean = mean(ROE, na.rm = TRUE),
-  SD = sd(ROE, na.rm = TRUE),
-  Median = median(ROE, na.rm = TRUE),
-  Q1 = quantile(ROE, 0.25, na.rm = TRUE),
-  Q3 = quantile(ROE, 0.75, na.rm = TRUE),
-  Min = min(ROE, na.rm = TRUE),
-  Max = max(ROE, na.rm = TRUE)
-) 
+ts3 <- na.omit(ts3)
 
-ROE_Q3 <- summaryStats$Q3
+ROESum <- ts3 %>%
+  summarise(
+    Mean = mean(ROE),
+    Median= sd(ROE),
+    Median= median(ROE),
+    Q1 = quantile(ROE, probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(ROE, probs = 0.75, na.rm = TRUE),
+    Min = min(ROE),
+    max = max(ROE)
+  )
 
-summaryStats %>% 
-  round(2) %>%
-  kable("html", caption = "Summary Statistics of Return on Equity (ROE)") %>% 
-  kable_styling()
+ROESum <- round(ROESum,2)
+ROESum
 ```
 
--   ROE for all the Stocks in Health Sector, as shown below
+-   ROE for all the Stocks in Health Sector, as shown below\*
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
 PlotBox <- ggboxplot(ts4, 
@@ -349,88 +534,14 @@ PlotBar <- ggplot(data_summary,
 ggarrange(PlotBox, PlotBar, nrow = 2)
 ```
 
-### Stocks with ROE \> Q3(ROE)
+### Top 10 Shares in Health Sector with highest ROE
 
 ```{r}
 ts4 %>% 
-  select(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) %>% 
-  filter(ROE > ROE_Q3) %>%
-  arrange(desc(ROE)) %>%
-  kable("html", caption = "Stocks with ROE > Q3(ROE)") %>% 
-  kable_styling()
-
-```
-
-### Summary Statistics of Return on Equity (ROA)
-
-```{r}
-summaryStats <- ts4 %>% summarise(
-  N = n(),
-  Mean = mean(ROA, na.rm = TRUE),
-  SD = sd(ROA, na.rm = TRUE),
-  Median = median(ROA, na.rm = TRUE),
-  Q1 = quantile(ROA, 0.25, na.rm = TRUE),
-  Q3 = quantile(ROA, 0.75, na.rm = TRUE),
-  Min = min(ROA, na.rm = TRUE),
-  Max = max(ROA, na.rm = TRUE)
-) 
-
-ROA_Q3 <- summaryStats$Q3
-
-summaryStats %>% 
-  round(2) %>%
-  kable("html", caption = "Summary Statistics of Return on Equity (ROA)") %>% 
-  kable_styling()
-```
-
--   ROA for all the Stocks in Health Sector, as shown below
-
-```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts4, 
-            y = "ROA", 
-            rug = TRUE, 
-            color = "black",
-            fill = "gold",
-            add = "jitter",
-            orientation = "horizontal",
-            title = "Box Plot showing (Median, Q1, Q3) of ROA"
-)
-```
-
-```{r eval=TRUE, echo=FALSE, warning=FALSE}
-# Create a summary data frame
-data_summary <- ts4 %>%
-  summarise(
-    MeanROA = mean(ROA, na.rm = TRUE),
-    SDROA = sd(ROA, na.rm = TRUE)
-  )
-# Generate a Bar Plot
-PlotBar <- ggplot(data_summary, 
-       aes(y = "", 
-           x = MeanROA)) +
-  geom_bar(stat = "identity", 
-           fill = "lightpink", color = "lightpink") +
-  geom_errorbar(aes(xmin = MeanROA - SDROA, 
-                    xmax = MeanROA + SDROA), 
-                width = .2) +
-  labs(x = "ROA", y = "",
-       title = "Bar Plot showing (Mean +/- SD) of ROA") +
-  theme_minimal() 
-```
-
-```{r eval=TRUE, echo=FALSE, warning=FALSE}
-# Combine the plots using ggarrange()
-ggarrange(PlotBox, PlotBar, nrow = 2)
-```
-
-### Stocks with ROA \> Q3(ROA)
-
-```{r}
-ts4 %>% 
-  select(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) %>% 
-  filter(ROA > ROA_Q3) %>%
-  arrange(desc(ROA)) %>%
-  kable("html", caption = "Stocks with ROA > Q3(ROA)") %>% 
+  select(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) %>% 
+  arrange(desc(ROE))%>%
+  slice(1:10) %>%
+  kable("html", caption = "Top 10 Shares in Health Sector with highest ROE") %>% 
   kable_styling()
 
 ```
@@ -536,6 +647,25 @@ ftab <- cbind(Metrics, ftab)
 ftab
 ```
 
+### Summary Statistics of ROE by each Sector of S&P500
+
+```{r}
+
+SectorROE <- sp500 %>%
+  group_by(Sector) %>%
+  summarise(
+    Mean = mean(na.omit(ROE)),
+    Median= sd(na.omit(ROE)),
+    Median= median(na.omit(ROE)),
+    Q1 = quantile(na.omit(ROE), probs = 0.25, na.rm = TRUE),
+    Q3 = quantile(na.omit(ROE), probs = 0.75, na.rm = TRUE),
+    Min = min(na.omit(ROE)),
+    max = max(na.omit(ROE))
+  )
+
+cbind(Sector = SectorROE$Sector, round(SectorROE[,2:7],2))
+```
+
 ## ANALYSIS OF HEALTH SERVICES SECTOR
 
 1.  Market Cap of all companies in Sector Health Services
@@ -547,14 +677,14 @@ library(kableExtra)
 MCap <- ts3 %>%
   group_by(Stock) %>%
   summarise(
-    MarketCapBi = round(sum(na.omit(MarketCap)/1000000000),2))
+    MarketCapCr = sum(na.omit(MarketCap)/10000000))
 
 # Sp500 Market Cap
 
-SP500MarketCap <- sum(ts3$MarketCap/1000000000)
+SP500MarketCap <- sum(ts3$MarketCap/10000000)
 
 # calculating % market cap
-PercentMarketCap <- round(MCap$MarketCapBi*100/SP500MarketCap,2)
+PercentMarketCap <- round(MCap$MarketCapCr*100/SP500MarketCap,2)
 MCapTab <- cbind(MCap,PercentMarketCap)
 
 # sorting by PercentMarketCap
@@ -595,6 +725,16 @@ AttrShares
 ```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
 AttrShares <- ts4 %>% arrange(desc(ROA))
 AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
+
+AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
+AttrShares 
+```
+
+3.  Shares have highest NetMargin within Sector Health Services
+
+```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
+AttrShares <- ts4 %>% arrange(desc(NetMargin))
+AttrShares <- AttrShares[, c(2:4,7,8,10,11,14,16)]
 
 AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
 AttrShares 

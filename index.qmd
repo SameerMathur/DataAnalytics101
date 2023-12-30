@@ -1,6 +1,6 @@
 # Overview of this Book {.unnumbered}
 
-*Oct 2, 2023.*
+*Dec 30, 2023.*
 
 Delve into the world of Exploratory Data Analysis (EDA) - an imperative approach to data analysis that focuses on discovering and summarizing the main features of datasets primarily via statistical graphics and visualization techniques. EDA facilitates a comprehensive understanding of the data prior to initiating formal modeling or hypothesis testing.
 

@@ -1,6 +1,6 @@
-# Live Case: S&P500 (1)
+# Live Case: S&P500 (Overview)
 
-*Oct 02, 2023.*
+*Oct 09, 2023.*
 
 ## S&P 500
 
@@ -16,37 +16,31 @@ Typically, the S&P 500 index consists of 500 stocks. However, in reality, there 
 
 **Strengths**:
 
-1. **Diverse Representation**: The S&P 500 isn't fixated on a single industry. From technology to healthcare, it offers a panoramic view of various economic sectors, making it an inclusive representation of the U.S. corporate sector.
+1.  **Diverse Representation**: The S&P 500 isn't fixated on a single industry. From technology to healthcare, it offers a panoramic view of various economic sectors, making it an inclusive representation of the U.S. corporate sector.
 
-2. **Benchmark for Investors**: For many fund managers, outperforming the S&P 500 stands as a golden standard. It's a yardstick, establishing it as a critical touchstone for gauging investment success.
+2.  **Benchmark for Investors**: For many fund managers, outperforming the S&P 500 stands as a golden standard. It's a yardstick, establishing it as a critical touchstone for gauging investment success.
 
-3. **Liquidity and Visibility**: Constituent companies enjoy high liquidity and are subject to rigorous screening processes, ensuring that the index represents financially viable entities.
+3.  **Liquidity and Visibility**: Constituent companies enjoy high liquidity and are subject to rigorous screening processes, ensuring that the index represents financially viable entities.
 
 **Critiques**:
 
-1. **Market Capitalization Weighting**: The index is weighted by market capitalization, meaning companies with higher market values have a more pronounced effect on its performance. Critics argue this approach can skew perceptions, especially during market bubbles when certain sectors are overvalued.
+1.  **Market Capitalization Weighting**: The index is weighted by market capitalization, meaning companies with higher market values have a more pronounced effect on its performance. Critics argue this approach can skew perceptions, especially during market bubbles when certain sectors are overvalued.
 
-2. **Exclusivity**: Despite its broad purview, 500 companies cannot encapsulate the entire U.S. economy. Many sectors, especially emerging industries or smaller businesses, might not be adequately represented.
+2.  **Exclusivity**: Despite its broad purview, 500 companies cannot encapsulate the entire U.S. economy. Many sectors, especially emerging industries or smaller businesses, might not be adequately represented.
 
-3. **Potential for Complacency**: The prominence of the S&P 500 has led many investors to adopt passive investment strategies, tracking the index rather than actively managing portfolios. Detractors argue this might lead to market inefficiencies and reduced capital allocation efficacy.
+3.  **Potential for Complacency**: The prominence of the S&P 500 has led many investors to adopt passive investment strategies, tracking the index rather than actively managing portfolios. Detractors argue this might lead to market inefficiencies and reduced capital allocation efficacy.
 
 While the S&P 500 remains an influential and pivotal tool for investors, its dominance prompts a double-edged sword of advantages and critiques. In a constantly evolving economic landscape, understanding both its power and limitations is essential for informed financial decision-making.
 
 References:
 
-1. **S&P Global**:
-   S&P Global. (n.d.). S&P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/
+1.  **S&P Global**: S&P Global. (n.d.). S&P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/
 
-2. **MarketWatch**:
-   MarketWatch. (n.d.). S&P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx
+2.  **MarketWatch**: MarketWatch. (n.d.). S&P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx
 
-3. **Bloomberg**:
-   Bloomberg. (n.d.). S&P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND
+3.  **Bloomberg**: Bloomberg. (n.d.). S&P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND
 
-
-
-
-## S&P 500 Data 
+## S&P 500 Data
 
 ### Load some useful R packages
 
@@ -65,7 +59,8 @@ library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # For tables
 
 ### Read the S&P500 data from a Google Sheet into a tibble
 
-1. We will analyze a real-world, recent dataset containing information about the S&P500 stocks. The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">Google Sheet</a> and periodically updated. 
+1.  We will analyze a real-world, recent dataset containing information about the S&P500 stocks. The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">Google Sheet</a> and periodically updated.
+
 2.  The complete URL of the Google Sheet that has the data is\
     <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/</a>
 
@@ -80,19 +75,17 @@ url500 <- paste(prefix,sheetID) # Form the URL to connect to
 sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
 ```
 
-4. **Reference**: This data has been sourced from websites like Yahoo Finance and TradingView.com and it is current as of **`r sp500$Date[1]`**
-
+4.  **Reference**: This data has been sourced from websites like Yahoo Finance and TradingView.com and it is current as of **`r sp500$Date[1]`**
 
 ## Review the S&P 500 data
 
-
-1. The data corresponds to `r nrow(sp500)` companies that are part of the S&P500 and includes `r ncol(sp500)` data columns.
+1.  The data corresponds to `r nrow(sp500)` companies that are part of the S&P500 and includes `r ncol(sp500)` data columns.
 
 ```{r}
 dim(sp500)
 ```
 
-2. The first ten stocks in the S&P500 data, their Sector and their recent prices are as follows:
+2.  The first ten stocks in the S&P500 data, their Sector and their recent prices are as follows:
 
 ```{r}
 sp500 %>%
@@ -102,17 +95,15 @@ sp500 %>%
   kable_styling()
 ```
 
+3.  Data Columns
 
-3. Data Columns
-
-* The data comprises of the following `r ncol(sp500)` columns:
+-   The data comprises of the following `r ncol(sp500)` columns:
 
 ```{r}
 colnames(sp500) 
 ```
 
-* The names of the data columns are self-explanatory. The Financial terms are explained in depth on multiple external websites such as www.Investopedia.com
-
+-   The names of the data columns are self-explanatory. The Financial terms are explained in depth on multiple external websites such as www.Investopedia.com
 
 ### Rename Data Columns
 
@@ -246,160 +237,127 @@ c.  The column names described in Table 1c. are related to the **Profitability**
 table1c
 ```
 
-d. The column names described in Table 1d are related to the **Earnings** of each stock.
+d.  The column names described in Table 1d are related to the **Earnings** of each stock.
 
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 table1d
 ```
 
-e. The column names described in Table 1e are related to the **Free Cash Flow** of each stock.
+e.  The column names described in Table 1e are related to the **Free Cash Flow** of each stock.
 
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 table1e
 ```
 
-f. The column names described in Table 1f concern the **Liquidity** of each stock.
+f.  The column names described in Table 1f concern the **Liquidity** of each stock.
 
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 table1f
 ```
 
-g. The column names described in Table 1g are related to the **Revenue** of each stock.
+g.  The column names described in Table 1g are related to the **Revenue** of each stock.
 
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 table1g
 ```
 
-h. The column names described in Table 1h are related to the **Dividends** of each stock.
+h.  The column names described in Table 1h are related to the **Dividends** of each stock.
 
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 table1h
 ```
 
-
-
 ### Stock Ratings
 
-1. In the data, the S&P500 shares have Technical Ratings such as {Strong Buy, Buy, Neutral, Sell, Strong Sell}. Since each Stock has a unique Technical Rating, it makes sense to model the data column Rating as a factor() variable.
+1.  In the data, the S&P500 shares have Technical Ratings such as {Strong Buy, Buy, Neutral, Sell, Strong Sell}. Since each Stock has a unique Technical Rating, it makes sense to model the data column Rating as a factor() variable.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 sp500$Rating <- as.factor(sp500$Rating)
 ```
 
-2. We confirm that Rating is now modelled as a factor variable, by running the str() function.
+2.  We confirm that Rating is now modelled as a factor variable, by running the str() function.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 str(sp500$Rating)
 ```
 
-3. We can use the levels() function to review the different levels it can take.
+3.  We can use the levels() function to review the different levels it can take.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 levels(sp500$Rating)
 ```
 
-4. The table() function allows us to count how many stocks have each Rating.
+4.  The table() function allows us to count how many stocks have each Rating.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 table(sp500$Rating)
 ```
 
-5. Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Strong Buy". This completes our review of Rating.
+5.  Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Strong Buy". This completes our review of Rating.
 
+### Sectors within the S&P500
 
+-   The S&P 500 comprises a wide array of sectors, reflecting the diverse American corporate landscape.
 
+-   The data showcases the S&P500 divided across `r length(unique(sp500$Sector))` Sectors. Here's an overview of the sectors, along with some representative companies:
 
-### Sectors within the S&P500 
+1.  **Commercial Services (13 companies)**: This sector comprises firms offering services primarily to businesses. Example: Accenture, a management consulting and professional services firm.
 
-* The S&P 500 comprises a wide array of sectors, reflecting the diverse American corporate landscape. 
+2.  **Communications (3 companies)**: This sector covers companies involved in telecommunication and media. Example: AT&T, a telecommunications giant.
 
-* The data showcases the S&P500 divided across `r length(unique(sp500$Sector))` Sectors. Here's an overview of the sectors, along with some representative companies:
+3.  **Consumer Durables (12 companies)**: Companies producing goods that aren't bought frequently and have a longer life, such as appliances and cars. Example: Whirlpool, an appliance manufacturer.
 
-1. **Commercial Services (13 companies)**: This sector comprises firms offering services primarily to businesses. 
-Example: Accenture, a management consulting and professional services firm.
-   
-2. **Communications (3 companies)**: This sector covers companies involved in telecommunication and media.
-Example: AT&T, a telecommunications giant.
+4.  **Consumer Non-Durables (32 companies)**: These are entities that produce goods that are consumed quickly or are non-reusable. Example: The Coca-Cola Company, known globally for its beverages.
 
-3. **Consumer Durables (12 companies)**: Companies producing goods that aren't bought frequently and have a longer life, such as appliances and cars.
-Example: Whirlpool, an appliance manufacturer.
+5.  **Consumer Services (29 companies)**: This includes companies that offer services directly to consumers. Example: Walt Disney Company, known for its entertainment services.
 
-4. **Consumer Non-Durables (32 companies)**: These are entities that produce goods that are consumed quickly or are non-reusable.
-Example: The Coca-Cola Company, known globally for its beverages.
+6.  **Distribution Services (9 companies)**: Companies engaged in the distribution of products. Example: Sysco, a major food distributor.
 
-5. **Consumer Services (29 companies)**: This includes companies that offer services directly to consumers.
-Example: Walt Disney Company, known for its entertainment services.
+7.  **Electronic Technology (49 companies)**: Represents companies engaged in electronics research and product development. Example: Apple, known for its iPhone and other electronic products.
 
-6. **Distribution Services (9 companies)**: Companies engaged in the distribution of products.
-Example: Sysco, a major food distributor.
+8.  **Energy Minerals (16 companies)**: Companies that extract and produce energy resources. Example: ExxonMobil, one of the world's largest oil and gas companies.
 
-7. **Electronic Technology (49 companies)**: Represents companies engaged in electronics research and product development.
-Example: Apple, known for its iPhone and other electronic products.
+9.  **Finance (92 companies)**: Covers banks, insurance companies, investment firms, REITs and other financial institutions. Example: JPMorgan Chase, a leading global financial services firm.
 
-8. **Energy Minerals (16 companies)**: Companies that extract and produce energy resources.
-Example: ExxonMobil, one of the world's largest oil and gas companies.
+10. **Health Services (12 companies)**: Includes providers of health services like hospital management. Example: HCA Healthcare, a major hospital operator.
 
-9. **Finance (92 companies)**: Covers banks, insurance companies, investment firms, REITs and other financial institutions.
-Example: JPMorgan Chase, a leading global financial services firm.
+11. **Health Technology (47 companies)**: Companies that produce medical equipment, pharmaceuticals, and other health-related tech. Example: Pfizer, a global pharmaceutical company.
 
-10. **Health Services (12 companies)**: Includes providers of health services like hospital management.
-Example: HCA Healthcare, a major hospital operator.
+12. **Industrial Services (9 companies)**: Firms providing services primarily to the industrial sector. Example: Caterpillar, a leading manufacturer of construction and mining equipment.
 
-11. **Health Technology (47 companies)**: Companies that produce medical equipment, pharmaceuticals, and other health-related tech.
-Example: Pfizer, a global pharmaceutical company.
+13. **Non-Energy Minerals (7 companies)**: Companies involved in the extraction of minerals other than energy resources. Example: Vulcan Materials, a producer of construction aggregates.
 
-12. **Industrial Services (9 companies)**: Firms providing services primarily to the industrial sector.
-Example: Caterpillar, a leading manufacturer of construction and mining equipment.
+14. **Process Industries (24 companies)**: This sector comprises entities that transform raw materials into finished goods. Example: Dow Inc., a major chemical manufacturer.
 
-13. **Non-Energy Minerals (7 companies)**: Companies involved in the extraction of minerals other than energy resources.
-Example: Vulcan Materials, a producer of construction aggregates.
+15. **Producer Manufacturing (31 companies)**: Companies engaged in the manufacturing of products for industries and consumers. Example: 3M, known for its diversified manufacturing.
 
-14. **Process Industries (24 companies)**: This sector comprises entities that transform raw materials into finished goods.
-Example: Dow Inc., a major chemical manufacturer.
+16. **Retail Trade (22 companies)**: Companies directly involved in selling products to consumers. Example: Walmart, the multinational retail corporation.
 
-15. **Producer Manufacturing (31 companies)**: Companies engaged in the manufacturing of products for industries and consumers.
-Example: 3M, known for its diversified manufacturing.
+17. **Technology Services (50 companies)**: Companies that offer tech services, including IT consulting and software services. Example: Microsoft, a global leader in software and cloud services.
 
-16. **Retail Trade (22 companies)**: Companies directly involved in selling products to consumers.
-Example: Walmart, the multinational retail corporation.
+18. **Transportation (15 companies)**: Covers companies involved in the transportation of goods and people. Example: Delta Air Lines, a major U.S. airline.
 
-17. **Technology Services (50 companies)**: Companies that offer tech services, including IT consulting and software services.
-Example: Microsoft, a global leader in software and cloud services.
-
-18. **Transportation (15 companies)**: Covers companies involved in the transportation of goods and people.
-Example: Delta Air Lines, a major U.S. airline.
-
-19. **Utilities (31 companies)**: Companies providing essential services like electricity, gas, and water.
-Example: Duke Energy, a prominent utility company.
-
-
-
-
-
-
-
-
+19. **Utilities (31 companies)**: Companies providing essential services like electricity, gas, and water. Example: Duke Energy, a prominent utility company.
 
 ### Analysis of S&P 500 Sectors
 
-1. The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
+1.  The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 sp500$Sector <- as.factor(sp500$Sector)
 ```
 
-2. We confirm that Sector is now modelled as a factor variable, by running the str() function.
+2.  We confirm that Sector is now modelled as a factor variable, by running the str() function.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 str(sp500$Sector)
 ```
-3. We can use the levels() function to review the different levels it can take.
+
+3.  We can use the levels() function to review the different levels it can take.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 levels(sp500$Sector)
 ```
-
-
 
 -   The S&P500 consists of `r nrow(sp500)` stocks, divided across `r length(unique(sp500$Sector))` sectors.
 
@@ -414,15 +372,11 @@ ggplot(data = sp500,
        y = "Sector")
 ```
 
--   Thus, we can see how many stocks are part of each one of the 19 sectors. We can sum them to confirm that they add up to `r sum(table(sp500$Sector))` stocks. 
-
-
-
-
+-   Thus, we can see how many stocks are part of each one of the 19 sectors. We can sum them to confirm that they add up to `r sum(table(sp500$Sector))` stocks.
 
 ### MarketCap by Sector
 
-1. The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
+1.  The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
 
 We review the Market Cap of S&P500 stocks across Sectors.
 
@@ -446,13 +400,6 @@ MarketCapbySector %>%
   kable("html", caption = "Market Capitalization (Billions of USD) by S&P500 Sector") %>% 
   kable_styling()
 ```
-
-
-
-
-
-
-
 
 ## Summary of Chapter -- Exploring S&P500 Data
 
