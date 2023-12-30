@@ -1,6 +1,6 @@
-# 10: Continuous Data (1 of 2)
+# Continuous Data (1 of 2)
 
-*Aug 8, 2023.*
+#### Chapter 10, *Last updated: Dec 30, 2023.*
 
 ## Exploring Univariate Continuous Data
 

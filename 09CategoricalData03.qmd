@@ -1,6 +1,6 @@
-# 09: Categorical x Categorical data (2 of 2)
+# Categorical x Categorical data (2 of 2)
 
-*Sep 10, 2023.*
+#### Chapter 9, *Last updated: Dec 30, 2023.*
 
 ## Exploring Multivariate Categorical Data
 
