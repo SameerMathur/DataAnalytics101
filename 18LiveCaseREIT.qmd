@@ -16,7 +16,7 @@ Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way 
 
 **Your mission? Allocate `$1 Million` to the "best" REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities. Dive in and make those data-driven decisions!**
 
-### A2) What are Prof. Sameer's learning objectives for you?
+### A2) What are learning objectives for you?
 
 1.  Revisit and solidify your knowledge of R programming, acquired or expected to be acquired in earlier courses.
 2.  Enhance your proficiency in data management and manipulation using the `dplyr` package and other functions in R.
@@ -47,7 +47,7 @@ library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # For tables
 # Read S&P500 stock data present in a Google Sheet.
 library(gsheet)
 prefix <- "https://docs.google.com/spreadsheets/d/"
-sheetID <- "11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM"
+sheetID <- "14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ"
 url500 <- paste(prefix,sheetID) # Form the URL to connect to
 sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
 ```
@@ -231,6 +231,7 @@ REIT <- finStocks %>%
   filter(Industry == 'Real Estate Investment Trusts')
 ```
 
+
 -   The following table lists REITs within the Finance sector of the S&P500
 
 ```{r}
@@ -270,25 +271,6 @@ REIT %>% summarise(
 
 Well done! Our data is now ready for analysis!!
 
-7.  Low52WkPerc: Create a new column MarketCapBillions = MarketCap/1000,000,000, as described in the chapter Live Case: S&P500 (1 of 3).
-
-```{r  warning=FALSE, eval=TRUE, echo=TRUE}
-sp500 <- sp500 %>% mutate(MarketCapBillions = round(MarketCap/1000000000))
-colnames(sp500)
-```
-
-## Live Case: S&P500
-
-ISSUE: Analysis of a particular SECTOR We have chosen to deeply analyze the `Real Estate Investment Trusts`
-
-## SECTOR LEVEL ANALYSIS begins here
-
-### Filter the data by sector Finace & Industry Real Estate Investment Trusts, and display the number of stocks in the sector
-
-```{r warning=FALSE, eval=TRUE, echo=TRUE}
-REIT <- finStocks %>% 
-  filter(Industry == 'Real Estate Investment Trusts')
-```
 
 There are 12 number of of stocks in the Industry REIT
 
@@ -296,12 +278,13 @@ There are 12 number of of stocks in the Industry REIT
 
 ```{r warning=FALSE, eval=TRUE, echo=TRUE}
 ts2 <- REIT %>%
-		select(Date, Stock, StockName,Sector,  Industry, MarketCap, Price,Low52Wk, High52Wk,
+		select(Date, Stock, StockName, MarketCap_Billions, Price,Low52Wk, High52Wk,
 		       ROE, ROA,ROIC,GrossMargin, GrossMargin, 
 		       NetMargin, Rating)
 
 colnames(ts2)
 ```
+
 
 ### Arrange the Dataframe by ROE
 
@@ -335,7 +318,7 @@ The 52-week low price of a stock is a significant indicator for multiple reasons
 
 ```{r  warning=FALSE, eval=TRUE, echo=TRUE}
 ts4 <- ts3 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
-head(ts4[,c(1:3,10,16)],10)
+head(ts4[,c(1:3,5)],10)
 ```
 
 ## Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)
@@ -590,7 +573,7 @@ ts3 <- na.omit(ts3)
 ROESum <- ts3 %>%
   summarise(
     Mean = mean(ROE),
-    Median= sd(ROE),
+    Stdev = sd(ROE),
     Median= median(ROE),
     Q1 = quantile(ROE, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(ROE, probs = 0.75, na.rm = TRUE),
@@ -604,7 +587,7 @@ ROESum <- round(ROESum,2)
 ROASum <- ts3 %>%
   summarise(
     Mean = mean(ROA),
-    Median= sd(ROA),
+    Stdev = sd(ROA),
     Median= median(ROA),
     Q1 = quantile(ROA, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(ROA, probs = 0.75, na.rm = TRUE),
@@ -617,7 +600,7 @@ ROASum <- round(ROASum,2)
 ROICSum <- ts3 %>%
   summarise(
     Mean = mean(ROIC),
-    Median= sd(ROIC),
+    Stdev = sd(ROIC),
     Median= median(ROIC),
     Q1 = quantile(ROIC, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(ROIC, probs = 0.75, na.rm = TRUE),
@@ -630,7 +613,7 @@ ROICSum <- round(ROICSum,2)
 GrossMarginSum <- ts3 %>%
   summarise(
     Mean = mean(GrossMargin),
-    Median= sd(GrossMargin),
+    Stdev = sd(GrossMargin),
     Median= median(GrossMargin),
     Q1 = quantile(GrossMargin, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(GrossMargin, probs = 0.75, na.rm = TRUE),
@@ -643,7 +626,7 @@ GrossMarginSum <- round(GrossMarginSum,2)
 NetMarginSum <- ts3 %>%
   summarise(
     Mean = mean(NetMargin),
-    Median= sd(NetMargin),
+    Stdev = sd(NetMargin),
     Median= median(NetMargin),
     Q1 = quantile(NetMargin, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(NetMargin, probs = 0.75, na.rm = TRUE),
@@ -660,66 +643,4 @@ ftab <- cbind(Metrics, ftab)
 ftab
 ```
 
-## ANALYSIS OF INDUSTRY REIT
 
-1.  Market Cap of all companies in Sector Health Services
-
-```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
-library(janitor)
-library(kableExtra)
-# Market Cap by Stock
-MCap <- ts3 %>%
-  group_by(Stock) %>%
-  summarise(
-    MarketCapBi = round(sum(na.omit(MarketCap)/1000000000),2))
-
-# Sp500 Market Cap
-
-SP500MarketCap <- sum(ts3$MarketCap/1000000000)
-
-# calculating % market cap
-PercentMarketCap <- round(MCap$MarketCapBi*100/SP500MarketCap,2)
-MCapTab <- cbind(MCap,PercentMarketCap)
-
-# sorting by PercentMarketCap
-MCapTab <- MCapTab %>% arrange(desc(PercentMarketCap))
-
-
-MCapTab <- MCapTab %>%
-  adorn_totals("row")
-
-MCapTab <- knitr::kable(MCapTab, "html") %>% kable_styling() 
-MCapTab 
-```
-
-2.  Shares which are most attractively priced in Industry REIT
-
-```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
-AttrShares <- ts4 %>% arrange(Low52WkPerc)
-AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
-
-AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
-AttrShares 
-```
-
-### PROFITABILITY OF INDUSTRY REIT
-
-1.  Shares have highest ROE within REIT
-
-```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
-AttrShares <- ts4 %>% arrange(desc(ROE))
-AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
-
-AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
-AttrShares 
-```
-
-2.  Shares have highest ROA within REIT
-
-```{r  warning=FALSE, eval=TRUE, echo=TRUE,message=FALSE}
-AttrShares <- ts4 %>% arrange(desc(ROA))
-AttrShares <- AttrShares[, c(2:4,7,8,10,11,16)]
-
-AttrShares <- knitr::kable(AttrShares, "html") %>% kable_styling() 
-AttrShares 
-```
