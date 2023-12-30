@@ -57,7 +57,7 @@ website:
       - 09CategoricalData03.qmd
       - 10ContinuousData01.qmd
       - 11ContinuousData02.qmd
-#      - 12ContinuousData03.qmd
+      - 12ContinuousData03.qmd
 #      - 13ContinuousData04.qmd
 #      - 14ContinuousData05.qmd
 #      - 15ContinuousData06.qmd
