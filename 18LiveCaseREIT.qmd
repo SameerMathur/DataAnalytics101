@@ -1,6 +1,6 @@
-# Live Case: S&P500 (REITs)
+# Live Case (2): REITs in the S&P500
 
-*Sep 08, 2023*
+#### Chapter 18, *Last updated: Dec 30, 2023*
 
 ## Objective
 
@@ -433,7 +433,7 @@ summaryStats %>%
   kable_styling()
 ```
 
--   ROE for all the Stocks in  REIT, as shown below
+-   ROE for all the Stocks in REIT, as shown below
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
 PlotBox <- ggboxplot(ts4, 
