@@ -1,6 +1,6 @@
 # Exploring R programming
 
-#### Chapter 1, *Last updated: Dec 30, 2023*
+#### Chapter 1, *Last updated: Dec 31, 2023*
 
 ## Overview of R programming
 
@@ -26,7 +26,7 @@ R could be run locally or in the Cloud. We discuss running R locally. We discuss
 
 ### Installing R locally
 
-Before running R locally, we need to first install R locally. Here are general instructions to install R locally on your computer:\\
+Before running R locally, we need to first install R locally. Here are general instructions to install R locally on your computer:
 
 1.  Visit the official website of the R project at [**https://www.r-project.org/**](https://www.r-project.org/).
 
@@ -212,7 +212,7 @@ floor(pi)
 signif(pi, 3)
 ```
 
-4.  Statistical calculations: R has many built-in functions for statistical calculations, such as mean, median, standard deviation, and correlation.
+4.  **Statistical calculations**: R has many built-in functions for statistical calculations, such as mean, median, standard deviation, and correlation.
 
 ```{r}
 # Create a vector of 7 Fibonacci numbers
@@ -254,14 +254,13 @@ sales = 9
 
 4.  Various operations can be performed using variables in R.
 
-`{r} # multiply sales by 2 2 * sales}`
 
 ```{r}
 # Multiply the variable "sales" by 2
 2 * sales
 ```
 
-5.  We can change the value stored in a variable
+5.  You can change the value stored in a variable
 
 ```{r}
 # Change the value of "sales" to 15
@@ -287,11 +286,9 @@ R is a powerful and versatile language extensively utilized for data analysis, s
 
 ## Summary of Chapter 1 -- Getting Started
 
-Chapter 1 provides a comprehensive introduction to the R programming language and its applications, particularly in statistical computations and data analysis. The first part of the chapter presents a basic understanding of R, including its history and development, its usage, and the platforms that support its operation. It discusses how to download and install R and RStudio, considering different operating systems, and it also introduces alternatives like Jupyter Notebook and Visual Studio Code.
+Chapter 1 provides an introduction to the R programming language and its applications, particularly in statistical computations and data analysis. The first part of the chapter presents a basic understanding of R, including its history and development, its usage, and the platforms that support its operation. It discusses how to download and install R and RStudio, considering different operating systems, and it also introduces alternatives like Jupyter Notebook and Visual Studio Code.
 
-The second part delves into the practical aspects of using R, such as conducting mathematical and statistical operations. It provides examples of arithmetic, exponentiation, and logarithmic operations, as well as usage of specific mathematical functions like absolute value, square root, and remainder on division. Moreover, it explains the rounding functions, mean, median, standard deviation, and correlation computations, with examples. The chapter further expounds on the assignment of values to variables in R and the usage of these variables in various operations.
-
-Throughout, the chapter underlines the importance of R in statistical computing, data analysis, and data visualization, emphasizing its versatility and efficiency. The chapter lists a wide range of references for further reading and exploration.
+The second part delves into some simple aspects of using R, such as conducting mathematical and statistical operations. It provides examples of arithmetic, exponentiation, and logarithmic operations, as well as usage of specific mathematical functions like absolute value, square root, and remainder on division. Moreover, it explains the rounding functions, mean, median, standard deviation, and correlation computations, with examples. The chapter further expounds on the assignment of values to variables in R and the usage of these variables in various operations.
 
 To summarize, this chapter introduces the R programming language, its development, usage, installation process, and various supported platforms. It delves into R's practical applications in mathematical and statistical operations, emphasizing its role in statistical computing, data analysis, and visualization.
 
@@ -312,12 +309,6 @@ Peng, R. D. (2016). R programming for data science. O'Reilly Media.
 R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>
 
 Venables, W. N., Smith, D. M., & R Development Core Team. (2019). An introduction to R. Network Theory Ltd. Retrieved from <https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf>
-
-Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23.
-
-Wickham, H. (2016). ggplot2: Elegant graphics for data analysis. Springer-Verlag.
-
-Wickham, H., & Grolemund, G. (2017). R packages: Organize, test, document, and share your code. O'Reilly Media.
 
 \[2\] The R Project for Statistical Computing. (2021). Download R for (Mac) OS X. <https://cran.r-project.org/bin/macosx/>
 
@@ -345,8 +336,6 @@ RStudio. (2021). RStudio. <https://www.rstudio.com/products/rstudio/features/>
 
 Xiao, Z., Chen, Z., & Zhang, J. (2014). Cloud computing research and security issues. Journal of Network and Computer Applications, 41, 1--11. https://doi.org/10.1016/j.jnca.2013.11.004
 
-Cloud Spectator. (2021). Cloud Service Provider Pricing Models: A Comprehensive Guide. <https://www.cloudspectator.com/cloud-service-provider-pricing-models-a-comprehensive-guide/>
-
 \[7\] Amazon Web Services. (2021). AWS. <https://aws.amazon.com/>
 
 Amazon Web Services. (2021). Running RStudio Server Pro using Amazon EC2. <https://docs.rstudio.com/rsp/quickstart/aws/>
@@ -358,7 +347,5 @@ Google Cloud Platform. (2021). GCP. <https://cloud.google.com/>
 Google Cloud Platform. (2021). Compute Engine Documentation. <https://cloud.google.com/compute/docs>
 
 Microsoft Azure. (2021). Azure. <https://azure.microsoft.com/>
-
-Microsoft Azure. (2021). Create a Windows virtual machine with the Azure portal. <https://docs.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal>
 
 Posit. (2021). High-Performance Computing Services. <https://posit.cloud/>

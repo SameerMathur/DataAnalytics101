@@ -310,12 +310,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="exploring-r-packages" class="level1">
 <h1>Exploring R Packages</h1>
-<section id="chapter-2-last-updated-dec-30-2023." class="level4">
-<h4 class="anchored" data-anchor-id="chapter-2-last-updated-dec-30-2023.">Chapter 2, <em>Last updated: Dec 30, 2023.</em></h4>
+<section id="chapter-2-last-updated-dec-31-2023." class="level4">
+<h4 class="anchored" data-anchor-id="chapter-2-last-updated-dec-31-2023.">Chapter 2, <em>Last updated: Dec 31, 2023.</em></h4>
 <ol type="1">
 <li><p>R packages are collections of code, data, and documentation that enhance the capabilities of R, a programming language and software environment used for statistical computing and graphics.</p></li>
 <li><p>R packages are created by R users and developers and provide additional tools, functions, and datasets that serve various purposes, such as data analysis, visualization, and machine learning.</p></li>
-<li><p>R packages can be obtained from various sources, including the Comprehensive R Archive Network (CRAN), Bioconductor, GitHub, and other online repositories.</p></li>
+<li><p>They can be obtained from various sources, including the Comprehensive R Archive Network (CRAN), Bioconductor, GitHub, and other online repositories.</p></li>
 <li><p>To utilize R packages, they can be imported into R using the <strong><code>library()</code></strong> function, allowing access to the functions and data within them for use in R scripts and interactive sessions. [1]</p></li>
 </ol>
 </section>
@@ -365,12 +365,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p><code>dplyr</code>: A grammar of data manipulation, providing a set of functions for easy and efficient data manipulation tasks like filtering, summarizing, and transforming data frames.</p></li>
 <li><p><code>tidyr</code>: Provides tools for tidying data, which involves reshaping data sets to facilitate analysis by ensuring each variable has its own column and each observation has its own row.</p></li>
-<li><p><code>plyr</code>: Offers a set of functions for splitting, applying a function, and combining results, allowing for efficient data manipulation and summarization.</p></li>
 <li><p><code>reshape2</code>: Provides functions for transforming data between different formats, such as converting data from wide to long format and vice versa.</p></li>
 <li><p><code>data.table</code>: A high-performance package for data manipulation, offering fast and memory-efficient tools for tasks like filtering, aggregating, and joining large data sets.</p></li>
 <li><p><code>lubridate</code>: Designed specifically for working with dates and times, it simplifies common tasks like parsing, manipulating, and formatting date-time data.</p></li>
 <li><p><code>stringr</code>: Offers a consistent and intuitive set of functions for working with strings, including pattern matching, string manipulation, and string extraction.</p></li>
-<li><p><code>magrittr</code>: Provides a simple and readable syntax for composing data manipulation and transformation operations, making code more readable and expressive.</p></li>
 <li><p><code>ggplot2</code>: A powerful and flexible package for creating beautiful and customizable data visualizations using a layered grammar of graphics approach.</p></li>
 <li><p><code>plotly</code>: Enables interactive and dynamic data visualizations, allowing users to create interactive plots, charts, and dashboards that can be explored and analyzed. [2]</p></li>
 </ol>
@@ -390,11 +388,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-mpgwt" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="02RPackages_files/figure-html/fig-mpgwt-1.png" class="img-fluid figure-img" width="768"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Scatterplot of Car Mileage with Car Weight</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1: <b>Scatterplot</b> of Car Mileage (mpg) with Weight (wt)</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>Here, the command <code>library(ggplot2)</code> loads the ggplot2 package, making its functions available for use.</p>
 <section id="getting-help" class="level3">
 <h3 class="anchored" data-anchor-id="getting-help">Getting help</h3>
 <p>If you require assistance with an R package, there are several avenues you can explore:</p>
@@ -407,11 +406,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="summary-of-chapter-2-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-2-r-packages">Summary of Chapter 2 – R Packages</h2>
-<p>Chapter 2 delves into the world of R packages, explaining what they are, where they can be procured, and how they can be put to use. Defined as clusters of code, data, and relevant documentation, R packages extend the capabilities of R for users. These packages are available from a variety of digital repositories, such as CRAN, Bioconductor, and GitHub, and can be incorporated into R via the <code>library()</code> function.</p>
+<p>Chapter 2 delves into the world of R packages, explaining what they are, where they can be procured, and how they can be put to use. Defined as clusters of code, data, and relevant documentation, R packages extend the capabilities of R for users. These packages are available from a variety of digital repositories, such as CRAN and GitHub, and can be incorporated into R via the <code>library()</code> function.</p>
 <p>The advantages of utilizing R packages are manifold, including the ability to reuse and share code, collaborate on development, standardize methodologies, handle large datasets, and operate across different operating systems.</p>
-<p>Special emphasis is given to the Comprehensive R Archive Network (CRAN), a central hub for R packages, making it easier for users to find and install the packages they need. The process for installing an R package is detailed, utilizing the <code>install.packages()</code> function, and its subsequent import via the <code>library()</code> function.</p>
+<p>Special emphasis is given to the Comprehensive R Archive Network (CRAN), a central hub for R packages, making it easier for users to find and install the packages they need. The process for installing an R package typically utilizes the <code>install.packages()</code> function, and its subsequent import via the <code>library()</code> function.</p>
 <p>The chapter also furnishes a list of well-regarded R packages, each catering to a distinct need, from <code>dplyr</code> for manipulation of data, <code>tidyr</code> for rearranging data, <code>ggplot2</code> for designing visualizations, among others. A practical example of using the <code>ggplot2</code> package to generate a scatterplot is provided.</p>
-<p>For users who encounter challenges, the chapter recommends consulting the documentation that accompanies each package, making use of the help system built into R, or exploring online resources such as blogs, forums, and Q&amp;A websites. For more extensive understanding, several references are suggested.</p>
+<p>For users who encounter challenges, the chapter recommends consulting the documentation that accompanies each package, making use of the help system built into R, or exploring online resources such as blogs, forums, and Q&amp;A websites.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
@@ -421,16 +420,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>[2] Wickham, H., François, R., Henry, L., &amp; Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R package version 1.0.7. Retrieved from <a href="https://cran.r-project.org/package=dplyr"><strong>https://CRAN.R-project.org/package=dplyr</strong></a></p>
 <p>Wickham, H., &amp; Henry, L. (2020). tidyr: Tidy Messy Data. R package version 1.1.4. Retrieved from <a href="https://cran.r-project.org/package=tidyr"><strong>https://CRAN.R-project.org/package=tidyr</strong></a></p>
 <p>Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., &amp; Woo, K. (2021). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. R package version 3.3.5. Retrieved from <a href="https://cran.r-project.org/package=ggplot2"><strong>https://CRAN.R-project.org/package=ggplot2</strong></a></p>
-<p>Wickham, H. (2011). The Split-Apply-Combine Strategy for Data Analysis. Journal of Statistical Software, 40(1), 1-29.</p>
 <p>Wickham, H. (2019). reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package. R package version 1.4.4. Retrieved from <a href="https://cran.r-project.org/package=reshape2"><strong>https://CRAN.R-project.org/package=reshape2</strong></a></p>
 <p>Dowle, M., Srinivasan, A., Gorecki, J., Chirico, M., Stetsenko, P., Short, T., ... &amp; Lianoglou, S. (2021). data.table: Extension of <strong><code>data.frame</code></strong>. R package version 1.14.0. Retrieved from <a href="https://cran.r-project.org/package=data.table"><strong>https://CRAN.R-project.org/package=data.table</strong></a></p>
 <p>Grolemund, G., &amp; Wickham, H. (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25.</p>
 <p>Wickham, H. (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R package version 1.4.0. Retrieved from <a href="https://cran.r-project.org/package=stringr"><strong>https://CRAN.R-project.org/package=stringr</strong></a></p>
 <p>Sievert, C. (2021). plotly: Create Interactive Web Graphics via ‘plotly.js’. R package version 4.10.0. Retrieved from <a href="https://cran.r-project.org/package=plotly"><strong>https://CRAN.R-project.org/package=plotly</strong></a></p>
-<p>Bache, S. M., &amp; Wickham, H. (2014). magrittr: A Forward-Pipe Operator for R. R package version 2.0.1. Retrieved from <a href="https://cran.r-project.org/package=magrittr"><strong>https://CRAN.R-project.org/package=magrittr</strong></a></p>
 <p>[3] R Core Team. (2021). Writing R Extensions. Retrieved from <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html"><strong>https://cran.r-project.org/doc/manuals/r-release/R-exts.html</strong></a></p>
-<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
-<p>RStudio Team. (2020). RStudio: Integrated Development Environment for R. Retrieved from <a href="https://www.rstudio.com/"><strong>https://www.rstudio.com/</strong></a></p>
 
 
 </section>
