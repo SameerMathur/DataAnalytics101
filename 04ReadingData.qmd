@@ -318,7 +318,7 @@ In conclusion, this chapter built upon the concept of data frames and tibbles, s
 
 \[1\] RDocumentation. (n.d.). data.frame function. Retrieved from
 
-[https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame"](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame")
+[https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame"](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame%22)
 
 "Tutorialspoint. (n.d.). R - Data Frames. Retrieved from <https://www.tutorialspoint.com/r/r_data_frames.htm>
 

@@ -2,7 +2,11 @@
 
 **Chapter 5, *Last updated: Jan 1, 2023.***
 
--   The `mtcars` dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.
+This chapter delves into an in-depth examination of dataframes in R.
+
+-   The `mtcars` dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years. \[1\]
+
+Next, we will understand R code to explore a dataframe, step-by-step. \[2\]
 
 1.  To load the mtcars dataset in R, use this command:
 
@@ -62,7 +66,7 @@ colnames(mtcars)
 
 ## Accessing data within a dataframe
 
-1.  `$`: In R, the dollar sign `$` is a unique operator that lets us retrieve specific columns from a dataframe or elements from a list.
+1.  `$`: In R, the dollar sign `$` is a unique operator that lets us retrieve specific columns from a dataframe or elements from a list. \[2\]
 
 -   For instance, consider the dataframe `mtcars`. If we wish to fetch the data from the data column `mpg` (miles per gallon), we would use the code `mtcars$mpg`. This will yield a vector containing the data from the `mpg` column.
 
@@ -95,7 +99,7 @@ print(mpg_data2)
 
 ## Data Structures
 
-1.  `str()`: This function displays the internal structure of an R object.
+1.  `str()`: This function displays the internal structure of an R object. \[2\]
 
 ```{r}
 str(mtcars)
@@ -128,7 +132,7 @@ sapply(mtcars, class)
 
 ## Factors
 
-1.  In R, factors are a specific data type used for representing categorical variables or data with discrete levels or categories. They are employed to store data that has a limited number of distinct values, such as "male" or "female," "red," "green," or "blue," or "low," "medium," or "high."
+1.  In R, factors are a specific data type used for representing categorical variables or data with discrete levels or categories. They are employed to store data that has a limited number of distinct values, such as "male" or "female," "red," "green," or "blue," or "low," "medium," or "high." \[3\]
 
 2.  Factors in R consist of both values and levels. The values represent the actual data, while the levels correspond to the distinct categories or levels within the factor. Factors are particularly useful for statistical analysis as they facilitate the representation and analysis of categorical data efficiently.
 
@@ -150,9 +154,9 @@ mtcars$gear <- factor(mtcars$gear)
 str(mtcars)
 ```
 
-4.  Levels of a factor variable:
+4.  **Levels** of a factor variable:
 
--   The `levels()` function can be used to extract the distinct levels or categories of a factor variable.
+-   The `levels()` function can be used to extract the distinct levels or categories of a factor variable. \[3\]
 
 -   For example, after the `cyl` variable is converted to a factor, the `levels()` function can be used to extract the distinct levels or categories of that factor. By executing `levels(mtcars\$cyl)`, we see the levels present in the `cyl` variable. For example, if the `cyl` variable has been transformed into a factor with levels "4", "6", and "8", the result of `levels(mtcars$cyl)` will be a character vector displaying these three levels:
 
@@ -196,9 +200,9 @@ mtcars$cyl <- droplevels(mtcars$cyl)
 levels(mtcars$cyl)
 ```
 
--   We apply `droplevels()` to `mtcars$cyl` to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.
+-   We can apply `droplevels()` to `mtcars$cyl` to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.
 
--   `cut()`: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.
+-   `cut()`: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels. \[3\]
 
 ```{r}
 # Create a new factor variable `mpg_category` by cutting `mpg` into intervals
@@ -296,7 +300,7 @@ mtcars[order(-mtcars$mpg), ] # descending order
 
 ## Statistical functions
 
--   `mean()`: This function computes the arithmetic mean.
+-   `mean()`: This function computes the arithmetic mean. \[5\]
 
 ```{r}
 mean(mtcars$mpg)
@@ -314,7 +318,7 @@ median(mtcars$mpg)
 sd(mtcars$mpg)
 ```
 
--   `var()`': This function computes the variance.
+-   `var()`': This function computes the variance. \[5\]
 
 ```{r}
 var(mtcars$mpg)
@@ -336,7 +340,7 @@ unique(mtcars$mpg)
 
 ### Summarizing a continuous data column
 
-1.  `summary()`: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.
+1.  `summary()`: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data. \[5\]
 
 ```{r}
 summary(mtcars$mpg)
@@ -356,7 +360,7 @@ summary(mtcars$mpg)
 
 -   Max: This indicates the highest value observed in the mpg column.
 
--   When we use summary(mtcars\$mpg), it returns these six statistics for the mpg (miles per gallon) column in the mtcars dataset.
+-   When we use `summary(mtcars$mpg),` it returns these six statistics for the `mpg` (miles per gallon) column in the mtcars dataset.
 
 -   When used with an entire dataframe, it applies to each column individually and provides a quick overview of the data.
 
@@ -366,7 +370,7 @@ summary(mtcars$mpg)
 summary(mtcars$cyl)
 ```
 
--   The output of 'summary(mtcars\$cyl)' displays the frequency distribution of the levels within the 'cyl' factor variable. It shows the count or frequency of each level, which in this case are "4", "6", and "8". The summary will provide a concise overview of the distribution of these levels within the dataset.
+-   The output of `summary(mtcars$cyl)` displays the frequency distribution of the levels within the `cyl` factor variable. It shows the count or frequency of each level, which in this case are "4", "6", and "8". The summary will provide a concise overview of the distribution of these levels within the dataset.
 
 ```{r}
 summary(mtcars)
@@ -374,7 +378,7 @@ summary(mtcars)
 
 ## Creating new functions in R
 
--   We illustrate how to create a custom function in R that computes the mean of any given numeric column in the mtcars dataframe:
+-   We illustrate how to create a custom function in R that computes the mean of any given numeric column in the mtcars dataframe \[6\]
 
 ```{r}
 # Function creation
@@ -393,38 +397,46 @@ average_hp <- compute_average(mtcars, "hp")
 print(average_hp)
 ```
 
--   In the above code, compute_average is a custom function which takes two arguments: a dataframe (df) and a column name (as a string) column. The function computes the mean of the specified column in the provided dataframe, with na.rm = TRUE ensuring that NA values (if any) are removed before the mean calculation.
+-   In the above code, `compute_average` is a custom function which takes two arguments: a dataframe (df) and a column name as a string. The function computes the `mean` of the specified column in the provided dataframe, with `na.rm = TRUE` ensuring that `NA` values (if any) are removed before the mean calculation.
 
--   After defining the function, we utilize it to calculate the average values of the "mpg" and "hp" columns in the mtcars dataframe. These computed averages are then printed.
-
--   Function to calculate average mileage for cars with a specific number of cylinders:
-
-```{r}
-avg_mileage_by_cyl <- function(data, cyl) {
-  mean(data$mpg[data$cyl == cyl])
-}
-
-# Usage
-
-# Returns the average mileage of cars with 4 cylinders
-avg_mileage_by_cyl(mtcars, 4) 
-
-# Returns the average mileage of cars with 6 cylinders
-avg_mileage_by_cyl(mtcars, 6) 
-```
+-   After defining the function, we utilize it to calculate the average values of the `mpg` and `hp` columns in the `mtcars` dataframe. These computed averages are then printed.
 
 ## Summary of Chapter 5 -- Exploring Dataframes
 
-Chapter 5 guides the reader through a comprehensive understanding of data manipulation, logical operations, statistical functions, and custom function creation in R. The chapter highlights a number of significant elements integral to any data analysis task in R.
+Chapter 5 offers an in-depth exploration of dataframes in R, emphasizing the `mtcars` dataset. It begins by introducing essential functions for examining dataframes like `View()`, `head()`, `tail()`, and `dim()`, progressing to more complex data accessing methods using `$` and square brackets. The chapter also covers data structures, emphasizing factors in R and their relevance in statistical modeling. Logical operations in R are explored, highlighting functions like `subset()`, `which()`, and `ifelse()`. Statistical analysis is addressed through functions like `mean()`, `median()`, and `cor()`. The chapter culminates with a focus on custom function creation, enhancing R's functionality for specific tasks.
 
-Firstly, the chapter introduces an essential toolbox for data manipulation in R, focusing on 'dplyr'. It provides a step-by-step tutorial on using key 'dplyr' verbs such as select(), filter(), arrange(), mutate(), and summarise(). The lesson is further enriched with a discussion on the grouping data with the group_by() function and the application of the pipe operator '%\>%', which provides a more readable and organized approach to data manipulation.
+## References
 
-Secondly, the chapter explains logical operations in R, demonstrating how they can be employed in subsetting and data extraction tasks. It covers the workings of various functions including subset(), which(), ifelse(), all(), and any(). The chapter elaborates on data subsetting using square brackets and logical expressions, and introduces the sort() and order() functions, essential for arranging data in a particular sequence.
+\[1\] Krasser, R. (2023, October 11). *Explore mtcars*. The Comprehensive R Archive Network. Retrieved from <https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html>
 
-Thirdly, the chapter transitions into an examination of key statistical functions, showcasing the usage of mean(), median(), sd(), var(), and cor(). An interesting aspect is the inclusion of the unique() function, which allows extraction of distinct elements from a vector.
+RDocumentation. (n.d.). *mtcars: Motor Trend Car Road Tests*. Retrieved from <https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars>
 
-Fourthly, the chapter discusses the utility of the summary() function, providing basic descriptive statistics. This function furnishes a snapshot of dataset characteristics by generating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values for a specified dataset or column.
+\[2\] W3Schools. (n.d.). R Data Frames. Retrieved from [https://www.w3schools.com](https://www.w3schools.com/)
 
-Lastly, the chapter unveils how to create and utilize custom functions in R. It provides an in-depth illustration of creating a custom function to calculate the mean of a given numeric column in a dataframe and the average mileage for cars with a specific number of cylinders. These examples highlight the extensibility of R and how custom functions can enhance its capabilities.
+RDocumentation. (n.d.). data.frame function. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
 
-In summary, Chapter 5 serves as a comprehensive guide to effectively managing, manipulating, and analyzing data in R. Through the demonstration of custom functions, it underscores how R's functionalities can be extended according to the specific needs of a task, thus, strengthening the flexibility and power of R programming.
+Programiz. (n.d.). R Data Frame (with Examples). Retrieved from [https://www.programiz.com](https://www.programiz.com/)
+
+Dataquest. (2023). How to Create a Dataframe in R with 30 Code Examples. Retrieved from [https://www.dataquest.io](https://www.dataquest.io/)
+
+\[3\] University of California, Berkeley. (n.d.). *Factors in R*. Retrieved from https://www.stat.berkeley.edu/\~s133/factors.html
+
+Wickham, H., & Grolemund, G. (n.d.). *R for Data Science*. Retrieved from <https://r4ds.had.co.nz/factors.html>
+
+\[4\] R Core Team. (n.d.). *subset: Subsetting Vectors, Matrices, and Data Frames*. RDocumentation. Retrieved from <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/subset>
+
+R Core Team. (n.d.). *ifelse: Conditional Element Selection*. RDocumentation. Retrieved from https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse
+
+\[5\] R Core Team. (n.d.). *mean: Arithmetic Mean*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
+
+R Core Team. (n.d.). *median: Median Value*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
+
+R Core Team. (n.d.). *sd: Standard Deviation*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
+
+R Core Team. (n.d.). *var: Variance*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
+
+R Core Team. (n.d.). *cor: Correlation*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
+
+\[5\] R Core Team. (n.d.). *summary: Object Summaries*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)
+
+\[6\] R Core Team. (n.d.). *function: Function Definition*. RDocumentation. Retrieved from [https://www.rdocumentation.org](https://www.rdocumentation.org/)

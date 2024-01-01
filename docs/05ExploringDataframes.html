@@ -300,6 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#creating-new-functions-in-r" id="toc-creating-new-functions-in-r" class="nav-link" data-scroll-target="#creating-new-functions-in-r">Creating new functions in R</a></li>
   <li><a href="#summary-of-chapter-5-exploring-dataframes" id="toc-summary-of-chapter-5-exploring-dataframes" class="nav-link" data-scroll-target="#summary-of-chapter-5-exploring-dataframes">Summary of Chapter 5 – Exploring Dataframes</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="05ExploringDataframes.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -311,10 +312,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="exploring-dataframes" class="level1">
 <h1>Exploring Dataframes</h1>
-<p><em>Dec 30, 2023</em></p>
+<p><strong>Chapter 5, <em>Last updated: Jan 1, 2023.</em></strong></p>
+<p>This chapter delves into an in-depth examination of dataframes in R.</p>
 <ul>
-<li>The <code>mtcars</code> dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years.</li>
+<li>The <code>mtcars</code> dataset is a readily available set in R, originally sourced from the 1974 Motor Trend US magazine. It includes data related to fuel consumption and 10 other factors pertaining to car design and performance, recorded for 32 vehicles from the 1973-74 model years. [1]</li>
 </ul>
+<p>Next, we will understand R code to explore a dataframe, step-by-step. [2]</p>
 <ol type="1">
 <li>To load the mtcars dataset in R, use this command:</li>
 </ol>
@@ -408,7 +411,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 <section id="accessing-data-within-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="accessing-data-within-a-dataframe">Accessing data within a dataframe</h2>
 <ol type="1">
-<li><code>$</code>: In R, the dollar sign <code>$</code> is a unique operator that lets us retrieve specific columns from a dataframe or elements from a list.</li>
+<li><code>$</code>: In R, the dollar sign <code>$</code> is a unique operator that lets us retrieve specific columns from a dataframe or elements from a list. [2]</li>
 </ol>
 <ul>
 <li>For instance, consider the dataframe <code>mtcars</code>. If we wish to fetch the data from the data column <code>mpg</code> (miles per gallon), we would use the code <code>mtcars$mpg</code>. This will yield a vector containing the data from the <code>mpg</code> column.</li>
@@ -457,7 +460,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 <section id="data-structures" class="level2">
 <h2 class="anchored" data-anchor-id="data-structures">Data Structures</h2>
 <ol type="1">
-<li><code>str()</code>: This function displays the internal structure of an R object.</li>
+<li><code>str()</code>: This function displays the internal structure of an R object. [2]</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -519,7 +522,7 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 <section id="factors" class="level2">
 <h2 class="anchored" data-anchor-id="factors">Factors</h2>
 <ol type="1">
-<li><p>In R, factors are a specific data type used for representing categorical variables or data with discrete levels or categories. They are employed to store data that has a limited number of distinct values, such as “male” or “female,” “red,” “green,” or “blue,” or “low,” “medium,” or “high.”</p></li>
+<li><p>In R, factors are a specific data type used for representing categorical variables or data with discrete levels or categories. They are employed to store data that has a limited number of distinct values, such as “male” or “female,” “red,” “green,” or “blue,” or “low,” “medium,” or “high.” [3]</p></li>
 <li><p>Factors in R consist of both values and levels. The values represent the actual data, while the levels correspond to the distinct categories or levels within the factor. Factors are particularly useful for statistical analysis as they facilitate the representation and analysis of categorical data efficiently.</p></li>
 <li><p>For example, in order to change the data type of the <code>am</code>, <code>cyl</code>, <code>vs</code>, and <code>gear</code> variables in the <code>mtcars</code> dataset to factors, you can utilize the <code>factor()</code> function. Here’s an example demonstrating how to achieve this:</p></li>
 </ol>
@@ -552,10 +555,10 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
-<li>Levels of a factor variable:</li>
+<li><strong>Levels</strong> of a factor variable:</li>
 </ol>
 <ul>
-<li><p>The <code>levels()</code> function can be used to extract the distinct levels or categories of a factor variable.</p></li>
+<li><p>The <code>levels()</code> function can be used to extract the distinct levels or categories of a factor variable. [3]</p></li>
 <li><p>For example, after the <code>cyl</code> variable is converted to a factor, the <code>levels()</code> function can be used to extract the distinct levels or categories of that factor. By executing <code>levels(mtcars\$cyl)</code>, we see the levels present in the <code>cyl</code> variable. For example, if the <code>cyl</code> variable has been transformed into a factor with levels “4”, “6”, and “8”, the result of <code>levels(mtcars$cyl)</code> will be a character vector displaying these three levels:</p></li>
 </ul>
 <div class="cell">
@@ -602,8 +605,8 @@ Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.6  1  1    4    2</code></pre>
 </div>
 </div>
 <ul>
-<li><p>We apply <code>droplevels()</code> to <code>mtcars$cyl</code> to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.</p></li>
-<li><p><code>cut()</code>: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels.</p></li>
+<li><p>We can apply <code>droplevels()</code> to <code>mtcars$cyl</code> to remove any unused levels from the factor variable. This function removes factor levels that are not present in the data. In this case all three levels were present in the data and therefore nothing was removed.</p></li>
+<li><p><code>cut()</code>: This function allows us to convert a continuous variable into a factor variable by dividing it into intervals or bins. This is useful when we want to group numeric data into categories or levels. [3]</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new factor variable `mpg_category` by cutting `mpg` into intervals</span></span>
@@ -821,7 +824,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <section id="statistical-functions" class="level2">
 <h2 class="anchored" data-anchor-id="statistical-functions">Statistical functions</h2>
 <ul>
-<li><code>mean()</code>: This function computes the arithmetic mean.</li>
+<li><code>mean()</code>: This function computes the arithmetic mean. [5]</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -848,7 +851,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li><code>var()</code>’: This function computes the variance.</li>
+<li><code>var()</code>’: This function computes the variance. [5]</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -881,7 +884,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <section id="summarizing-a-continuous-data-column" class="level3">
 <h3 class="anchored" data-anchor-id="summarizing-a-continuous-data-column">Summarizing a continuous data column</h3>
 <ol type="1">
-<li><code>summary()</code>: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data.</li>
+<li><code>summary()</code>: This function is a convenient tool to generate basic descriptive statistics for your dataset. It provides a succinct snapshot of the distribution characteristics of your data. [5]</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -900,7 +903,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <li><p>Mean: This denotes the average value of the mpg column.</p></li>
 <li><p>3rd Qu: This represents the third quartile or the 75th percentile of the mpg column. It shows that 75% of all mpg values are less than this value.</p></li>
 <li><p>Max: This indicates the highest value observed in the mpg column.</p></li>
-<li><p>When we use summary(mtcars$mpg), it returns these six statistics for the mpg (miles per gallon) column in the mtcars dataset.</p></li>
+<li><p>When we use <code>summary(mtcars$mpg),</code> it returns these six statistics for the <code>mpg</code> (miles per gallon) column in the mtcars dataset.</p></li>
 <li><p>When used with an entire dataframe, it applies to each column individually and provides a quick overview of the data.</p></li>
 </ul>
 </section>
@@ -914,7 +917,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li>The output of ‘summary(mtcars$cyl)’ displays the frequency distribution of the levels within the ‘cyl’ factor variable. It shows the count or frequency of each level, which in this case are “4”, “6”, and “8”. The summary will provide a concise overview of the distribution of these levels within the dataset.</li>
+<li>The output of <code>summary(mtcars$cyl)</code> displays the frequency distribution of the levels within the <code>cyl</code> factor variable. It shows the count or frequency of each level, which in this case are “4”, “6”, and “8”. The summary will provide a concise overview of the distribution of these levels within the dataset.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -940,7 +943,7 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 <section id="creating-new-functions-in-r" class="level2">
 <h2 class="anchored" data-anchor-id="creating-new-functions-in-r">Creating new functions in R</h2>
 <ul>
-<li>We illustrate how to create a custom function in R that computes the mean of any given numeric column in the mtcars dataframe:</li>
+<li>We illustrate how to create a custom function in R that computes the mean of any given numeric column in the mtcars dataframe [6]</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function creation</span></span>
@@ -964,38 +967,33 @@ Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4</code></
 </div>
 </div>
 <ul>
-<li><p>In the above code, compute_average is a custom function which takes two arguments: a dataframe (df) and a column name (as a string) column. The function computes the mean of the specified column in the provided dataframe, with na.rm = TRUE ensuring that NA values (if any) are removed before the mean calculation.</p></li>
-<li><p>After defining the function, we utilize it to calculate the average values of the “mpg” and “hp” columns in the mtcars dataframe. These computed averages are then printed.</p></li>
-<li><p>Function to calculate average mileage for cars with a specific number of cylinders:</p></li>
+<li><p>In the above code, <code>compute_average</code> is a custom function which takes two arguments: a dataframe (df) and a column name as a string. The function computes the <code>mean</code> of the specified column in the provided dataframe, with <code>na.rm = TRUE</code> ensuring that <code>NA</code> values (if any) are removed before the mean calculation.</p></li>
+<li><p>After defining the function, we utilize it to calculate the average values of the <code>mpg</code> and <code>hp</code> columns in the <code>mtcars</code> dataframe. These computed averages are then printed.</p></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>avg_mileage_by_cyl <span class="ot">&lt;-</span> <span class="cf">function</span>(data, cyl) {</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(data<span class="sc">$</span>mpg[data<span class="sc">$</span>cyl <span class="sc">==</span> cyl])</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Usage</span></span>
-<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns the average mileage of cars with 4 cylinders</span></span>
-<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a><span class="fu">avg_mileage_by_cyl</span>(mtcars, <span class="dv">4</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 26.66364</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns the average mileage of cars with 6 cylinders</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">avg_mileage_by_cyl</span>(mtcars, <span class="dv">6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 19.74286</code></pre>
-</div>
-</div>
 </section>
 <section id="summary-of-chapter-5-exploring-dataframes" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-5-exploring-dataframes">Summary of Chapter 5 – Exploring Dataframes</h2>
-<p>Chapter 5 guides the reader through a comprehensive understanding of data manipulation, logical operations, statistical functions, and custom function creation in R. The chapter highlights a number of significant elements integral to any data analysis task in R.</p>
-<p>Firstly, the chapter introduces an essential toolbox for data manipulation in R, focusing on ‘dplyr’. It provides a step-by-step tutorial on using key ‘dplyr’ verbs such as select(), filter(), arrange(), mutate(), and summarise(). The lesson is further enriched with a discussion on the grouping data with the group_by() function and the application of the pipe operator ‘%&gt;%’, which provides a more readable and organized approach to data manipulation.</p>
-<p>Secondly, the chapter explains logical operations in R, demonstrating how they can be employed in subsetting and data extraction tasks. It covers the workings of various functions including subset(), which(), ifelse(), all(), and any(). The chapter elaborates on data subsetting using square brackets and logical expressions, and introduces the sort() and order() functions, essential for arranging data in a particular sequence.</p>
-<p>Thirdly, the chapter transitions into an examination of key statistical functions, showcasing the usage of mean(), median(), sd(), var(), and cor(). An interesting aspect is the inclusion of the unique() function, which allows extraction of distinct elements from a vector.</p>
-<p>Fourthly, the chapter discusses the utility of the summary() function, providing basic descriptive statistics. This function furnishes a snapshot of dataset characteristics by generating the minimum, 1st quartile, median, mean, 3rd quartile, and maximum values for a specified dataset or column.</p>
-<p>Lastly, the chapter unveils how to create and utilize custom functions in R. It provides an in-depth illustration of creating a custom function to calculate the mean of a given numeric column in a dataframe and the average mileage for cars with a specific number of cylinders. These examples highlight the extensibility of R and how custom functions can enhance its capabilities.</p>
-<p>In summary, Chapter 5 serves as a comprehensive guide to effectively managing, manipulating, and analyzing data in R. Through the demonstration of custom functions, it underscores how R’s functionalities can be extended according to the specific needs of a task, thus, strengthening the flexibility and power of R programming.</p>
+<p>Chapter 5 offers an in-depth exploration of dataframes in R, emphasizing the <code>mtcars</code> dataset. It begins by introducing essential functions for examining dataframes like <code>View()</code>, <code>head()</code>, <code>tail()</code>, and <code>dim()</code>, progressing to more complex data accessing methods using <code>$</code> and square brackets. The chapter also covers data structures, emphasizing factors in R and their relevance in statistical modeling. Logical operations in R are explored, highlighting functions like <code>subset()</code>, <code>which()</code>, and <code>ifelse()</code>. Statistical analysis is addressed through functions like <code>mean()</code>, <code>median()</code>, and <code>cor()</code>. The chapter culminates with a focus on custom function creation, enhancing R’s functionality for specific tasks.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>[1] Krasser, R. (2023, October 11). <em>Explore mtcars</em>. The Comprehensive R Archive Network. Retrieved from <a href="https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html" class="uri">https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html</a></p>
+<p>RDocumentation. (n.d.). <em>mtcars: Motor Trend Car Road Tests</em>. Retrieved from <a href="https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars" class="uri">https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars</a></p>
+<p>[2] W3Schools. (n.d.). R Data Frames. Retrieved from <a href="https://www.w3schools.com/">https://www.w3schools.com</a></p>
+<p>RDocumentation. (n.d.). data.frame function. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>Programiz. (n.d.). R Data Frame (with Examples). Retrieved from <a href="https://www.programiz.com/">https://www.programiz.com</a></p>
+<p>Dataquest. (2023). How to Create a Dataframe in R with 30 Code Examples. Retrieved from <a href="https://www.dataquest.io/">https://www.dataquest.io</a></p>
+<p>[3] University of California, Berkeley. (n.d.). <em>Factors in R</em>. Retrieved from https://www.stat.berkeley.edu/~s133/factors.html</p>
+<p>Wickham, H., &amp; Grolemund, G. (n.d.). <em>R for Data Science</em>. Retrieved from <a href="https://r4ds.had.co.nz/factors.html" class="uri">https://r4ds.had.co.nz/factors.html</a></p>
+<p>[4] R Core Team. (n.d.). <em>subset: Subsetting Vectors, Matrices, and Data Frames</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/subset" class="uri">https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/subset</a></p>
+<p>R Core Team. (n.d.). <em>ifelse: Conditional Element Selection</em>. RDocumentation. Retrieved from https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ifelse</p>
+<p>[5] R Core Team. (n.d.). <em>mean: Arithmetic Mean</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>R Core Team. (n.d.). <em>median: Median Value</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>R Core Team. (n.d.). <em>sd: Standard Deviation</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>R Core Team. (n.d.). <em>var: Variance</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>R Core Team. (n.d.). <em>cor: Correlation</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>[5] R Core Team. (n.d.). <em>summary: Object Summaries</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
+<p>[6] R Core Team. (n.d.). <em>function: Function Definition</em>. RDocumentation. Retrieved from <a href="https://www.rdocumentation.org/">https://www.rdocumentation.org</a></p>
 
 
 </section>
