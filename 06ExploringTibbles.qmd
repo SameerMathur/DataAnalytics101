@@ -1,12 +1,12 @@
 # Exploring *tibbles* & *dplyr*
 
-*Dec 30, 2023*
+**Chapter 6, *Last updated: Jan 2, 2023.***
 
 ## **tibbles**
 
-A `tibble` is essentially an updated version of the conventional data frame, providing more flexible and effective data management features (Müller & Wickham, 2021).
+A `tibble` is essentially an updated version of the conventional data frame, providing more flexible and effective data management features.
 
-`Tibbles`, also recognized as `tbl_df`, are a component of the tidyverse suite, a collection of R packages geared towards making data science more straightforward. They share many properties with regular data frames but also offer unique benefits that enhance our ability to work with data.
+`Tibbles`, are a component of the `tidyverse` suite, a collection of R packages geared towards making data science more straightforward. They share many properties with dataframes but also offer unique benefits that enhance our ability to work with data.
 
 1.  **Printing:** When a `tibble` is printed, only the initial ten rows and the number of columns that fit within our screen's width are displayed. This feature becomes particularly useful when dealing with extensive datasets having multiple columns, enhancing the data's readability.
 
@@ -18,7 +18,7 @@ A `tibble` is essentially an updated version of the conventional data frame, pro
 
 We consider `tibbles` to be a vital part of our data manipulation arsenal, especially when working within the `tidyverse` ecosystem \[1\].
 
-## Basic functions in the **dplyr** package
+## The **`dplyr`** package
 
 The `dplyr` package is very useful when we are dealing with data manipulation tasks (Wickham et al., 2021). This package offers us a cohesive set of functions, frequently referred to as "verbs," that are designed to facilitate common data manipulation activities. Below, we review some of the key "verbs" provided by the `dplyr` package:
 
@@ -42,7 +42,7 @@ Moreover, one of the significant advantages of `dplyr` is the ability to chain t
 
 3.  In a typical scenario in R, when we need to carry out multiple operations on a data frame, each function call must be nested within another. This could lead to codes that are difficult to comprehend due to their complex and nested structure.
 
-4.  However, the pipe operator comes to our rescue here. It allows us to rewrite these nested operations in a linear, straightforward manner, greatly enhancing the readability of our code. \[3\]
+4.  However, the pipe operator comes to our rescue here. It allows us to rewrite these nested operations in a linear, straightforward manner, greatly enhancing the readability of our code. \[2\]
 
 ## Illustration: Using dplyr on `mtcars` data
 
@@ -92,9 +92,9 @@ tb$gear <- as.factor(tb$gear)
 
 -   Factors are used in statistical modeling to represent categorical variables.
 
--   The `as.factor()` function is used to convert the 'cyl', 'vs', 'am', and 'gear' columns from numeric data types to factors.
+-   The `as.factor()` function is used to convert the '`cyl`', '`vs`', '`am`', and '`gear`' columns from numeric data types to factors.
 
--   In our case, these four variables are better represented as categories rather than numerical values. For instance, 'cyl' represents the number of cylinders in a car's engine, 'vs' is the engine shape, 'am' is the transmission type, and 'gear' is the number of forward gears; all of these are categorical in nature, hence the conversion to factor.
+-   In our case, these four variables are better represented as categories rather than numerical values. For instance, '`cyl`' represents the number of cylinders in a car's engine, '`vs`' is the engine shape, '`am`' is the transmission type, and '`gear`' is the number of forward gears; all of these are categorical in nature, hence the conversion to factor.
 
 -   At this point, we can call the `glimpse()` function again to review the data structures.
 
@@ -103,7 +103,7 @@ tb$gear <- as.factor(tb$gear)
 glimpse(tb)
 ```
 
--   Notice that the datatypes are now modified and the tibble is ready for futher exploration.
+-   Notice that the datatypes are now modified and the tibble is ready for further exploration. \[2\]
 
 ### Using `dplyr` to explore the `mtcars` tibble
 
@@ -246,7 +246,7 @@ mutated_data
 
 -   The resulting tibble contains a new column `efficiency`, which is the ratio of `mpg` to `hp`.
 
--   Note that mutate() does not modify the original dataset, but creates a new object `mutated_data` with the results. If we want to modify the original dataset, we would need to save the result back to the original variable.
+-   Note that `mutate()` does not modify the original dataset, but creates a new object `mutated_data` with the results. If we want to modify the original dataset, we would need to save the result back to the original variable.
 
 **`transmute()`:** This is a variation of **`mutate()`** which does not retain the old columns.
 
@@ -258,7 +258,7 @@ t1 <- tb %>%
 t1
 ```
 
--   Notice that transmute() retains only the newly created column.
+-   Notice that `transmute()` retains only the newly created column.
 
 10. **`summarise()`:**: Recall that this function is used to create summaries of data. It collapses a tibble to a single row. Suppose we want to calculate the mean of `mpg` in the `mtcars` dataset
 
@@ -269,7 +269,7 @@ tb %>%
 
 -   This code creates a tibble that contains a single row having the mean value of `mpg`.
 
--   We can extend this code to print both the Mean and Standard Deviation, by slightly extending the above code, as follows.
+-   We can extend this code to print both the mean and standard deviation, by slightly extending the above code, as follows.
 
 ```{r, warning=FALSE}
 tb %>% 
@@ -294,7 +294,7 @@ summary_data <- tb %>% summarise(
 summary_data
 ```
 
--   We could convert this back into a standard dataframe and display it in a better formatted manner up to two decimal places, with the following code.
+-   We could convert this back into a standard dataframe and display it in a better formatted manner up to two decimal places, with the following code. \[2\]
 
 ```{r, warning=FALSE}
 summary_data %>% 
@@ -314,7 +314,7 @@ summary_data %>%
 
 5.  **`pull()`:** The `pull()` function is used to extract a single variable as a vector from a dataframe. This function becomes very practical when we wish to isolate and work with a single variable outside its dataframe.
 
-6.  **`n_distinct()`:** To enumerate the unique values in a column or vector, we use the `n_distinct()` function. It's an essential function when we want to know the number of distinct elements within a specific categorical variable.
+6.  **`n_distinct()`:** To enumerate the unique values in a column or vector, we use the `n_distinct()` function. It's an essential function when we want to know the number of distinct elements within a specific categorical variable. \[2\]
 
 ### Using `dplyr` to explore the `mtcars` tibble more
 
@@ -363,17 +363,11 @@ tb %>%
 
 ## Summary of Chapter 7 -- Exploring *tibbles* & *dplyr*
 
-This chapter has provided an overview of the `tibble` data structure and the `dplyr` package in the R programming language.
+This chapter has provided an overview of the `tibble` data structure and the `dplyr` package in the R programming language. We started with an introduction to `tibble`, a data structure in R that is an updated version of data frames with enhanced features for flexible and effective data management. These benefits include more user-friendly printing, reliable subsetting behavior, transparent handling of data types, and support for non-syntactic column names.
 
-We started with an introduction to `tibble`, a data structure in R that is an updated version of data frames with enhanced features for flexible and effective data management. These benefits include more user-friendly printing, reliable subsetting behavior, transparent handling of data types, and support for non-syntactic column names.
+Subsequently, we shifted focus to the `dplyr` package, which is a powerful tool for data manipulation in R. This package offers a cohesive set of functions, often referred to as "verbs", which allow for efficient and straightforward manipulation of data. The key "verbs" in `dplyr`---`filter()`, `select()`, `arrange()`, `mutate()`, and `summarise()`--- have been explained and illustrated with examples. An integral component of the `dplyr` package, the pipe operator `%>%`, was also discussed. This operator allows for a more readable and understandable chaining of multiple operations in R, leading to cleaner and more straightforward code.
 
-Subsequently, we shifted focus to the `dplyr` package, which is a powerful tool for data manipulation in R. This package offers a cohesive set of functions, often referred to as "verbs", which allow for efficient and straightforward manipulation of data. The key "verbs" in `dplyr`---`filter()`, `select()`, `arrange()`, `mutate()`, and `summarise()`--- have been explained and illustrated with examples.
-
-An integral component of the `dplyr` package, the pipe operator `%>%`, has also been discussed. This operator allows for a more readable and understandable chaining of multiple operations in R, leading to cleaner and more straightforward code.
-
-The chapter has given a comprehensive illustration of using `dplyr` on the `mtcars` dataset. This practical demonstration has involved applying `dplyr` functions to a dataset and explaining the process and results.
-
-In addition to the basics, the chapter has also touched upon additional `dplyr` functions such as `rename()`, `group_by()`, and `slice()`, enriching readers' understanding and competency in data manipulation using R.
+The chapter gives a comprehensive illustration of using `dplyr` on the `mtcars` dataset. This practical demonstration has involved applying `dplyr` functions to a dataset and explaining the process and results. In addition to the basics, the chapter has also touched upon additional `dplyr` functions such as `rename()`, `group_by()`, and `slice()`, enriching readers' understanding and competency in data manipulation using R.
 
 Overall, this chapter has provided an in-depth understanding of `tibbles` and `dplyr`, their applications, and their importance in data manipulation and management in the R programming environment.
 
@@ -382,10 +376,6 @@ Overall, this chapter has provided an in-depth understanding of `tibbles` and `d
 \[1\] Müller, K., & Wickham, H. (2021). tibble: Simple Data Frames. R package version 3.1.3. https://CRAN.R-project.org/package=tibble
 
 \[2\] Wickham, H., François, R., Henry, L., & Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R package version 1.0.7. https://CRAN.R-project.org/package=dplyr
-
-\[3\] Bache, S. M., & Wickham, H. (2020). magrittr: A Forward-Pipe Operator for R. R package version 2.0.1.
-
-https://CRAN.R-project.org/package=magrittr
 
 Wickham, H. (2014). Tidy data. Journal of Statistical Software, 59(10), 1-23.
 
