@@ -1,6 +1,6 @@
 # Reading Data into R
 
-*Dec 30, 2023*
+**Chapter 4, *Last updated: Jan 1, 2023.***
 
 Dataframes and Tibbles are frequently employed data structures in R for storing and manipulating data. They facilitate the organization, exploration, and analysis of data.
 
@@ -10,9 +10,9 @@ Dataframes and Tibbles are frequently employed data structures in R for storing 
 
 2.  Similar to a spreadsheet or a SQL table, it is one of the most frequently employed data structures in R. Each column in a data.frame is a constant-length vector, and each row represents an observation or case.
 
-3.  Using the `data.frame()` function or by importing data from external sources such as CSV files, Excel spreadsheets, or databases, dataframe objects can be created in R.
+3.  dataframe objects can be created in R using the `data.frame()` function or by importing data from external sources such as CSV files, Excel spreadsheets, or databases.
 
-4.  dataframe objects have many useful built-in methods and functions for manipulating and summarizing data, including subsetting, merging, filtering, and aggregation. \[1\]
+4.  R has many useful built-in methods and functions for manipulating and summarizing data stored in dataframes, including subsetting, merging, filtering, and aggregation. \[1\]
 
 ### Creating a dataframe using raw data
 
@@ -45,7 +45,7 @@ print(people)
 
 ### The `women` dataset
 
-As an illustration, consider the `women` dataset inbuilt in R, which contains information about the heights and weights of women. It has just two variables:
+As an illustration, consider the `women` dataset inbuilt in R, which contains information about the heights and weights of women. \[2\] It has just two variables:
 
 1.  `height`: Height of each woman in inches
 
@@ -71,7 +71,9 @@ summary(women)
 
 ### The `mtcars` dataset
 
-The `mtcars` dataset inbuilt in R comprises data on the fuel consumption and other characteristics of 32 different automobile models. Here is a concise description of the 11 `mtcars` data columns:
+The `mtcars` dataset inbuilt in R comprises data on the fuel consumption and other characteristics of 32 different automobile models. \[2\]
+
+Here is a concise description of the 11 `mtcars` data columns:
 
 1.  `mpg`: Miles per gallon (fuel efficiency)
 
@@ -102,7 +104,7 @@ str(mtcars)
 
 ## Reading different file formats into a dataframe
 
-1.  We examine how to read data into a dataframe in R when the original data is stored in prominent file formats such as CSV, Excel, and Google Sheets.
+1.  We examine how to read data into a dataframe in R when the original data is stored in prominent file formats such as CSV, Excel, and Google Sheets. \[3\]
 
 2.  Before learning how to accomplish this, it is necessary to comprehend how to configure the Working Directory in R.
 
@@ -126,7 +128,7 @@ getwd()
 #setwd("C:/Users/YourUserName/Desktop")
 ```
 
-6.  We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. \[2\]
+6.  We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. \[3\]
 
 ### Reading a CSV file into a dataframe
 
@@ -144,13 +146,13 @@ df_csv <- read.csv("mtcars.csv")
 
 4.  In this example, the `read.csv()` function reads the mtcars.csv file into a data frame named `df_csv`.
 
-5.  If the file is not in the current working directory, the complete file path must be specified in the `read.csv()` function argument; otherwise, an error will occur.
+5.  If the file is not in the current working directory, the complete file path must be specified in the `read.csv()` function argument; otherwise, an error will occur. \[3\]
 
 ### Reading an Excel (xlsx) file into a dataframe
 
 1.  Suppose we wish to import a Microsoft Excel file named `mtcars.xlsx`, located in the Working Directory.
 
-2.  We can use the `read_excel` function in the R package `readxl`, illustrated as follows.
+2.  We can use the `read_excel` function in the R package `readxl`, illustrated as follows. \[3\]
 
 ```{r eval=FALSE}
 library(readxl)
@@ -159,7 +161,7 @@ df_xlsx <- read_excel("mtcars.xlsx")
 
 ### Reading a Google Sheet into a dataframe
 
-1.  Google Sheets is a ubiquitous cloud-based spreadsheet application developed by Google. It is a web-based application that enables collaborative online creation and modification of spreadsheets.
+1.  Google Sheets is a ubiquitous cloud-based spreadsheet application developed by Google. It is a web-based application that enables collaborative online creation and modification of spreadsheets. \[4\]
 
 2.  We can import data from a Google Sheet into a R dataframe, as follows.
 
@@ -192,7 +194,7 @@ sp500 <- gsheet2tbl(url500)
 
 -   The `paste()` function is used to combine the `prefix`, `sheetID` variables into a complete URL for accessing the Google Sheet.
 
--   The `gsheet2tbl()` function from the `gsheet` package is then used to read the specified Google Sheet into a dataframe called `sp500`, which can then be analyzed further in R.
+-   The `gsheet2tbl()` function from the `gsheet` package is then used to read the specified Google Sheet into a dataframe called `sp500`, which can then be analyzed further in R. \[4\]
 
 ### Joining or Merging two dataframes
 
@@ -227,11 +229,11 @@ gf <- gsheet2tbl(url)
 #df <- merge(sp500, gf , id = "Stock")
 ```
 
--   We now have a new dataframe named `df`, which contains the data got from merging the two dataframes `sp500` and `gf`.
+-   We now have a new dataframe named `df`, which contains the data got from merging the two dataframes `sp500` and `gf`. \[4\]
 
 ## Tibbles
 
-1.  A tibble is a contemporary and enhanced variant of a R data frame that is part of the `tidyverse` package collection.
+1.  A tibble is a contemporary and enhanced variant of a R data frame that is part of the `tidyverse` package collection. \[5\]
 
 2.  Tibbles are created and manipulated using the `dplyr` package, which provides a suite of functions optimized for data manipulation.
 
@@ -274,7 +276,7 @@ my_tibble
 
 -   This assigns the tibble representation of the data frame `my_df` to the variable `my_tibble`.
 
--   Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble.
+-   Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble. \[5\]
 
 ### Converting a tibble into a dataframe
 
@@ -296,38 +298,64 @@ my_df
 
 -   Consistent naming: Tibbles always have column names that are distinct and non-empty. This makes it simpler to refer to specific columns and prevents errors caused by duplicate or unnamed column names.
 
--   More informative errors: Tibbles provides more informative error messages that make it simpler to diagnose and resolve data-related problems.
+-   More informative errors: Tibbles provides more informative error messages that make it simpler to diagnose and resolve data-related problems. \[5\]
 
--   Fewer surprises: Tibbles have more stringent constraints than data frames, resulting in fewer surprises and unexpected behavior.
-
-## Summary of Chapter 4 -- Reading Data in R
+## Summary of Chapter 4 -- Reading Data into R
 
 In Chapter 4, we continue our exploration of data frames in R, focusing on reading various file formats into a data frame, managing the working directory, merging data frames, and the concept of tibbles, all with the overall objective of effectively reading data into R, for further analysis.
 
 R uses the concept of a working directory to manage files. By default, R looks for and saves files in the working directory. To check the current working directory, we use the `getwd()` function. We can change the working directory using the `setwd()` function. It's advisable to choose an easily accessible working directory and avoid using spaces, special characters, and non-ASCII characters in file paths.
 
-We then learn to read various file formats into a data frame. For a CSV file, we use the `read.csv()` function. Reading an Excel file into a data frame is accomplished using the `read_excel` function from the `readxl` package. We also explored reading data from Google Sheets using the `gsheet2tbl` function in the `gsheet` package.
+We can read various file formats into a data frame. For a CSV file, we use the `read.csv()` function. Reading an Excel file into a data frame is accomplished using the `read_excel` function from the `readxl` package. We also explored reading data from Google Sheets using the `gsheet2tbl` function in the `gsheet` package.
 
 When dealing with multiple data sources, we may need to merge or join two data frames. R provides the `merge()` function to merge data frames based on a common key.
 
-The final concept introduced in this chapter is tibbles. A tibble is a modern reimagining of the data frame, part of the tidyverse collection of packages. Tibbles are created and manipulated using the `dplyr` package. Tibbles have several distinct characteristics, such as unique, non-empty column names, better subsetting behavior, and improved output for large datasets. We learned how to create a tibble using the `tibble()` function, and convert a data frame to a tibble using the `as_tibble()` function, and vice versa with `as.data.frame()`.
+The final concept introduced in this chapter is tibbles. A tibble is a modern reimagining of the data frame, part of the tidyverse collection of packages. Tibbles are created and manipulated using the `dplyr` package. Tibbles have several distinct characteristics, such as unique, non-empty column names, better subsetting behavior, and improved output for large datasets. We reviewed how to create a tibble using the `tibble()` function, and convert a data frame to a tibble using the `as_tibble()` function, and vice versa with `as.data.frame()`.
 
 In conclusion, this chapter built upon the concept of data frames and tibbles, showing how they can be used as a versatile tool for reading and storing data in various formats and getting ready to further explore the data.
 
 ## References
 
-\[1\]
+\[1\] RDocumentation. (n.d.). data.frame function. Retrieved from
 
-R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. **https://www.R-project.org/**
+[https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame"](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame")
 
-R Core Team. (2022). Vectors, Lists, and Arrays. R Documentation. https://cran.r-project.org/doc/manuals/r-release/R-intro.html#vectors-lists-and-arrays
+"Tutorialspoint. (n.d.). R - Data Frames. Retrieved from <https://www.tutorialspoint.com/r/r_data_frames.htm>
 
-Wickham, H., & Grolemund, G. (2016). R for data science: Import, tidy, transform, visualize, and model data. O'Reilly Media, Inc.
+Statistics Globe. (n.d.). What is a Data Frame in R? (3 Examples) \| data.frame Object Explained. Retrieved from <https://statisticsglobe.com/what-is-data-frame-r>
 
-R Core Team. (2022, March 2). Data Frames. R Documentation. https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/data.frame
+\[2\] McNeil, D. R. (1977). Interactive Data Analysis. Wiley. In *women: Average Heights and Weights for American Women*. Retrieved from <https://rdocumentation.org/packages/datasets/versions/3.6.2/topics/women>
 
-\[2\]
+Becker, R. A., Chambers, J. M., & Wilks, A. R. (1988). *The New S Language*. Wadsworth & Brooks/Cole. In *iris: Edgar Anderson's Iris Data*. Retrieved from <https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/iris>
 
-OpenIntro. (2022). 1.3 RStudio and working directory. In Introductory Statistics with Randomization and Simulation (1st ed.). https://www.openintro.org/book/isrs/
+Krasser, R. (2023, October 11). *Explore mtcars*. The Comprehensive R Archive Network. Retrieved from <https://cran.r-project.org/web/packages/explore/vignettes/explore_mtcars.html>
 
-R Core Team. (2021). getwd(): working directory; setwd(dir): change working directory. In R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://stat.ethz.ch/R-manual/R-devel/library/base/html/getwd.html
+RDocumentation. (n.d.). *mtcars: Motor Trend Car Road Tests*. Retrieved from <https://www.rdocumentation.org/packages/datasets/versions/3.6.2/topics/mtcars>
+
+Henderson, V., & Velleman, P. (1981). *Motor Trend Car Road Tests*. Retrieved from <https://web.mit.edu/r/current/lib/R/library/datasets/html/mtcars.html>
+
+Wickham, H. (2016). Ggplot2: Elegant graphics for data analysis (2nd ed.). Springer International Publishing.
+
+\[3\] PsyTeachR. (n.d.). Chapter 1: Importing data from different file formats into R. Retrieved from <https://psyteachr.github.io>
+
+Boston University School of Public Health. (n.d.). Reading and Writing Data to and from R. Retrieved from <http://sphweb.bumc.bu.edu>
+
+RStudio. (n.d.). An Introduction to R - 7 Reading data from files. Retrieved from <https://rstudio.github.io>
+
+Andrews, M. J. (n.d.). Read Multiple Files into a Single Data Frame. Retrieved from <http://www.mjandrews.org>
+
+ProgrammingR. (n.d.). A Guide To File Readers And Data Conversion In R. Retrieved from <http://www.programmingr.com>
+
+FreeCodeCamp. (n.d.). How to Work With Data Frames and CSV Files in R --- A Detailed Introduction with Examples. Retrieved from <http://www.freecodecamp.org>
+
+R Core Team. (2021). getwd(): working directory; setwd(dir): change working directory. In R: A language and environment for statistical computing. R Foundation for Statistical Computing. Retrieved from https://stat.ethz.ch/R-manual/R-devel/library/base/html/getwd.html
+
+\[4\] gsheet2tbl. (n.d.). In gsheet: Download Google Sheets Using Just the URL. Retrieved from <https://rdrr.io/cran/gsheet/man/gsheet2tbl.html>.
+
+\[5\] Tibble overview and usage. (n.d.). In tibble: Simple Data Frames. Retrieved from [tibble.tidyverse.org](https://tibble.tidyverse.org/).
+
+Analytics Steps. (n.d.). Tibbles in R Programming. Retrieved from [www.analyticssteps.com](https://www.analyticssteps.com/).
+
+Tibble creation and name repair. (n.d.). In tibble: Build a data frame. Retrieved from [tibble.tidyverse.org](https://tibble.tidyverse.org/).
+
+CRAN. (n.d.). Tibbles vs data frames: Printing and subsetting. Retrieved from [cran.r-project.org](https://cran.r-project.org/).

@@ -307,8 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="exploring-data-structures" class="level1">
 <h1>Exploring Data Structures</h1>
-<section id="chapter-3-last-updated-dec-30-2023." class="level4">
-<h4 class="anchored" data-anchor-id="chapter-3-last-updated-dec-30-2023.">Chapter 3, <em>Last updated: Dec 30, 2023.</em></h4>
+<p><strong>Chapter 3, <em>Last updated: Jan 1, 2023.</em></strong></p>
 <p>The R programming language includes a number of data structures that are frequently employed in data analysis and statistical modeling. These are some of the most popular data structures in R:</p>
 <ol type="1">
 <li><p><strong>Vector</strong>: A vector is a one-dimensional array that stores identical data types, such as numeric, character, or logical. The <code>c()</code> function can be used to create vectors, and indexing can be used to access individual vector elements.</p></li>
@@ -318,14 +317,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Array</strong>: An array is a multidimensional data structure that can contain data of the same data type in user-specified dimensions. Arrays can be constructed using the <code>array()</code> function, and elements can be accessed using multiple indexing.</p></li>
 <li><p><strong>List</strong>: A list is an object that may comprise elements of various data types, including vectors, matrices, data frames, and even other lists. The <code>list()</code> function can be used to construct lists, while indexing can be used to access individual elements.</p></li>
 </ol>
-<p>These data structures are helpful for storing and manipulating data in R, and they can be utilized in numerous applications, such as statistical analysis and data visualization. We will focus our attention on Vectors, Factors and Dataframes, since we believe that these are the three most useful data structures. [1]</p>
-</section>
+<p>These data structures are helpful for storing and manipulating data in R, and they can be utilized in numerous applications, such as statistical analysis and data visualization. We will focus our attention on Vectors, Factors and Dataframes, since these are the three most popular data structures. [1]</p>
 <section id="vectors" class="level2">
 <h2 class="anchored" data-anchor-id="vectors">Vectors</h2>
 <ol type="1">
 <li><p>A vector is a fundamental data structure in R that can hold a sequence of values of the same data type, such as integers, numeric, character, or logical values.</p></li>
 <li><p>A vector can be created using the <code>c()</code> function.</p></li>
-<li><p>R supports two forms of vectors: atomic vectors and lists. Atomic vectors are limited to containing elements of a single data type, such as numeric or character. Lists, on the other hand, can contain elements of various data types and structures. [1]</p></li>
+<li><p>R supports two forms of vectors: atomic vectors and lists. Atomic vectors are limited to containing elements of a single data type, such as numeric or character. Lists, on the other hand, can contain elements of various data types and structures. [2]</p></li>
 </ol>
 <section id="vectors-in-r" class="level3">
 <h3 class="anchored" data-anchor-id="vectors-in-r">Vectors in R</h3>
@@ -424,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><p>We perform addition, subtraction, multiplication, division, and exponentiation on these vectors using the arithmetic operators +, -, *, /, and ^ respectively.</p></li>
+<li><p>We can perform addition, subtraction, multiplication, division, and exponentiation on these vectors using the arithmetic operators +, -, *, /, and ^ respectively.</p></li>
 <li><p>R also supports other arithmetic operations such as modulus, integer division, and absolute value:</p></li>
 </ul>
 <div class="cell">
@@ -787,11 +785,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] -0.9770974</code></pre>
 </div>
 </div>
-<p>Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways.</p>
+<p>Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways. [2]</p>
 </section>
 <section id="strings" class="level3">
 <h3 class="anchored" data-anchor-id="strings">Strings</h3>
-<p>Here are some common string operations that can be conducted using the provided vector examples.</p>
+<p>Here are some common string operations that can be conducted using the provided vector examples. [3]</p>
 <ol type="1">
 <li><strong>Substring</strong>: The <code>substr()</code> function can be used to extract a substring from a character vector. To extract the first three characters of each name in the “names” vector, for instance, we can use:</li>
 </ol>
@@ -905,6 +903,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p>[1] R Core Team. (2021). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. https://www.R-project.org/</p>
 <p>R Core Team. (2022). Vectors, Lists, and Arrays. R Documentation. https://cran.r-project.org/doc/manuals/r-release/R-intro.html#vectors-lists-and-arrays</p>
+<p>[2] Department of Statistics, University of California, Berkeley. (n.d.). 3 Data Types and Vectors. <em>An Introduction to Programming with R</em>. Retrieved from <a href="https://www.stat.berkeley.edu" class="uri">https://www.stat.berkeley.edu</a></p>
+<p>Skill Code Lab. (2023, June 13). Mastering Vectors in R: A Comprehensive Guide for Effective Data Manipulation. Retrieved from <a href="https://skillcodelab.com/mastering-vectors-in-r-a-comprehensive-guide-for-effective-data-manipulation/" class="uri">https://skillcodelab.com/mastering-vectors-in-r-a-comprehensive-guide-for-effective-data-manipulation/</a></p>
+<p>Author Unknown. (n.d.). Chapter 14 Descriptive Statistics for a Vector. <em>Basic R Guide for NSC Statistics</em>. Retrieved from <a href="https://bookdown.org" class="uri">https://bookdown.org</a></p>
+<p>[3] <a href="https://bookdown.org">An(other) introduction to R</a>. (n.d.). Chapter 6 String manipulation with stringr and regular expressions. Retrieved from <a href="https://bookdown.org">bookdown.org</a>.</p>
+<p>Smith, O. (n.d.). Strings in R Tutorial. DataCamp. Retrieved from <a href="https://www.datacamp.com/community/tutorials/strings-in-r">DataCamp</a>.</p>
 
 
 </section>

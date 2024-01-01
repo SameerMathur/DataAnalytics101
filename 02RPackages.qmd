@@ -1,6 +1,6 @@
 # Exploring R Packages
 
-#### Chapter 2, *Last updated: Dec 31, 2023.*
+**Chapter 2, *Last updated: Dec 31, 2023.***
 
 1.  R packages are collections of code, data, and documentation that enhance the capabilities of R, a programming language and software environment used for statistical computing and graphics.
 
@@ -74,7 +74,7 @@ There are several popular R packages useful for summarizing, transforming, manip
 
 7.  `ggplot2`: A powerful and flexible package for creating beautiful and customizable data visualizations using a layered grammar of graphics approach.
 
-8. `plotly`: Enables interactive and dynamic data visualizations, allowing users to create interactive plots, charts, and dashboards that can be explored and analyzed. \[2\]
+8.  `plotly`: Enables interactive and dynamic data visualizations, allowing users to create interactive plots, charts, and dashboards that can be explored and analyzed. \[2\]
 
 ## Sample Plot
 
@@ -94,8 +94,7 @@ ggplot(mtcars, aes(wt, mpg)) +
   geom_point() 
 ```
 
-Here, the command `library(ggplot2)` loads the ggplot2 package, making its functions available for use. 
-
+Here, the command `library(ggplot2)` loads the ggplot2 package, making its functions available for use.
 
 ### Getting help
 
@@ -117,7 +116,7 @@ Special emphasis is given to the Comprehensive R Archive Network (CRAN), a centr
 
 The chapter also furnishes a list of well-regarded R packages, each catering to a distinct need, from `dplyr` for manipulation of data, `tidyr` for rearranging data, `ggplot2` for designing visualizations, among others. A practical example of using the `ggplot2` package to generate a scatterplot is provided.
 
-For users who encounter challenges, the chapter recommends consulting the documentation that accompanies each package, making use of the help system built into R, or exploring online resources such as blogs, forums, and Q&A websites. 
+For users who encounter challenges, the chapter recommends consulting the documentation that accompanies each package, making use of the help system built into R, or exploring online resources such as blogs, forums, and Q&A websites.
 
 ## References
 
@@ -144,4 +143,3 @@ Wickham, H. (2019). stringr: Simple, Consistent Wrappers for Common String Opera
 Sievert, C. (2021). plotly: Create Interactive Web Graphics via 'plotly.js'. R package version 4.10.0. Retrieved from [**https://CRAN.R-project.org/package=plotly**](https://cran.r-project.org/package=plotly)
 
 \[3\] R Core Team. (2021). Writing R Extensions. Retrieved from [**https://cran.r-project.org/doc/manuals/r-release/R-exts.html**](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
-

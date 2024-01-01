@@ -1,6 +1,6 @@
 # Exploring R programming
 
-#### Chapter 1, *Last updated: Dec 31, 2023*
+**Chapter 1, *Last updated: Dec 31, 2023***
 
 ## Overview of R programming
 
@@ -253,7 +253,6 @@ sales = 9
 3.  R is a case-sensitive language, which means that `Sales` and `sales` are considered as two different variables.
 
 4.  Various operations can be performed using variables in R.
-
 
 ```{r}
 # Multiply the variable "sales" by 2
