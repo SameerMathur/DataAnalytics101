@@ -1,6 +1,6 @@
 # Categorical x Categorical data (2 of 2)
 
-#### Chapter 9, *Last updated: Dec 30, 2023.*
+#### Chapter 9, *Last updated: Jan 02, 2024.*
 
 ## Exploring Multivariate Categorical Data
 
@@ -8,9 +8,9 @@ This chapter explores how to summarize and visualize *multivariate, categorical*
 
 1.  Multivariate categorical variables allow us to analyze relationships between **three or more** categorical variables respectively.
 
-2.  This form of analysis can help **reveal complex interactions and dependencies** between multiple variables that cannot be detected in bivariate analyses. Both bivariate and multivariate analyses are essential in statistical and data analysis as they allow us to uncover relationships and patterns in data
+2.  This form of analysis can help **reveal complex interactions and dependencies** between multiple variables that cannot be detected in bivariate analyses. Both bivariate and multivariate analyses are essential in statistical and data analysis as they allow us to uncover relationships and patterns in data. \[1\]
 
-3.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
+3.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`. \[2\]
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
@@ -19,11 +19,13 @@ library(tibble, quietly = TRUE, warn.conflicts = FALSE)
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
+
 # Convert relevant columns into factor variables
 tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
 tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
 tb$vs <- as.factor(tb$vs) # vs = {0,1}, v-shaped engine, 0:no, 1:yes
 tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
+
 # Directly access the data columns of tb, without tb$mpg
 attach(tb)
 ```
@@ -45,6 +47,9 @@ attach(tb)
 2.  We can create a three-way contingency table of `cyl`, `gear`, and `am` using the `table()` function.
 
 ```{r}
+# Create a contingency table showing the frequencies of car counts 
+# grouped by cylinder number ('cyl'), number of gears ('gear'), 
+# and transmission type ('am').
 table(cyl,
       gear,
       am)
@@ -54,17 +59,21 @@ table(cyl,
 
 -   Notice that we are segmenting the tables based on the 3rd argument given the table function, which is the transmission `am`.
 
-3.  We could alternately run the following code and instead segment the tables based on the cylinders `cyl`.
+3.  We could alternately run the following code and instead segment the tables based on the cylinders `cyl`. \[2\]
 
 ```{r}
+# Create a contingency table with counts of cars grouped by 
+# transmission ('am'), number of gears ('gear'), and cylinder ('cyl')
 table(am,
       gear,
       cyl)
 ```
 
-4.  `xtabs()`: We can also create a three-way contingency table of `cyl`, `gear`, and `am` using the `xtabs()` function
+4.  `xtabs()`: We can also create a three-way contingency table of `cyl`, `gear`, and `am` using the `xtabs()` function. \[2\]
 
 ```{r}
+# Use xtabs to create a cross-tabulation of cylinder count ('cyl'), 
+# gear count ('gear'), and transmission type ('am') 
 xtabs(~ cyl + gear + am,
       data = tb)
 ```
@@ -74,6 +83,8 @@ xtabs(~ cyl + gear + am,
 5.  `ftable()`: The `ftable()` function is employed to generate a 'flat' contingency table, which is essentially a higher-dimensional contingency table displayed in a two-dimensional format. We can also create a three-way contingency table of `gear`, `cyl`, and `am` using the following code:
 
 ```{r}
+# Create a flat contingency table using 'ftable' to display the relationship between 
+# gear count ('gear'), cylinder count ('cyl'), and transmission type ('am') 
 ftable(gear + cyl ~ am, 
        data = tb)
 ```
@@ -85,6 +96,8 @@ ftable(gear + cyl ~ am,
 -   The `+` operator denotes that both `gear` and `cyl` will be included in the row labels. \[2\]
 
 ```{r}
+# Generate a flat contingency table displaying the relationship between 
+# gear ('gear') and a combination of cylinder ('cyl') and transmission ('am') 
 ftable(gear ~ cyl + am, 
        data = tb)
 ```
@@ -93,15 +106,15 @@ ftable(gear ~ cyl + am,
 
 -   In both scenarios, a `ftable` provides a more compact view of the three-way relationship among the `gear`, `cyl`, and `am` variables. However, the orientation of the variables in the rows and columns changes, providing different views of the data and potentially making certain patterns more evident depending on the question we're trying to answer.
 
--   The exact choice between `ftable(gear + cyl ~ am, data = tb)` and `ftable(gear ~ cyl + am, data = tb)` will depend on what specific relationships you're most interested in exploring in your data.
+-   The exact choice between `ftable(gear + cyl ~ am, data = tb)` and `ftable(gear ~ cyl + am, data = tb)` will depend on what specific relationships you're most interested in exploring in your data. \[2\]
 
 ### Visualization using a Faceted Bar Plot in `ggplot`
 
-1.  A Three-Dimensional Bar Plot is a generalization of a conventional two-dimensional bar graph, expanded into a third dimension. Rather than using bars at specific x coordinates in a two-dimensional plane, we utilize a grid of bars on the x-y plane, extending upwards in the z direction to indicate the data's magnitude. \[6\]
+1.  A Three-Dimensional Bar Plot is a generalization of a conventional two-dimensional bar graph, expanded into a third dimension. Rather than using bars at specific x coordinates in a two-dimensional plane, we utilize a grid of bars on the x-y plane, extending upwards in the z direction to indicate the data's magnitude. \[4\]
 
 2.  Here is some sample code:
 
-```{r}
+```{r warning=FALSE}
 # Load necessary package
 library(ggplot2)
 
@@ -112,18 +125,20 @@ count_df <- table(tb$cyl,
 # Convert table to a data frame for plotting
 count_df <- as.data.frame.table(count_df)
 
-# Rename columns
+# Rename columns for clarity
 names(count_df) <- c("cyl", "am", "gear", "count")
 
-# Create the plot
+# Create the plot using ggplot
 ggplot(count_df, 
-       aes(x=cyl, y=count, 
+       aes(x=cyl, 
+           y=count, 
            fill=gear)) +
   geom_bar(stat="identity", 
-           position="dodge") +
-  facet_grid(~am) +
+           position="dodge") +  # Use dodge position for side-by-side bars
+  facet_grid(~am) +  # Create a facet for each transmission type
   labs(
-    title = "Count by Transmission (1 = Manual, 0 = Automatic), Cylinders and Gears", 
+    title = "Count by Transmission (1 = Manual, 0 = Automatic), 
+    Cylinders and Gears", 
     x = "Cylinders",
     y = "Count",
     fill = "Gears"
@@ -131,8 +146,9 @@ ggplot(count_df,
   # Add count labels to the bars
   geom_text(aes(label = count), 
             position = position_dodge(width = 0.9), 
-            vjust = -0.5) +
-  theme_minimal()
+            vjust = -0.5) +  # Vertically adjust text to sit above bars
+  theme_minimal()  # Use a minimal theme for a clean look
+
 ```
 
 -   This code creates a faceted bar plot to visually represent the frequency of combinations of three categorical variables: `cyl` (Cylinders), `am` (Transmission), and `gear` (Gears).
@@ -153,7 +169,7 @@ ggplot(count_df,
 
 -   The `aes(label = count)` inside `geom_text()` tells ggplot to use the `count` column in the data frame as the labels for each bar. The `position_dodge(width = 0.9)` argument ensures that the labels are properly aligned with the corresponding bars in the grouped plot, and `vjust = -0.5` adjusts the vertical position of the labels to make them appear just above the bars.
 
--   This code thus provides a clear and insightful visualization of the frequency of each combination of `cyl`, `am`, and `gear`. \[7\]
+-   This code thus provides a clear and insightful visualization of the frequency of each combination of `cyl`, `am`, and `gear`. \[4\]
 
 3.  Here is some alternate sample code:
 
@@ -167,44 +183,49 @@ count_df <- table(tb$cyl, tb$am, tb$gear)
 # Convert table to a data frame for plotting
 count_df <- as.data.frame.table(count_df)
 
-# Rename columns
+# Rename columns for better understanding
 names(count_df) <- c("cyl", "am", "gear", "count")
 
-# Create the plot
+# Create the plot using ggplot2
 ggplot(count_df, aes(x=am, y=count, fill=gear)) +
   geom_bar(stat="identity", 
-           position="dodge") +
-  facet_grid(~cyl) +
+           position="dodge") +  
+  # Use dodge to display separate bars for each gear type
+  facet_grid(~cyl) +  
+  # Facet by cylinder count for separate plots for each cylinder type
   labs(
-    title = "Frequency by Cylinders, Transmission and Gears", 
-    x = "Tranmission",
-    y = "Count",
-    fill = "Gears"
+    title = "Frequency by Cylinders, Transmission and Gears",  
+    x = "Tranmission",  # X-axis label
+    y = "Count",  # Y-axis label
+    fill = "Gears"  # Legend title
   ) +
-   # Add count labels to the bars
+  # Add count labels to each bar for clarity
   geom_text(aes(label = count), 
             position = position_dodge(width = 0.9), 
-            vjust = -0.5) +
-  theme_minimal()
+            vjust = -0.5) +  # Adjust the position of the text labels
+  theme_minimal()  # Use a minimal theme for a clean appearance
+
 ```
 
 -   This code is similar to the previous one; both create a faceted bar plot to display the frequencies of the levels of three categorical variables. The main difference between the two lies in the aesthetic mappings and the facet specification in the `ggplot()` function call.
 
 -   In this new code, the x-axis mapping in `aes()` is changed from `cyl` (Cylinders) to `am` (Transmission). Hence, the x-axis of the bar plot will now depict the Transmission type instead of Cylinders.
 
--   Similarly, the `facet_grid()` function, which was previously applied to `am`, is now applied to `cyl`. This means that the plot will now be faceted by the Cylinders variable. Each facet (or subplot) will correspond to a different number of Cylinders (4, 6, or 8). \[7\]
+-   Similarly, the `facet_grid()` function, which was previously applied to `am`, is now applied to `cyl`. This means that the plot will now be faceted by the Cylinders variable. Each facet (or subplot) will correspond to a different number of Cylinders (4, 6, or 8). \[4\]
 
 ### Visualization using a Mosaic Plot
 
-```{r}
+```{r warning=FALSE}
 # Load necessary packages
 library(vcd)
+
 # Create a mosaic plot
 vcd::mosaic(~gear+cyl+am, 
        data = tb, 
-       main = "Mosaic Plot of 3 variables",
-       shade = TRUE,
-       highlighting = "cyl" )
+       main = "Mosaic Plot of 3 variables",  # Set the title 
+       shade = TRUE,  # Apply shading to highlight differences
+       highlighting = "cyl" )  # Highlight based on cylinders
+
 ```
 
 1.  The provided R code generates a mosaic plot using the `vcd` package, specifically focusing on the `gear`, `cyl`, and `am` variables. A mosaic plot is a visual representation of the frequencies or proportions of combinations of categorical variables.
@@ -217,13 +238,13 @@ vcd::mosaic(~gear+cyl+am,
 
 -   `shade = TRUE` means that shading is applied to the cells in the plot. The shading can help to differentiate the cells visually based on the residuals from a model of independence.
 
--   `highlighting = "cyl"` means that the `cyl` variable's levels will be distinctly colored. This highlighting helps to visually emphasize the differences among `cyl` categories in the plot. \[7\]
+-   `highlighting = "cyl"` means that the `cyl` variable's levels will be distinctly colored. This highlighting helps to visually emphasize the differences among `cyl` categories in the plot. \[5\]
 
 2.  The generated mosaic plot provides an effective visual exploration of the joint distribution of `gear`, `cyl`, and `am` variables in the `tb` dataset, highlighting the `cyl` variable.
 
 ## Four-Way Relationships
 
--   Studying a four-way relationship between four categorical variables, involves looking at their interactions to see how they work together
+-   Studying a four-way relationship between four categorical variables, involves looking at their interactions to see how they work together. \[1\]
 
 ### Four-Dimensional Contingency Tables
 
@@ -234,9 +255,11 @@ vcd::mosaic(~gear+cyl+am,
 -   `gear` is the number of forward gears in the car.
 -   `vs` indicates the engine shape (0 = V-shaped, 1 = straight).
 
-2.  Suppose we wish to create a 4-way Contingency Table. Recall that the `ftable()` function provides an easy way to summarize categorical data in a "flat" table, which can make the data easier to understand and interpret. \[8\]
+2.  Suppose we wish to create a 4-way Contingency Table. Recall that the `ftable()` function provides an easy way to summarize categorical data in a "flat" table, which can make the data easier to understand and interpret. \[2\]
 
 ```{r}
+# Create a flat contingency table with transmission ('am') and 
+# cylinder ('cyl') against gear ('gear') and engine shape ('vs')
 ftable(am + cyl ~ gear + vs,
        data = tb)
 ```
@@ -248,9 +271,12 @@ ftable(am + cyl ~ gear + vs,
 -   The plus sign (+) between variables indicates that we want to consider all combinations of these variables.
 -   The resulting table shows the counts of each combination of `am` and `cyl` for each combination of gear and vs.
 
-4.  We can personalize the 4-way contingency table in several ways. Consider this alternate code. \[8\]
+4.  We can personalize the 4-way contingency table in several ways. Consider this alternate code. \[2\]
 
 ```{r}
+# Create a flat contingency table showing the relationship between 
+# transmission ('am'), cylinder ('cyl'), and engine shape ('vs') 
+# against the number of gears ('gear')
 ftable(am + cyl + vs ~ gear,
        data = tb)
 ```
@@ -263,19 +289,21 @@ ftable(am + cyl + vs ~ gear,
 
 -   In this new code, we have `am + cyl + vs ~ gear`, which means that we now have three row variables (`am`, `cyl`, and `vs`) and one column variable (`gear`). This will result in a table showing the counts of each combination of `am`, `cyl`, and `vs` for each level of `gear`.
 
--   In short, the new code has added `vs` as a third row variable and removed it from the column variables, thus changing the structure and the interpretation of the resulting table.
+-   In short, the new code has added `vs` as a third row variable and removed it from the column variables, thus changing the structure and the interpretation of the resulting table. \[3\]
 
 ### Visualization using a Mosaic Plot
 
-1.  We can visualize four dimensional Contingency Tables using a Mosaic Plot. This is an extension to our previous discussions about two-way and three-way contingency tables. Consider the following code:
+1.  We can visualize four dimensional Contingency Tables using a Mosaic Plot. This is an extension to our previous discussions about two-way and three-way contingency tables. \[5\]
+
+    Consider the following code:
 
 ```{r}
 # Create a mosaic plot of cyl vs, gear, am
 vcd::mosaic(~ cyl + vs + gear + am, 
             data = tb, 
-            main = "Mosaic Plot of 4 variables",
-            shade = TRUE,
-            highlighting = "cyl" )
+            main = "Mosaic Plot of 4 variables",  # Title 
+            shade = TRUE,  # Apply shading 
+            highlighting = "cyl" )  # Highlight based on cylinder
 ```
 
 2.  **Discussion**:
@@ -288,52 +316,70 @@ vcd::mosaic(~ cyl + vs + gear + am,
 
 -   `shade = TRUE` means that the cells in the mosaic plot will be shaded. The shading adds an extra visual element, which can make it easier to compare proportions.
 
--   Finally, `highlighting = "cyl"` means that the cells in the plot will be highlighted based on the levels of the `cyl` variable. This can help to visually differentiate the categories of this variable.
+-   Finally, `highlighting = "cyl"` means that the cells in the plot will be highlighted based on the levels of the `cyl` variable. This can help to visually differentiate the categories of this variable. \[5\]
 
-## Summary of Chapter 10 -- Categorical x Categorical data (2 of 2)
+## Summary of Chapter 9 -- Categorical x Categorical data (2 of 2)
 
-In the third installment of our "Categorical Data" series, we explore the world of multivariate categorical variables. Specifically, we focus on three-dimensional analyses that unveil complex relationships and dependencies between numerous variables.
+In this chapter, we explore the world of multivariate categorical variables. Specifically, we focus on three-dimensional analyses that unveil complex relationships and dependencies between numerous variables. We utilize the R programming language, demonstrating a range of functions for constructing three-dimensional contingency tables. We also delve into segmenting these tables based on various variables, offering unique perspectives on the data.
 
-We utilize the R programming language, demonstrating a range of functions for constructing three-dimensional contingency tables. We also delve into segmenting these tables based on various variables, offering unique perspectives on the data.
+Further, we expand on visualizing this data, discussing the creation of three-dimensional bar plots and mosaic plots. These powerful visual tools assist in data interpretation by representing the frequency of combinations of multiple variables. We don't limit ourselves to three-dimensional analysis; we advance into examining four-way relationships between categorical variables. Here, we utilize four-dimensional contingency tables and mosaic plots for analysis and visualization.
 
-Further, we expand on visualizing this data, discussing the creation of three-dimensional bar plots and mosaic plots. These powerful visual tools assist in data interpretation by representing the frequency of combinations of multiple variables.
-
-We don't limit ourselves to three-dimensional analysis; we advance into examining four-way relationships between categorical variables. Here, we utilize four-dimensional contingency tables and mosaic plots for analysis and visualization.
-
-In essence, this chapter provides a robust understanding of multivariate categorical data handling and visualization, preparing readers to navigate and analyze complex datasets effectively.
-
-Overall, these three chapters together provide a comprehensive understanding of handling and visualizing multivariate categorical data.
+In essence, this chapter provides a robust understanding of multivariate categorical data handling and visualization, preparing readers to navigate and analyze complex datasets effectively. Overall, these three chapters together provide a comprehensive understanding of handling and visualizing multivariate categorical data.
 
 ## References
 
+**Categorical Data Analysis:**
+
 \[1\] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
 
-Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
-
-Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html>
 
 Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.
 
-\[2\] R Core Team. (2020). ftable: Flat Contingency Tables. In R Documentation. Retrieved from https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ftable
+Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.
 
-Unwin, A. (2015). Graphical data analysis with R. CRC Press.
+Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
+
+**Basic R programmng:**
+
+\[2\] Crawley, M. J. (2007). The R Book. Wiley.
+
+Friendly, M., & Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.
+
+Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
+
+R Core Team. (2020). ftable: Flat Contingency Tables. In R Documentation. Retrieved from https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ftable
+
+**Data Visualization:**
+
+\[3\] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O'Reilly Media.
 
 Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.
 
-Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
+Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
 
-\[3\] Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
+Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.
 
-\[4\] Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd
+Heiberger, R. M., & Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
+
+Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data & Analytics Series.
+
+Unwin, A. (2015). Graphical data analysis with R. CRC Press.
+
+Wilke, C. O. (2019). Fundamentals of Data Visualization. O'Reilly Media.
+
+**ggplot2:**
+
+\[4\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
+
+Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+
+Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
+
+**Mosaic plot:**
+
+\[5\] Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
+
+Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd
 
 Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.
-
-Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
-
-\[5\] R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
-
-\[6\] Unwin, A., Theus, M., & Hofmann, H. (2006). Graphics of large datasets: visualizing a million. Springer Science & Business Media.
-
-\[7\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag.
-
-Meyer, D., Zeileis, A., & Hornik, K. (2006). The strucplot framework: Visualizing multi-way contingency tables with vcd. Journal of Statistical Software, 17(3), 1-48.
