@@ -237,6 +237,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Three Dimensions (3D)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: Overview of the S&amp;P500</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18LiveCaseREIT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case (2): REITs in the S&amp;P500</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -271,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#violin-plot" id="toc-violin-plot" class="nav-link" data-scroll-target="#violin-plot">Violin Plot</a></li>
   <li><a href="#quantile-quantile-q-q-plot" id="toc-quantile-quantile-q-q-plot" class="nav-link" data-scroll-target="#quantile-quantile-q-q-plot">Quantile-Quantile (Q-Q) Plot</a></li>
   </ul></li>
-  <li><a href="#summary-of-chapter-12-continuous-data-1-of-2" id="toc-summary-of-chapter-12-continuous-data-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-12-continuous-data-1-of-2">Summary of Chapter 12 – Continuous Data (1 of 2)</a></li>
+  <li><a href="#summary-of-chapter-10-continuous-data-1-of-2" id="toc-summary-of-chapter-10-continuous-data-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-10-continuous-data-1-of-2">Summary of Chapter 10 – Continuous Data (1 of 2)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -284,125 +320,113 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="continuous-data-1-of-2" class="level1">
 <h1>Continuous Data (1 of 2)</h1>
-<section id="chapter-10-last-updated-dec-30-2023." class="level4">
-<h4 class="anchored" data-anchor-id="chapter-10-last-updated-dec-30-2023.">Chapter 10, <em>Last updated: Dec 30, 2023.</em></h4>
+<section id="chapter-10-last-updated-jan-02-2024." class="level4">
+<h4 class="anchored" data-anchor-id="chapter-10-last-updated-jan-02-2024.">Chapter 10, <em>Last updated: Jan 02, 2024.</em></h4>
 </section>
 <section id="exploring-univariate-continuous-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-univariate-continuous-data">Exploring Univariate Continuous Data</h2>
 <p>This chapter explores how to summarize and visualize <em>univariate, continuous</em> data.</p>
 <ol type="1">
 <li><p><strong>Univariate</strong> continuous data refers to data coming from <strong>one feature or variable</strong>, which could take on an infinite number of possible values, typically within an interval [1].</p></li>
-<li><p>For instance, in the <code>mtcars</code> dataset in R, variables like <code>mpg</code> (miles per gallon), <code>wt</code> (weight), and <code>hp</code> (horsepower) epitomize continuous data. They are not limited to specific, separate numbers and can encompass any value, including decimal points, within their respective ranges. [2]</p></li>
-<li><p>We will leverage the capabilities of R programming and the <code>dplyr</code> package to compute descriptive statistics in order to succinctly represent our data. Further on, the spotlight will be on visualization. With the help of the robust <code>ggplot</code> package, we will create {bee swarm plots, stem-and-leaf plots, histograms, density plots, box plots, violin plots}. These plots will not only represent our univariate continuous data but also facilitate our understanding of data distribution, outliers, and central tendency.</p></li>
-<li><p><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</p></li>
+<li><p>For instance, in the <code>mtcars</code> dataset in R, variables like <code>mpg</code> (miles per gallon), <code>wt</code> (weight), and <code>hp</code> (horsepower) epitomize continuous data. They are not limited to specific, separate numbers and can encompass any value, including decimal points, within their respective ranges.</p></li>
+<li><p><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>. [1]</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="measures-of-central-tendency" class="level3">
 <h3 class="anchored" data-anchor-id="measures-of-central-tendency">Measures of Central Tendency</h3>
 <ol type="1">
-<li><p>In our journey of understanding data, we often turn to certain statistical tools, among which, the measures of central tendency play a pivotal role. These measures provide a way to summarize our data with a single value that represents the “center” or the “average” of our data distribution. [1]</p></li>
+<li><p>In our journey of understanding data, we often turn to certain statistical tools, among which, the measures of central tendency play a pivotal role. These measures provide a way to summarize our data with a single value that represents the “center” or the “average” of our data distribution. [2]</p></li>
 <li><p>Primarily, there are three measures of central tendency that we often rely on: the mean, median, and mode. [2]</p></li>
-<li><p>As an illustration, here is R code to determine the <code>mean</code> and <code>median</code> of the <code>wt</code> (weight) for all vehicles:</p></li>
+<li><p>As an illustration, here is R code to determine the <code>mean</code> and <code>median</code> of the <code>wt</code> (weight) for all vehicles: [3]</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of wt</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.21725</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Median of wt</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.325</code></pre>
 </div>
 </div>
-<ol start="5" type="1">
-<li>For finding the mode of the <code>mpg</code> (miles per gallon) column, we use the <code>mfv()</code> function in the <code>modeest</code> package.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate mode of mpg</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(modeest)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mfv</span>(tb<span class="sc">$</span>mpg) <span class="co"># Mode</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10.4 15.2 19.2 21.0 21.4 22.8 30.4</code></pre>
-</div>
-</div>
-<ol start="6" type="1">
-<li>The <code>mfv()</code> function estimates the mode using a kernel density estimator, which may not always coincide with a specific value in the dataset [4].</li>
-</ol>
 </section>
 <section id="measures-of-variability" class="level3">
 <h3 class="anchored" data-anchor-id="measures-of-variability">Measures of Variability</h3>
 <ol type="1">
-<li><p>In our exploration of continuous data, we also consider measures of variability. These statistical measures provide insight into the spread or dispersion of our data points. To further illustrate the concepts we’ve discussed, we’ll apply these measures of variability to the <code>mpg</code> column from the <code>mtcars</code> dataset.</p></li>
-<li><p><strong>Range</strong>: This is the difference between the highest and the lowest value in our data set. However, while <code>range</code> is easy to calculate and understand, it is sensitive to outliers, so we must interpret it carefully. The <code>range()</code> function in R provides the minimum and maximum <code>mpg</code>.</p></li>
+<li><p>In our exploration of continuous data, we also consider measures of variability. These statistical measures provide insight into the spread or dispersion of our data points. To further illustrate the concepts we’ve discussed, we’ll apply these measures of variability to the <code>mpg</code> column from the <code>mtcars</code> dataset. [3]</p></li>
+<li><p><strong>Range</strong>: This is the difference between the highest and the lowest value in our data set. However, while <code>range</code> is easy to calculate and understand, it is sensitive to outliers, so we must interpret it carefully. The <code>range()</code> function in R provides the minimum and maximum <code>mpg</code>. [3]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Range of mpg</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Range of mpg</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.4 33.9</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
-<li><strong>Min and Max</strong>: We can off course measure the minimum and maximum values, using the following simple code.</li>
+<li><strong>Min and Max</strong>: We can off course measure the minimum and maximum values, using the following simple code. [3]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimum mpg</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Minimum mpg</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10.4</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum mpg</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Maximum mpg</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 33.9</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
-<li><strong>Variance</strong>: It is calculated as the average of the squared deviations from the mean. Larger variances suggest that the data points are more spread out around the mean. One limitation of the variance is that its units are the square of the original data’s units, which can make interpretation difficult. We use the var() function to compute the variance.</li>
+<li><strong>Variance</strong>: It is calculated as the average of the squared deviations from the mean. Larger variances suggest that the data points are more spread out around the mean. One limitation of the variance is that its units are the square of the original data’s units, which can make interpretation difficult. We use the var() function to compute the variance. [3]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variance of mpg</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variance of mpg</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 36.3241</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
-<li><strong>Standard Deviation:</strong> This is simply the square root of the variance. Because it is in the same units as the original data, it is often easier to interpret than the variance. A larger standard deviation indicates a greater spread of data around the mean.</li>
+<li><strong>Standard Deviation:</strong> This is simply the square root of the variance. Because it is in the same units as the original data, it is often easier to interpret than the variance. A larger standard deviation indicates a greater spread of data around the mean. [3]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Deviation of mpg</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard Deviation of mpg</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 6.026948</code></pre>
 </div>
 </div>
 <ol start="6" type="1">
-<li><strong>Interquartile Range</strong> <strong>(IQR)</strong>: It is another measure of dispersion, especially useful when we have skewed data or outliers. It represents the range within which the central 50% of our data falls. This measure is less sensitive to extreme values than the range, variance, or standard deviation. To find the interquartile range (IQR), which provides the spread of the middle 50% of the <code>mpg</code> values, we use the <code>IQR()</code> function.</li>
+<li><strong>Interquartile Range</strong> <strong>(IQR)</strong>: It is another measure of dispersion, especially useful when we have skewed data or outliers. It represents the range within which the central 50% of our data falls. This measure is less sensitive to extreme values than the range, variance, or standard deviation. To find the interquartile range (IQR), which provides the spread of the middle 50% of the <code>mpg</code> values, we use the <code>IQR()</code> function. [3]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inter-Quartile Range of mpg</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inter-Quartile Range of mpg</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">IQR</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7.375</code></pre>
 </div>
@@ -416,16 +440,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>These two measures can be computed using the <code>skewness()</code> and <code>kurtosis()</code> functions from the <code>moments</code> package.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load moments package</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(moments))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Skewness of 'wt' in the mtcars dataframe</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load moments package</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(moments))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Skewness of 'wt' in the mtcars dataframe</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4437855</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kurtosis of 'wt' in the mtcars dataframe</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kurtosis of 'wt' in the mtcars dataframe</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kurtosis</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3.172471</code></pre>
 </div>
@@ -439,24 +463,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="summarizing-univariate-continuous-data">Summarizing Univariate Continuous Data</h2>
 <ol type="1">
 <li><p>Our primary objective in summarizing data is to gain an initial overview or snapshot of the data set we’re dealing with. This fundamental analysis provides us a sense of the data’s central tendency, spread, and distribution shape, which in turn guides our decision-making process for subsequent stages of data analysis.</p></li>
-<li><p>In R, the <code>summary()</code> function offers a succinct summary of the selected data object. When applied to a numeric vector such as <code>mpg</code> from the <code>mtcars</code> dataset, it yields the minimum and maximum values, the first quartile (25th percentile), the median (50th percentile), the third quartile (75th percentile), and the mean.</p></li>
+<li><p>In R, the <code>summary()</code> function offers a succinct summary of the selected data object. When applied to a numeric vector such as <code>mpg</code> from the <code>mtcars</code> dataset, it yields the minimum and maximum values, the first quartile (25th percentile), the median (50th percentile), the third quartile (75th percentile), and the mean. [3]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A summary of 'mpg'</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A summary of 'mpg'</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   10.40   15.43   19.20   20.09   22.80   33.90 </code></pre>
 </div>
 </div>
 <ol start="3" type="1">
-<li>The <code>describe()</code> function, part of the <code>psych</code> package, goes a step further by providing a more comprehensive summary of the data. It includes additional statistics like the number of valid (non-missing) observations, the standard deviation, and metrics of skewness and kurtosis [5].</li>
+<li>The <code>describe()</code> function, part of the <code>psych</code> package, goes a step further by providing a more comprehensive summary of the data. It includes additional statistics like the number of valid (non-missing) observations, the standard deviation, and metrics of skewness and kurtosis [4].</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(psych))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A summary of 'mpg' using describe()</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(psych))</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># A summary of 'mpg' using describe()</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   vars  n  mean   sd median trimmed  mad  min  max range skew kurtosis   se
 X1    1 32 20.09 6.03   19.2    19.7 5.41 10.4 33.9  23.5 0.61    -0.37 1.07</code></pre>
@@ -466,9 +490,9 @@ X1    1 32 20.09 6.03   19.2    19.7 5.41 10.4 33.9  23.5 0.61    -0.37 1.07</co
 <li>Specific columns from <code>describe(tb$mpg)</code></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select specific columns from describe(mpg)</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>,<span class="st">"median"</span>,<span class="st">"min"</span>,<span class="st">"max"</span>,<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(tb<span class="sc">$</span>mpg)[, columns]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select specific columns from describe(mpg)</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>,<span class="st">"median"</span>,<span class="st">"min"</span>,<span class="st">"max"</span>,<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(mpg)[, columns]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    n  mean   sd median  min  max skew kurtosis
 X1 32 20.09 6.03   19.2 10.4 33.9 0.61    -0.37</code></pre>
@@ -480,8 +504,8 @@ X1 32 20.09 6.03   19.2 10.4 33.9 0.61    -0.37</code></pre>
 <li>The function <code>summary()</code> in R can also be employed to summarize the entirety of a dataframe or tibble in a comprehensive manner. [3].</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A summary of the tibble tb</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A summary of the tibble tb</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      mpg        cyl         disp             hp             drat      
  Min.   :10.40   4:11   Min.   : 71.1   Min.   : 52.0   Min.   :2.760  
@@ -507,12 +531,12 @@ X1 32 20.09 6.03   19.2 10.4 33.9 0.61    -0.37</code></pre>
 <li><p>For categorical (factor) columns, <code>summary()</code> generates the counts of each category level. The output of this code is essentially a comprehensive snapshot of the <code>tb</code> tibble, enabling us to quickly understand the nature of our data. [3]</p></li>
 </ul>
 <ol start="3" type="1">
-<li>To obtain a more detailed statistical summary of an entire dataframe or tibble, we can employ the <code>describe()</code> function from the <code>psych</code> package [2].</li>
+<li>To obtain a more detailed statistical summary of an entire dataframe or tibble, we can employ the <code>describe()</code> function from the <code>psych</code> package [4].</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select specific columns from describe(mpg)</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>,<span class="st">"median"</span>,<span class="st">"min"</span>,<span class="st">"max"</span>,<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(tb)[, columns]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select specific columns from describe(mpg)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>columns <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"n"</span>,<span class="st">"mean"</span>,<span class="st">"sd"</span>,<span class="st">"median"</span>,<span class="st">"min"</span>,<span class="st">"max"</span>,<span class="st">"skew"</span>,<span class="st">"kurtosis"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(tb)[, columns]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       n   mean     sd median   min    max  skew kurtosis
 mpg   32  20.09   6.03  19.20 10.40  33.90  0.61    -0.37
@@ -555,22 +579,22 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <section id="bee-swarm-plot" class="level3">
 <h3 class="anchored" data-anchor-id="bee-swarm-plot">Bee Swarm Plot</h3>
 <ol type="1">
-<li>A Bee Swarm plot is a <em>one-dimensional scatter plot</em> that reduces overlap and provides a better representation of the distribution of individual data points. This type of plot provides a more detailed view of the data, particularly for smaller data sets. [6]</li>
+<li>A Bee Swarm plot is a <em>one-dimensional scatter plot</em> that reduces overlap and provides a better representation of the distribution of individual data points. This type of plot provides a more detailed view of the data, particularly for smaller data sets. [5]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the beeswarm package</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(beeswarm)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bee swarm plot of wt column</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">beeswarm</span>(tb<span class="sc">$</span>wt, </span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">main=</span><span class="st">"Bee Swarm Plot of Weight (wt)"</span>, </span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Weight ('000 kg)"</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">pch=</span><span class="dv">16</span>,  <span class="co"># type of points</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex=</span><span class="fl">0.8</span>, <span class="co"># size of the points</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="st">"blue"</span>,</span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the beeswarm package</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(beeswarm)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bee swarm plot of wt column</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">beeswarm</span>(tb<span class="sc">$</span>wt, </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">main=</span><span class="st">"Bee Swarm Plot of Weight (wt)"</span>, </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Weight ('000 kg)"</span>,</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">pch=</span><span class="dv">16</span>,  <span class="co"># type of points</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">cex=</span><span class="fl">0.8</span>, <span class="co"># size of the points</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">col=</span><span class="st">"blue"</span>,</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">horizontal =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="2" type="1">
@@ -593,7 +617,7 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li><p>We can utilize the <code>stem()</code> function in R to devise stem-and-leaf plots. Here’s how we can apply it to the <code>wt</code> column:</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(tb<span class="sc">$</span>wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stem</span>(wt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
   The decimal point is at the |
@@ -618,18 +642,18 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <ol type="1">
 <li><p>A histogram is a graphical representation showcasing the <em>frequency</em> of discrete or grouped data points within a dataset.</p></li>
 <li><p>It splits the data into equal-width bins, with the height of each bar matching the frequency of data points in each respective bin.</p></li>
-<li><p>It serves as a valuable tool for demonstrating the distribution shape of the data. In R, we can construct a histogram using the <code>hist()</code> function and control its appearance. The final histogram visually depicts the frequency of <code>mpg</code> values in the dataset, where each bar represents the count of observations within a specific range of values. [7]</p></li>
+<li><p>It serves as a valuable tool for demonstrating the distribution shape of the data. In R, we can construct a histogram using the <code>hist()</code> function and control its appearance. The final histogram visually depicts the frequency of <code>mpg</code> values in the dataset, where each bar represents the count of observations within a specific range of values. [6]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with a specific number of bins of equal width</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tb<span class="sc">$</span>mpg, </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">12</span>, <span class="co"># This creates 12 bins of equal width</span></span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of mpg (with 12 breaks)"</span>, </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Miles per gallon (mpg"</span>, </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"lightblue"</span>, </span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with a specific number of bins of equal width</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tb<span class="sc">$</span>mpg, </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">12</span>, <span class="co"># This creates 12 bins of equal width</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of mpg (with 12 breaks)"</span>, </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Miles per gallon (mpg"</span>, </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"lightblue"</span>, </span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="4" type="1">
@@ -644,15 +668,15 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li>We can alternately specify the <em>ranges of the bins</em>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with specific bin ranges</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tb<span class="sc">$</span>mpg, </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">35</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="co"># This creates bins with ranges 10-15, 15-20, etc.</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of Mileage (with breaks of 5)"</span>, </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Miles per gallon (mpg)"</span>, </span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"lightblue"</span>, </span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with specific bin ranges</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tb<span class="sc">$</span>mpg, </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">35</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="co"># This creates bins with ranges 10-15, 15-20, etc.</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of Mileage (with breaks of 5)"</span>, </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Miles per gallon (mpg)"</span>, </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"lightblue"</span>, </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">border=</span><span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="6" type="1">
@@ -666,21 +690,21 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <section id="probability-density-function-pdf-plot" class="level3">
 <h3 class="anchored" data-anchor-id="probability-density-function-pdf-plot">Probability Density Function (PDF) plot</h3>
 <ol type="1">
-<li><p>Smoothed approximations of histograms are often represented by density plots, as they assist in offering an estimation of the underlying continuous probability distribution of a given dataset. [7]</p></li>
-<li><p>Compared to histograms, these plots often present superior accuracy and aesthetic appeal, and they eliminate the need for arbitrary bin selection. A density plot shares several similarities with a histogram. However, instead of presenting the frequency of individual values, it conveys the probability density of the dataset. [7]</p></li>
+<li><p>Smoothed approximations of histograms are often represented by density plots, as they assist in offering an estimation of the underlying continuous probability distribution of a given dataset. [3]</p></li>
+<li><p>Compared to histograms, these plots often present superior accuracy and aesthetic appeal, and they eliminate the need for arbitrary bin selection. A density plot shares several similarities with a histogram. However, instead of presenting the frequency of individual values, it conveys the probability density of the dataset. [3]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate density</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dens <span class="ot">&lt;-</span> <span class="fu">density</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a density plot</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens, </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Probability Density Function (PDF) of Mileage (mpg)"</span>, </span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Miles per gallon (mpg)"</span>, </span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a polygon to fill under the density curve</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(dens, <span class="at">col =</span> <span class="st">"lightblue"</span>, <span class="at">border =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate density</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>dens <span class="ot">&lt;-</span> <span class="fu">density</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a density plot</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(dens, </span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Probability Density Function (PDF) of Mileage (mpg)"</span>, </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Miles per gallon (mpg)"</span>, </span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a polygon to fill under the density curve</span></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(dens, <span class="at">col =</span> <span class="st">"lightblue"</span>, <span class="at">border =</span> <span class="st">"black"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="3" type="1">
@@ -691,7 +715,7 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li><p>Here, we utilize the <code>plot()</code> function to graph the resulting density object.</p></li>
 <li><p>The <code>main</code> argument stipulates the title of the plot, while the <code>xlab</code> argument designates the label for the x-axis.</p></li>
 <li><p>Through the <code>polygon()</code> function, we determine the shaded color.</p></li>
-<li><p>The final plot displays the probability density of <code>mpg</code> values, using the curve to signify the data distribution. [7]</p></li>
+<li><p>The final plot displays the probability density of <code>mpg</code> values, using the curve to signify the data distribution. [3]</p></li>
 </ul>
 </section>
 <section id="cumulative-distribution-function-cdf-plot" class="level3">
@@ -702,17 +726,17 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li><p>In R, we can employ the <code>ecdf()</code> function to generate a CDF plot.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CDF plot of mpg column</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(tb<span class="sc">$</span>mpg),</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"CDF of Miles Per Gallon (mpg)"</span>,</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Miles Per Gallon (mpg)"</span>,</span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Cumulative Density"</span>,</span>
-<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,       <span class="co"># Line color</span></span>
-<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">2</span>,</span>
-<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>     )</span>
-<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray"</span>, <span class="at">lty =</span> <span class="st">"dotted"</span>)  <span class="co"># Add a grid to the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CDF plot of mpg column</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">ecdf</span>(tb<span class="sc">$</span>mpg),</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"CDF of Miles Per Gallon (mpg)"</span>,</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Miles Per Gallon (mpg)"</span>,</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Cumulative Density"</span>,</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"blue"</span>,       <span class="co"># Line color</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty =</span> <span class="dv">2</span>,</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>     )</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>(<span class="at">col =</span> <span class="st">"gray"</span>, <span class="at">lty =</span> <span class="st">"dotted"</span>)  <span class="co"># Add a grid to the plot</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="4" type="1">
@@ -733,11 +757,11 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li><p>Suppose we want to identify the CDF at <code>mpg = 20</code>, here is how we do it:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the empirical cumulative distribution function</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>ecdf_func <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(tb<span class="sc">$</span>mpg)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive the CDF for mpg = 20</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ecdf_func</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the empirical cumulative distribution function</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>ecdf_func <span class="ot">&lt;-</span> <span class="fu">ecdf</span>(tb<span class="sc">$</span>mpg)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Derive the CDF for mpg = 20</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ecdf_func</span>(<span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5625</code></pre>
 </div>
@@ -746,8 +770,8 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li>If we’re interested in knowing the <code>mpg</code> value that corresponds to a certain CDF value, the <code>quantile()</code> function comes to our aid. For instance, we can obtain the <code>mpg</code> value associated with a CDF of <code>0.6</code> as follows:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discover the mpg corresponding to CDF = 0.6</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(tb<span class="sc">$</span>mpg, <span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Discover the mpg corresponding to CDF = 0.6</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(tb<span class="sc">$</span>mpg, <span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>60% 
  21 </code></pre>
@@ -757,19 +781,19 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <section id="box-plot" class="level3">
 <h3 class="anchored" data-anchor-id="box-plot">Box Plot</h3>
 <ol type="1">
-<li><p>Box-and-whisker plots, commonly known as box plots, are crucial graphical instruments for illustrating a distribution’s center, spread, and potential outliers [5].</p></li>
-<li><p>Here is sample code to generate a boxplot of <code>wt</code> (Weight) of the cars .</p></li>
+<li><p>Box-and-whisker plots, commonly known as box plots, are crucial graphical instruments for illustrating a distribution’s center, spread, and potential outliers [7].</p></li>
+<li><p>Here is sample code to generate a boxplot of <code>wt</code> (Weight) of the cars. [3]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(tb<span class="sc">$</span>wt, </span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Boxplot of Weight (wt)"</span>,</span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">""</span>,</span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Weight ('000 kg)"</span>,</span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(tb<span class="sc">$</span>wt, </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Boxplot of Weight (wt)"</span>,</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">""</span>,</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Weight ('000 kg)"</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="3" type="1">
@@ -788,20 +812,20 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <h3 class="anchored" data-anchor-id="violin-plot">Violin Plot</h3>
 <ol type="1">
 <li><p>Violin plots are a compelling tool to merge the benefits of box plots and kernel density plots and enable us to depict a detailed view of data distribution.</p></li>
-<li><p>These plots exhibit the <em>probability density</em> at different values, where the plot’s <em>breadth</em> represents the density or frequency of data points. More extensive areas denote a higher aggregation of data points Akin to a box plot, a violin plot provides a visual display of the entire data distribution via a <em>kernel density estimate</em>, as opposed to just presenting the quartiles [5].</p></li>
+<li><p>These plots exhibit the <em>probability density</em> at different values, where the plot’s <em>breadth</em> represents the density or frequency of data points. More extensive areas denote a higher aggregation of data points Akin to a box plot, a violin plot provides a visual display of the entire data distribution via a <em>kernel density estimate</em>, as opposed to just presenting the quartiles [8].</p></li>
 <li><p>The <code>vioplot()</code> function, part of the <code>vioplot</code> package in R, allows us to create a violin plot.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(vioplot))</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Constructing a violin plot for the wt</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(tb<span class="sc">$</span>wt, </span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">"Violin Plot of Weight (wt)"</span>, </span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">"Weight"</span></span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>(<span class="fu">library</span>(vioplot))</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Constructing a violin plot for the wt</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">vioplot</span>(tb<span class="sc">$</span>wt, </span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">main=</span><span class="st">"Violin Plot of Weight (wt)"</span>, </span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab=</span><span class="st">"Weight"</span></span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="4" type="1">
@@ -819,16 +843,16 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <ol type="1">
 <li><p>Quantile-Quantile plots, commonly referred to as Q-Q plots, are a visual tool we use to check if data follows a particular distribution, like a normal distribution.</p></li>
 <li><p>Suppose we order a data column from the smallest to the biggest value, and each data point gets a <em>score</em> based on its position. This is what we call a <em>quantile</em>. Now, imagine a perfectly normal distribution doing the same thing. In a Q-Q plot, we compare our data’s scores to the scores from the ideal normal distribution.</p></li>
-<li><p>If our data aligns with the normal distribution, the points in the Q-Q plot will form a straight line. But if our data doesn’t follow the normal distribution, the points will stray from the line. This way, the Q-Q plot gives us an intuitive, visual way to decide if our data is normally distributed or not [10].</p></li>
+<li><p>If our data aligns with the normal distribution, the points in the Q-Q plot will form a straight line. But if our data doesn’t follow the normal distribution, the points will stray from the line. This way, the Q-Q plot gives us an intuitive, visual way to decide if our data is normally distributed or not [3].</p></li>
 <li><p>In R, we can use the <code>qqnorm()</code> function to create the plot and the <code>qqline()</code> function to add the reference line. If the points lie close to the reference line, it’s a good indication that our data is normally distributed.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a Q-Q plot for 'mpg' column</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(tb<span class="sc">$</span>mpg)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a reference line to the plot</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a Q-Q plot for 'mpg' column</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(tb<span class="sc">$</span>mpg)</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a reference line to the plot</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(tb<span class="sc">$</span>mpg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="768"></p>
+<p><img src="10ContinuousData01_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="5" type="1">
@@ -836,33 +860,42 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 </ol>
 </section>
 </section>
-<section id="summary-of-chapter-12-continuous-data-1-of-2" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-chapter-12-continuous-data-1-of-2">Summary of Chapter 12 – Continuous Data (1 of 2)</h2>
-<p>This section of the book examines continuous univariate data, focusing on single variables in the ‘mtcars’ dataset using R’s dplyr and ggplot packages. We employ R’s inherent functions and the ‘modeest’ package to compute the mean, median, and mode, alongside variability measures like range, variance, and standard deviation.</p>
-<p>We use R’s ‘summary()’ and the psych package’s ‘describe()’ functions to create succinct and detailed overviews of our data, providing insights into its central tendency, spread, and distribution shape. These functions can also summarize an entire dataframe or tibble, setting the stage for future analysis.</p>
+<section id="summary-of-chapter-10-continuous-data-1-of-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-10-continuous-data-1-of-2">Summary of Chapter 10 – Continuous Data (1 of 2)</h2>
+<p>This chapter examines continuous univariate data, focusing on single variables in the ‘mtcars’ dataset using R’s dplyr and ggplot packages. We employ R’s inherent functions and the ‘modeest’ package to compute the mean, median, and mode, alongside variability measures like range, variance, and standard deviation.</p>
+<p>We use R’s <code>summary()</code> and the <code>psych</code> package’s <code>describe()</code> functions to create succinct and detailed overviews of our data, providing insights into its central tendency, spread, and distribution shape. These functions can also summarize an entire dataframe or tibble, setting the stage for future analysis.</p>
 <p>Visualisations are key to understanding data patterns and distributions. We use bee swarm plots, box plots, violin plots, histograms, and density plots. Bee swarm plots, using the <code>beeswarm()</code> function, show all data points and their distributions. Stem-and-leaf plots, created using the <code>stem()</code> function, provide a quick evaluation of the distribution.</p>
 <p>Histograms, constructed with the <code>hist()</code> function, and density plots, using the <code>density()</code> function, display data frequency and smoothed approximations respectively. Cumulative Distribution Function (CDF) plots, via the <code>ecdf()</code> function, show the proportion of data points equal to or less than specific values.</p>
 <p>Box plots, made with the <code>boxplot</code> function, highlight the distribution’s center, spread, and outliers. Violin plots, via the <code>vioplot()</code> function, merge box plots and kernel density plots to display data density. Lastly, Q-Q plots, created using <code>qqnorm()</code> and <code>qqline()</code>, verify if data follows a normal distribution.</p>
-<p>In sum, this chapter presents key R functions and techniques for visualizing continuous univariate data, providing valuable insights into data patterns and distributions.</p>
+<p>To summarize, this chapter presents key R functions and techniques for visualizing continuous univariate data, providing valuable insights into data patterns and distributions.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p>[1] Moore, D. S., McCabe, G. P., &amp; Craig, B. A. (2012). Introduction to the Practice of Statistics. Freeman.</p>
+<p><strong>Basic R programmng:</strong></p>
+<p>[1] Crawley, M. J. (2007). The R Book. Wiley.</p>
+<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
+<p><strong>Statistics</strong></p>
+<p>[2] Moore, D. S., McCabe, G. P., &amp; Craig, B. A. (2012). Introduction to the Practice of Statistics. Freeman.</p>
 <p>Triola, M. (2017). Elementary Statistics. Pearson.</p>
 <p>Gravetter, F. J., &amp; Wallnau, L. B. (2016). Statistics for the Behavioral Sciences. Cengage Learning.</p>
-<p>[2] Downey, A. B. (2014). Think Stats: Exploratory Data Analysis. O’Reilly Media.</p>
+<p>Downey, A. B. (2014). Think Stats: Exploratory Data Analysis. O’Reilly Media.</p>
+<p>Bogaert, P. (2021). “A Comparison of Kernel Density Estimators.” Computational Statistics &amp; Data Analysis, 77, 402-413.</p>
+<p>Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.</p>
+<p>Thode Jr, H. C. (2002). Testing for normality. CRC press.</p>
+<p><strong>Statistics using R</strong></p>
 <p>[3] Field, A., Miles, J., &amp; Field, Z. (2012). Discovering statistics using R. Sage Publications.</p>
 <p>R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
-<p>[4] Bogaert, P. (2021). “A Comparison of Kernel Density Estimators.” Computational Statistics &amp; Data Analysis, 77, 402-413.</p>
-<p>[5] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.</p>
-<p>Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.</p>
-<p>[6] Ellis, K. (2011). Beeswarm: The Bee Swarm Plot, an Alternative to Stripchart. R package version 0.2.3.</p>
 <p>Hyndman, R. J., &amp; Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.</p>
-<p>[7] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.</p>
+<p>[4] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.</p>
+<p><strong>Beeswarm:</strong></p>
+<p>[5] Ellis, K. (2011). Beeswarm: The Bee Swarm Plot, an Alternative to Stripchart. R package version 0.2.3.</p>
+<p><strong>Histograms:</strong></p>
+<p>[6] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.</p>
 <p>Wand, M. P., &amp; Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.</p>
-<p>[8] McGill, R., Tukey, J. W., &amp; Larsen, W. A. (1978). Variations of Box Plots. The American Statistician, 32(1), 12-16.</p>
-<p>[9] Hintze, J. L., &amp; Nelson, R. D. (1998). Violin Plots: A Box Plot-Density Trace Synergism. The American Statistician, 52(2), 181-184.</p>
-<p>[10] Thode Jr, H. C. (2002). Testing for normality. CRC press.</p>
+<p><strong>Boxplots:</strong></p>
+<p>[7] McGill, R., Tukey, J. W., &amp; Larsen, W. A. (1978). Variations of Box Plots. The American Statistician, 32(1), 12-16.</p>
+<p><strong>Violin Plots:</strong></p>
+<p>[8] Hintze, J. L., &amp; Nelson, R. D. (1998). Violin Plots: A Box Plot-Density Trace Synergism. The American Statistician, 52(2), 181-184.</p>
 
 
 </section>

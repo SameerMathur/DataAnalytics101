@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./12ContinuousData03.html">Categorical x Continuous data (1 of 2)</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11ContinuousData02.html">Continuous Data (2 of 2)</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -237,6 +237,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Three Dimensions (3D)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: Overview of the S&amp;P500</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18LiveCaseREIT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case (2): REITs in the S&amp;P500</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -275,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quantile-quantile-q-q-plots-using-ggplot2" id="toc-quantile-quantile-q-q-plots-using-ggplot2" class="nav-link" data-scroll-target="#quantile-quantile-q-q-plots-using-ggplot2">Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></a></li>
   <li><a href="#bar-plot-visualizing-the-mean-and-sd-using-ggplot2" id="toc-bar-plot-visualizing-the-mean-and-sd-using-ggplot2" class="nav-link" data-scroll-target="#bar-plot-visualizing-the-mean-and-sd-using-ggplot2">Bar Plot visualizing the Mean and SD using <code>ggplot2</code></a></li>
   <li><a href="#combining-plots-using-ggarrange" id="toc-combining-plots-using-ggarrange" class="nav-link" data-scroll-target="#combining-plots-using-ggarrange">Combining Plots using <code>ggarrange()</code></a></li>
-  <li><a href="#summary-of-chapter-13-continuous-data-2-of-2" id="toc-summary-of-chapter-13-continuous-data-2-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-13-continuous-data-2-of-2">Summary of Chapter 13 – Continuous Data (2 of 2)</a></li>
+  <li><a href="#summary-of-chapter-11-continuous-data-2-of-2" id="toc-summary-of-chapter-11-continuous-data-2-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-11-continuous-data-2-of-2">Summary of Chapter 11 – Continuous Data (2 of 2)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -288,16 +324,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="continuous-data-2-of-2" class="level1">
 <h1>Continuous Data (2 of 2)</h1>
-<section id="chapter-11-last-updated-dec-30-2023." class="level4">
-<h4 class="anchored" data-anchor-id="chapter-11-last-updated-dec-30-2023.">Chapter 11, <em>Last updated: Dec 30, 2023.</em></h4>
+<section id="chapter-11-last-updated-jan-02-2023" class="level4">
+<h4 class="anchored" data-anchor-id="chapter-11-last-updated-jan-02-2023">Chapter 11, <em>Last updated: Jan 02, 2023</em></h4>
 </section>
 <section id="exploring-univariate-continuous-data-using-ggplot2-and-ggpubr" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-univariate-continuous-data-using-ggplot2-and-ggpubr">Exploring Univariate Continuous Data using <strong><code>ggplot2</code></strong> and <strong><code>ggpubr</code></strong></h2>
 <p>This chapter demonstrates the use of the popular <strong><code>ggplot2</code></strong> and <strong><code>ggpubr</code></strong> packages to further explore <em>univariate, continuous</em> data.</p>
 <ol type="1">
-<li><p><strong><code>ggplot2</code></strong>: In the <code>ggplot2</code> package for instance, the function <code>geom_boxplot()</code> produces box plots, <code>geom_violin()</code> creates violin plots, and <code>geom_histogram()</code> and <code>geom_density()</code> generate histograms and density plots, respectively. The related <code>ggbeeswarm</code> package can be used for creating bee swarm plots.</p></li>
-<li><p><strong><code>ggpubr</code></strong>: The <code>ggpubr</code> package in R augments <code>ggplot2</code> by offering tools for creating publication-ready plots. It enables simplified plotting with easy-to-use functions like gghistogram(), ggdensity(), ggboxplot(), ggviolin, and makes it easy to merge multiple plots with <code>ggarrange()</code>, and provides specialized themes for a polished look. Essentially, <code>ggpubr</code> merges <code>ggplot2</code>’s extensive customization with the ease of creating visually appealing and informative plots.</p></li>
-<li><p>We load the necessary packages, including <code>ggplot2</code>, <code>dplyr</code> and <code>ggthemes</code> packages. The package <code>ggthemes</code> allows us to use a variety of themes.</p></li>
+<li><p><strong><code>ggplot2</code></strong>: In the <code>ggplot2</code> package for instance, the function <code>geom_boxplot()</code> produces box plots, <code>geom_violin()</code> creates violin plots, and <code>geom_histogram()</code> and <code>geom_density()</code> generate histograms and density plots, respectively. The related <code>ggbeeswarm</code> package can be used for creating bee swarm plots. [1]</p></li>
+<li><p><strong><code>ggpubr</code></strong>: The <code>ggpubr</code> package in R augments <code>ggplot2</code> by offering tools for creating publication-ready plots. It enables simplified plotting with easy-to-use functions like gghistogram(), ggdensity(), ggboxplot(), ggviolin, and makes it easy to merge multiple plots with <code>ggarrange()</code>, and provides specialized themes for a polished look. Essentially, <code>ggpubr</code> merges <code>ggplot2</code>’s extensive customization with the ease of creating visually appealing and informative plots. [2]</p></li>
+<li><p>We load the necessary packages, including <code>ggplot2</code>, <code>dplyr</code> and <code>ggthemes</code> packages. The package <code>ggthemes</code> allows us to use a variety of themes. [3]</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
@@ -319,11 +355,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>Let’s take a closer look at some of the most effective ways of Visualizing Univariate Continuous Data using <code>ggplot2</code> and related packages, including</li>
@@ -345,15 +382,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We use the <code>ggbeeswarm</code> package on the <code>mpg</code> column of the <code>tb</code> tibble.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbeeswarm) <span class="co"># Necessary for geom_beeswarm() </span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>() <span class="sc">+</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bee Swarm plot of Miles Per Gallon (mpg)"</span>,</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles Per Gallon (mpg)"</span>) <span class="sc">+</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggbeeswarm) <span class="co"># Provides the geom_beeswarm() function</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bee swarm plot for visualizing the distribution of mpg</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>,  <span class="co"># Dummy x-axis value</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mpg)) <span class="sc">+</span>  <span class="co"># mpg values on the y-axis</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_beeswarm</span>() <span class="sc">+</span>  <span class="co"># Use beeswarm plot  points</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bee Swarm plot of Miles Per Gallon (mpg)"</span>,  </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles Per Gallon (mpg)"</span>) <span class="sc">+</span>  <span class="co"># Label for the y-axis</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># theme for a clean and clear presentation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -365,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Initially, we declare our dataset and the aesthetic mappings, defining how variables in the data are visually represented. For the bee swarm plot, we only need a y aesthetic, which is <code>mpg</code>. We set the x aesthetic to 1 as a placeholder, because bee swarm plots require an x aesthetic, but we only have one variable.</p></li>
 <li><p>Following that, we append a bee swarm plot using the <code>geom_beeswarm()</code> function.</p></li>
 <li><p>We use the <code>labs()</code> function to label the plot.</p></li>
-<li><p>We then adopt a minimalist theme by using <code>theme_minimal()</code> to give our plot a sleek and simple look.</p></li>
+<li><p>We then adopt a minimalist theme by using <code>theme_minimal()</code> to give our plot a sleek and simple look. [4]</p></li>
 </ul>
 </section>
 </section>
@@ -374,17 +414,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="histogram-with-binwidth" class="level3">
 <h3 class="anchored" data-anchor-id="histogram-with-binwidth">Histogram with binwidth</h3>
 <ol type="1">
-<li>The following code creates a histogram using the <code>ggplot2</code> package. Here, we pre-specify the bin width and the resulting number of bins in the histogram depend on the range of the data.</li>
+<li>The following code creates a histogram using the <code>ggplot2</code> package. Here, we pre-specify the bin width and the resulting number of bins in the histogram depend on the range of the data. [1]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">4</span>, </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"gold"</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggplot2` (setting binwidth = 4)"</span>, </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histogram using ggplot2 to visualize the distribution of miles per gallon (mpg) </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span>  <span class="co"># Set mpg as the x-axis variable</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">4</span>,  <span class="co"># Define the binwidth for the histogram</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"gold"</span>,  <span class="co"># Set the fill color of the bins to gold</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span>  <span class="co"># Set the border color of the bin</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span>  <span class="co"># Apply a minimal theme for a cleaner look</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggplot2` (binwidth = 4)"</span>, </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>)  <span class="co"># Label for the y-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -406,14 +448,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>We could alternately set the number of bins in the histogram, instead of specifying the bin width. In this case, the bin-width gets calculated depending on the range of the data and the specified number of bins.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"gold"</span>, </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggplot2` (setting bins = 8)"</span>, </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg from the tb dataset</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">fill =</span> <span class="st">"gold"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set histogram bins to 8 with gold fill and black border</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># Use a minimalistic theme</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggplot2` (bins = 8)"</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="co"># Add title and axis labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -423,7 +465,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <ul>
 <li><p>We instruct R to create a histogram having 8 bins of equal width, by setting <code>bins = 8 in</code>geom_histogram()`</p></li>
-<li><p>The width of each bin is adjusted by dividing the range of <code>mpg</code> by the number of specified bins.</p></li>
+<li><p>The width of each bin is adjusted by dividing the range of <code>mpg</code> by the number of specified bins. [1]</p></li>
 </ul>
 </section>
 <section id="histogram-with-bin-range" class="level3">
@@ -432,14 +474,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Alternately, we can specify custom bin ranges in a histogram. In this this approach, we supply a vector of breakpoints which defines the range of each bin. For example, the following code defines histogram bins with ranges of 5-10, 10-15, 15-20, 20-25, 25-30, 30-35, 35-40, for the <code>mpg</code> variable</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">5</span>), </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">fill =</span> <span class="st">"gold"</span>, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggplot2` (setting breaks of 5)"</span>, </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a histogram of mpg values from the tb dataset using ggplot2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">40</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="at">fill =</span> <span class="st">"gold"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Define histogram breaks at intervals of 5</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="co"># Apply a minimal theme for clarity</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Histogram of Mileage, (breaks of 5)"</span>, </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="co"># Add plot title and axis labels</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -449,7 +491,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <ul>
 <li><p><code>ggplot(tb, aes(x = mpg))</code> initializes a ggplot object with the <code>tb</code> data frame and sets the <code>mpg</code> column as the x-axis variable.</p></li>
-<li><p><code>geom_histogram()</code> adds a histogram layer, in which <code>breaks = seq(5, 40, by = 5)</code> specifies bin edges using a sequence that starts at 5, ends at 40, and increases by 5 units. This results in bins like [5,10), [10,15), and so on.</p></li>
+<li><p><code>geom_histogram()</code> adds a histogram layer, in which <code>breaks = seq(5, 40, by = 5)</code> specifies bin edges using a sequence that starts at 5, ends at 40, and increases by 5 units. This results in bins like [5,10), [10,15), and so on. [1]</p></li>
 </ul>
 </section>
 <section id="histogram-using-ggpubr" class="level3">
@@ -458,16 +500,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Recreating a histogram with binwidth of 4, using <code>ggpubr</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistogram</span>(tb, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">binwidth =</span> <span class="dv">4</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>, </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggpubr` (setting binwidth = 4) "</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggpubr package for enhanced ggplot2-based plotting</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram using gghistogram from ggpubr</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistogram</span>(tb, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>,  <span class="co"># Set 'mpg' as the variable for histogram</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">binwidth =</span> <span class="dv">4</span>,  <span class="co"># Set the width of bins in the histogram</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>,  <span class="co"># Add a line indicating the mean of 'mpg'</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Add a rug plot to show individual data points</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the color of bins to black</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color of bins to light pink</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggpubr` (binwidth = 4)"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -484,22 +529,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>color = "black"</code>: The outline of the bars will be in black.</p></li>
 <li><p><code>fill = "lightpink"</code>: Bars in the histogram will be filled with a light pink shade.</p></li>
 <li><p><code>title =</code>: Gives a descriptive title to the histogram.</p></li>
-<li><p>In sum, we’re visualizing the distribution of the mpg variable from the <code>tb</code> dataset as a light pink histogram, emphasized with black borders, with a bin width of 4 units. We’ve also marked the mean value and showcased individual data points as a rug plot beneath the histogram.</p></li>
+<li><p>In sum, we’re visualizing the distribution of the mpg variable from the <code>tb</code> dataset as a light pink histogram, emphasized with black borders, with a bin width of 4 units. We’ve also marked the mean value and showcased individual data points as a rug plot beneath the histogram. [2]</p></li>
 </ul>
 <ol start="9" type="1">
 <li>Recreating a histogram with 8 bins, using package <code>ggpubr</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistogram</span>(tb, </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">bins =</span> <span class="dv">8</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram of Mileage, using package `ggpubr` (setting bins = 8) "</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggpubr package</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the 'mpg' variable from the tb dataset</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">gghistogram</span>(tb, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>,  <span class="co"># Specify 'mpg' for the x-axis</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">bins =</span> <span class="dv">8</span>,  <span class="co"># Set the number of bins to 8</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"median"</span>,  <span class="co"># Add a line indicating the median</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Include a rug plot to show individual data points</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the color of the histogram bins to black</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color of the bins to light pink</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram of Mileage, showing median (bins = 8)"</span> </span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -507,7 +555,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol start="10" type="1">
 <li><strong>Discussion:</strong></li>
 </ol>
-<p>In essence, the difference is that this code visualizes the mpg data from the <code>tb</code> dataset as a histogram with 8 bins, set using <code>bins = 8</code>.</p>
+<p>In essence, the difference is that this code visualizes the mpg data from the <code>tb</code> dataset as a histogram with 8 bins, set using <code>bins = 8</code>. [2]</p>
 </section>
 </section>
 <section id="probability-density-function-pdf-plot-using-ggplot2" class="level2">
@@ -516,12 +564,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Recall that this type of plot shows the distribution of a single variable, and the area under the curve represents the probability of an observation falling within a particular range of values. The following code generates it using <code>ggplot2</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"gold"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probability Density Function of Miles Per Gallon (mpg)"</span>, </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, <span class="at">y =</span> <span class="st">"density"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use ggplot2 to create a density plot of mpg values from the tb dataset</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">fill =</span> <span class="st">"gold"</span>) <span class="sc">+</span>  <span class="co"># Create a density plot with gold fill color</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span>  <span class="co"># Apply a minimal theme for a clean and simple appearance</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Probability Density Function of Miles Per Gallon (mpg)"</span>,  </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"density"</span>)  <span class="co"># Label for the y-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -531,7 +580,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <ul>
 <li><p>We designate our data source and the aesthetic mappings using the <code>ggplot()</code> function. The aesthetic mapping for x is <code>mpg</code>.</p></li>
-<li><p>Subsequently, we append a density plot to our plot by using the <code>geom_density()</code> function. We fill the area under the curve by setting <code>fill</code> to “gold”.</p></li>
+<li><p>Subsequently, we append a density plot to our plot by using the <code>geom_density()</code> function. We fill the area under the curve by setting <code>fill</code> to “gold”. [1]</p></li>
 </ul>
 <section id="pdf-using-ggpubr" class="level4">
 <h4 class="anchored" data-anchor-id="pdf-using-ggpubr">PDF using <code>ggpubr</code></h4>
@@ -539,17 +588,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The following R code creates a PDF of the <code>mpg</code> variable in the <code>tb</code> dataset, using the <code>ggdensity()</code> function from the <code>ggpubr</code> package.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdensity</span>(tb, </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>, </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"PDF of Miles Per Gallon (mpg), using ggpubr::ggdensity()"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">"Mileage (mpg)"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">ylab =</span> <span class="st">"Probability Density Function (PDF)"</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggpubr package for enhanced data visualization</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a probability density function plot for 'mpg' using ggdensity</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggdensity</span>(tb, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"mpg"</span>,  <span class="co"># Specify 'mpg' as the variable for the plot</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"mean"</span>,  <span class="co"># Add a line indicating the mean of 'mpg'</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Include a rug plot to show individual data points</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the color of the plot to black</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color to light pink</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"PDF of Miles Per Gallon (mpg), using ggpubr::ggdensity()"</span>,  </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">"Mileage (mpg)"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">"Probability Density Function (PDF)"</span>  <span class="co"># Label for the y-axis</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -564,7 +616,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>rug = TRUE</code>: By setting this to TRUE, a rug plot is added at the bottom, showcasing individual data points.</p></li>
 <li><p><code>color = "black"</code>: This defines the border color of the density plot as black.</p></li>
 <li><p><code>fill = "lightpink"</code>: This fills the interior of the density plot with a light pink color.</p></li>
-<li><p><code>title = ...</code> : This provides a descriptive title to our plot, aiding in clarity and understanding.</p></li>
+<li><p><code>title =</code> : This provides a descriptive title to our plot, aiding in clarity and understanding. [3]</p></li>
 </ul>
 </section>
 </section>
@@ -576,12 +628,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required library</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CDF plot</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, <span class="at">y =</span> <span class="st">"CDF"</span>, </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Cumulative Distribution Function (CDF) of Mileage (mpg)"</span>) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a CDF (Cumulative Distribution Function) plot for mpg</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_ecdf</span>(<span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span>  <span class="co"># Use stat_ecdf to plot the CDF</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, <span class="at">y =</span> <span class="st">"CDF"</span>,  <span class="co"># Set labels for x and y axes</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Cumulative Distribution Function (CDF) of Mileage (mpg)"</span>) <span class="sc">+</span>  </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Apply a minimalistic theme for clarity</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -594,7 +647,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>We employ the <code>stat_ecdf()</code> function to represent the empirical cumulative distribution function (CDF) of the <code>mpg</code> data. The <code>geom = "line"</code> argument means the CDF will be displayed as a continuous line, and <code>color = "blue"</code> ensures this line is blue.</p></li>
 <li><p>The <code>labs()</code> function is used to define axis labels and a plot title, enhancing readability.</p></li>
 <li><p>By invoking <code>theme_minimal()</code>, we apply a clean and straightforward theme to our plot, which removes extraneous details and emphasizes content.</p></li>
-<li><p>To sum up, this code creates a plot depicting the cumulative distribution function (CDF) of the <code>mpg</code> data from the <code>tb</code> dataset.</p></li>
+<li><p>To sum up, this code creates a plot depicting the cumulative distribution function (CDF) of the <code>mpg</code> data from the <code>tb</code> dataset. [1]</p></li>
 </ul>
 </section>
 <section id="boxplots-using-ggplot2" class="level2">
@@ -603,13 +656,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The following code generates a boxplot using <code>ggplot2</code>:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"gold"</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Mileage (mpg)"</span>, </span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles Per Gallon (mpg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use ggplot2 to create a boxplot for the mpg variable from the tb dataset</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"gold"</span>) <span class="sc">+</span>  <span class="co"># Create a boxplot with gold color</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span>  <span class="co"># Apply a minimal theme for a clean appearance</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># Flip coordinates to horizontal boxplot</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot of Mileage (mpg)"</span>,  <span class="co"># Set the title</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles Per Gallon (mpg)"</span>)  <span class="co"># Label for the y-axis </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -622,8 +675,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>geom_boxplot(fill = "gold")</code>: Adds a gold-filled boxplot layer.</p></li>
 <li><p><code>theme_minimal()</code>: Applies a clean, minimalistic theme to the plot.</p></li>
 <li><p><code>coord_flip()</code>: Flips the plot to display a horizontal boxplot.</p></li>
-<li><p><code>labs(...)</code>: Sets the plot title to “Boxplot of Mileage (mpg)” and labels the x-axis as “Miles Per Gallon (mpg)”.</p></li>
-<li><p>In summary, this code creates a horizontal boxplot of the mpg values from the tb data frame, with the boxes filled in gold color, presented with a minimalistic theme, and labeled appropriately.</p></li>
+<li><p><code>labs()</code>: Sets the plot title to “Boxplot of Mileage (mpg)” and labels the x-axis as “Miles Per Gallon (mpg)”.</p></li>
+<li><p>In summary, this code creates a horizontal boxplot of the mpg values from the tb data frame, with the boxes filled in gold color, presented with a minimalistic theme, and labeled appropriately. [1]</p></li>
 </ul>
 <section id="boxplot-using-ggpubr" class="level3">
 <h3 class="anchored" data-anchor-id="boxplot-using-ggpubr">Boxplot using <code>ggpubr</code></h3>
@@ -631,16 +684,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The following code recreates the boxplot using the <code>ggboxplot()</code> function from the <code>ggpubr</code> package.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(tb, </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">orientation =</span> <span class="st">"horizontal"</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"jitter"</span>,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Boxplot of Mileage (mpg), using ggpubr::ggboxplot()"</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggpubr package for enhanced boxplot functionalities</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a boxplot for the 'mpg' using ggboxplot from ggpubr</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggboxplot</span>(tb, </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"mpg"</span>,  <span class="co"># Specify 'mpg' as the variable for the boxplot</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">orientation =</span> <span class="st">"horizontal"</span>,  <span class="co"># Set the orientation to horizontal</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Add a rug plot to show individual data points</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the color to black</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color  to light pink</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">add =</span> <span class="st">"jitter"</span>,  <span class="co"># Add jitter to display individual data points</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Boxplot of Mileage (mpg), using ggpubr::ggboxplot()"</span>  </span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -655,7 +711,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>color = "black"</code>: Sets the boxplot’s border color to black.</p></li>
 <li><p><code>fill = "lightpink"</code>: Colors the inside of the boxes light pink.</p></li>
 <li><p><code>add = "jitter"</code>: Adds jittered points to the boxplot for clearer data visualization.</p></li>
-<li><p><code>title = .."</code>: Sets the plot’s title.</p></li>
+<li><p><code>title = .."</code>: Sets the plot’s title. [2]</p></li>
 </ul>
 </section>
 </section>
@@ -665,13 +721,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The following code generates a violin plot using <code>ggplot2</code>, adding a boxplot to the violin plot:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"gold"</span>) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">"Miles Per Gallon (mpg)"</span>, </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Violin Plot with Boxplot of Miles Per Gallon (mpg)"</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use ggplot2 to create a combined violin and boxplot for mpg values </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">fill =</span> <span class="st">"gold"</span>) <span class="sc">+</span>  <span class="co"># Create a violin plot with gold fill color</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">width =</span> <span class="fl">0.2</span>) <span class="sc">+</span>  </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Overlay a boxplot with sky blue fill and reduced width</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="co"># Set labels for x and y axes (x-label is empty)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Miles Per Gallon (mpg)"</span>,  </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Violin Plot with Boxplot of Miles Per Gallon (mpg)"</span>) <span class="sc">+</span>  </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>  <span class="co"># Flip coordinates to make the plot horizontal</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Apply a minimal theme for a simple appearance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -681,7 +740,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <ul>
 <li><p><code>geom_violin()</code> generates the violin plot</p></li>
-<li><p><code>geom_boxplot()</code> embeds a box plot within it</p></li>
+<li><p><code>geom_boxplot()</code> embeds a box plot within it. [1]</p></li>
 </ul>
 <section id="violin-plot-using-ggpubr" class="level3">
 <h3 class="anchored" data-anchor-id="violin-plot-using-ggpubr">Violin plot using <code>ggpubr</code></h3>
@@ -689,16 +748,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The following code recreates the violin plot using the <code>ggviolin()</code> function from the <code>ggpubr</code> package.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggviolin</span>(tb, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">orientation =</span> <span class="st">"horizontal"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">add =</span> <span class="st">"boxplot"</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>),</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Violin plot of Miles Per Gallon (mpg), using ggpubr::ggviolin()"</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the ggpubr package for enhanced data visualization</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a violin plot for the 'mpg' variable using ggviolin</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggviolin</span>(tb, </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="st">"mpg"</span>,  <span class="co"># Specify 'mpg' as the variable for the violin plot</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">orientation =</span> <span class="st">"horizontal"</span>,  <span class="co"># Set the orientation to horizontal</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Include a rug plot to show individual data points</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the outline color of the violin to black</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color of the violin to light pink</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">add =</span> <span class="st">"boxplot"</span>, <span class="at">add.params =</span> <span class="fu">list</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>),  </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>         <span class="co"># Add a boxplot inside the violin plot with light blue fill</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">"Violin plot of mpg, using ggpubr::ggviolin()"</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -716,23 +779,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>add = "boxplot"</code>: This specifies that a boxplot should be added inside the violin plot. A boxplot provides a summary of the distribution, showing the median, quartiles, and potential outliers.</p></li>
 <li><p><code>add.params = list(fill = "lightblue")</code>: This further customizes the added boxplot by setting its fill color to light blue.</p></li>
 <li><p><code>title = "Violin plot of Miles Per Gallon (mpg), using ggpubr::ggviolin()"</code>: This sets the title of the plot.</p></li>
-<li><p>In summary, the code generates a horizontal violin plot for the “mpg” variable from the <code>tb</code> dataset. The violin plot showcases the distribution of the “mpg” variable, colored in light pink with a light blue boxplot added inside. The rug adds an additional layer of visualization, showing the actual data points along the axis.</p></li>
+<li><p>In summary, the code generates a horizontal violin plot for the “mpg” variable from the <code>tb</code> dataset. The violin plot showcases the distribution of the “mpg” variable, colored in light pink with a light blue boxplot added inside. The rug adds an additional layer of visualization, showing the actual data points along the axis. [2]</p></li>
 </ul>
 </section>
 </section>
 <section id="quantile-quantile-q-q-plots-using-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="quantile-quantile-q-q-plots-using-ggplot2">Quantile-Quantile (Q-Q) Plots using <code>ggplot2</code></h2>
 <ol type="1">
-<li>Recall that a Q-Q plot is a graphical method for comparing two probability distributions by plotting their quantiles against each other. The following code generates a Quantile-Quantile (Q-Q) plot using <code>ggplot2</code>,</li>
+<li>Recall that a Q-Q plot is a graphical method for comparing two probability distributions by plotting their quantiles against each other. The following code generates a Quantile-Quantile (Q-Q) plot using <code>ggplot2</code>. [1]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">sample =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Theoretical Quantiles"</span>, <span class="at">y =</span> <span class="st">"Sample Quantiles"</span>, </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Q-Q Plot of Miles Per Gallon (mpg)"</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use ggplot2 to create a Q-Q plot for the mpg variable </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(tb, <span class="fu">aes</span>(<span class="at">sample =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq</span>() <span class="sc">+</span>  <span class="co"># Create a Q-Q plot</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_qq_line</span>() <span class="sc">+</span>  <span class="co"># Add a line to the Q-Q plot for reference</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Theoretical Quantiles"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sample Quantiles"</span>,  <span class="co"># Label for the y-axis</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Q-Q Plot of Miles Per Gallon (mpg)"</span>) <span class="sc">+</span>  </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Apply a minimal theme for a clean appearance</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -744,59 +808,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><code>ggplot(tb, aes(sample = mpg))</code> : Here, we initiate a <code>ggplot</code> graphic using the <code>tb</code> dataset and set the aesthetic (<code>aes</code>) to the “mpg” variable. In the context of the <code>stat_qq()</code> function (which we’ll come to shortly), the <code>sample</code> aesthetic specifies the data variable for which we want to create the Q-Q plot.</p></li>
 <li><p><code>stat_qq()</code> : This function adds the Q-Q plot points to the graphic. The x-axis of this plot represents the quantiles from a theoretical distribution (often the standard normal distribution), and the y-axis represents the quantiles from our sample data (“mpg”).</p></li>
 <li><p><code>stat_qq_line()</code> : This function adds a reference line to the Q-Q plot, which represents the expected line if the sample comes from the specified distribution (again, often the standard normal distribution). If our data points lie roughly on this line, it suggests that the data follows the theoretical distribution.</p></li>
-<li><p>In summary, this code produces a Q-Q plot for the “mpg” variable from the <code>tb</code> dataset. The plot compares the quantiles of “mpg” against the quantiles of a theoretical distribution, often the standard normal distribution.</p></li>
+<li><p>In summary, this code produces a Q-Q plot for the “mpg” variable from the <code>tb</code> dataset. The plot compares the quantiles of “mpg” against the quantiles of a theoretical distribution, often the standard normal distribution. [1]</p></li>
 </ul>
 </section>
 <section id="bar-plot-visualizing-the-mean-and-sd-using-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="bar-plot-visualizing-the-mean-and-sd-using-ggplot2">Bar Plot visualizing the Mean and SD using <code>ggplot2</code></h2>
 <ol type="1">
-<li>We can create a Bar Plot to visualize the mean of a continuous variable.</li>
+<li>We can create a Bar Plot to visualize the mean of a continuous variable. [1]</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary data frame</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mpgSummary <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MeanMpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SDMpg =</span> <span class="fu">sd</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MeanMpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),  <span class="co"># Calculate the mean of mpg</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SDMpg =</span> <span class="fu">sd</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Calculate the standard deviation </span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a box plot visualizing the mean</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpgSummary, </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, </span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> MeanMpg)) <span class="sc">+</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">width =</span> <span class="fl">0.3</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"mpg"</span>, <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Bar Plot showing Mean of Mileage (mpg)"</span>) <span class="sc">+</span></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot visualizing the mean</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpgSummary, </span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> MeanMpg)) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,  <span class="co"># Use bars to represent values</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"blue"</span>, </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">width =</span> <span class="fl">0.2</span>  <span class="co"># Set bar color and width</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"mpg"</span>, </span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>,  <span class="co"># Set x-axis label to 'mpg' with y-axis label empty</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Bar Plot showing Mean of Mileage (mpg)"</span>) <span class="sc">+</span>  </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># a minimal theme for a cleaner look</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="2" type="1">
-<li>We can extend this to create a Bar Plot with Error Bars to visualization the Mean and the Standard Deviation of a continuous variable.</li>
+<li>We can extend this to create a Bar Plot with Error Bars to visualization the Mean and the Standard Deviation of a continuous variable. [1]</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary data frame</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mpgSummary <span class="ot">&lt;-</span> tb <span class="sc">%&gt;%</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MeanMpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SDMpg =</span> <span class="fu">sd</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">MeanMpg =</span> <span class="fu">mean</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),  <span class="co"># Calculate the mean of mpg</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SDMpg =</span> <span class="fu">sd</span>(mpg, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># Calculate the standard deviation of mpg</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a box plot visualizing the mean and error bars visualizing the SD</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpgSummary, </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, </span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> MeanMpg)) <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">color =</span> <span class="st">"blue"</span>, <span class="at">width =</span> <span class="fl">0.3</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> MeanMpg <span class="sc">-</span> SDMpg, </span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xmax =</span> MeanMpg <span class="sc">+</span> SDMpg), </span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">width =</span> <span class="fl">0.3</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"mpg"</span>, <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Bar Plot showing (Mean +/- SD) of Mileage (mpg)"</span>) <span class="sc">+</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot visualizing the mean and error bars visualizing the SD</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpgSummary, </span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> MeanMpg)) <span class="sc">+</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">"lightblue"</span>, </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">"blue"</span>, </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">width =</span> <span class="fl">0.2</span>  <span class="co"># Create a bar to represent the mean mpg</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> MeanMpg <span class="sc">-</span> SDMpg,  </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xmax =</span> MeanMpg <span class="sc">+</span> SDMpg),  </span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>                <span class="co"># Set the lower, upper limit of the error bar</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">"red"</span>,  <span class="co"># Color the error bars red</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>                <span class="at">width =</span> <span class="fl">0.1</span>)  <span class="co"># Set the width of the error bars</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -806,7 +875,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><strong>Summary Data Frame (<code>mpgSummary</code>) Creation:</strong></p>
 <ul>
-<li><p><strong><code>mpgSummary &lt;- tb %&gt;% summarise(...)</code></strong>: This line is initializing the creation of <code>mpgSummary</code> data frame using the data in <code>tb</code> (which is assumed to contain the <code>mtcars</code> dataset) and the <code>summarise</code> function from the <code>dplyr</code> package.</p></li>
+<li><p><strong><code>mpgSummary &lt;- tb %&gt;% summarise()</code></strong>: This line is initializing the creation of <code>mpgSummary</code> data frame using the data in <code>tb</code> (which is assumed to contain the <code>mtcars</code> dataset) and the <code>summarise</code> function from the <code>dplyr</code> package.</p></li>
 <li><p><strong><code>MeanMpg = mean(mpg, na.rm = TRUE)</code></strong>: Calculates the mean of the <code>mpg</code> column, ignoring any NA values, and creates a new column <code>MeanMpg</code> in <code>mpgSummary</code> to store this value.</p></li>
 <li><p><strong><code>SDMpg = sd(mpg, na.rm = TRUE)</code></strong>: Calculates the standard deviation of the <code>mpg</code> column, ignoring any NA values, and creates a new column <code>SDMpg</code> in <code>mpgSummary</code> to store this value.</p></li>
 </ul>
@@ -823,32 +892,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="combining-plots-using-ggarrange" class="level2">
 <h2 class="anchored" data-anchor-id="combining-plots-using-ggarrange">Combining Plots using <code>ggarrange()</code></h2>
 <ol type="1">
-<li>The following code showcases two plots side-by-side.</li>
+<li>The following code showcases two plots side-by-side. [2]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>PlotHist <span class="ot">&lt;-</span> <span class="fu">gghistogram</span>(tb, </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">binwidth =</span> <span class="dv">4</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>, </span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram (binwidth = 4) "</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>PlotBox <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(tb, </span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">"mpg"</span>, </span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span> ,</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,</span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"jitter"</span>,</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Boxplot of Mileage, using ggpubr"</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots using ggarrange()</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(PlotHist, PlotBox, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of the 'mpg' variable using gghistogram</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>PlotHist <span class="ot">&lt;-</span> <span class="fu">gghistogram</span>(tb, </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">"mpg"</span>,  <span class="co"># Set 'mpg' as the variable for the histogram</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">binwidth =</span> <span class="dv">4</span>,  <span class="co"># Define the width of the bins</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"mean"</span>,  <span class="co"># Add a line indicating the mean of 'mpg'</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Include a rug plot to show individual data points</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the color of the histogram to black</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color of the histogram </span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Histogram (binwidth = 4)"</span>  <span class="co"># Title of the histogram</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a box plot of the 'mpg' variable using ggboxplot</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>PlotBox <span class="ot">&lt;-</span> <span class="fu">ggboxplot</span>(tb, </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> <span class="st">"mpg"</span>,  <span class="co"># Set 'mpg' as the variable for the box plot</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">rug =</span> <span class="cn">TRUE</span>,  <span class="co"># Include a rug plot to show individual data points</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set the color of the box plot to black</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill =</span> <span class="st">"lightpink"</span>,  <span class="co"># Set the fill color of the box plot </span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">add =</span> <span class="st">"jitter"</span>,  <span class="co"># Add jitter to show individual data points</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">title =</span> <span class="st">"Boxplot of Mileage, using ggpubr"</span>  </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the plots using ggarrange()</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">ggarrange</span>(PlotHist, PlotBox, <span class="at">ncol =</span> <span class="dv">2</span>)  </span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrange the histogram and box plot side by side</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the combined plot</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(combined_plot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="11ContinuousData02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -859,23 +936,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><p>We create a histogram and a boxplot using the same code discussed above.</p></li>
 <li><p><code>ggarrange(PlotHist, PlotBox, ncol = 2)</code> : This code helps us combine multiple plots into one. Here, <code>PlotHist</code> (the histogram) and <code>PlotBox</code> (the boxplot) are arranged side by side, as indicated by <code>ncol = 2</code>.</p></li>
-<li><p>In essence, this code facilitates a side-by-side comparison of the distribution of the <code>mpg</code> variable from the <code>tb</code> dataset using two different types of visualizations: a histogram and a boxplot.</p></li>
+<li><p>In essence, this code facilitates a side-by-side comparison of the distribution of the <code>mpg</code> variable from the <code>tb</code> dataset using two different types of visualizations: a histogram and a boxplot. [1]</p></li>
 </ul>
 </section>
-<section id="summary-of-chapter-13-continuous-data-2-of-2" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-chapter-13-continuous-data-2-of-2">Summary of Chapter 13 – Continuous Data (2 of 2)</h2>
+<section id="summary-of-chapter-11-continuous-data-2-of-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-11-continuous-data-2-of-2">Summary of Chapter 11 – Continuous Data (2 of 2)</h2>
 <p>In this chapter, we explore how to visualize univariate continuous data using the <code>ggplot2</code> package in R. We use the <code>mtcars</code> data set, converting it to a tibble called <code>tb</code> for easier manipulation.</p>
 <p>The visualization methods we cover include histograms, density plots (Probability Density Function and Cumulative Density Function), box plots, bee swarm plots, violin plots, and Q-Q plots. These are created using functions like <code>geom_histogram()</code>, <code>geom_density()</code>, <code>geom_boxplot()</code>, <code>geom_beeswarm()</code>, <code>geom_violin()</code>, <code>stat_qq()</code>, and <code>stat_qq_line()</code>.</p>
 <p>For the histogram, we can adjust bin width, color, and number of bins, or define custom bin ranges. The density plots provide a visual representation of the distribution of a variable, and we can color the area under the curve. To create the CDF plot, we first arrange our data and calculate the cumulative distribution, which is plotted as a line graph. For the violin plot, we show how to add a box plot within the violin for additional information. Finally, we explore Q-Q plots, which compare the quantiles of our data to a theoretical distribution, useful for assessing if the data follows a certain theoretical distribution.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p>[1]</p>
-<p>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></p>
-<p>Henderson, D. R. (1974). Motor Trend Car Road Tests. Motor Trend, 1974. Data retrieved from R mtcars dataset.</p>
-<p>Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R package version 0.6.0. https://CRAN.R-project.org/package=ggbeeswarm</p>
-<p>[2]</p>
-<p>Kassambara A (2023). ggpubr: ‘ggplot2’ Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.</p>
+<p><strong>ggplot2:</strong></p>
+<p>[1] Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) [Computer software]. Retrieved from https://CRAN.R-project.org/package=ggplot2</p>
+<p>Wickham, H., et al.&nbsp;(2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) [Computer software]. Retrieved from https://CRAN.R-project.org/package=dplyr</p>
+<p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
+<p>Wickham, H., et al.&nbsp;(2020). tibble: Simple Data Frames (Version 3.0.3) [Computer software]. Retrieved from https://CRAN.R-project.org/package=tibble</p>
+<p><strong>ggpubr:</strong></p>
+<p>[2] Kassambara A (2023). ggpubr: ‘ggplot2’ Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.</p>
+<p><strong>ggthemes</strong></p>
+<p>[3] Arnold, J.B. (2020). ggthemes: Extra Themes, Scales and Geoms for ‘ggplot2’ (Version 4.2.0) [Computer software]. Retrieved from https://CRAN.R-project.org/package=ggthemes</p>
+<p><strong>ggbeeswarm</strong></p>
+<p>[4] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R package version 0.6.0. https://CRAN.R-project.org/package=ggbeeswarm</p>
 
 
 </section>
