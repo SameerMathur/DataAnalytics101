@@ -611,10 +611,11 @@ Attaching package: 'ggplot2'</code></pre>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a bar plot using ggplot</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb,  <span class="co"># Specify the data frame 'tb'</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> cyl)) <span class="sc">+</span>  <span class="co"># Define 'cyl' as the x-axis variable</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cyl)) <span class="sc">+</span>  <span class="co"># Create a bar graph, 'fill' colors bars based on 'cyl' values</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Plot of Cars by Cylinders"</span>,  <span class="co"># Add a title to the plot</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Label for the x-axis</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)  <span class="co"># Label for the y-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cyl)) <span class="sc">+</span>  </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create a bar graph, 'fill' colors bars based on 'cyl' values</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Plot of Cars by Cylinders"</span>,  <span class="co"># Add a title to the plot</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)  <span class="co"># Label for the y-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="07CategoricalData01_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
 </div>
@@ -631,11 +632,11 @@ Attaching package: 'ggplot2'</code></pre>
 <li>Suppose we wanted to add labels to the bars showing the count of each category. We can do this by using the <code>geom_text()</code> function in ggplot2. Here’s how we can modify our code to include labels:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb, <span class="fu">aes</span>(<span class="at">x =</span> cyl)) <span class="sc">+</span> <span class="co"># Initialize ggplot with 'tb' data, setting 'cyl' as the x-axis</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cyl)) <span class="sc">+</span> <span class="co"># Add bar geometries, filling bars based on 'cyl' values</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>,    <span class="co"># Add text labels on bars using the 'count' statistic</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count)), <span class="co"># 'label' is set to display the count</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="co"># Adjust vertical position of labels to be above the bars</span></span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb, <span class="fu">aes</span>(<span class="at">x =</span> cyl)) <span class="sc">+</span> <span class="co"># Initialize ggplot </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> cyl)) <span class="sc">+</span> <span class="co"># Add bar geometries, filling bars </span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>,    <span class="co"># Add text labels using the 'count' statistic</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count)), <span class="co"># 'label' to display the count</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="sc">-</span><span class="fl">0.5</span>) <span class="sc">+</span> <span class="co"># Adjust vertical position of labels </span></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Bar Plot of Cylinders"</span>, <span class="co"># Add a title to the plot</span></span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Label for the x-axis</span></span>
 <span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>)      <span class="co"># Label for the y-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -736,26 +737,32 @@ Attaching package: 'ggplot2'</code></pre>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
+<p><strong>Categorical Data Analysis:</strong></p>
 <p>[1] Diez, D. M., Barr, C. D., &amp; Çetinkaya-Rundel, M. (2012). OpenIntro Statistics (2nd ed.). OpenIntro.</p>
 <p>[2] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
-<p>Tang, W., Tang, Y., &amp; Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.</p>
-<p>A Guide on Data Analysis. (n.d.). Categorical Data Analysis. Retrieved from https://bookdown.org/content/4861/categorical-data-analysis.html</p>
 <p>Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <a href="https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html" class="uri">https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html</a></p>
+<p>Hair, J. F., Black, W. C., Babin, B. J., &amp; Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.</p>
 <p>Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.</p>
-<p>[3] Friendly, M., &amp; Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.</p>
-<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
-<p>Crawley, M. J. (2007). The R Book. Wiley.</p>
-<p>[4] Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
-<p>Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.</p>
-<p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
-<p>Heiberger, R. M., &amp; Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.</p>
-<p>[5] Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
-<p>Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.</p>
-<p>Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O’Reilly Media.</p>
+<p>Tang, W., Tang, Y., &amp; Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.</p>
+<p><strong>Basic R programmng:</strong></p>
+<p>[3] Crawley, M. J. (2007). The R Book. Wiley.</p>
+<p>Friendly, M., &amp; Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.</p>
+<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
+<p><strong>Data Visualization:</strong></p>
+<p>[4] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O’Reilly Media.</p>
+<p>Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.</p>
+<p>Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
 <p>Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.</p>
+<p>Heiberger, R. M., &amp; Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.</p>
 <p>Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data &amp; Analytics Series.</p>
+<p>Unwin, A. (2015). Graphical data analysis with R. CRC Press.</p>
 <p>Wilke, C. O. (2019). Fundamentals of Data Visualization. O’Reilly Media.</p>
-<p>[6] Alboukadel Kassambara (2020). ggpubr: ‘ggplot2’ Based Publication Ready Plots. R package version 0.4.0. https://CRAN.R-project.org/package=ggpubr</p>
+<p><strong>ggplot2:</strong></p>
+<p>[5] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.</p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
+<p><strong>ggpubr:</strong></p>
+<p>[6] Kassambara A (2023).&nbsp;<em>ggpubr: ‘ggplot2’ Based Publication Ready Plots</em>. R package version 0.6.0,&nbsp;<a href="https://rpkgs.datanovia.com/ggpubr/" class="uri">https://rpkgs.datanovia.com/ggpubr/</a>.</p>
 
 
 </section>

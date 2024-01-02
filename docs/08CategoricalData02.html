@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-<head>
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
 
-<meta charset="utf-8" />
-<meta name="generator" content="quarto-1.3.450" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Data Analytics 101 -- Exploratory Data Analysis using R. – categoricaldata02</title>
@@ -58,7 +56,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 </style>
 
-<!-- htmldependencies:E3FAD763 -->
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -83,40 +96,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body>
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="/index.html">
-    <span class="navbar-title">Data Analytics 101 -- Exploratory Data Analysis using R.</span>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Data Analytics 101 – Exploratory Data Analysis using R.</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-  aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
-  onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i 
-  class="bi bi-globe" 
-  role="img" 
->
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/" rel="" target="_blank"><i class="bi bi-globe" role="img">
 </i> 
  <span class="menu-text">Sameer Mathur</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i 
-  class="bi bi-github" 
-  role="img" 
->
+    <a class="nav-link" href="https://github.com/SameerMathur/DataAnalytics101" rel="" target="_blank"><i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text">Book&#39;s Github</span></a>
+ <span class="menu-text">Book’s Github</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools">
@@ -126,16 +131,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn"
-      data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <h1 class="quarto-secondary-nav-title"></h1>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" 
-      aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation"
-      onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08CategoricalData02.html">Categorical x Categorical data (1 of 2)</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -148,8 +148,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="/index.html" class="sidebar-logo-link">
-      <img src="/images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none"/>
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/openscapes_hex.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -161,142 +161,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Overview</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/01GettingStarted.html" class="sidebar-item-text sidebar-link">
+  <a href="./01GettingStarted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring R programming</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/02RPackages.html" class="sidebar-item-text sidebar-link">
+  <a href="./02RPackages.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring R Packages</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/03DataStructures.html" class="sidebar-item-text sidebar-link">
+  <a href="./03DataStructures.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Data Structures</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/04ReadingData.html" class="sidebar-item-text sidebar-link">
+  <a href="./04ReadingData.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reading Data into R</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
+  <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exploring Dataframes</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring *tibbles* & *dplyr*</span></a>
+  <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/07CategoricalData01.html" class="sidebar-item-text sidebar-link">
+  <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Categorical Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/08CategoricalData02.html" class="sidebar-item-text sidebar-link active">
+  <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/09CategoricalData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">09: Categorical x Categorical data (2 of 2)</span></a>
+  <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="/10ContinuousData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10: Continuous Data (1 of 2)</span></a>
+  <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous Data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Three Dimensions (3D)</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17LiveCase01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case: Overview of the S&amp;P500</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18LiveCaseREIT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Live Case (2): REITs in the S&amp;P500</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" ></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <div id="quarto-toc-target"></div>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar"><div class="quarto-margin-header"><div class="margin-header-item">
+<p><img src="BookCover101.png" class="img-fluid"></p>
+</div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#categorical-x-categorical-data-1-of-2" id="toc-categorical-x-categorical-data-1-of-2" class="nav-link active" data-scroll-target="#categorical-x-categorical-data-1-of-2">Categorical x Categorical data (1 of 2)</a>
+  <ul class="collapse">
+  <li><a href="#exploring-bivariate-categorical-data" id="toc-exploring-bivariate-categorical-data" class="nav-link" data-scroll-target="#exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</a>
+  <ul class="collapse">
+  <li><a href="#frequency-tables-for-bivariate-categorical-data" id="toc-frequency-tables-for-bivariate-categorical-data" class="nav-link" data-scroll-target="#frequency-tables-for-bivariate-categorical-data">Frequency Tables for Bivariate Categorical Data</a></li>
+  <li><a href="#proportions-table-for-bivariate-categorical-data" id="toc-proportions-table-for-bivariate-categorical-data" class="nav-link" data-scroll-target="#proportions-table-for-bivariate-categorical-data">Proportions Table for Bivariate Categorical Data</a></li>
+  <li><a href="#margins-in-proportions-tables" id="toc-margins-in-proportions-tables" class="nav-link" data-scroll-target="#margins-in-proportions-tables">Margins in Proportions Tables</a></li>
+  </ul></li>
+  <li><a href="#visualizing-bivariate-categorical-data" id="toc-visualizing-bivariate-categorical-data" class="nav-link" data-scroll-target="#visualizing-bivariate-categorical-data">Visualizing Bivariate Categorical Data</a>
+  <ul class="collapse">
+  <li><a href="#using-ggplot2" id="toc-using-ggplot2" class="nav-link" data-scroll-target="#using-ggplot2">Using <strong>ggplot2</strong></a></li>
+  <li><a href="#mosaic-plots-for-bivariate-categorical-data" id="toc-mosaic-plots-for-bivariate-categorical-data" class="nav-link" data-scroll-target="#mosaic-plots-for-bivariate-categorical-data"><strong>Mosaic Plots</strong> for Bivariate Categorical Data</a></li>
+  </ul></li>
+  <li><a href="#summary-of-chapter-8-categorical-x-categorical-data-1-of-2" id="toc-summary-of-chapter-8-categorical-x-categorical-data-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-8-categorical-x-categorical-data-1-of-2">Summary of Chapter 8 – Categorical x Categorical data (1 of 2)</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="08CategoricalData02.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<nav id="TOC" role="doc-toc">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#categorical-x-categorical-data-1-of-2" id="toc-categorical-x-categorical-data-1-of-2">Categorical x Categorical data (1 of 2)</a>
-  <ul>
-  <li><a href="#exploring-bivariate-categorical-data" id="toc-exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</a>
-  <ul>
-  <li><a href="#frequency-tables-for-bivariate-categorical-data" id="toc-frequency-tables-for-bivariate-categorical-data">Frequency Tables for Bivariate Categorical Data</a></li>
-  <li><a href="#proportions-table-for-bivariate-categorical-data" id="toc-proportions-table-for-bivariate-categorical-data">Proportions Table for Bivariate Categorical Data</a></li>
-  <li><a href="#margins-in-proportions-tables" id="toc-margins-in-proportions-tables">Margins in Proportions Tables</a></li>
-  </ul></li>
-  <li><a href="#visualizing-bivariate-categorical-data" id="toc-visualizing-bivariate-categorical-data">Visualizing Bivariate Categorical Data</a>
-  <ul>
-  <li><a href="#using-ggplot2" id="toc-using-ggplot2">Using <strong>ggplot2</strong></a></li>
-  <li><a href="#mosaic-plots-for-bivariate-categorical-data" id="toc-mosaic-plots-for-bivariate-categorical-data"><strong>Mosaic Plots</strong> for Bivariate Categorical Data</a></li>
-  </ul></li>
-  <li><a href="#summary-of-chapter-9-categorical-x-categorical-data-1-of-2" id="toc-summary-of-chapter-9-categorical-x-categorical-data-1-of-2">Summary of Chapter 9 – Categorical x Categorical data (1 of 2)</a></li>
-  <li><a href="#references" id="toc-references">References</a></li>
-  </ul></li>
-  </ul>
-</nav>
+
 <section id="categorical-x-categorical-data-1-of-2" class="level1">
 <h1>Categorical x Categorical data (1 of 2)</h1>
-<p><em>Dec 30, 2023</em></p>
+<p><strong>Chapter 8, <em>Last updated: Jan 2, 2023.</em></strong></p>
 <section id="exploring-bivariate-categorical-data" class="level2">
-<h2>Exploring Bivariate Categorical Data</h2>
-<p>This chapter explores how to summarize and visualize <em>Bivariate, categorical</em> data.</p>
+<h2 class="anchored" data-anchor-id="exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</h2>
+<p>This chapter explores how to summarize and visualize <em>Bivariate, categorical</em> data. It builds on the previous chapter, which taught how to summarize and visualize <em>univariate, categorical</em> data.</p>
 <ol type="1">
-<li><p>Bivariate analysis involves examining the <strong>relationship between two variables</strong>. For instance, we might examine the relationship between a person’s gender (male, female, or non-binary) and whether they own a car (yes or no). By exploring these two categorical variables together, we can discern potential correlations or associations.</p></li>
-<li><p>As an extension, multivariate analysis involves the simultaneous observation and analysis of more than two variables. We study multivariate data in the next chapter.</p></li>
+<li><p>Bivariate categorical data analysis involves examining the <strong>relationship between two categorical variables</strong>. For instance, we might examine the relationship between a person’s gender (male, female, or non-binary) and whether they own a car (yes or no). By exploring these two categorical variables together, we can discern potential correlations or associations.</p></li>
+<li><p>As an extension, multivariate analysis involves the simultaneous observation and analysis of more than two variables. We will study multivariate data in the next chapter.</p></li>
 <li><p><strong>Contingency Table</strong>: A contingency table, also known as a <strong>cross-tabulation</strong> or <strong>crosstab</strong>, is a type of table in a matrix format that displays the frequency distribution of the variables. In the case of a univariate factor variable, a contingency table is essentially the same as a frequency table, as there’s only one variable involved. In more complex analyses involving two or more variables, contingency tables provide a way to examine the interactions between the variables. [1]</p></li>
 <li><p><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb1"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Read the mtcars dataset into a tibble called tb</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>tb <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert relevant columns into factor variables</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>cyl <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>cyl) <span class="co"># cyl = {4,6,8}, number of cylinders</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>am <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>am) <span class="co"># am = {0,1}, 0:automatic, 1: manual transmission</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>vs <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>vs) <span class="co"># vs = {0,1}, v-shaped engine, 0:no, 1:yes</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>tb<span class="sc">$</span>gear <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(tb<span class="sc">$</span>gear) <span class="co"># gear = {3,4,5}, number of gears</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Directly access the data columns of tb, without tb$mpg</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">attach</span>(tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="frequency-tables-for-bivariate-categorical-data" class="level3">
-<h3>Frequency Tables for Bivariate Categorical Data</h3>
+<h3 class="anchored" data-anchor-id="frequency-tables-for-bivariate-categorical-data">Frequency Tables for Bivariate Categorical Data</h3>
 <ol type="1">
-<li><p>As an illustration, let us investigate the bivariate relationship between the number of cylinders (<code>cyl</code>) and whether the car has an automatic or manual transmission, (<code>am=1</code> for manual, <code>am=0</code> for automatic).</p></li>
+<li><p>As an illustration, let us investigate the bivariate relationship between the number of cylinders (<code>cyl</code>) and whether the car has an automatic or manual transmission, (<code>am=1</code> for manual, <code>am=0</code> for automatic). [2]</p></li>
 <li><p><strong><code>table()</code></strong>: We can use this function to generate a contingency table of these two variables.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a frequency table for the 'cyl' (number of cylinders) </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and 'am' (transmission type) variables from the mtcars dataset.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   
-     0  1
+<pre><code>   am
+cyl  0  1
   4  3  8
   6  4  3
   8 12  2</code></pre>
@@ -307,11 +362,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong><code>addmargins()</code></strong>: The <code>addmargins()</code> function is used to add row and/or column totals to a table.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb4"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>()</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a contingency table for 'cyl' and 'am' from mtcars, </span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and add total counts for each row and column.</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     
-       0  1 Sum
+<pre><code>     am
+cyl    0  1 Sum
   4    3  8  11
   6    4  3   7
   8   12  2  14
@@ -319,11 +376,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode" id="cb6"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a contingency table for 'cyl' (cylinders) and '</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># am' (transmission type) in mtcars, then use </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># addmargins() with margin 1 to add row sums to the table.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     
-       0  1
+<pre><code>     am
+cyl    0  1
   4    3  8
   6    4  3
   8   12  2
@@ -334,11 +394,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>In this variation, the <code>1</code> in the function call indicates that we want to add <strong>row totals</strong>. So, this command adds the totals (Sum) of each row as a row in the contingency table.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb8"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a contingency table for 'cyl' (cylinders) and 'am' (transmission type)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># in mtcars,and use addmargins(2) to add column sums to the table.</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   
-     0  1 Sum
+<pre><code>   am
+cyl  0  1 Sum
   4  3  8  11
   6  4  3   7
   8 12  2  14</code></pre>
@@ -348,11 +410,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>In this variation, the <code>2</code> specifies that we want to add <strong>column totals</strong>. Thus, it adds the totals (Sum) of each column to the contingency table.</li>
 </ul>
 <ol start="3" type="1">
-<li><strong><code>xtabs()</code></strong>: This function provides a more versatile way to generate cross tabulations or contingency tables. It differs from the <code>table()</code> function by allowing the use of weights and formulas. Here’s how we can use it:</li>
+<li><p><strong><code>xtabs()</code></strong>: This function provides a more versatile way to generate cross tabulations or contingency tables. It differs from the <code>table()</code> function by allowing the use of weights and formulas. [2]</p>
+<p>Here’s an example of its use:</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb10"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> tb)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use xtabs to create a cross-tabulation of the number of cylinders ('cyl')</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and transmission type ('am') in the 'tb' dataset.</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">xtabs</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> tb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   am
 cyl  0  1
@@ -364,13 +429,16 @@ cyl  0  1
 <ul>
 <li><p>In the code, we have used <code>xtabs()</code> to construct a cross-tabulation of <code>am</code> and <code>cyl</code>.</p></li>
 <li><p>The syntax <code>~ cyl + am</code> is interpreted as a formula, signifying that we aim to cross-tabulate these variables. The output is a table akin to what we obtain with <code>table()</code>, but with the added advantage of accommodating more intricate analyses.</p></li>
-<li><p>An important advantage of <code>xtabs()</code> over <code>table()</code> is its superior handling of missing values or NAs; it doesn’t automatically exclude them, which is beneficial when dealing with real-world data that often includes missing values. [1]</p></li>
+<li><p>An important advantage of <code>xtabs()</code> over <code>table()</code> is its superior handling of missing values or <code>NA</code>; it doesn’t automatically exclude them, which is beneficial when dealing with real-world data that often includes missing values. [2]</p></li>
 </ul>
 <ol start="4" type="1">
-<li><strong><code>ftable()</code></strong>: This function is a powerful tool that offers an advanced way to create and display contingency tables. Here’s an example of its use:</li>
+<li><p><strong><code>ftable()</code></strong>: This function is a powerful tool that offers an advanced way to create and display contingency tables. [2]</p>
+<p>Here’s an example of its use:</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb12"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a flat contingency table for the 'cyl' (number of cylinders) </span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and 'am' (transmission type) columns in the 'tb' dataset.</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ftable</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    0  1
         
@@ -382,18 +450,22 @@ cyl  0  1
 <ul>
 <li><p>In this code, we’ve employed the <code>ftable()</code> function to create a contingency table of <code>am</code> and <code>cyl</code>. The output of this function is similar to what we get using <code>table()</code>, but it presents the information in a flat, compact layout, which can be particularly helpful especially when dealing with more than two variables.</p></li>
 <li><p>One key advantage of <code>ftable()</code> is that it creates contingency tables in a more readable format when dealing with more than two categorical variables, making it easier to visualize and understand complex multivariate relationships.</p></li>
-<li><p>Do note, like <code>xtabs()</code>, <code>ftable()</code> also handles missing values or NAs effectively, making it a reliable choice for real-world data that might contain missing values.</p></li>
+<li><p>Like <code>xtabs()</code>, <code>ftable()</code> also handles missing values or <code>NA</code> effectively, making it a reliable choice for real-world data that might contain missing values. [2]</p></li>
 </ul>
 <ol start="5" type="1">
-<li>We can also use <code>group_by()</code> and <code>summarize()</code> functions from package <code>dplyr</code> to generate contingency tables.</li>
+<li>We can also use <code>group_by()</code> and <code>summarize()</code> functions from package <code>dplyr</code> to generate contingency tables. [3]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb14"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>()) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the 'dplyr' package </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group data by the 'cyl' (cylinders) and 'am' (transmission type) columns; </span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Then summarise the grouped data to count the frequency in each group </span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span> </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by &#39;cyl&#39;. You can override using the `.groups`
+<pre><code>`summarise()` has grouped output by 'cyl'. You can override using the `.groups`
 argument.</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -411,17 +483,23 @@ argument.</code></pre>
 </div>
 </section>
 <section id="proportions-table-for-bivariate-categorical-data" class="level3">
-<h3>Proportions Table for Bivariate Categorical Data</h3>
+<h3 class="anchored" data-anchor-id="proportions-table-for-bivariate-categorical-data">Proportions Table for Bivariate Categorical Data</h3>
 <ol start="6" type="1">
-<li><strong><code>prop.table()</code></strong>: This function is an advantageous tool to understand the relative proportions rather than raw frequencies. It converts a contingency table into a table of proportions. Here is how we could utilize this function:</li>
+<li><p><strong><code>prop.table()</code></strong>: This function is an advantageous tool to understand the relative proportions rather than raw frequencies. It converts a contingency table into a table of proportions. [2]</p>
+<p>Here is how we could utilize this function:</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb17"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(freq)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prop,<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a frequency table </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(cyl, am)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the frequency table to a proportion table</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(freq)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Round the proportions in the table to three decimal places </span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(prop, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   
-        0     1
+<pre><code>   am
+cyl     0     1
   4 0.094 0.250
   6 0.125 0.094
   8 0.375 0.062</code></pre>
@@ -430,29 +508,36 @@ argument.</code></pre>
 <ul>
 <li><p>In this code, we first generate a frequency table with the <code>table()</code> function, using <code>cyl</code> and <code>am</code> as our variables. Then, we employ the <code>prop.table()</code> function to convert this frequency table (<code>freq_table</code>) into a proportions table (<code>prop_table</code>).</p></li>
 <li><p>This resulting <code>prop_table</code> reveals the proportion of each combination of <code>cyl</code> and <code>am</code> categories relative to the total number of observations. This can provide insightful context, allowing us to see how each combination fits into the overall distribution. For instance, we could learn what proportion of cars in our dataset have 4 cylinders and a manual transmission.</p></li>
-<li><p>Here is a more efficient method of writing the above code using the pipe operator.</p></li>
+<li><p>Here is a more efficient method of writing the above code using the pipe operator. [3]</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb19"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span>  <span class="co"># Convert the frequency table to a table of proportions</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>)          <span class="co"># Round the values to 3 DP</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   
-        0     1
+<pre><code>   am
+cyl     0     1
   4 0.094 0.250
   6 0.125 0.094
   8 0.375 0.062</code></pre>
 </div>
 </div>
 <ol start="7" type="1">
-<li>We can alternately use package <code>dplyr</code> to showcase the frequency and proportions in tabular form, instead of a contingency table.</li>
+<li>We can alternately use package <code>dplyr</code> to showcase the frequency and proportions in tabular form, instead of a contingency table. [3]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb21"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Proportion =</span> Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency)) </span></code></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dplyr for data manipulation</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Group 'tb' by 'cyl' and 'am', calculate group frequencies,</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># and add proportions.</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># .groups = "drop" prevents the creation of an additional grouping layer</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>(), </span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>            ) <span class="sc">%&gt;%</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Proportion =</span> Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   cyl   am    Frequency Proportion
@@ -469,14 +554,20 @@ argument.</code></pre>
 <li><p>In this code, <code>group_by(cyl, am)</code> groups the data by <code>cyl</code> and <code>am</code>, <code>summarise(Frequency = n())</code> calculates the frequency for each group, <code>.groups = "drop"</code> drops the grouping structure.</p></li>
 <li><p><code>mutate(Proportion = Frequency / sum(Frequency))</code> calculates the proportions by dividing each frequency by the total sum of frequencies.</p></li>
 <li><p>The <code>mutate()</code> function adds a new column to the dataframe, keeping the original data intact.</p></li>
-<li><p><strong>Percentages and Rounding</strong>: If we wanted to display the proportions as percentages, we could round-off the proportion up to 4 decimal places, as follows:</p></li>
+<li><p><strong>Percentages and Rounding</strong>: If we wanted to display the proportions as percentages, we could round-off the proportion up to 4 decimal places, as follows: [3]</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb23"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Percentage =</span> <span class="dv">100</span><span class="sc">*</span><span class="fu">round</span>(Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency), <span class="dv">4</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the dplyr package for data manipulation tasks</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Group by 'cyl' (cylinders) and 'am' (transmission type)</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Summarise each group to count its frequency, </span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># and drop the group structure </span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Add a new column 'Percentage'</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>tb <span class="sc">%&gt;%</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Frequency =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Percentage =</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">round</span>(Frequency <span class="sc">/</span> <span class="fu">sum</span>(Frequency), <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
   cyl   am    Frequency Percentage
@@ -491,20 +582,22 @@ argument.</code></pre>
 </div>
 </section>
 <section id="margins-in-proportions-tables" class="level3">
-<h3>Margins in Proportions Tables</h3>
+<h3 class="anchored" data-anchor-id="margins-in-proportions-tables">Margins in Proportions Tables</h3>
 <ol type="1">
-<li><p>Different proportions provide various perspectives on the relationship between categorical variables in our dataset. We can calculate the i) Proportions for <strong>Each Cell</strong>; (ii) <strong>Row-Wise* Proportions; (iii)</strong> <strong>Column-Wise</strong> Proportions. This forms a crucial part of exploratory data analysis.</p></li>
+<li><p>Different proportions provide various perspectives on the relationship between categorical variables in our dataset. We can calculate the i) Proportions for <strong>Each Cell</strong>; (ii) <strong>Row-Wise* Proportions; (iii)</strong> <strong>Column-Wise</strong> Proportions. This forms a crucial part of exploratory data analysis. [2]</p></li>
 <li><p><strong>Proportions for Each Cell</strong>: This calculates the ratio of each cell to the overall total.</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb25"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a table of proportions from the 'cyl' and 'am' variables, </span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add total margins, round to 3 decimal places, and convert to percentages.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     
-          0     1   Sum
+<pre><code>     am
+cyl       0     1   Sum
   4     9.4  25.0  34.4
   6    12.5   9.4  21.9
   8    37.5   6.2  43.8
@@ -515,14 +608,16 @@ argument.</code></pre>
 <li><strong>Row-Wise Proportions</strong>: Here, we compute the proportion of each cell relative to the total of its row.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb27"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion table from 'cyl' and 'am', calculate row-wise proportions,</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add column margins, round to 3 DP, and convert to percentages.</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Row-wise proportions</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span>  <span class="co"># Add sums for each column</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span>       <span class="co"># Round to three decimal places</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)           <span class="co"># Convert to percentage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   
-        0     1   Sum
+<pre><code>   am
+cyl     0     1   Sum
   4  27.3  72.7 100.0
   6  57.1  42.9 100.0
   8  85.7  14.3 100.0</code></pre>
@@ -532,14 +627,16 @@ argument.</code></pre>
 <li><strong>Column-Wise Proportions</strong>: Here, we determine the proportion of each cell relative to the total of its column.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb29"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am) <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proportion table from 'cyl' and 'am', calculate column-wise proportions,</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># add row margins, round to 3 DP, and convert to percentages.</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(cyl, am) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span>  <span class="co"># Column-wise proportions</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(<span class="dv">1</span>) <span class="sc">%&gt;%</span>  <span class="co"># Add sums for each row</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">3</span>) <span class="sc">%&gt;%</span>       <span class="co"># Round to three decimal places</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">*</span><span class="st">`</span>(<span class="dv">100</span>)           <span class="co"># Convert to percentage</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     
-          0     1
+<pre><code>     am
+cyl       0     1
   4    15.8  61.5
   6    21.1  23.1
   8    63.2  15.4
@@ -549,89 +646,92 @@ argument.</code></pre>
 </section>
 </section>
 <section id="visualizing-bivariate-categorical-data" class="level2">
-<h2>Visualizing Bivariate Categorical Data</h2>
+<h2 class="anchored" data-anchor-id="visualizing-bivariate-categorical-data">Visualizing Bivariate Categorical Data</h2>
 <ol type="1">
 <li><p><strong>Grouped Barplots</strong> and <strong>Stacked Barplots</strong> serve as powerful tools for representing and understanding bivariate categorical data, where both variables are categorical in nature.</p></li>
 <li><p>Grouped Barplots, often referred to as <strong>side-by-side bar plots</strong>, illustrate the relationship between two categorical variables by placing bars corresponding to one category of a variable next to each other, differentiated by color or pattern. This layout facilitates a direct comparison between categories of the second variable. Grouped bar plots are particularly effective when we are interested in comparing the distribution of a categorical variable across different groups</p></li>
-<li><p>On the other hand, <strong>stacked bar plots</strong> present a similar relationship between two categorical variables, but rather than aligning bars side by side, they stack bars on top of one another. This results in a single bar for each category of one variable, with the length of different segments in each bar corresponding to the counts or proportions of the categories of the other variable. Stacked bar plots are advantageous when we’re interested in the total size of groups as well as the distribution of a variable across groups. [2]</p></li>
+<li><p>On the other hand, <strong>stacked bar plots</strong> present a similar relationship between two categorical variables, but rather than aligning bars side by side, they stack bars on top of one another. This results in a single bar for each category of one variable, with the length of different segments in each bar corresponding to the counts or proportions of the categories of the other variable. Stacked bar plots are advantageous when we’re interested in the total size of groups as well as the distribution of a variable across groups. [1]</p></li>
 <li><p><strong>Grouped Barplot</strong></p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb31"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with count by transmission and number of cylinders</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>freq</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency table with counts grouped by the number of cylinders ('cyl') </span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="co"># and transmission type ('am')</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(cyl, am)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>freq  <span class="co"># Display the created frequency table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   
-     0  1
+<pre><code>   am
+cyl  0  1
   4  3  8
   6  4  3
   8 12  2</code></pre>
 </div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Grouped bar plot</span></span>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a grouped bar plot using the frequency table</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(freq, </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;green&quot;</span>), </span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Transmission&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Grouped Barplot of Frequency by transmission and cylinders&quot;</span>, </span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freq), </span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Cylinders&quot;</span>))</span></code></pre></div>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>,  <span class="co"># Place bars for different groups side by side</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>),  <span class="co"># Assign colors to each group </span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Transmission"</span>,  <span class="co"># Label for the x-axis, transmission type</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Frequency"</span>,  <span class="co"># Label for the y-axis, the count/frequency</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Grouped Barplot by transmission and cylinders"</span>,   </span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freq),  <span class="co"># Add a legend using row names </span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Cylinders"</span>))  <span class="co"># Set the title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="5" type="1">
 <li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
-<li><p><code>freq</code>: This is the dataset being visualized, which we anticipate to be a contingency table of am and cyl variables.</p></li>
+<li><p><code>freq</code>: This is the dataset being visualized, which we anticipate to be a contingency table of <code>am</code> and <code>cyl</code> variables.</p></li>
 <li><p><code>beside</code> = TRUE: This argument is specifying that the bars should be positioned next to each other, which means that for each level of <code>am</code>, there will be a distinct bar for each level of <code>cyl</code>.</p></li>
 <li><p><code>col = c("pink", "lightblue", "green")</code>: Here, we are setting the colors of the bars to pink, light blue, and green.</p></li>
 <li><p><code>xlab = "Transmission"</code> and <code>ylab = "Frequency"</code>: These arguments set the labels for the x and y-axes, respectively.</p></li>
 <li><p><code>main</code> = “Grouped Barplot of Frequency by transmission and cylinders”: This argument assigns a title to the plot.</p></li>
 <li><p><code>legend.text = rownames(freq)</code>: This creates a legend for the plot, using the row names of freq as the legend text.</p></li>
-<li><p><code>args.legend = list(title = "Cylinders")</code>: This sets the title of the legend to “Cylinders”.</p></li>
+<li><p><code>args.legend = list(title = "Cylinders")</code>: This sets the title of the legend to “Cylinders”. [3]</p></li>
 </ul>
 <ol start="6" type="1">
 <li>Consider this alternate barplot.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb34"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with count by transmission and number of cylinders</span></span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Table with counts grouped by transmission ('am') and cylinders ('cyl')</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>freqInverted <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>am, tb<span class="sc">$</span>cyl)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>freqInverted</span></code></pre></div>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>freqInverted  <span class="co"># Display the created frequency table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   
      4  6  8
   0  3  4 12
   1  8  3  2</code></pre>
 </div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a bar plot using the frequency table</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(freqInverted, </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>), </span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Count&quot;</span>, </span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Grouped Barplot of Frequency by cylinders and transmission&quot;</span>, </span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freqInverted), </span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Transmission&quot;</span>))</span></code></pre></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>,  <span class="co"># Place bars for cylinder counts side by side</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>),  <span class="co"># Assign colors  </span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Label for the x-axis,</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Count"</span>,  <span class="co"># Label for the y-axis, </span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Grouped Barplot of Frequency by cylinders and transmission"</span>, </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freqInverted),  <span class="co"># Add a legend  </span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Transmission"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="5" type="1">
-<li><strong>Discussion</strong>: The most significant differences from the previous Grouped Barplot and this one are as follows.</li>
+<li><strong>Discussion</strong>: The most significant differences from the previous Grouped Barplot and this one are as follows. [3]</li>
 </ol>
 <ul>
-<li><p><code>freqInverted</code>: The contingency table’s axes have been swapped or inverted. Hence, the table’s rows now correspond to the am variable (transmission), and its columns correspond to the cyl variable (cylinders).</p></li>
+<li><p><code>freqInverted</code>: The contingency table’s axes have been swapped or inverted. Hence, the table’s rows now correspond to the am variable (transmission), and its columns correspond to the <code>cyl</code> variable (cylinders).</p></li>
 <li><p><code>xlab = "Cylinders"</code> and <code>ylab = "Count"</code>: These arguments set the labels for the x and y-axes, respectively. This is a departure from the previous plot where the x-axis represented ‘Transmission’. In this case, the x-axis corresponds to ‘Cylinders’.</p></li>
 <li><p><code>legend.text = rownames(freqInverted)</code> and <code>args.legend = list(title = "Transmission")</code>: In the legend, the roles of ‘Transmission’ and ‘Cylinders’ are reversed compared to the previous plot.</p></li>
-<li><p>To put it succinctly, the main distinction between the two plots is the swapping of the roles of the cyl and am variables. In the second plot, ‘Cylinders’ is on the x-axis, which was occupied by ‘Transmission’ in the first plot. This perspective shift helps to understand the data in a different light, adding another dimension to our exploratory data analysis. [2]</p></li>
+<li><p>To put it succinctly, the main distinction between the two plots is the swapping of the roles of the <code>cyl</code> and <code>am</code> variables. In the second plot, ‘Cylinders’ is on the x-axis, which was occupied by ‘Transmission’ in the first plot. This perspective shift helps to understand the data in a different light, adding another dimension to our exploratory data analysis. [3]</p></li>
 </ul>
 <ol start="5" type="1">
 <li><strong>Stacked Barplot</strong></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb37"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with count by transmission and number of cylinders</span></span>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a frequency table by number of cylinders ('cyl') and transmission ('am') </span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>freq</span></code></pre></div>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>freq  <span class="co"># Display the frequency table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   
      0  1
@@ -639,51 +739,53 @@ argument.</code></pre>
   6  4  3
   8 12  2</code></pre>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Stacked bar plot</span></span>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Stacked bar plot using the frequency table</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(freq, </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;green&quot;</span>), </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Transmission&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Stacked Barplot of Frequency by transmission and cylinders&quot;</span>, </span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freq), </span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Cylinders&quot;</span>))</span></code></pre></div>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">FALSE</span>,  <span class="co"># Bars stacked on top of each other</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>),  <span class="co"># Assign colors </span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Transmission"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Frequency"</span>,  <span class="co"># Label for the y-axis</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Stacked Barplot by transmission and cylinders"</span>,</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freq),  <span class="co"># Add a legend</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Cylinders"</span>))  <span class="co"># title of the legend</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>There are a few key differences between this Stacked Barplot and the original Grouped Barplot:</p>
 <ul>
-<li><p><code>beside = FALSE</code>: In the original code, beside = TRUE was used to generate a grouped bar plot, where each set of bars corresponding to each transmission type (automatic or manual) were displayed side by side. However, with beside = FALSE, we obtain a stacked bar plot. In this plot, the bars corresponding to each cylinder category (4, 6, or 8 cylinders) are stacked on top of one another for each transmission type.</p></li>
+<li><p><code>beside = FALSE</code>: In the original code, <code>beside = TRUE</code> was used to generate a grouped bar plot, where each set of bars corresponding to each transmission type (automatic or manual) were displayed side by side. However, with <code>beside = FALSE</code>, we obtain a stacked bar plot. In this plot, the bars corresponding to each cylinder category (4, 6, or 8 cylinders) are stacked on top of one another for each transmission type.</p></li>
 <li><p><code>main = "Stacked Barplot of Frequency by transmission and cylinders"</code>: The title of the plot also reflects this change, mentioning now that it’s a stacked bar plot instead of a grouped bar plot.</p></li>
-<li><p>Finally, here is a Stacked Barplot, corresponding to the second Grouped Barplot discussed above.</p></li>
+<li><p>Finally, here is a Stacked Barplot, corresponding to the second Grouped Barplot discussed above. [3]</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode" id="cb40"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a table with count by transmission and number of cylinders</span></span>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a frequency table by transmission ('am') and cylinders ('cyl') </span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>freqInverted <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>am, tb<span class="sc">$</span>cyl)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>freqInverted</span></code></pre></div>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>freqInverted  <span class="co"># Display the frequency table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   
      4  6  8
   0  3  4 12
   1  8  3  2</code></pre>
 </div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the bar plot</span></span>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Stacked bar plot using the frequency table</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(freqInverted, </span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>), </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Count&quot;</span>, </span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Stacked Barplot of Frequency by cylinders and transmission&quot;</span>, </span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freqInverted), </span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">&quot;Transmission&quot;</span>))</span></code></pre></div>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">FALSE</span>,  <span class="co"># Configure bars to be stacked</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>),  <span class="co"># Assign colors </span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Set the x-axis label to 'Cylinders'</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Count"</span>,  <span class="co"># Set the y-axis label to 'Count'</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Stacked Barplot by cylinders and transmission"</span>,</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">rownames</span>(freqInverted),  <span class="co"># Add a legend </span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">args.legend =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="st">"Transmission"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="6" type="1">
 <li>The grouped bar plot helps in comparing the number of cylinders across transmission types side by side, while the stacked bar plot gives an overall comparison in terms of total number of cars, with the frequency of each cylinder type stacked on top of the other. The choice between a stacked and a grouped bar plot would depend on the specific aspects of the data one would want to highlight. Taken together, grouped and stacked bar plots offer visually appealing and intuitive methods for presenting bivariate categorical data, allowing us to understand and analyze relationships between categorical variables in a meaningful way. [3]</li>
 </ol>
 <section id="using-ggplot2" class="level3">
-<h3>Using <strong>ggplot2</strong></h3>
+<h3 class="anchored" data-anchor-id="using-ggplot2">Using <strong>ggplot2</strong></h3>
 <p><strong>Grouped Barplot using ggplot2</strong></p>
 <ul>
 <li>We demonstrate how to create a Grouped Barplot of Car Count by transmission and cylinders</li>
@@ -692,45 +794,59 @@ argument.</code></pre>
 <li>Set up the data</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb43"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to &#39;long&#39; format</span></span>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table of cylinder and transmission counts to a data frame </span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freq)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Cylinders&quot;</span>, <span class="st">&quot;Transmission&quot;</span>, <span class="st">&quot;Frequency&quot;</span>)</span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Cylinders)</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Automatic&quot;</span>, <span class="st">&quot;Manual&quot;</span>))</span></code></pre></div>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns for clarity</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Cylinders"</span>, <span class="st">"Transmission"</span>, <span class="st">"Frequency"</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Cylinders' to a factor for categorical analysis</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Cylinders)</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Transmission' to a factor </span></span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co"># and label the categories as 'Automatic' and 'Manual'</span></span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Transmission, </span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li>Create a Grouped Barplot using ggplot2</li>
+<li>Create a Grouped Barplot using ggplot2 [4]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb44"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required library</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>
-Attaching package: &#39;ggplot2&#39;</code></pre>
+Attaching package: 'ggplot2'</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>The following object is masked from &#39;tb&#39;:
+<pre><code>The following object is masked from 'tb':
 
     mpg</code></pre>
 </div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot</span></span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a Grouped Barplot</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, </span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Transmission, <span class="at">y =</span> Frequency, <span class="at">fill =</span> Cylinders)) <span class="sc">+</span> </span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Frequency), </span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="fl">1.6</span>, </span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">&quot;black&quot;</span>, </span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), </span>
-<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Transmission&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
-<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Cylinders&quot;</span>,</span>
-<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Grouped Barplot of Car Count by transmission and cylinders&quot;</span>) <span class="sc">+</span></span>
-<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Transmission, </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Frequency, </span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> Cylinders)) <span class="sc">+</span>  <span class="co"># Set up the aesthetics</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,  </span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>           <span class="co"># create bars, 'identity' to use direct values from data</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span>  </span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>           <span class="co"># Dodge position to place bars side by side</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span>Frequency),  </span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Add text labels on top of bars for frequency values</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust=</span><span class="fl">1.6</span>,  <span class="co"># Adjust vertical position of labels </span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">color=</span><span class="st">"black"</span>,  <span class="co"># Set label color</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>),  </span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Dodge position for the labels to align with the bars</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">size=</span><span class="dv">5</span>) <span class="sc">+</span>  <span class="co"># Set size of the text labels</span></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,  <span class="co"># Set labels for x and y axes</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Legend title </span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Grouped Barplot of Car Count by transmission and cylinders"</span>) <span class="sc">+</span>  </span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
 </div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Manually set colors for each cylinder category</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
 <li><strong>Discussion</strong>:</li>
@@ -748,33 +864,47 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 <li>Set up the data</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb48"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>freqInverted <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>am, tb<span class="sc">$</span>cyl)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the table to a data frame and reshape to &#39;long&#39; format</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>df_inverted <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freqInverted)</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_inverted) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Transmission&quot;</span>, <span class="st">&quot;Cylinders&quot;</span>, <span class="st">&quot;Count&quot;</span>)</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Transmission, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Automatic&quot;</span>, <span class="st">&quot;Manual&quot;</span>))</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Cylinders)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Frequency table by transmission ('am') and number of cylinders ('cyl') </span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>freqInverted <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>am, tb<span class="sc">$</span>cyl)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the frequency table to a data frame for better data manipulation</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>df_inverted <span class="ot">&lt;-</span> <span class="fu">as.data.frame.table</span>(freqInverted)</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename columns to be more descriptive</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df_inverted) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Transmission"</span>, <span class="st">"Cylinders"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Transmission' to a factor with meaningful labels for clarity </span></span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Transmission <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Transmission, </span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'Cylinders' to a factor to treat it as a categorical variable</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Cylinders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
-<li>Create a Grouped Barplot using ggplot2</li>
+<li>Create a Grouped Barplot using ggplot2 [4]</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb49"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot using ggplot2</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_inverted, </span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Cylinders, <span class="at">y =</span> Count, <span class="at">fill =</span> Transmission)) <span class="sc">+</span> </span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, </span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Count), </span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="fl">1.6</span>, </span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>), </span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Transmission&quot;</span>,</span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Grouped Barplot of Frequency by cylinders and transmission&quot;</span>) <span class="sc">+</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot using ggplot2</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_inverted, </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Cylinders, </span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Count, </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> Transmission)) <span class="sc">+</span>  <span class="co"># Define aesthetics</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>,  <span class="co"># Create bar plot </span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="fu">position_dodge</span>()) <span class="sc">+</span>  <span class="co"># Dodge position for grouped bars</span></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Count),  <span class="co"># Add text labels (Count) on each bar</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="fl">1.6</span>,  <span class="co"># Vertically adjust text to sit above the bars</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set text color to black for readability</span></span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="fl">0.9</span>),  <span class="co"># Adjust text position </span></span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span>  <span class="co"># Set text size</span></span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Cylinders"</span>, </span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>, </span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Transmission"</span>,  <span class="co"># Label </span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Grouped Barplot of Frequency by cylinders and transmission"</span>) <span class="sc">+</span>   </span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="768"></p>
 </div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Manually set the colors for the 'Transmission' categories</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="6" type="1">
 <li><strong>Discussion</strong>:</li>
@@ -786,27 +916,31 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 <p><strong>Stacked Barplots using ggplot2</strong></p>
 <ul>
 <li><p>We demonstrate how to create a Stacked Barplot of Car Count by cylinders and transmission</p></li>
-<li><p>To create a stacked bar plot with <code>ggplot2</code>, we apply the <code>geom_bar()</code> function but without the dodge positioning this time, since we want the bars stacked.</p></li>
+<li><p>To create a stacked bar plot with <code>ggplot2</code>, we apply the <code>geom_bar()</code> function but without the dodge positioning this time, since we want the bars stacked. [4]</p></li>
 </ul>
 <ol start="7" type="1">
 <li>Create a Stacked Barplot using ggplot2</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb50"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Stacked Barplot using ggplot2</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Transmission, <span class="at">y =</span> Frequency, <span class="at">fill =</span> Cylinders)) <span class="sc">+</span> </span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Frequency), </span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>), </span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
-<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Transmission&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frequency&quot;</span>, </span>
-<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">&quot;Cylinders&quot;</span>,</span>
-<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Stacked Barplot of Frequency by transmission and cylinders&quot;</span>) <span class="sc">+</span></span>
-<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;pink&quot;</span>, <span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Stacked Barplot using ggplot2</span></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Transmission, </span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">y =</span> Frequency, </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> Cylinders)) <span class="sc">+</span>  <span class="co"># Set up plot aesthetics </span></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span>  <span class="co"># Create stacked bars </span></span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Frequency),  <span class="co"># Add frequency labels </span></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_stack</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>),  <span class="co"># Vertically center  </span></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"black"</span>,  <span class="co"># Set label color to black for contrast</span></span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span>  <span class="co"># Adjust text size for visibility</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Transmission"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>,  <span class="co"># Set x and y-axis labels</span></span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Cylinders"</span>,  <span class="co"># Legend title for color fill</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Stacked Barplot of Frequency by transmission and cylinders"</span>) <span class="sc">+</span>  </span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pink"</span>, <span class="st">"lightblue"</span>, <span class="st">"green"</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="768"></p>
 </div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Manually assign colors to different cylinder counts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="8" type="1">
 <li><strong>Discussion</strong>:</li>
@@ -816,35 +950,35 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 <li><p>The <code>scale_fill_manual()</code> function is used to specify the colors for the different cylinder categories. Again, we changed the order of the Transmission and Cylinders columns to suit this specific plot.</p></li>
 <li><p>The <code>geom_text()</code> function is used to add the labels to the stacked bars. We use position_stack() to position the labels in the middle of the stacked sections.</p></li>
 <li><p>The <code>vjust</code> argument inside position_stack() controls the vertical positioning of the labels, and 0.5 puts them in the middle.</p></li>
-<li><p>As before, <code>scale_fill_manual()</code> allows us to specify the colors for the different cylinder categories.</p></li>
+<li><p>As before, <code>scale_fill_manual()</code> allows us to specify the colors for the different cylinder categories.[4]</p></li>
 </ul>
 </section>
 <section id="mosaic-plots-for-bivariate-categorical-data" class="level3">
-<h3><strong>Mosaic Plots</strong> for Bivariate Categorical Data</h3>
+<h3 class="anchored" data-anchor-id="mosaic-plots-for-bivariate-categorical-data"><strong>Mosaic Plots</strong> for Bivariate Categorical Data</h3>
 <ol type="1">
-<li><p>A mosaic plot is a graphical method for visualizing data from two or more qualitative variables / categorical data. It is a form of area plot that can provide a visual representation of the frequency or proportion of the different categories within the variables.</p></li>
+<li><p>A mosaic plot is a graphical method for visualizing data from two or more qualitative variables / categorical data. It is a form of area plot that can provide a visual representation of the frequency or proportion of the different categories within the variables. [5]</p></li>
 <li><p>The following code generates a mosaic plot from a contingency table of two variables: <code>cyl</code> (cylinders) and <code>am</code> (transmission).</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb51"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot </span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am), </span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&quot;Mosaic of Cylinder count and Transmission type&quot;</span>,</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">&quot;Cylinders (cyl)&quot;</span>,</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">&quot;Transmission (am)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot </span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaicplot</span>(<span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am), </span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"Mosaic of Cylinder count and Transmission type"</span>,  </span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">xlab =</span> <span class="st">"Cylinders (cyl)"</span>,  <span class="co"># Label for the x-axis </span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">ylab =</span> <span class="st">"Transmission (am)"</span>)  <span class="co"># Label for the y-axis </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="2" type="1">
-<li>In a mosaic plot, we interpret two categorical variables on two axes.</li>
+<li>In a mosaic plot, we interpret two categorical variables on two axes. [5]</li>
 </ol>
 <ul>
 <li><p>The <strong>width</strong> of each section on one axis signifies the proportion of that particular category in our dataset.</p></li>
 <li><p>Conversely, the <strong>height</strong> of a section on the other axis illustrates the proportion of that category, contingent on the specific category from the first variable.</p></li>
-<li><p>Therefore, the <strong>area</strong> of each rectangle directly corresponds to the frequency or proportion of observations falling within that specific combination of categories (Hartigan &amp; Kleiner, 1981).</p></li>
+<li><p>Therefore, the <strong>area</strong> of each rectangle directly corresponds to the frequency or proportion of observations falling within that specific combination of categories.</p></li>
 </ul>
 <ol start="3" type="1">
-<li><p>By combining both the height and width of the rectangles, a mosaic plot gives us a visual representation of the joint distribution of the two categorical variables. It helps us to identify patterns, associations, and dependencies between the two variables.</p></li>
+<li><p>By combining both the height and width of the rectangles, a mosaic plot gives us a visual representation of the joint distribution of the two categorical variables. It helps us to identify patterns, associations, and dependencies between the two variables. [5]</p></li>
 <li><p><strong>Discussion</strong>:</p></li>
 </ol>
 <ul>
@@ -854,27 +988,27 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 </ul>
 <ol start="5" type="1">
 <li><p>They can be used to identify breaks in independence or test hypotheses regarding the connections between the variables. They are especially helpful for examining interactions between two or more categorical variables.</p></li>
-<li><p>The <code>vcd</code> package, short for Visualizing Categorical Data, provides alternative visual and analytical methods for categorical data (Meyer, Zeileis, &amp; Hornik, 2020). A mosaic plot is created from the variables <code>cyl</code> (cylinders) and <code>am</code> (transmission type) using the <code>mosaic()</code> function.</p></li>
+<li><p>The <code>vcd</code> package, short for Visualizing Categorical Data, provides alternative visual and analytical methods for categorical data. A mosaic plot is created from the variables <code>cyl</code> (cylinders) and <code>am</code> (transmission type) using the <code>mosaic()</code> function. [5]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb52"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the vcd package</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the vcd package for categorical data visualization</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: grid</code></pre>
 </div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot of mpg (miles per gallon) vs. am (transmission)</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">&quot;Mosaic Plot of cars by Cylinder count and Transmission type&quot;</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot of cylinder count (cyl) vs. transmission (am) </span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic Plot by Cylinder and Transmission"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="7" type="1">
 <li><strong>Discussion</strong>:</li>
 </ol>
 <ul>
-<li><p><code>library(vcd)</code> is used to import the vcd package which includes the mosaic() function that is superior to the base R mosaicplot() in its handling of labeling and legends.</p></li>
+<li><p><code>library(vcd)</code> is used to import the <code>vcd</code> package which includes the <code>mosaic()</code> function that is superior to the base R <code>mosaicplot()</code> in its handling of labeling and legends.</p></li>
 <li><p><code>mosaic(\~ cyl + am, data = tb, main = "Mosaic of Cylinder count and Transmission type")</code> creates a mosaic plot.</p></li>
 <li><p>In this command, the formula <code>~ cyl + am</code> tells R to plot <code>cyl</code> against <code>am</code>. The argument <code>data = tb</code> specifies that the variables for the plot come from the <code>tb</code> data frame. The <code>main</code> argument sets the title of the plot.</p></li>
 </ul>
@@ -882,22 +1016,23 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 <li>We can customize the shading color of the mosaic plot by setting the color using the <code>col</code> argument inside the <code>mosaic()</code> function. To specify shades of blue, we can use the <code>RColorBrewer</code> package and its <code>brewer.pal()</code> function to generate a color palette:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb55"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the color palette</span></span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">4</span>, <span class="st">&quot;Blues&quot;</span>)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot</span></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">&quot;Mosaic Plots of cars by Cylinder count and Transmission type&quot;</span>,</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting =</span> <span class="st">&quot;cyl&quot;</span>, </span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting_fill =</span> cols)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the color palette using RColorBrewer</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="dv">4</span>, <span class="st">"Blues"</span>)  </span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Select a palette of 4 shades from the 'Blues' spectrum</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a mosaic plot </span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>vcd<span class="sc">::</span><span class="fu">mosaic</span>(<span class="sc">~</span> cyl <span class="sc">+</span> am, </span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> tb, </span>
+<span id="cb58-12"><a href="#cb58-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="st">"Mosaic Plot by Cylinder and Transmission"</span>, </span>
+<span id="cb58-13"><a href="#cb58-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">shade =</span> <span class="cn">TRUE</span>,  <span class="co"># Apply shading to highlight differences</span></span>
+<span id="cb58-14"><a href="#cb58-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting =</span> <span class="st">"cyl"</span>,  <span class="co"># Highlight based on cylinder count</span></span>
+<span id="cb58-15"><a href="#cb58-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">highlighting_fill =</span> cols)  <span class="co"># Use the defined colors </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ol start="9" type="1">
@@ -912,21 +1047,24 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 <li>We can also recreate the previous mosaic plot using <code>ggplot2</code> and <code>ggmosaic</code> packages. Here is how to do it:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode" id="cb56"><pre class="sourceCode r cell-code"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the packages</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mosaic plot</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb) <span class="sc">+</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(cyl, am), <span class="at">fill =</span> cyl)) <span class="sc">+</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Mosaic Plot of Cars by Cylinder count and Transmission type&quot;</span>, </span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Transmission&quot;</span>, </span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Cylinders&quot;</span>) <span class="sc">+</span></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Blues&quot;</span>)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the packages</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmosaic, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)  <span class="co"># Load ggmosaic </span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the mosaic plot using ggplot2 and ggmosaic</span></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> tb) <span class="sc">+</span></span>
+<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(cyl, am), </span>
+<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">fill =</span> cyl)) <span class="sc">+</span>  </span>
+<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Create mosaic plot with 'cyl' and 'am' and fill based on 'cyl'</span></span>
+<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span>  <span class="co"># Use a minimal theme for a cleaner look</span></span>
+<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Mosaic Plot of Cars by Cylinder count and Transmission type"</span>,  </span>
+<span id="cb59-12"><a href="#cb59-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Transmission"</span>,  <span class="co"># Label for the x-axis</span></span>
+<span id="cb59-13"><a href="#cb59-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cylinders"</span>) <span class="sc">+</span>  <span class="co"># Label for the y-axis</span></span>
+<span id="cb59-14"><a href="#cb59-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Blues"</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768" /></p>
+<p><img src="08CategoricalData02_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768"></p>
 </div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Use a color scale from the 'Blues' palette for the fill</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="11" type="1">
 <li><strong>Discussion</strong>:</li>
@@ -940,43 +1078,48 @@ Attaching package: &#39;ggplot2&#39;</code></pre>
 </ul>
 </section>
 </section>
-<section id="summary-of-chapter-9-categorical-x-categorical-data-1-of-2" class="level2">
-<h2>Summary of Chapter 9 – Categorical x Categorical data (1 of 2)</h2>
+<section id="summary-of-chapter-8-categorical-x-categorical-data-1-of-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-8-categorical-x-categorical-data-1-of-2">Summary of Chapter 8 – Categorical x Categorical data (1 of 2)</h2>
 <p>In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.</p>
-<p>An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage.</p>
-<p>The <code>ggplot2</code> library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.</p>
+<p>An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage. The <code>ggplot2</code> library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.</p>
 <p>The chapter also introduces mosaic plots as another way of visualizing bivariate categorical data and discusses how mosaic plots can provide a visual representation of the frequency or proportion of different categories within variables. The use of the base R <code>mosaicplot()</code> function is exemplified, followed by the demonstration of the <code>mosaic()</code> function in the <code>vcd</code> package and the <code>ggmosaic</code> package, bringing full circle the spectrum of visualizations covered for bivariate categorical data.</p>
 </section>
 <section id="references" class="level2">
-<h2>References</h2>
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p><strong>Categorical Data Analysis:</strong></p>
 <p>[1] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
-<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
-<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <a href="https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html" class="uri">https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html</a></p>
 <p>Hair, J. F., Black, W. C., Babin, B. J., &amp; Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.</p>
-<p>[2] Unwin, A. (2015). Graphical data analysis with R. CRC Press.</p>
+<p>Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.</p>
+<p>Tang, W., Tang, Y., &amp; Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.</p>
+<p><strong>Basic R programmng:</strong></p>
+<p>[2] Crawley, M. J. (2007). The R Book. Wiley.</p>
+<p>Friendly, M., &amp; Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.</p>
+<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
+<p><strong>Data Visualization:</strong></p>
+<p>[3] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O’Reilly Media.</p>
 <p>Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.</p>
-<p>Hartigan, J. A., &amp; Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).</p>
-<p>[3] Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
-<p>[4] Meyer, D., Zeileis, A., &amp; Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd</p>
+<p>Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
+<p>Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.</p>
+<p>Heiberger, R. M., &amp; Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.</p>
+<p>Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data &amp; Analytics Series.</p>
+<p>Unwin, A. (2015). Graphical data analysis with R. CRC Press.</p>
+<p>Wilke, C. O. (2019). Fundamentals of Data Visualization. O’Reilly Media.</p>
+<p><strong>ggplot2:</strong></p>
+<p>[4] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.</p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
+<p><strong>Mosaic plot:</strong></p>
+<p>[5] Hartigan, J. A., &amp; Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp.&nbsp;268-273).</p>
+<p>Meyer, D., Zeileis, A., &amp; Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd</p>
 <p>Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.</p>
-<p>Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
-<p>[5] R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
-<div id="quarto-navigation-envelope" class="hidden">
-<p><span class="hidden" data-render-id="quarto-int-sidebar-title">Data Analytics 101 – Exploratory Data Analysis using R.</span> <span class="hidden" data-render-id="quarto-int-navbar-title">Data Analytics 101 – Exploratory Data Analysis using R.</span> <span class="hidden" data-render-id="quarto-int-next">09: Categorical x Categorical data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-prev">Categorical Data</span> <span class="hidden" data-render-id="quarto-int-sidebar:/index.html">Overview</span> <span class="hidden" data-render-id="quarto-int-sidebar:/01GettingStarted.html">Exploring R programming</span> <span class="hidden" data-render-id="quarto-int-sidebar:/02RPackages.html">Exploring R Packages</span> <span class="hidden" data-render-id="quarto-int-sidebar:/03DataStructures.html">Exploring Data Structures</span> <span class="hidden" data-render-id="quarto-int-sidebar:/04ReadingData.html">Reading Data into R</span> <span class="hidden" data-render-id="quarto-int-sidebar:/05ExploringDataframes.html">Exploring Dataframes</span> <span class="hidden" data-render-id="quarto-int-sidebar:/06ExploringTibbles.html">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span> <span class="hidden" data-render-id="quarto-int-sidebar:/07CategoricalData01.html">Categorical Data</span> <span class="hidden" data-render-id="quarto-int-sidebar:/08CategoricalData02.html">Categorical x Categorical data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/09CategoricalData03.html">09: Categorical x Categorical data (2 of 2)</span> <span class="hidden" data-render-id="quarto-int-sidebar:/10ContinuousData01.html">10: Continuous Data (1 of 2)</span> <span class="hidden" data-render-id="quarto-int-navbar:Sameer Mathur">Sameer Mathur</span> <span class="hidden" data-render-id="quarto-int-navbar:https://www.qatar.cmu.edu/directory/sameer-mathur/">https://www.qatar.cmu.edu/directory/sameer-mathur/</span> <span class="hidden" data-render-id="quarto-int-navbar:Book&#39;s Github">Book’s Github</span> <span class="hidden" data-render-id="quarto-int-navbar:https://github.com/SameerMathur/DataAnalytics101">https://github.com/SameerMathur/DataAnalytics101</span> <span class="hidden" data-render-id="footer-center-https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</span> <span class="hidden" data-render-id="footer-center-https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</span> <span class="hidden" data-render-id="quarto-breadcrumbs-f234234bce3f39fb4d4af5405da3b290">Categorical x Categorical data (1 of 2)</span></p>
-<div class="hidden" data-render-id="margin-header">
-<div class="margin-header-item">
-<p><img src="BookCover101.png" class="img-fluid" /></p>
-</div>
-</div>
-</div>
-<div id="quarto-meta-markdown" class="hidden">
-<p><span class="hidden" data-render-id="quarto-twittercardtitle"></span> <span class="hidden" data-render-id="quarto-ogcardtitle"></span> <span class="hidden" data-render-id="quarto-metasitename">Data Analytics 101 – Exploratory Data Analysis using R.</span> <span class="hidden" data-render-id="quarto-twittercarddesc"></span> <span class="hidden" data-render-id="quarto-ogcardddesc"></span></p>
-</div>
+
+
 </section>
 </section>
 
 </main> <!-- /main -->
-<script id = "quarto-html-after-body" type="application/javascript">
+<script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -1218,14 +1361,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">
- Sameer Mathur
-    </a>
+    <a class="nav-link" href="https://www.qatar.cmu.edu/directory/sameer-mathur/">Sameer Mathur</a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">
- Aryeman Gupta Mathur
-    </a>
+    <a class="nav-link" href="https://docs.google.com/document/d/15Li_DpXPSA6NXyXyCzM3vUu766RBq87W/edit?usp=sharing&amp;ouid=100224206438187222136&amp;rtpof=true&amp;sd=true">Aryeman Gupta Mathur</a>
   </li>  
 </ul>
     </div>
@@ -1235,6 +1374,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </footer>
 
-</body>
 
-</html>
+
+</body></html>

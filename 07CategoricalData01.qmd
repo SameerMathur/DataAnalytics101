@@ -268,7 +268,8 @@ library(ggplot2)
 # Create a bar plot using ggplot
 ggplot(data = tb,  # Specify the data frame 'tb'
        aes(x = cyl)) +  # Define 'cyl' as the x-axis variable
-  geom_bar(aes(fill = cyl)) +  # Create a bar graph, 'fill' colors bars based on 'cyl' values
+  geom_bar(aes(fill = cyl)) +  
+  # Create a bar graph, 'fill' colors bars based on 'cyl' values
   labs(title = "Bar Plot of Cars by Cylinders",  # Add a title to the plot
        x = "Cylinders",  # Label for the x-axis
        y = "Count")  # Label for the y-axis
@@ -289,11 +290,11 @@ ggplot(data = tb,  # Specify the data frame 'tb'
 2.  Suppose we wanted to add labels to the bars showing the count of each category. We can do this by using the `geom_text()` function in ggplot2. Here's how we can modify our code to include labels:
 
 ```{r}
-ggplot(data = tb, aes(x = cyl)) + # Initialize ggplot with 'tb' data, setting 'cyl' as the x-axis
-  geom_bar(aes(fill = cyl)) + # Add bar geometries, filling bars based on 'cyl' values
-  geom_text(stat='count',    # Add text labels on bars using the 'count' statistic
-            aes(label=after_stat(count)), # 'label' is set to display the count
-            vjust=-0.5) + # Adjust vertical position of labels to be above the bars
+ggplot(data = tb, aes(x = cyl)) + # Initialize ggplot 
+  geom_bar(aes(fill = cyl)) + # Add bar geometries, filling bars 
+  geom_text(stat='count',    # Add text labels using the 'count' statistic
+            aes(label=after_stat(count)), # 'label' to display the count
+            vjust=-0.5) + # Adjust vertical position of labels 
   labs(title = "Bar Plot of Cylinders", # Add a title to the plot
        x = "Cylinders",  # Label for the x-axis
        y = "Count")      # Label for the y-axis
@@ -399,42 +400,54 @@ Visualization techniques using R's ggplot2 package are introduced, highlighting 
 
 ## References
 
+**Categorical Data Analysis:**
+
 \[1\] Diez, D. M., Barr, C. D., & Çetinkaya-Rundel, M. (2012). OpenIntro Statistics (2nd ed.). OpenIntro.
 
 \[2\] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
 
-Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
-
-A Guide on Data Analysis. (n.d.). Categorical Data Analysis. Retrieved from https://bookdown.org/content/4861/categorical-data-analysis.html
-
 Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html>
+
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.
 
 Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.
 
-\[3\] Friendly, M., & Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.
+Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
 
-Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+**Basic R programmng:**
 
-Crawley, M. J. (2007). The R Book. Wiley.
+\[3\] Crawley, M. J. (2007). The R Book. Wiley.
 
-\[4\] Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
+Friendly, M., & Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.
 
-Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
+Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
 
-Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
+**Data Visualization:**
 
-Heiberger, R. M., & Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
+\[4\] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O'Reilly Media.
 
-\[5\] Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.
 
-Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.
-
-Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O'Reilly Media.
+Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
 
 Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.
 
+Heiberger, R. M., & Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
+
 Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data & Analytics Series.
+
+Unwin, A. (2015). Graphical data analysis with R. CRC Press.
 
 Wilke, C. O. (2019). Fundamentals of Data Visualization. O'Reilly Media.
 
-\[6\] Alboukadel Kassambara (2020). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.4.0. https://CRAN.R-project.org/package=ggpubr
+**ggplot2:**
+
+\[5\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
+
+Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+
+Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
+
+**ggpubr:**
+
+\[6\] Kassambara A (2023). *ggpubr: 'ggplot2' Based Publication Ready Plots*. R package version 0.6.0, <https://rpkgs.datanovia.com/ggpubr/>.
