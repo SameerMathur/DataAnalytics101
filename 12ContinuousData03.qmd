@@ -1,6 +1,6 @@
 # Categorical x Continuous data (1 of 2)
 
-#### Chapter 12, *Last updated: Jan 03, 2024*
+**Chapter 12, *Last updated: Jan 03, 2024***
 
 1.  This chapter explores **Categorical** x **Continuous** data. It explains how to summarize and visualize *bivariate continuous data across categories*. Here, we delve into the intersection of continuous data and categorical variables, examining how continuous data can be split, summarized, and compared across different levels of one or more categorical variables.
 
@@ -580,7 +580,7 @@ R Core Team (2020). R: A language and environment for statistical computing. R F
 
 Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, *517*(7532), 109-110.
 
-Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc.".
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc."
 
 **knitr:**
 
@@ -610,7 +610,7 @@ Wand, M. P., & Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.
 
 **gplots:**
 
-\[8\] Warnes, M. G. R., Bolker, B., Bonebakker, L., Gentleman, R., Huber, W., & Liaw, A. (2016). Package \'gplots\'. *Various R programming tools for plotting data*.
+\[8\] Warnes, M. G. R., Bolker, B., Bonebakker, L., Gentleman, R., Huber, W., & Liaw, A. (2016). Package 'gplots'. *Various R programming tools for plotting data*.
 
 **Statistics using R**
 
@@ -635,16 +635,6 @@ R Core Team (2020). R: A language and environment for statistical computing. R F
 Schumacker, R. E. (2014). *Learning statistics using R*. Sage Publications.
 
 Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springer Science & Business Media.
-
-**Regression:**
-
-\[10\] Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.
-
-Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.9. https://CRAN.R-project.org/package=psych
-
-**ANOVA**
-
-\[11\] Chambers, J. M., Freeny, A. E., & Heiberger, R. M. (1992). Analysis of variance; designed experiments. In Statistical Models in S (pp. 145--193). Pacific Grove, CA: Wadsworth & Brooks/Cole.
 
 ## Appendix
 

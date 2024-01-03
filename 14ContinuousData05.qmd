@@ -1,10 +1,10 @@
 # Continuous x Continous data (1 of 2)
 
-#### Chapter 14, *Last updated: Dec 30, 2023*
+#### Chapter 14, *Last updated: **Jan 03, 2024***
 
 ## Exploring bivariate Continuous x Continuous data
 
-This chapter explores how to summarize and visualize the interaction between *bivariate continuous data* using correlation analysis, scatter plots, scatter plot matrices and other such techniques.
+This chapter explores how to summarize and visualize the interaction between *bivariate continuous data* using correlation analysis, scatter plots, scatter plot matrices and other such techniques. \[1\]
 
 **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
 
@@ -21,11 +21,13 @@ library(GGally, quietly = TRUE, warn.conflicts = FALSE)
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
+
 # Convert relevant columns into factor variables
 tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
 tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
 tb$vs <- as.factor(tb$vs) # vs = {0,1}, v-shaped engine, 0:no, 1:yes
 tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
+
 # Directly access the data columns of tb, without tb$mpg
 attach(tb)
 ```
@@ -41,12 +43,15 @@ attach(tb)
 ### Scatterplot using `plot()`
 
 ```{r}
-plot(tb$wt, 
-     tb$mpg, 
-     main = "Scatter Plot of Mileage vs. Weight",
-     xlab = "Weight", ylab = "Miles per gallon (mpg)", 
-     pch = 16, 
-     col="blue")
+# Create a scatter plot of Miles per Gallon (mpg) vs. Weight
+plot(wt, 
+     mpg, 
+     main = "Scatter Plot of Mileage vs. Weight", # Set the title of the plot
+     xlab = "Weight",                # Label for the x-axis
+     ylab = "Miles per gallon (mpg)",# Label for the y-axis
+     pch = 16,                       # Use filled circles as data points
+     col = "blue"                    # Set the color of the points to blue
+     )
 ```
 
 4.  **Discussion**:
@@ -57,32 +62,32 @@ plot(tb$wt,
 
 -   The `pch` argument sets the shape of the points to a solid circle. `pch = 15` gives a filled square. Recall other popular values: `pch = 16` gives a filled circle, `pch = 17` gives a filled triangle (pointing upwards), `pch = 18` gives a filled diamond, `pch = 19` gives a solid circle, `pch = 20` gives a filled bullet (smaller than `pch = 19`)
 
--   the `col` argument specifies the color of the data points. Recall we can use any named color in R, or we can use hexadecimal color codes. For instance, `col = "#FF0000"` would give us red points. \[2\]
+-   the `col` argument specifies the color of the data points. Recall we can use any named color in R, or we can use hexadecimal color codes. For instance, `col = "#FF0000"` would give us red points. \[1\]
 
 5.  **Personalizing Scatter Plots**
 
 -   We can personalize the appearance of the scatterplot in a variety of additional ways.
 
 ```{r}
-# Create the scatterplot
-plot(tb$wt, 
-     tb$mpg, 
-     main = "Scatter Plot of MPG vs. Weight",
-     xlab = "Weight", ylab = "Mileage (mpg)", 
-     pch = 16, 
-     cex = 1.5, 
-     col="blue", 
-     col.lab="red", 
-     cex.lab=1.5,
-     col.main="darkgreen", 
-     cex.main=2,
-     bg = "gray")
-
-# Add a grid
+# Create a scatter plot of Mileage (mpg) vs. Weight
+plot(wt, 
+     mpg, 
+     main = "Scatter Plot of MPG vs. Weight",  # Set the plot title
+     xlab = "Weight",        # Label for the x-axis
+     ylab = "Mileage (mpg)", # Label for the y-axis
+     pch = 16,               # Use filled circles as data points
+     cex = 1.5,              # Increase the size of data points
+     col = "blue",           # Set the color of data points to blue
+     col.lab = "red",        # Set the color of axis labels to red
+     cex.lab = 1.5,          # Increase the size of axis labels
+     col.main = "darkgreen", # Set the color of the plot title to dark green
+     cex.main = 2,           # Increase the size of the plot title
+     bg = "gray"             # Set the background color to gray
+     )
+# Add a grid with black dashed lines of width 0.8
 grid(col = "black", 
      lty = "dashed", 
      lwd = 0.8)
-
 ```
 
 6.  **Discussion**
@@ -99,20 +104,24 @@ grid(col = "black",
 
 7.  **Scatterplot with best fit line**
 
--   We can add a line of best fit (a regression line) to your scatterplot using the `abline()` and `lm()` functions. `lm()` is used to fit linear models, and `abline()` adds a straight line to the plot.
+-   We can add a line of best fit (a regression line) to your scatterplot using the `abline()` and `lm()` functions. `lm()` is used to fit linear models, and `abline()` adds a straight line to the plot. \[3\]
 
 ```{r}
-# Create the scatterplot
+# Create a scatter plot of Miles per gallon (mpg) vs. Weight 
+# with blue data points
 plot(tb$wt, 
      tb$mpg, 
-     main = "Scatter Plot of Mileage vs. Weight",
-     xlab = "Weight", ylab = "Miles per gallon (mpg)", 
-     pch = 16, 
-     col="blue")
+     main = "Scatter Plot of Mileage vs. Weight",  # Set the plot title
+     xlab = "Weight",                  # Label for the x-axis
+     ylab = "Miles per gallon (mpg)",  # Label for the y-axis
+     pch = 16,                         # Use filled circles as data points
+     col = "blue"                      # Set the color of data points to blue
+     )
 
-# Fit a linear model
+# Fit a linear model to the data
 fit <- lm(tb$mpg ~ tb$wt)
-# Add a regression line
+
+# Add a red regression line to the plot
 abline(fit, col = "red")
 ```
 
@@ -125,19 +134,22 @@ abline(fit, col = "red")
 -   Consider the issue of visualizing two continuous variables `wt` (Weight and `mpg` (Miles per gallon) for different levels of a categorical variable `cyl` (Cylinders).
 
 ```{r}
-# Create the scatterplot with points colored by cyl
+# Create a scatter plot of Miles per gallon (mpg) vs. Weight, 
+# where points are colored by the number of cylinders (cyl)
 plot(tb$wt, 
      tb$mpg, 
-     main = "Scatter Plot of Mileage vs. Weight for cylinders (cyl=4,6,8)",
-     xlab = "Weight", ylab = "Miles per gallon (mpg)", 
-     pch = 16, 
-     col=c("red","green","blue")[tb$cyl]
+     main = "Scatter Plot of Mileage vs. Weight for Cylinders (cyl=4,6,8)",
+     xlab = "Weight", 
+     ylab = "Miles per gallon (mpg)", 
+     pch = 16,  # Use filled circles as data points
+     col = c("red", "green", "blue")[tb$cyl]  # Color points on cylinders (cyl)
      )
-# Add a legend
+
+# Add a legend to the top-right corner of the plot
 legend("topright", 
-       legend = levels(tb$cyl), 
-       col = c("red", "green", "blue"), 
-       pch = 16)
+       legend = levels(tb$cyl),  # Display legend labels for each cylinder
+       col = c("red", "green", "blue"),  # Define colors for the legend
+       pch = 16)  # Use filled circles as legend symbols
 ```
 
 10. Discussion
@@ -150,36 +162,38 @@ legend("topright",
 
 1.  A scatter plot matrix, also known as a pairs plot or **SPLOM**, is a powerful visual tool that helps us in depicting the **pair-wise relationships** among a group of variables. In this matrix, every distinct variable from the dataset is charted against each other in a grid-like structure. This enables us to delve into the associations between variable pairs and identify possible trends or patterns in the dataset.
 
-2.  When dealing with multivariate datasets, scatter plot matrices can be remarkably handy. They equip us with a rapid way to **discern potential correlations among variable pairs** -- whether they are strong, weak, or non-existent. It's also a convenient method to spot non-linear relationships between variables. In addition, it's a beneficial tool to recognize outliers or peculiar data points and to observe clusters or collections of observations. \[4\]
+2.  When dealing with multivariate datasets, scatter plot matrices can be remarkably handy. They equip us with a rapid way to **discern potential correlations among variable pairs** -- whether they are strong, weak, or non-existent. It's also a convenient method to spot non-linear relationships between variables. In addition, it's a beneficial tool to recognize outliers or peculiar data points and to observe clusters or collections of observations. \[2\], \[3\]
 
 ### Scatterplot Matrix using `pairs()`
 
 1.  The following R code creates a scatter plot matrix, also known as a pairs plot, for four variables: `mpg` (miles per gallon), `wt` (weight), `hp` (horsepower), and `drat` (rear axle ratio). This is performed on the data stored in the `tb` data frame.
 
 ```{r}
-# scatter plot matrix for mpg, wt, hp, drat
-columns = c("mpg","wt","hp","drat")
-pairs(tb[ ,columns],
-      main = "Scatter Plot Matrix for mpg, wt, hp, drat"
-      )
+# Define the columns we want to include in the scatter plot matrix
+columns <- c("mpg", "wt", "hp", "drat")
+
+# Create a scatter plot matrix using the selected columns from the data frame
+pairs(tb[, columns], 
+      main = "Scatter Plot Matrix for mpg, wt, hp, drat" # Set the title
+)
 ```
 
 2.  **Discussion**:
 
 -   The `pairs()` function in R is designed to take a subset of the `tb` data frame consisting of the columns specified in the columns vector and construct a matrix of scatter plots.
 
--   The plots are arranged in a grid format, where the variable for each row is plotted against the variable for each column. \[5\]
+-   The plots are arranged in a grid format, where the variable for each row is plotted against the variable for each column. \[2\], \[3\]
 
 3.  **Personalizing Scatterplot Matrix using `pairs()`**
 
 ```{r}
-# scatter plot matrix for mpg, wt, hp, drat
-pairs(tb[,c("mpg","wt","hp","drat")],
-      main = "Scatter Plot Matrix for mpg, wt, hp, drat",
-      pch = 19,
-      labels = c("Miles per Gallon", "Weight", "Horsepower", "Rear Axle Ratio"),
-      col = c("blue"),
-      cex = 0.8
+# Create a scatter plot matrix for the columns "mpg," "wt," "hp," and "drat"
+pairs(tb[, c("mpg", "wt", "hp", "drat")],  # Subset the data
+      main = "Scatter Plot Matrix for mpg, wt, hp, drat",  # title 
+      pch = 19,  # Set the point character (solid circles)
+      labels = c("Miles per Gallon", "Weight", "Horsepower", "Rear Axle Ratio"), 
+      col = "blue",  # Set point color to blue
+      cex = 0.8  # Set the size of the points
       )
 ```
 
@@ -191,19 +205,20 @@ pairs(tb[,c("mpg","wt","hp","drat")],
 
 -   **Color**: We can specify different colors for the points in each scatter plot with the `col` parameter.
 
--   **Point Size**: The `cex` parameter controls the size of the points in the scatter plot.
+-   **Point Size**: The `cex` parameter controls the size of the points in the scatter plot. \[2\], \[3\]
 
 ### Scatter Plot Matrix using `scatterplotMatrix()` from package `car`
 
-1.  The following code creates an alternate scatterplot matrix for each pair of the variables `mpg`, `disp`, `drat`, and `wt`, allowing us to explore the relationships among these four variables.
+1.  The following code creates an alternate scatterplot matrix for each pair of the variables `mpg`, `disp`, `drat`, and `wt`, allowing us to explore the relationships among these four variables. \[6\]
 
 ```{r warning=FALSE,message=FALSE}
 # Load the car package
 library(car)
+
 # Create a scatterplot matrix using scatterplotMatrix()
 scatterplotMatrix(data = tb,
-                  ~ mpg + disp +drat +wt, 
-                  col = c("red")) 
+                  ~ mpg + disp + drat + wt,  # variables 
+                  col = c("red"))  # Set the point color to red
 ```
 
 2.  **Discussion**:
@@ -216,22 +231,24 @@ scatterplotMatrix(data = tb,
 
 -   The formula `~ mpg + disp + drat + wt` indicates the variables to be included in the scatter plot matrix. Recall `mpg`, `disp`, `drat`, and `wt` represent miles per gallon, displacement, rear axle ratio, and weight, respectively.
 
--   The `col` argument is used to set the color of the points in the scatter plots. Here, all points are colored red. \[3\]
+-   The `col` argument is used to set the color of the points in the scatter plots. Here, all points are colored red. \[4\]
 
 ### Scatter Plot Matrix using `pairs.panels()` in package `psych`
 
 ```{r warning=FALSE,message=FALSE}
-# Load the psych package
+# Load the 'psych' library, which contains the 'pairs.panels()' function
 library(psych)
 
-# Create a scatterplot matrix using pairs.panels()
-pairs.panels(tb[,c("mpg","wt","hp","drat")], 
+# Create a scatterplot matrix using the 'pairs.panels()' function
+# Select the columns "mpg", "wt", "hp", and "drat" 
+# Set the main title of the scatterplot matrix to "Scatterplot Matrix"
+pairs.panels(tb[, c("mpg", "wt", "hp", "drat")], 
              main = "Scatterplot Matrix")
 ```
 
 **Discussion**:
 
--   The `psych` package contains a variety of functions useful for psychological, psychometric, and personality research.
+-   The `psych` package contains a variety of functions useful for psychological, psychometric, and personality research. \[4\]
 
 -   We utilize the `pairs.panels()` function from the `psych` package to create a scatterplot matrix. This function is very helpful as it produces:
 
@@ -245,16 +262,17 @@ pairs.panels(tb[,c("mpg","wt","hp","drat")],
 
     -   `tb[,c("mpg","wt","hp","drat")]` in the code specifies the subset of the `tb` data frame that we want to include in the scatterplot matrix. In this case, it refers to the columns `mpg` (miles per gallon), `wt` (weight), `hp` (horsepower), and `drat` (rear axle ratio).
 
-    -   The `main` parameter sets the main title for the plot, which in this instance is "Scatterplot Matrix". \[6\]
+    -   The `main` parameter sets the main title for the plot, which in this instance is "Scatterplot Matrix". \[5\]
 
 ### Scatterplot Matrix Using `ggpairs()` in package `GGally`
 
 ```{r warning=FALSE,message=FALSE}
-# Load the GGally package
+# Load the 'GGally' package, which contains the 'ggpairs()' function
 library(GGally)
 
-# Create a scatterplot matrix using ggpairs()
-ggpairs(tb[,c("mpg","wt","hp","drat")])
+# Create a scatterplot matrix using the 'ggpairs()' function
+# Select the columns "mpg", "wt", "hp", and "drat"
+ggpairs(tb[, c("mpg", "wt", "hp", "drat")])
 ```
 
 **Discussion**:
@@ -267,9 +285,9 @@ ggpairs(tb[,c("mpg","wt","hp","drat")])
 
 -   The selection `tb[,c("mpg","wt","hp","drat")]` specifically picks out the columns named "mpg", "wt", "hp", and "drat". This means that our scatterplot matrix will show the relationships among these four variables. As a reminder, assuming typical automotive datasets: "mpg" might signify miles per gallon, "wt" would be the weight of the vehicle, "hp" indicates horsepower, and "drat" could represent the drive axle ratio.
 
--   The output plot, produced by `ggpairs()`, will display a 4x4 grid. The diagonal of this grid usually portrays histograms or density plots for the individual variables, while the off-diagonal segments demonstrate scatter plots between two variables, giving a comprehensive overview of how each variable relates to the others.
+-   The output plot, produced by `ggpairs()`, will display a 4x4 grid. The diagonal of this grid usually portrays histograms or density plots for the individual variables, while the off-diagonal segments demonstrate scatter plots between two variables, giving a comprehensive overview of how each variable relates to the others. \[6\]
 
-## Summary of Chapter
+## Summary of Chapter 14 -- Continuous x Continous data (1 of 2)
 
 In this chapter, we explore the analysis of relationships between continuous variables. We begin by preparing a sample dataset and converting it to a structured format. As we move forward, we emphasize the importance of visual tools like scatter plots for understanding correlations and patterns between variables. These visual tools can reveal underlying trends, groupings, anomalies, and influential data points.
 
@@ -283,14 +301,64 @@ Overall, this chapter equips us with the knowledge to visualize and analyze biva
 
 ## References
 
-\[1\] Everitt, B. S., & Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC.
+**Basic R programmng**
 
-\[2\] R Core Team. (2023). R: A language and environment for statistical computing. R Foundation for Statistical Computing. https://www.R-project.org/
+\[1\] Chambers, J. M. (2008). *Software for data analysis: programming with R* (Vol. 2, No. 1). New York: Springer.
 
-\[3\] Fox, J., & Weisberg, S. (2019). An R Companion to Applied Regression (3rd ed.). Sage Publications.
+Crawley, M. J. (2012). *The R book*. John Wiley & Sons.
 
-\[4\] Everitt, B., & Hothorn, T. (2011). An introduction to applied multivariate analysis with R. Springer.
+Gardener, M. (2012). *Beginning R: the statistical programming language*. John Wiley & Sons.
 
-\[5\] Chick, J. (2020). Data visualisation with R: 100 Examples. CRC Press.
+Grolemund, G. (2014). *Hands-on programming with R: Write your own functions and simulations*. " O'Reilly Media, Inc.".
 
-\[6\] Revelle, W. (2020). Procedures for personality and psychological research. Northwestern University, Evanston. Retrieved from https://CRAN.R-project.org/package=psych.
+Kabacoff, R. (2022). *R in action: data analysis and graphics with R and Tidyverse*. Simon and Schuster.
+
+Peng, R. D. (2016). *R programming for data science* (pp. 86-181). Victoria, BC, Canada: Leanpub.
+
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, *517*(7532), 109-110.
+
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc."
+
+**Statistics using R**
+
+\[2\] Braun, W. J., & Murdoch, D. J. (2021). *A first course in statistical programming with R*. Cambridge University Press.
+
+Cohen, Y., & Cohen, J. Y. (2008). *Statistics and Data with R: An applied approach through examples*. John Wiley & Sons.
+
+Dalgaard, P. (2008). *Introductory statistics with R*. springer publication.
+
+Davies, T. M. (2016). *The book of R: a first course in programming and statistics*. No Starch Press.
+
+Everitt, B. S., & Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC.
+
+Field, A., Miles, J., & Field, Z. (2012). Discovering statistics using R. Sage Publications.
+
+Fox, J., & Weisberg, S. (2018). *An R companion to applied regression*. Sage publications.
+
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.
+
+Matloff, N. (2011). *The art of R programming: A tour of statistical software design*. No Starch Press.
+
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Schumacker, R. E. (2014). *Learning statistics using R*. Sage Publications.
+
+Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springer Science & Business Media.
+
+**Regression:**
+
+\[3\] Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.
+
+**car**
+
+\[4\] Fox, J., Weisberg, S., Adler, D., Bates, D., Baud-Bovy, G., Ellison, S., \... & Heiberger, R. (2012). Package \'car\'. *Vienna: R Foundation for Statistical Computing*, *16*.
+
+**psych:**
+
+\[5\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.
+
+**GGally**
+
+\[6\] Schloerke, B., Crowley, J., & Cook, D. (2018). Package \'GGally\'. *Extension to \'ggplot2*, *713*.
