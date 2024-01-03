@@ -677,8 +677,8 @@ Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
 **Mosaic plot:**
 
-\[5\] Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
+\[5\] Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.
+
+Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
 
 Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd
-
-Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.

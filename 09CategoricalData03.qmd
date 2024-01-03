@@ -340,7 +340,7 @@ Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Proc
 
 Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
 
-**Basic R programmng:**
+**R programmng:**
 
 \[2\] Crawley, M. J. (2007). The R Book. Wiley.
 

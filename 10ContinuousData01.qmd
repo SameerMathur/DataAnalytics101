@@ -461,35 +461,43 @@ To summarize, this chapter presents key R functions and techniques for visualizi
 
 ## References
 
-**Basic R programmng:**
+**R programmng:**
 
 \[1\] Crawley, M. J. (2007). The R Book. Wiley.
 
 Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
 
-**Statistics**
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
-\[2\] Moore, D. S., McCabe, G. P., & Craig, B. A. (2012). Introduction to the Practice of Statistics. Freeman.
+**Statistics:**
 
-Triola, M. (2017). Elementary Statistics. Pearson.
-
-Gravetter, F. J., & Wallnau, L. B. (2016). Statistics for the Behavioral Sciences. Cengage Learning.
+\[2\] \[2\] Bogaert, P. (2021). "A Comparison of Kernel Density Estimators." Computational Statistics & Data Analysis, 77, 402-413.
 
 Downey, A. B. (2014). Think Stats: Exploratory Data Analysis. O'Reilly Media.
 
-Bogaert, P. (2021). "A Comparison of Kernel Density Estimators." Computational Statistics & Data Analysis, 77, 402-413.
+Gravetter, F. J., & Wallnau, L. B. (2016). Statistics for the Behavioral Sciences. Cengage Learning.
+
+Kleiber, C., & Zeileis, A. (2008). *Applied econometrics with R*. Springer Science & Business Media.
+
+Moore, D. S., McCabe, G. P., & Craig, B. A. (2012). Introduction to the Practice of Statistics. Freeman.
+
+Triola, M. (2017). Elementary Statistics. Pearson.
 
 Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.
 
 Thode Jr, H. C. (2002). Testing for normality. CRC press.
 
-**Statistics using R**
+Venables, W. N., & Ripley, B. D. (2002). Modern Applied Statistics with S (4th ed.). Springer.
+
+**Statistics using R:**
 
 \[3\] Field, A., Miles, J., & Field, Z. (2012). Discovering statistics using R. Sage Publications.
 
 R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
 Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.
+
+**psych:**
 
 \[4\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.
 

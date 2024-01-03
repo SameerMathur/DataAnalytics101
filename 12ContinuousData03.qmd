@@ -1,26 +1,29 @@
 # Categorical x Continuous data (1 of 2)
 
-#### Chapter 12, *Last updated: Dec 30, 2023*
+#### Chapter 12, *Last updated: Jan 03, 2024*
 
-1.  THIS CHAPTER explores **Categorical** x **Continuous** data. It explains how to summarize and visualize *bivariate continuous data across categories*. Here, we delve into the intersection of continuous data and categorical variables, examining how the former can be split, summarized, and compared across different levels of one or more categorical variables.
+1.  This chapter explores **Categorical** x **Continuous** data. It explains how to summarize and visualize *bivariate continuous data across categories*. Here, we delve into the intersection of continuous data and categorical variables, examining how continuous data can be split, summarized, and compared across different levels of one or more categorical variables.
 
 2.  We bring to light methods for generating statistics per group and data manipulation techniques. This includes processes like grouping, filtering, and summarizing continuous data, contingent on categorical variables. We visualize such data by creating juxtaposed box plots, segmented histograms, and density plots that reveal the distribution of continuous data across varied categories.
 
-3.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
+3.  **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`. \[1\]
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
 library(knitr) # For formatting tables
+
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
+
 # Convert relevant columns into factor variables
 tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
 tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
 tb$vs <- as.factor(tb$vs) # vs = {0,1}, v-shaped engine, 0:no, 1:yes
 tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
+
 # Directly access the data columns of tb, without tb$mpg
 attach(tb)
 ```
@@ -33,14 +36,23 @@ attach(tb)
 
 1.  **Using `aggregate()`**
 
--   We use the `aggregate()` function to investigate the bivariate relationship between mileage (`mpg`) and number of cylinders (`cyl`). The following code displays a summary table showing the average mileage of the cars broken down by number of cylinders (`cyl` = 4, 6, 8) using `aggregate()`.
+-   We use the `aggregate()` function to investigate the bivariate relationship between mileage (`mpg`) and number of cylinders (`cyl`). The following code displays a summary table showing the average mileage of the cars broken down by number of cylinders (`cyl` = 4, 6, 8) using `aggregate()`. \[1\] \[2\]
 
 ```{r, warning=FALSE}
+# Aggregating 'mpg' column by the 'cyl' column.
+# The aggregation function used is 'mean' to calculate the average.
 A0 <- aggregate(tb$mpg, 
-          by = list(tb$cyl), 
-          FUN = mean)
+                by = list(tb$cyl), 
+                FUN = mean)
+
+# Renaming the column names of the aggregated data frame 'A0'.
+# 'Cylinders' for the first column and 'Mean_mpg' for the second.
 names(A0) <- c("Cylinders", "Mean_mpg")
+
+# Displaying the aggregated data using 'kable' from the knitr package.
+# Setting the number of digits to 2 for formatting and adding a caption.
 kable(A0, digits=2, caption = "Mean of Mileage (mpg) by Cylinder (cyl=4,6,8)") 
+
 ```
 
 2.  **Discussion**:
@@ -58,10 +70,15 @@ kable(A0, digits=2, caption = "Mean of Mileage (mpg) by Cylinder (cyl=4,6,8)")
 -   The `tapply()` function is another convenient tool to apply a function to subsets of a vector, grouped by some factors.
 
 ```{r}
+# Applying the 'mean' function to the 'mpg' column,
+# grouping the data by the 'cyl' column
+# The 'tapply' function applies a function to each cell.
 A1 <- tapply(tb$mpg, 
              tb$cyl, 
              mean)
-A1
+
+# Displaying the result stored in A1.
+print(A1)
 ```
 
 4.  **Discussion**:
@@ -78,11 +95,17 @@ A1
 
 5.  **Using `describeBy()` from package `psych`**
 
--   The `describeBy()` function, part of the `psych` package, can be used to compute descriptive statistics of a numeric variable, broken down by levels of a grouping variable.
+-   The `describeBy()` function, part of the `psych` package, can be used to compute descriptive statistics of a numeric variable, broken down by levels of a grouping variable. \[3\]
 
 ```{r}
+# Loading the 'psych' package
 library(psych)
+
+# Using the 'describeBy' function from the 'psych' package to provide descriptive
+# statistics of 'mpg' grouped by 'cyl'. This function gives a detailed summary
+# for each group including mean, standard deviation, range, etc.
 A2 <- describeBy(mpg, cyl)
+
 print(A2)
 ```
 
@@ -90,7 +113,7 @@ print(A2)
 
 -   `describeBy(mpg, cyl)` computes descriptive statistics of miles per gallon `mpg` variable, broken down by the unique values in the number of cylinders (`cyl`).
 
--   It calculates statistics such as the mean, sd, median, for `mpg`, separately for each unique number of cylinders (`cyl`). \[2\]
+-   It calculates statistics such as the mean, sd, median, for `mpg`, separately for each unique number of cylinders (`cyl`). \[3\]
 
 ### Across two Categories
 
@@ -100,15 +123,25 @@ print(A2)
 
 1.  Using **`aggregate()`**
 
--   Distribution of Mileage (`mpg`) by Cylinders (`cyl` = {4,6,8}) and Transmisson Type (`am` = {0,1})
+-   Distribution of Mileage (`mpg`) by Cylinders (`cyl` = {4,6,8}) and Transmisson Type (`am` = {0,1}) \[1\]
 
 ```{r}
+# Aggregating 'mpg' column by both 'cyl' and 'am' columns.
+# The aggregation function used is 'mean'.
 B0 <- aggregate(tb$mpg, 
-          by = list(tb$cyl, tb$am),
-          FUN = mean)
-names(B0) <- c("Cylinders","Transmission","Mean_mpg")
+                by = list(tb$cyl, tb$am),
+                FUN = mean)
+
+# Renaming the column names of the aggregated data frame 'B0'.
+# 'Cylinders' 'Transmission'  'Mean_mpg' .
+names(B0) <- c("Cylinders", "Transmission", "Mean_mpg")
+
+# Displaying the aggregated data using 'kable' from the knitr package.
+# Setting the number of digits to 2 for formatting and adding a caption.
 kable(B0, 
-      digits=2, caption = "Mean of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") 
+      digits=2, 
+      caption = "Mean of Mileage (mpg) by Cylinders and Transmission") 
+
 ```
 
 2.  **Discussion**:
@@ -117,19 +150,29 @@ kable(B0,
 
 -   The by argument is a list of variables by which we want to group our data, specified as `list(tb$cyl, tb$am)`. This means that separate computations are done for each unique combination of `cyl` and `am`.
 
--   The `FUN` argument indicates the function to be applied to each subset of our data. Here, we use mean, meaning that we compute the mean mpg for each group.
+-   The `FUN` argument indicates the function to be applied to each subset of our data. Here, we use mean, meaning that we compute the mean mpg for each group. \[1\]
 
 3.  Using **`aggregate()`** for multiple continuous variables: Consider this extension of the above code for calculating the mean of three variables - `mpg`, `wt`, and `hp`, grouped by both am and cyl variables:
 
 -   Distribution of Mileage (`mpg`), Weight (`wt`), Horsepower (`hp`) by Cylinders (`cyl` = {4,6,8}) and Transmisson Type (`am` = {0,1})
 
 ```{r}
-B1 <- aggregate(list(tb$mpg, tb$wt, tb$hp), 
-          by = list(tb$am, tb$cyl),
-          FUN = mean)
-names(B1) <- c("Transmission","Cylinders","Mean_mpg","Mean_wt","Mean_hp")
+# Aggregating columns (mpg, wt, hp) of a dataframe by 'am' and 'cyl' columns.
+# The 'mean' function is used to calculate the average for each 'am' and 'cyl'.
+B1 <- aggregate(list(mpg, wt, hp), 
+                by = list(am, cyl),
+                FUN = mean)
+
+# Renaming the column names of the aggregated data frame
+# Including 'Transmission', 'Cylinders', and mean values for 'mpg', 'wt', 'hp'.
+names(B1) <- c("Transmission", "Cylinders", "Mean_mpg", "Mean_wt", "Mean_hp")
+
+# Displaying the aggregated data using 'kable' from the knitr package.
+# Formatting numbers to two decimal places and adding a descriptive caption.
 kable(B1, 
-      digits=2, caption = "Mean of Mileage (mpg), Weight (wt), Horsepower (hp) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)") 
+      digits=2, 
+      caption = "Mean of Mileage (mpg), Weight (wt), Horsepower (hp) by Transmission and Cylinders")
+
 ```
 
 4.  **Discussion**:
@@ -140,30 +183,40 @@ kable(B1,
 
 5.  Using **`aggregate()`** with multiple functions: Consider an extension of the above code for calculating the mean and the SD of `mpg`, grouped by both `am` and `cyl` factor variables:
 
--   Distribution of Mileage (`mpg`), by Cylinders (`cyl` = {4,6,8}) and Transmission Type (`am` = {0,1})
+-   Distribution of Mileage (`mpg`), by Cylinders (`cyl` = {4,6,8}) and Transmission Type (`am` = {0,1}) \[1\]
 
 ```{r}
+# Calculating the mean of 'mpg' grouped by 'cyl' and 'am'.
 agg_mean <- aggregate(tb$mpg, 
                       by = list(tb$cyl, tb$am), 
                       FUN = mean)
+
+# Calculating the standard deviation (sd) of 'mpg' grouped by 'cyl' and 'am'.
 agg_sd <- aggregate(tb$mpg, 
                     by = list(tb$cyl, tb$am), 
                     FUN = sd)
+
+# Calculating the median of 'mpg' for each group of 'cyl' and 'am'.
 agg_median <- aggregate(tb$mpg, 
                         by = list(tb$cyl, tb$am), 
                         FUN = median)
 
-# Merge them together, two data frames at a time
+# Merging the mean and sd data frames based on 'cyl' and 'am'.
 B2 <- merge(agg_mean, agg_sd, 
             by = c("Group.1", "Group.2"))
+
+# Merging the above result 
 B2 <- merge(B2, agg_median, 
             by = c("Group.1", "Group.2"))
 
-# Rename columns for clarity
+# Renaming the columns of the merged data
 names(B2) <- c("Cylinders", "Transmission", "Mean_mpg", "SD_mpg", "Median_mpg")
 
+# Displaying the merged data using 'kable' from the knitr package, setting digits to 2,
+# and adding a descriptive caption.
 kable(B2, 
       digits=2, caption = "Mean, SD, Median of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") 
+
 ```
 
 6.  **Discussion**:
@@ -172,19 +225,24 @@ kable(B2,
 
 -   Initially, we computed the mean, standard deviation, and median of `mpg` for every unique combination of `cyl` and `am`.
 
--   After individual computations, we combined these results into a single, comprehensive data frame called `merged_data`. This structured dataset now clearly presents the average, variability, and median of fuel efficiency segmented by cylinder count and transmission type.
+-   After individual computations, we combined these results into a single, comprehensive data frame called `merged_data`. This structured dataset now clearly presents the average, variability, and median of fuel efficiency segmented by cylinder count and transmission type. \[1\]
 
 7.  **Using `describeBy()` from package `psych`**
 
 -   The `describeBy()` function, part of the `psych` package, can be used to compute descriptive statistics of continuous variable, broken down by levels of a two categorical varaibles. Consider the following code:
 
 ```{r}
+# Selecting specific columns ('mpg', 'wt', 'hp') 
 tb_columns <- tb[c("mpg", "wt", "hp")]
-tb_factors <- list(tb$am, 
-                   tb$cyl)
-# Use describeBy()
+
+# Creating a list of factors ('am' and 'cyl') for grouping in describeBy.
+tb_factors <- list(tb$am, tb$cyl)
+
+# Using the 'describeBy' function to provide detailed descriptive statistics 
+# grouped by 'am' and 'cyl'.
 B3 <- describeBy(tb_columns, 
-                    tb_factors)
+                 tb_factors)
+
 print(B3)
 ```
 
@@ -194,7 +252,7 @@ print(B3)
 
 -   Next, we create a list, `tb_factors`, that contains the factors `am` and `cyl`.
 
--   After that, we call the `describeBy()` function from the `psych` package. This function calculates descriptive statistics for each combination of levels of the factors `am` and `cyl` and for each of the continuous variables `mpg`, `wt`, and `hp`.
+-   After that, we call the `describeBy()` function from the `psych` package. This function calculates descriptive statistics for each combination of levels of the factors `am` and `cyl` and for each of the continuous variables `mpg`, `wt`, and `hp`. \[3\]
 
 ## Visualizing Continuous Data
 
@@ -216,22 +274,25 @@ Let's take a closer look at some of the most effective ways of visualizing univa
 
 ### Bee Swarm Plot
 
-1.  We extend a Bee Swarm plot of a *one-dimensional scatter plot* for a continuous variable, split by a categorical variable. \[6\]
+1.  We extend a Bee Swarm plot of a *one-dimensional scatter plot* for a continuous variable, split by a categorical variable. \[4\]
 
 2.  Consider the following code, which generates a beeswarm plot displaying vehicle weights (`wt`) segmented by their number of cylinders (`cyl`):
 
 ```{r}
-# Load the beeswarm package
+# Loading the 'beeswarm' package
 library(beeswarm)
-# Create a bee swarm plot of wt column split by cyl
+
+# Creating a bee swarm plot of the 'wt' (weight) column, 
+# grouped by the 'cyl' (cylinders) column. 
 beeswarm(tb$wt ~ tb$cyl, 
          main="Bee Swarm Plot of Weight (wt) by Cylinders (cyl=4,6,8)", 
-         xlab="Number of Cylinders",
-         ylab="Weight ('000 kg)",
-         pch=16,  # type of points
-         cex=0.8, # size of the points
-         col=c("blue","red","darkgreen"),
-         horizontal = TRUE)
+         xlab="Number of Cylinders",  # Label for the x-axis
+         ylab="Weight ('000 kg)",     # Label for the y-axis
+         pch=16,  # Type of points used in the plot (solid circle)
+         cex=0.8, # Size of the points
+         col=c("blue","red","darkgreen"),  # Colors for different groups
+         horizontal = TRUE) # Orientation of the plot (horizontal)
+
 ```
 
 3.  **Discussion**:
@@ -250,7 +311,7 @@ beeswarm(tb$wt ~ tb$cyl,
 
 -   **Orientation**: Set as horizontal with `horizontal=TRUE`.
 
--   To summarize, this visual distinguishes vehicle weights across cylinder counts and highlights data point densities for each group.
+-   To summarize, this visual distinguishes vehicle weights across cylinder counts and highlights data point densities for each group. \[4\]
 
 ### Stem-and-Leaf Plot across one Category
 
@@ -259,17 +320,16 @@ beeswarm(tb$wt ~ tb$cyl,
 2.  To illustrate, let us display vehicle weights (`wt`) separately for each transmission type (`am`) using stem-and-leaf plots.
 
 ```{r warning=FALSE, message=FALSE}
-# Choose 'wt' and 'cyl' columns from 'tb' dataframe. Assign the result to 'tb3'.
+# Selecting 'wt' and 'am' columns from the 'tb' dataframe and assigning it to 'tb3'.
 tb3 <- tb[, c("wt", "am")]
 
-# Split the 'tb3' tibble into subsets based on 'am'. Each subset consists of rows with the same 'am' value. Save the list of these subsets to 'tb_split'.
+# Splitting the 'tb3' dataframe into subsets based on the 'am' column.
 tb_split <- split(tb3, tb3$am)
 
-# Apply a function to each subset of 'tb_split' using 'lapply()'. 
-# The function takes a subset 'x' and creates a stem-and-leaf plot of the 'wt' values in 'x'.
+# Applying a function to each subset in 'tb_split' using 'lapply'.
+# The function creates a stem-and-leaf plot for the 'wt' column in each subset.
 lapply(tb_split, 
-       function(x) 
-         stem(x$wt))
+       function(x) stem(x$wt))
 ```
 
 3.  **Discussion**:
@@ -278,7 +338,7 @@ lapply(tb_split,
 
 -   Data Splitting: It then divides `tb3` into subsets based on `am` values, resulting in separate groups for each transmission type.
 
--   Visualization: Using `lapply()`, the code generates stem-and-leaf plots for the `wt` values in each subset, showcasing weight distributions for different transmission types. In this context, it shows the distribution of vehicle weights for each transmission type (automatic and manual).
+-   Visualization: Using `lapply()`, the code generates stem-and-leaf plots for the `wt` values in each subset, showcasing weight distributions for different transmission types. In this context, it shows the distribution of vehicle weights for each transmission type (automatic and manual). \[5\]
 
 ### Histograms across one Category
 
@@ -286,26 +346,33 @@ lapply(tb_split,
 
 ```{r}
 split_data <- split(tb$mpg, tb$am) # Split the data by 'am' variable
-par(mfrow = c(1, 2)) # Create a 1-row 2-column layout
-color_vector <- c("skyblue", "gold") # Define the color vector
+# Splitting the 'mpg' data from the 'tb' dataframe by the 'am' variable.
+split_data <- split(tb$mpg, tb$am)
 
-# Create a histogram for subset with am = 0
+# Setting up the graphics layout for two plots side by side (1 row, 2 columns).
+par(mfrow = c(1, 2))
+
+# Defining a color vector for use in the histograms.
+color_vector <- c("skyblue", "gold")
+
+# Creating a histogram for the subset with 'am' equals 0.
 hist(split_data[[1]], 
      main = "Histogram of mpg (am = 0)", 
-     breaks = seq(10, 35, by = 5), # This creates bins with ranges 10-15, 15-20, etc.
+     breaks = seq(10, 35, by = 5), #  bin ranges (10-15, 15-20, etc.)
      xlab = "Miles per gallon", 
-     col = color_vector[1], # Use the color vector, 
-     border = "black",
-     ylim = c(0, 10))
+     col = color_vector[1], # Applying the first color
+     border = "black", # Setting the border color of the bins.
+     ylim = c(0, 10)) # Setting y-axis limits.
 
-# Create a histogram for subset with am = 1
+# Creating a histogram for the subset with 'am' equals 1.
 hist(split_data[[2]], 
      main = "Histogram of mpg (am = 1)", 
-     breaks = seq(10, 35, by = 5), # This creates bins with ranges 10-15, 15-20, etc.
+     breaks = seq(10, 35, by = 5), #  bin ranges (10-15, 15-20, etc.)
      xlab = "Miles per gallon", 
-     col = color_vector[2], # Use the color vector, 
-     border = "black",
-     ylim = c(0, 10))
+     col = color_vector[2], # Applying the second color 
+     border = "black", # Setting the border color of the bins.
+     ylim = c(0, 10)) # Setting y-axis limits.
+
 ```
 
 *In Appendix A1, we have alternative code written using a for loop*
@@ -320,38 +387,46 @@ hist(split_data[[2]],
 
 3.  Color Vector: We introduce a `color_vector` to assign distinct colors to each histogram for differentiation.
 
-4.  Histogram: Two histograms are generated, one for each `am` value (0 and 1). These histograms use various parameters like title, x-axis label, color, and y-axis limits to provide a clear representation of the data's distribution. \[4\]
+4.  Histogram: Two histograms are generated, one for each `am` value (0 and 1). These histograms use various parameters like title, x-axis label, color, and y-axis limits to provide a clear representation of the data's distribution. \[1\]
 
 ### Probability Density Function (PDF) across one Category
 
-1.  Visualizing Probability Density Functions (PDF) of car mileage (`mpg`) broken down by transmission (`am`=0,1)
+1.  Visualizing Probability Density Functions (PDF) of car mileage (`mpg`) broken down by transmission (`am`=0,1) \[1\]
 
 ```{r, warning=FALSE}
-split_data <- split(tb$mpg, tb$am)  # Split 'mpg' data by 'am' values
-par(mfrow = c(1, 2))  # Set layout for 2 plots side by side
-color_vector <- c("skyblue", "gold")  # Define colors for the plots
+# Splitting 'mpg' data from the 'tb' dataframe by 'am' values.
+split_data <- split(tb$mpg, tb$am)
 
-# Calculate density for am = 0 and plot it
-dens_0 <- density(split_data[[1]])  
+# Setting up the graphical layout for two plots side by side.
+par(mfrow = c(1, 2))
+
+# Defining color scheme for the plots.
+color_vector <- c("skyblue", "gold")
+
+# Calculating the density for the subset with 'am' equals 0 and plotting it.
+dens_0 <- density(split_data[[1]])
 plot(dens_0, 
-     main = "PDF of mpg for am = 0", 
-     xlab = "Miles per gallon", 
-     col = color_vector[1], 
+     main = "PDF of mpg for am = 0",  # Title for the first plot.
+     xlab = "Miles per gallon",  # X-axis label.
+     col = color_vector[1],  # Applying the first color.
      border = "black",
-     ylim = c(0, 0.15), 
-     lwd = 2)  # Plot density curve for am = 0
-polygon(dens_0, col = color_vector[1], border = "black")  # Fill under the curve
+     ylim = c(0, 0.15),  # Setting y-axis limits.
+     lwd = 2)  # Line width for the density plot.
+polygon(dens_0, col = color_vector[1], border = "black")  
+# Filling under the density curve.
 
-# Calculate density for am = 1 and plot it
-dens_1 <- density(split_data[[2]])  
+# Calculating the density for the subset with 'am' equals 1 and plotting it.
+dens_1 <- density(split_data[[2]])
 plot(dens_1, 
-     main = "PDF of mpg for am = 1", 
-     xlab = "Miles per gallon", 
-     col = color_vector[2], 
+     main = "PDF of mpg for am = 1",  # Title for the second plot.
+     xlab = "Miles per gallon",  # X-axis label.
+     col = color_vector[2],  # Applying the second color.
      border = "black",
-     ylim = c(0, 0.15), 
-     lwd = 2)  # Plot density curve for am = 1
-polygon(dens_1, col = color_vector[2], border = "black")  # Fill under the curve
+     ylim = c(0, 0.15),  # Setting y-axis limits.
+     lwd = 2)  # Line width for the density plot.
+polygon(dens_1, col = color_vector[2], border = "black")  
+# Filling under the density curve.
+
 ```
 
 *In Appendix A2, we have alternative code written using a for loop*
@@ -364,7 +439,7 @@ polygon(dens_1, col = color_vector[2], border = "black")  # Fill under the curve
 
 -   The polygon function fills the area under the density curve with the specified color, giving a shaded appearance to the plot.
 
--   The process is repeated for the subset where `am` is 1. The code calculates the density, plots it, and then uses the polygon function to shade the area under the curve.
+-   The process is repeated for the subset where `am` is 1. The code calculates the density, plots it, and then uses the polygon function to shade the area under the curve. \[1\]
 
 *In Appendix A3, we demonstrate how to draw overlapping PDFs on the same plot, using base R functions.*
 
@@ -377,12 +452,13 @@ polygon(dens_1, col = color_vector[2], border = "black")  # Fill under the curve
 1.  Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8)
 
 ```{r}
-boxplot(mpg~cyl,
-        main = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8)",
-        xlab = "Mileage (mpg)",
-        ylab = "Cylinders (cyl)",
-        col = c("skyblue"),
-        horizontal = TRUE
+# Creating a boxplot for 'mpg' values grouped by 'cyl'.
+boxplot(mpg ~ cyl,
+        main = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8)",  # Title 
+        xlab = "Mileage (mpg)",  # Label for the x-axis.
+        ylab = "Cylinders (cyl)",  # Label for the y-axis.
+        col = c("skyblue"),  # Color of the boxplots.
+        horizontal = TRUE  # Setting the boxplot to be horizontal.
         )
 ```
 
@@ -402,21 +478,23 @@ boxplot(mpg~cyl,
 
 -   In essence, we're visualizing the variations in car mileage based on the number of cylinders using horizontal boxplots. This type of visualization helps in understanding the central tendency, spread, and potential outliers of mileage for different cylinder counts.
 
-3.  Visualizing Median using Box Plot -- median weight of the cars broken down by cylinders (`cyl`=4,6,8) and Transmission (`am`=0,1)
+3.  **Visualizing Median using Box Plot** -- median weight of the cars broken down by cylinders (`cyl`=4,6,8) and Transmission (`am`=0,1). \[1\] \[7\]
 
 ```{r}
+# Creating a boxplot for 'mpg' values grouped by both 'cyl' and 'am'.
 boxplot(mpg ~ cyl * am,
-        main = "Boxplot of Mileage (mpg) by Cylinders (4,6,8) and Transmission (0,1)",
-        xlab = "Mileage (mpg)",
-        ylab = "Cylinders & Transmission (cyl:am)",
-        col = c("skyblue", "gold"), # added a second color for differentiation
-        horizontal = TRUE
+        main = "Boxplot of Mileage (mpg) by Cylinders and Transmission",  
+        xlab = "Mileage (mpg)",  # Label for the x-axis.
+        ylab = "Cylinders & Transmission (cyl:am)",  # Label for the y-axis.
+        col = c("skyblue", "gold"), # Colors of the boxplots
+        horizontal = TRUE  # Setting the boxplot to be horizontal.
         )
-# Add a legend
-legend("topright", 
-       legend = c("Automatic", "Manual"), 
-       fill = c("skyblue", "gold"), 
-       title = "Transmission"
+
+# Adding a legend to the plot.
+legend("topright",  # Position of the legend in the plot.
+       legend = c("Automatic", "Manual"),  # Text for the legend.
+       fill = c("skyblue", "gold"),  # Color filling 
+       title = "Transmission"  # Title of the legend.
 )
 ```
 
@@ -432,52 +510,141 @@ legend("topright",
 
 -   Legend Addition: Following the boxplot, we add a legend using the `legend` function. Placed at the "topright" position, this legend differentiates between "Automatic" and "Manual" transmissions using the designated colors.
 
--   In essence, our code generates a detailed visualization that elucidates the mileage distribution for various combinations of cylinder counts and transmission types in cars.
+-   In essence, our code generates a detailed visualization that elucidates the mileage distribution for various combinations of cylinder counts and transmission types in cars. \[7\]
 
 ### Means Plot across one Category
 
-Visualizing Means -- mean plot showing the average weight of the cars, broken down by transmission (`am`= 0 or 1)
+Visualizing Means -- mean plot showing the average weight of the cars, broken down by transmission (`am`= 0 or 1). \[8\]
 
 ```{r, warning=FALSE}
+# Loading the 'gplots' package
 library(gplots)
+
+# Creating a plot of mean 'mpg' values for each 'cyl' category 
 plotmeans(data = tb,
-          mpg ~ cyl, 
-          mean.labels = TRUE,
-          digits=3,
-          main = "Mean(mpg) by cyl = {4,6,8}"
+          mpg ~ cyl,  # Formula indicating 'mpg' plotted against 'cyl'.
+          mean.labels = TRUE,  # Option to display the mean value labels.
+          digits = 3,  # Number of digits for the mean value labels.
+          main = "Mean(mpg) by cyl = {4,6,8}"  # Main title of the plot.
           )
 ```
 
 ### Means Plot across two Categories
 
-We show a mean plot showing the mean weight of the cars broken down by Transmission Type (`am`= 0 or 1) & cylinders (`cyl` = 4,6,8).
+We show a mean plot showing the mean weight of the cars broken down by Transmission Type (`am`= 0 or 1) & cylinders (`cyl` = 4,6,8). \[8\]
 
 ```{r warning=FALSE, message=FALSE}
+# Loading the 'gplots' package for plotting data.
 library(gplots)
-plotmeans(mpg ~ interaction(am, 
-                            cyl, 
-                            sep = ", "),
-          data = tb,
-          mean.labels = TRUE,
-          digits=2,
-          connect = FALSE,
-          main = "Mean (mpg) by cyl = {4,6,8} & am = {0,1}",
-          xlab= "cyl = {4,6,8} & am = {0,1}",
-          ylab="Average MPG"
+
+# The plot will show mean 'mpg' values 
+# for each combination of 'am' and 'cyl' categories
+plotmeans(mpg ~ interaction(am, cyl, sep = ", "),
+          data = tb,  # Specifying the dataframe.
+          mean.labels = TRUE,  # display  mean value labels on the plot.
+          digits = 2,  # Setting the number of digits to 2.
+          connect = FALSE,  # Disabling the connection lines between means.
+          main = "Mean (mpg) by cyl = {4,6,8} & am = {0,1}",  
+          xlab = "cyl = {4,6,8} & am = {0,1}",  # Label for the x-axis.
+          ylab = "Average MPG"  # Label for the y-axis.
           )
 ```
 
+## Summary of Chapter 12 -- Categorical x Continuous data (1 of 2)
+
+This chapter on R programming skillfully navigates the analysis of bivariate continuous data across categorical variables. It begins with preparing the `mtcars` dataset, transforming key variables like cylinders and transmission type into categorical factors for in-depth analysis.
+
+The chapter primarily focuses on summarizing continuous data using R functions like `aggregate()`, `tapply()`, and `describeBy()` from the `psych` package. These functions are adept at calculating and presenting summary statistics such as means and standard deviations for different categorical groups.
+
+In terms of visualization, the chapter showcases a variety of methods to graphically represent continuous data across categories. Techniques such as Bee Swarm plots, histograms, density plots, and box plots are highlighted for their effectiveness in illustrating data distributions and variations across categorical groups.
+
+Overall, the chapter provides a comprehensive yet concise framework for analyzing and visualizing the interplay between continuous and categorical data in R, offering valuable insights for data analysis and interpretation.
+
 ## References
 
-\[1\] R Core Team (2021). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+**Basic R programmng**
 
-Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.
+\[1\] Chambers, J. M. (2008). *Software for data analysis: programming with R* (Vol. 2, No. 1). New York: Springer.
 
-\[2\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.9. https://CRAN.R-project.org/package=psych
+Crawley, M. J. (2012). *The R book*. John Wiley & Sons.
 
-\[3\] Chambers, J. M., Freeny, A. E., & Heiberger, R. M. (1992). Analysis of variance; designed experiments. In Statistical Models in S (pp. 145--193). Pacific Grove, CA: Wadsworth & Brooks/Cole.
+Gardener, M. (2012). *Beginning R: the statistical programming language*. John Wiley & Sons.
 
-\[4\] Venables, W. N., & Ripley, B. D. (2002). Modern Applied Statistics with S (4th ed.). Springer.
+Grolemund, G. (2014). *Hands-on programming with R: Write your own functions and simulations*. " O'Reilly Media, Inc.".
+
+Kabacoff, R. (2022). *R in action: data analysis and graphics with R and Tidyverse*. Simon and Schuster.
+
+Peng, R. D. (2016). *R programming for data science* (pp. 86-181). Victoria, BC, Canada: Leanpub.
+
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, *517*(7532), 109-110.
+
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc.".
+
+**knitr:**
+
+\[2\] Xie, Y. (2018). knitr: a comprehensive tool for reproducible research in R. In *Implementing reproducible research* (pp. 3-31). Chapman and Hall/CRC.
+
+**psych:**
+
+\[3\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.
+
+**beeswarm:**
+
+\[4\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R package version 0.6.0. https://CRAN.R-project.org/package=ggbeeswarm
+
+**Stem and leaf:**
+
+\[5\] Lovie, S. (2005). Stem and Leaf Plot. *Encyclopedia of Statistics in Behavioral Science*.
+
+**Histograms:**
+
+\[6\] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+
+Wand, M. P., & Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.
+
+**Box plots:**
+
+\[7\] McGill, R., Tukey, J. W., & Larsen, W. A. (1978). Variations of box plots. *The american statistician*, *32*(1), 12-16.
+
+**gplots:**
+
+\[8\] Warnes, M. G. R., Bolker, B., Bonebakker, L., Gentleman, R., Huber, W., & Liaw, A. (2016). Package \'gplots\'. *Various R programming tools for plotting data*.
+
+**Statistics using R**
+
+\[9\] Braun, W. J., & Murdoch, D. J. (2021). *A first course in statistical programming with R*. Cambridge University Press.
+
+Cohen, Y., & Cohen, J. Y. (2008). *Statistics and Data with R: An applied approach through examples*. John Wiley & Sons.
+
+Dalgaard, P. (2008). *Introductory statistics with R*. springer publication.
+
+Davies, T. M. (2016). *The book of R: a first course in programming and statistics*. No Starch Press.
+
+Field, A., Miles, J., & Field, Z. (2012). Discovering statistics using R. Sage Publications.
+
+Fox, J., & Weisberg, S. (2018). *An R companion to applied regression*. Sage publications.
+
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.
+
+Matloff, N. (2011). *The art of R programming: A tour of statistical software design*. No Starch Press.
+
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+Schumacker, R. E. (2014). *Learning statistics using R*. Sage Publications.
+
+Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springer Science & Business Media.
+
+**Regression:**
+
+\[10\] Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.
+
+Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.9. https://CRAN.R-project.org/package=psych
+
+**ANOVA**
+
+\[11\] Chambers, J. M., Freeny, A. E., & Heiberger, R. M. (1992). Analysis of variance; designed experiments. In Statistical Models in S (pp. 145--193). Pacific Grove, CA: Wadsworth & Brooks/Cole.
 
 ## Appendix
 
