@@ -1,6 +1,6 @@
 # Continuous Data (1 of 2)
 
-#### Chapter 10, *Last updated: Jan 02, 2024.*
+**Chapter 10, *Last updated: Jan 02, 2024.***
 
 ## Exploring Univariate Continuous Data
 

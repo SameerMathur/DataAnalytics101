@@ -1,6 +1,6 @@
-# Three Dimensions (3D)
+# Three Dimensional (3D) Data
 
-#### Chapter 16, *Last updated: Dec 30, 2023*
+**Chapter 16, *Last updated: Jan 04, 2024***
 
 ## Overview of R packages for 3D Plots
 
@@ -16,12 +16,13 @@ The scatterplot3d package in R can be used to create 3D scatter plots. It is qui
 
 **`rgl`**
 
-The rgl package in R is a powerful tool for creating interactive 3D plots. It allows real-time interaction with the plots, where users can zoom, rotate, and pan the visualization to explore the data in three dimensions. This package provides various functionalities to create a variety of 3D plots, including scatter plots, surface plots, line plots, bar plots
+The rgl package in R is a powerful tool for creating interactive 3D plots. It allows real-time interaction with the plots, where users can zoom, rotate, and pan the visualization to explore the data in three dimensions. This package provides various functionalities to create a variety of 3D plots, including scatter plots, surface plots, line plots, bar plots.
+
+In this chapter, we focus our attention on ggplot2 and scatterplot3d packages.
 
 ```{r, warning=FALSE}
 # Load the required libraries for 3D plots, suppressing annoying startup messages
 library(scatterplot3d, quietly = TRUE, warn.conflicts = FALSE)
-library(rgl, quietly = TRUE, warn.conflicts = FALSE)
 ```
 
 **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`.
@@ -32,9 +33,11 @@ library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
 library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
 library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
 tb <- as_tibble(mtcars)
+
 # Convert relevant columns into factor variables
 tb$cyl <- as.factor(tb$cyl) # cyl = {4,6,8}, number of cylinders
 tb$am <- as.factor(tb$am) # am = {0,1}, 0:automatic, 1: manual transmission
@@ -57,11 +60,15 @@ ggplot(tb,
        aes(x = wt, 
            y = mpg, 
            color = hp, 
-           size = hp)) +
-  geom_point(alpha = 0.6) +
-  scale_color_gradient(low = "blue", high = "red") +
-  theme_minimal() +
-  labs(title = "3D Effect Scatter plot", x = "Weight", y = "Miles Per Gallon", color = "Horsepower", size = "Horsepower")
+           size = hp)) +  # Define the data and aesthetics for the plot
+  geom_point(alpha = 0.6) +  # Add points to the plot with transparency
+  scale_color_gradient(low = "blue", high = "red") +  # Define color gradient
+  theme_minimal() +  # Set the plot theme to minimal
+  labs(title = "3D Effect Scatter plot", 
+       x = "Weight", 
+       y = "Miles Per Gallon", 
+       color = "Horsepower", 
+       size = "Horsepower")  # Set plot labels and title
 
 ```
 
@@ -86,14 +93,19 @@ ggplot(tb,
 The \*`scatterplot3d`\*\* package can be used on the mtcars data to demonstrate visualization in 3 dimensions.
 
 ```{r}
+# Load the scatterplot3d library for 3D plotting
 library(scatterplot3d)
+
 # Create a 3D scatter plot using the tb tibble
 sp3 <- scatterplot3d(x = tb$wt, 
                      y = tb$mpg, 
                      z = tb$hp, 
-                     xlab = "Weight", ylab = "MPG", zlab = "Horsepower",
+                     xlab = "Weight", 
+                     ylab = "Miles Per Gallon", 
+                     zlab = "Horsepower",
                      pch = 16, color = "blue", 
                      main = "3D Scatter Plot of mtcars")
+
 ```
 
 **Discussion**:
@@ -114,12 +126,20 @@ Here are some variations and extensions of the original scatterplot3d code to de
 We can color points by a variable, for example, by the number of cylinders (cyl), which can reveal additional patterns in the data.
 
 ```{r}
+# Load the scatterplot3d library for 3D plotting
 library(scatterplot3d)
-sp32 <- scatterplot3d(x = tb$wt, y = tb$mpg, z = tb$hp, 
-                     color = as.numeric(tb$cyl), 
-                     pch = 16,
-                     xlab = "Weight", ylab = "MPG", zlab = "Horsepower",
-                     main = "3D Scatter Plot Colored by Number of Cylinders")
+
+# Create a 3D scatter plot using the tb tibble, with points colored by the number of cylinders
+sp32 <- scatterplot3d(x = tb$wt, 
+                      y = tb$mpg, 
+                      z = tb$hp, 
+                      color = as.numeric(tb$cyl),  # Color points by the number of cylinders
+                      pch = 16,  # Use a specific point symbol
+                      xlab = "Weight", 
+                      ylab = "Miles Per Gallon", 
+                      zlab = "Horsepower",
+                      main = "3D Scatter Plot Colored by Number of Cylinders")
+
 ```
 
 -   We can add a legend for the color in the `scatterplot3d` plot by using a combination of the `legend` function and the `colors` argument.
@@ -154,21 +174,26 @@ We can change the point style to better distinguish between data points.
 
 ```{r}
 # Create a scatterplot3d and specify point shapes by the number of cylinders
-sp34 <- scatterplot3d(x = tb$wt, y = tb$mpg, z = tb$hp, 
-                     pch = as.numeric(tb$cyl), 
-                     color = "blue",
-                     xlab = "Weight", ylab = "Miles per Gallon", zlab = "Horsepower",
-                     main = "3D Scatter Plot with Different Point Styles")
+sp34 <- scatterplot3d(x = tb$wt, 
+                      y = tb$mpg, 
+                      z = tb$hp, 
+                      pch = as.numeric(tb$cyl),  # Set point shapes based on the number of cylinders
+                      color = "blue",  # Set the point color to blue
+                      xlab = "Weight", 
+                      ylab = "Miles per Gallon", 
+                      zlab = "Horsepower",
+                      main = "3D Scatter Plot with Different Point Styles")
 
-# Unique cylinder values and corresponding point shapes
+# Get unique cylinder values and corresponding point shapes
 cylinders <- unique(tb$cyl)
 shapes <- as.numeric(cylinders)
 
 # Add a legend for point shapes
 legend("right", 
-       legend = as.character(cylinders), 
-       pch = shapes, 
-       title = "Cylinders")
+       legend = as.character(cylinders),  # Display cylinder values as legend labels
+       pch = shapes,  # Use corresponding point shapes as legend symbols
+       title = "Cylinders")  # Set legend title
+
 ```
 
 **Discussion**:
@@ -203,29 +228,34 @@ legend("right",
 We can can highlight specific points, for example, cars with 4 cylinders, by changing their color or size.
 
 ```{r}
-sp35 <- scatterplot3d(x = tb$wt, y = tb$mpg, z = tb$hp, 
-                     pch = 16,
-                     color = ifelse(tb$cyl == 4, "red", "blue"),
-                     xlab = "Weight", ylab = "Miles per Gallon", zlab = "Horsepower",
-                     main = "3D Scatter Plot Highlighting Specific Points")
-
+# Create a scatterplot3d with specific point highlighting based on the number of cylinders
+sp35 <- scatterplot3d(x = tb$wt,
+                      y = tb$mpg, 
+                      z = tb$hp, 
+                      pch = 16,  # Use a specific point shape
+                      color = ifelse(tb$cyl == 4, "red", "blue"),  # Color points based on the number of cylinders
+                      xlab = "Weight", 
+                      ylab = "Miles per Gallon", 
+                      zlab = "Horsepower",
+                      main = "3D Scatter Plot Highlighting Specific Points")
 ```
 
 **Add Regression Plane:**
 
-We can can fit a linear regression model and add the regression plane to the scatter plot.
+We can fit a linear regression model and add the regression plane to the scatter plot.
 
 ```{r}
 library(scatterplot3d)
+
+# Create a 3D scatter plot
 sp36 <- scatterplot3d(x = tb$wt, y = tb$mpg, z = tb$hp, 
                      pch = 16, color = "blue",
                      xlab = "Weight", ylab = "Miles per Gallon", zlab = "Horsepower",
                      main = "3D Scatter Plot with Regression Plane")
                      
-# Fit a linear model and add a regression plane
+# Fit a linear model and add a regression plane to the 3D scatter plot
 model <- lm(hp ~ wt + mpg, data = tb)
 sp36$plane3d(model)
-
 ```
 
 **Discussion**:
@@ -237,7 +267,15 @@ sp36$plane3d(model)
     -   `sp36$plane3d(model)`: The `plane3d` function is accessed from the `s3d` object and is used to add a regression plane to the existing 3D scatter plot. The plane is based on the coefficients of the linear model stored in `model`.
 -   The resulting output will be a 3D scatter plot visualizing the relationships among weight (`wt`), miles per gallon (`mpg`), and horsepower (`hp`), with a regression plane fitted to these points, representing the linear relationship between the dependent and independent variables.
 
-## Summary
+## Summary of Chapter 16 -- Three Dimensional (3D) Data
+
+This chapter provides an insightful exploration into the creation of 3D plots using R, focusing on the ggplot2 and scatterplot3d packages.
+
+**ggplot2**: The chapter begins by highlighting that ggplot2, primarily known for 2D plots, can be used to simulate 3D effects. This is demonstrated through a scatter plot example where visual cues like point size and color gradients are employed to give an illusion of depth. By mapping variables such as horsepower to these visual elements in the 'mtcars' dataset, the plot achieves a 3D-like effect on a 2D plane.
+
+**scatterplot3d**: The scatterplot3d package, specifically designed for 3D scatter plots, is explored next. The chapter illustrates its straightforward application in creating 3D plots with the mtcars data, considering variables like weight, miles per gallon, and horsepower. It delves into various enhancements like coloring points based on categorical variables (e.g., the number of cylinders), changing point styles to distinguish data points, highlighting specific points for emphasis, and adding legends for clarity. The chapter also demonstrates how to incorporate a linear regression plane into the scatter plot, adding an analytical dimension to the visual representation.
+
+Throughout the chapter, code examples and discussions are provided to guide the reader on how to effectively use these packages for 3D plotting in R. The focus is on practical application, offering readers the tools to transform standard 2D visualizations into more engaging and informative 3D plots. This approach not only enhances the visual appeal of the data but also allows for a more nuanced understanding of complex relationships within the dataset.
 
 ## References
 

@@ -1,6 +1,6 @@
 # Continuous x Continous data (1 of 2)
 
-#### Chapter 14, *Last updated: **Jan 03, 2024***
+**Chapter 14, *Last updated: Jan 03, 2024***
 
 ## Exploring bivariate Continuous x Continuous data
 
@@ -353,7 +353,7 @@ Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springe
 
 **car**
 
-\[4\] Fox, J., Weisberg, S., Adler, D., Bates, D., Baud-Bovy, G., Ellison, S., \... & Heiberger, R. (2012). Package \'car\'. *Vienna: R Foundation for Statistical Computing*, *16*.
+\[4\] Fox, J., Weisberg, S., Adler, D., Bates, D., Baud-Bovy, G., Ellison, S., \... & Heiberger, R. (2012). Package 'car'. *Vienna: R Foundation for Statistical Computing*, *16*.
 
 **psych:**
 
@@ -361,4 +361,4 @@ Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springe
 
 **GGally**
 
-\[6\] Schloerke, B., Crowley, J., & Cook, D. (2018). Package \'GGally\'. *Extension to \'ggplot2*, *713*.
+\[6\] Schloerke, B., Crowley, J., & Cook, D. (2018). Package 'GGally'. *Extension to 'ggplot2*, *713*.
