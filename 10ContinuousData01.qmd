@@ -1,4 +1,4 @@
-# Continuous Data (1 of 2)
+# Univariate Continuous data (Part 1 of 2)
 
 **Chapter 10, *Last updated: Jan 02, 2024.***
 
@@ -445,7 +445,7 @@ qqline(tb$mpg)
 
 5.  This approach isn't limited to normal distributions. We can compare our data with other distributions too, which makes Q-Q plots a versatile tool for understanding our data.
 
-## Summary of Chapter 10 -- Continuous Data (1 of 2)
+## Summary of Chapter 10 -- Univariate Continuous data (Part 1 of 2)
 
 This chapter examines continuous univariate data, focusing on single variables in the 'mtcars' dataset using R's dplyr and ggplot packages. We employ R's inherent functions and the 'modeest' package to compute the mean, median, and mode, alongside variability measures like range, variance, and standard deviation.
 

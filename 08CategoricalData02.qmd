@@ -1,4 +1,4 @@
-# Categorical x Categorical data (1 of 2)
+# Bivariate Categorical data (Part 1 of 2) 
 
 **Chapter 8, *Last updated: Jan 2, 2023.***
 
@@ -619,7 +619,7 @@ ggplot(data = tb) +
 
 -   `scale_fill_brewer(palette = "Blues")` specifies the color palette to be used for the fill color, in this case, a palette of blues.
 
-## Summary of Chapter 8 -- Categorical x Categorical data (1 of 2)
+## Summary of Chapter 8 -- Bivariate Categorical data (Part 1 of 2)
 
 In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.
 

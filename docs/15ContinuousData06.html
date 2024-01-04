@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15ContinuousData06.html">Continuous x Continuous data (2 of 2)</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./15ContinuousData06.html">Bivariate Continuous data (Part 4 of 4)</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -204,55 +204,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical Data</span></a>
+ <span class="menu-text">Univariate Categorical data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (1 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (2 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 1 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 2 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 3 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 4 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#continuous-x-continuous-data-2-of-2" id="toc-continuous-x-continuous-data-2-of-2" class="nav-link active" data-scroll-target="#continuous-x-continuous-data-2-of-2">Continuous x Continuous data (2 of 2)</a>
+  <li><a href="#bivariate-continuous-data-part-4-of-4" id="toc-bivariate-continuous-data-part-4-of-4" class="nav-link active" data-scroll-target="#bivariate-continuous-data-part-4-of-4">Bivariate Continuous data (Part 4 of 4)</a>
   <ul class="collapse">
   <li><a href="#exploring-bivariate-continuous-x-continuous-data-using-ggplot2" id="toc-exploring-bivariate-continuous-x-continuous-data-using-ggplot2" class="nav-link" data-scroll-target="#exploring-bivariate-continuous-x-continuous-data-using-ggplot2">Exploring bivariate Continuous x Continuous data, using <strong><code>ggplot2</code></strong></a>
   <ul class="collapse">
@@ -299,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr" id="toc-scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr" class="nav-link" data-scroll-target="#scatterplot-colored-by-a-categorical-variable-with-textual-annotation-using-ggpubr">Scatterplot colored by a Categorical variable, with textual annotation, using <code>ggpubr()</code></a></li>
   </ul></li>
   <li><a href="#bubble-chart" id="toc-bubble-chart" class="nav-link" data-scroll-target="#bubble-chart">Bubble Chart</a></li>
-  <li><a href="#summary-of-chapter-15-continuous-x-continuous-data-2-of-2" id="toc-summary-of-chapter-15-continuous-x-continuous-data-2-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-15-continuous-x-continuous-data-2-of-2">Summary of Chapter 15 – Continuous x Continuous data (2 of 2)</a></li>
+  <li><a href="#summary-of-chapter-15-bivariate-continuous-data-part-4-of-4" id="toc-summary-of-chapter-15-bivariate-continuous-data-part-4-of-4" class="nav-link" data-scroll-target="#summary-of-chapter-15-bivariate-continuous-data-part-4-of-4">Summary of Chapter 15 – Bivariate Continuous data (Part 4 of 4)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -310,8 +310,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="continuous-x-continuous-data-2-of-2" class="level1">
-<h1>Continuous x Continuous data (2 of 2)</h1>
+<section id="bivariate-continuous-data-part-4-of-4" class="level1">
+<h1>Bivariate Continuous data (Part 4 of 4)</h1>
 <p><strong>Chapter 15, <em>Last updated: Jan 03, 2024</em></strong></p>
 <section id="exploring-bivariate-continuous-x-continuous-data-using-ggplot2" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-bivariate-continuous-x-continuous-data-using-ggplot2">Exploring bivariate Continuous x Continuous data, using <strong><code>ggplot2</code></strong></h2>
@@ -738,8 +738,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="summary-of-chapter-15-continuous-x-continuous-data-2-of-2" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-chapter-15-continuous-x-continuous-data-2-of-2">Summary of Chapter 15 – Continuous x Continuous data (2 of 2)</h2>
+<section id="summary-of-chapter-15-bivariate-continuous-data-part-4-of-4" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-15-bivariate-continuous-data-part-4-of-4">Summary of Chapter 15 – Bivariate Continuous data (Part 4 of 4)</h2>
 <p>This chapter provides a comprehensive guide to exploring bivariate continuous data using R’s ggplot2 and ggpubr packages, focusing on the ‘mtcars’ dataset. Initially, the data is formatted into a tibble, and key variables are transformed into factors for nuanced analysis. The chapter emphasizes scatterplot creation using ggplot2, illustrating the relationship between variables like horsepower (hp) and miles per gallon (mpg). Techniques such as custom labeling, adding regression lines, and layering are demonstrated to enhance plot interpretability. ggplot2’s layering approach is highlighted for its effectiveness in building complex plots incrementally.</p>
 <p>Further, the ggpubr package’s ggscatter function is introduced for advanced scatterplot customization. This includes altering point shapes, adding marginal rugs, regression lines, and correlation coefficients. The integration of categorical variables into scatter plots is extensively discussed. This involves coloring points by categories like the number of cylinders and employing various faceting techniques to compare data across categories. Advanced topics like point annotations, point repelling for clarity, and bubble charts where point sizes vary with a continuous variable are also covered. These techniques provide a multi-dimensional view of the data, showcasing the versatility of ggplot2 and ggpubr in visual data analysis.</p>
 <p>Overall, the chapter equips readers with the skills to create and enhance scatter plots in R, offering insightful methods for detailed bivariate data analysis.</p>

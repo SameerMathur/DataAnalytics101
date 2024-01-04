@@ -1,4 +1,4 @@
-# Categorical Data
+# Univariate Categorical data
 
 **Chapter 7, *Last updated: Jan 2, 2023.***
 
@@ -390,7 +390,7 @@ ggpie(data = cyl_counts,
 
 -   The `x` argument in `ggpie()` is updated to use these proportions, so the size of each slice in the pie chart corresponds to the proportion of each cylinder type. \[6\]
 
-## Summary of Chapter 7 -- Categorical Data
+## Summary of Chapter 7 -- Univariate Categorical data
 
 The chapter presents an overview of categorical data, focusing on its two main types, nominal and ordinal. It explains how categorical data categorizes information into distinct groups, a key aspect in various analytical fields. Nominal data, which includes categories without a natural order like gender or hair color, and ordinal data, comprising ordered categories such as survey responses or clothing sizes, are thoroughly explored.
 

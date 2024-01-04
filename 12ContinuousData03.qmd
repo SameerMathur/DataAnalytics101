@@ -1,4 +1,4 @@
-# Categorical x Continuous data (1 of 2)
+# Bivariate Continuous data (Part 1 of 4)
 
 **Chapter 12, *Last updated: Jan 03, 2024***
 
@@ -550,7 +550,7 @@ plotmeans(mpg ~ interaction(am, cyl, sep = ", "),
           )
 ```
 
-## Summary of Chapter 12 -- Categorical x Continuous data (1 of 2)
+## Summary of Chapter 12 -- Bivariate Continuous data (Part 1 of 4)
 
 This chapter on R programming skillfully navigates the analysis of bivariate continuous data across categorical variables. It begins with preparing the `mtcars` dataset, transforming key variables like cylinders and transmission type into categorical factors for in-depth analysis.
 

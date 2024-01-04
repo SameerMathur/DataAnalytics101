@@ -1,4 +1,4 @@
-# Categorical x Categorical data (2 of 2)
+# Bivariate Categorical data (Part 2 of 2)
 
 **Chapter 9, *Last updated: Jan 02, 2024.***
 
@@ -318,7 +318,7 @@ vcd::mosaic(~ cyl + vs + gear + am,
 
 -   Finally, `highlighting = "cyl"` means that the cells in the plot will be highlighted based on the levels of the `cyl` variable. This can help to visually differentiate the categories of this variable. \[5\]
 
-## Summary of Chapter 9 -- Categorical x Categorical data (2 of 2)
+## Summary of Chapter 9 -- Bivariate Categorical data (Part 2 of 2)
 
 In this chapter, we explore the world of multivariate categorical variables. Specifically, we focus on three-dimensional analyses that unveil complex relationships and dependencies between numerous variables. We utilize the R programming language, demonstrating a range of functions for constructing three-dimensional contingency tables. We also delve into segmenting these tables based on various variables, offering unique perspectives on the data.
 

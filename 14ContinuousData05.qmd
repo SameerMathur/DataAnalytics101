@@ -1,4 +1,4 @@
-# Continuous x Continous data (1 of 2)
+# Bivariate Continuous data (Part 3 of 4)
 
 **Chapter 14, *Last updated: Jan 03, 2024***
 
@@ -287,7 +287,7 @@ ggpairs(tb[, c("mpg", "wt", "hp", "drat")])
 
 -   The output plot, produced by `ggpairs()`, will display a 4x4 grid. The diagonal of this grid usually portrays histograms or density plots for the individual variables, while the off-diagonal segments demonstrate scatter plots between two variables, giving a comprehensive overview of how each variable relates to the others. \[6\]
 
-## Summary of Chapter 14 -- Continuous x Continous data (1 of 2)
+## Summary of Chapter 14 -- Bivariate Continuous data (Part 3 of 4)
 
 In this chapter, we explore the analysis of relationships between continuous variables. We begin by preparing a sample dataset and converting it to a structured format. As we move forward, we emphasize the importance of visual tools like scatter plots for understanding correlations and patterns between variables. These visual tools can reveal underlying trends, groupings, anomalies, and influential data points.
 

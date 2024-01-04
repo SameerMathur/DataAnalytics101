@@ -1,4 +1,4 @@
-# Continuous Data (2 of 2)
+# Univariate Continuous data (Part 2 of 2)
 
 **Chapter 11, *Last updated: Jan 02, 2023***
 
@@ -593,7 +593,7 @@ print(combined_plot)
 
 -   In essence, this code facilitates a side-by-side comparison of the distribution of the `mpg` variable from the `tb` dataset using two different types of visualizations: a histogram and a boxplot. \[1\]
 
-## Summary of Chapter 11 -- Continuous Data (2 of 2)
+## Summary of Chapter 11 -- Univariate Continuous data (Part 2 of 2)
 
 In this chapter, we explore how to visualize univariate continuous data using the `ggplot2` package in R. We use the `mtcars` data set, converting it to a tibble called `tb` for easier manipulation.
 

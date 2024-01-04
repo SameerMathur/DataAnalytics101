@@ -1,4 +1,4 @@
-# Continuous x Continuous data (2 of 2)
+# Bivariate Continuous data (Part 4 of 4)
 
 **Chapter 15, *Last updated: Jan 03, 2024***
 
@@ -394,7 +394,7 @@ ggscatter(tb,
 scale_size(range = c(0.5, 15))
 ```
 
-## Summary of Chapter 15 -- Continuous x Continuous data (2 of 2)
+## Summary of Chapter 15 -- Bivariate Continuous data (Part 4 of 4)
 
 This chapter provides a comprehensive guide to exploring bivariate continuous data using R's ggplot2 and ggpubr packages, focusing on the 'mtcars' dataset. Initially, the data is formatted into a tibble, and key variables are transformed into factors for nuanced analysis. The chapter emphasizes scatterplot creation using ggplot2, illustrating the relationship between variables like horsepower (hp) and miles per gallon (mpg). Techniques such as custom labeling, adding regression lines, and layering are demonstrated to enhance plot interpretability. ggplot2's layering approach is highlighted for its effectiveness in building complex plots incrementally.
 
