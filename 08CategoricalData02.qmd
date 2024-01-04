@@ -1,4 +1,4 @@
-# Bivariate Categorical data (Part 1 of 2) 
+# Bivariate Categorical data (Part 1 of 2)
 
 **Chapter 8, *Last updated: Jan 2, 2023.***
 

@@ -361,7 +361,7 @@ tb %>%
 
 -   This code shows the number of unique levels in the `cyl` column of the dataset.
 
-## Summary of Chapter 7 -- Exploring *tibbles* & *dplyr*
+## Summary of Chapter 6 -- Exploring *tibbles* & *dplyr*
 
 This chapter has provided an overview of the `tibble` data structure and the `dplyr` package in the R programming language. We started with an introduction to `tibble`, a data structure in R that is an updated version of data frames with enhanced features for flexible and effective data management. These benefits include more user-friendly printing, reliable subsetting behavior, transparent handling of data types, and support for non-syntactic column names.
 
