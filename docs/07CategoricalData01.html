@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07CategoricalData01.html">Categorical Data</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07CategoricalData01.html">Univariate Categorical data</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -204,61 +204,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Categorical Data</span></a>
+ <span class="menu-text">Univariate Categorical data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (1 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (2 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 1 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 2 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 3 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 4 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Three Dimensions (3D)</span></a>
+ <span class="menu-text">Three Dimensional (3D) Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#categorical-data" id="toc-categorical-data" class="nav-link active" data-scroll-target="#categorical-data">Categorical Data</a>
+  <li><a href="#univariate-categorical-data" id="toc-univariate-categorical-data" class="nav-link active" data-scroll-target="#univariate-categorical-data">Univariate Categorical data</a>
   <ul class="collapse">
   <li><a href="#exploring-univariate-categorical-data" id="toc-exploring-univariate-categorical-data" class="nav-link" data-scroll-target="#exploring-univariate-categorical-data">Exploring Univariate Categorical Data</a></li>
   <li><a href="#types-of-categorical-data-nominal-ordinal-data" id="toc-types-of-categorical-data-nominal-ordinal-data" class="nav-link" data-scroll-target="#types-of-categorical-data-nominal-ordinal-data">Types of Categorical Data – Nominal, Ordinal Data</a></li>
@@ -303,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#bar-plot-using-ggplot2-package" id="toc-bar-plot-using-ggplot2-package" class="nav-link" data-scroll-target="#bar-plot-using-ggplot2-package">Bar Plot using <code>ggplot2</code> package</a></li>
   <li><a href="#pie-chart-using-ggpie" id="toc-pie-chart-using-ggpie" class="nav-link" data-scroll-target="#pie-chart-using-ggpie">Pie chart using <strong>ggpie</strong></a></li>
   </ul></li>
-  <li><a href="#summary-of-chapter-7-categorical-data" id="toc-summary-of-chapter-7-categorical-data" class="nav-link" data-scroll-target="#summary-of-chapter-7-categorical-data">Summary of Chapter 7 – Categorical Data</a></li>
+  <li><a href="#summary-of-chapter-7-univariate-categorical-data" id="toc-summary-of-chapter-7-univariate-categorical-data" class="nav-link" data-scroll-target="#summary-of-chapter-7-univariate-categorical-data">Summary of Chapter 7 – Univariate Categorical data</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -314,8 +314,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="categorical-data" class="level1">
-<h1>Categorical Data</h1>
+<section id="univariate-categorical-data" class="level1">
+<h1>Univariate Categorical data</h1>
 <p><strong>Chapter 7, <em>Last updated: Jan 2, 2023.</em></strong></p>
 <section id="exploring-univariate-categorical-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-univariate-categorical-data">Exploring Univariate Categorical Data</h2>
@@ -729,8 +729,8 @@ Attaching package: 'ggplot2'</code></pre>
 </ul>
 </section>
 </section>
-<section id="summary-of-chapter-7-categorical-data" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-chapter-7-categorical-data">Summary of Chapter 7 – Categorical Data</h2>
+<section id="summary-of-chapter-7-univariate-categorical-data" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-7-univariate-categorical-data">Summary of Chapter 7 – Univariate Categorical data</h2>
 <p>The chapter presents an overview of categorical data, focusing on its two main types, nominal and ordinal. It explains how categorical data categorizes information into distinct groups, a key aspect in various analytical fields. Nominal data, which includes categories without a natural order like gender or hair color, and ordinal data, comprising ordered categories such as survey responses or clothing sizes, are thoroughly explored.</p>
 <p>Emphasis is placed on the use of factor variables in R for effective management of categorical data, with practical application demonstrated using the factor() function on the mtcars dataset. The chapter further delves into analyzing univariate factor variables, employing frequency tables for data summarization and utilizing proportions and percentages for a more nuanced understanding of data distribution.</p>
 <p>Visualization techniques using R’s ggplot2 package are introduced, highlighting its capability for creating versatile visualizations, particularly bar plots. The chapter also addresses the limitations of ggplot2 in creating pie charts and suggests using the ggpie() function from the ggpubr package as a workaround, allowing for the effective representation of data proportions in a pie chart format.</p>

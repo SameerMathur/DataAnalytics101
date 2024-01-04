@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08CategoricalData02.html">Categorical x Categorical data (1 of 2)</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08CategoricalData02.html">Bivariate Categorical data (Part 1 of 2)</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -204,61 +204,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical Data</span></a>
+ <span class="menu-text">Univariate Categorical data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (1 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (2 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 1 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 2 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 3 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 4 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Three Dimensions (3D)</span></a>
+ <span class="menu-text">Three Dimensional (3D) Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -285,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#categorical-x-categorical-data-1-of-2" id="toc-categorical-x-categorical-data-1-of-2" class="nav-link active" data-scroll-target="#categorical-x-categorical-data-1-of-2">Categorical x Categorical data (1 of 2)</a>
+  <li><a href="#bivariate-categorical-data-part-1-of-2" id="toc-bivariate-categorical-data-part-1-of-2" class="nav-link active" data-scroll-target="#bivariate-categorical-data-part-1-of-2">Bivariate Categorical data (Part 1 of 2)</a>
   <ul class="collapse">
   <li><a href="#exploring-bivariate-categorical-data" id="toc-exploring-bivariate-categorical-data" class="nav-link" data-scroll-target="#exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</a>
   <ul class="collapse">
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#using-ggplot2" id="toc-using-ggplot2" class="nav-link" data-scroll-target="#using-ggplot2">Using <strong>ggplot2</strong></a></li>
   <li><a href="#mosaic-plots-for-bivariate-categorical-data" id="toc-mosaic-plots-for-bivariate-categorical-data" class="nav-link" data-scroll-target="#mosaic-plots-for-bivariate-categorical-data"><strong>Mosaic Plots</strong> for Bivariate Categorical Data</a></li>
   </ul></li>
-  <li><a href="#summary-of-chapter-8-categorical-x-categorical-data-1-of-2" id="toc-summary-of-chapter-8-categorical-x-categorical-data-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-8-categorical-x-categorical-data-1-of-2">Summary of Chapter 8 – Categorical x Categorical data (1 of 2)</a></li>
+  <li><a href="#summary-of-chapter-8-bivariate-categorical-data-part-1-of-2" id="toc-summary-of-chapter-8-bivariate-categorical-data-part-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-8-bivariate-categorical-data-part-1-of-2">Summary of Chapter 8 – Bivariate Categorical data (Part 1 of 2)</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
@@ -309,8 +309,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="categorical-x-categorical-data-1-of-2" class="level1">
-<h1>Categorical x Categorical data (1 of 2)</h1>
+<section id="bivariate-categorical-data-part-1-of-2" class="level1">
+<h1>Bivariate Categorical data (Part 1 of 2)</h1>
 <p><strong>Chapter 8, <em>Last updated: Jan 2, 2023.</em></strong></p>
 <section id="exploring-bivariate-categorical-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</h2>
@@ -1078,8 +1078,8 @@ Attaching package: 'ggplot2'</code></pre>
 </ul>
 </section>
 </section>
-<section id="summary-of-chapter-8-categorical-x-categorical-data-1-of-2" class="level2">
-<h2 class="anchored" data-anchor-id="summary-of-chapter-8-categorical-x-categorical-data-1-of-2">Summary of Chapter 8 – Categorical x Categorical data (1 of 2)</h2>
+<section id="summary-of-chapter-8-bivariate-categorical-data-part-1-of-2" class="level2">
+<h2 class="anchored" data-anchor-id="summary-of-chapter-8-bivariate-categorical-data-part-1-of-2">Summary of Chapter 8 – Bivariate Categorical data (Part 1 of 2)</h2>
 <p>In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.</p>
 <p>An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage. The <code>ggplot2</code> library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.</p>
 <p>The chapter also introduces mosaic plots as another way of visualizing bivariate categorical data and discusses how mosaic plots can provide a visual representation of the frequency or proportion of different categories within variables. The use of the base R <code>mosaicplot()</code> function is exemplified, followed by the demonstration of the <code>mosaic()</code> function in the <code>vcd</code> package and the <code>ggmosaic</code> package, bringing full circle the spectrum of visualizations covered for bivariate categorical data.</p>
