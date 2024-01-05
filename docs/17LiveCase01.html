@@ -207,61 +207,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./07CategoricalData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical Data</span></a>
+ <span class="menu-text">Univariate Categorical data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./08CategoricalData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./09CategoricalData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Categorical data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Categorical data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./10ContinuousData01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (1 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./11ContinuousData02.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous Data (2 of 2)</span></a>
+ <span class="menu-text">Univariate Continuous data (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./12ContinuousData03.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 1 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./13ContinuousData04.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Categorical x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 2 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./14ContinuousData05.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continous data (1 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 3 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./15ContinuousData06.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Continuous x Continuous data (2 of 2)</span></a>
+ <span class="menu-text">Bivariate Continuous data (Part 4 of 4)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./16ThreeDimensions01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Three Dimensions (3D)</span></a>
+ <span class="menu-text">Three Dimensional (3D) Data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -296,16 +296,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-some-useful-r-packages" id="toc-load-some-useful-r-packages" class="nav-link" data-scroll-target="#load-some-useful-r-packages">Load some useful R packages</a></li>
   <li><a href="#read-the-sp500-data-from-a-google-sheet-into-a-tibble" id="toc-read-the-sp500-data-from-a-google-sheet-into-a-tibble" class="nav-link" data-scroll-target="#read-the-sp500-data-from-a-google-sheet-into-a-tibble">Read the S&amp;P500 data from a Google Sheet into a tibble</a></li>
   </ul></li>
+  <li><a href="#sp-global-industry-classification-standard-gics" id="toc-sp-global-industry-classification-standard-gics" class="nav-link" data-scroll-target="#sp-global-industry-classification-standard-gics">S&amp;P Global Industry Classification Standard (GICS<sup>®</sup>)</a></li>
+  <li><a href="#loading-the-data-into-r" id="toc-loading-the-data-into-r" class="nav-link" data-scroll-target="#loading-the-data-into-r">Loading the data into R</a></li>
   <li><a href="#review-the-sp-500-data" id="toc-review-the-sp-500-data" class="nav-link" data-scroll-target="#review-the-sp-500-data">Review the S&amp;P 500 data</a>
   <ul class="collapse">
   <li><a href="#rename-data-columns" id="toc-rename-data-columns" class="nav-link" data-scroll-target="#rename-data-columns">Rename Data Columns</a></li>
   <li><a href="#understand-the-data-columns" id="toc-understand-the-data-columns" class="nav-link" data-scroll-target="#understand-the-data-columns">Understand the Data Columns</a></li>
   <li><a href="#stock-ratings" id="toc-stock-ratings" class="nav-link" data-scroll-target="#stock-ratings">Stock Ratings</a></li>
-  <li><a href="#sectors-within-the-sp500" id="toc-sectors-within-the-sp500" class="nav-link" data-scroll-target="#sectors-within-the-sp500">Sectors within the S&amp;P500</a></li>
-  <li><a href="#analysis-of-sp-500-sectors" id="toc-analysis-of-sp-500-sectors" class="nav-link" data-scroll-target="#analysis-of-sp-500-sectors">Analysis of S&amp;P 500 Sectors</a></li>
-  <li><a href="#marketcap-by-sector" id="toc-marketcap-by-sector" class="nav-link" data-scroll-target="#marketcap-by-sector">MarketCap by Sector</a></li>
+  <li><a href="#analysis-of-gics-sectors-in-the-sp500" id="toc-analysis-of-gics-sectors-in-the-sp500" class="nav-link" data-scroll-target="#analysis-of-gics-sectors-in-the-sp500">Analysis of GICS Sectors in the S&amp;P500</a></li>
+  <li><a href="#marketcap-by-gics-sector" id="toc-marketcap-by-gics-sector" class="nav-link" data-scroll-target="#marketcap-by-gics-sector">MarketCap by GICS Sector</a></li>
   </ul></li>
   <li><a href="#summary-of-chapter-exploring-sp500-data" id="toc-summary-of-chapter-exploring-sp500-data" class="nav-link" data-scroll-target="#summary-of-chapter-exploring-sp500-data">Summary of Chapter – Exploring S&amp;P500 Data</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="17LiveCase01.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -317,14 +319,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="live-case-overview-of-the-sp500" class="level1">
 <h1>Live Case: Overview of the S&amp;P500</h1>
-<section id="chapter-17-last-updated-dec-30-2023" class="level4">
-<h4 class="anchored" data-anchor-id="chapter-17-last-updated-dec-30-2023">Chapter 17, <em>Last updated: Dec 30, 2023</em></h4>
-</section>
+<p><strong>Chapter 17, <em>Last updated: Jan 05, 2024</em></strong></p>
 <section id="sp-500" class="level2">
 <h2 class="anchored" data-anchor-id="sp-500">S&amp;P 500</h2>
 <p>The S&amp;P 500, also called the Standard &amp; Poor’s 500, is a stock market index that tracks the performance of 500 major publicly traded companies listed on U.S. stock exchanges. It serves as a widely accepted benchmark for assessing the overall health and performance of the U.S. stock market.</p>
 <p>S&amp;P Dow Jones Indices, a division of S&amp;P Global, is responsible for maintaining the index. The selection of companies included in the S&amp;P 500 is determined by a committee, considering factors such as market capitalization, liquidity, and industry representation.</p>
-<p>The S&amp;P is a float-weighted index, meaning the market capitalizations of the companies in the index are adjusted by the number of shares available for public trading. https://www.investopedia.com/terms/s/sp500.asp</p>
+<p>The S&amp;P is a float-weighted index, meaning the market capitalizations of the companies in the index are adjusted by the number of shares available for public trading. [1]</p>
 <p>The performance of the S&amp;P 500 is frequently used to gauge the broader stock market and is commonly referenced by investors, analysts, and financial media. It provides a snapshot of how large-cap U.S. stocks are faring and is considered a reliable indicator of overall market sentiment.</p>
 <p>Typically, the S&amp;P 500 index consists of 500 stocks. However, in reality, there are actually 503 stocks included. This discrepancy arises because three of the listed companies have multiple share classes, and each class is considered a separate stock that needs to be included in the index.</p>
 <p><strong>Strengths</strong>:</p>
@@ -339,13 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Exclusivity</strong>: Despite its broad purview, 500 companies cannot encapsulate the entire U.S. economy. Many sectors, especially emerging industries or smaller businesses, might not be adequately represented.</p></li>
 <li><p><strong>Potential for Complacency</strong>: The prominence of the S&amp;P 500 has led many investors to adopt passive investment strategies, tracking the index rather than actively managing portfolios. Detractors argue this might lead to market inefficiencies and reduced capital allocation efficacy.</p></li>
 </ol>
-<p>While the S&amp;P 500 remains an influential and pivotal tool for investors, its dominance prompts a double-edged sword of advantages and critiques. In a constantly evolving economic landscape, understanding both its power and limitations is essential for informed financial decision-making.</p>
-<p>References:</p>
-<ol type="1">
-<li><p><strong>S&amp;P Global</strong>: S&amp;P Global. (n.d.). S&amp;P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/</p></li>
-<li><p><strong>MarketWatch</strong>: MarketWatch. (n.d.). S&amp;P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx</p></li>
-<li><p><strong>Bloomberg</strong>: Bloomberg. (n.d.). S&amp;P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND</p></li>
-</ol>
+<p>While the S&amp;P 500 remains an influential and pivotal tool for investors, its dominance prompts a double-edged sword of advantages and critiques. In a constantly evolving economic landscape, understanding both its power and limitations is essential for informed financial decision-making. [2]</p>
 </section>
 <section id="sp-500-data" class="level2">
 <h2 class="anchored" data-anchor-id="sp-500-data">S&amp;P 500 Data</h2>
@@ -367,51 +361,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="read-the-sp500-data-from-a-google-sheet-into-a-tibble" class="level3">
 <h3 class="anchored" data-anchor-id="read-the-sp500-data-from-a-google-sheet-into-a-tibble">Read the S&amp;P500 data from a Google Sheet into a tibble</h3>
 <ol type="1">
-<li><p>We will analyze a real-world, recent dataset containing information about the S&amp;P500 stocks. The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">Google Sheet</a> and periodically updated.</p></li>
-<li><p>The complete URL of the Google Sheet that has the data is<br>
-</p></li>
+<li><p>We will analyze a real-world, recent dataset containing information about the S&amp;P500 stocks, sourced from TradingView.com. [3]</p></li>
+<li><p>The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ/" target="_blank">Google Sheet</a> and periodically updated.</p></li>
+<li><p>The complete URL of the Google Sheet that has the data is</p>
+<p><a href="https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ/" class="uri">https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ/</a></p></li>
+<li><p>Notice that the Google Sheet ID is: <code>14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ</code>.</p></li>
 </ol>
-<p>https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ</p>
-<ol start="3" type="1">
-<li>The Google Sheet ID is: <code>14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ</code>.</li>
-</ol>
-<p>TO BE DELETED</p>
-<p>OLD: <code>11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM</code>.</p>
-<p>TO BE DELETED</p>
-<p>We can use the function <code>gsheet2tbl</code> in package <code>gsheet</code> to read the Google Sheet into a tibble , as demonstrated in the following code.</p>
+</section>
+</section>
+<section id="sp-global-industry-classification-standard-gics" class="level2">
+<h2 class="anchored" data-anchor-id="sp-global-industry-classification-standard-gics">S&amp;P Global Industry Classification Standard (GICS<sup>®</sup>)</h2>
+<p>In this case study, we will classify and analyze the S&amp;P 500 stocks based on the GICS standard.</p>
+<p>The Global Industry Classification Standard (GICS<sup>®</sup>) was developed in 1999 by S&amp;P Dow Jones Indices and MSCI. The GICS methodology aims to enhance the investment research and asset management process for financial professionals worldwide. The GICS methodology has been widely accepted as an industry analysis framework for investment research, portfolio management and asset allocation. Its universal approach to industries worldwide has contributed to transparency and efficiency in the investment process, and the GICS methodology supports the trend towards sector-based investing. [4]</p>
+<p>The GICS classification consists of <strong>11</strong>&nbsp;sectors, <strong>25</strong>&nbsp;industry groups. The 11 sectors are {Communication Services, Consumer Discretionary, Consumer Staples, Energy, Financials, Health Care, Industrials, Information Technology, Materials, Real Estate, Utilities}. The classificaiton of each stock in the S&amp;P 500 according to GICS is available at the following Google Sheet:</p>
+<p><a href="https://docs.google.com/spreadsheets/d/1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk/edit#gid=0" class="uri">https://docs.google.com/spreadsheets/d/1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk/edit#gid=0</a></p>
+<p>Again, we note that the Google Sheet ID is <code>1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk</code></p>
+</section>
+<section id="loading-the-data-into-r" class="level2">
+<h2 class="anchored" data-anchor-id="loading-the-data-into-r">Loading the data into R</h2>
+<p>We will connect to both these Google Sheets and read the data into a tibble. We can use the function <code>gsheet2tbl</code> in package <code>gsheet</code> to read the Google Sheet into a tibble , as demonstrated in the following code.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ"</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix,sheetID) <span class="co"># Form the URL to connect to</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sp500Data <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
-<li><strong>Reference</strong>: This data has been sourced from websites like Yahoo Finance and TradingView.com and it is current as of <strong>29Dec2023</strong></li>
+<li><strong>Reference</strong>: This data has is current as of <strong>5Jan2024</strong></li>
 </ol>
-</section>
+<p>Similarly, we can also read the GICS classification.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read GICS classificaiton of S&amp;P 500 stocks from a Google Sheet.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prefix2 <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sheetID2 <span class="ot">&lt;-</span> <span class="st">"1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>urlgics <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix2, sheetID2) <span class="co"># Form the URL to connect to</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>gics <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(urlgics) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We join the two tibbles, using “Stock” as the key and name our joint tibble “sp500”. For this purpose, we can write the following code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging dataframes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">merge</span>(sp500Data, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               gics , </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">id =</span> <span class="st">"Stock"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="review-the-sp-500-data" class="level2">
 <h2 class="anchored" data-anchor-id="review-the-sp-500-data">Review the S&amp;P 500 data</h2>
 <ol type="1">
-<li>The data corresponds to 503 companies that are part of the S&amp;P500 and includes 36 data columns.</li>
+<li>The data corresponds to 503 companies that are part of the S&amp;P500 and includes 39 data columns.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 503  36</code></pre>
+<pre><code>[1] 503  39</code></pre>
 </div>
 </div>
 <ol start="2" type="1">
-<li>The first ten stocks in the S&amp;P500 data, their Sector and their recent prices are as follows:</li>
+<li>The first ten stocks in the S&amp;P500 data, their GICS Sector and their recent prices are as follows:</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sp500 <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, Description, Sector, Date, Price) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"The first 10 companies in the S&amp;P500 dataset"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(sp500$`GICS Sector`)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, Description, GICSSector, Date, Price) <span class="sc">%&gt;%</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"The first 10 companies in the S&amp;P500 dataset"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>The first 10 companies in the S&amp;P500 dataset</caption>
@@ -419,81 +437,81 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Description</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Date</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">Agilent Technologies, Inc.</td>
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">131.1500</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AAL</td>
+<td style="text-align: left;">American Airlines Group, Inc.</td>
+<td style="text-align: left;">Industrials</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">13.3297</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">AAPL</td>
 <td style="text-align: left;">Apple Inc.</td>
-<td style="text-align: left;">Electronic Technology</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">192.520</td>
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">182.0300</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">MSFT</td>
-<td style="text-align: left;">Microsoft Corporation</td>
-<td style="text-align: left;">Technology Services</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">375.980</td>
+<td style="text-align: left;">ABBV</td>
+<td style="text-align: left;">AbbVie Inc.</td>
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">162.1400</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">GOOG</td>
-<td style="text-align: left;">Alphabet Inc.</td>
-<td style="text-align: left;">Technology Services</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">140.980</td>
+<td style="text-align: left;">ABNB</td>
+<td style="text-align: left;">Airbnb, Inc.</td>
+<td style="text-align: left;">Consumer Discretionary</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">135.1750</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">GOOGL</td>
-<td style="text-align: left;">Alphabet Inc.</td>
-<td style="text-align: left;">Technology Services</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">139.710</td>
+<td style="text-align: left;">ABT</td>
+<td style="text-align: left;">Abbott Laboratories</td>
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">110.4500</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">AMZN</td>
-<td style="text-align: left;">Amazon.com, Inc.</td>
-<td style="text-align: left;">Retail Trade</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">151.950</td>
+<td style="text-align: left;">ACGL</td>
+<td style="text-align: left;">Arch Capital Group Ltd.</td>
+<td style="text-align: left;">Financials</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">77.7459</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">NVDA</td>
-<td style="text-align: left;">NVIDIA Corporation</td>
-<td style="text-align: left;">Electronic Technology</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">495.260</td>
+<td style="text-align: left;">ACN</td>
+<td style="text-align: left;">Accenture plc</td>
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">339.1400</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">META</td>
-<td style="text-align: left;">Meta Platforms, Inc.</td>
-<td style="text-align: left;">Technology Services</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">353.995</td>
+<td style="text-align: left;">ADBE</td>
+<td style="text-align: left;">Adobe Inc.</td>
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">567.6200</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">TSLA</td>
-<td style="text-align: left;">Tesla, Inc.</td>
-<td style="text-align: left;">Consumer Durables</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">248.490</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BRK.B</td>
-<td style="text-align: left;">Berkshire Hathaway Inc. New</td>
-<td style="text-align: left;">Finance</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">356.930</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">LLY</td>
-<td style="text-align: left;">Eli Lilly and Company</td>
-<td style="text-align: left;">Health Technology</td>
-<td style="text-align: left;">29Dec2023</td>
-<td style="text-align: right;">583.490</td>
+<td style="text-align: left;">ADI</td>
+<td style="text-align: left;">Analog Devices, Inc.</td>
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: left;">5Jan2024</td>
+<td style="text-align: right;">185.7200</td>
 </tr>
 </tbody>
 </table>
@@ -505,13 +523,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Data Columns</li>
 </ol>
 <ul>
-<li>The data comprises of the following 36 columns:</li>
+<li>The data comprises of the following 39 columns:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Date"                                   
- [2] "Stock"                                  
+<pre><code> [1] "Stock"                                  
+ [2] "Date"                                   
  [3] "Description"                            
  [4] "Sector"                                 
  [5] "Industry"                               
@@ -545,7 +563,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [33] "Price to Sales (FY)"                    
 [34] "Revenue (TTM YoY Growth)"               
 [35] "Revenue (Quarterly YoY Growth)"         
-[36] "Technical Rating"                       </code></pre>
+[36] "Technical Rating"                       
+[37] "Security"                               
+[38] "GICSSector"                             
+[39] "GICSSubIndustry"                        </code></pre>
 </div>
 </div>
 <ul>
@@ -557,30 +578,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The names of the data columns are lengthy and confusing. We will rename the data columns to make it easier to work with the data.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span>, <span class="st">"Stock"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)<span class="ot">&lt;-</span>new_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Stock"</span>, <span class="st">"Date"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Security"</span>, <span class="st">"GICSSector"</span>, <span class="st">"GICSSubIndustry"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)<span class="ot">&lt;-</span>new_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
 <li>We review the column names again after renaming them, using the <code>colnames()</code> function can help.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Date"                  "Stock"                 "StockName"            
+<pre><code> [1] "Stock"                 "Date"                  "StockName"            
  [4] "Sector"                "Industry"              "MarketCap"            
  [7] "Price"                 "Low52Wk"               "High52Wk"             
 [10] "ROE"                   "ROA"                   "ROIC"                 
@@ -591,14 +613,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [25] "PFCF"                  "FCF"                   "FCF_QYOY"             
 [28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
 [31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
-[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               </code></pre>
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Security"              "GICSSector"            "GICSSubIndustry"      </code></pre>
 </div>
 </div>
 </section>
 <section id="understand-the-data-columns" class="level3">
 <h3 class="anchored" data-anchor-id="understand-the-data-columns">Understand the Data Columns</h3>
 <ol start="6" type="1">
-<li>The complete data has 36 columns. Our next goal is to gain a deeper understanding of what the data columns mean. We reorganize the column names into eight tables, labeled Table 1a, 1b.. 1h.</li>
+<li>The complete data has 39 columns. Our next goal is to gain a deeper understanding of what the data columns mean. We reorganize the column names into eight tables, labeled Table 1a, 1b.. 1h.</li>
 </ol>
 <ol type="a">
 <li>The column names described in Table 1a. concern basic <strong>Company Information</strong> of each stock.</li>
@@ -623,24 +646,24 @@ Table 1a: Data Columns giving basic Company Information
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Date</td>
-<td style="text-align: left;">Date (e.g. "7/15/2023")</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Stock</td>
 <td style="text-align: left;">Stock Ticker (e.g. AAL)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Date</td>
+<td style="text-align: left;">Date (e.g. "7/15/2023")</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">StockName</td>
 <td style="text-align: left;">Name of the company (e.g "American Airlines Group, Inc.")</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Sector</td>
-<td style="text-align: left;">Sector the stock belongs to (e.g. "Transportation")</td>
+<td style="text-align: left;">GICSSector</td>
+<td style="text-align: left;">Sector, as per GICS Classification</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Industry</td>
-<td style="text-align: left;">Industry the stock belongs to (e.g "Airlines")</td>
+<td style="text-align: left;">GICSSubIndustry</td>
+<td style="text-align: left;">Sub-Industry, as per GICS Classification</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">MarketCap</td>
@@ -975,238 +998,183 @@ Table 1h: Data Columns related to Dividends
 <li>In the data, the S&amp;P500 shares have Technical Ratings such as {Strong Buy, Buy, Neutral, Sell, Strong Sell}. Since each Stock has a unique Technical Rating, it makes sense to model the data column Rating as a factor() variable.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li>We confirm that Rating is now modelled as a factor variable, by running the str() function.</li>
+<li>We confirm that Rating is now modelled as a factor variable, by running the <code>str()</code> function. We can use the <code>levels()</code> function to review the different levels it can take.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Factor w/ 5 levels "Buy","Neutral",..: 2 3 1 1 3 3 3 3 3 1 ...</code></pre>
+<pre><code> Factor w/ 5 levels "Buy","Neutral",..: 1 1 3 4 1 3 3 4 2 3 ...</code></pre>
 </div>
-</div>
-<ol start="3" type="1">
-<li>We can use the levels() function to review the different levels it can take.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Buy"         "Neutral"     "Sell"        "Strong Buy"  "Strong Sell"</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
-<li>The table() function allows us to count how many stocks have each Rating.</li>
+<li>The <code>table()</code> function allows us to count how many stocks have each Rating.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
         Buy     Neutral        Sell  Strong Buy Strong Sell 
-        108          44         190         126          35 </code></pre>
+        192          51         178          58          24 </code></pre>
 </div>
 </div>
 <ol start="5" type="1">
 <li>Thus, we can see how many stocks have ratings ranging from “Strong Sell” to “Strong Buy”. This completes our review of Rating.</li>
 </ol>
 </section>
-<section id="sectors-within-the-sp500" class="level3">
-<h3 class="anchored" data-anchor-id="sectors-within-the-sp500">Sectors within the S&amp;P500</h3>
+<section id="analysis-of-gics-sectors-in-the-sp500" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-of-gics-sectors-in-the-sp500">Analysis of GICS Sectors in the S&amp;P500</h3>
 <ul>
 <li><p>The S&amp;P 500 comprises a wide array of sectors, reflecting the diverse American corporate landscape.</p></li>
-<li><p>The data showcases the S&amp;P500 divided across 19 Sectors. Here’s an overview of the sectors, along with some representative companies:</p></li>
+<li><p>The data showcases the S&amp;P500 divided across 11 Sectors. The S&amp;P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.</p></li>
 </ul>
-<ol type="1">
-<li><p><strong>Commercial Services (13 companies)</strong>: This sector comprises firms offering services primarily to businesses. Example: Accenture, a management consulting and professional services firm.</p></li>
-<li><p><strong>Communications (3 companies)</strong>: This sector covers companies involved in telecommunication and media. Example: AT&amp;T, a telecommunications giant.</p></li>
-<li><p><strong>Consumer Durables (12 companies)</strong>: Companies producing goods that aren’t bought frequently and have a longer life, such as appliances and cars. Example: Whirlpool, an appliance manufacturer.</p></li>
-<li><p><strong>Consumer Non-Durables (32 companies)</strong>: These are entities that produce goods that are consumed quickly or are non-reusable. Example: The Coca-Cola Company, known globally for its beverages.</p></li>
-<li><p><strong>Consumer Services (29 companies)</strong>: This includes companies that offer services directly to consumers. Example: Walt Disney Company, known for its entertainment services.</p></li>
-<li><p><strong>Distribution Services (9 companies)</strong>: Companies engaged in the distribution of products. Example: Sysco, a major food distributor.</p></li>
-<li><p><strong>Electronic Technology (49 companies)</strong>: Represents companies engaged in electronics research and product development. Example: Apple, known for its iPhone and other electronic products.</p></li>
-<li><p><strong>Energy Minerals (16 companies)</strong>: Companies that extract and produce energy resources. Example: ExxonMobil, one of the world’s largest oil and gas companies.</p></li>
-<li><p><strong>Finance (92 companies)</strong>: Covers banks, insurance companies, investment firms, REITs and other financial institutions. Example: JPMorgan Chase, a leading global financial services firm.</p></li>
-<li><p><strong>Health Services (12 companies)</strong>: Includes providers of health services like hospital management. Example: HCA Healthcare, a major hospital operator.</p></li>
-<li><p><strong>Health Technology (47 companies)</strong>: Companies that produce medical equipment, pharmaceuticals, and other health-related tech. Example: Pfizer, a global pharmaceutical company.</p></li>
-<li><p><strong>Industrial Services (9 companies)</strong>: Firms providing services primarily to the industrial sector. Example: Caterpillar, a leading manufacturer of construction and mining equipment.</p></li>
-<li><p><strong>Non-Energy Minerals (7 companies)</strong>: Companies involved in the extraction of minerals other than energy resources. Example: Vulcan Materials, a producer of construction aggregates.</p></li>
-<li><p><strong>Process Industries (24 companies)</strong>: This sector comprises entities that transform raw materials into finished goods. Example: Dow Inc., a major chemical manufacturer.</p></li>
-<li><p><strong>Producer Manufacturing (31 companies)</strong>: Companies engaged in the manufacturing of products for industries and consumers. Example: 3M, known for its diversified manufacturing.</p></li>
-<li><p><strong>Retail Trade (22 companies)</strong>: Companies directly involved in selling products to consumers. Example: Walmart, the multinational retail corporation.</p></li>
-<li><p><strong>Technology Services (50 companies)</strong>: Companies that offer tech services, including IT consulting and software services. Example: Microsoft, a global leader in software and cloud services.</p></li>
-<li><p><strong>Transportation (15 companies)</strong>: Covers companies involved in the transportation of goods and people. Example: Delta Air Lines, a major U.S. airline.</p></li>
-<li><p><strong>Utilities (31 companies)</strong>: Companies providing essential services like electricity, gas, and water. Example: Duke Energy, a prominent utility company.</p></li>
-</ol>
-</section>
-<section id="analysis-of-sp-500-sectors" class="level3">
-<h3 class="anchored" data-anchor-id="analysis-of-sp-500-sectors">Analysis of S&amp;P 500 Sectors</h3>
-<ol type="1">
-<li>The S&amp;P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.</li>
-</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>GICSSector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>GICSSector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li>We confirm that Sector is now modelled as a factor variable, by running the str() function.</li>
+<li>We confirm that <code>GICSSector</code> is now modelled as a factor variable, by running the <code>str()</code> function.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>GICSSector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> Factor w/ 19 levels "Commercial Services",..: 7 17 17 17 16 7 17 3 9 11 ...</code></pre>
+<pre><code> Factor w/ 11 levels "Communication Services",..: 6 7 8 6 2 6 5 8 8 8 ...</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
-<li>We can use the levels() function to review the different levels it can take.</li>
+<li>We can use the <code>levels()</code> function to review the different levels it can take.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Sector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>GICSSector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Commercial Services"    "Communications"         "Consumer Durables"     
- [4] "Consumer Non-Durables"  "Consumer Services"      "Distribution Services" 
- [7] "Electronic Technology"  "Energy Minerals"        "Finance"               
-[10] "Health Services"        "Health Technology"      "Industrial Services"   
-[13] "Non-Energy Minerals"    "Process Industries"     "Producer Manufacturing"
-[16] "Retail Trade"           "Technology Services"    "Transportation"        
-[19] "Utilities"             </code></pre>
+<pre><code> [1] "Communication Services" "Consumer Discretionary" "Consumer Staples"      
+ [4] "Energy"                 "Financials"             "Health Care"           
+ [7] "Industrials"            "Information Technology" "Materials"             
+[10] "Real Estate"            "Utilities"             </code></pre>
 </div>
 </div>
 <ul>
-<li>The S&amp;P500 consists of 503 stocks, divided across 19 sectors.</li>
+<li>The S&amp;P500 consists of 503 stocks, divided across 11 sectors.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sp500, </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> Sector)) <span class="sc">+</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Sector)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>, </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count))) <span class="sc">+</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stocks by Sector"</span>, </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"No. of Stocks"</span>, </span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sector"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> sp500, </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> GICSSector)) <span class="sc">+</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> GICSSector)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>, </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count))) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stocks by GICS Sector"</span>, </span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"No. of Stocks"</span>, </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"GICS Sector"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="17LiveCase01_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
+<p><img src="17LiveCase01_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <ul>
-<li>Thus, we can see how many stocks are part of each one of the 19 sectors. We can sum them to confirm that they add up to 503 stocks.</li>
+<li>Thus, we can see how many stocks are part of each one of the 11 sectors. We can sum them to confirm that they add up to 503 stocks.</li>
 </ul>
 </section>
-<section id="marketcap-by-sector" class="level3">
-<h3 class="anchored" data-anchor-id="marketcap-by-sector">MarketCap by Sector</h3>
+<section id="marketcap-by-gics-sector" class="level3">
+<h3 class="anchored" data-anchor-id="marketcap-by-gics-sector">MarketCap by GICS Sector</h3>
 <ol type="1">
-<li>The S&amp;P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.</li>
+<li>We review the Market Cap of S&amp;P500 stocks across GICS Sectors. We summarize the total Market Cap for each GICS Sector, using the following code.</li>
 </ol>
-<p>We review the Market Cap of S&amp;P500 stocks across Sectors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Market_Cap_Billions =</span> <span class="fu">round</span>(MarketCap<span class="sc">/</span><span class="dv">1000000000</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Sector) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MarketCapBillions =</span> <span class="fu">sum</span>(Market_Cap_Billions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))  <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>MarketCapBillions)  </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary row</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>summary_row <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sector =</span> <span class="st">"Total"</span>,</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">MarketCapBillions =</span> <span class="fu">sum</span>(MarketCapbySector<span class="sc">$</span>Market_Cap_Billions)</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Unknown or uninitialised column: `Market_Cap_Billions`.</code></pre>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Market_Cap_Billions =</span> <span class="fu">round</span>(MarketCap<span class="sc">/</span><span class="dv">1000000000</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GICSSector) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">MarketCapBillions =</span> <span class="fu">sum</span>(Market_Cap_Billions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))  <span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>MarketCapBillions)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the summary row to the result</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(MarketCapbySector, summary_row)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the table</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="sc">%&gt;%</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Market Capitalization (Billions of USD) by S&amp;P500 Sector"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="2" type="1">
+<li>Next, we create a row, to display the total across all GICS Sectors.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a row for the grand total</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>summary_row <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">GICSSector =</span> <span class="st">"Total"</span>,</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">MarketCapBillions =</span> <span class="fu">sum</span>(MarketCapbySector<span class="sc">$</span>MarketCapBillions)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>summary_row</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  GICSSector MarketCapBillions
+  &lt;chr&gt;                  &lt;dbl&gt;
+1 Total                 43733.</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Finally, we append this row to the bottom of the summary table and display it.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the summary row to the result</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(MarketCapbySector, summary_row)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the table</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>MarketCapbySector <span class="sc">%&gt;%</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Market Capitalization (Billions of USD) of S&amp;P500 by GICS Sector"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Market Capitalization (Billions of USD) by S&amp;P500 Sector</caption>
+<caption>Market Capitalization (Billions of USD) of S&amp;P500 by GICS Sector</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Sector</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">MarketCapBillions</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">Technology Services</td>
-<td style="text-align: right;">10327.55</td>
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: right;">11462.11</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Electronic Technology</td>
-<td style="text-align: right;">7455.81</td>
+<td style="text-align: left;">Financials</td>
+<td style="text-align: right;">5734.92</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Finance</td>
-<td style="text-align: right;">5392.16</td>
+<td style="text-align: left;">Communication Services</td>
+<td style="text-align: right;">5642.80</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Health Technology</td>
-<td style="text-align: right;">3935.65</td>
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: right;">5323.05</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Retail Trade</td>
-<td style="text-align: right;">3537.28</td>
+<td style="text-align: left;">Consumer Discretionary</td>
+<td style="text-align: right;">4596.22</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Consumer Non-Durables</td>
-<td style="text-align: right;">2031.88</td>
+<td style="text-align: left;">Industrials</td>
+<td style="text-align: right;">3598.75</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Consumer Services</td>
-<td style="text-align: right;">1539.19</td>
+<td style="text-align: left;">Consumer Staples</td>
+<td style="text-align: right;">2819.64</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Producer Manufacturing</td>
-<td style="text-align: right;">1481.64</td>
+<td style="text-align: left;">Energy</td>
+<td style="text-align: right;">1622.53</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Commercial Services</td>
-<td style="text-align: right;">1335.69</td>
+<td style="text-align: left;">Real Estate</td>
+<td style="text-align: right;">1009.46</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Energy Minerals</td>
-<td style="text-align: right;">1315.88</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Consumer Durables</td>
-<td style="text-align: right;">1081.84</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Health Services</td>
-<td style="text-align: right;">971.20</td>
+<td style="text-align: left;">Materials</td>
+<td style="text-align: right;">969.73</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Utilities</td>
-<td style="text-align: right;">959.53</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Process Industries</td>
-<td style="text-align: right;">786.22</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Transportation</td>
-<td style="text-align: right;">755.20</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Communications</td>
-<td style="text-align: right;">463.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Industrial Services</td>
-<td style="text-align: right;">418.96</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Distribution Services</td>
-<td style="text-align: right;">372.06</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Non-Energy Minerals</td>
-<td style="text-align: right;">238.23</td>
+<td style="text-align: right;">953.59</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Total</td>
-<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">43732.80</td>
 </tr>
 </tbody>
 </table>
@@ -1214,12 +1182,25 @@ Table 1h: Data Columns related to Dividends
 
 </div>
 </div>
+<ol start="4" type="1">
+<li>This table gives us the breakdown of the Market Cap of the different stocks in the S&amp;P500 across different GICS Sectors. We note that the Information Technology and Utilities sectors have the relatively highest and lowest Market Cap respectively. We also note that the entire S&amp;P500 has a combined Market Cap of the S&amp;P 500, as of 5Jan2024, is 43732.8 Billion USD.</li>
+</ol>
 </section>
 </section>
 <section id="summary-of-chapter-exploring-sp500-data" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-exploring-sp500-data">Summary of Chapter – Exploring S&amp;P500 Data</h2>
-<p>This chapter embarks on an exploration of the S&amp;P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index’s role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&amp;P Dow Jones Indices.</p>
-<p>This chapter skillfully guides readers through the intricacies of exploring S&amp;P500 data, employing practical examples and R code to foster a deeper understanding of the dataset’s structure and content. Further exploration is encouraged with a wealth of references for continued learning and analysis.</p>
+<p>This chapter explores the S&amp;P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index’s role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&amp;P Dow Jones Indices.</p>
+<p>This chapter guides readers through the intricacies of exploring S&amp;P500 data, employing practical examples and R code to foster a deeper understanding of the breakdown of the S&amp;P 500 across different GICS Sectors. Further exploration is encouraged with a wealth of references for continued learning and analysis.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p><strong>S&amp;P 500</strong></p>
+<p>[1] https://www.investopedia.com/terms/s/sp500.asp</p>
+<p>[2] S&amp;P Global: S&amp;P Global. (n.d.). S&amp;P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/</p>
+<p>MarketWatch: MarketWatch. (n.d.). S&amp;P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx</p>
+<p>Bloomberg: Bloomberg. (n.d.). S&amp;P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND</p>
+<p>[3] TradingView.com <a href="https://www.tradingview.com/screener/" class="uri">https://www.tradingview.com/screener/</a></p>
+<p>[4] GICS: Global Industry Classification Standard: <a href="https://www.spglobal.com/spdji/en/landing/topic/gics/" class="uri">https://www.spglobal.com/spdji/en/landing/topic/gics/</a></p>
 
 
 </section>

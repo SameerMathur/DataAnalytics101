@@ -231,7 +231,6 @@ REIT <- finStocks %>%
   filter(Industry == 'Real Estate Investment Trusts')
 ```
 
-
 -   The following table lists REITs within the Finance sector of the S&P500
 
 ```{r}
@@ -271,7 +270,6 @@ REIT %>% summarise(
 
 Well done! Our data is now ready for analysis!!
 
-
 There are 12 number of of stocks in the Industry REIT
 
 ### Select the Specific Coulumns from the filtered dataframe `ts` (Industry REIT)
@@ -284,7 +282,6 @@ ts2 <- REIT %>%
 
 colnames(ts2)
 ```
-
 
 ### Arrange the Dataframe by ROE
 
@@ -642,5 +639,3 @@ ftab <- rbind(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)
 ftab <- cbind(Metrics, ftab)
 ftab
 ```
-
-

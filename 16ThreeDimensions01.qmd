@@ -293,7 +293,7 @@ Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
 Wickham, H., et al. (2020). tibble: Simple Data Frames (Version 3.0.3) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=tibble
 
-\[2\] Ligges, U., Maechler, M., Schnackenberg, S., & Ligges, M. U. (2018). Package \'scatterplot3d\'. *Recuperado de https://cran. rproject. org/web/packages/scatterplot3d/scatterplot3d. pdf*.
+\[2\] Ligges, U., Maechler, M., Schnackenberg, S., & Ligges, M. U. (2018). Package 'scatterplot3d'. *Recuperado de https://cran. rproject. org/web/packages/scatterplot3d/scatterplot3d. pdf*.
 
 Ligges, U., & Mächler, M. (2002). *Scatterplot3d-an r package for visualizing multivariate data* (No. 2002, 22). Technical report.
 

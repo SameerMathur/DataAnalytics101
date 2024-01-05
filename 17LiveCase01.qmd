@@ -1,6 +1,6 @@
 # Live Case: Overview of the S&P500
 
-#### Chapter 17, *Last updated: Dec 30, 2023*
+**Chapter 17, *Last updated: Jan 05, 2024***
 
 ## S&P 500
 
@@ -8,7 +8,7 @@ The S&P 500, also called the Standard & Poor's 500, is a stock market index that
 
 S&P Dow Jones Indices, a division of S&P Global, is responsible for maintaining the index. The selection of companies included in the S&P 500 is determined by a committee, considering factors such as market capitalization, liquidity, and industry representation.
 
-The S&P is a float-weighted index, meaning the market capitalizations of the companies in the index are adjusted by the number of shares available for public trading. https://www.investopedia.com/terms/s/sp500.asp
+The S&P is a float-weighted index, meaning the market capitalizations of the companies in the index are adjusted by the number of shares available for public trading. \[1\]
 
 The performance of the S&P 500 is frequently used to gauge the broader stock market and is commonly referenced by investors, analysts, and financial media. It provides a snapshot of how large-cap U.S. stocks are faring and is considered a reliable indicator of overall market sentiment.
 
@@ -30,15 +30,7 @@ Typically, the S&P 500 index consists of 500 stocks. However, in reality, there 
 
 3.  **Potential for Complacency**: The prominence of the S&P 500 has led many investors to adopt passive investment strategies, tracking the index rather than actively managing portfolios. Detractors argue this might lead to market inefficiencies and reduced capital allocation efficacy.
 
-While the S&P 500 remains an influential and pivotal tool for investors, its dominance prompts a double-edged sword of advantages and critiques. In a constantly evolving economic landscape, understanding both its power and limitations is essential for informed financial decision-making.
-
-References:
-
-1.  **S&P Global**: S&P Global. (n.d.). S&P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/
-
-2.  **MarketWatch**: MarketWatch. (n.d.). S&P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx
-
-3.  **Bloomberg**: Bloomberg. (n.d.). S&P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND
+While the S&P 500 remains an influential and pivotal tool for investors, its dominance prompts a double-edged sword of advantages and critiques. In a constantly evolving economic landscape, understanding both its power and limitations is essential for informed financial decision-making. \[2\]
 
 ## S&P 500 Data
 
@@ -59,27 +51,31 @@ library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # For tables
 
 ### Read the S&P500 data from a Google Sheet into a tibble
 
-1.  We will analyze a real-world, recent dataset containing information about the S&P500 stocks. The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM/edit#gid=0" target="_blank">Google Sheet</a> and periodically updated.
+1.  We will analyze a real-world, recent dataset containing information about the S&P500 stocks, sourced from TradingView.com. \[3\]
 
-2.  The complete URL of the Google Sheet that has the data is\
+2.   The dataset is located in a <a href="https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ/" target="_blank">Google Sheet</a> and periodically updated.
 
-https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ
+3.  The complete URL of the Google Sheet that has the data is
 
+    <https://docs.google.com/spreadsheets/d/14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ/>
 
+4.  Notice that the Google Sheet ID is: `14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ`.
 
-3.  The Google Sheet ID is: `14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ`. 
+## S&P Global Industry Classification Standard (GICS^®^)
 
+In this case study, we will classify and analyze the S&P 500 stocks based on the GICS standard.
 
+The Global Industry Classification Standard (GICS^®^) was developed in 1999 by S&P Dow Jones Indices and MSCI. The GICS methodology aims to enhance the investment research and asset management process for financial professionals worldwide. The GICS methodology has been widely accepted as an industry analysis framework for investment research, portfolio management and asset allocation. Its universal approach to industries worldwide has contributed to transparency and efficiency in the investment process, and the GICS methodology supports the trend towards sector-based investing. \[4\]
 
-TO BE DELETED
+The GICS classification consists of **11** sectors, **25** industry groups. The 11 sectors are {Communication Services, Consumer Discretionary, Consumer Staples, Energy, Financials, Health Care, Industrials, Information Technology, Materials, Real Estate, Utilities}. The classificaiton of each stock in the S&P 500 according to GICS is available at the following Google Sheet:
 
-OLD: `11ahk9uWxBkDqrhNm7qYmiTwrlSC53N1zvXYfv7ttOCM`. 
+<https://docs.google.com/spreadsheets/d/1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk/edit#gid=0>
 
-TO BE DELETED
+Again, we note that the Google Sheet ID is `1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk`
 
+## Loading the data into R 
 
-
-We can use the function `gsheet2tbl` in package `gsheet` to read the Google Sheet into a tibble , as demonstrated in the following code.
+We will connect to both these Google Sheets and read the data into a tibble. We can use the function `gsheet2tbl` in package `gsheet` to read the Google Sheet into a tibble , as demonstrated in the following code.
 
 ```{r, warning=FALSE}
 # Read S&P500 stock data present in a Google Sheet.
@@ -87,10 +83,30 @@ library(gsheet)
 prefix <- "https://docs.google.com/spreadsheets/d/"
 sheetID <- "14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ"
 url500 <- paste(prefix,sheetID) # Form the URL to connect to
-sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
+sp500Data <- gsheet2tbl(url500) # Read it into a tibble called sp500
 ```
 
-4.  **Reference**: This data has been sourced from websites like Yahoo Finance and TradingView.com and it is current as of **`r sp500$Date[1]`**
+4.  **Reference**: This data has is current as of **`r sp500Data$Date[1]`**
+
+Similarly, we can also read the GICS classification.
+
+```{r}
+# Read GICS classificaiton of S&P 500 stocks from a Google Sheet.
+library(gsheet)
+prefix2 <- "https://docs.google.com/spreadsheets/d/"
+sheetID2 <- "1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk"
+urlgics <- paste(prefix2, sheetID2) # Form the URL to connect to
+gics <- gsheet2tbl(urlgics) # Read it into a tibble called sp500
+```
+
+We join the two tibbles, using "Stock" as the key and name our joint tibble "sp500". For this purpose, we can write the following code.
+
+```{r}
+# Merging dataframes
+sp500 <- merge(sp500Data, 
+               gics , 
+               id = "Stock")
+```
 
 ## Review the S&P 500 data
 
@@ -100,11 +116,14 @@ sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
 dim(sp500)
 ```
 
-2.  The first ten stocks in the S&P500 data, their Sector and their recent prices are as follows:
+2.  The first ten stocks in the S&P500 data, their GICS Sector and their recent prices are as follows:
 
 ```{r}
+
+# summary(sp500$`GICS Sector`)
+
 sp500 %>%
-  select(Stock, Description, Sector, Date, Price) %>%
+  select(Stock, Description, GICSSector, Date, Price) %>%
   head(10) %>%
   kable("html", caption = "The first 10 companies in the S&P500 dataset") %>% 
   kable_styling()
@@ -127,7 +146,7 @@ colnames(sp500)
 ```{r, warning=FALSE}
 # Define a mapping of new column names
 new_names <- c(
-  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "Stock", "Date", "StockName", "Sector", "Industry", 
   "MarketCap", "Price", "Low52Wk", "High52Wk", 
   "ROE", "ROA", "ROIC", "GrossMargin", 
   "OperatingMargin", "NetMargin", "PE", 
@@ -137,7 +156,8 @@ new_names <- c(
   "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
   "QuickRatio", "DividendYield", 
   "DividendsPerShare_YOY", "PS", 
-  "Revenue_YOY", "Revenue_QYOY", "Rating"
+  "Revenue_YOY", "Revenue_QYOY", "Rating",
+  "Security", "GICSSector", "GICSSubIndustry"
 )
 # Rename the columns using the new_names vector
 colnames(sp500)<-new_names
@@ -151,12 +171,12 @@ colnames(sp500)
 
 ### Understand the Data Columns
 
-6.  The complete data has 36 columns. Our next goal is to gain a deeper understanding of what the data columns mean. We reorganize the column names into eight tables, labeled Table 1a, 1b.. 1h.
+6.  The complete data has 39 columns. Our next goal is to gain a deeper understanding of what the data columns mean. We reorganize the column names into eight tables, labeled Table 1a, 1b.. 1h.
 
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 library(tibble)
 new_names <- c(
-  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "Stock", "Date", "StockName", "Sector", "Industry", 
   "MarketCap", "Price", "Low52Wk", "High52Wk", 
   "ROE", "ROA", "ROIC", "GrossMargin", 
   "OperatingMargin", "NetMargin", "PE", 
@@ -166,11 +186,12 @@ new_names <- c(
   "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
   "QuickRatio", "DividendYield", 
   "DividendsPerShare_YOY", "PS", 
-  "Revenue_YOY", "Revenue_QYOY", "Rating"
+  "Revenue_YOY", "Revenue_QYOY", "Rating",
+  "Security", "GICSSector", "GICSSubIndustry"
 )
 descriptions <- c(
-  "Date (e.g. \"7/15/2023\")",
   "Stock Ticker (e.g. AAL)",
+  "Date (e.g. \"7/15/2023\")",
   "Name of the company (e.g \"American Airlines Group, Inc.\")",
   "Sector the stock belongs to (e.g. \"Transportation\")",
   "Industry the stock belongs to (e.g \"Airlines\")",
@@ -204,7 +225,10 @@ descriptions <- c(
   "Price-to-Sales Ratio",
   "Revenue Year-over-Year Growth",
   "Revenue Quarterly Year-over-Year Growth",
-  "Technical Rating"
+  "Technical Rating",
+  "Name of the company (e.g \"American Airlines Group, Inc.\")",
+  "Sector, as per GICS Classification",
+  "Sub-Industry, as per GICS Classification"
 )
 column_info <- tibble(ColumnName = new_names, Description = descriptions)
 ```
@@ -212,7 +236,7 @@ column_info <- tibble(ColumnName = new_names, Description = descriptions)
 ```{r, warning=FALSE, eval=TRUE, echo=FALSE}
 # Create different Tables explaining different columns in the data
 library(dplyr)
-stockCols = slice(column_info, c(1:7))
+stockCols = slice(column_info, c(1,2,3,38,39,6,7))
 taCols = slice(column_info, c(8,9,36))
 profitabilityCols = slice(column_info, c(10:15))
 earningsCols = slice(column_info, c(16:24))
@@ -290,134 +314,115 @@ table1h
 sp500$Rating <- as.factor(sp500$Rating)
 ```
 
-2.  We confirm that Rating is now modelled as a factor variable, by running the str() function.
+2.  We confirm that Rating is now modelled as a factor variable, by running the `str()` function. We can use the `levels()` function to review the different levels it can take.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 str(sp500$Rating)
-```
-
-3.  We can use the levels() function to review the different levels it can take.
-
-```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 levels(sp500$Rating)
 ```
 
-4.  The table() function allows us to count how many stocks have each Rating.
+4.  The `table()` function allows us to count how many stocks have each Rating.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 table(sp500$Rating)
 ```
 
-5.  Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Strong Buy". This completes our review of Rating.
+5.   Thus, we can see how many stocks have ratings ranging from "Strong Sell" to "Strong Buy". This completes our review of Rating.
 
-### Sectors within the S&P500
+### Analysis of GICS Sectors in the S&P500
 
 -   The S&P 500 comprises a wide array of sectors, reflecting the diverse American corporate landscape.
 
--   The data showcases the S&P500 divided across `r length(unique(sp500$Sector))` Sectors. Here's an overview of the sectors, along with some representative companies:
-
-1.  **Commercial Services (13 companies)**: This sector comprises firms offering services primarily to businesses. Example: Accenture, a management consulting and professional services firm.
-
-2.  **Communications (3 companies)**: This sector covers companies involved in telecommunication and media. Example: AT&T, a telecommunications giant.
-
-3.  **Consumer Durables (12 companies)**: Companies producing goods that aren't bought frequently and have a longer life, such as appliances and cars. Example: Whirlpool, an appliance manufacturer.
-
-4.  **Consumer Non-Durables (32 companies)**: These are entities that produce goods that are consumed quickly or are non-reusable. Example: The Coca-Cola Company, known globally for its beverages.
-
-5.  **Consumer Services (29 companies)**: This includes companies that offer services directly to consumers. Example: Walt Disney Company, known for its entertainment services.
-
-6.  **Distribution Services (9 companies)**: Companies engaged in the distribution of products. Example: Sysco, a major food distributor.
-
-7.  **Electronic Technology (49 companies)**: Represents companies engaged in electronics research and product development. Example: Apple, known for its iPhone and other electronic products.
-
-8.  **Energy Minerals (16 companies)**: Companies that extract and produce energy resources. Example: ExxonMobil, one of the world's largest oil and gas companies.
-
-9.  **Finance (92 companies)**: Covers banks, insurance companies, investment firms, REITs and other financial institutions. Example: JPMorgan Chase, a leading global financial services firm.
-
-10. **Health Services (12 companies)**: Includes providers of health services like hospital management. Example: HCA Healthcare, a major hospital operator.
-
-11. **Health Technology (47 companies)**: Companies that produce medical equipment, pharmaceuticals, and other health-related tech. Example: Pfizer, a global pharmaceutical company.
-
-12. **Industrial Services (9 companies)**: Firms providing services primarily to the industrial sector. Example: Caterpillar, a leading manufacturer of construction and mining equipment.
-
-13. **Non-Energy Minerals (7 companies)**: Companies involved in the extraction of minerals other than energy resources. Example: Vulcan Materials, a producer of construction aggregates.
-
-14. **Process Industries (24 companies)**: This sector comprises entities that transform raw materials into finished goods. Example: Dow Inc., a major chemical manufacturer.
-
-15. **Producer Manufacturing (31 companies)**: Companies engaged in the manufacturing of products for industries and consumers. Example: 3M, known for its diversified manufacturing.
-
-16. **Retail Trade (22 companies)**: Companies directly involved in selling products to consumers. Example: Walmart, the multinational retail corporation.
-
-17. **Technology Services (50 companies)**: Companies that offer tech services, including IT consulting and software services. Example: Microsoft, a global leader in software and cloud services.
-
-18. **Transportation (15 companies)**: Covers companies involved in the transportation of goods and people. Example: Delta Air Lines, a major U.S. airline.
-
-19. **Utilities (31 companies)**: Companies providing essential services like electricity, gas, and water. Example: Duke Energy, a prominent utility company.
-
-### Analysis of S&P 500 Sectors
-
-1.  The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
+-   The data showcases the S&P500 divided across `r length(unique(sp500$GICSSector))` Sectors. The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
-sp500$Sector <- as.factor(sp500$Sector)
+sp500$GICSSector <- as.factor(sp500$GICSSector)
 ```
 
-2.  We confirm that Sector is now modelled as a factor variable, by running the str() function.
+2.  We confirm that `GICSSector` is now modelled as a factor variable, by running the `str()` function.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
-str(sp500$Sector)
+str(sp500$GICSSector)
 ```
 
-3.  We can use the levels() function to review the different levels it can take.
+3.  We can use the `levels()` function to review the different levels it can take.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
-levels(sp500$Sector)
+levels(sp500$GICSSector)
 ```
 
--   The S&P500 consists of `r nrow(sp500)` stocks, divided across `r length(unique(sp500$Sector))` sectors.
+-   The S&P500 consists of `r nrow(sp500)` stocks, divided across `r length(unique(sp500$GICSSector))` sectors.
 
 ```{r}
 ggplot(data = sp500, 
-       aes(y = Sector)) + 
-  geom_bar(aes(fill = Sector)) +
+       aes(y = GICSSector)) + 
+  geom_bar(aes(fill = GICSSector)) +
   geom_text(stat='count', 
             aes(label=after_stat(count))) +
-  labs(title = "Stocks by Sector", 
+  labs(title = "Stocks by GICS Sector", 
        x = "No. of Stocks", 
-       y = "Sector")
+       y = "GICS Sector")
 ```
 
--   Thus, we can see how many stocks are part of each one of the 19 sectors. We can sum them to confirm that they add up to `r sum(table(sp500$Sector))` stocks.
+-   Thus, we can see how many stocks are part of each one of the 11 sectors. We can sum them to confirm that they add up to `r sum(table(sp500$GICSSector))` stocks.
 
-### MarketCap by Sector
+### MarketCap by GICS Sector
 
-1.  The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
-
-We review the Market Cap of S&P500 stocks across Sectors.
+1.  We review the Market Cap of S&P500 stocks across GICS Sectors. We summarize the total Market Cap for each GICS Sector, using the following code.
 
 ```{r}
 MarketCapbySector <- sp500 %>%
   mutate(Market_Cap_Billions = round(MarketCap/1000000000, 2)) %>%
-  group_by(Sector) %>%
+  group_by(GICSSector) %>%
   summarise(MarketCapBillions = sum(Market_Cap_Billions, na.rm = TRUE))  %>%
   arrange(-MarketCapBillions)  
+```
 
-# Create a summary row
+2. Next, we create a row, to display the total across all GICS Sectors.
+
+```{r}
+# Create a row for the grand total
 summary_row <- tibble(
-  Sector = "Total",
-  MarketCapBillions = sum(MarketCapbySector$Market_Cap_Billions)
+  GICSSector = "Total",
+  MarketCapBillions = sum(MarketCapbySector$MarketCapBillions)
 )
+summary_row
+```
+
+3. Finally, we append this row to the bottom of the summary table and display it.
+
+```{r}
 # Append the summary row to the result
 MarketCapbySector <- bind_rows(MarketCapbySector, summary_row)
 
 # Render the table
 MarketCapbySector %>%
-  kable("html", caption = "Market Capitalization (Billions of USD) by S&P500 Sector") %>% 
+  kable("html", caption = "Market Capitalization (Billions of USD) of S&P500 by GICS Sector") %>% 
   kable_styling()
 ```
 
+4. This table gives us the breakdown of the Market Cap of the different stocks in the S&P500 across different GICS Sectors. We note that the Information Technology and Utilities sectors have the relatively highest and lowest Market Cap respectively. We also note that the entire S&P500 has a combined Market Cap of the S&P 500, as of `r unique(sp500$Date)`, is `r format(summary_row$MarketCapBillions, scientific = FALSE)` Billion USD. 
+
 ## Summary of Chapter -- Exploring S&P500 Data
 
-This chapter embarks on an exploration of the S&P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index's role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&P Dow Jones Indices.
+This chapter explores the S&P500, a significant stock market index encompassing 500 major publicly traded companies in the U.S. The chapter introduces the index's role as a benchmark for assessing the overall health and performance of the U.S. stock market, maintained by S&P Dow Jones Indices.
 
-This chapter skillfully guides readers through the intricacies of exploring S&P500 data, employing practical examples and R code to foster a deeper understanding of the dataset's structure and content. Further exploration is encouraged with a wealth of references for continued learning and analysis.
+This chapter guides readers through the intricacies of exploring S&P500 data, employing practical examples and R code to foster a deeper understanding of the breakdown of the S&P 500 across different GICS Sectors. Further exploration is encouraged with a wealth of references for continued learning and analysis.
+
+## References
+
+**S&P 500**
+
+\[1\] https://www.investopedia.com/terms/s/sp500.asp
+
+\[2\] S&P Global: S&P Global. (n.d.). S&P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/
+
+MarketWatch: MarketWatch. (n.d.). S&P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx
+
+Bloomberg: Bloomberg. (n.d.). S&P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND
+
+\[3\] TradingView.com <https://www.tradingview.com/screener/>
+
+\[4\] GICS: Global Industry Classification Standard: <https://www.spglobal.com/spdji/en/landing/topic/gics/>
+
+
