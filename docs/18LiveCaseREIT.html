@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18LiveCaseREIT.html">Live Case (2): REITs in the S&amp;P500</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./18LiveCaseREIT.html">Case (2): Real-Estate Sector in the S&amp;P500</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -269,13 +269,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./17LiveCase01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Live Case: Overview of the S&amp;P500</span></a>
+ <span class="menu-text">Case: An Overview of the S&amp;P500</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./18LiveCaseREIT.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Live Case (2): REITs in the S&amp;P500</span></a>
+ <span class="menu-text">Case (2): Real-Estate Sector in the S&amp;P500</span></a>
   </div>
 </li>
     </ul>
@@ -290,32 +290,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#live-case-2-reits-in-the-sp500" id="toc-live-case-2-reits-in-the-sp500" class="nav-link active" data-scroll-target="#live-case-2-reits-in-the-sp500">Live Case (2): REITs in the S&amp;P500</a>
+  <li><a href="#case-2-real-estate-sector-in-the-sp500" id="toc-case-2-real-estate-sector-in-the-sp500" class="nav-link active" data-scroll-target="#case-2-real-estate-sector-in-the-sp500">Case (2): Real-Estate Sector in the S&amp;P500</a>
   <ul class="collapse">
-  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a>
+  <li><a href="#real-estate-sector-in-the-sp-500" id="toc-real-estate-sector-in-the-sp-500" class="nav-link" data-scroll-target="#real-estate-sector-in-the-sp-500">Real Estate Sector in the S&amp;P 500</a>
   <ul class="collapse">
-  <li><a href="#a1-role-play" id="toc-a1-role-play" class="nav-link" data-scroll-target="#a1-role-play">A1) Role Play?</a></li>
-  <li><a href="#a2-what-are-learning-objectives-for-you" id="toc-a2-what-are-learning-objectives-for-you" class="nav-link" data-scroll-target="#a2-what-are-learning-objectives-for-you">A2) What are learning objectives for you?</a></li>
-  </ul></li>
-  <li><a href="#setup-sp-500-reit-data" id="toc-setup-sp-500-reit-data" class="nav-link" data-scroll-target="#setup-sp-500-reit-data">Setup S&amp;P 500 <strong>REIT</strong> Data</a>
-  <ul class="collapse">
-  <li><a href="#load-some-useful-r-packages" id="toc-load-some-useful-r-packages" class="nav-link" data-scroll-target="#load-some-useful-r-packages">1. Load some useful R packages</a></li>
-  <li><a href="#read-sp500-data-to-derive-reit-data" id="toc-read-sp500-data-to-derive-reit-data" class="nav-link" data-scroll-target="#read-sp500-data-to-derive-reit-data">2. Read S&amp;P500 data (to derive REIT data)</a></li>
-  <li><a href="#rename-columns" id="toc-rename-columns" class="nav-link" data-scroll-target="#rename-columns">3. Rename Columns</a></li>
-  <li><a href="#select-reit-data" id="toc-select-reit-data" class="nav-link" data-scroll-target="#select-reit-data">3. Select REIT data</a></li>
-  <li><a href="#c6.-the-finance-sector-within-the-sp500" id="toc-c6.-the-finance-sector-within-the-sp500" class="nav-link" data-scroll-target="#c6.-the-finance-sector-within-the-sp500">C6. The <strong>Finance</strong> Sector within the S&amp;P500</a></li>
-  <li><a href="#c7.-stock-prices-as-of-5jan2024" id="toc-c7.-stock-prices-as-of-5jan2024" class="nav-link" data-scroll-target="#c7.-stock-prices-as-of-5jan2024">C7. Stock Prices, as of 5Jan2024</a></li>
-  </ul></li>
-  <li><a href="#d.-reits-in-the-sp500-as-of-5jan2024" id="toc-d.-reits-in-the-sp500-as-of-5jan2024" class="nav-link" data-scroll-target="#d.-reits-in-the-sp500-as-of-5jan2024">D. REITs in the S&amp;P500, as of 5Jan2024</a>
-  <ul class="collapse">
-  <li><a href="#d1.-key-characteristics-of-reits" id="toc-d1.-key-characteristics-of-reits" class="nav-link" data-scroll-target="#d1.-key-characteristics-of-reits">D1. <strong>Key Characteristics of REITs:</strong></a></li>
-  <li><a href="#d2.-major-u.s.-reits" id="toc-d2.-major-u.s.-reits" class="nav-link" data-scroll-target="#d2.-major-u.s.-reits">D2. <strong>Major U.S. REITs:</strong></a></li>
-  <li><a href="#d3.-reits-in-the-sp500" id="toc-d3.-reits-in-the-sp500" class="nav-link" data-scroll-target="#d3.-reits-in-the-sp500">D3. <strong>REITs in the S&amp;P500:</strong></a></li>
-  <li><a href="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-industry-reit" id="toc-select-the-specific-coulumns-from-the-filtered-dataframe-ts-industry-reit" class="nav-link" data-scroll-target="#select-the-specific-coulumns-from-the-filtered-dataframe-ts-industry-reit">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Industry REIT)</a></li>
-  <li><a href="#arrange-the-dataframe-by-roe" id="toc-arrange-the-dataframe-by-roe" class="nav-link" data-scroll-target="#arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</a></li>
-  <li><a href="#top-10-shares-in-sector-based-on-roe" id="toc-top-10-shares-in-sector-based-on-roe" class="nav-link" data-scroll-target="#top-10-shares-in-sector-based-on-roe">Top 10 Shares in Sector Based on ROE</a></li>
-  <li><a href="#significance-of-52-week-low-price" id="toc-significance-of-52-week-low-price" class="nav-link" data-scroll-target="#significance-of-52-week-low-price">Significance of 52-Week Low Price</a></li>
-  <li><a href="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" id="toc-mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" class="nav-link" data-scroll-target="#mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</a></li>
+  <li><a href="#set-up-the-data" id="toc-set-up-the-data" class="nav-link" data-scroll-target="#set-up-the-data">Set up the data</a></li>
+  <li><a href="#role-play" id="toc-role-play" class="nav-link" data-scroll-target="#role-play">Role Play?</a></li>
+  <li><a href="#the-real-estate-sector-within-the-sp500" id="toc-the-real-estate-sector-within-the-sp500" class="nav-link" data-scroll-target="#the-real-estate-sector-within-the-sp500">The <strong>Real Estate</strong> Sector within the S&amp;P500</a></li>
+  <li><a href="#significance-of-52-week-low-high-price" id="toc-significance-of-52-week-low-high-price" class="nav-link" data-scroll-target="#significance-of-52-week-low-high-price">Significance of 52-Week Low, High Price</a></li>
+  <li><a href="#select-specific-coulumns-from-the-filtered-dataframe" id="toc-select-specific-coulumns-from-the-filtered-dataframe" class="nav-link" data-scroll-target="#select-specific-coulumns-from-the-filtered-dataframe">Select Specific Coulumns from the filtered dataframe</a></li>
   </ul></li>
   <li><a href="#summary-statistics-of-low52wkperc-price-rel.-to-52-week-low" id="toc-summary-statistics-of-low52wkperc-price-rel.-to-52-week-low" class="nav-link" data-scroll-target="#summary-statistics-of-low52wkperc-price-rel.-to-52-week-low">Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)</a></li>
   <li><a href="#inexpensive-stocks-with-low52wkperc-q1low52wkperc" id="toc-inexpensive-stocks-with-low52wkperc-q1low52wkperc" class="nav-link" data-scroll-target="#inexpensive-stocks-with-low52wkperc-q1low52wkperc">Inexpensive Stocks with Low52WkPerc &lt; Q1(Low52WkPerc)</a>
@@ -325,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#summary-statistics-of-return-on-equity-roa" id="toc-summary-statistics-of-return-on-equity-roa" class="nav-link" data-scroll-target="#summary-statistics-of-return-on-equity-roa">Summary Statistics of Return on Equity (ROA)</a></li>
   <li><a href="#stocks-with-roa-q3roa" id="toc-stocks-with-roa-q3roa" class="nav-link" data-scroll-target="#stocks-with-roa-q3roa">Stocks with ROA &gt; Q3(ROA)</a></li>
   <li><a href="#roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" id="toc-roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" class="nav-link" data-scroll-target="#roe-versus-roa-and-colored-by-price-rel.-to-52-week-low">ROE versus ROA and colored by Price rel. to 52 Week Low</a></li>
-  <li><a href="#summary-statistics-of-all-key-variables-in-reit-services" id="toc-summary-statistics-of-all-key-variables-in-reit-services" class="nav-link" data-scroll-target="#summary-statistics-of-all-key-variables-in-reit-services">Summary Statistics of All key variables in REIT Services</a></li>
+  <li><a href="#summary-statistics-of-all-key-variables-in-real-estate" id="toc-summary-statistics-of-all-key-variables-in-real-estate" class="nav-link" data-scroll-target="#summary-statistics-of-all-key-variables-in-real-estate">Summary Statistics of All key variables in real estate</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -336,36 +319,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="live-case-2-reits-in-the-sp500" class="level1">
-<h1>Live Case (2): REITs in the S&amp;P500</h1>
-<section id="chapter-18-last-updated-dec-30-2023" class="level4">
-<h4 class="anchored" data-anchor-id="chapter-18-last-updated-dec-30-2023">Chapter 18, <em>Last updated: Dec 30, 2023</em></h4>
-</section>
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<section id="a1-role-play" class="level3">
-<h3 class="anchored" data-anchor-id="a1-role-play">A1) Role Play?</h3>
-<p>Greetings Data Commandos!</p>
-<p>Imagine you’re in the bustling hub of the world’s most elite consulting firms, revered across the corporate spectrum.</p>
-<p><strong>A prestigious investment fund is ready to channel $1 Million into the US finance sector. They’ve enlisted your expertise to delve into the 29 REITs within the Finance sector of the S&amp;P500.</strong></p>
-<p>Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property.</p>
-<p><strong>Your mission? Allocate <code>$1 Million</code> to the “best” REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities. Dive in and make those data-driven decisions!</strong></p>
-</section>
-<section id="a2-what-are-learning-objectives-for-you" class="level3">
-<h3 class="anchored" data-anchor-id="a2-what-are-learning-objectives-for-you">A2) What are learning objectives for you?</h3>
-<ol type="1">
-<li>Revisit and solidify your knowledge of R programming, acquired or expected to be acquired in earlier courses.</li>
-<li>Enhance your proficiency in data management and manipulation using the <code>dplyr</code> package and other functions in R.</li>
-<li>Sharpen your skills in data visualization leveraging the <code>ggplot2</code>, <code>ggpubr</code> and related packages in R.</li>
-<li>Master the art of addressing a data-centric business challenge while embodying the role of a Consulting Team.</li>
-<li>Cultivate the capability to compellingly present your solutions to a discerning yet just audience.</li>
-</ol>
-</section>
-</section>
-<section id="setup-sp-500-reit-data" class="level2">
-<h2 class="anchored" data-anchor-id="setup-sp-500-reit-data">Setup S&amp;P 500 <strong>REIT</strong> Data</h2>
-<section id="load-some-useful-r-packages" class="level3">
-<h3 class="anchored" data-anchor-id="load-some-useful-r-packages">1. Load some useful R packages</h3>
+<section id="case-2-real-estate-sector-in-the-sp500" class="level1">
+<h1>Case (2): Real-Estate Sector in the S&amp;P500</h1>
+<p><strong>Chapter 18, <em>Last updated: Jan 07, 2024</em></strong></p>
+<section id="real-estate-sector-in-the-sp-500" class="level2">
+<h2 class="anchored" data-anchor-id="real-estate-sector-in-the-sp-500">Real Estate Sector in the S&amp;P 500</h2>
+<p><insert review="" here=""></insert></p>
+<section id="set-up-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-the-data">Set up the data</h3>
+<p>Load Packages:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries, suppressing annoying startup messages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For data manipulation</span></span>
@@ -376,456 +338,351 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For Google Sheets</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For writing</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For tables</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For tables</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>) <span class="co"># For tables</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)  <span class="co"># For formatting currency</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="read-sp500-data-to-derive-reit-data" class="level3">
-<h3 class="anchored" data-anchor-id="read-sp500-data-to-derive-reit-data">2. Read S&amp;P500 data (to derive REIT data)</h3>
+<p>Read the data from a Google Sheet into a tibble:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read S&amp;P500 stock data present in a Google Sheet.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>prefix <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>sheetID <span class="ot">&lt;-</span> <span class="st">"14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ"</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>url500 <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix,sheetID) <span class="co"># Form the URL to connect to</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sp500Data <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(url500) <span class="co"># Read it into a tibble called sp500Data</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Read GICS classificaiton of S&amp;P 500 stocks:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read GICS classificaiton of S&amp;P 500 stocks from a Google Sheet.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>prefix2 <span class="ot">&lt;-</span> <span class="st">"https://docs.google.com/spreadsheets/d/"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sheetID2 <span class="ot">&lt;-</span> <span class="st">"1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>urlgics <span class="ot">&lt;-</span> <span class="fu">paste</span>(prefix2, sheetID2) <span class="co"># Form the URL to connect to</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>gics <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(urlgics) <span class="co"># Read it into a tibble called gics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Join the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Merging dataframes</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> <span class="fu">merge</span>(sp500Data, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               gics , </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">id =</span> <span class="st">"Stock"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Rename the data columns:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Stock"</span>, <span class="st">"Date"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Security"</span>, <span class="st">"GICSSector"</span>, <span class="st">"GICSSubIndustry"</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)<span class="ot">&lt;-</span>new_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Create new columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> Low52Wk, <span class="dv">2</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">High52WkPerc =</span> <span class="fu">round</span>((High52Wk <span class="sc">-</span> Price) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> High52Wk, <span class="dv">2</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">MarketCapBillions =</span> <span class="fu">round</span>(MarketCap <span class="sc">/</span> <span class="fl">1e9</span>, <span class="dv">3</span>) <span class="co"># Convert MarketCap to billions</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Review the column names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Stock"                 "Date"                  "StockName"            
+ [4] "Sector"                "Industry"              "MarketCap"            
+ [7] "Price"                 "Low52Wk"               "High52Wk"             
+[10] "ROE"                   "ROA"                   "ROIC"                 
+[13] "GrossMargin"           "OperatingMargin"       "NetMargin"            
+[16] "PE"                    "PB"                    "EVEBITDA"             
+[19] "EBITDA"                "EPS"                   "EBITDA_YOY"           
+[22] "EBITDA_QYOY"           "EPS_YOY"               "EPS_QYOY"             
+[25] "PFCF"                  "FCF"                   "FCF_QYOY"             
+[28] "DebtToEquity"          "CurrentRatio"          "QuickRatio"           
+[31] "DividendYield"         "DividendsPerShare_YOY" "PS"                   
+[34] "Revenue_YOY"           "Revenue_QYOY"          "Rating"               
+[37] "Security"              "GICSSector"            "GICSSubIndustry"      
+[40] "Low52WkPerc"           "High52WkPerc"          "MarketCapBillions"    </code></pre>
+</div>
+</div>
+<p>Format the Prices.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)  <span class="co"># For formatting currency</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Price =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(Price, <span class="dv">2</span>)),  <span class="co"># format the Price as a dollar amount</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">High52Wk =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(High52Wk, <span class="dv">2</span>)),  <span class="co"># format the 52 Week High </span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low52Wk =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(Low52Wk, <span class="dv">2</span>))  <span class="co"># format the 52 Week Low </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Model the Rating as a <code>factor()</code> variable.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 5 levels "Buy","Neutral",..: 1 1 3 4 1 3 3 4 2 3 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Buy"         "Neutral"     "Sell"        "Strong Buy"  "Strong Sell"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+        Buy     Neutral        Sell  Strong Buy Strong Sell 
+        192          51         178          58          24 </code></pre>
+</div>
+</div>
+<p>Model <code>GICSSector</code> as a <code>factor</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>GICSSector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>GICSSector)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(sp500<span class="sc">$</span>GICSSector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Factor w/ 11 levels "Communication Services",..: 6 7 8 6 2 6 5 8 8 8 ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(sp500<span class="sc">$</span>GICSSector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Communication Services" "Consumer Discretionary" "Consumer Staples"      
+ [4] "Energy"                 "Financials"             "Health Care"           
+ [7] "Industrials"            "Information Technology" "Materials"             
+[10] "Real Estate"            "Utilities"             </code></pre>
+</div>
 </div>
 </section>
-<section id="rename-columns" class="level3">
-<h3 class="anchored" data-anchor-id="rename-columns">3. Rename Columns</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define a mapping of new column names</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>new_names <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Date"</span>, <span class="st">"Stock"</span>, <span class="st">"StockName"</span>, <span class="st">"Sector"</span>, <span class="st">"Industry"</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"MarketCap"</span>, <span class="st">"Price"</span>, <span class="st">"Low52Wk"</span>, <span class="st">"High52Wk"</span>, </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ROE"</span>, <span class="st">"ROA"</span>, <span class="st">"ROIC"</span>, <span class="st">"GrossMargin"</span>, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"OperatingMargin"</span>, <span class="st">"NetMargin"</span>, <span class="st">"PE"</span>, </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"PB"</span>, <span class="st">"EVEBITDA"</span>, <span class="st">"EBITDA"</span>, <span class="st">"EPS"</span>, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EBITDA_YOY"</span>, <span class="st">"EBITDA_QYOY"</span>, <span class="st">"EPS_YOY"</span>, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"EPS_QYOY"</span>, <span class="st">"PFCF"</span>, <span class="st">"FCF"</span>, </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FCF_QYOY"</span>, <span class="st">"DebtToEquity"</span>, <span class="st">"CurrentRatio"</span>, </span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"QuickRatio"</span>, <span class="st">"DividendYield"</span>, </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"DividendsPerShare_YOY"</span>, <span class="st">"PS"</span>, </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Revenue_YOY"</span>, <span class="st">"Revenue_QYOY"</span>, <span class="st">"Rating"</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename the columns using the new_names vector</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sp500)<span class="ot">&lt;-</span>new_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="role-play" class="level3">
+<h3 class="anchored" data-anchor-id="role-play">Role Play?</h3>
+<p>A prestigious investment fund is ready to channel $1 Million into the US Real Estate sector in the S&amp;P500. For example, Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property. Suppose our mission is to allocate <code>$1 Million</code> to the “best” REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities.</p>
 </section>
-<section id="select-reit-data" class="level3">
-<h3 class="anchored" data-anchor-id="select-reit-data">3. Select REIT data</h3>
-<ol type="1">
-<li><p>The S&amp;P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.</p></li>
-<li><p>Set Sector, Rating data columns to be factor data types.</p></li>
-</ol>
+<section id="the-real-estate-sector-within-the-sp500" class="level3">
+<h3 class="anchored" data-anchor-id="the-real-estate-sector-within-the-sp500">The <strong>Real Estate</strong> Sector within the S&amp;P500</h3>
+<p>We focus on investment opportunities <strong>within the Real Estate sector</strong> of the S&amp;P500. We want to determine the <em>fundamentally strongest</em> AND <em>most reasonably priced</em> shares for <em>short-to-medium term</em> investing. We create a tibble named realestate, filtering the shares that belong to the Real Estate sector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Sector <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Sector)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>sp500<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>realestate <span class="ot">=</span> sp500 <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(GICSSector <span class="sc">==</span> <span class="st">"Real Estate"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="c6.-the-finance-sector-within-the-sp500" class="level3">
-<h3 class="anchored" data-anchor-id="c6.-the-finance-sector-within-the-sp500">C6. The <strong>Finance</strong> Sector within the S&amp;P500</h3>
-<ol type="1">
-<li><p>The Finance sector plays a pivotal role in the overall U.S. economy. Its performance is often closely watched by economists and investors alike, given its profound impact on lending, investment, and overall economic growth. Over the years, regulatory changes, monetary policy, and global economic events have significantly influenced this sector, making it a dynamic and critical component of the S&amp;P 500.</p></li>
-<li><p>We focus on investment opportunities <strong>within the Finance sector</strong> of the S&amp;P500.</p></li>
-</ol>
-<ul>
-<li>We want to determine the <em>fundamentally strongest</em> AND <em>most reasonably priced</em> shares for <em>short-to-medium term</em> investing.</li>
-</ul>
-<ol start="3" type="1">
-<li><strong>Industry</strong>: The Finance sector includes many industries within it.</li>
-</ol>
-<p>For example:</p>
-<ul>
-<li><p><strong>Banks</strong>: JPMorgan Chase, Bank of America, and Wells Fargo, among others, represent the significant banking entities.</p></li>
-<li><p><strong>Insurance Companies</strong>: Companies like Berkshire Hathaway, Allstate operate in this sub-sector, offering a range of insurance products from property and casualty insurance to life insurance.</p></li>
-</ul>
-<ol start="4" type="1">
-<li>We create a tibble named <code>finStocks</code>, filtering the shares that belong to the Finance sector.</li>
-</ol>
+<p>We list the stocks in the real estate sector.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>finStocks <span class="ot">=</span> sp500 <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sector<span class="sc">==</span><span class="st">"Finance"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="1">
-<li>Industries within the Finance Sector</li>
-</ol>
-<ul>
-<li>The data shows that the Finance sector consists of a total of 92 companies that belong to different Industries.</li>
-<li>We set the Industry to be factor variable, since they can only assume unique levels.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>finStocks<span class="sc">$</span>Industry <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(finStocks<span class="sc">$</span>Industry)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>The following visualization summarizes the different Industries within the Finance Sector:</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> finStocks, </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">y =</span> Industry)) <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Industry)) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat=</span><span class="st">'count'</span>, </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">label=</span><span class="fu">after_stat</span>(count))) <span class="sc">+</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stocks by Industry, within Finance Sector"</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"No. of Stocks"</span>, </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Industry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="768"></p>
-</div>
-</div>
-<ul>
-<li>Market Capitalization (Billions of USD) of Industries within the Finance Sector</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>FinanceMarketCap <span class="ot">&lt;-</span> finStocks <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MarketCap_Billions =</span> <span class="fu">round</span>(MarketCap<span class="sc">/</span><span class="dv">1000000000</span>, <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Industry) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Market_Cap_BillionUSD =</span> <span class="fu">sum</span>(MarketCap_Billions, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))  <span class="sc">%&gt;%</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="sc">-</span>Market_Cap_BillionUSD)  </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a summary row</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>summary_row <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Industry =</span> <span class="st">"Total"</span>,</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Market_Cap_BillionUSD =</span> <span class="fu">sum</span>(FinanceMarketCap<span class="sc">$</span>Market_Cap_BillionUSD)</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Append the summary row to the result</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>FinanceMarketCap <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(FinanceMarketCap, summary_row)</span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Render the table</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>FinanceMarketCap <span class="sc">%&gt;%</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Market Capitalization (Billions of USD) of Finance Sector"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Market Capitalization (Billions of USD) of Finance Sector</caption>
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Industry</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Market_Cap_BillionUSD</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Major Banks</td>
-<td style="text-align: right;">1307.08</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Property/Casualty Insurance</td>
-<td style="text-align: right;">979.03</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Real Estate Investment Trusts</td>
-<td style="text-align: right;">949.76</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Investment Banks/Brokers</td>
-<td style="text-align: right;">709.72</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Investment Managers</td>
-<td style="text-align: right;">370.29</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Multi-Line Insurance</td>
-<td style="text-align: right;">366.88</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Insurance Brokers/Services</td>
-<td style="text-align: right;">246.42</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Finance/Rental/Leasing</td>
-<td style="text-align: right;">217.18</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Regional Banks</td>
-<td style="text-align: right;">175.87</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Life/Health Insurance</td>
-<td style="text-align: right;">49.07</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Real Estate Development</td>
-<td style="text-align: right;">26.50</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Total</td>
-<td style="text-align: right;">5397.80</td>
-</tr>
-</tbody>
-</table>
-
-
-</div>
-</div>
-<ul>
-<li>We focus on investment opportunities within a particular Industry – <strong>Real Estate Investment Trusts</strong>.</li>
-</ul>
-</section>
-<section id="c7.-stock-prices-as-of-5jan2024" class="level3">
-<h3 class="anchored" data-anchor-id="c7.-stock-prices-as-of-5jan2024">C7. Stock Prices, as of 5Jan2024</h3>
-<ol type="1">
-<li>Stock Prices relative to their 52 Week Low and 52 Week High</li>
-</ol>
-<ul>
-<li><p>We want to analyze stock prices relative to their 52 Week Low and 52 Week High respectively, to understand their relative price attractiveness.</p></li>
-<li><p>For this purpose, we create some additional data columns.</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>finStocks <span class="ot">=</span> sp500 <span class="sc">%&gt;%</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sector<span class="sc">==</span><span class="st">"Finance"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">High52WkPerc =</span> <span class="fu">round</span>((High52Wk <span class="sc">-</span> Price)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">MarketCap_Billions =</span> <span class="fu">round</span>(MarketCap<span class="sc">/</span><span class="dv">1000000000</span>, <span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p>Here, a new column named <code>Low52WkPerc</code> is being added. The column contains the percentage change between the current price (<code>Price</code>) and its 52-week low (<code>Low52Wk</code>). The formula used is: <span class="math display">\[Low52WkPerc = \frac{(CurrentPrice - 52WeekLow)*100}{52WeekLow}\]</span></p></li>
-<li><p>Another column named <code>High52WkPerc</code> represents the percentage change between the 52-week high (<code>High52Wk</code>) and the current price (<code>Price</code>).</p></li>
-<li><p>We round off the data to two decimal places for clarity.</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>finStocks<span class="sc">$</span>Price <span class="ot">&lt;-</span> <span class="fu">round</span>(finStocks<span class="sc">$</span>Price,<span class="dv">1</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>finStocks<span class="sc">$</span>Low52Wk <span class="ot">&lt;-</span> <span class="fu">round</span>(finStocks<span class="sc">$</span>Low52Wk,<span class="dv">1</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>finStocks<span class="sc">$</span>High52Wk <span class="ot">&lt;-</span> <span class="fu">round</span>(finStocks<span class="sc">$</span>High52Wk,<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div style="page-break-after: always;"></div>
-</section>
-</section>
-<section id="d.-reits-in-the-sp500-as-of-5jan2024" class="level2">
-<h2 class="anchored" data-anchor-id="d.-reits-in-the-sp500-as-of-5jan2024">D. REITs in the S&amp;P500, as of 5Jan2024</h2>
-<ol type="1">
-<li><p>Real Estate Investment Trusts, commonly known as REITs, stand as a cornerstone for investors seeking diversification in their portfolios. These entities offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property.</p></li>
-<li><p>In our analysis of the Finance sector, we want to focus attention on a particular Industry within it – <strong>Real Estate Investment Trusts</strong>.</p></li>
-<li><p>Recall: We want to determine the <em>fundamentally strongest</em> AND <em>most reasonably priced</em>, top 1-3 REITs for <em>short-to-medium term</em> investing USD 1 Million.</p></li>
-</ol>
-<section id="d1.-key-characteristics-of-reits" class="level3">
-<h3 class="anchored" data-anchor-id="d1.-key-characteristics-of-reits">D1. <strong>Key Characteristics of REITs:</strong></h3>
-<ol type="1">
-<li><p><strong>Income Distribution</strong>: One of the most touted features of REITs is their consistent income flow. U.S. tax regulations mandate REITs to distribute at least 90% of their taxable income as dividends. While this can be enticing due to potentially higher yields, it also poses a risk. The high dividend mandate leaves REITs with less retained earnings, potentially hindering their growth or making them more dependent on external financing.</p></li>
-<li><p><strong>Liquidity versus Direct Ownership</strong>: REITs offer a stark contrast to traditional real estate investments in terms of liquidity. While selling a property might entail prolonged durations, hefty transaction costs, and price negotiations, REIT shares can be traded with the agility of stocks. This flexibility, however, comes at the cost of exposure to stock market volatility.</p></li>
-<li><p><strong>Tax Implications</strong>: The unique tax structure of REITs is a double-edged sword. While they can dodge corporate taxes by abiding by stringent regulations, such as the income distribution clause, shareholders often have to pay higher individual taxes on REIT dividends compared to qualified stock dividends.</p></li>
-<li><p><strong>Sectoral Diversification</strong>: REITs don’t just represent traditional brick-and-mortar assets. From data centers to timberlands, they span diverse sectors, potentially providing portfolio diversification. However, the granularity in sectors necessitates that investors be judicious and knowledgeable about the specific type of real estate exposure they’re obtaining.</p></li>
-</ol>
-</section>
-<section id="d2.-major-u.s.-reits" class="level3">
-<h3 class="anchored" data-anchor-id="d2.-major-u.s.-reits">D2. <strong>Major U.S. REITs:</strong></h3>
-<ol type="1">
-<li><p><strong>American Tower Corporation (AMT)</strong>: Pioneering the realm of communication infrastructures, AMT emphasizes cell tower operations. While it highlights the evolution of REITs beyond traditional confines, it also underscores the need for REIT investors to comprehend tech industry dynamics, given its tech infrastructure focus.</p></li>
-<li><p><strong>Prologis (PLD)</strong>: With a niche in logistics and industrial real estate, Prologis stands out in the age of e-commerce. The company’s assets, mainly distribution centers, are strategically situated in prime markets. However, the increasing demand for same-day deliveries and supply chain revamps could challenge Prologis’ portfolio.</p></li>
-<li><p><strong>Simon Property Group (SPG)</strong>: Catering predominantly to retail spaces, SPG faces the arduous task of reinventing malls in an era where brick-and-mortar stores battle online retailers. The company’s resilience in nurturing mixed-use spaces might determine its long-term growth trajectory.</p></li>
-<li><p><strong>Equity Residential (EQR)</strong>: As urbanization continues, EQR’s focus on high-density urban areas might seem lucrative. But, with telecommuting trends and urban exodus, it’s pivotal to monitor how urban rental landscapes evolve.</p></li>
-<li><p><strong>Digital Realty Trust (DLR)</strong>: In the digital age, DLR taps into the data economy by majoring in data centers. While the tech boom supports such endeavors, DLR’s growth could be contingent on global data regulations and tech infrastructure demands.</p></li>
-</ol>
-<p><strong>References</strong>: Please consider looking into the following well-known sources, which regularly publish information about REITs.</p>
-<ul>
-<li><p>National Association of Real Estate Investment Trusts (NAREIT) – This organization is a representative voice for REITs in the U.S. They frequently release reports, articles, and data on the REIT industry.</p></li>
-<li><p>Major Financial News Outlets - Outlets like The Wall Street Journal, Financial Times, and Bloomberg often feature articles on REITs, especially in their real estate or investment sections.</p></li>
-<li><p>The Journal of Real Estate Finance and Economics - This academic journal covers a wide range of topics in real estate, including REITs.</p></li>
-</ul>
-</section>
-<section id="d3.-reits-in-the-sp500" class="level3">
-<h3 class="anchored" data-anchor-id="d3.-reits-in-the-sp500">D3. <strong>REITs in the S&amp;P500:</strong></h3>
-<ul>
-<li>We create a tibble named <code>REIT</code> from within the Finance sector tibble <code>finStocks</code>. Specifically, we filter the shares that belong to the <code>Real Estate Investment Trusts</code> Industry, within the Finance sector.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>REIT <span class="ot">&lt;-</span> finStocks <span class="sc">%&gt;%</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Industry <span class="sc">==</span> <span class="st">'Real Estate Investment Trusts'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>The following table lists REITs within the Finance sector of the S&amp;P500</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>REIT <span class="sc">%&gt;%</span> </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, MarketCap_Billions)  <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(MarketCap_Billions)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"REITs within Finance Sector of S&amp;P500"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select stocks with their Market Cap in billions</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>real_estate_stocks <span class="ot">&lt;-</span> realestate <span class="sc">%&gt;%</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(MarketCapBillions)) <span class="sc">%&gt;%</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, MarketCapBillions, Price)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Displaying the data</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>real_estate_stocks <span class="sc">%&gt;%</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Real Estate Sector Stocks, with Market Cap in Billions"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>REITs within Finance Sector of S&amp;P500</caption>
+<caption>Real Estate Sector Stocks, with Market Cap in Billions</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">MarketCap_Billions</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">MarketCapBillions</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Price</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">PLD</td>
 <td style="text-align: left;">Prologis, Inc.</td>
-<td style="text-align: right;">130.3</td>
-<td style="text-align: right;">123.00</td>
+<td style="text-align: right;">123.424</td>
+<td style="text-align: left;">$130.27</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">AMT</td>
 <td style="text-align: left;">American Tower Corporation (REIT)</td>
-<td style="text-align: right;">214.6</td>
-<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">100.440</td>
+<td style="text-align: left;">$214.56</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">EQIX</td>
 <td style="text-align: left;">Equinix, Inc.</td>
-<td style="text-align: right;">794.1</td>
-<td style="text-align: right;">74.63</td>
+<td style="text-align: right;">74.626</td>
+<td style="text-align: left;">$794.12</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">PSA</td>
 <td style="text-align: left;">Public Storage</td>
-<td style="text-align: right;">299.2</td>
-<td style="text-align: right;">52.78</td>
+<td style="text-align: right;">52.782</td>
+<td style="text-align: left;">$299.22</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CCI</td>
 <td style="text-align: left;">Crown Castle Inc.</td>
-<td style="text-align: right;">113.5</td>
-<td style="text-align: right;">49.40</td>
+<td style="text-align: right;">49.441</td>
+<td style="text-align: left;">$113.51</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">WELL</td>
 <td style="text-align: left;">Welltower Inc.</td>
-<td style="text-align: right;">88.5</td>
-<td style="text-align: right;">49.09</td>
+<td style="text-align: right;">49.093</td>
+<td style="text-align: left;">$88.54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">SPG</td>
 <td style="text-align: left;">Simon Property Group, Inc.</td>
-<td style="text-align: right;">140.4</td>
-<td style="text-align: right;">45.76</td>
+<td style="text-align: right;">45.758</td>
+<td style="text-align: left;">$140.40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">O</td>
 <td style="text-align: left;">Realty Income Corporation</td>
-<td style="text-align: right;">57.6</td>
-<td style="text-align: right;">41.76</td>
+<td style="text-align: right;">41.763</td>
+<td style="text-align: left;">$57.57</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">DLR</td>
 <td style="text-align: left;">Digital Realty Trust, Inc.</td>
-<td style="text-align: right;">131.5</td>
-<td style="text-align: right;">39.91</td>
+<td style="text-align: right;">39.910</td>
+<td style="text-align: left;">$131.49</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">EXR</td>
-<td style="text-align: left;">Extra Space Storage Inc</td>
-<td style="text-align: right;">156.6</td>
-<td style="text-align: right;">33.16</td>
+<td style="text-align: left;">CSGP</td>
+<td style="text-align: left;">CoStar Group, Inc.</td>
+<td style="text-align: right;">33.200</td>
+<td style="text-align: left;">$81.30</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">VICI</td>
-<td style="text-align: left;">VICI Properties Inc.</td>
-<td style="text-align: right;">31.6</td>
-<td style="text-align: right;">33.02</td>
+<td style="text-align: left;">EXR</td>
+<td style="text-align: left;">Extra Space Storage Inc</td>
+<td style="text-align: right;">33.160</td>
+<td style="text-align: left;">$156.57</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">VICI</td>
+<td style="text-align: left;">VICI Properties Inc.</td>
+<td style="text-align: right;">33.022</td>
+<td style="text-align: left;">$31.63</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">SBAC</td>
 <td style="text-align: left;">SBA Communications Corporation</td>
-<td style="text-align: right;">248.7</td>
-<td style="text-align: right;">26.96</td>
+<td style="text-align: right;">26.960</td>
+<td style="text-align: left;">$248.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CBRE</td>
+<td style="text-align: left;">CBRE Group Inc</td>
+<td style="text-align: right;">26.505</td>
+<td style="text-align: left;">$86.99</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">AVB</td>
 <td style="text-align: left;">AvalonBay Communities, Inc.</td>
-<td style="text-align: right;">182.5</td>
-<td style="text-align: right;">26.10</td>
+<td style="text-align: right;">26.074</td>
+<td style="text-align: left;">$182.51</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">WY</td>
 <td style="text-align: left;">Weyerhaeuser Company</td>
-<td style="text-align: right;">33.4</td>
-<td style="text-align: right;">24.52</td>
+<td style="text-align: right;">24.521</td>
+<td style="text-align: left;">$33.44</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">EQR</td>
 <td style="text-align: left;">Equity Residential</td>
-<td style="text-align: right;">60.5</td>
-<td style="text-align: right;">23.07</td>
+<td style="text-align: right;">23.068</td>
+<td style="text-align: left;">$60.50</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ARE</td>
 <td style="text-align: left;">Alexandria Real Estate Equities, Inc.</td>
-<td style="text-align: right;">125.9</td>
-<td style="text-align: right;">21.80</td>
+<td style="text-align: right;">21.838</td>
+<td style="text-align: left;">$125.89</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">INVH</td>
 <td style="text-align: left;">Invitation Homes Inc.</td>
-<td style="text-align: right;">33.9</td>
-<td style="text-align: right;">20.79</td>
+<td style="text-align: right;">20.794</td>
+<td style="text-align: left;">$33.85</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">VTR</td>
 <td style="text-align: left;">Ventas, Inc.</td>
-<td style="text-align: right;">49.1</td>
-<td style="text-align: right;">20.39</td>
+<td style="text-align: right;">20.388</td>
+<td style="text-align: left;">$49.15</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">IRM</td>
 <td style="text-align: left;">Iron Mountain Incorporated (Delaware)</td>
-<td style="text-align: right;">66.8</td>
-<td style="text-align: right;">19.43</td>
+<td style="text-align: right;">19.435</td>
+<td style="text-align: left;">$66.75</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">ESS</td>
 <td style="text-align: left;">Essex Property Trust, Inc.</td>
-<td style="text-align: right;">242.4</td>
-<td style="text-align: right;">15.65</td>
+<td style="text-align: right;">15.648</td>
+<td style="text-align: left;">$242.39</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MAA</td>
 <td style="text-align: left;">Mid-America Apartment Communities, Inc.</td>
-<td style="text-align: right;">131.1</td>
-<td style="text-align: right;">15.42</td>
+<td style="text-align: right;">15.421</td>
+<td style="text-align: left;">$131.05</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">KIM</td>
 <td style="text-align: left;">Kimco Realty Corporation (HC)</td>
-<td style="text-align: right;">20.8</td>
-<td style="text-align: right;">14.03</td>
+<td style="text-align: right;">14.034</td>
+<td style="text-align: left;">$20.78</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">HST</td>
 <td style="text-align: left;">Host Hotels &amp; Resorts, Inc.</td>
-<td style="text-align: right;">19.8</td>
-<td style="text-align: right;">13.90</td>
+<td style="text-align: right;">13.897</td>
+<td style="text-align: left;">$19.82</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">UDR</td>
 <td style="text-align: left;">UDR, Inc.</td>
-<td style="text-align: right;">37.5</td>
-<td style="text-align: right;">12.45</td>
+<td style="text-align: right;">12.453</td>
+<td style="text-align: left;">$37.54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">REG</td>
 <td style="text-align: left;">Regency Centers Corporation</td>
-<td style="text-align: right;">65.2</td>
-<td style="text-align: right;">12.18</td>
+<td style="text-align: right;">12.175</td>
+<td style="text-align: left;">$65.20</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">BXP</td>
 <td style="text-align: left;">Boston Properties, Inc.</td>
-<td style="text-align: right;">69.4</td>
-<td style="text-align: right;">10.90</td>
+<td style="text-align: right;">10.867</td>
+<td style="text-align: left;">$69.37</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">PEAK</td>
 <td style="text-align: left;">Healthpeak Properties, Inc.</td>
-<td style="text-align: right;">19.5</td>
-<td style="text-align: right;">10.85</td>
+<td style="text-align: right;">10.854</td>
+<td style="text-align: left;">$19.53</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CPT</td>
 <td style="text-align: left;">Camden Property Trust</td>
-<td style="text-align: right;">97.2</td>
-<td style="text-align: right;">10.44</td>
+<td style="text-align: right;">10.443</td>
+<td style="text-align: left;">$97.20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">FRT</td>
 <td style="text-align: left;">Federal Realty Investment Trust</td>
-<td style="text-align: right;">101.6</td>
-<td style="text-align: right;">8.37</td>
+<td style="text-align: right;">8.375</td>
+<td style="text-align: left;">$101.59</td>
 </tr>
 </tbody>
 </table>
@@ -833,27 +690,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
+</section>
+<section id="significance-of-52-week-low-high-price" class="level3">
+<h3 class="anchored" data-anchor-id="significance-of-52-week-low-high-price">Significance of 52-Week Low, High Price</h3>
+<p>The 52-week low price of a stock is a significant indicator for multiple reasons, especially when considering shares listed on major indices like the S&amp;P 500. Here’s why this metric is noteworthy:</p>
+<ol type="1">
+<li><p><strong>Historical Perspective</strong>: The 52-week low offers a snapshot of how low the stock has traded over the past year relative to its current price, providing context about its price journey.</p></li>
+<li><p><strong>Potential Entry Point</strong>: Some investors view stocks that are near their 52-week low as potential buying opportunities, under the assumption that the stock might be undervalued and could rebound.</p></li>
+<li><p><strong>Psychological Level</strong>: Stocks approaching their 52-week low can be seen as testing a significant support level. If a stock consistently fails to breach its 52-week low, it might indicate that the market values the stock at that level, and it’s resistant to falling below it.</p></li>
+<li><p><strong>Basis for Technical Analysis</strong>: For technical analysts or traders, the 52-week low serves as a critical reference point. A consistent breach of this level might signify a bearish trend, while a rebound can indicate potential recovery.</p></li>
+<li><p><strong>Yield Implications for Dividend Stocks</strong>: For dividend-paying stocks, a price near the 52-week low (assuming the dividend hasn’t been cut) would imply a higher dividend yield, potentially making it attractive for income-seeking investors.</p></li>
+</ol>
 <ul>
-<li>Consider the summary statistics of the Market Capitalization of the REITs within the S&amp;P500</li>
+<li><strong>Note of Caution:</strong> While the 52-week low is a valuable reference point, it’s essential to interpret it in conjunction with other financial and market indicators. A stock trading near its 52-week low doesn’t automatically make it a good buy, just as a stock trading near its 52-week high doesn’t automatically make it overvalued. Comprehensive analysis, should inform investment decisions.</li>
 </ul>
+<p>We want to analyze stock prices relative to their 52 Week Low and 52 Week High respectively, to understand their relative price attractiveness.</p>
+<p>Here, a new column named <code>Low52WkPerc</code> is being added. The column contains the percentage change between the current price (<code>Price</code>) and its 52-week low (<code>Low52Wk</code>). The formula used is: <span class="math display">\[Low52WkPerc = \frac{(CurrentPrice - 52WeekLow)*100}{52WeekLow}\]</span></p>
+<p>Another column named <code>High52WkPerc</code> represents the percentage change between the 52-week high (<code>High52Wk</code>) and the current price (<code>Price</code>). We round off the data to two decimal places for clarity. </p>
+<p>Consider the summary statistics of the Market Capitalization of the real estate stocks within the S&amp;P500</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>REIT <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(MarketCap_Billions),</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(MarketCap_Billions),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(MarketCap_Billions),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(MarketCap_Billions, <span class="fl">0.25</span>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(MarketCap_Billions, <span class="fl">0.75</span>),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(MarketCap_Billions),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(MarketCap_Billions),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sum =</span> <span class="fu">sum</span>(MarketCap_Billions)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Market Capitalizaiton of REITs (Billion USD)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>realestate <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(MarketCapBillions),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(MarketCapBillions),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(MarketCapBillions),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(MarketCapBillions, <span class="fl">0.25</span>),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(MarketCapBillions, <span class="fl">0.75</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(MarketCapBillions),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(MarketCapBillions),</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sum =</span> <span class="fu">sum</span>(MarketCapBillions)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Market Capitalizaiton of realestate (Billion USD)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Summary Statistics of Market Capitalizaiton of REITs (Billion USD)</caption>
+<caption>Summary Statistics of Market Capitalizaiton of realestate (Billion USD)</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">N</th>
@@ -869,15 +741,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">32.75</td>
-<td style="text-align: right;">27.18</td>
-<td style="text-align: right;">23.07</td>
-<td style="text-align: right;">14.03</td>
-<td style="text-align: right;">41.76</td>
-<td style="text-align: right;">8.37</td>
-<td style="text-align: right;">123</td>
-<td style="text-align: right;">949.76</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">32.59</td>
+<td style="text-align: right;">26.37</td>
+<td style="text-align: right;">24.52</td>
+<td style="text-align: right;">14.73</td>
+<td style="text-align: right;">40.84</td>
+<td style="text-align: right;">8.38</td>
+<td style="text-align: right;">123.42</td>
+<td style="text-align: right;">1010.37</td>
 </tr>
 </tbody>
 </table>
@@ -886,96 +758,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>As can be seen, the S&amp;P500 consists of 29 REITs.</li>
+<li>As can be seen, the S&amp;P500 consists of 31 real estate stocks.</li>
 </ul>
-<p><strong>Recall.. A prestigious investment fund is ready to channel $1 Million into the US finance sector. They’ve enlisted your expertise to delve into the 29 REITs within the Finance sector of the S&amp;P500.</strong></p>
-<p><strong>Recall Your mission? Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities. How will you allocate your investment capital of USD 1 Million? Dive in and make those data-driven decisions!</strong></p>
-<ul>
-<li>We want to determine the <em>fundamentally strongest</em> AND <em>most reasonably priced</em> shares for <em>short-to-medium term</em> investing.</li>
-</ul>
-<p>Well done! Our data is now ready for analysis!!</p>
-<p>There are 12 number of of stocks in the Industry REIT</p>
+<p>We want to determine the <em>fundamentally strongest</em> AND <em>most reasonably priced</em> shares for <em>short-to-medium term</em> investing.</p>
 </section>
-<section id="select-the-specific-coulumns-from-the-filtered-dataframe-ts-industry-reit" class="level3">
-<h3 class="anchored" data-anchor-id="select-the-specific-coulumns-from-the-filtered-dataframe-ts-industry-reit">Select the Specific Coulumns from the filtered dataframe <code>ts</code> (Industry REIT)</h3>
+<section id="select-specific-coulumns-from-the-filtered-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="select-specific-coulumns-from-the-filtered-dataframe">Select Specific Coulumns from the filtered dataframe</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ts2 <span class="ot">&lt;-</span> REIT <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(Date, Stock, StockName, MarketCap_Billions, Price,Low52Wk, High52Wk,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>               ROE, ROA,ROIC,GrossMargin, GrossMargin, </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>               NetMargin, Rating)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> realestate <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(Date, Stock, StockName, MarketCapBillions, Price, Low52Wk, High52Wk, Low52WkPerc, High52WkPerc,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>               ROE, ROA,ROIC,GrossMargin, GrossMargin, </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>               NetMargin, Rating) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(ts3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "Date"               "Stock"              "StockName"         
- [4] "MarketCap_Billions" "Price"              "Low52Wk"           
- [7] "High52Wk"           "ROE"                "ROA"               
-[10] "ROIC"               "GrossMargin"        "NetMargin"         
-[13] "Rating"            </code></pre>
-</div>
-</div>
-</section>
-<section id="arrange-the-dataframe-by-roe" class="level3">
-<h3 class="anchored" data-anchor-id="arrange-the-dataframe-by-roe">Arrange the Dataframe by ROE</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> ts2 <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="top-10-shares-in-sector-based-on-roe" class="level3">
-<h3 class="anchored" data-anchor-id="top-10-shares-in-sector-based-on-roe">Top 10 Shares in Sector Based on ROE</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts3,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 13
-   Date    Stock StockName MarketCap_Billions Price Low52Wk High52Wk   ROE   ROA
-   &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1 5Jan20… SPG   Simon Pr…              45.8  140.    100.     147.  74.0   6.72
- 2 5Jan20… IRM   Iron Mou…              19.4   66.8    48.9     70.7 70.3   1.71
- 3 5Jan20… CCI   Crown Ca…              49.4  114.     84.7    154   21.6   4.00
- 4 5Jan20… PSA   Public S…              52.8  299.    233.     316.  21.1  11.4 
- 5 5Jan20… ESS   Essex Pr…              15.6  242.    195      253.  18.8   4.18
- 6 5Jan20… AMT   American…             100    215.    155.     236.  13.2   1.08
- 7 5Jan20… UDR   UDR, Inc.              12.4   37.5    31       45.5 11.3   4.05
- 8 5Jan20… HST   Host Hot…              13.9   19.8    14.5     20.2 11.0   6.17
- 9 5Jan20… VICI  VICI Pro…              33.0   31.6    26.6     35.1 10.3   5.91
-10 5Jan20… FRT   Federal …               8.37 102.     85.3    115.   9.93  3.48
-# ℹ 4 more variables: ROIC &lt;dbl&gt;, GrossMargin &lt;dbl&gt;, NetMargin &lt;dbl&gt;,
-#   Rating &lt;fct&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="significance-of-52-week-low-price" class="level3">
-<h3 class="anchored" data-anchor-id="significance-of-52-week-low-price">Significance of 52-Week Low Price</h3>
-<p>The 52-week low price of a stock is a significant indicator for multiple reasons, especially when considering shares listed on major indices like the S&amp;P 500. Here’s why this metric is noteworthy:</p>
-<ol type="1">
-<li><p><strong>Historical Perspective</strong>: The 52-week low offers a snapshot of how low the stock has traded over the past year relative to its current price, providing context about its price journey.</p></li>
-<li><p><strong>Potential Entry Point</strong>: Some investors view stocks that are near their 52-week low as potential buying opportunities, under the assumption that the stock might be undervalued and could rebound.</p></li>
-<li><p><strong>Psychological Level</strong>: Stocks approaching their 52-week low can be seen as testing a significant support level. If a stock consistently fails to breach its 52-week low, it might indicate that the market values the stock at that level, and it’s resistant to falling below it.</p></li>
-<li><p><strong>Basis for Technical Analysis</strong>: For technical analysts or traders, the 52-week low serves as a critical reference point. A consistent breach of this level might signify a bearish trend, while a rebound can indicate potential recovery.</p></li>
-<li><p><strong>Yield Implications for Dividend Stocks</strong>: For dividend-paying stocks, a price near the 52-week low (assuming the dividend hasn’t been cut) would imply a higher dividend yield, potentially making it attractive for income-seeking investors.</p></li>
-</ol>
-<ul>
-<li><strong>Note of Caution:</strong> While the 52-week low is a valuable reference point, it’s essential to interpret it in conjunction with other financial and market indicators. A stock trading near its 52-week low doesn’t automatically make it a good buy, just as a stock trading near its 52-week high doesn’t automatically make it overvalued. Comprehensive analysis, should inform investment decisions.</li>
-</ul>
-</section>
-<section id="mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks" class="level3">
-<h3 class="anchored" data-anchor-id="mutate-a-data-column-called-low52wkperc-then-show-top-10-roe-stocks">Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks</h3>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk)<span class="sc">*</span><span class="dv">100</span> <span class="sc">/</span> Low52Wk,<span class="dv">2</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ts4[,<span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">5</span>)],<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   Date     Stock StockName                             Price
-   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;                                 &lt;dbl&gt;
- 1 5Jan2024 SPG   Simon Property Group, Inc.            140. 
- 2 5Jan2024 IRM   Iron Mountain Incorporated (Delaware)  66.8
- 3 5Jan2024 CCI   Crown Castle Inc.                     114. 
- 4 5Jan2024 PSA   Public Storage                        299. 
- 5 5Jan2024 ESS   Essex Property Trust, Inc.            242. 
- 6 5Jan2024 AMT   American Tower Corporation (REIT)     215. 
- 7 5Jan2024 UDR   UDR, Inc.                              37.5
- 8 5Jan2024 HST   Host Hotels &amp; Resorts, Inc.            19.8
- 9 5Jan2024 VICI  VICI Properties Inc.                   31.6
-10 5Jan2024 FRT   Federal Realty Investment Trust       102. </code></pre>
+<pre><code> [1] "Date"              "Stock"             "StockName"        
+ [4] "MarketCapBillions" "Price"             "Low52Wk"          
+ [7] "High52Wk"          "Low52WkPerc"       "High52WkPerc"     
+[10] "ROE"               "ROA"               "ROIC"             
+[13] "GrossMargin"       "NetMargin"         "Rating"           </code></pre>
 </div>
 </div>
 </section>
@@ -983,23 +785,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="summary-statistics-of-low52wkperc-price-rel.-to-52-week-low" class="level2">
 <h2 class="anchored" data-anchor-id="summary-statistics-of-low52wkperc-price-rel.-to-52-week-low">Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(Low52WkPerc),</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(Low52WkPerc),</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(Low52WkPerc),</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(Low52WkPerc, <span class="fl">0.25</span>),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(Low52WkPerc, <span class="fl">0.75</span>),</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(Low52WkPerc),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(Low52WkPerc)</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>Low52WkPercQ1 <span class="ot">&lt;-</span> summaryStats<span class="sc">$</span>Q1 <span class="co"># Save Q1 of Low52WkPerc</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(Low52WkPerc),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(Low52WkPerc),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(Low52WkPerc),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(Low52WkPerc, <span class="fl">0.25</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(Low52WkPerc, <span class="fl">0.75</span>),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(Low52WkPerc),</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(Low52WkPerc)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>Low52WkPercQ1 <span class="ot">&lt;-</span> summaryStats<span class="sc">$</span>Q1 <span class="co"># Save Q1 of Low52WkPerc</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)</caption>
@@ -1017,14 +819,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">29</td>
+<td style="text-align: right;">31</td>
 <td style="text-align: right;">29.37</td>
-<td style="text-align: right;">11.24</td>
-<td style="text-align: right;">28</td>
-<td style="text-align: right;">19.2</td>
-<td style="text-align: right;">36.55</td>
-<td style="text-align: right;">13.41</td>
-<td style="text-align: right;">54.74</td>
+<td style="text-align: right;">10.93</td>
+<td style="text-align: right;">27.83</td>
+<td style="text-align: right;">19.62</td>
+<td style="text-align: right;">36.12</td>
+<td style="text-align: right;">13.4</td>
+<td style="text-align: right;">54.73</td>
 </tr>
 </tbody>
 </table>
@@ -1032,22 +834,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </div>
 </div>
-<p><em>Low52WkPerc for all the REIT Stocks, as shown below</em></p>
+<p><em>Low52WkPerc for all the realestate Stocks, as shown below</em></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="768"></p>
+<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 </section>
 <section id="inexpensive-stocks-with-low52wkperc-q1low52wkperc" class="level2">
 <h2 class="anchored" data-anchor-id="inexpensive-stocks-with-low52wkperc-q1low52wkperc">Inexpensive Stocks with Low52WkPerc &lt; Q1(Low52WkPerc)</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="sc">%&gt;%</span> </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, Low52Wk, Low52WkPerc) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Low52WkPerc <span class="sc">&lt;</span> Low52WkPercQ1) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Low52WkPerc)<span class="sc">%&gt;%</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Inexpensive Stocks with Low52WkPerc &lt; Q1(Low52WkPerc)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="sc">%&gt;%</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, Low52Wk, Low52WkPerc) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Low52WkPerc <span class="sc">&lt;</span> Low52WkPercQ1) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Low52WkPerc)<span class="sc">%&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Inexpensive Stocks with Low52WkPerc &lt; Q1(Low52WkPerc)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Inexpensive Stocks with Low52WkPerc &lt; Q1(Low52WkPerc)</caption>
@@ -1055,8 +857,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Low52Wk</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
 </tr>
 </thead>
@@ -1064,44 +866,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">MAA</td>
 <td style="text-align: left;">Mid-America Apartment Communities, Inc.</td>
-<td style="text-align: right;">131.1</td>
-<td style="text-align: right;">115.6</td>
-<td style="text-align: right;">13.41</td>
+<td style="text-align: left;">$131.05</td>
+<td style="text-align: left;">$115.56</td>
+<td style="text-align: right;">13.40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">EQR</td>
 <td style="text-align: left;">Equity Residential</td>
-<td style="text-align: right;">60.5</td>
-<td style="text-align: right;">52.6</td>
-<td style="text-align: right;">15.02</td>
+<td style="text-align: left;">$60.50</td>
+<td style="text-align: left;">$52.57</td>
+<td style="text-align: right;">15.08</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CPT</td>
 <td style="text-align: left;">Camden Property Trust</td>
-<td style="text-align: right;">97.2</td>
-<td style="text-align: right;">82.8</td>
-<td style="text-align: right;">17.39</td>
+<td style="text-align: left;">$97.20</td>
+<td style="text-align: left;">$82.81</td>
+<td style="text-align: right;">17.38</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">VICI</td>
 <td style="text-align: left;">VICI Properties Inc.</td>
-<td style="text-align: right;">31.6</td>
-<td style="text-align: right;">26.6</td>
+<td style="text-align: left;">$31.63</td>
+<td style="text-align: left;">$26.62</td>
 <td style="text-align: right;">18.80</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">INVH</td>
 <td style="text-align: left;">Invitation Homes Inc.</td>
-<td style="text-align: right;">33.9</td>
-<td style="text-align: right;">28.5</td>
-<td style="text-align: right;">18.95</td>
+<td style="text-align: left;">$33.85</td>
+<td style="text-align: left;">$28.49</td>
+<td style="text-align: right;">18.81</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">FRT</td>
 <td style="text-align: left;">Federal Realty Investment Trust</td>
-<td style="text-align: right;">101.6</td>
-<td style="text-align: right;">85.3</td>
-<td style="text-align: right;">19.11</td>
+<td style="text-align: left;">$101.59</td>
+<td style="text-align: left;">$85.27</td>
+<td style="text-align: right;">19.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REG</td>
+<td style="text-align: left;">Regency Centers Corporation</td>
+<td style="text-align: left;">$65.20</td>
+<td style="text-align: left;">$54.72</td>
+<td style="text-align: right;">19.15</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AVB</td>
+<td style="text-align: left;">AvalonBay Communities, Inc.</td>
+<td style="text-align: left;">$182.51</td>
+<td style="text-align: left;">$153.07</td>
+<td style="text-align: right;">19.23</td>
 </tr>
 </tbody>
 </table>
@@ -1112,23 +928,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="summary-statistics-of-return-on-equity-roe" class="level3">
 <h3 class="anchored" data-anchor-id="summary-statistics-of-return-on-equity-roe">Summary Statistics of Return on Equity (ROE)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>ROE_Q3 <span class="ot">&lt;-</span> summaryStats<span class="sc">$</span>Q3</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROE)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>ROE_Q3 <span class="ot">&lt;-</span> summaryStats<span class="sc">$</span>Q3</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROE)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Summary Statistics of Return on Equity (ROE)</caption>
@@ -1146,12 +962,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">12.57</td>
-<td style="text-align: right;">17.69</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">12.18</td>
+<td style="text-align: right;">17.14</td>
 <td style="text-align: right;">7.17</td>
-<td style="text-align: right;">4.68</td>
-<td style="text-align: right;">11.09</td>
+<td style="text-align: right;">4.73</td>
+<td style="text-align: right;">10.86</td>
 <td style="text-align: right;">0.05</td>
 <td style="text-align: right;">73.97</td>
 </tr>
@@ -1162,23 +978,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>ROE for all the Stocks in REIT, as shown below</li>
+<li>ROE for all the Stocks in realestate, as shown below</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="768"></p>
+<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 </section>
 <section id="stocks-with-roe-q3roe" class="level3">
 <h3 class="anchored" data-anchor-id="stocks-with-roe-q3roe">Stocks with ROE &gt; Q3(ROE)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="sc">%&gt;%</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ROE <span class="sc">&gt;</span> ROE_Q3) <span class="sc">%&gt;%</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE)) <span class="sc">%&gt;%</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with ROE &gt; Q3(ROE)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="sc">%&gt;%</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ROE <span class="sc">&gt;</span> ROE_Q3) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with ROE &gt; Q3(ROE)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Stocks with ROE &gt; Q3(ROE)</caption>
@@ -1186,10 +1002,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Price</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Low52Wk</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
 </tr>
 </thead>
@@ -1197,65 +1013,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">SPG</td>
 <td style="text-align: left;">Simon Property Group, Inc.</td>
-<td style="text-align: right;">140.4</td>
+<td style="text-align: left;">$140.40</td>
 <td style="text-align: right;">6.719684</td>
 <td style="text-align: right;">73.96502</td>
-<td style="text-align: right;">100.2</td>
-<td style="text-align: right;">40.12</td>
+<td style="text-align: left;">$100.17</td>
+<td style="text-align: right;">40.16</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">IRM</td>
 <td style="text-align: left;">Iron Mountain Incorporated (Delaware)</td>
-<td style="text-align: right;">66.8</td>
+<td style="text-align: left;">$66.75</td>
 <td style="text-align: right;">1.708173</td>
 <td style="text-align: right;">70.27600</td>
-<td style="text-align: right;">48.9</td>
-<td style="text-align: right;">36.61</td>
+<td style="text-align: left;">$48.94</td>
+<td style="text-align: right;">36.39</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">CCI</td>
 <td style="text-align: left;">Crown Castle Inc.</td>
-<td style="text-align: right;">113.5</td>
+<td style="text-align: left;">$113.51</td>
 <td style="text-align: right;">3.999484</td>
 <td style="text-align: right;">21.61974</td>
-<td style="text-align: right;">84.7</td>
-<td style="text-align: right;">34.00</td>
+<td style="text-align: left;">$84.72</td>
+<td style="text-align: right;">33.98</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">PSA</td>
 <td style="text-align: left;">Public Storage</td>
-<td style="text-align: right;">299.2</td>
+<td style="text-align: left;">$299.22</td>
 <td style="text-align: right;">11.366645</td>
 <td style="text-align: right;">21.07189</td>
-<td style="text-align: right;">233.2</td>
-<td style="text-align: right;">28.30</td>
+<td style="text-align: left;">$233.18</td>
+<td style="text-align: right;">28.32</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">ESS</td>
 <td style="text-align: left;">Essex Property Trust, Inc.</td>
-<td style="text-align: right;">242.4</td>
+<td style="text-align: left;">$242.39</td>
 <td style="text-align: right;">4.184376</td>
 <td style="text-align: right;">18.83040</td>
-<td style="text-align: right;">195.0</td>
-<td style="text-align: right;">24.31</td>
+<td style="text-align: left;">$195.03</td>
+<td style="text-align: right;">24.28</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">AMT</td>
 <td style="text-align: left;">American Tower Corporation (REIT)</td>
-<td style="text-align: right;">214.6</td>
+<td style="text-align: left;">$214.56</td>
 <td style="text-align: right;">1.081369</td>
 <td style="text-align: right;">13.21486</td>
-<td style="text-align: right;">154.6</td>
+<td style="text-align: left;">$154.58</td>
 <td style="text-align: right;">38.81</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">UDR</td>
 <td style="text-align: left;">UDR, Inc.</td>
-<td style="text-align: right;">37.5</td>
+<td style="text-align: left;">$37.54</td>
 <td style="text-align: right;">4.049174</td>
 <td style="text-align: right;">11.25438</td>
-<td style="text-align: right;">31.0</td>
-<td style="text-align: right;">20.97</td>
+<td style="text-align: left;">$30.95</td>
+<td style="text-align: right;">21.29</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">HST</td>
+<td style="text-align: left;">Host Hotels &amp; Resorts, Inc.</td>
+<td style="text-align: left;">$19.82</td>
+<td style="text-align: right;">6.173597</td>
+<td style="text-align: right;">11.03640</td>
+<td style="text-align: left;">$14.51</td>
+<td style="text-align: right;">36.68</td>
 </tr>
 </tbody>
 </table>
@@ -1267,23 +1092,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="summary-statistics-of-return-on-equity-roa" class="level3">
 <h3 class="anchored" data-anchor-id="summary-statistics-of-return-on-equity-roa">Summary Statistics of Return on Equity (ROA)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> ts4 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>ROA_Q3 <span class="ot">&lt;-</span> summaryStats<span class="sc">$</span>Q3</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROA)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">N =</span> <span class="fu">n</span>(),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Mean =</span> <span class="fu">mean</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">SD =</span> <span class="fu">sd</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Median =</span> <span class="fu">median</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">Min =</span> <span class="fu">min</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Max =</span> <span class="fu">max</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>) </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>ROA_Q3 <span class="ot">&lt;-</span> summaryStats<span class="sc">$</span>Q3</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROA)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Summary Statistics of Return on Equity (ROA)</caption>
@@ -1301,12 +1126,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">29</td>
-<td style="text-align: right;">3.43</td>
-<td style="text-align: right;">2.31</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">3.45</td>
+<td style="text-align: right;">2.24</td>
 <td style="text-align: right;">3.38</td>
-<td style="text-align: right;">1.74</td>
-<td style="text-align: right;">4.18</td>
+<td style="text-align: right;">2.01</td>
+<td style="text-align: right;">4.36</td>
 <td style="text-align: right;">0.02</td>
 <td style="text-align: right;">11.37</td>
 </tr>
@@ -1317,23 +1142,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>ROA for all the Stocks in REIT, as shown below</li>
+<li>ROA for all the Stocks in realestate, as shown below</li>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="768"></p>
+<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 </section>
 <section id="stocks-with-roa-q3roa" class="level3">
 <h3 class="anchored" data-anchor-id="stocks-with-roa-q3roa">Stocks with ROA &gt; Q3(ROA)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ts4 <span class="sc">%&gt;%</span> </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ROA <span class="sc">&gt;</span> ROA_Q3) <span class="sc">%&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROA)) <span class="sc">%&gt;%</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with ROA &gt; Q3(ROA)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="sc">%&gt;%</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ROA <span class="sc">&gt;</span> ROA_Q3) <span class="sc">%&gt;%</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROA)) <span class="sc">%&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with ROA &gt; Q3(ROA)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Stocks with ROA &gt; Q3(ROA)</caption>
@@ -1341,10 +1166,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Price</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Price</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">ROA</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">ROE</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Low52Wk</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Low52Wk</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Low52WkPerc</th>
 </tr>
 </thead>
@@ -1352,65 +1177,74 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">PSA</td>
 <td style="text-align: left;">Public Storage</td>
-<td style="text-align: right;">299.2</td>
+<td style="text-align: left;">$299.22</td>
 <td style="text-align: right;">11.366645</td>
 <td style="text-align: right;">21.071893</td>
-<td style="text-align: right;">233.2</td>
-<td style="text-align: right;">28.30</td>
+<td style="text-align: left;">$233.18</td>
+<td style="text-align: right;">28.32</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SPG</td>
 <td style="text-align: left;">Simon Property Group, Inc.</td>
-<td style="text-align: right;">140.4</td>
+<td style="text-align: left;">$140.40</td>
 <td style="text-align: right;">6.719684</td>
 <td style="text-align: right;">73.965022</td>
-<td style="text-align: right;">100.2</td>
-<td style="text-align: right;">40.12</td>
+<td style="text-align: left;">$100.17</td>
+<td style="text-align: right;">40.16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">HST</td>
 <td style="text-align: left;">Host Hotels &amp; Resorts, Inc.</td>
-<td style="text-align: right;">19.8</td>
+<td style="text-align: left;">$19.82</td>
 <td style="text-align: right;">6.173597</td>
 <td style="text-align: right;">11.036398</td>
-<td style="text-align: right;">14.5</td>
-<td style="text-align: right;">36.55</td>
+<td style="text-align: left;">$14.51</td>
+<td style="text-align: right;">36.68</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">VICI</td>
 <td style="text-align: left;">VICI Properties Inc.</td>
-<td style="text-align: right;">31.6</td>
+<td style="text-align: left;">$31.63</td>
 <td style="text-align: right;">5.914200</td>
 <td style="text-align: right;">10.331764</td>
-<td style="text-align: right;">26.6</td>
+<td style="text-align: left;">$26.62</td>
 <td style="text-align: right;">18.80</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">MAA</td>
 <td style="text-align: left;">Mid-America Apartment Communities, Inc.</td>
-<td style="text-align: right;">131.1</td>
+<td style="text-align: left;">$131.05</td>
 <td style="text-align: right;">5.155324</td>
 <td style="text-align: right;">9.662317</td>
-<td style="text-align: right;">115.6</td>
-<td style="text-align: right;">13.41</td>
+<td style="text-align: left;">$115.56</td>
+<td style="text-align: right;">13.40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">SBAC</td>
 <td style="text-align: left;">SBA Communications Corporation</td>
-<td style="text-align: right;">248.7</td>
+<td style="text-align: left;">$248.70</td>
 <td style="text-align: right;">4.886459</td>
 <td style="text-align: right;">NA</td>
-<td style="text-align: right;">185.2</td>
-<td style="text-align: right;">34.29</td>
+<td style="text-align: left;">$185.23</td>
+<td style="text-align: right;">34.26</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">CSGP</td>
+<td style="text-align: left;">CoStar Group, Inc.</td>
+<td style="text-align: left;">$81.30</td>
+<td style="text-align: right;">4.742707</td>
+<td style="text-align: right;">5.785656</td>
+<td style="text-align: left;">$65.12</td>
+<td style="text-align: right;">24.85</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">AVB</td>
 <td style="text-align: left;">AvalonBay Communities, Inc.</td>
-<td style="text-align: right;">182.5</td>
+<td style="text-align: left;">$182.51</td>
 <td style="text-align: right;">4.534148</td>
 <td style="text-align: right;">8.060873</td>
-<td style="text-align: right;">153.1</td>
-<td style="text-align: right;">19.20</td>
+<td style="text-align: left;">$153.07</td>
+<td style="text-align: right;">19.23</td>
 </tr>
 </tbody>
 </table>
@@ -1422,112 +1256,112 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" class="level3">
 <h3 class="anchored" data-anchor-id="roe-versus-roa-and-colored-by-price-rel.-to-52-week-low">ROE versus ROA and colored by Price rel. to 52 Week Low</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  ts4 <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))<span class="sc">%&gt;%</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>top10<span class="sc">$</span>name <span class="ot">&lt;-</span> top10<span class="sc">$</span>Stock</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(top10, </span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"ROA"</span>, </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"ROE"</span>, </span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Low52WkPerc"</span>,</span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Low52WkPerc"</span>,</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">label =</span> <span class="st">"name"</span>, </span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"ROE vs ROA, Low52WkPerc for REIT with highest ROE"</span>) <span class="sc">+</span> </span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">"darkgreen"</span>,  <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>top10 <span class="ot">&lt;-</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  ts3 <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE))<span class="sc">%&gt;%</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>top10<span class="sc">$</span>name <span class="ot">&lt;-</span> top10<span class="sc">$</span>Stock</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggscatter</span>(top10, </span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"ROA"</span>, </span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> <span class="st">"ROE"</span>, </span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="st">"Low52WkPerc"</span>,</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">color =</span> <span class="st">"Low52WkPerc"</span>,</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">label =</span> <span class="st">"name"</span>, </span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>          <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"ROE vs ROA, Low52WkPerc for real estate with highest ROE"</span>) <span class="sc">+</span> </span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gradient_color</span>(<span class="fu">c</span>(<span class="st">"darkgreen"</span>,  <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="768"></p>
+<p><img src="18LiveCaseREIT_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 </section>
-<section id="summary-statistics-of-all-key-variables-in-reit-services" class="level3">
-<h3 class="anchored" data-anchor-id="summary-statistics-of-all-key-variables-in-reit-services">Summary Statistics of All key variables in REIT Services</h3>
+<section id="summary-statistics-of-all-key-variables-in-real-estate" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics-of-all-key-variables-in-real-estate">Summary Statistics of All key variables in real estate</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROE),</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(ROE),</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROE),</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROE),</span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROE)</span>
-<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
-<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROA),</span>
-<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(ROA),</span>
-<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROA),</span>
-<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROA),</span>
-<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROA)</span>
-<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROASum,<span class="dv">2</span>)</span>
-<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROIC),</span>
-<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(ROIC),</span>
-<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROIC),</span>
-<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROIC),</span>
-<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(ROIC)</span>
-<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROICSum,<span class="dv">2</span>)</span>
-<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(GrossMargin),</span>
-<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(GrossMargin),</span>
-<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(GrossMargin),</span>
-<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(GrossMargin),</span>
-<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(GrossMargin)</span>
-<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(GrossMarginSum,<span class="dv">2</span>)</span>
-<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
-<span id="cb28-57"><a href="#cb28-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb28-58"><a href="#cb28-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(NetMargin),</span>
-<span id="cb28-59"><a href="#cb28-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(NetMargin),</span>
-<span id="cb28-60"><a href="#cb28-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(NetMargin),</span>
-<span id="cb28-61"><a href="#cb28-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-62"><a href="#cb28-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb28-63"><a href="#cb28-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(NetMargin),</span>
-<span id="cb28-64"><a href="#cb28-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(NetMargin)</span>
-<span id="cb28-65"><a href="#cb28-65" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb28-66"><a href="#cb28-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-67"><a href="#cb28-67" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(NetMarginSum,<span class="dv">2</span>)</span>
-<span id="cb28-68"><a href="#cb28-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-69"><a href="#cb28-69" aria-hidden="true" tabindex="-1"></a>Metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ROE"</span>,<span class="st">"ROA"</span>,<span class="st">"ROIC"</span>,<span class="st">"GrossMargin"</span>,<span class="st">"NetMargin"</span>)</span>
-<span id="cb28-70"><a href="#cb28-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-71"><a href="#cb28-71" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)</span>
-<span id="cb28-72"><a href="#cb28-72" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Metrics, ftab)</span>
-<span id="cb28-73"><a href="#cb28-73" aria-hidden="true" tabindex="-1"></a>ftab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>ts3 <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(ts3)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROE),</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(ROE),</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROE),</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROE, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROE),</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(ROE)</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>ROESum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROESum,<span class="dv">2</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROA),</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(ROA),</span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROA),</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROA, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROA),</span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(ROA)</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a>ROASum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROASum,<span class="dv">2</span>)</span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(ROIC),</span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(ROIC),</span>
+<span id="cb32-34"><a href="#cb32-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(ROIC),</span>
+<span id="cb32-35"><a href="#cb32-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-36"><a href="#cb32-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(ROIC, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-37"><a href="#cb32-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(ROIC),</span>
+<span id="cb32-38"><a href="#cb32-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(ROIC)</span>
+<span id="cb32-39"><a href="#cb32-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-40"><a href="#cb32-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-41"><a href="#cb32-41" aria-hidden="true" tabindex="-1"></a>ROICSum <span class="ot">&lt;-</span> <span class="fu">round</span>(ROICSum,<span class="dv">2</span>)</span>
+<span id="cb32-42"><a href="#cb32-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-43"><a href="#cb32-43" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb32-44"><a href="#cb32-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-45"><a href="#cb32-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(GrossMargin),</span>
+<span id="cb32-46"><a href="#cb32-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(GrossMargin),</span>
+<span id="cb32-47"><a href="#cb32-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(GrossMargin),</span>
+<span id="cb32-48"><a href="#cb32-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-49"><a href="#cb32-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(GrossMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-50"><a href="#cb32-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(GrossMargin),</span>
+<span id="cb32-51"><a href="#cb32-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(GrossMargin)</span>
+<span id="cb32-52"><a href="#cb32-52" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-53"><a href="#cb32-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-54"><a href="#cb32-54" aria-hidden="true" tabindex="-1"></a>GrossMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(GrossMarginSum,<span class="dv">2</span>)</span>
+<span id="cb32-55"><a href="#cb32-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-56"><a href="#cb32-56" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> ts3 <span class="sc">%&gt;%</span></span>
+<span id="cb32-57"><a href="#cb32-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb32-58"><a href="#cb32-58" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mean =</span> <span class="fu">mean</span>(NetMargin),</span>
+<span id="cb32-59"><a href="#cb32-59" aria-hidden="true" tabindex="-1"></a>    <span class="at">Stdev =</span> <span class="fu">sd</span>(NetMargin),</span>
+<span id="cb32-60"><a href="#cb32-60" aria-hidden="true" tabindex="-1"></a>    <span class="at">Median=</span> <span class="fu">median</span>(NetMargin),</span>
+<span id="cb32-61"><a href="#cb32-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-62"><a href="#cb32-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(NetMargin, <span class="at">probs =</span> <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb32-63"><a href="#cb32-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min =</span> <span class="fu">min</span>(NetMargin),</span>
+<span id="cb32-64"><a href="#cb32-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max =</span> <span class="fu">max</span>(NetMargin)</span>
+<span id="cb32-65"><a href="#cb32-65" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-66"><a href="#cb32-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-67"><a href="#cb32-67" aria-hidden="true" tabindex="-1"></a>NetMarginSum <span class="ot">&lt;-</span> <span class="fu">round</span>(NetMarginSum,<span class="dv">2</span>)</span>
+<span id="cb32-68"><a href="#cb32-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-69"><a href="#cb32-69" aria-hidden="true" tabindex="-1"></a>Metrics <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ROE"</span>,<span class="st">"ROA"</span>,<span class="st">"ROIC"</span>,<span class="st">"GrossMargin"</span>,<span class="st">"NetMargin"</span>)</span>
+<span id="cb32-70"><a href="#cb32-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-71"><a href="#cb32-71" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)</span>
+<span id="cb32-72"><a href="#cb32-72" aria-hidden="true" tabindex="-1"></a>ftab <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Metrics, ftab)</span>
+<span id="cb32-73"><a href="#cb32-73" aria-hidden="true" tabindex="-1"></a>ftab</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      Metrics  Mean Stdev Median    Q1    Q3   Min   max
-1         ROE 12.57 17.69   7.17  4.68 11.09  0.05 73.97
-2         ROA  3.38  2.33   3.28  1.73  4.08  0.02 11.37
-3        ROIC  3.75  2.50   3.48  1.97  4.75  0.02 11.82
-4 GrossMargin 37.72 17.89  36.13 27.82 44.47 -1.22 99.20
-5   NetMargin 22.35 15.27  22.29 10.32 29.68  0.11 68.69</code></pre>
+<pre><code>      Metrics  Mean Stdev Median    Q1    Q3   Min   Max
+1         ROE 12.18 17.14   7.17  4.73 10.86  0.05 73.97
+2         ROA  3.40  2.27   3.28  1.88  4.15  0.02 11.37
+3        ROIC  3.85  2.44   3.75  2.18  4.96  0.02 11.82
+4 GrossMargin 38.41 19.22  36.13 25.86 44.47 -1.22 99.20
+5   NetMargin 21.48 15.23  20.84  9.07 28.84  0.11 68.69</code></pre>
 </div>
 </div>
 

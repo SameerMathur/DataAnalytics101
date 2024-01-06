@@ -1,32 +1,14 @@
-# Live Case (2): REITs in the S&P500
+# Case (2): Real-Estate Sector in the S&P500
 
-#### Chapter 18, *Last updated: Dec 30, 2023*
+**Chapter 18, *Last updated: Jan 07, 2024***
 
-## Objective
+## Real Estate Sector in the S&P 500
 
-### A1) Role Play?
+<insert review here>
 
-Greetings Data Commandos!
+### Set up the data
 
-Imagine you're in the bustling hub of the world's most elite consulting firms, revered across the corporate spectrum.
-
-**A prestigious investment fund is ready to channel \$1 Million into the US finance sector. They've enlisted your expertise to delve into the 29 REITs within the Finance sector of the S&P500.**
-
-Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property.
-
-**Your mission? Allocate `$1 Million` to the "best" REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities. Dive in and make those data-driven decisions!**
-
-### A2) What are learning objectives for you?
-
-1.  Revisit and solidify your knowledge of R programming, acquired or expected to be acquired in earlier courses.
-2.  Enhance your proficiency in data management and manipulation using the `dplyr` package and other functions in R.
-3.  Sharpen your skills in data visualization leveraging the `ggplot2`, `ggpubr` and related packages in R.
-4.  Master the art of addressing a data-centric business challenge while embodying the role of a Consulting Team.
-5.  Cultivate the capability to compellingly present your solutions to a discerning yet just audience.
-
-## Setup S&P 500 **REIT** Data
-
-### 1. Load some useful R packages
+Load Packages:
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
@@ -39,9 +21,10 @@ library(gsheet, quietly = TRUE, warn.conflicts = FALSE) # For Google Sheets
 library(rmarkdown, quietly = TRUE, warn.conflicts = FALSE) # For writing
 library(knitr, quietly = TRUE, warn.conflicts = FALSE) # For tables
 library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # For tables
+library(scales)  # For formatting currency
 ```
 
-### 2. Read S&P500 data (to derive REIT data)
+Read the data from a Google Sheet into a tibble:
 
 ```{r, warning=FALSE}
 # Read S&P500 stock data present in a Google Sheet.
@@ -49,15 +32,35 @@ library(gsheet)
 prefix <- "https://docs.google.com/spreadsheets/d/"
 sheetID <- "14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ"
 url500 <- paste(prefix,sheetID) # Form the URL to connect to
-sp500 <- gsheet2tbl(url500) # Read it into a tibble called sp500
+sp500Data <- gsheet2tbl(url500) # Read it into a tibble called sp500Data
 ```
 
-### 3. Rename Columns
+Read GICS classificaiton of S&P 500 stocks:
+
+```{r}
+# Read GICS classificaiton of S&P 500 stocks from a Google Sheet.
+library(gsheet)
+prefix2 <- "https://docs.google.com/spreadsheets/d/"
+sheetID2 <- "1WrVA8dPYvQsc_mXVctgTntRLS02qd7ubzcdAsw03Lgk"
+urlgics <- paste(prefix2, sheetID2) # Form the URL to connect to
+gics <- gsheet2tbl(urlgics) # Read it into a tibble called gics
+```
+
+Join the data:
+
+```{r}
+# Merging dataframes
+sp500 <- merge(sp500Data, 
+               gics , 
+               id = "Stock")
+```
+
+Rename the data columns:
 
 ```{r, warning=FALSE}
 # Define a mapping of new column names
 new_names <- c(
-  "Date", "Stock", "StockName", "Sector", "Industry", 
+  "Stock", "Date", "StockName", "Sector", "Industry", 
   "MarketCap", "Price", "Low52Wk", "High52Wk", 
   "ROE", "ROA", "ROIC", "GrossMargin", 
   "OperatingMargin", "NetMargin", "PE", 
@@ -67,235 +70,95 @@ new_names <- c(
   "FCF_QYOY", "DebtToEquity", "CurrentRatio", 
   "QuickRatio", "DividendYield", 
   "DividendsPerShare_YOY", "PS", 
-  "Revenue_YOY", "Revenue_QYOY", "Rating"
+  "Revenue_YOY", "Revenue_QYOY", "Rating",
+  "Security", "GICSSector", "GICSSubIndustry"
 )
 # Rename the columns using the new_names vector
 colnames(sp500)<-new_names
 ```
 
-### 3. Select REIT data
-
-1.  The S&P500 shares are divided into multiple Sectors. Each stock belongs to a unique sector. Thus, it makes sense to model Sector as a factor() variable.
-
-2.  Set Sector, Rating data columns to be factor data types.
+Create new columns.
 
 ```{r}
-sp500$Sector <- as.factor(sp500$Sector)
+library(dplyr)
+sp500 <- sp500 %>%
+  mutate(Low52WkPerc = round((Price - Low52Wk) * 100 / Low52Wk, 2),
+         High52WkPerc = round((High52Wk - Price) * 100 / High52Wk, 2),
+         MarketCapBillions = round(MarketCap / 1e9, 3) # Convert MarketCap to billions
+         )
+```
+
+
+Review the column names:
+
+```{r, warning=FALSE}
+colnames(sp500)
+```
+
+
+Format the Prices.
+
+```{r}
+library(dplyr)
+library(scales)  # For formatting currency
+
+sp500 <- sp500 %>%
+  mutate(
+    Price = scales::dollar(round(Price, 2)),  # format the Price as a dollar amount
+    High52Wk = scales::dollar(round(High52Wk, 2)),  # format the 52 Week High 
+    Low52Wk = scales::dollar(round(Low52Wk, 2))  # format the 52 Week Low 
+  )
+```
+
+Model the Rating as a `factor()` variable.
+
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 sp500$Rating <- as.factor(sp500$Rating)
+str(sp500$Rating)
+levels(sp500$Rating)
+table(sp500$Rating)
 ```
 
-### C6. The **Finance** Sector within the S&P500
+Model `GICSSector` as a `factor`.
 
-1.  The Finance sector plays a pivotal role in the overall U.S. economy. Its performance is often closely watched by economists and investors alike, given its profound impact on lending, investment, and overall economic growth. Over the years, regulatory changes, monetary policy, and global economic events have significantly influenced this sector, making it a dynamic and critical component of the S&P 500.
+```{r, warning=FALSE, eval=TRUE, echo=TRUE}
+sp500$GICSSector <- as.factor(sp500$GICSSector)
+str(sp500$GICSSector)
+levels(sp500$GICSSector)
 
-2.  We focus on investment opportunities **within the Finance sector** of the S&P500.
-
--   We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for *short-to-medium term* investing.
-
-3.  **Industry**: The Finance sector includes many industries within it.
-
-For example:
-
--   **Banks**: JPMorgan Chase, Bank of America, and Wells Fargo, among others, represent the significant banking entities.
-
--   **Insurance Companies**: Companies like Berkshire Hathaway, Allstate operate in this sub-sector, offering a range of insurance products from property and casualty insurance to life insurance.
-
-4.  We create a tibble named `finStocks`, filtering the shares that belong to the Finance sector.
-
-```{r}
-finStocks = sp500 %>% 
-  filter(Sector=="Finance") 
 ```
 
-5.  Industries within the Finance Sector
+### Role Play?
 
--   The data shows that the Finance sector consists of a total of `r nrow(finStocks)` companies that belong to different Industries.
--   We set the Industry to be factor variable, since they can only assume unique levels.
+A prestigious investment fund is ready to channel \$1 Million into the US Real Estate sector in the S&P500. For example, Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property. Suppose our mission is to allocate `$1 Million` to the "best" REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities.
+
+### The **Real Estate** Sector within the S&P500
+
+We focus on investment opportunities **within the Real Estate sector** of the S&P500. We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for *short-to-medium term* investing. We create a tibble named realestate, filtering the shares that belong to the Real Estate sector.
 
 ```{r}
-finStocks$Industry <- as.factor(finStocks$Industry)
+realestate = sp500 %>% 
+  filter(GICSSector == "Real Estate") 
 ```
 
--   The following visualization summarizes the different Industries within the Finance Sector:
+We list the stocks in the real estate sector.
 
 ```{r}
-ggplot(data = finStocks, 
-       aes(y = Industry)) + 
-  geom_bar(aes(fill = Industry)) +
-  geom_text(stat='count', 
-            aes(label=after_stat(count))) +
-  labs(title = "Stocks by Industry, within Finance Sector", 
-       x = "No. of Stocks", 
-       y = "Industry")
-```
+library(dplyr)
+library(kableExtra)
 
--   Market Capitalization (Billions of USD) of Industries within the Finance Sector
+# Select stocks with their Market Cap in billions
+real_estate_stocks <- realestate %>%
+  arrange(desc(MarketCapBillions)) %>%
+  select(Stock, StockName, MarketCapBillions, Price)
 
-```{r}
-FinanceMarketCap <- finStocks %>%
-  mutate(MarketCap_Billions = round(MarketCap/1000000000, 2)) %>%
-  group_by(Industry) %>%
-  summarise(Market_Cap_BillionUSD = sum(MarketCap_Billions, na.rm = TRUE))  %>%
-  arrange(-Market_Cap_BillionUSD)  
-
-# Create a summary row
-summary_row <- tibble(
-  Industry = "Total",
-  Market_Cap_BillionUSD = sum(FinanceMarketCap$Market_Cap_BillionUSD)
-)
-# Append the summary row to the result
-FinanceMarketCap <- bind_rows(FinanceMarketCap, summary_row)
-
-# Render the table
-FinanceMarketCap %>%
-  kable("html", caption = "Market Capitalization (Billions of USD) of Finance Sector") %>% 
+# Displaying the data
+real_estate_stocks %>%
+  kable("html", caption = "Real Estate Sector Stocks, with Market Cap in Billions") %>%
   kable_styling()
 ```
 
--   We focus on investment opportunities within a particular Industry -- **Real Estate Investment Trusts**.
-
-### C7. Stock Prices, as of `r finStocks$Date[1]`
-
-1.  Stock Prices relative to their 52 Week Low and 52 Week High
-
--   We want to analyze stock prices relative to their 52 Week Low and 52 Week High respectively, to understand their relative price attractiveness.
-
--   For this purpose, we create some additional data columns.
-
-```{r}
-finStocks = sp500 %>% 
-  filter(Sector=="Finance") %>% 
-  mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2)) %>% 
-  mutate(High52WkPerc = round((High52Wk - Price)*100 / Low52Wk,2)) %>%
-  mutate(MarketCap_Billions = round(MarketCap/1000000000, 2))
-```
-
--   Here, a new column named `Low52WkPerc` is being added. The column contains the percentage change between the current price (`Price`) and its 52-week low (`Low52Wk`). The formula used is: $$Low52WkPerc = \frac{(CurrentPrice - 52WeekLow)*100}{52WeekLow}$$
-
--   Another column named `High52WkPerc` represents the percentage change between the 52-week high (`High52Wk`) and the current price (`Price`).
-
--   We round off the data to two decimal places for clarity.
-
-```{r}
-finStocks$Price <- round(finStocks$Price,1)
-finStocks$Low52Wk <- round(finStocks$Low52Wk,1)
-finStocks$High52Wk <- round(finStocks$High52Wk,1)
-```
-
-\newpage
-
-## D. REITs in the S&P500, as of `r finStocks$Date[1]`
-
-1.  Real Estate Investment Trusts, commonly known as REITs, stand as a cornerstone for investors seeking diversification in their portfolios. These entities offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property.
-
-2.  In our analysis of the Finance sector, we want to focus attention on a particular Industry within it -- **Real Estate Investment Trusts**.
-
-3.  Recall: We want to determine the *fundamentally strongest* AND *most reasonably priced*, top 1-3 REITs for *short-to-medium term* investing USD 1 Million.
-
-### D1. **Key Characteristics of REITs:**
-
-1.  **Income Distribution**: One of the most touted features of REITs is their consistent income flow. U.S. tax regulations mandate REITs to distribute at least 90% of their taxable income as dividends. While this can be enticing due to potentially higher yields, it also poses a risk. The high dividend mandate leaves REITs with less retained earnings, potentially hindering their growth or making them more dependent on external financing.
-
-2.  **Liquidity versus Direct Ownership**: REITs offer a stark contrast to traditional real estate investments in terms of liquidity. While selling a property might entail prolonged durations, hefty transaction costs, and price negotiations, REIT shares can be traded with the agility of stocks. This flexibility, however, comes at the cost of exposure to stock market volatility.
-
-3.  **Tax Implications**: The unique tax structure of REITs is a double-edged sword. While they can dodge corporate taxes by abiding by stringent regulations, such as the income distribution clause, shareholders often have to pay higher individual taxes on REIT dividends compared to qualified stock dividends.
-
-4.  **Sectoral Diversification**: REITs don't just represent traditional brick-and-mortar assets. From data centers to timberlands, they span diverse sectors, potentially providing portfolio diversification. However, the granularity in sectors necessitates that investors be judicious and knowledgeable about the specific type of real estate exposure they're obtaining.
-
-### D2. **Major U.S. REITs:**
-
-1.  **American Tower Corporation (AMT)**: Pioneering the realm of communication infrastructures, AMT emphasizes cell tower operations. While it highlights the evolution of REITs beyond traditional confines, it also underscores the need for REIT investors to comprehend tech industry dynamics, given its tech infrastructure focus.
-
-2.  **Prologis (PLD)**: With a niche in logistics and industrial real estate, Prologis stands out in the age of e-commerce. The company's assets, mainly distribution centers, are strategically situated in prime markets. However, the increasing demand for same-day deliveries and supply chain revamps could challenge Prologis' portfolio.
-
-3.  **Simon Property Group (SPG)**: Catering predominantly to retail spaces, SPG faces the arduous task of reinventing malls in an era where brick-and-mortar stores battle online retailers. The company's resilience in nurturing mixed-use spaces might determine its long-term growth trajectory.
-
-4.  **Equity Residential (EQR)**: As urbanization continues, EQR's focus on high-density urban areas might seem lucrative. But, with telecommuting trends and urban exodus, it's pivotal to monitor how urban rental landscapes evolve.
-
-5.  **Digital Realty Trust (DLR)**: In the digital age, DLR taps into the data economy by majoring in data centers. While the tech boom supports such endeavors, DLR's growth could be contingent on global data regulations and tech infrastructure demands.
-
-**References**: Please consider looking into the following well-known sources, which regularly publish information about REITs.
-
--   National Association of Real Estate Investment Trusts (NAREIT) -- This organization is a representative voice for REITs in the U.S. They frequently release reports, articles, and data on the REIT industry.
-
--   Major Financial News Outlets - Outlets like The Wall Street Journal, Financial Times, and Bloomberg often feature articles on REITs, especially in their real estate or investment sections.
-
--   The Journal of Real Estate Finance and Economics - This academic journal covers a wide range of topics in real estate, including REITs.
-
-### D3. **REITs in the S&P500:**
-
--   We create a tibble named `REIT` from within the Finance sector tibble `finStocks`. Specifically, we filter the shares that belong to the `Real Estate Investment Trusts` Industry, within the Finance sector.
-
-```{r}
-REIT <- finStocks %>% 
-  filter(Industry == 'Real Estate Investment Trusts')
-```
-
--   The following table lists REITs within the Finance sector of the S&P500
-
-```{r}
-REIT %>% 
-  select(Stock, StockName, Price, MarketCap_Billions)  %>%
-  arrange(desc(MarketCap_Billions)) %>%
-  kable("html", caption = "REITs within Finance Sector of S&P500") %>% 
-  kable_styling()
-```
-
--   Consider the summary statistics of the Market Capitalization of the REITs within the S&P500
-
-```{r echo=TRUE}
-REIT %>% summarise(
-  N = n(),
-  Mean = mean(MarketCap_Billions),
-  SD = sd(MarketCap_Billions),
-  Median = median(MarketCap_Billions),
-  Q1 = quantile(MarketCap_Billions, 0.25),
-  Q3 = quantile(MarketCap_Billions, 0.75),
-  Min = min(MarketCap_Billions),
-  Max = max(MarketCap_Billions),
-  Sum = sum(MarketCap_Billions)
-) %>% 
-  round(2) %>%
-  kable("html", caption = "Summary Statistics of Market Capitalizaiton of REITs (Billion USD)") %>% 
-  kable_styling()
-```
-
--   As can be seen, the S&P500 consists of `r nrow(REIT)` REITs.
-
-**Recall.. A prestigious investment fund is ready to channel \$1 Million into the US finance sector. They've enlisted your expertise to delve into the 29 REITs within the Finance sector of the S&P500.**
-
-**Recall Your mission? Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities. How will you allocate your investment capital of USD 1 Million? Dive in and make those data-driven decisions!**
-
--   We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for *short-to-medium term* investing.
-
-Well done! Our data is now ready for analysis!!
-
-There are 12 number of of stocks in the Industry REIT
-
-### Select the Specific Coulumns from the filtered dataframe `ts` (Industry REIT)
-
-```{r warning=FALSE, eval=TRUE, echo=TRUE}
-ts2 <- REIT %>%
-		select(Date, Stock, StockName, MarketCap_Billions, Price,Low52Wk, High52Wk,
-		       ROE, ROA,ROIC,GrossMargin, GrossMargin, 
-		       NetMargin, Rating)
-
-colnames(ts2)
-```
-
-### Arrange the Dataframe by ROE
-
-```{r warning=FALSE, eval=TRUE, echo=TRUE}
-ts3 <- ts2 %>% arrange(desc(ROE))
-```
-
-### Top 10 Shares in Sector Based on ROE
-
-```{r warning=FALSE, eval=TRUE, echo=TRUE}
-head(ts3,10)
-```
-
-### Significance of 52-Week Low Price
+### Significance of 52-Week Low, High Price
 
 The 52-week low price of a stock is a significant indicator for multiple reasons, especially when considering shares listed on major indices like the S&P 500. Here's why this metric is noteworthy:
 
@@ -311,17 +174,52 @@ The 52-week low price of a stock is a significant indicator for multiple reasons
 
 -   **Note of Caution:** While the 52-week low is a valuable reference point, it's essential to interpret it in conjunction with other financial and market indicators. A stock trading near its 52-week low doesn't automatically make it a good buy, just as a stock trading near its 52-week high doesn't automatically make it overvalued. Comprehensive analysis, should inform investment decisions.
 
-### Mutate a data column called (Low52WkPerc), then show top 10 ROE stocks
+We want to analyze stock prices relative to their 52 Week Low and 52 Week High respectively, to understand their relative price attractiveness.
 
-```{r  warning=FALSE, eval=TRUE, echo=TRUE}
-ts4 <- ts3 %>% mutate(Low52WkPerc = round((Price - Low52Wk)*100 / Low52Wk,2))
-head(ts4[,c(1:3,5)],10)
+Here, a new column named `Low52WkPerc` is being added. The column contains the percentage change between the current price (`Price`) and its 52-week low (`Low52Wk`). The formula used is: $$Low52WkPerc = \frac{(CurrentPrice - 52WeekLow)*100}{52WeekLow}$$
+
+Another column named `High52WkPerc` represents the percentage change between the 52-week high (`High52Wk`) and the current price (`Price`). We round off the data to two decimal places for clarity.
+\newpage
+
+Consider the summary statistics of the Market Capitalization of the real estate stocks within the S&P500
+
+```{r echo=TRUE}
+realestate %>% summarise(
+  N = n(),
+  Mean = mean(MarketCapBillions),
+  SD = sd(MarketCapBillions),
+  Median = median(MarketCapBillions),
+  Q1 = quantile(MarketCapBillions, 0.25),
+  Q3 = quantile(MarketCapBillions, 0.75),
+  Min = min(MarketCapBillions),
+  Max = max(MarketCapBillions),
+  Sum = sum(MarketCapBillions)
+) %>% 
+  round(2) %>%
+  kable("html", caption = "Summary Statistics of Market Capitalizaiton of realestate (Billion USD)") %>% 
+  kable_styling()
+```
+
+-   As can be seen, the S&P500 consists of `r nrow(realestate)` real estate stocks.
+
+We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for *short-to-medium term* investing.
+
+### Select Specific Coulumns from the filtered dataframe 
+
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+ts3 <- realestate %>%
+		select(Date, Stock, StockName, MarketCapBillions, Price, Low52Wk, High52Wk, Low52WkPerc, High52WkPerc,
+		       ROE, ROA,ROIC,GrossMargin, GrossMargin, 
+		       NetMargin, Rating) %>% 
+    arrange(desc(ROE))
+
+colnames(ts3)
 ```
 
 ## Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)
 
 ```{r eval=TRUE, echo=TRUE, warning=FALSE}
-summaryStats <- ts4 %>% summarise(
+summaryStats <- ts3 %>% summarise(
   N = n(),
   Mean = mean(Low52WkPerc),
   SD = sd(Low52WkPerc),
@@ -340,10 +238,10 @@ summaryStats %>%
   kable_styling()
 ```
 
-*Low52WkPerc for all the REIT Stocks, as shown below*
+*Low52WkPerc for all the realestate Stocks, as shown below*
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts4, 
+PlotBox <- ggboxplot(ts3, 
             y = "Low52WkPerc", 
             rug = TRUE, 
             color = "black",
@@ -356,7 +254,7 @@ PlotBox <- ggboxplot(ts4,
 
 ```{r  eval=TRUE, echo=FALSE, warning=FALSE}
 # Create a summary data frame
-data_summary <- ts4 %>%
+data_summary <- ts3 %>%
   summarise(
     MeanLow52WkPerc = mean(Low52WkPerc, na.rm = TRUE),
     SDLow52WkPerc = sd(Low52WkPerc, na.rm = TRUE)
@@ -383,7 +281,7 @@ ggarrange(PlotBox, PlotBar, nrow = 2)
 ## Inexpensive Stocks with Low52WkPerc \< Q1(Low52WkPerc)
 
 ```{r eval=TRUE, echo=TRUE, warning=FALSE}
-ts4 %>% 
+ts3 %>% 
   select(Stock, StockName, Price, Low52Wk, Low52WkPerc) %>% 
   filter(Low52WkPerc < Low52WkPercQ1) %>% 
   arrange(Low52WkPerc)%>%
@@ -394,7 +292,7 @@ ts4 %>%
 ### Summary Statistics of Return on Equity (ROE)
 
 ```{r}
-summaryStats <- ts4 %>% summarise(
+summaryStats <- ts3 %>% summarise(
   N = n(),
   Mean = mean(ROE, na.rm = TRUE),
   SD = sd(ROE, na.rm = TRUE),
@@ -413,10 +311,10 @@ summaryStats %>%
   kable_styling()
 ```
 
--   ROE for all the Stocks in REIT, as shown below
+-   ROE for all the Stocks in realestate, as shown below
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts4, 
+PlotBox <- ggboxplot(ts3, 
             y = "ROE", 
             rug = TRUE, 
             color = "black",
@@ -429,7 +327,7 @@ PlotBox <- ggboxplot(ts4,
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
 # Create a summary data frame
-data_summary <- ts4 %>%
+data_summary <- ts3 %>%
   summarise(
     MeanROE = mean(ROE, na.rm = TRUE),
     SDROE = sd(ROE, na.rm = TRUE)
@@ -456,7 +354,7 @@ ggarrange(PlotBox, PlotBar, nrow = 2)
 ### Stocks with ROE \> Q3(ROE)
 
 ```{r}
-ts4 %>% 
+ts3 %>% 
   select(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) %>% 
   filter(ROE > ROE_Q3) %>%
   arrange(desc(ROE)) %>%
@@ -468,7 +366,7 @@ ts4 %>%
 ### Summary Statistics of Return on Equity (ROA)
 
 ```{r}
-summaryStats <- ts4 %>% summarise(
+summaryStats <- ts3 %>% summarise(
   N = n(),
   Mean = mean(ROA, na.rm = TRUE),
   SD = sd(ROA, na.rm = TRUE),
@@ -487,10 +385,10 @@ summaryStats %>%
   kable_styling()
 ```
 
--   ROA for all the Stocks in REIT, as shown below
+-   ROA for all the Stocks in realestate, as shown below
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts4, 
+PlotBox <- ggboxplot(ts3, 
             y = "ROA", 
             rug = TRUE, 
             color = "black",
@@ -503,7 +401,7 @@ PlotBox <- ggboxplot(ts4,
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
 # Create a summary data frame
-data_summary <- ts4 %>%
+data_summary <- ts3 %>%
   summarise(
     MeanROA = mean(ROA, na.rm = TRUE),
     SDROA = sd(ROA, na.rm = TRUE)
@@ -530,7 +428,7 @@ ggarrange(PlotBox, PlotBar, nrow = 2)
 ### Stocks with ROA \> Q3(ROA)
 
 ```{r}
-ts4 %>% 
+ts3 %>% 
   select(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) %>% 
   filter(ROA > ROA_Q3) %>%
   arrange(desc(ROA)) %>%
@@ -543,7 +441,7 @@ ts4 %>%
 
 ```{r, warning=FALSE}
 top10 <- 
-  ts4 %>% 
+  ts3 %>% 
   select(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) %>% 
   arrange(desc(ROE))%>%
   slice(1:10)
@@ -558,11 +456,11 @@ ggscatter(top10,
           alpha = 0.5,
           label = "name", 
           repel = TRUE,
-          title = "ROE vs ROA, Low52WkPerc for REIT with highest ROE") + 
+          title = "ROE vs ROA, Low52WkPerc for real estate with highest ROE") + 
   gradient_color(c("darkgreen",  "red"))
 ```
 
-### Summary Statistics of All key variables in REIT Services
+### Summary Statistics of All key variables in real estate
 
 ```{r}
 ts3 <- na.omit(ts3)
@@ -575,7 +473,7 @@ ROESum <- ts3 %>%
     Q1 = quantile(ROE, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(ROE, probs = 0.75, na.rm = TRUE),
     Min = min(ROE),
-    max = max(ROE)
+    Max = max(ROE)
   )
 
 ROESum <- round(ROESum,2)
@@ -589,7 +487,7 @@ ROASum <- ts3 %>%
     Q1 = quantile(ROA, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(ROA, probs = 0.75, na.rm = TRUE),
     Min = min(ROA),
-    max = max(ROA)
+    Max = max(ROA)
   )
 
 ROASum <- round(ROASum,2)
@@ -602,7 +500,7 @@ ROICSum <- ts3 %>%
     Q1 = quantile(ROIC, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(ROIC, probs = 0.75, na.rm = TRUE),
     Min = min(ROIC),
-    max = max(ROIC)
+    Max = max(ROIC)
   )
 
 ROICSum <- round(ROICSum,2)
@@ -615,7 +513,7 @@ GrossMarginSum <- ts3 %>%
     Q1 = quantile(GrossMargin, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(GrossMargin, probs = 0.75, na.rm = TRUE),
     Min = min(GrossMargin),
-    max = max(GrossMargin)
+    Max = max(GrossMargin)
   )
 
 GrossMarginSum <- round(GrossMarginSum,2)
@@ -628,7 +526,7 @@ NetMarginSum <- ts3 %>%
     Q1 = quantile(NetMargin, probs = 0.25, na.rm = TRUE),
     Q3 = quantile(NetMargin, probs = 0.75, na.rm = TRUE),
     Min = min(NetMargin),
-    max = max(NetMargin)
+    Max = max(NetMargin)
   )
 
 NetMarginSum <- round(NetMarginSum,2)
