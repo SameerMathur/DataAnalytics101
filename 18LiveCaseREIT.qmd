@@ -1,14 +1,20 @@
-# Case (2): Real-Estate Sector in the S&P500
+# Case (2 of 2): S&P500 Sector Analysis
 
 **Chapter 18, *Last updated: Jan 07, 2024***
 
-## Real Estate Sector in the S&P 500
+## Targeted Analysis of a Focal S&P 500 GICS Sector
 
-<insert review here>
+We are set to conduct a comprehensive analysis focused on a specific GICS sector within the S&P 500. This will involve a close examination of the individual companies comprising the sector we select, allowing us to gain deeper insights into their collective and individual performance dynamics.
 
-### Set up the data
+```{r}
+focalSector = "Consumer Staples"
+```
 
-Load Packages:
+### Organize the data
+
+For our upcoming analysis, it's essential to structure and arrange the data effectively, mirroring the methodical approach we successfully implemented in our previous case study
+
+1.  Load Packages:
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
@@ -24,7 +30,7 @@ library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # For tables
 library(scales)  # For formatting currency
 ```
 
-Read the data from a Google Sheet into a tibble:
+2.  Read the data from a Google Sheet into a tibble:
 
 ```{r, warning=FALSE}
 # Read S&P500 stock data present in a Google Sheet.
@@ -35,7 +41,7 @@ url500 <- paste(prefix,sheetID) # Form the URL to connect to
 sp500Data <- gsheet2tbl(url500) # Read it into a tibble called sp500Data
 ```
 
-Read GICS classificaiton of S&P 500 stocks:
+3.  Read GICS classificaiton of S&P 500 stocks:
 
 ```{r}
 # Read GICS classificaiton of S&P 500 stocks from a Google Sheet.
@@ -46,7 +52,7 @@ urlgics <- paste(prefix2, sheetID2) # Form the URL to connect to
 gics <- gsheet2tbl(urlgics) # Read it into a tibble called gics
 ```
 
-Join the data:
+4.  Join the data:
 
 ```{r}
 # Merging dataframes
@@ -55,7 +61,7 @@ sp500 <- merge(sp500Data,
                id = "Stock")
 ```
 
-Rename the data columns:
+5.  Rename the data columns:
 
 ```{r, warning=FALSE}
 # Define a mapping of new column names
@@ -74,10 +80,10 @@ new_names <- c(
   "Security", "GICSSector", "GICSSubIndustry"
 )
 # Rename the columns using the new_names vector
-colnames(sp500)<-new_names
+colnames(sp500) <- new_names
 ```
 
-Create new columns.
+6.  Create new columns to track prices relative to 52-week low and high.
 
 ```{r}
 library(dplyr)
@@ -88,15 +94,13 @@ sp500 <- sp500 %>%
          )
 ```
 
-
-Review the column names:
+7.  Review the column names:
 
 ```{r, warning=FALSE}
 colnames(sp500)
 ```
 
-
-Format the Prices.
+8.Format the Prices.
 
 ```{r}
 library(dplyr)
@@ -110,81 +114,57 @@ sp500 <- sp500 %>%
   )
 ```
 
-Model the Rating as a `factor()` variable.
+9.  Model the Rating as a `factor()` variable.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 sp500$Rating <- as.factor(sp500$Rating)
-str(sp500$Rating)
-levels(sp500$Rating)
 table(sp500$Rating)
 ```
 
-Model `GICSSector` as a `factor`.
+10. Model `GICSSector` as a `factor`.
 
 ```{r, warning=FALSE, eval=TRUE, echo=TRUE}
 sp500$GICSSector <- as.factor(sp500$GICSSector)
-str(sp500$GICSSector)
-levels(sp500$GICSSector)
-
+table(sp500$GICSSector)
 ```
 
-### Role Play?
+## Analysis
 
-A prestigious investment fund is ready to channel \$1 Million into the US Real Estate sector in the S&P500. For example, Real Estate Investment Trusts, commonly known as REITs, offer a distinctive way to engage with real estate markets without the cumbersome process of directly owning property. Suppose our mission is to allocate `$1 Million` to the "best" REIT(s). Pinpoint the top 1, 2 or 3 REITs that present the most promising short-term trading opportunities.
+Suppose our mission is to allocate `$1 Million` to the "best" stock within our focal sector. Which stock should we select?
 
-### The **Real Estate** Sector within the S&P500
+### The `r focalSector` GICS Sector in the S&P500
 
-We focus on investment opportunities **within the Real Estate sector** of the S&P500. We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for *short-to-medium term* investing. We create a tibble named realestate, filtering the shares that belong to the Real Estate sector.
+We focus on investment opportunities within the `r focalSector` GICS Sector in the S&P500. We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for medium term investing.
+
+For this purpose, we create a tibble named focalStocks, filtering the shares that belong to the `r focalSector` Sector in the S&P500.
 
 ```{r}
-realestate = sp500 %>% 
-  filter(GICSSector == "Real Estate") 
+focalStocks = sp500 %>% 
+  filter(GICSSector == focalSector) 
 ```
 
-We list the stocks in the real estate sector.
+### A) Market Cap
+
+We list the stocks. Specifically, the following code processes data from the focalStocks tibble, specifically for stocks in the focal GICS sector. It sorts these stocks by their market capitalization in descending order and selects columns for stock ticker, company name, market cap (in billions), and stock price.
 
 ```{r}
 library(dplyr)
 library(kableExtra)
 
 # Select stocks with their Market Cap in billions
-real_estate_stocks <- realestate %>%
+focalStocks %>%
   arrange(desc(MarketCapBillions)) %>%
-  select(Stock, StockName, MarketCapBillions, Price)
-
-# Displaying the data
-real_estate_stocks %>%
-  kable("html", caption = "Real Estate Sector Stocks, with Market Cap in Billions") %>%
+  select(Stock, StockName, MarketCapBillions, Price) %>%
+  kable("html", caption = "GISC Sector Stocks, with Market Cap in Billions") %>%
   kable_styling()
 ```
 
-### Significance of 52-Week Low, High Price
+Consider the summary statistics of the Market Capitalization of the focal stocks.
 
-The 52-week low price of a stock is a significant indicator for multiple reasons, especially when considering shares listed on major indices like the S&P 500. Here's why this metric is noteworthy:
-
-1.  **Historical Perspective**: The 52-week low offers a snapshot of how low the stock has traded over the past year relative to its current price, providing context about its price journey.
-
-2.  **Potential Entry Point**: Some investors view stocks that are near their 52-week low as potential buying opportunities, under the assumption that the stock might be undervalued and could rebound.
-
-3.  **Psychological Level**: Stocks approaching their 52-week low can be seen as testing a significant support level. If a stock consistently fails to breach its 52-week low, it might indicate that the market values the stock at that level, and it's resistant to falling below it.
-
-4.  **Basis for Technical Analysis**: For technical analysts or traders, the 52-week low serves as a critical reference point. A consistent breach of this level might signify a bearish trend, while a rebound can indicate potential recovery.
-
-5.  **Yield Implications for Dividend Stocks**: For dividend-paying stocks, a price near the 52-week low (assuming the dividend hasn't been cut) would imply a higher dividend yield, potentially making it attractive for income-seeking investors.
-
--   **Note of Caution:** While the 52-week low is a valuable reference point, it's essential to interpret it in conjunction with other financial and market indicators. A stock trading near its 52-week low doesn't automatically make it a good buy, just as a stock trading near its 52-week high doesn't automatically make it overvalued. Comprehensive analysis, should inform investment decisions.
-
-We want to analyze stock prices relative to their 52 Week Low and 52 Week High respectively, to understand their relative price attractiveness.
-
-Here, a new column named `Low52WkPerc` is being added. The column contains the percentage change between the current price (`Price`) and its 52-week low (`Low52Wk`). The formula used is: $$Low52WkPerc = \frac{(CurrentPrice - 52WeekLow)*100}{52WeekLow}$$
-
-Another column named `High52WkPerc` represents the percentage change between the 52-week high (`High52Wk`) and the current price (`Price`). We round off the data to two decimal places for clarity.
-\newpage
-
-Consider the summary statistics of the Market Capitalization of the real estate stocks within the S&P500
+The following code performs a statistical summary of the market capitalization (in billions) of stocks within a specific GICS sector. It calculates various summary statistics: the count of stocks (`N`), mean, standard deviation (`SD`), median, first quartile (`Q1`), third quartile (`Q3`), minimum (`Min`), maximum (`Max`), and total sum (`Sum`) of market capitalizations. This provides a comprehensive overview of the financial size and spread of the companies in the selected sector.
 
 ```{r echo=TRUE}
-realestate %>% summarise(
+focalStocks %>% summarise(
   N = n(),
   Mean = mean(MarketCapBillions),
   SD = sd(MarketCapBillions),
@@ -196,30 +176,36 @@ realestate %>% summarise(
   Sum = sum(MarketCapBillions)
 ) %>% 
   round(2) %>%
-  kable("html", caption = "Summary Statistics of Market Capitalizaiton of realestate (Billion USD)") %>% 
+  kable("html", caption = "Summary Statistics of Market Capitalizaiton (Billion USD)") %>% 
   kable_styling()
 ```
 
--   As can be seen, the S&P500 consists of `r nrow(realestate)` real estate stocks.
+As can be seen, the S&P500 GICS sector `r focalSector` consists of `r nrow(focalStocks)` stocks. We want to determine the *fundamentally strongest* and *most reasonably priced* shares for medium-term investing.
 
-We want to determine the *fundamentally strongest* AND *most reasonably priced* shares for *short-to-medium term* investing.
+### B) 52-Week Low
 
-### Select Specific Coulumns from the filtered dataframe 
+The 52-week low price is an important metric for stocks on major indices like the S&P 500 for several reasons:
 
-```{r warning=FALSE, eval=TRUE, echo=TRUE}
-ts3 <- realestate %>%
-		select(Date, Stock, StockName, MarketCapBillions, Price, Low52Wk, High52Wk, Low52WkPerc, High52WkPerc,
-		       ROE, ROA,ROIC,GrossMargin, GrossMargin, 
-		       NetMargin, Rating) %>% 
-    arrange(desc(ROE))
+1.  Historical Context: It shows the lowest price point of a stock in the past year, providing insights into its price trend.
 
-colnames(ts3)
-```
+2.  Investment Opportunity: Stocks near their 52-week low may be seen as undervalued, presenting potential buying opportunities.
 
-## Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)
+3.  Support Level: This price can act as a psychological support level, indicating market valuation and resistance to further decline.
+
+4.  Technical Analysis Tool: For technical analysts, the 52-week low is key for identifying bearish trends or potential recoveries.
+
+5.  Dividend Yield Impact: For dividend stocks, a lower price near this level can mean higher yields, appealing to income-focused investors.
+
+-   Caution: Our analysis aims to examine stocks' prices in relation to their 52-week lows and highs to gauge their relative price attractiveness. It's crucial to consider the 52-week low alongside other financial indicators, as it alone doesn't necessarily signify a good buy or sell point.
+
+Recall that a new data column named `Low52WkPerc` was created, measuring the percentage change between the current price (`Price`) and its 52-week low (`Low52Wk`), based on the simple formula: $$Low52WkPerc = \frac{(CurrentPrice - 52WeekLow)*100}{52WeekLow}$$
+
+Similarly, `High52WkPerc` represents the percentage change between the 52-week high (`High52Wk`) and the current price (`Price`). We round off the data to two decimal places for clarity.
+
+**Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc)**
 
 ```{r eval=TRUE, echo=TRUE, warning=FALSE}
-summaryStats <- ts3 %>% summarise(
+summaryStats <- focalStocks %>% summarise(
   N = n(),
   Mean = mean(Low52WkPerc),
   SD = sd(Low52WkPerc),
@@ -234,14 +220,16 @@ Low52WkPercQ1 <- summaryStats$Q1 # Save Q1 of Low52WkPerc
 
 summaryStats %>% 
   round(2) %>%
-  kable("html", caption = "Summary Statistics of Low52WkPerc (Price rel. to 52-Week Low)") %>% 
+  kable("html", caption = "Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc") %>% 
   kable_styling()
 ```
 
-*Low52WkPerc for all the realestate Stocks, as shown below*
+**Visualizing the distribution of Low52WkPerc**
+
+The following code creates two visualizations for the `Low52WkPerc` data from the `focalStocks` dataset and combines them into one display. The first is a horizontal box plot (`BoxPlot`) with additional rug and jitter features for detailed data representation, highlighting median, Q1, and Q3 values. The second is a bar plot (`BarPlot`) showing the mean value of `Low52WkPerc` with an error bar representing its standard deviation.
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts3, 
+PlotBox <- ggboxplot(focalStocks, 
             y = "Low52WkPerc", 
             rug = TRUE, 
             color = "black",
@@ -254,7 +242,7 @@ PlotBox <- ggboxplot(ts3,
 
 ```{r  eval=TRUE, echo=FALSE, warning=FALSE}
 # Create a summary data frame
-data_summary <- ts3 %>%
+data_summary <- focalStocks %>%
   summarise(
     MeanLow52WkPerc = mean(Low52WkPerc, na.rm = TRUE),
     SDLow52WkPerc = sd(Low52WkPerc, na.rm = TRUE)
@@ -278,21 +266,49 @@ PlotBar <- ggplot(data_summary,
 ggarrange(PlotBox, PlotBar, nrow = 2)
 ```
 
-## Inexpensive Stocks with Low52WkPerc \< Q1(Low52WkPerc)
+Overall, this code effectively visualizes the distribution and central tendency (mean and standard deviation) of the `Low52WkPerc` metric from the focalStocks dataset. The combination of a box plot and a bar plot with error bars provides a comprehensive view of the data's spread and central measure.
+
+**Inexpensive Stocks Close to 52-Week Low (Low52WkPerc \< Q1(Low52WkPerc))**
+
+The following R code snippet identifies and displays a subset of stocks from the focalStocks dataset that are considered 'inexpensive' based on their performance relative to their 52-week low. It emphasizes those stocks whose `Low52WeekPerc` is less than the 25th percentile (Q1) of the distribution within the focal sector.
 
 ```{r eval=TRUE, echo=TRUE, warning=FALSE}
-ts3 %>% 
+lowPrice <- focalStocks %>% 
   select(Stock, StockName, Price, Low52Wk, Low52WkPerc) %>% 
   filter(Low52WkPerc < Low52WkPercQ1) %>% 
-  arrange(Low52WkPerc)%>%
-  kable("html", caption = "Inexpensive Stocks with Low52WkPerc < Q1(Low52WkPerc)") %>% 
+  arrange(Low52WkPerc)
+
+lowPrice %>%
+  kable("html", caption = "Inexpensive Stocks (Low52WkPerc < Q1(Low52WkPerc))") %>% 
   kable_styling()
 ```
 
-### Summary Statistics of Return on Equity (ROE)
+The filter function is applied to keep only those stocks where `Low52WkPerc` (the percentage difference from the 52-week low) is less than `Low52WkPercQ1` (the first quartile of Low52WkPerc). This implies selecting stocks currently priced closer to their 52-week low than the majority of stocks in the dataset, indicating they are relatively 'inexpensive'.
+
+In essence, this code is used to identify and showcase stocks within the focalSector that are currently trading near their 52-week low, potentially indicating they are undervalued or at an attractive entry point for investors. This analysis assumes that stocks trading below their 52-week low quartile are considered 'inexpensive.'
+
+Next, we analyze the Profitability of stocks within the focal sector, as indicated by metrics such as Return on Equity (ROE).
+
+### C) Return on Equity (ROE)
+
+We investigate the stocks in the focal sector that have relatively high Return on Equity (ROE). Return on Equity (ROE) is a crucial financial metric used to assess a company's profitability, specifically measuring how effectively a company uses its equity to generate profits. Here's why ROE is significant in measuring profitability:
+
+1.  **Efficiency Indicator**: ROE indicates how well a company is using its shareholders' equity to generate profit. A higher ROE suggests that the company is more efficient in using its equity base to produce earnings.
+
+2.  **Investor Attractiveness**: Investors often look at ROE as a sign of a company's ability to generate profit from equity investments. Companies with consistently high ROE are generally seen as well-managed and potentially more attractive to investors.
+
+3.  **Comparative Tool**: ROE is used to compare the profitability of companies in the same industry. It levels the playing field by measuring profit relative to shareholder equity, making it a useful tool for comparing companies of different sizes.
+
+4.  **Growth Potential**: A strong ROE can indicate a company's potential for growth and its ability to fund expansion without needing additional debt or equity financing. This self-funding capability is especially valuable for investors looking for companies with sustainable growth prospects.
+
+5.  **Risk Assessment**: While a high ROE can be desirable, it needs to be considered in the context of risk. A very high ROE might indicate excessive leverage or risk-taking. Thus, ROE should be analyzed alongside other financial metrics like debt-to-equity ratio to understand the risk profile of the company.
+
+6.  **Performance Benchmark**: ROE serves as a performance benchmark. It helps in assessing whether a company is improving its efficiency in using equity to generate profits over time.
+
+**Summary Statistics of Return on Equity (ROE)**
 
 ```{r}
-summaryStats <- ts3 %>% summarise(
+summaryStats <- focalStocks %>% summarise(
   N = n(),
   Mean = mean(ROE, na.rm = TRUE),
   SD = sd(ROE, na.rm = TRUE),
@@ -311,10 +327,12 @@ summaryStats %>%
   kable_styling()
 ```
 
--   ROE for all the Stocks in realestate, as shown below
+**Visualizing the distribution of Return on Equity (ROE)**
+
+The following code creates visual representations of the Return on Equity (ROE) for stocks in the focal sector. It includes a BoxPlot that displays the median, first quartile (Q1), and third quartile (Q3), alongside a BarPlot which emphasizes the mean and standard deviation of the ROE. This dual approach offers a comprehensive view of the ROE distribution within the focal sector.
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts3, 
+PlotBox <- ggboxplot(focalStocks, 
             y = "ROE", 
             rug = TRUE, 
             color = "black",
@@ -327,7 +345,7 @@ PlotBox <- ggboxplot(ts3,
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
 # Create a summary data frame
-data_summary <- ts3 %>%
+data_summary <- focalStocks %>%
   summarise(
     MeanROE = mean(ROE, na.rm = TRUE),
     SDROE = sd(ROE, na.rm = TRUE)
@@ -351,22 +369,41 @@ PlotBar <- ggplot(data_summary,
 ggarrange(PlotBox, PlotBar, nrow = 2)
 ```
 
-### Stocks with ROE \> Q3(ROE)
+**Identifying Stocks that have high ROE (particularly ROE \> Q3(ROE))**
+
+The following R code identifies and displays a subset of stocks from the focalStocks dataset that have relatively high ROE, filtering stocks whose ROE is more than the 75th percentile (Q3) of the distribution of ROE within the focal sector.
 
 ```{r}
-ts3 %>% 
-  select(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) %>% 
+highROE <- focalStocks %>% 
+  select(Stock, StockName, Price, ROE, Low52Wk, Low52WkPerc) %>% 
   filter(ROE > ROE_Q3) %>%
-  arrange(desc(ROE)) %>%
+  arrange(desc(ROE)) 
+
+highROE %>%
   kable("html", caption = "Stocks with ROE > Q3(ROE)") %>% 
   kable_styling()
-
 ```
 
-### Summary Statistics of Return on Equity (ROA)
+### D) Return on Assets (ROA)
+
+Next, we investigate the stocks in the focal sector that have relatively high Return on Assets (ROA).
+
+Return on Assets (ROA) is a key metric for assessing a company's profitability, indicating how efficiently a company uses its assets to generate earnings. Key aspects of its significance include:
+
+1.  **Efficiency Indicator**: Higher ROA values signify more effective asset utilization to produce profits.
+2.  **Comparative Analysis**: ROA is useful for comparing profitability across companies with different sizes and industries, as it reflects income generated from all assets.
+3.  **Investment Decisions**: Investors use ROA to evaluate management efficiency and make informed investment choices.
+4.  **Operational Insight**: ROA offers a comprehensive view of a company's operational efficiency by including all assets in its calculation.
+5.  **Financial Health**: Consistent or improving ROA can signal strengthening financial health and effective operational strategies.
+6.  **Risk Assessment**: ROA can also indicate potential operational risks, with low values suggesting inefficiencies.
+7.  **Growth Sustainability**: A stable and robust ROA suggests that a company's growth is underpinned by efficient asset use.
+
+ROA provides a holistic measure of how well a company leverages its total assets to generate profits, making it a crucial tool for financial analysis and decision-making.
+
+**Summary Statistics of Return on Assets (ROA)**
 
 ```{r}
-summaryStats <- ts3 %>% summarise(
+summaryStats <- focalStocks %>% summarise(
   N = n(),
   Mean = mean(ROA, na.rm = TRUE),
   SD = sd(ROA, na.rm = TRUE),
@@ -385,10 +422,12 @@ summaryStats %>%
   kable_styling()
 ```
 
--   ROA for all the Stocks in realestate, as shown below
+**Visualizing the distribution of Return on Assets (ROA)**
+
+Similar to the ROE analysis, the following code creates visual representations of the Return on Assets (ROA) for stocks in the focal sector. It includes a BoxPlot that displays the median, first quartile (Q1), and third quartile (Q3), alongside a BarPlot which emphasizes the mean and standard deviation of the ROA. This dual approach offers a comprehensive view of the ROA distribution within the focal sector.
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
-PlotBox <- ggboxplot(ts3, 
+PlotBox <- ggboxplot(focalStocks, 
             y = "ROA", 
             rug = TRUE, 
             color = "black",
@@ -401,7 +440,7 @@ PlotBox <- ggboxplot(ts3,
 
 ```{r eval=TRUE, echo=FALSE, warning=FALSE}
 # Create a summary data frame
-data_summary <- ts3 %>%
+data_summary <- focalStocks %>%
   summarise(
     MeanROA = mean(ROA, na.rm = TRUE),
     SDROA = sd(ROA, na.rm = TRUE)
@@ -425,115 +464,113 @@ PlotBar <- ggplot(data_summary,
 ggarrange(PlotBox, PlotBar, nrow = 2)
 ```
 
-### Stocks with ROA \> Q3(ROA)
+**Identifying Stocks that have high ROA (particularly ROA \> Q3(ROA))**
+
+Similar to the ROE analysis above, the following R code identifies and displays a subset of stocks from the focalStocks dataset that have relatively high ROA, filtering stocks whose ROA is more than the 75th percentile (Q3) of the distribution of ROA within the focal sector.
 
 ```{r}
-ts3 %>% 
-  select(Stock, StockName, Price, ROA, ROE, Low52Wk, Low52WkPerc) %>% 
+highROA <- focalStocks %>% 
+  select(Stock, StockName, Price, ROA, Low52Wk, Low52WkPerc) %>% 
   filter(ROA > ROA_Q3) %>%
-  arrange(desc(ROA)) %>%
+  arrange(desc(ROA)) 
+
+highROA %>%
   kable("html", caption = "Stocks with ROA > Q3(ROA)") %>% 
   kable_styling()
-
 ```
 
-### ROE versus ROA and colored by Price rel. to 52 Week Low
+### E) ROE versus ROA and colored by Price rel. to 52-Week Low
+
+Next, we visualize the joint distribution of ROE, ROA and Price rel. to 52-Week Low.
+
+The following code creates a scatter plot that visualizes the relationship between ROA and ROE in the **`focalStocks`** dataset. It uses color coding based on the **`Low52WkPerc`** metric to provide further insights into the stocks' performance relative to their 52-week lows.
 
 ```{r, warning=FALSE}
-top10 <- 
-  ts3 %>% 
-  select(Stock, Price, Low52Wk, Low52WkPerc, ROA, ROE) %>% 
-  arrange(desc(ROE))%>%
-  slice(1:10)
-
-top10$name <- top10$Stock
-
-ggscatter(top10, 
+ggscatter(focalStocks, 
           x = "ROA", 
           y = "ROE", 
-          size = "Low52WkPerc",
           color = "Low52WkPerc",
           alpha = 0.5,
-          label = "name", 
+          label = "Stock", 
           repel = TRUE,
-          title = "ROE vs ROA, Low52WkPerc for real estate with highest ROE") + 
+          title = "ROE vs ROA, Low52WkPerc") + 
   gradient_color(c("darkgreen",  "red"))
 ```
 
-### Summary Statistics of All key variables in real estate
+The objective of the provided code is to create a visual analysis of the relationship between Return on Assets (ROA) and Return on Equity (ROE) for stocks within a specific sector (focal sector). The scatter plot, enhanced with color-coding based on each stock's percentage difference from its 52-week low (`Low52WkPerc`), aims to reveal how these key profitability metrics interact and are influenced by the stock's relative position to its 52-week low. By incorporating stock labels and a color gradient, the plot not only maps out the financial performance (ROA and ROE) of these stocks but also integrates their recent price history, offering a multifaceted view of the sector's financial health and market perception.
+
+### F) Investment Insights
+
+Let us review our analysis and generate some insights.
+
+1.  The following stocks within the focal sector have prices relatively close to their 52-Week low, within Q1 of the distribution of `Low52WkPerc`:
 
 ```{r}
-ts3 <- na.omit(ts3)
-
-ROESum <- ts3 %>%
-  summarise(
-    Mean = mean(ROE),
-    Stdev = sd(ROE),
-    Median= median(ROE),
-    Q1 = quantile(ROE, probs = 0.25, na.rm = TRUE),
-    Q3 = quantile(ROE, probs = 0.75, na.rm = TRUE),
-    Min = min(ROE),
-    Max = max(ROE)
-  )
-
-ROESum <- round(ROESum,2)
-
-
-ROASum <- ts3 %>%
-  summarise(
-    Mean = mean(ROA),
-    Stdev = sd(ROA),
-    Median= median(ROA),
-    Q1 = quantile(ROA, probs = 0.25, na.rm = TRUE),
-    Q3 = quantile(ROA, probs = 0.75, na.rm = TRUE),
-    Min = min(ROA),
-    Max = max(ROA)
-  )
-
-ROASum <- round(ROASum,2)
-
-ROICSum <- ts3 %>%
-  summarise(
-    Mean = mean(ROIC),
-    Stdev = sd(ROIC),
-    Median= median(ROIC),
-    Q1 = quantile(ROIC, probs = 0.25, na.rm = TRUE),
-    Q3 = quantile(ROIC, probs = 0.75, na.rm = TRUE),
-    Min = min(ROIC),
-    Max = max(ROIC)
-  )
-
-ROICSum <- round(ROICSum,2)
-
-GrossMarginSum <- ts3 %>%
-  summarise(
-    Mean = mean(GrossMargin),
-    Stdev = sd(GrossMargin),
-    Median= median(GrossMargin),
-    Q1 = quantile(GrossMargin, probs = 0.25, na.rm = TRUE),
-    Q3 = quantile(GrossMargin, probs = 0.75, na.rm = TRUE),
-    Min = min(GrossMargin),
-    Max = max(GrossMargin)
-  )
-
-GrossMarginSum <- round(GrossMarginSum,2)
-
-NetMarginSum <- ts3 %>%
-  summarise(
-    Mean = mean(NetMargin),
-    Stdev = sd(NetMargin),
-    Median= median(NetMargin),
-    Q1 = quantile(NetMargin, probs = 0.25, na.rm = TRUE),
-    Q3 = quantile(NetMargin, probs = 0.75, na.rm = TRUE),
-    Min = min(NetMargin),
-    Max = max(NetMargin)
-  )
-
-NetMarginSum <- round(NetMarginSum,2)
-
-Metrics <- c("ROE","ROA","ROIC","GrossMargin","NetMargin")
-
-ftab <- rbind(ROESum, ROASum, ROICSum, GrossMarginSum, NetMarginSum)
-ftab <- cbind(Metrics, ftab)
-ftab
+lowPrice$Stock
 ```
+
+2.  The following stocks within the focal sector are highly profitable, having Return on Equity more than the 75th percentile (Q3) of the distribution of the focal sector:
+
+```{r}
+highROE$Stock
+```
+
+3.  The following stocks within the focal sector are highly profitable, having Return on Assets more than the 75th percentile (Q3) of the distribution of the focal sector:
+
+```{r}
+highROA$Stock
+```
+
+4.  Let us find the intersection between these three sets of stocks
+
+```{r}
+# Find the intersection (common stocks) between the three sets
+common_stocks <- intersect(intersect(highROA$Stock, highROE$Stock), lowPrice$Stock)
+
+# View the result
+common_stocks
+```
+
+**Conclusion**: The following are the stock(s) that are most reasonably priced AND have relatively high Return on Equity and Return on Assets: `r common_stocks`
+
+```{r}
+library(dplyr)
+
+# Filter and select specific columns from focalStocks where Stock is in common_stocks
+filtered_stocks <- focalStocks %>%
+  filter(Stock %in% common_stocks) %>%
+  select(Stock, StockName, ROE, ROA, Price)
+
+# View the result
+filtered_stocks %>%
+  kable("html", caption = "Most Resonably Priced and Highly Profitable Stocks") %>% 
+  kable_styling()
+```
+
+This the 'best' investment!
+
+## Summary of Chapter 18 -- Case (2 of 2): S&P500 Sector Analysis
+
+Last updated on January 07, 2024, this chapter presents a Case Study of a detailed exploration of the `r focalSector` sector within the S&P 500. This analysis utilizes a range of data manipulation and visualization tools in R, leveraging libraries such as `dplyr`, `tibble`, `ggplot2`, `gsheet`, and `kableExtra`. The study begins by meticulously loading and structuring data from Google Sheets into tibbles. This data is then merged, renamed, and enhanced with new metrics for a more insightful analysis.
+
+The study delves into several key areas of analysis for the focal sector. It starts with an examination of market capitalization, sorting stocks by their market cap and generating summary statistics to understand the financial magnitude of these companies. The significance of the 52-week low price is then explored, identifying stocks that are trading near these levels and potentially undervalued. The analysis further extends to profitability measures, particularly Return on Equity (ROE) and Return on Assets (ROA). Through visualizations and data filtering, the chapter highlights stocks that demonstrate high ROE and ROA, signaling their profitability.
+
+An intersection analysis is conducted to identify stocks that are not only close to their 52-week low but also exhibit high profitability. This comprehensive approach pinpoints the most promising investment opportunities in the sector. The study utilizes scatter plots to illustrate the relationships between ROE, ROA, and the percentage change from 52-week lows, providing deeper insights into stock performance and price attractiveness.
+
+In conclusion, the anlaysis identifies the 'best' investment options by filtering out stocks that meet both criteria of price attractiveness and high profitability. This rigorous analysis, combining both quantitative measures and visual insights, offers a nuanced perspective on the focal sector, guiding investment decisions based on a blend of market performance and financial metrics.
+
+## References
+
+**S&P 500**
+
+\[1\] https://www.investopedia.com/terms/s/sp500.asp
+
+\[2\] S&P Global: S&P Global. (n.d.). S&P 500. Retrieved September 14, 2023, from https://www.spglobal.com/spdji/en/indices/equity/sp-500/
+
+MarketWatch: MarketWatch. (n.d.). S&P 500 Index. Retrieved September 14, 2023, from https://www.marketwatch.com/investing/index/spx
+
+Bloomberg: Bloomberg. (n.d.). S&P 500 Index (SPX:IND). Retrieved September 14, 2023, from https://www.bloomberg.com/quote/SPX:IND
+
+\[3\] TradingView.com <https://www.tradingview.com/screener/>
+
+\[4\] GICS: Global Industry Classification Standard: <https://www.spglobal.com/spdji/en/landing/topic/gics/>
