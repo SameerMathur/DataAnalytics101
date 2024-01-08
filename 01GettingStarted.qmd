@@ -84,7 +84,7 @@ To run RStudio on your computer, you can follow these simple steps:
 
 Running R in the cloud allows users to access R and RStudio from anywhere with an internet connection, eliminating the need to install R locally. Several cloud service providers, such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP), offer virtual machines (VMs) with pre-installed R and RStudio.
 
-Here are some key advantages and disadvantages of running R in the cloud:
+Here are some key advantages and disadvantages of running R in the Cloud:
 
 **Benefits:**
 

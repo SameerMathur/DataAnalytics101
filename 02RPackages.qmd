@@ -94,7 +94,7 @@ ggplot(mtcars, aes(wt, mpg)) +
   geom_point() 
 ```
 
-Here, the command `library(ggplot2)` loads the ggplot2 package, making its functions available for use.
+Here, the command `library(ggplot2)` loads the `ggplot2` package, making its functions available for use.
 
 ### Getting help
 

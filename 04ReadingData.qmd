@@ -1,6 +1,6 @@
 # Reading Data into R
 
-**Chapter 4, *Last updated: Jan 1, 2023.***
+**Chapter 4, Last updated: Jan 1, 2023.**
 
 Dataframes and Tibbles are frequently employed data structures in R for storing and manipulating data. They facilitate the organization, exploration, and analysis of data.
 
@@ -10,7 +10,7 @@ Dataframes and Tibbles are frequently employed data structures in R for storing 
 
 2.  Similar to a spreadsheet or a SQL table, it is one of the most frequently employed data structures in R. Each column in a data.frame is a constant-length vector, and each row represents an observation or case.
 
-3.  dataframe objects can be created in R using the `data.frame()` function or by importing data from external sources such as CSV files, Excel spreadsheets, or databases.
+3.  Dataframe objects can be created in R using the `data.frame()` function or by importing data from external sources such as CSV files, Excel spreadsheets, or databases.
 
 4.  R has many useful built-in methods and functions for manipulating and summarizing data stored in dataframes, including subsetting, merging, filtering, and aggregation. \[1\]
 
@@ -298,7 +298,7 @@ my_df
 
 -   Consistent naming: Tibbles always have column names that are distinct and non-empty. This makes it simpler to refer to specific columns and prevents errors caused by duplicate or unnamed column names.
 
--   More informative errors: Tibbles provides more informative error messages that make it simpler to diagnose and resolve data-related problems. \[5\]
+-   More informative errors: Tibbles provide more informative error messages that make it simpler to diagnose and resolve data-related problems. \[5\]
 
 ## Summary of Chapter 4 -- Reading Data into R
 

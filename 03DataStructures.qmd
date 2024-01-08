@@ -1,6 +1,6 @@
 # Exploring Data Structures
 
-**Chapter 3, *Last updated: Jan 1, 2023.***
+**Chapter 3, Last updated: Jan 7, 2023.**
 
 The R programming language includes a number of data structures that are frequently employed in data analysis and statistical modeling. These are some of the most popular data structures in R:
 
@@ -230,7 +230,7 @@ any_age_greater_50 <- any(ages > 50)
 print(any_age_greater_50)
 ```
 
--   **Any True (any())**: It checks if there is at least one TRUE value in the logical vector ages \> 50. The result, any_age_greater_50, is TRUE if at least one element in ages is greater than 50 and FALSE otherwise.
+-   **Any True** `any()`: It checks if there is at least one TRUE value in the logical vector ages \> 50. The result, any_age_greater_50, is TRUE if at least one element in ages is greater than 50 and FALSE otherwise.
 
 ```{r}
 # All True
@@ -238,7 +238,7 @@ all_income_positive <- all(income > 0)
 print(all_income_positive)
 ```
 
--   **All True (all())**: It checks if all elements in the logical vector income \> 0 are TRUE. The result, all_income_positive, is TRUE if all values in the income vector are greater than 0 and FALSE otherwise.
+-   **All True** `all()`: It checks if all elements in the logical vector income \> 0 are TRUE. The result, all_income_positive, is TRUE if all values in the income vector are greater than 0 and FALSE otherwise.
 
 ```{r}
 # Subset with Logical Vector
@@ -262,7 +262,7 @@ has_na <- anyNA(names)
 print(has_na)
 ```
 
--   **Logical Function anyNA()**: It checks if there are any missing values (NA) in the names vector. The result, has_na, is TRUE if there is at least one NA value and FALSE otherwise.
+-   **Logical Function** `anyNA()`: It checks if there are any missing values (NA) in the names vector. The result, has_na, is TRUE if there is at least one NA value and FALSE otherwise.
 
 ```{r}
 # Logical Function is.na()
@@ -270,14 +270,14 @@ is_na <- is.na(ages)
 print(is_na)
 ```
 
--   **Logical Function is.na()**: It checks if each element of the ages vector is NA. The resulting vector, is_na, contains TRUE for elements that are NA and FALSE otherwise.
+-   **Logical Function** `is.na()`: It checks if each element of the ages vector is NA. The resulting vector, is_na, contains TRUE for elements that are NA and FALSE otherwise.
 
 ```{r}
 # Finding unique values
 unique(ages)
 ```
 
--   **unique()**: It finds the unique values in the `ages` vector
+-   `unique():` It finds the unique values in the `ages` vector
 
 6.  **Sorting:** We can sort a vector in ascending or descending order using the `sort()` function. For example, to sort the `ages` vector in descending order, we can use:
 
@@ -291,7 +291,7 @@ sorted_names_desc <- sort(names, decreasing = TRUE)
 print(sorted_names_desc)
 ```
 
-In the above code, we demonstrate sorting the names vector in both ascending and descending order using the sort() function. By default, sort() sorts the vector in ascending order. To sort in descending order, we set the decreasing argument to TRUE.
+In the above code, we demonstrate sorting the names vector in both ascending and descending order using the `sort()` function. By default, `sort()` sorts the vector in ascending order. To sort in descending order, we set the decreasing argument to TRUE.
 
 ### Statistical Operations on Vectors
 
@@ -334,7 +334,7 @@ quantile(ages)
 
 This will return a set of five values, representing the minimum, first quartile, median, third quartile, and maximum of the four ages.
 
-8.  **Standard Error of the Mean**: It calculates the standard error of the mean for the ages vector. The result is stored in se_ages.
+8.  **Standard Error of the Mean**: It calculates the standard error of the mean for the ages vector.
 
 ```{r}
 # Standard Error of the Mean
@@ -342,7 +342,7 @@ se_ages <- sqrt(var(ages) / length(ages))
 print(se_ages)
 ```
 
-9.  **Cumulative Sum**: It calculates the cumulative sum of the elements in the ages vector. The cumulative sum is stored in cumulative_sum_ages.
+9.  **Cumulative Sum**: It calculates the cumulative sum of the elements in the ages vector.
 
 ```{r}
 # Cumulative Sum
@@ -350,7 +350,7 @@ cumulative_sum_ages <- cumsum(ages)
 print(cumulative_sum_ages)
 ```
 
-10. **Correlation Coefficient**: It calculates the correlation coefficient between the ages and females vectors using the cor() function. T
+10. **Correlation Coefficient**: It calculates the correlation coefficient between the ages and females vectors using the `cor()` function.
 
 ```{r}
 # Correlation Coefficient
@@ -446,7 +446,7 @@ A key focus of the chapter is on logical vectors and operations such as equality
 
 The chapter presents statistical operations on vectors, describing functions to compute length, maximum and minimum values, range, mean, median, standard deviation, and quantiles. Other functionalities like standard error of the mean, cumulative sum, and correlation coefficient are also discussed.
 
-Towards the end, the chapter discusses the usage of strings in vectors, covering operations such as substring extraction, concatenation, case conversion, and pattern matching. It finally introduces the `nchar()` function to determine the length of strings in a vector.
+Towards the end, the chapter discusses the usage of strings in vectors, covering operations such as substring extraction, concatenation, case conversion, and pattern matching. It introduces the `nchar()` function to determine the length of strings in a vector.
 
 In essence, Chapter 3 provides a practical exploration of vectors in R, shedding light on their creation, manipulation, and utilization in various operations, from basic mathematical computations to complex statistical functions and string operations. It underscores the versatility of vectors as a vital data structure in R for data analysis and modeling. Further exploration is encouraged with a comprehensive list of references.
 
