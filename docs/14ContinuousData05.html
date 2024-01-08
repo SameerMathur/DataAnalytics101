@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot of Miles per Gallon (mpg) vs. Weight</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wt, </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     mpg, </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatter Plot of Mileage vs. Weight"</span>, <span class="co"># Set the title of the plot</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatter Plot of Mileage vs. Weight"</span>, <span class="co"># Set the title </span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Weight"</span>,                <span class="co"># Label for the x-axis</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Miles per gallon (mpg)"</span>,<span class="co"># Label for the y-axis</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>,                       <span class="co"># Use filled circles as data points</span></span>
@@ -466,11 +466,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># where points are colored by the number of cylinders (cyl)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tb<span class="sc">$</span>wt, </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     tb<span class="sc">$</span>mpg, </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Scatter Plot of Mileage vs. Weight for Cylinders (cyl=4,6,8)"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Plot of Mileage vs. Weight for Cylinders (cyl=4,6,8)"</span>,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Weight"</span>, </span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Miles per gallon (mpg)"</span>, </span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch =</span> <span class="dv">16</span>,  <span class="co"># Use filled circles as data points</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>)[tb<span class="sc">$</span>cyl]  <span class="co"># Color points on cylinders (cyl)</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"green"</span>, <span class="st">"blue"</span>)[tb<span class="sc">$</span>cyl]  <span class="co"># Color points on cyl</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     )</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a legend to the top-right corner of the plot</span></span>
@@ -632,42 +632,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this chapter, we explore the analysis of relationships between continuous variables. We begin by preparing a sample dataset and converting it to a structured format. As we move forward, we emphasize the importance of visual tools like scatter plots for understanding correlations and patterns between variables. These visual tools can reveal underlying trends, groupings, anomalies, and influential data points.</p>
 <p>Using practical examples, we demonstrate how to create and customize these visualizations for clearer insights. Additionally, we introduce methods for enhancing scatter plots, including adding trend lines. The chapter also touches on the visualization of interactions between multiple variables, including the integration of categorical data, by means of color differentiation.</p>
 <p>Transitioning from scatter plots, we explore the concept of a scatter plot matrix, or SPLOM. This tool is instrumental in showcasing pairwise relationships between a set of variables in a matrix format. Scatter plot matrices are incredibly helpful when navigating multivariate datasets, allowing quick visual recognition of potential correlations and relationships among variable pairs.</p>
-<p>We then demonstrate how to create scatter plot matrices using R functions like pairs(), scatterplotMatrix(), and pairs.panels(). Each method offers a different visual experience and comes with its unique set of features. For example, using pairs.panels() from the psych package, the matrix not only contains scatter plots but also histograms on the diagonal, correlation coefficients, and other enlightening statistical visualizations.</p>
+<p>We then demonstrate how to create scatter plot matrices using R functions like <code>pairs()</code>, <code>scatterplotMatrix()</code>, and <code>pairs.panels()</code>. Each method offers a different visual experience and comes with its unique set of features. For example, using <code>pairs.panels()</code> from the psych package, the matrix not only contains scatter plots but also histograms on the diagonal, correlation coefficients, and other enlightening statistical visualizations.</p>
 <p>Overall, this chapter equips us with the knowledge to visualize and analyze bivariate continuous data effectively, aiding in more profound data interpretation and insights.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p><strong>Basic R programmng</strong></p>
-<p>[1] Chambers, J. M. (2008).&nbsp;<em>Software for data analysis: programming with R</em>&nbsp;(Vol. 2, No.&nbsp;1). New York: Springer.</p>
-<p>Crawley, M. J. (2012).&nbsp;<em>The R book</em>. John Wiley &amp; Sons.</p>
-<p>Gardener, M. (2012).&nbsp;<em>Beginning R: the statistical programming language</em>. John Wiley &amp; Sons.</p>
-<p>Grolemund, G. (2014).&nbsp;<em>Hands-on programming with R: Write your own functions and simulations</em>. ” O’Reilly Media, Inc.”.</p>
-<p>Kabacoff, R. (2022).&nbsp;<em>R in action: data analysis and graphics with R and Tidyverse</em>. Simon and Schuster.</p>
-<p>Peng, R. D. (2016).&nbsp;<em>R programming for data science</em>&nbsp;(pp.&nbsp;86-181). Victoria, BC, Canada: Leanpub.</p>
-<p>R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
-<p>Tippmann, S. (2015). Programming tools: Adventures with R.&nbsp;<em>Nature</em>,&nbsp;<em>517</em>(7532), 109-110.</p>
-<p>Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023).&nbsp;<em>R for data science</em>. ” O’Reilly Media, Inc.”</p>
-<p><strong>Statistics using R</strong></p>
-<p>[2] Braun, W. J., &amp; Murdoch, D. J. (2021).&nbsp;<em>A first course in statistical programming with R</em>. Cambridge University Press.</p>
-<p>Cohen, Y., &amp; Cohen, J. Y. (2008).&nbsp;<em>Statistics and Data with R: An applied approach through examples</em>. John Wiley &amp; Sons.</p>
-<p>Dalgaard, P. (2008).&nbsp;<em>Introductory statistics with R</em>. springer publication.</p>
-<p>Davies, T. M. (2016).&nbsp;<em>The book of R: a first course in programming and statistics</em>. No Starch Press.</p>
+<p>Basic R Programming:</p>
+<p>[1] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No.&nbsp;1). Springer, New York.</p>
+<p>Crawley, M. J. (2012). The R Book. John Wiley &amp; Sons.</p>
+<p>Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley &amp; Sons.</p>
+<p>Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O’Reilly Media, Inc.</p>
+<p>Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.</p>
+<p>Peng, R. D. (2016). R Programming for Data Science (pp.&nbsp;86-181). Leanpub, Victoria, BC, Canada.</p>
+<p>R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <a href="https://www.R-project.org/." class="uri">https://www.R-project.org/.</a></p>
+<p>Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.</p>
+<p>Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). R for Data Science. O’Reilly Media, Inc.</p>
+<p>Statistics Using R:</p>
+<p>[2] Braun, W. J., &amp; Murdoch, D. J. (2021). A First Course in Statistical Programming with R. Cambridge University Press.</p>
+<p>Cohen, Y., &amp; Cohen, J. Y. (2008). Statistics and Data with R: An Applied Approach Through Examples. John Wiley &amp; Sons.</p>
+<p>Dalgaard, P. (2008). Introductory Statistics with R. Springer.</p>
+<p>Davies, T. M. (2016). The Book of R: A First Course in Programming and Statistics. No Starch Press.</p>
 <p>Everitt, B. S., &amp; Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC.</p>
-<p>Field, A., Miles, J., &amp; Field, Z. (2012). Discovering statistics using R. Sage Publications.</p>
-<p>Fox, J., &amp; Weisberg, S. (2018).&nbsp;<em>An R companion to applied regression</em>. Sage publications.</p>
-<p>Hyndman, R. J., &amp; Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.</p>
-<p>Matloff, N. (2011).&nbsp;<em>The art of R programming: A tour of statistical software design</em>. No Starch Press.</p>
-<p>R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
-<p>Schumacker, R. E. (2014).&nbsp;<em>Learning statistics using R</em>. Sage Publications.</p>
-<p>Schumacker, R., &amp; Tomek, S. (2013).&nbsp;<em>Understanding statistics using R</em>. Springer Science &amp; Business Media.</p>
-<p><strong>Regression:</strong></p>
-<p>[3] Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.</p>
-<p><strong>car</strong></p>
-<p>[4] Fox, J., Weisberg, S., Adler, D., Bates, D., Baud-Bovy, G., Ellison, S., ... &amp; Heiberger, R. (2012). Package ‘car’.&nbsp;<em>Vienna: R Foundation for Statistical Computing</em>,&nbsp;<em>16</em>.</p>
-<p><strong>psych:</strong></p>
-<p>[5] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.</p>
-<p><strong>GGally</strong></p>
-<p>[6] Schloerke, B., Crowley, J., &amp; Cook, D. (2018). Package ‘GGally’.&nbsp;<em>Extension to ’ggplot2</em>,&nbsp;<em>713</em>.</p>
+<p>Field, A., Miles, J., &amp; Field, Z. (2012). Discovering Statistics Using R. Sage Publications.</p>
+<p>Fox, J., &amp; Weisberg, S. (2018). An R Companion to Applied Regression. Sage Publications.</p>
+<p>Hyndman, R. J., &amp; Fan, Y. (1996). Sample Quantiles in Statistical Packages. The American Statistician, 50(4), 361-365.</p>
+<p>Matloff, N. (2011). The Art of R Programming: A Tour of Statistical Software Design. No Starch Press.</p>
+<p>R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <a href="https://www.R-project.org/." class="uri">https://www.R-project.org/.</a></p>
+<p>Schumacker, R. E. (2014). Learning Statistics Using R. Sage Publications.</p>
+<p>Schumacker, R., &amp; Tomek, S. (2013). Understanding Statistics Using R. Springer Science &amp; Business Media.</p>
+<p>Regression:</p>
+<p>[3] Fox, J., &amp; Weisberg, S. (2011). An R Companion to Applied Regression (2nd ed.). Sage, Thousand Oaks, CA.</p>
+<p>car:</p>
+<p>[4] Fox, J., Weisberg, S., Adler, D., Bates, D., Baud-Bovy, G., Ellison, S., Heiberger, R., et al.&nbsp;(2012). Package ‘car’. R Foundation for Statistical Computing, Vienna.</p>
+<p>psych:</p>
+<p>[5] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R Package Version 2.0.12. Retrieved from <a href="https://CRAN.R-project.org/package=psych." class="uri">https://CRAN.R-project.org/package=psych.</a></p>
+<p>GGally:</p>
+<p>[6] Schloerke, B., Crowley, J., &amp; Cook, D. (2018). Package ‘GGally’: Extension to ‘ggplot2’.</p>
 
 
 </section>
