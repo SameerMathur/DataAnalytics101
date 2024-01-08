@@ -197,13 +197,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -300,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#the-consumer-staples-gics-sector-in-the-sp500" id="toc-the-consumer-staples-gics-sector-in-the-sp500" class="nav-link" data-scroll-target="#the-consumer-staples-gics-sector-in-the-sp500">The Consumer Staples GICS Sector in the S&amp;P500</a></li>
   <li><a href="#a-market-cap" id="toc-a-market-cap" class="nav-link" data-scroll-target="#a-market-cap">A) Market Cap</a></li>
-  <li><a href="#b-52-week-low" id="toc-b-52-week-low" class="nav-link" data-scroll-target="#b-52-week-low">B) 52-Week Low</a></li>
+  <li><a href="#b-price-attractiveness-price-relative-to-52-week-low" id="toc-b-price-attractiveness-price-relative-to-52-week-low" class="nav-link" data-scroll-target="#b-price-attractiveness-price-relative-to-52-week-low">B) Price Attractiveness – Price relative to 52-Week Low</a></li>
   <li><a href="#c-return-on-equity-roe" id="toc-c-return-on-equity-roe" class="nav-link" data-scroll-target="#c-return-on-equity-roe">C) Return on Equity (ROE)</a></li>
   <li><a href="#d-return-on-assets-roa" id="toc-d-return-on-assets-roa" class="nav-link" data-scroll-target="#d-return-on-assets-roa">D) Return on Assets (ROA)</a></li>
   <li><a href="#e-roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" id="toc-e-roe-versus-roa-and-colored-by-price-rel.-to-52-week-low" class="nav-link" data-scroll-target="#e-roe-versus-roa-and-colored-by-price-rel.-to-52-week-low">E) ROE versus ROA and colored by Price rel. to 52-Week Low</a></li>
@@ -406,8 +406,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Low52WkPerc =</span> <span class="fu">round</span>((Price <span class="sc">-</span> Low52Wk) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> Low52Wk, <span class="dv">2</span>),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">High52WkPerc =</span> <span class="fu">round</span>((High52Wk <span class="sc">-</span> Price) <span class="sc">*</span> <span class="dv">100</span> <span class="sc">/</span> High52Wk, <span class="dv">2</span>),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">MarketCapBillions =</span> <span class="fu">round</span>(MarketCap <span class="sc">/</span> <span class="fl">1e9</span>, <span class="dv">3</span>) <span class="co"># Convert MarketCap to billions</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">MarketCapBillions =</span> <span class="fu">round</span>(MarketCap <span class="sc">/</span> <span class="fl">1e9</span>, <span class="dv">3</span>) </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         <span class="co"># Convert MarketCap to billions</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="7" type="1">
 <li>Review the column names:</li>
@@ -431,14 +432,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 [40] "Low52WkPerc"           "High52WkPerc"          "MarketCapBillions"    </code></pre>
 </div>
 </div>
-<p>8.Format the Prices.</p>
+<ol start="8" type="1">
+<li>Format the Prices.</li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)  <span class="co"># For formatting currency</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sp500 <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Price =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(Price, <span class="dv">2</span>)),  <span class="co"># format the Price as a dollar amount</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Price =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(Price, <span class="dv">2</span>)),  <span class="co"># format the Price as $</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">High52Wk =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(High52Wk, <span class="dv">2</span>)),  <span class="co"># format the 52 Week High </span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low52Wk =</span> scales<span class="sc">::</span><span class="fu">dollar</span>(<span class="fu">round</span>(Low52Wk, <span class="dv">2</span>))  <span class="co"># format the 52 Week Low </span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -498,8 +501,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>focalStocks <span class="sc">%&gt;%</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(MarketCapBillions)) <span class="sc">%&gt;%</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, MarketCapBillions, Price) <span class="sc">%&gt;%</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"GISC Sector Stocks, with Market Cap in Billions"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"GISC Sector Stocks, with Market Cap in Billions"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>GISC Sector Stocks, with Market Cap in Billions</caption>
@@ -761,11 +765,12 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Sum =</span> <span class="fu">sum</span>(MarketCapBillions)</span>
 <span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Market Capitalizaiton (Billion USD)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Summary Statistics of Market Cap (Billion USD)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Summary Statistics of Market Capitalizaiton (Billion USD)</caption>
+<caption>Summary Statistics of Market Cap (Billion USD)</caption>
 <thead>
 <tr class="header">
 <th style="text-align: right;" data-quarto-table-cell-role="th">N</th>
@@ -799,8 +804,8 @@ Communication Services Consumer Discretionary       Consumer Staples
 </div>
 <p>As can be seen, the S&amp;P500 GICS sector Consumer Staples consists of 38 stocks. We want to determine the <em>fundamentally strongest</em> and <em>most reasonably priced</em> shares for medium-term investing.</p>
 </section>
-<section id="b-52-week-low" class="level3">
-<h3 class="anchored" data-anchor-id="b-52-week-low">B) 52-Week Low</h3>
+<section id="b-price-attractiveness-price-relative-to-52-week-low" class="level3">
+<h3 class="anchored" data-anchor-id="b-price-attractiveness-price-relative-to-52-week-low">B) Price Attractiveness – Price relative to 52-Week Low</h3>
 <p>The 52-week low price is an important metric for stocks on major indices like the S&amp;P 500 for several reasons:</p>
 <ol type="1">
 <li><p>Historical Context: It shows the lowest price point of a stock in the past year, providing insights into its price trend.</p></li>
@@ -831,8 +836,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
 <span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc</caption>
@@ -882,8 +888,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Low52WkPerc)</span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>lowPrice <span class="sc">%&gt;%</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Inexpensive Stocks (Low52WkPerc &lt; Q1(Low52WkPerc))"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Inexpensive Stocks (Low52WkPerc &lt; Q1(Low52WkPerc))"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Inexpensive Stocks (Low52WkPerc &lt; Q1(Low52WkPerc))</caption>
@@ -1005,8 +1012,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROE)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROE)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Summary Statistics of Return on Equity (ROE)</caption>
@@ -1055,8 +1063,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROE)) </span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>highROE <span class="sc">%&gt;%</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with ROE &gt; Q3(ROE)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Stocks with ROE &gt; Q3(ROE)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Stocks with ROE &gt; Q3(ROE)</caption>
@@ -1181,8 +1190,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>summaryStats <span class="sc">%&gt;%</span> </span>
 <span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="dv">2</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROA)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Summary Statistics of Return on Equity (ROA)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Summary Statistics of Return on Equity (ROA)</caption>
@@ -1231,8 +1241,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(ROA)) </span>
 <span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>highROA <span class="sc">%&gt;%</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with ROA &gt; Q3(ROA)"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Stocks with ROA &gt; Q3(ROA)"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Stocks with ROA &gt; Q3(ROA)</caption>
@@ -1389,7 +1400,7 @@ Communication Services Consumer Discretionary       Consumer Staples
 <pre><code>[1] "HSY" "PG"  "KMB"</code></pre>
 </div>
 </div>
-<p><strong>Conclusion</strong>: The following are the stock(s) that are most reasonably priced AND have relatively high Return on Equity and Return on Assets: HSY, PG, KMB</p>
+<p>The following are the stock(s) that are most reasonably priced AND have relatively high Return on Equity and Return on Assets: HSY, PG, KMB</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1400,8 +1411,9 @@ Communication Services Consumer Discretionary       Consumer Staples
 <span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="co"># View the result</span></span>
 <span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>filtered_stocks <span class="sc">%&gt;%</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Most Resonably Priced and Highly Profitable Stocks"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Most Resonably Priced and Highly Profitable Stocks"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>Most Resonably Priced and Highly Profitable Stocks</caption>
@@ -1442,7 +1454,7 @@ Communication Services Consumer Discretionary       Consumer Staples
 
 </div>
 </div>
-<p>This the ‘best’ investment!</p>
+<p><strong>Conclusion: The best investment for USD 1 million, is in these stocks that are both reasonably priced and highly profitable.</strong></p>
 </section>
 </section>
 <section id="summary-of-chapter-18-case-2-of-2-sp500-sector-analysis" class="level2">

@@ -90,7 +90,8 @@ library(dplyr)
 sp500 <- sp500 %>%
   mutate(Low52WkPerc = round((Price - Low52Wk) * 100 / Low52Wk, 2),
          High52WkPerc = round((High52Wk - Price) * 100 / High52Wk, 2),
-         MarketCapBillions = round(MarketCap / 1e9, 3) # Convert MarketCap to billions
+         MarketCapBillions = round(MarketCap / 1e9, 3) 
+         # Convert MarketCap to billions
          )
 ```
 
@@ -100,7 +101,7 @@ sp500 <- sp500 %>%
 colnames(sp500)
 ```
 
-8.Format the Prices.
+8.  Format the Prices.
 
 ```{r}
 library(dplyr)
@@ -108,7 +109,7 @@ library(scales)  # For formatting currency
 
 sp500 <- sp500 %>%
   mutate(
-    Price = scales::dollar(round(Price, 2)),  # format the Price as a dollar amount
+    Price = scales::dollar(round(Price, 2)),  # format the Price as $
     High52Wk = scales::dollar(round(High52Wk, 2)),  # format the 52 Week High 
     Low52Wk = scales::dollar(round(Low52Wk, 2))  # format the 52 Week Low 
   )
@@ -155,7 +156,8 @@ library(kableExtra)
 focalStocks %>%
   arrange(desc(MarketCapBillions)) %>%
   select(Stock, StockName, MarketCapBillions, Price) %>%
-  kable("html", caption = "GISC Sector Stocks, with Market Cap in Billions") %>%
+  kable("html", 
+        caption = "GISC Sector Stocks, with Market Cap in Billions") %>%
   kable_styling()
 ```
 
@@ -176,13 +178,14 @@ focalStocks %>% summarise(
   Sum = sum(MarketCapBillions)
 ) %>% 
   round(2) %>%
-  kable("html", caption = "Summary Statistics of Market Capitalizaiton (Billion USD)") %>% 
+  kable("html", 
+        caption = "Summary Statistics of Market Cap (Billion USD)") %>% 
   kable_styling()
 ```
 
 As can be seen, the S&P500 GICS sector `r focalSector` consists of `r nrow(focalStocks)` stocks. We want to determine the *fundamentally strongest* and *most reasonably priced* shares for medium-term investing.
 
-### B) 52-Week Low
+### B) Price Attractiveness -- Price relative to 52-Week Low
 
 The 52-week low price is an important metric for stocks on major indices like the S&P 500 for several reasons:
 
@@ -220,7 +223,8 @@ Low52WkPercQ1 <- summaryStats$Q1 # Save Q1 of Low52WkPerc
 
 summaryStats %>% 
   round(2) %>%
-  kable("html", caption = "Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc") %>% 
+  kable("html", 
+        caption = "Summary Statistics of Price rel. to 52-Week Low (Low52WkPerc") %>% 
   kable_styling()
 ```
 
@@ -279,7 +283,8 @@ lowPrice <- focalStocks %>%
   arrange(Low52WkPerc)
 
 lowPrice %>%
-  kable("html", caption = "Inexpensive Stocks (Low52WkPerc < Q1(Low52WkPerc))") %>% 
+  kable("html", 
+        caption = "Inexpensive Stocks (Low52WkPerc < Q1(Low52WkPerc))") %>% 
   kable_styling()
 ```
 
@@ -323,7 +328,8 @@ ROE_Q3 <- summaryStats$Q3
 
 summaryStats %>% 
   round(2) %>%
-  kable("html", caption = "Summary Statistics of Return on Equity (ROE)") %>% 
+  kable("html", 
+        caption = "Summary Statistics of Return on Equity (ROE)") %>% 
   kable_styling()
 ```
 
@@ -380,7 +386,8 @@ highROE <- focalStocks %>%
   arrange(desc(ROE)) 
 
 highROE %>%
-  kable("html", caption = "Stocks with ROE > Q3(ROE)") %>% 
+  kable("html", 
+        caption = "Stocks with ROE > Q3(ROE)") %>% 
   kable_styling()
 ```
 
@@ -418,7 +425,8 @@ ROA_Q3 <- summaryStats$Q3
 
 summaryStats %>% 
   round(2) %>%
-  kable("html", caption = "Summary Statistics of Return on Equity (ROA)") %>% 
+  kable("html", 
+        caption = "Summary Statistics of Return on Equity (ROA)") %>% 
   kable_styling()
 ```
 
@@ -475,7 +483,8 @@ highROA <- focalStocks %>%
   arrange(desc(ROA)) 
 
 highROA %>%
-  kable("html", caption = "Stocks with ROA > Q3(ROA)") %>% 
+  kable("html", 
+        caption = "Stocks with ROA > Q3(ROA)") %>% 
   kable_styling()
 ```
 
@@ -531,7 +540,7 @@ common_stocks <- intersect(intersect(highROA$Stock, highROE$Stock), lowPrice$Sto
 common_stocks
 ```
 
-**Conclusion**: The following are the stock(s) that are most reasonably priced AND have relatively high Return on Equity and Return on Assets: `r common_stocks`
+The following are the stock(s) that are most reasonably priced AND have relatively high Return on Equity and Return on Assets: `r common_stocks`
 
 ```{r}
 library(dplyr)
@@ -543,11 +552,12 @@ filtered_stocks <- focalStocks %>%
 
 # View the result
 filtered_stocks %>%
-  kable("html", caption = "Most Resonably Priced and Highly Profitable Stocks") %>% 
+  kable("html", 
+        caption = "Most Resonably Priced and Highly Profitable Stocks") %>% 
   kable_styling()
 ```
 
-This the 'best' investment!
+**Conclusion: The best investment for USD 1 million, is in these stocks that are both reasonably priced and highly profitable.**
 
 ## Summary of Chapter 18 -- Case (2 of 2): S&P500 Sector Analysis
 

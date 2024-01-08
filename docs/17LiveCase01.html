@@ -197,13 +197,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -309,7 +309,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#analysis-of-gics-sectors-in-the-sp500" id="toc-analysis-of-gics-sectors-in-the-sp500" class="nav-link" data-scroll-target="#analysis-of-gics-sectors-in-the-sp500">Analysis of GICS Sectors in the S&amp;P500</a></li>
   <li><a href="#marketcap-by-gics-sector" id="toc-marketcap-by-gics-sector" class="nav-link" data-scroll-target="#marketcap-by-gics-sector">MarketCap by GICS Sector</a></li>
   <li><a href="#highest-market-cap-stocks-in-each-gics-sector" id="toc-highest-market-cap-stocks-in-each-gics-sector" class="nav-link" data-scroll-target="#highest-market-cap-stocks-in-each-gics-sector">Highest Market Cap Stocks in each GICS Sector</a></li>
-  <li><a href="#stocks-rated-strong-sell" id="toc-stocks-rated-strong-sell" class="nav-link" data-scroll-target="#stocks-rated-strong-sell">Stocks rated “Strong Sell”</a></li>
+  <li><a href="#prices-relative-to-52-week-low-and-52-week-high-of-each-gics-sector" id="toc-prices-relative-to-52-week-low-and-52-week-high-of-each-gics-sector" class="nav-link" data-scroll-target="#prices-relative-to-52-week-low-and-52-week-high-of-each-gics-sector">Prices relative to 52-Week-Low and 52-Week-High of each GICS Sector</a></li>
+  <li><a href="#profitability-of-each-gics-sector" id="toc-profitability-of-each-gics-sector" class="nav-link" data-scroll-target="#profitability-of-each-gics-sector">Profitability of each GICS Sector</a></li>
+  <li><a href="#earnings-of-each-gics-sector" id="toc-earnings-of-each-gics-sector" class="nav-link" data-scroll-target="#earnings-of-each-gics-sector">Earnings of each GICS Sector</a></li>
   </ul></li>
   <li><a href="#summary-of-chapter-17-case-1-of-2-an-overview-of-the-sp500" id="toc-summary-of-chapter-17-case-1-of-2-an-overview-of-the-sp500" class="nav-link" data-scroll-target="#summary-of-chapter-17-case-1-of-2-an-overview-of-the-sp500">Summary of Chapter 17 – Case (1 of 2): An Overview of the S&amp;P500</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -1156,175 +1158,152 @@ Table 1h: Data Columns related to Dividends
 <span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the specified columns and create a table using kable</span></span>
 <span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>top_stocks_by_sector <span class="sc">%&gt;%</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, GICSSector, MarketCapBillions, Price) <span class="sc">%&gt;%</span></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Top Two Stocks by Market Capitalization, by GICS Sector"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GICSSector, Stock, StockName, MarketCapBillions) <span class="sc">%&gt;%</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Top Two Stocks by Market Capitalization, for each GICS Sector"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Top Two Stocks by Market Capitalization, by GICS Sector</caption>
+<caption>Top Two Stocks by Market Capitalization, for each GICS Sector</caption>
 <thead>
 <tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">MarketCapBillions</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Price</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td style="text-align: left;">Communication Services</td>
 <td style="text-align: left;">GOOG</td>
 <td style="text-align: left;">Alphabet Inc.</td>
-<td style="text-align: left;">Communication Services</td>
 <td style="text-align: right;">1723.840</td>
-<td style="text-align: left;">$138.64</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Communication Services</td>
 <td style="text-align: left;">GOOGL</td>
 <td style="text-align: left;">Alphabet Inc.</td>
-<td style="text-align: left;">Communication Services</td>
 <td style="text-align: right;">1723.430</td>
-<td style="text-align: left;">$136.95</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Consumer Discretionary</td>
 <td style="text-align: left;">AMZN</td>
 <td style="text-align: left;">Amazon.com, Inc.</td>
-<td style="text-align: left;">Consumer Discretionary</td>
 <td style="text-align: right;">1504.950</td>
-<td style="text-align: left;">$145.63</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Consumer Discretionary</td>
 <td style="text-align: left;">TSLA</td>
 <td style="text-align: left;">Tesla, Inc.</td>
-<td style="text-align: left;">Consumer Discretionary</td>
 <td style="text-align: right;">751.020</td>
-<td style="text-align: left;">$236.32</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Consumer Staples</td>
 <td style="text-align: left;">WMT</td>
 <td style="text-align: left;">Walmart Inc.</td>
-<td style="text-align: left;">Consumer Staples</td>
 <td style="text-align: right;">421.765</td>
-<td style="text-align: left;">$156.74</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Consumer Staples</td>
 <td style="text-align: left;">PG</td>
 <td style="text-align: left;">Procter &amp; Gamble Company (The)</td>
-<td style="text-align: left;">Consumer Staples</td>
 <td style="text-align: right;">349.243</td>
-<td style="text-align: left;">$148.14</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Energy</td>
 <td style="text-align: left;">XOM</td>
 <td style="text-align: left;">Exxon Mobil Corporation</td>
-<td style="text-align: left;">Energy</td>
 <td style="text-align: right;">412.872</td>
-<td style="text-align: left;">$103.07</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Energy</td>
 <td style="text-align: left;">CVX</td>
 <td style="text-align: left;">Chevron Corporation</td>
-<td style="text-align: left;">Energy</td>
 <td style="text-align: right;">284.572</td>
-<td style="text-align: left;">$151.22</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Financials</td>
 <td style="text-align: left;">BRK.B</td>
 <td style="text-align: left;">Berkshire Hathaway Inc. New</td>
-<td style="text-align: left;">Financials</td>
 <td style="text-align: right;">796.444</td>
-<td style="text-align: left;">$366.12</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Financials</td>
 <td style="text-align: left;">V</td>
 <td style="text-align: left;">Visa Inc.</td>
-<td style="text-align: left;">Financials</td>
 <td style="text-align: right;">523.588</td>
-<td style="text-align: left;">$260.41</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Health Care</td>
 <td style="text-align: left;">LLY</td>
 <td style="text-align: left;">Eli Lilly and Company</td>
-<td style="text-align: left;">Health Care</td>
 <td style="text-align: right;">583.748</td>
-<td style="text-align: left;">$614.92</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Health Care</td>
 <td style="text-align: left;">UNH</td>
 <td style="text-align: left;">UnitedHealth Group Incorporated</td>
-<td style="text-align: left;">Health Care</td>
 <td style="text-align: right;">499.797</td>
-<td style="text-align: left;">$540.65</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Industrials</td>
 <td style="text-align: left;">BA</td>
 <td style="text-align: left;">Boeing Company (The)</td>
-<td style="text-align: left;">Industrials</td>
 <td style="text-align: right;">149.284</td>
-<td style="text-align: left;">$246.65</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Industrials</td>
 <td style="text-align: left;">CAT</td>
 <td style="text-align: left;">Caterpillar, Inc.</td>
-<td style="text-align: left;">Industrials</td>
 <td style="text-align: right;">147.054</td>
-<td style="text-align: left;">$289.00</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Information Technology</td>
 <td style="text-align: left;">AAPL</td>
 <td style="text-align: left;">Apple Inc.</td>
-<td style="text-align: left;">Information Technology</td>
 <td style="text-align: right;">2831.530</td>
-<td style="text-align: left;">$182.03</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Information Technology</td>
 <td style="text-align: left;">MSFT</td>
 <td style="text-align: left;">Microsoft Corporation</td>
-<td style="text-align: left;">Information Technology</td>
 <td style="text-align: right;">2750.200</td>
-<td style="text-align: left;">$369.97</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Materials</td>
 <td style="text-align: left;">LIN</td>
 <td style="text-align: left;">Linde plc</td>
-<td style="text-align: left;">Materials</td>
 <td style="text-align: right;">198.572</td>
-<td style="text-align: left;">$409.66</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Materials</td>
 <td style="text-align: left;">SHW</td>
 <td style="text-align: left;">Sherwin-Williams Company (The)</td>
-<td style="text-align: left;">Materials</td>
 <td style="text-align: right;">76.078</td>
-<td style="text-align: left;">$297.26</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Real Estate</td>
 <td style="text-align: left;">PLD</td>
 <td style="text-align: left;">Prologis, Inc.</td>
-<td style="text-align: left;">Real Estate</td>
 <td style="text-align: right;">123.424</td>
-<td style="text-align: left;">$130.27</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Real Estate</td>
 <td style="text-align: left;">AMT</td>
 <td style="text-align: left;">American Tower Corporation (REIT)</td>
-<td style="text-align: left;">Real Estate</td>
 <td style="text-align: right;">100.440</td>
-<td style="text-align: left;">$214.56</td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Utilities</td>
 <td style="text-align: left;">NEE</td>
 <td style="text-align: left;">NextEra Energy, Inc.</td>
-<td style="text-align: left;">Utilities</td>
 <td style="text-align: right;">126.878</td>
-<td style="text-align: left;">$61.84</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Utilities</td>
 <td style="text-align: left;">SO</td>
 <td style="text-align: left;">Southern Company (The)</td>
-<td style="text-align: left;">Utilities</td>
 <td style="text-align: right;">78.045</td>
-<td style="text-align: left;">$71.57</td>
 </tr>
 </tbody>
 </table>
@@ -1333,190 +1312,352 @@ Table 1h: Data Columns related to Dividends
 </div>
 </div>
 </section>
-<section id="stocks-rated-strong-sell" class="level3">
-<h3 class="anchored" data-anchor-id="stocks-rated-strong-sell">Stocks rated “Strong Sell”</h3>
-<ol type="1">
-<li>Suppose we wanted to list the stocks that have received a Rating of “Strong Sell”.</li>
-<li>Recall that the following code will count the number of Stocks by Rating.</li>
-</ol>
+<section id="prices-relative-to-52-week-low-and-52-week-high-of-each-gics-sector" class="level3">
+<h3 class="anchored" data-anchor-id="prices-relative-to-52-week-low-and-52-week-high-of-each-gics-sector">Prices relative to 52-Week-Low and 52-Week-High of each GICS Sector</h3>
+<p>We analyze the distribution of stock prices relative to their 52 Week Low, measured as <code>Low52WkPerc = (Price - 52-Week-Low)/(52-Week-Low)</code>. In fact, we review this distribution for each GICS Sector, to understand which sector has stocks priced relatively closest to their 52-Week Low prices.</p>
+<p>We also do this for stock prices relative to their 52 Week High, measured as <code>High52WkPerc = (52-Week-High - Price)/(52-Week-High)</code>.</p>
+<p>Table 2</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(sp500<span class="sc">$</span>Rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-        Buy     Neutral        Sell  Strong Buy Strong Sell 
-        192          51         178          58          24 </code></pre>
-</div>
-</div>
-<ol start="3" type="1">
-<li>Suppose we want to list the stocks that have “Strong Sell” rating. We can filter the stocks with a Rating of “Strong Sell”; select the columns: Stock, StockName, Price, GICSSector; arrange the resulting data by GICSSector. Accordingly, we can write the following code:</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>strong_sell_stocks <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Rating <span class="sc">==</span> <span class="st">"Strong Sell"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Stock, StockName, Price, GICSSector) <span class="sc">%&gt;%</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(GICSSector)</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>strong_sell_stocks <span class="sc">%&gt;%</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, <span class="at">caption =</span> <span class="st">"Stocks with a Rating of Strong Sell"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Q1, Median, and Q3 for Low52WkPerc and High52WkPerc within each GICS sector</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>sector_summary_stats <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GICSSector) <span class="sc">%&gt;%</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low_Q1 =</span> <span class="fu">round</span>(<span class="fu">quantile</span>(Low52WkPerc, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low_Median =</span> <span class="fu">round</span>(<span class="fu">median</span>(Low52WkPerc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low_Q3 =</span> <span class="fu">round</span>(<span class="fu">quantile</span>(Low52WkPerc, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">High_Q1 =</span> <span class="fu">round</span>(<span class="fu">quantile</span>(High52WkPerc, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">High_Median =</span> <span class="fu">round</span>(<span class="fu">median</span>(High52WkPerc, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">High_Q3 =</span> <span class="fu">round</span>(<span class="fu">quantile</span>(High52WkPerc, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by Low Q1</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>sector_summary_stats <span class="ot">&lt;-</span> sector_summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(Low_Q1)</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Reapply formatting with percentage symbol</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>sector_summary_stats <span class="ot">&lt;-</span> sector_summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"Q1"</span>), <span class="sc">~</span><span class="fu">paste0</span>(., <span class="st">"%"</span>)),</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"Median"</span>), <span class="sc">~</span><span class="fu">paste0</span>(., <span class="st">"%"</span>)),</span>
+<span id="cb31-26"><a href="#cb31-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="fu">ends_with</span>(<span class="st">"Q3"</span>), <span class="sc">~</span><span class="fu">paste0</span>(., <span class="st">"%"</span>))</span>
+<span id="cb31-27"><a href="#cb31-27" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb31-28"><a href="#cb31-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-29"><a href="#cb31-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a formatted table using kable</span></span>
+<span id="cb31-30"><a href="#cb31-30" aria-hidden="true" tabindex="-1"></a>sector_summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb31-31"><a href="#cb31-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb31-32"><a href="#cb31-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Q1, Median, and Q3 of Low52WkPerc and High52WkPerc by GICS Sector, Sorted by Low Q1"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-33"><a href="#cb31-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped small" data-quarto-postprocess="true">
-<caption>Stocks with a Rating of Strong Sell</caption>
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Q1, Median, and Q3 of Low52WkPerc and High52WkPerc by GICS Sector, Sorted by Low Q1</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Stock</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">StockName</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">Price</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Low_Q1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Low_Median</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Low_Q3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">High_Q1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">High_Median</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">High_Q3</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">TJX</td>
-<td style="text-align: left;">TJX Companies, Inc. (The)</td>
-<td style="text-align: left;">$92.78</td>
+<td style="text-align: left;">Consumer Staples</td>
+<td style="text-align: left;">9.5%</td>
+<td style="text-align: left;">18%</td>
+<td style="text-align: left;">22.1%</td>
+<td style="text-align: left;">9.2%</td>
+<td style="text-align: left;">15.5%</td>
+<td style="text-align: left;">24%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Energy</td>
+<td style="text-align: left;">13.9%</td>
+<td style="text-align: left;">27.4%</td>
+<td style="text-align: left;">30.2%</td>
+<td style="text-align: left;">7.1%</td>
+<td style="text-align: left;">12.7%</td>
+<td style="text-align: left;">16.1%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: left;">14.9%</td>
+<td style="text-align: left;">18.2%</td>
+<td style="text-align: left;">22.1%</td>
+<td style="text-align: left;">7.3%</td>
+<td style="text-align: left;">9.5%</td>
+<td style="text-align: left;">17%</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Consumer Discretionary</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BF.B</td>
-<td style="text-align: left;">Brown Forman Inc</td>
-<td style="text-align: left;">$55.24</td>
-<td style="text-align: left;">Consumer Staples</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">HRL</td>
-<td style="text-align: left;">Hormel Foods Corporation</td>
-<td style="text-align: left;">$32.08</td>
-<td style="text-align: left;">Consumer Staples</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">COP</td>
-<td style="text-align: left;">ConocoPhillips</td>
-<td style="text-align: left;">$116.61</td>
-<td style="text-align: left;">Energy</td>
+<td style="text-align: left;">17.4%</td>
+<td style="text-align: left;">30.4%</td>
+<td style="text-align: left;">47.9%</td>
+<td style="text-align: left;">4.3%</td>
+<td style="text-align: left;">12.7%</td>
+<td style="text-align: left;">21.6%</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">EQT</td>
-<td style="text-align: left;">EQT Corporation</td>
-<td style="text-align: left;">$37.88</td>
-<td style="text-align: left;">Energy</td>
+<td style="text-align: left;">Real Estate</td>
+<td style="text-align: left;">19.6%</td>
+<td style="text-align: left;">27.8%</td>
+<td style="text-align: left;">36.1%</td>
+<td style="text-align: left;">5.5%</td>
+<td style="text-align: left;">8.1%</td>
+<td style="text-align: left;">14.6%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">WMB</td>
-<td style="text-align: left;">Williams Companies, Inc. (The)</td>
-<td style="text-align: left;">$35.76</td>
-<td style="text-align: left;">Energy</td>
+<td style="text-align: left;">Communication Services</td>
+<td style="text-align: left;">19.9%</td>
+<td style="text-align: left;">30.1%</td>
+<td style="text-align: left;">56.5%</td>
+<td style="text-align: left;">4.1%</td>
+<td style="text-align: left;">10.8%</td>
+<td style="text-align: left;">18.9%</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">AON</td>
-<td style="text-align: left;">Aon plc</td>
-<td style="text-align: left;">$290.69</td>
-<td style="text-align: left;">Financials</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">FDS</td>
-<td style="text-align: left;">FactSet Research Systems Inc.</td>
-<td style="text-align: left;">$455.56</td>
-<td style="text-align: left;">Financials</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ICE</td>
-<td style="text-align: left;">Intercontinental Exchange Inc.</td>
-<td style="text-align: left;">$125.73</td>
-<td style="text-align: left;">Financials</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BDX</td>
-<td style="text-align: left;">Becton, Dickinson and Company</td>
-<td style="text-align: left;">$241.70</td>
-<td style="text-align: left;">Health Care</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">CNC</td>
-<td style="text-align: left;">Centene Corporation</td>
-<td style="text-align: left;">$77.08</td>
-<td style="text-align: left;">Health Care</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">COO</td>
-<td style="text-align: left;">The Cooper Companies, Inc.</td>
-<td style="text-align: left;">$364.92</td>
-<td style="text-align: left;">Health Care</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">INCY</td>
-<td style="text-align: left;">Incyte Corporation</td>
-<td style="text-align: left;">$65.43</td>
-<td style="text-align: left;">Health Care</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">SYK</td>
-<td style="text-align: left;">Stryker Corporation</td>
-<td style="text-align: left;">$297.77</td>
-<td style="text-align: left;">Health Care</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">VRTX</td>
-<td style="text-align: left;">Vertex Pharmaceuticals Incorporated</td>
-<td style="text-align: left;">$415.27</td>
-<td style="text-align: left;">Health Care</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">JCI</td>
-<td style="text-align: left;">Johnson Controls International plc</td>
-<td style="text-align: left;">$56.59</td>
-<td style="text-align: left;">Industrials</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PWR</td>
-<td style="text-align: left;">Quanta Services, Inc.</td>
-<td style="text-align: left;">$200.01</td>
-<td style="text-align: left;">Industrials</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CDW</td>
-<td style="text-align: left;">CDW Corporation</td>
-<td style="text-align: left;">$214.83</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">IT</td>
-<td style="text-align: left;">Gartner, Inc.</td>
-<td style="text-align: left;">$426.23</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ROP</td>
-<td style="text-align: left;">Roper Technologies, Inc.</td>
-<td style="text-align: left;">$523.74</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">TDY</td>
-<td style="text-align: left;">Teledyne Technologies Incorporated</td>
-<td style="text-align: left;">$436.60</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">ZBRA</td>
-<td style="text-align: left;">Zebra Technologies Corporation</td>
-<td style="text-align: left;">$252.54</td>
-<td style="text-align: left;">Information Technology</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">ALB</td>
-<td style="text-align: left;">Albemarle Corporation</td>
-<td style="text-align: left;">$135.26</td>
 <td style="text-align: left;">Materials</td>
+<td style="text-align: left;">19.9%</td>
+<td style="text-align: left;">27.5%</td>
+<td style="text-align: left;">35.1%</td>
+<td style="text-align: left;">4.6%</td>
+<td style="text-align: left;">7.7%</td>
+<td style="text-align: left;">17.3%</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">STLD</td>
-<td style="text-align: left;">Steel Dynamics, Inc.</td>
-<td style="text-align: left;">$116.12</td>
+<td style="text-align: left;">Industrials</td>
+<td style="text-align: left;">20.4%</td>
+<td style="text-align: left;">29.5%</td>
+<td style="text-align: left;">42%</td>
+<td style="text-align: left;">3.9%</td>
+<td style="text-align: left;">6.7%</td>
+<td style="text-align: left;">10.8%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: left;">21.1%</td>
+<td style="text-align: left;">29.7%</td>
+<td style="text-align: left;">39.7%</td>
+<td style="text-align: left;">3.9%</td>
+<td style="text-align: left;">11.2%</td>
+<td style="text-align: left;">19.3%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Financials</td>
+<td style="text-align: left;">25.1%</td>
+<td style="text-align: left;">34%</td>
+<td style="text-align: left;">41.5%</td>
+<td style="text-align: left;">1.8%</td>
+<td style="text-align: left;">7.4%</td>
+<td style="text-align: left;">14.7%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: left;">25.6%</td>
+<td style="text-align: left;">37.6%</td>
+<td style="text-align: left;">56.5%</td>
+<td style="text-align: left;">5.8%</td>
+<td style="text-align: left;">8.4%</td>
+<td style="text-align: left;">13.4%</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<p>Notice that Low_Q1 represents the 25th percentile of the distribution of Low52WkPerc, while High_Q3 represents the 75th percentile of the distribution of High52WkPerc.</p>
+<p>We want to identify the GICS Sector(s) whose stocks are closest to their 52-Week Low and relatively furthest from their 52-Week High prices. Once way of doing this is to create a scatterplot, as follows.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert percentage strings back to numeric for plotting</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> sector_summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low_Q1_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, Low_Q1)),</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">High_Q3_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, High_Q3))</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot with larger circle sizes</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> Low_Q1_numeric, <span class="at">y =</span> High_Q3_numeric, <span class="at">color =</span> GICSSector)) <span class="sc">+</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="co"># Increase the size of the points</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Scatterplot of Low Q1 vs High Q3 by GICS Sector"</span>,</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Low Q1 (%)"</span>,</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"High Q3 (%)"</span>,</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"GICS Sector"</span></span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Use a minimal theme for better aesthetics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="17LiveCase01_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li><strong>This scatterplot suggests that the Consumer Staples sector is closest to 52-Week Low and furthest from 52-Week High.</strong></li>
+</ul>
+<p>Next, we can do the reverse to determine which Sector is furthest away from 52-Week Low and closest to 52-Week High prices.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert percentage strings back to numeric for plotting</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>plot_data <span class="ot">&lt;-</span> sector_summary_stats <span class="sc">%&gt;%</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">High_Q1_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, High_Q1)),</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Low_Q3_numeric =</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">"%"</span>, <span class="st">""</span>, Low_Q3))</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatterplot with larger circle sizes</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plot_data, <span class="fu">aes</span>(<span class="at">x =</span> High_Q1_numeric, <span class="at">y =</span> Low_Q3_numeric, <span class="at">color =</span> GICSSector)) <span class="sc">+</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span>  <span class="co"># Increase the size of the points</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Scatterplot of High Q1 vs Low Q3 by GICS Sector"</span>,</span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"High Q1 (%)"</span>,</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Low Q3 (%)"</span>,</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"GICS Sector"</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()  <span class="co"># Use a minimal theme for better aesthetics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="17LiveCase01_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="768"></p>
+</div>
+</div>
+<ul>
+<li><strong>This scatterplot suggests that the Communication Services sector is closest to 52-Week Low and furthest from 52-Week High.</strong></li>
+</ul>
+</section>
+<section id="profitability-of-each-gics-sector" class="level3">
+<h3 class="anchored" data-anchor-id="profitability-of-each-gics-sector">Profitability of each GICS Sector</h3>
+<p>The following table gives us the Median of different profitability metrics {ROE, ROA, ROIC, OPM, NPM}, for each GICS sector.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the median values for Profitability metrics </span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>median_financials <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GICSSector) <span class="sc">%&gt;%</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_ROE =</span> <span class="fu">round</span>(<span class="fu">median</span>(ROE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_ROA =</span> <span class="fu">round</span>(<span class="fu">median</span>(ROA, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_ROIC =</span> <span class="fu">round</span>(<span class="fu">median</span>(ROIC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_OPM =</span> <span class="fu">round</span>(<span class="fu">median</span>(OperatingMargin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_NPM =</span> <span class="fu">round</span>(<span class="fu">median</span>(NetMargin, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Med_ROE)) <span class="co"># Sort the table based on Median ROE in descending order</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a formatted table using kable</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>median_financials <span class="sc">%&gt;%</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Median Financial Metrics by GICS Sector"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small" data-quarto-postprocess="true">
+<caption>Median Financial Metrics by GICS Sector</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_ROE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_ROA</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_ROIC</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_OPM</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_NPM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: right;">25.9</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">16.0</td>
+<td style="text-align: right;">21.6</td>
+<td style="text-align: right;">17.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Discretionary</td>
+<td style="text-align: right;">24.5</td>
+<td style="text-align: right;">12.5</td>
+<td style="text-align: right;">18.1</td>
+<td style="text-align: right;">13.8</td>
+<td style="text-align: right;">9.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Industrials</td>
+<td style="text-align: right;">23.4</td>
+<td style="text-align: right;">8.3</td>
+<td style="text-align: right;">13.0</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">11.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Energy</td>
+<td style="text-align: right;">22.7</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">15.2</td>
+<td style="text-align: right;">25.4</td>
+<td style="text-align: right;">16.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Staples</td>
+<td style="text-align: right;">21.3</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">14.6</td>
+<td style="text-align: right;">8.2</td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Materials</td>
+<td style="text-align: right;">16.5</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">9.1</td>
+<td style="text-align: right;">13.9</td>
+<td style="text-align: right;">8.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Financials</td>
+<td style="text-align: right;">14.5</td>
+<td style="text-align: right;">2.2</td>
+<td style="text-align: right;">8.4</td>
+<td style="text-align: right;">23.1</td>
+<td style="text-align: right;">17.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Communication Services</td>
+<td style="text-align: right;">12.9</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">17.7</td>
+<td style="text-align: right;">8.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: right;">12.6</td>
+<td style="text-align: right;">5.7</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">15.1</td>
+<td style="text-align: right;">10.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">2.4</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">19.9</td>
+<td style="text-align: right;">11.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Real Estate</td>
+<td style="text-align: right;">7.2</td>
+<td style="text-align: right;">3.4</td>
+<td style="text-align: right;">3.9</td>
+<td style="text-align: right;">31.2</td>
+<td style="text-align: right;">19.7</td>
 </tr>
 </tbody>
 </table>
@@ -1524,16 +1665,150 @@ Table 1h: Data Columns related to Dividends
 
 </div>
 </div>
-<p>We could write similar code, if we instead wanted a list of stocks that were rated “Strong Buy”.</p>
-<p>With this, we conclude our brief descriptive survey of the S&amp;P500 stocks.</p>
+<ul>
+<li><p><strong>We notice that the Information Technology GICS Sector has the relatively largest profitability numbers.</strong></p></li>
+<li><p><strong>We also note that the Consumer Staples has fairly good profitability numbers as well, relative to all the other sectors.</strong></p></li>
+</ul>
+</section>
+<section id="earnings-of-each-gics-sector" class="level3">
+<h3 class="anchored" data-anchor-id="earnings-of-each-gics-sector">Earnings of each GICS Sector</h3>
+<p>We review the distribution of Price to Earnings (PE) and Price to Book (PB) ratios, across different sectors. Obviously, the smaller the PE and PB ratio, the better it is.</p>
+<p>We also review how the Earnings Per Share have increased or decreased across the different GICS sectors.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Assuming 'sp500' is your dataset and it includes the columns PE, PB, EPS_QYOY, and EPS_YOY</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the median values for Earnings related metrics</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>median_earnings <span class="ot">&lt;-</span> sp500 <span class="sc">%&gt;%</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GICSSector) <span class="sc">%&gt;%</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_PE =</span> <span class="fu">round</span>(<span class="fu">median</span>(PE, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_PB =</span> <span class="fu">round</span>(<span class="fu">median</span>(PB, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_EPS_QYOY =</span> <span class="fu">round</span>(<span class="fu">median</span>(EPS_QYOY, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>),</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">Med_EPS_YOY =</span> <span class="fu">round</span>(<span class="fu">median</span>(EPS_YOY, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">1</span>)</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="co"># Removed the sorting to keep the table unsorted</span></span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a formatted table using kable</span></span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>median_earnings <span class="sc">%&gt;%</span></span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="st">"html"</span>, </span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">caption =</span> <span class="st">"Median Earnings Metrics (PE, PB, EPS_QYOY, EPS_YOY) by GICS Sector"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Median Earnings Metrics (PE, PB, EPS_QYOY, EPS_YOY) by GICS Sector</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">GICSSector</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_PE</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_PB</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_EPS_QYOY</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Med_EPS_YOY</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Communication Services</td>
+<td style="text-align: right;">25.7</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">20.1</td>
+<td style="text-align: right;">2.1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Consumer Discretionary</td>
+<td style="text-align: right;">21.9</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">14.0</td>
+<td style="text-align: right;">11.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Consumer Staples</td>
+<td style="text-align: right;">23.4</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">7.6</td>
+<td style="text-align: right;">-1.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Energy</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">2.5</td>
+<td style="text-align: right;">-26.5</td>
+<td style="text-align: right;">-16.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Financials</td>
+<td style="text-align: right;">15.3</td>
+<td style="text-align: right;">2.0</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">4.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Health Care</td>
+<td style="text-align: right;">29.5</td>
+<td style="text-align: right;">3.7</td>
+<td style="text-align: right;">0.1</td>
+<td style="text-align: right;">0.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Industrials</td>
+<td style="text-align: right;">26.0</td>
+<td style="text-align: right;">5.3</td>
+<td style="text-align: right;">11.2</td>
+<td style="text-align: right;">12.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Information Technology</td>
+<td style="text-align: right;">30.6</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">4.4</td>
+<td style="text-align: right;">8.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Materials</td>
+<td style="text-align: right;">21.7</td>
+<td style="text-align: right;">2.7</td>
+<td style="text-align: right;">-27.4</td>
+<td style="text-align: right;">-29.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Real Estate</td>
+<td style="text-align: right;">41.6</td>
+<td style="text-align: right;">2.3</td>
+<td style="text-align: right;">-17.1</td>
+<td style="text-align: right;">-20.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Utilities</td>
+<td style="text-align: right;">19.2</td>
+<td style="text-align: right;">1.9</td>
+<td style="text-align: right;">5.5</td>
+<td style="text-align: right;">-0.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+</div>
+</div>
+<ul>
+<li><p><strong>We conlcude that from a Price to Earnings ratio perspective, the PE ratio is relatively lowest for the Energy sector.</strong></p></li>
+<li><p><strong>From an Earnings per Share Growth perspective, the Consumer Discretionary GICS sector has performed the best.</strong></p></li>
+</ul>
+<p>Thus, in this survey, we have analyzed the distribution of prices and also the distribution of profitability and earnings growth metrics for the different GICS sector. With this, we conclude our brief descriptive survey of the S&amp;P500 stocks.</p>
 </section>
 </section>
 <section id="summary-of-chapter-17-case-1-of-2-an-overview-of-the-sp500" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-17-case-1-of-2-an-overview-of-the-sp500">Summary of Chapter 17 – Case (1 of 2): An Overview of the S&amp;P500</h2>
-<p>This chapter provides a comprehensive case study on the S&amp;P 500, a crucial stock market index tracking 500 major publicly traded companies in the U.S. This study outlines the S&amp;P 500’s structure, managed by S&amp;P Dow Jones Indices, and its role as a benchmark in evaluating the U.S. stock market’s health and performance. Key attributes like the index’s float-weighted nature and its diverse industry representation are discussed.</p>
-<p>The study utilizes R programming tools for data manipulation and visualization. Data is sourced from Google Sheets, capturing the most recent information on S&amp;P 500 stocks, and is meticulously loaded, merged, and organized into a tibble for analysis. The chapter also introduces the Global Industry Classification Standard (GICS®), used for categorizing stocks into various sectors, providing a structure for detailed sector-wise analysis.</p>
-<p>A significant portion of the chapter is dedicated to understanding and restructuring the data columns, making them more accessible and insightful for analysis. This includes adding new columns to track stock prices relative to their 52-week highs and lows, formatting prices, and analyzing stock ratings as factor variables. The study also presents a visual exploration of the stocks across different GICS sectors and their market capitalizations, offering insights into the distribution and financial magnitude of companies within each sector.</p>
-<p>In conclusion, this case study serves as an insightful primer on the S&amp;P 500, utilizing a blend of descriptive analysis, data visualization, and statistical summaries. This sets the stage for more focused sectoral analyses in subsequent chapters, allowing for a deeper dive into specific areas of the U.S. stock market.</p>
+<p>Chapter Summary: S&amp;P 500 Case Study</p>
+<p>This chapter presents a comprehensive case study of the S&amp;P 500, a crucial index in the U.S. stock market, comprising 500 major publicly traded companies. The chapter begins by introducing the S&amp;P 500, including its management by S&amp;P Dow Jones Indices and its significance as a benchmark for U.S. stock market health. Key strengths of the S&amp;P 500 are highlighted, such as its diverse representation across various economic sectors and its role as a benchmark for investors. However, the chapter also discusses critiques, including the potential for market misrepresentation due to its market capitalization weighting and the issue of exclusivity, as it doesn’t fully represent the entire U.S. economy.</p>
+<p>The chapter then delves into a detailed data analysis using R programming, starting with loading necessary R packages and reading S&amp;P 500 data from a Google Sheet. The data, sourced from TradingView.com, is organized into a tibble and classified according to the Global Industry Classification Standard (GICS). Further, the chapter categorizes data columns into various aspects like company information, profitability, earnings, and others. It also includes renaming and understanding these data columns for more accessible analysis.</p>
+<p>Significant analyses in the chapter include: 1. Stock Prices Analysis: Comparison of stock prices relative to their 52-Week Low and High. 2. GICS Sectors Analysis: Examination of the distribution of stocks and market capitalization across different GICS sectors. 3. Profitability and Earnings Analysis: Evaluation of the profitability and earnings of companies in each GICS sector.</p>
+<p>Each analysis is supported with R code snippets and explanations, providing a clear understanding of the methodologies and results. The chapter concludes by summarizing insights from the analyses, such as sector-wise profitability and earnings growth, offering a nuanced understanding of the S&amp;P 500 index’s composition and performance.</p>
+<p>This chapter serves as an in-depth review and analysis of the S&amp;P 500, blending theoretical knowledge with practical data analysis skills, making it a valuable resource for those interested in financial markets and data analytics.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>

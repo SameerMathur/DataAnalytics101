@@ -450,49 +450,196 @@ top_stocks_by_sector <- sp500 %>%
 
 # Select only the specified columns and create a table using kable
 top_stocks_by_sector %>%
-  select(Stock, StockName, GICSSector, MarketCapBillions, Price) %>%
-  kable("html", caption = "Top Two Stocks by Market Capitalization, by GICS Sector") %>%
+  select(GICSSector, Stock, StockName, MarketCapBillions) %>%
+  kable("html", caption = "Top Two Stocks by Market Capitalization, for each GICS Sector") %>%
   kable_styling()
 ```
 
-### Stocks rated "Strong Sell"
+### Prices relative to 52-Week-Low and 52-Week-High of each GICS Sector
 
-1.  Suppose we wanted to list the stocks that have received a Rating of "Strong Sell".
-2.  Recall that the following code will count the number of Stocks by Rating.
+We analyze the distribution of stock prices relative to their 52 Week Low, measured as `Low52WkPerc = (Price - 52-Week-Low)/(52-Week-Low)`. In fact, we review this distribution for each GICS Sector, to understand which sector has stocks priced relatively closest to their 52-Week Low prices.
 
-```{r, warning=FALSE, eval=TRUE, echo=TRUE}
-table(sp500$Rating)
-```
+We also do this for stock prices relative to their 52 Week High, measured as `High52WkPerc = (52-Week-High - Price)/(52-Week-High)`.
 
-3.  Suppose we want to list the stocks that have "Strong Sell" rating. We can filter the stocks with a Rating of "Strong Sell"; select the columns: Stock, StockName, Price, GICSSector; arrange the resulting data by GICSSector. Accordingly, we can write the following code:
+Table 2
 
 ```{r}
 library(dplyr)
 library(kableExtra)
 
-strong_sell_stocks <- sp500 %>%
-  filter(Rating == "Strong Sell") %>%
-  select(Stock, StockName, Price, GICSSector) %>%
-  arrange(GICSSector)
+# Calculate Q1, Median, and Q3 for Low52WkPerc and High52WkPerc within each GICS sector
+sector_summary_stats <- sp500 %>%
+  group_by(GICSSector) %>%
+  summarise(
+    Low_Q1 = round(quantile(Low52WkPerc, 0.25, na.rm = TRUE), 1),
+    Low_Median = round(median(Low52WkPerc, na.rm = TRUE), 1),
+    Low_Q3 = round(quantile(Low52WkPerc, 0.75, na.rm = TRUE), 1),
+    High_Q1 = round(quantile(High52WkPerc, 0.25, na.rm = TRUE), 1),
+    High_Median = round(median(High52WkPerc, na.rm = TRUE), 1),
+    High_Q3 = round(quantile(High52WkPerc, 0.75, na.rm = TRUE), 1)
+  ) %>%
+  ungroup()
 
-strong_sell_stocks %>%
-  kable("html", caption = "Stocks with a Rating of Strong Sell") %>%
+# Sort by Low Q1
+sector_summary_stats <- sector_summary_stats %>%
+  arrange(Low_Q1)
+
+# Reapply formatting with percentage symbol
+sector_summary_stats <- sector_summary_stats %>%
+  mutate(
+    across(ends_with("Q1"), ~paste0(., "%")),
+    across(ends_with("Median"), ~paste0(., "%")),
+    across(ends_with("Q3"), ~paste0(., "%"))
+  )
+
+# Create a formatted table using kable
+sector_summary_stats %>%
+  kable("html", 
+        caption = "Q1, Median, and Q3 of Low52WkPerc and High52WkPerc by GICS Sector, Sorted by Low Q1") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+Notice that Low_Q1 represents the 25th percentile of the distribution of Low52WkPerc, while High_Q3 represents the 75th percentile of the distribution of High52WkPerc.
+
+We want to identify the GICS Sector(s) whose stocks are closest to their 52-Week Low and relatively furthest from their 52-Week High prices. Once way of doing this is to create a scatterplot, as follows.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Convert percentage strings back to numeric for plotting
+plot_data <- sector_summary_stats %>%
+  mutate(
+    Low_Q1_numeric = as.numeric(gsub("%", "", Low_Q1)),
+    High_Q3_numeric = as.numeric(gsub("%", "", High_Q3))
+  )
+
+# Create a scatterplot with larger circle sizes
+ggplot(plot_data, aes(x = Low_Q1_numeric, y = High_Q3_numeric, color = GICSSector)) +
+  geom_point(size = 4) +  # Increase the size of the points
+  labs(
+    title = "Scatterplot of Low Q1 vs High Q3 by GICS Sector",
+    x = "Low Q1 (%)",
+    y = "High Q3 (%)",
+    color = "GICS Sector"
+  ) +
+  theme_minimal()  # Use a minimal theme for better aesthetics
+
+```
+
+-   **This scatterplot suggests that the Consumer Staples sector is closest to 52-Week Low and furthest from 52-Week High.**
+
+Next, we can do the reverse to determine which Sector is furthest away from 52-Week Low and closest to 52-Week High prices.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+# Convert percentage strings back to numeric for plotting
+plot_data <- sector_summary_stats %>%
+  mutate(
+    High_Q1_numeric = as.numeric(gsub("%", "", High_Q1)),
+    Low_Q3_numeric = as.numeric(gsub("%", "", Low_Q3))
+  )
+
+# Create a scatterplot with larger circle sizes
+ggplot(plot_data, aes(x = High_Q1_numeric, y = Low_Q3_numeric, color = GICSSector)) +
+  geom_point(size = 4) +  # Increase the size of the points
+  labs(
+    title = "Scatterplot of High Q1 vs Low Q3 by GICS Sector",
+    x = "High Q1 (%)",
+    y = "Low Q3 (%)",
+    color = "GICS Sector"
+  ) +
+  theme_minimal()  # Use a minimal theme for better aesthetics
+
+```
+
+-   **This scatterplot suggests that the Communication Services sector is closest to 52-Week Low and furthest from 52-Week High.**
+
+### Profitability of each GICS Sector
+
+The following table gives us the Median of different profitability metrics {ROE, ROA, ROIC, OPM, NPM}, for each GICS sector.
+
+```{r}
+library(dplyr)
+library(kableExtra)
+
+# Calculate the median values for Profitability metrics 
+median_financials <- sp500 %>%
+  group_by(GICSSector) %>%
+  summarise(
+    Med_ROE = round(median(ROE, na.rm = TRUE), 1),
+    Med_ROA = round(median(ROA, na.rm = TRUE), 1),
+    Med_ROIC = round(median(ROIC, na.rm = TRUE), 1),
+    Med_OPM = round(median(OperatingMargin, na.rm = TRUE), 1),
+    Med_NPM = round(median(NetMargin, na.rm = TRUE), 1)
+  ) %>%
+  arrange(desc(Med_ROE)) # Sort the table based on Median ROE in descending order
+
+# Create a formatted table using kable
+median_financials %>%
+  kable("html", 
+        caption = "Median Financial Metrics by GICS Sector") %>%
   kable_styling()
 ```
 
-We could write similar code, if we instead wanted a list of stocks that were rated "Strong Buy".
+-   **We notice that the Information Technology GICS Sector has the relatively largest profitability numbers.**
 
-With this, we conclude our brief descriptive survey of the S&P500 stocks.
+-   **We also note that the Consumer Staples has fairly good profitability numbers as well, relative to all the other sectors.**
+
+### Earnings of each GICS Sector
+
+We review the distribution of Price to Earnings (PE) and Price to Book (PB) ratios, across different sectors. Obviously, the smaller the PE and PB ratio, the better it is.
+
+We also review how the Earnings Per Share have increased or decreased across the different GICS sectors.
+
+```{r}
+library(dplyr)
+library(kableExtra)
+
+# Assuming 'sp500' is your dataset and it includes the columns PE, PB, EPS_QYOY, and EPS_YOY
+
+# Calculate the median values for Earnings related metrics
+median_earnings <- sp500 %>%
+  group_by(GICSSector) %>%
+  summarise(
+    Med_PE = round(median(PE, na.rm = TRUE), 1),
+    Med_PB = round(median(PB, na.rm = TRUE), 1),
+    Med_EPS_QYOY = round(median(EPS_QYOY, na.rm = TRUE), 1),
+    Med_EPS_YOY = round(median(EPS_YOY, na.rm = TRUE), 1)
+  ) %>%
+  ungroup() # Removed the sorting to keep the table unsorted
+
+# Create a formatted table using kable
+median_earnings %>%
+  kable("html", 
+        caption = "Median Earnings Metrics (PE, PB, EPS_QYOY, EPS_YOY) by GICS Sector") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+
+```
+
+-   **We conlcude that from a Price to Earnings ratio perspective, the PE ratio is relatively lowest for the Energy sector.**
+
+-   **From an Earnings per Share Growth perspective, the Consumer Discretionary GICS sector has performed the best.**
+
+Thus, in this survey, we have analyzed the distribution of prices and also the distribution of profitability and earnings growth metrics for the different GICS sector. With this, we conclude our brief descriptive survey of the S&P500 stocks.
 
 ## Summary of Chapter 17 -- Case (1 of 2): An Overview of the S&P500
 
-This chapter provides a comprehensive case study on the S&P 500, a crucial stock market index tracking 500 major publicly traded companies in the U.S. This study outlines the S&P 500's structure, managed by S&P Dow Jones Indices, and its role as a benchmark in evaluating the U.S. stock market's health and performance. Key attributes like the index's float-weighted nature and its diverse industry representation are discussed.
+Chapter Summary: S&P 500 Case Study
 
-The study utilizes R programming tools for data manipulation and visualization. Data is sourced from Google Sheets, capturing the most recent information on S&P 500 stocks, and is meticulously loaded, merged, and organized into a tibble for analysis. The chapter also introduces the Global Industry Classification Standard (GICS®), used for categorizing stocks into various sectors, providing a structure for detailed sector-wise analysis.
+This chapter presents a comprehensive case study of the S&P 500, a crucial index in the U.S. stock market, comprising 500 major publicly traded companies. The chapter begins by introducing the S&P 500, including its management by S&P Dow Jones Indices and its significance as a benchmark for U.S. stock market health. Key strengths of the S&P 500 are highlighted, such as its diverse representation across various economic sectors and its role as a benchmark for investors. However, the chapter also discusses critiques, including the potential for market misrepresentation due to its market capitalization weighting and the issue of exclusivity, as it doesn't fully represent the entire U.S. economy.
 
-A significant portion of the chapter is dedicated to understanding and restructuring the data columns, making them more accessible and insightful for analysis. This includes adding new columns to track stock prices relative to their 52-week highs and lows, formatting prices, and analyzing stock ratings as factor variables. The study also presents a visual exploration of the stocks across different GICS sectors and their market capitalizations, offering insights into the distribution and financial magnitude of companies within each sector.
+The chapter then delves into a detailed data analysis using R programming, starting with loading necessary R packages and reading S&P 500 data from a Google Sheet. The data, sourced from TradingView.com, is organized into a tibble and classified according to the Global Industry Classification Standard (GICS). Further, the chapter categorizes data columns into various aspects like company information, profitability, earnings, and others. It also includes renaming and understanding these data columns for more accessible analysis.
 
-In conclusion, this case study serves as an insightful primer on the S&P 500, utilizing a blend of descriptive analysis, data visualization, and statistical summaries. This sets the stage for more focused sectoral analyses in subsequent chapters, allowing for a deeper dive into specific areas of the U.S. stock market.
+Significant analyses in the chapter include: 1. Stock Prices Analysis: Comparison of stock prices relative to their 52-Week Low and High. 2. GICS Sectors Analysis: Examination of the distribution of stocks and market capitalization across different GICS sectors. 3. Profitability and Earnings Analysis: Evaluation of the profitability and earnings of companies in each GICS sector.
+
+Each analysis is supported with R code snippets and explanations, providing a clear understanding of the methodologies and results. The chapter concludes by summarizing insights from the analyses, such as sector-wise profitability and earnings growth, offering a nuanced understanding of the S&P 500 index's composition and performance.
+
+This chapter serves as an in-depth review and analysis of the S&P 500, blending theoretical knowledge with practical data analysis skills, making it a valuable resource for those interested in financial markets and data analytics.
 
 ## References
 
