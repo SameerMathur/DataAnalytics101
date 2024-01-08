@@ -295,7 +295,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#visualizing-bivariate-categorical-data" id="toc-visualizing-bivariate-categorical-data" class="nav-link" data-scroll-target="#visualizing-bivariate-categorical-data">Visualizing Bivariate Categorical Data</a>
   <ul class="collapse">
-  <li><a href="#using-ggplot2" id="toc-using-ggplot2" class="nav-link" data-scroll-target="#using-ggplot2">Using <strong>ggplot2</strong></a></li>
+  <li><a href="#using-ggplot2" id="toc-using-ggplot2" class="nav-link" data-scroll-target="#using-ggplot2">Using <strong><code>ggplot2</code></strong></a></li>
   <li><a href="#mosaic-plots-for-bivariate-categorical-data" id="toc-mosaic-plots-for-bivariate-categorical-data" class="nav-link" data-scroll-target="#mosaic-plots-for-bivariate-categorical-data"><strong>Mosaic Plots</strong> for Bivariate Categorical Data</a></li>
   </ul></li>
   <li><a href="#summary-of-chapter-8-bivariate-categorical-data-part-1-of-2" id="toc-summary-of-chapter-8-bivariate-categorical-data-part-1-of-2" class="nav-link" data-scroll-target="#summary-of-chapter-8-bivariate-categorical-data-part-1-of-2">Summary of Chapter 8 – Bivariate Categorical data (Part 1 of 2)</a></li>
@@ -314,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Chapter 8<em>.</em></strong></p>
 <section id="exploring-bivariate-categorical-data" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-bivariate-categorical-data">Exploring Bivariate Categorical Data</h2>
-<p>This chapter explores how to summarize and visualize <em>Bivariate, categorical</em> data. It builds on the previous chapter, which taught how to summarize and visualize <em>univariate, categorical</em> data.</p>
+<p>This chapter explores how to summarize and visualize <em>bivariate, categorical</em> data. It builds on the previous chapter, which taught how to summarize and visualize <em>univariate, categorical</em> data.</p>
 <ol type="1">
 <li><p>Bivariate categorical data analysis involves examining the <strong>relationship between two categorical variables</strong>. For instance, we might examine the relationship between a person’s gender (male, female, or non-binary) and whether they own a car (yes or no). By exploring these two categorical variables together, we can discern potential correlations or associations.</p></li>
 <li><p>As an extension, multivariate analysis involves the simultaneous observation and analysis of more than two variables. We will study multivariate data in the next chapter.</p></li>
@@ -729,7 +729,7 @@ cyl  0  1
 <li><strong>Stacked Barplot</strong></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a frequency table by number of cylinders ('cyl') and transmission ('am') </span></span>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a frequency table by cylinders ('cyl') and transmission ('am') </span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(tb<span class="sc">$</span>cyl, tb<span class="sc">$</span>am)</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>freq  <span class="co"># Display the frequency table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -785,8 +785,8 @@ cyl  0  1
 <li>The grouped bar plot helps in comparing the number of cylinders across transmission types side by side, while the stacked bar plot gives an overall comparison in terms of total number of cars, with the frequency of each cylinder type stacked on top of the other. The choice between a stacked and a grouped bar plot would depend on the specific aspects of the data one would want to highlight. Taken together, grouped and stacked bar plots offer visually appealing and intuitive methods for presenting bivariate categorical data, allowing us to understand and analyze relationships between categorical variables in a meaningful way. [3]</li>
 </ol>
 <section id="using-ggplot2" class="level3">
-<h3 class="anchored" data-anchor-id="using-ggplot2">Using <strong>ggplot2</strong></h3>
-<p><strong>Grouped Barplot using ggplot2</strong></p>
+<h3 class="anchored" data-anchor-id="using-ggplot2">Using <strong><code>ggplot2</code></strong></h3>
+<p><strong>Grouped Barplot using <code>ggplot2</code></strong></p>
 <ul>
 <li>We demonstrate how to create a Grouped Barplot of Car Count by transmission and cylinders</li>
 </ul>
@@ -810,7 +810,7 @@ cyl  0  1
 <span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>                          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Automatic"</span>, <span class="st">"Manual"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
-<li>Create a Grouped Barplot using ggplot2 [4]</li>
+<li>Create a Grouped Barplot using <code>ggplot2</code> [4]</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -881,7 +881,7 @@ Attaching package: 'ggplot2'</code></pre>
 <span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>df_inverted<span class="sc">$</span>Cylinders <span class="ot">&lt;-</span> <span class="fu">factor</span>(df_inverted<span class="sc">$</span>Cylinders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="5" type="1">
-<li>Create a Grouped Barplot using ggplot2 [4]</li>
+<li>Create a Grouped Barplot using <code>ggplot2</code> [4]</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the Grouped Barplot using ggplot2</span></span>
@@ -919,7 +919,7 @@ Attaching package: 'ggplot2'</code></pre>
 <li><p>To create a stacked bar plot with <code>ggplot2</code>, we apply the <code>geom_bar()</code> function but without the dodge positioning this time, since we want the bars stacked. [4]</p></li>
 </ul>
 <ol start="7" type="1">
-<li>Create a Stacked Barplot using ggplot2</li>
+<li>Create a Stacked Barplot using <code>ggplot2</code></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -1081,7 +1081,7 @@ Attaching package: 'ggplot2'</code></pre>
 <section id="summary-of-chapter-8-bivariate-categorical-data-part-1-of-2" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-8-bivariate-categorical-data-part-1-of-2">Summary of Chapter 8 – Bivariate Categorical data (Part 1 of 2)</h2>
 <p>In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.</p>
-<p>An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage. The <code>ggplot2</code> library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.</p>
+<p>An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced <code>ggplot2</code> library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage. The <code>ggplot2</code> library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.</p>
 <p>The chapter also introduces mosaic plots as another way of visualizing bivariate categorical data and discusses how mosaic plots can provide a visual representation of the frequency or proportion of different categories within variables. The use of the base R <code>mosaicplot()</code> function is exemplified, followed by the demonstration of the <code>mosaic()</code> function in the <code>vcd</code> package and the <code>ggmosaic</code> package, bringing full circle the spectrum of visualizations covered for bivariate categorical data.</p>
 </section>
 <section id="references" class="level2">

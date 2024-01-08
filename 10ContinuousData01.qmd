@@ -248,7 +248,7 @@ stem(wt)
 3.  It serves as a valuable tool for demonstrating the distribution shape of the data. In R, we can construct a histogram using the `hist()` function and control its appearance. The final histogram visually depicts the frequency of `mpg` values in the dataset, where each bar represents the count of observations within a specific range of values. \[6\]
 
 ```{r}
-# Create a histogram of mpg column with a specific number of bins of equal width
+# Create a histogram of mpg column with bins of equal width
 hist(tb$mpg, 
      breaks = 12, # This creates 12 bins of equal width
      main="Histogram of mpg (with 12 breaks)", 
@@ -271,7 +271,7 @@ hist(tb$mpg,
 ```{r}
 # Create a histogram of mpg column with specific bin ranges
 hist(tb$mpg, 
-     breaks = seq(5, 35, by = 5), # This creates bins with ranges 10-15, 15-20, etc.
+     breaks = seq(5, 35, by = 5), # bins with ranges 10-15, 15-20, etc.
      main="Histogram of Mileage (with breaks of 5)", 
      xlab="Miles per gallon (mpg)", 
      col="lightblue", 
@@ -461,60 +461,60 @@ To summarize, this chapter presents key R functions and techniques for visualizi
 
 ## References
 
-**R programmng:**
+R Programming:
 
 \[1\] Crawley, M. J. (2007). The R Book. Wiley.
 
-Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
+Kabacoff, R. I. (2015). R in Action: Data Analysis and Graphics with R (2nd ed.). Manning Publications.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <https://www.R-project.org/.>
 
-**Statistics:**
+Statistics:
 
-\[2\] \[2\] Bogaert, P. (2021). "A Comparison of Kernel Density Estimators." Computational Statistics & Data Analysis, 77, 402-413.
+\[2\] Bogaert, P. (2021). "A Comparison of Kernel Density Estimators." Computational Statistics & Data Analysis, 77, 402-413.
 
 Downey, A. B. (2014). Think Stats: Exploratory Data Analysis. O'Reilly Media.
 
 Gravetter, F. J., & Wallnau, L. B. (2016). Statistics for the Behavioral Sciences. Cengage Learning.
 
-Kleiber, C., & Zeileis, A. (2008). *Applied econometrics with R*. Springer Science & Business Media.
+Kleiber, C., & Zeileis, A. (2008). Applied Econometrics with R. Springer Science & Business Media.
 
 Moore, D. S., McCabe, G. P., & Craig, B. A. (2012). Introduction to the Practice of Statistics. Freeman.
 
 Triola, M. (2017). Elementary Statistics. Pearson.
 
-Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.
+Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.
 
-Thode Jr, H. C. (2002). Testing for normality. CRC press.
+Thode Jr, H. C. (2002). Testing for Normality. CRC Press.
 
 Venables, W. N., & Ripley, B. D. (2002). Modern Applied Statistics with S (4th ed.). Springer.
 
-**Statistics using R:**
+Statistics using R:
 
-\[3\] Field, A., Miles, J., & Field, Z. (2012). Discovering statistics using R. Sage Publications.
+\[3\] Field, A., Miles, J., & Field, Z. (2012). Discovering Statistics Using R. Sage Publications.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <https://www.R-project.org/.>
 
-Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.
+Hyndman, R. J., & Fan, Y. (1996). Sample Quantiles in Statistical Packages. The American Statistician, 50(4), 361-365.
 
-**psych:**
+psych:
 
-\[4\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.
+\[4\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R Package Version 2.0.12. Retrieved from <https://CRAN.R-project.org/package=psych.>
 
-**Beeswarm:**
+Beeswarm:
 
-\[5\] Ellis, K. (2011). Beeswarm: The Bee Swarm Plot, an Alternative to Stripchart. R package version 0.2.3.
+\[5\] Ellis, K. (2011). Beeswarm: The Bee Swarm Plot, an Alternative to Stripchart. R Package Version 0.2.3.
 
-**Histograms:**
+Histograms:
 
-\[6\] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+\[6\] Scott, D. W. (1979). On Optimal and Data-Based Histograms. Biometrika, 66(3), 605-610.
 
 Wand, M. P., & Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.
 
-**Boxplots:**
+Boxplots:
 
 \[7\] McGill, R., Tukey, J. W., & Larsen, W. A. (1978). Variations of Box Plots. The American Statistician, 32(1), 12-16.
 
-**Violin Plots:**
+Violin Plots:
 
 \[8\] Hintze, J. L., & Nelson, R. D. (1998). Violin Plots: A Box Plot-Density Trace Synergism. The American Statistician, 52(2), 181-184.

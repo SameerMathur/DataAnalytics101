@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -643,7 +643,7 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <li><p>It serves as a valuable tool for demonstrating the distribution shape of the data. In R, we can construct a histogram using the <code>hist()</code> function and control its appearance. The final histogram visually depicts the frequency of <code>mpg</code> values in the dataset, where each bar represents the count of observations within a specific range of values. [6]</p></li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with a specific number of bins of equal width</span></span>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with bins of equal width</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tb<span class="sc">$</span>mpg, </span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">12</span>, <span class="co"># This creates 12 bins of equal width</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of mpg (with 12 breaks)"</span>, </span>
@@ -668,7 +668,7 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram of mpg column with specific bin ranges</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(tb<span class="sc">$</span>mpg, </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">35</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="co"># This creates bins with ranges 10-15, 15-20, etc.</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">35</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="co"># bins with ranges 10-15, 15-20, etc.</span></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Histogram of Mileage (with breaks of 5)"</span>, </span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Miles per gallon (mpg)"</span>, </span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">"lightblue"</span>, </span>
@@ -869,34 +869,34 @@ carb  32   2.81   1.62   2.00  1.00   8.00  1.05     1.26</code></pre>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p><strong>R programmng:</strong></p>
+<p>R Programming:</p>
 <p>[1] Crawley, M. J. (2007). The R Book. Wiley.</p>
-<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
-<p>R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
-<p><strong>Statistics:</strong></p>
-<p>[2] [2] Bogaert, P. (2021). “A Comparison of Kernel Density Estimators.” Computational Statistics &amp; Data Analysis, 77, 402-413.</p>
+<p>Kabacoff, R. I. (2015). R in Action: Data Analysis and Graphics with R (2nd ed.). Manning Publications.</p>
+<p>R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <a href="https://www.R-project.org/." class="uri">https://www.R-project.org/.</a></p>
+<p>Statistics:</p>
+<p>[2] Bogaert, P. (2021). “A Comparison of Kernel Density Estimators.” Computational Statistics &amp; Data Analysis, 77, 402-413.</p>
 <p>Downey, A. B. (2014). Think Stats: Exploratory Data Analysis. O’Reilly Media.</p>
 <p>Gravetter, F. J., &amp; Wallnau, L. B. (2016). Statistics for the Behavioral Sciences. Cengage Learning.</p>
-<p>Kleiber, C., &amp; Zeileis, A. (2008).&nbsp;<em>Applied econometrics with R</em>. Springer Science &amp; Business Media.</p>
+<p>Kleiber, C., &amp; Zeileis, A. (2008). Applied Econometrics with R. Springer Science &amp; Business Media.</p>
 <p>Moore, D. S., McCabe, G. P., &amp; Craig, B. A. (2012). Introduction to the Practice of Statistics. Freeman.</p>
 <p>Triola, M. (2017). Elementary Statistics. Pearson.</p>
-<p>Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.</p>
-<p>Thode Jr, H. C. (2002). Testing for normality. CRC press.</p>
+<p>Tukey, J. W. (1977). Exploratory Data Analysis. Addison-Wesley.</p>
+<p>Thode Jr, H. C. (2002). Testing for Normality. CRC Press.</p>
 <p>Venables, W. N., &amp; Ripley, B. D. (2002). Modern Applied Statistics with S (4th ed.). Springer.</p>
-<p><strong>Statistics using R:</strong></p>
-<p>[3] Field, A., Miles, J., &amp; Field, Z. (2012). Discovering statistics using R. Sage Publications.</p>
-<p>R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.</p>
-<p>Hyndman, R. J., &amp; Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.</p>
-<p><strong>psych:</strong></p>
-<p>[4] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.</p>
-<p><strong>Beeswarm:</strong></p>
-<p>[5] Ellis, K. (2011). Beeswarm: The Bee Swarm Plot, an Alternative to Stripchart. R package version 0.2.3.</p>
-<p><strong>Histograms:</strong></p>
-<p>[6] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.</p>
+<p>Statistics using R:</p>
+<p>[3] Field, A., Miles, J., &amp; Field, Z. (2012). Discovering Statistics Using R. Sage Publications.</p>
+<p>R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <a href="https://www.R-project.org/." class="uri">https://www.R-project.org/.</a></p>
+<p>Hyndman, R. J., &amp; Fan, Y. (1996). Sample Quantiles in Statistical Packages. The American Statistician, 50(4), 361-365.</p>
+<p>psych:</p>
+<p>[4] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R Package Version 2.0.12. Retrieved from <a href="https://CRAN.R-project.org/package=psych." class="uri">https://CRAN.R-project.org/package=psych.</a></p>
+<p>Beeswarm:</p>
+<p>[5] Ellis, K. (2011). Beeswarm: The Bee Swarm Plot, an Alternative to Stripchart. R Package Version 0.2.3.</p>
+<p>Histograms:</p>
+<p>[6] Scott, D. W. (1979). On Optimal and Data-Based Histograms. Biometrika, 66(3), 605-610.</p>
 <p>Wand, M. P., &amp; Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.</p>
-<p><strong>Boxplots:</strong></p>
+<p>Boxplots:</p>
 <p>[7] McGill, R., Tukey, J. W., &amp; Larsen, W. A. (1978). Variations of Box Plots. The American Statistician, 32(1), 12-16.</p>
-<p><strong>Violin Plots:</strong></p>
+<p>Violin Plots:</p>
 <p>[8] Hintze, J. L., &amp; Nelson, R. D. (1998). Violin Plots: A Box Plot-Density Trace Synergism. The American Statistician, 52(2), 181-184.</p>
 
 

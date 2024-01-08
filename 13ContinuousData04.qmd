@@ -2,7 +2,9 @@
 
 **Chapter 13.**
 
-This chapter explores **Categorical** x **Continuous** data using the **`dplyr`** and **`ggplot2`** packages.
+In this chapter, we analyze categorical and continuous data using R's dplyr and ggplot2 packages. It demonstrates various ggplot2 visualization techniques for continuous data within single categories, including Bee Swarm, Histogram, Probability Density Function (PDF), Cumulative Density Function (CDF), Box plot, and Violin plot.
+
+Next, we use dplyr and ggplot2 for data summarization. This includes calculating and visualizing summary statistics such as the mean and standard deviation. Techniques like line and bar plots with error bars are employed to elucidate relationships. The chapter further extends to bivariate analyses, examining relationships between multiple continuous variables and between different categories. This approach offers an in-depth guide to effectively summarizing and visualizing continuous data in R.
 
 **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`. \[1\]
 
@@ -55,7 +57,7 @@ ggplot(mtcars,  # Specifying the data source as 'mtcars' dataset
        aes(x = factor(cyl),  # Mapping 'cyl' as a factor to the x-axis
            y = mpg)) +  # Mapping 'mpg' to the y-axis
   geom_beeswarm() +  # Adding the beeswarm layer
-  labs(title = "Bee Swarm plot of Mileage (mpg) by Cylinders (cyl=4,6,8)",
+  labs(title = "Bee Swarm plot of Mileage (mpg) by Cylinders",
        x = "Cylinders (cyl)",  # Label for the x-axis
        y = "Miles per gallon (mpg)") +  # Label for the y-axis
   theme_minimal()  # Applying a minimal theme to the plot
@@ -126,7 +128,7 @@ ggplot(tb, aes(x = mpg,
   scale_fill_manual(values = c("gold", "lightblue")) +  # fill  
   facet_grid(cyl ~ am) +  # grid faceted by 'cyl' and 'am' 
   theme_minimal() +  # Applying a minimalistic theme to the plot
-  labs(title = "Mileage (mpg) by Transmission (am=0,1) and Cylinders (cyl=4,6,8)",
+  labs(title = "Mileage (mpg) by Transmission (am=0,1) and Cylinders",
        x = "Miles Per Gallon (mpg)",  # Label for the x-axis
        y = "Frequency")  # Label for the y-axis
 ```
@@ -460,12 +462,12 @@ library(dplyr)
 s3 <- tb %>%
   group_by(cyl) %>%
   summarise(
-    Mean_mpg = mean(mpg, na.rm = TRUE),  # the mean of Mileage (mpg).
-    SD_mpg = sd(mpg, na.rm = TRUE),  # the standard deviation of Mileage (mpg).
-    Mean_wt = mean(wt, na.rm = TRUE),  # the mean of Weight (wt).
-    SD_wt = sd(wt, na.rm = TRUE),  # the standard deviation of Weight (wt).
-    Mean_hp = mean(hp, na.rm = TRUE),  # the mean of Horsepower (hp).
-    SD_hp = sd(hp, na.rm = TRUE)  # the standard deviation of Horsepower (hp).
+    Mean_mpg = mean(mpg, na.rm = TRUE),  # mean of Mileage (mpg).
+    SD_mpg = sd(mpg, na.rm = TRUE),  # standard deviation of Mileage 
+    Mean_wt = mean(wt, na.rm = TRUE),  # mean of Weight (wt).
+    SD_wt = sd(wt, na.rm = TRUE),  # standard deviation of Weight (wt).
+    Mean_hp = mean(hp, na.rm = TRUE),  # mean of Horsepower (hp).
+    SD_hp = sd(hp, na.rm = TRUE)  # standard deviation of (hp).
   ) 
 
 # Creating a table (kable) to display the summary statistics.
@@ -529,7 +531,7 @@ ggplot(s4, aes(x = interaction(cyl, am),
   labs(x = "Cylinders and Transmission",  # Set x-axis label
        y = "Mean mpg",  # Set y-axis label
        fill = "Transmission",  # Set legend title for fill color
-       title = "Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") +  
+       title = "Mileage (mpg) by Cylinders and Transmission") +  
   theme_minimal()  # Use the minimal theme for the plot
 ```
 
@@ -608,57 +610,57 @@ We then delve into summarizing continuous data using `dplyr` and `ggplot2`. With
 
 ## References
 
-**Basic R programmng**
+Basic R Programming:
 
-\[1\] Chambers, J. M. (2008). *Software for data analysis: programming with R* (Vol. 2, No. 1). New York: Springer.
+\[1\] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No. 1). Springer.
 
-Crawley, M. J. (2012). *The R book*. John Wiley & Sons.
+Crawley, M. J. (2012). The R Book. John Wiley & Sons.
 
-Gardener, M. (2012). *Beginning R: the statistical programming language*. John Wiley & Sons.
+Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley & Sons.
 
-Grolemund, G. (2014). *Hands-on programming with R: Write your own functions and simulations*. " O'Reilly Media, Inc.".
+Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O'Reilly Media, Inc.
 
-Kabacoff, R. (2022). *R in action: data analysis and graphics with R and Tidyverse*. Simon and Schuster.
+Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.
 
-Peng, R. D. (2016). *R programming for data science* (pp. 86-181). Victoria, BC, Canada: Leanpub.
+Peng, R. D. (2016). R Programming for Data Science (pp. 86-181). Leanpub.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. Retrieved from <https://www.R-project.org/.>
 
-Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, *517*(7532), 109-110.
+Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.
 
-Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc.".
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science. O'Reilly Media, Inc.
 
-**ggplot2:**
+ggplot2:
 
-\[2\] Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer-Verlag New York. <https://ggplot2.tidyverse.org>
+\[2\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. Retrieved from <https://ggplot2.tidyverse.org>
 
 Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
 
-Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=ggplot2
+Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=ggplot2>
 
-Wickham, H., et al. (2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=dplyr
+Wickham, H., et al. (2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=dplyr>
 
 Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
-Wickham, H., et al. (2020). tibble: Simple Data Frames (Version 3.0.3) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=tibble
+Wickham, H., et al. (2020). tibble: Simple Data Frames (Version 3.0.3) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=tibble>
 
-**beeswarm:**
+beeswarm:
 
-\[3\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R package version 0.6.0. https://CRAN.R-project.org/package=ggbeeswarm
+\[3\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R Package Version 0.6.0. Retrieved from <https://CRAN.R-project.org/package=ggbeeswarm>
 
-**Histograms:**
+Histograms:
 
-\[4\] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+\[4\] Scott, D. W. (1979). On Optimal and Data-Based Histograms. Biometrika, 66(3), 605-610.
 
 Wand, M. P., & Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.
 
-**ggpubr:**
+ggpubr:
 
-\[5\] Kassambara A (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.
+\[5\] Kassambara, A. (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R Package Version 0.6.0. Retrieved from <https://rpkgs.datanovia.com/ggpubr/.>
 
-**Box plots:**
+Box Plots:
 
-\[6\] McGill, R., Tukey, J. W., & Larsen, W. A. (1978). Variations of box plots. *The American Statistician*, *32*(1), 12-16.
+\[6\] McGill, R., Tukey, J. W., & Larsen, W. A. (1978). Variations of Box Plots. The American Statistician, 32(1), 12-16.
 
 ## Appendix A
 

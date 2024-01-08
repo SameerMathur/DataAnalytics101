@@ -76,8 +76,6 @@ kable(A0, digits=2, caption = "Mean of Mileage (mpg) by Cylinder (cyl=4,6,8)")
 A1 <- tapply(tb$mpg, 
              tb$cyl, 
              mean)
-
-# Displaying the result stored in A1.
 print(A1)
 ```
 
@@ -101,11 +99,9 @@ print(A1)
 # Loading the 'psych' package
 library(psych)
 
-# Using the 'describeBy' function from the 'psych' package to provide descriptive
-# statistics of 'mpg' grouped by 'cyl'. This function gives a detailed summary
-# for each group including mean, standard deviation, range, etc.
+# Using the 'describeBy' from the 'psych' package for descriptive
+# statistics of 'mpg' grouped by 'cyl'. 
 A2 <- describeBy(mpg, cyl)
-
 print(A2)
 ```
 
@@ -157,21 +153,21 @@ kable(B0,
 -   Distribution of Mileage (`mpg`), Weight (`wt`), Horsepower (`hp`) by Cylinders (`cyl` = {4,6,8}) and Transmisson Type (`am` = {0,1})
 
 ```{r}
-# Aggregating columns (mpg, wt, hp) of a dataframe by 'am' and 'cyl' columns.
-# The 'mean' function is used to calculate the average for each 'am' and 'cyl'.
+# Aggregating mpg, wt, hp by 'am' and 'cyl' columns.
+# The 'mean' function is used to calculate the average 
 B1 <- aggregate(list(mpg, wt, hp), 
                 by = list(am, cyl),
                 FUN = mean)
 
 # Renaming the column names of the aggregated data frame
-# Including 'Transmission', 'Cylinders', and mean values for 'mpg', 'wt', 'hp'.
-names(B1) <- c("Transmission", "Cylinders", "Mean_mpg", "Mean_wt", "Mean_hp")
+names(B1) <- c("Transmission", "Cylinders", 
+               "Mean_mpg", "Mean_wt", "Mean_hp")
 
 # Displaying the aggregated data using 'kable' from the knitr package.
 # Formatting numbers to two decimal places and adding a descriptive caption.
 kable(B1, 
       digits=2, 
-      caption = "Mean of Mileage (mpg), Weight (wt), Horsepower (hp) by Transmission and Cylinders")
+      caption = "Mean of mpg, wt, hp by am, cyl")
 
 ```
 
@@ -191,7 +187,7 @@ agg_mean <- aggregate(tb$mpg,
                       by = list(tb$cyl, tb$am), 
                       FUN = mean)
 
-# Calculating the standard deviation (sd) of 'mpg' grouped by 'cyl' and 'am'.
+# Calculating the standard deviation (sd) of 'mpg'  by 'cyl' and 'am'.
 agg_sd <- aggregate(tb$mpg, 
                     by = list(tb$cyl, tb$am), 
                     FUN = sd)
@@ -210,12 +206,13 @@ B2 <- merge(B2, agg_median,
             by = c("Group.1", "Group.2"))
 
 # Renaming the columns of the merged data
-names(B2) <- c("Cylinders", "Transmission", "Mean_mpg", "SD_mpg", "Median_mpg")
+names(B2) <- c("Cylinders", "Transmission", 
+               "Mean_mpg", "SD_mpg", "Median_mpg")
 
-# Displaying the merged data using 'kable' from the knitr package, setting digits to 2,
-# and adding a descriptive caption.
+# Displaying the merged data 
 kable(B2, 
-      digits=2, caption = "Mean, SD, Median of Mileage (mpg) by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") 
+      digits=2, caption = "Mean, SD, Median of Mileage (mpg) 
+      by Cylinders (cyl=4,6,8) and Transmission (am=0,1)") 
 
 ```
 
@@ -238,7 +235,7 @@ tb_columns <- tb[c("mpg", "wt", "hp")]
 # Creating a list of factors ('am' and 'cyl') for grouping in describeBy.
 tb_factors <- list(tb$am, tb$cyl)
 
-# Using the 'describeBy' function to provide detailed descriptive statistics 
+# Using the 'describeBy' function to provide  descriptive statistics 
 # grouped by 'am' and 'cyl'.
 B3 <- describeBy(tb_columns, 
                  tb_factors)
@@ -320,14 +317,14 @@ beeswarm(tb$wt ~ tb$cyl,
 2.  To illustrate, let us display vehicle weights (`wt`) separately for each transmission type (`am`) using stem-and-leaf plots.
 
 ```{r warning=FALSE, message=FALSE}
-# Selecting 'wt' and 'am' columns from the 'tb' dataframe and assigning it to 'tb3'.
+# Selecting 'wt' and 'am' columns from the 'tb' dataframe 
 tb3 <- tb[, c("wt", "am")]
 
 # Splitting the 'tb3' dataframe into subsets based on the 'am' column.
 tb_split <- split(tb3, tb3$am)
 
 # Applying a function to each subset in 'tb_split' using 'lapply'.
-# The function creates a stem-and-leaf plot for the 'wt' column in each subset.
+# Create a stem-and-leaf plot for the 'wt' column in each subset.
 lapply(tb_split, 
        function(x) stem(x$wt))
 ```
@@ -349,7 +346,7 @@ split_data <- split(tb$mpg, tb$am) # Split the data by 'am' variable
 # Splitting the 'mpg' data from the 'tb' dataframe by the 'am' variable.
 split_data <- split(tb$mpg, tb$am)
 
-# Setting up the graphics layout for two plots side by side (1 row, 2 columns).
+# Setting up the graphics layout for two plots side by side.
 par(mfrow = c(1, 2))
 
 # Defining a color vector for use in the histograms.
@@ -454,7 +451,7 @@ polygon(dens_1, col = color_vector[2], border = "black")
 ```{r}
 # Creating a boxplot for 'mpg' values grouped by 'cyl'.
 boxplot(mpg ~ cyl,
-        main = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8)",  # Title 
+        main = "Boxplot of Mileage (mpg) by Cylinders (cyl=4,6,8)",   
         xlab = "Mileage (mpg)",  # Label for the x-axis.
         ylab = "Cylinders (cyl)",  # Label for the y-axis.
         col = c("skyblue"),  # Color of the boxplots.
@@ -562,79 +559,79 @@ Overall, the chapter provides a comprehensive yet concise framework for analyzin
 
 ## References
 
-**Basic R programmng**
+Basic R Programming:
 
-\[1\] Chambers, J. M. (2008). *Software for data analysis: programming with R* (Vol. 2, No. 1). New York: Springer.
+\[1\] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No. 1). Springer.
 
-Crawley, M. J. (2012). *The R book*. John Wiley & Sons.
+Crawley, M. J. (2012). The R Book. John Wiley & Sons.
 
-Gardener, M. (2012). *Beginning R: the statistical programming language*. John Wiley & Sons.
+Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley & Sons.
 
-Grolemund, G. (2014). *Hands-on programming with R: Write your own functions and simulations*. " O'Reilly Media, Inc.".
+Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O'Reilly Media, Inc.
 
-Kabacoff, R. (2022). *R in action: data analysis and graphics with R and Tidyverse*. Simon and Schuster.
+Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.
 
-Peng, R. D. (2016). *R programming for data science* (pp. 86-181). Victoria, BC, Canada: Leanpub.
+Peng, R. D. (2016). R Programming for Data Science (pp. 86-181). Leanpub.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. Retrieved from <https://www.R-project.org/.>
 
-Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, *517*(7532), 109-110.
+Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.
 
-Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc."
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science. O'Reilly Media, Inc.
 
-**knitr:**
+knitr:
 
-\[2\] Xie, Y. (2018). knitr: a comprehensive tool for reproducible research in R. In *Implementing reproducible research* (pp. 3-31). Chapman and Hall/CRC.
+\[2\] Xie, Y. (2018). knitr: A Comprehensive Tool for Reproducible Research in R. In Implementing Reproducible Research (pp. 3-31). Chapman and Hall/CRC.
 
-**psych:**
+psych:
 
-\[3\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R package version 2.0.12, https://CRAN.R-project.org/package=psych.
+\[3\] Revelle, W. (2020). psych: Procedures for Psychological, Psychometric, and Personality Research. Northwestern University, Evanston, Illinois. R Package Version 2.0.12. Retrieved from <https://CRAN.R-project.org/package=psych.>
 
-**beeswarm:**
+beeswarm:
 
-\[4\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R package version 0.6.0. https://CRAN.R-project.org/package=ggbeeswarm
+\[4\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R Package Version 0.6.0. Retrieved from <https://CRAN.R-project.org/package=ggbeeswarm.>
 
-**Stem and leaf:**
+Stem and Leaf:
 
-\[5\] Lovie, S. (2005). Stem and Leaf Plot. *Encyclopedia of Statistics in Behavioral Science*.
+\[5\] Lovie, S. (2005). Stem and Leaf Plot. Encyclopedia of Statistics in Behavioral Science.
 
-**Histograms:**
+Histograms:
 
-\[6\] Scott, D. W. (1979). On optimal and data-based histograms. Biometrika, 66(3), 605-610.
+\[6\] Scott, D. W. (1979). On Optimal and Data-Based Histograms. Biometrika, 66(3), 605-610.
 
 Wand, M. P., & Jones, M. C. (1995). Kernel Smoothing. Chapman and Hall/CRC.
 
-**Box plots:**
+Box Plots:
 
-\[7\] McGill, R., Tukey, J. W., & Larsen, W. A. (1978). Variations of box plots. *The american statistician*, *32*(1), 12-16.
+\[7\] McGill, R., Tukey, J. W., & Larsen, W. A. (1978). Variations of Box Plots. The American Statistician, 32(1), 12-16.
 
-**gplots:**
+gplots:
 
-\[8\] Warnes, M. G. R., Bolker, B., Bonebakker, L., Gentleman, R., Huber, W., & Liaw, A. (2016). Package 'gplots'. *Various R programming tools for plotting data*.
+\[8\] Warnes, M. G. R., Bolker, B., Bonebakker, L., Gentleman, R., Huber, W., & Liaw, A. (2016). Package 'gplots': Various R Programming Tools for Plotting Data.
 
-**Statistics using R**
+Statistics using R:
 
-\[9\] Braun, W. J., & Murdoch, D. J. (2021). *A first course in statistical programming with R*. Cambridge University Press.
+\[9\] Braun, W. J., & Murdoch, D. J. (2021). A First Course in Statistical Programming with R. Cambridge University Press.
 
-Cohen, Y., & Cohen, J. Y. (2008). *Statistics and Data with R: An applied approach through examples*. John Wiley & Sons.
+Cohen, Y., & Cohen, J. Y. (2008). Statistics and Data with R: An Applied Approach Through Examples. John Wiley & Sons.
 
-Dalgaard, P. (2008). *Introductory statistics with R*. springer publication.
+Dalgaard, P. (2008). Introductory Statistics with R. Springer.
 
-Davies, T. M. (2016). *The book of R: a first course in programming and statistics*. No Starch Press.
+Davies, T. M. (2016). The Book of R: A First Course in Programming and Statistics. No Starch Press.
 
-Field, A., Miles, J., & Field, Z. (2012). Discovering statistics using R. Sage Publications.
+Field, A., Miles, J., & Field, Z. (2012). Discovering Statistics Using R. Sage Publications.
 
-Fox, J., & Weisberg, S. (2018). *An R companion to applied regression*. Sage publications.
+Fox, J., & Weisberg, S. (2018). An R Companion to Applied Regression. Sage Publications.
 
-Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.
+Hyndman, R. J., & Fan, Y. (1996). Sample Quantiles in Statistical Packages. The American Statistician, 50(4), 361-365.
 
-Matloff, N. (2011). *The art of R programming: A tour of statistical software design*. No Starch Press.
+Matloff, N. (2011). The Art of R Programming: A Tour of Statistical Software Design. No Starch Press.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. Retrieved from <https://www.R-project.org/.>
 
-Schumacker, R. E. (2014). *Learning statistics using R*. Sage Publications.
+Schumacker, R. E. (2014). Learning Statistics Using R. Sage Publications.
 
-Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springer Science & Business Media.
+Schumacker, R., & Tomek, S. (2013). Understanding Statistics Using R. Springer Science & Business Media.
 
 ## Appendix
 
@@ -658,7 +655,7 @@ color_vector <- c("skyblue", "gold")
 for (i in 1:length(split_data)) {
   hist(split_data[[i]], 
        main = paste("Histogram of mpg for am =", i - 1), 
-       breaks = seq(10, 35, by = 5), # This creates bins with ranges 10-15, 15-20, etc.
+       breaks = seq(10, 35, by = 5), # bins with ranges 10-15, 15-20
        xlab = "Miles per gallon", 
        col = color_vector[i], # Use the color vector, 
        border = "black",
@@ -715,9 +712,11 @@ legend_labels <- c("am = 0", "am = 1")
 
 # Create a density plot for each subset
 # Start with an empty plot with ranges accommodating both data sets
-plot(0, 0, xlim = range(tb$mpg), ylim = c(0, 0.15), type = "n", 
+plot(0, 0, 
+     xlim = range(tb$mpg), ylim = c(0, 0.15), 
+     type = "n", 
      xlab = "Miles per gallon", ylab = "Density", 
-     main = "PDFs of Mileage (mpg) for automatic, manual transmissions (am)")
+     main = "PDFs of mpg for automatic, manual transmissions")
 
 for (i in 1:length(split_data)) {
   # Calculate density
@@ -729,11 +728,17 @@ for (i in 1:length(split_data)) {
         lwd = 2) # line width
 
   # Add a polygon to fill under the density curve
-  polygon(dens, col = adjustcolor(color_vector[i], alpha.f = 0.8), border = "black")
+  polygon(dens, 
+          col = adjustcolor(color_vector[i], 
+                            alpha.f = 0.8), 
+          border = "black")
 }
 
 # Add legend to the plot
-legend("topright", legend = legend_labels, fill = color_vector, border = "black")
+legend("topright", 
+       legend = legend_labels, 
+       fill = color_vector, 
+       border = "black")
 ```
 
 #### Appendix A4
@@ -752,7 +757,7 @@ legend_labels <- c("am = 0", "am = 1")
 # Start with an empty plot with ranges accommodating both data sets
 plot(0, 0, xlim = range(mtcars$mpg), ylim = c(0, 1), type = "n", 
      xlab = "Miles per gallon", ylab = "Cumulative Density", 
-     main = "CDFs of Mileage (mpg) for automatic, manual transmissions (am)")
+     main = "CDFs of Mileage (mpg) for automatic, manual transmissions")
 
 for (i in 1:length(split_data)) {
   # Calculate empirical cumulative density function
@@ -766,5 +771,8 @@ for (i in 1:length(split_data)) {
         lwd = 2) # line width
 }
 # Add legend to the plot
-legend("bottomright", legend = legend_labels, fill = color_vector, border = "black")
+legend("bottomright", 
+       legend = legend_labels, 
+       fill = color_vector, 
+       border = "black")
 ```

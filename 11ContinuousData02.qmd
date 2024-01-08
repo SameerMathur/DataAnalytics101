@@ -16,8 +16,8 @@ This chapter demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** 
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
-library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) 
+library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) 
 
 library(rmarkdown, quietly = TRUE, warn.conflicts = FALSE) 
 library(knitr, quietly = TRUE, warn.conflicts = FALSE) 
@@ -96,14 +96,14 @@ ggplot(tb,
 1.  The following code creates a histogram using the `ggplot2` package. Here, we pre-specify the bin width and the resulting number of bins in the histogram depend on the range of the data. \[1\]
 
 ```{r}
-# histogram using ggplot2 to visualize the distribution of miles per gallon (mpg) 
+# histogram using ggplot2 to visualize the distribution of mpg 
 ggplot(tb, 
        aes(x = mpg)) +  # Set mpg as the x-axis variable
   geom_histogram(binwidth = 4,  # Define the binwidth for the histogram
                  fill = "gold",  # Set the fill color of the bins to gold
                  color = "black") +  # Set the border color of the bin
   theme_minimal() +  # Apply a minimal theme for a cleaner look
-  labs(title = "Histogram of Mileage, using package `ggplot2` (binwidth = 4)", 
+  labs(title = "Histogram of Mileage, (binwidth = 4)", 
        x = "Miles Per Gallon (mpg)",  # Label for the x-axis
        y = "Frequency")  # Label for the y-axis
 
@@ -131,7 +131,7 @@ ggplot(tb, aes(x = mpg)) +
   geom_histogram(bins = 8, fill = "gold", color = "black") + 
   # Set histogram bins to 8 with gold fill and black border
   theme_minimal() + # Use a minimalistic theme
-  labs(title = "Histogram of Mileage, using package `ggplot2` (bins = 8)", 
+  labs(title = "Histogram of Mileage, (bins = 8)", 
        x = "Miles Per Gallon (mpg)", 
        y = "Frequency") # Add title and axis labels
 
@@ -139,7 +139,7 @@ ggplot(tb, aes(x = mpg)) +
 
 4.  Discussion:
 
--   We instruct R to create a histogram having 8 bins of equal width, by setting `bins = 8 in`geom_histogram()\`
+-   We instruct R to create a histogram having 8 bins of equal width, by setting `bins = 8` in `geom_histogram()`
 
 -   The width of each bin is adjusted by dividing the range of `mpg` by the number of specified bins. \[1\]
 
@@ -150,7 +150,9 @@ ggplot(tb, aes(x = mpg)) +
 ```{r}
 # Plot a histogram of mpg values from the tb dataset using ggplot2
 ggplot(tb, aes(x = mpg)) +
-  geom_histogram(breaks = seq(5, 40, by = 5), fill = "gold", color = "black") + 
+  geom_histogram(breaks = seq(5, 40, by = 5), 
+                 fill = "gold", 
+                 color = "black") + 
   # Define histogram breaks at intervals of 5
   theme_minimal() + # Apply a minimal theme for clarity
   labs(title = "Histogram of Mileage, (breaks of 5)", 
@@ -180,9 +182,8 @@ gghistogram(tb,
             rug = TRUE,  # Add a rug plot to show individual data points
             color = "black",  # Set the color of bins to black
             fill = "lightpink",  # Set the fill color of bins to light pink
-            title = "Histogram of Mileage, using package `ggpubr` (binwidth = 4)"
+            title = "Histogram of Mileage, (binwidth = 4)"
 )
-
 ```
 
 8.  **Discussion:**
@@ -216,9 +217,9 @@ gghistogram(tb,
             x = "mpg",  # Specify 'mpg' for the x-axis
             bins = 8,  # Set the number of bins to 8
             add = "median",  # Add a line indicating the median
-            rug = TRUE,  # Include a rug plot to show individual data points
-            color = "black",  # Set the color of the histogram bins to black
-            fill = "lightpink",  # Set the fill color of the bins to light pink
+            rug = TRUE,  # rug plot to show individual data points
+            color = "black",  # color the histogram bins black
+            fill = "lightpink",  # fill color of the bins light pink
             title = "Histogram of Mileage, showing median (bins = 8)" 
 )
 
@@ -235,8 +236,8 @@ In essence, the difference is that this code visualizes the mpg data from the `t
 ```{r}
 # Use ggplot2 to create a density plot of mpg values from the tb dataset
 ggplot(tb, aes(x = mpg)) +
-  geom_density(fill = "gold") +  # Create a density plot with gold fill color
-  theme_minimal() +  # Apply a minimal theme for a clean and simple appearance
+  geom_density(fill = "gold") +  # density plot with gold fill color
+  theme_minimal() +  # Apply a minimal theme for a clean  appearance
   labs(title = "Probability Density Function of Miles Per Gallon (mpg)",  
        x = "Miles Per Gallon (mpg)",  # Label for the x-axis
        y = "density")  # Label for the y-axis
@@ -260,12 +261,12 @@ library(ggpubr)
 ggdensity(tb, 
           x = "mpg",  # Specify 'mpg' as the variable for the plot
           add = "mean",  # Add a line indicating the mean of 'mpg'
-          rug = TRUE,  # Include a rug plot to show individual data points
-          color = "black",  # Set the color of the plot to black
+          rug = TRUE,  # rug plot to show individual data points
+          color = "black",  # color of the plot  black
           fill = "lightpink",  # Set the fill color to light pink
-          title = "PDF of Miles Per Gallon (mpg), using ggpubr::ggdensity()",  
-          xlab = "Mileage (mpg)",  # Label for the x-axis
-          ylab = "Probability Density Function (PDF)"  # Label for the y-axis
+          title = "PDF of Miles Per Gallon (mpg), using ggpubr",  
+          xlab = "Mileage (mpg)", 
+          ylab = "Probability Density Function (PDF)" 
 )
 ```
 
@@ -295,9 +296,9 @@ library(ggplot2)
 
 # Create a CDF (Cumulative Distribution Function) plot for mpg
 ggplot(tb, aes(x = mpg)) +
-  stat_ecdf(geom = "line", color = "blue") +  # Use stat_ecdf to plot the CDF
-  labs(x = "Miles Per Gallon (mpg)", y = "CDF",  # Set labels for x and y axes
-       title = "Cumulative Distribution Function (CDF) of Mileage (mpg)") +  
+  stat_ecdf(geom = "line", color = "blue") +  # plot the CDF
+  labs(x = "Miles Per Gallon (mpg)", y = "CDF",  
+       title = "Cumulative Distribution Function (CDF) of mpg") +  
   theme_minimal()  # Apply a minimalistic theme for clarity
 ```
 
@@ -414,8 +415,8 @@ ggviolin(tb,
          y = "mpg",  # Specify 'mpg' as the variable for the violin plot
          orientation = "horizontal",  # Set the orientation to horizontal
          rug = TRUE,  # Include a rug plot to show individual data points
-         color = "black",  # Set the outline color of the violin to black
-         fill = "lightpink",  # Set the fill color of the violin to light pink
+         color = "black",  # Outline color of the violin  black
+         fill = "lightpink",  # Fill color of the violin light pink
          add = "boxplot", add.params = list(fill = "lightblue"),  
          # Add a boxplot inside the violin plot with light blue fill
          title = "Violin plot of mpg, using ggpubr::ggviolin()"
@@ -503,7 +504,7 @@ ggplot(mpgSummary,
 mpgSummary <- tb %>%
   summarise(
     MeanMpg = mean(mpg, na.rm = TRUE),  # Calculate the mean of mpg
-    SDMpg = sd(mpg, na.rm = TRUE)  # Calculate the standard deviation of mpg
+    SDMpg = sd(mpg, na.rm = TRUE)  # Calculate the standard deviation 
   )
 
 # Create a bar plot visualizing the mean and error bars visualizing the SD
@@ -561,7 +562,7 @@ PlotHist <- gghistogram(tb,
             x = "mpg",  # Set 'mpg' as the variable for the histogram
             binwidth = 4,  # Define the width of the bins
             add = "mean",  # Add a line indicating the mean of 'mpg'
-            rug = TRUE,  # Include a rug plot to show individual data points
+            rug = TRUE,  # Include a rug plot to show data points
             color = "black",  # Set the color of the histogram to black
             fill = "lightpink",  # Set the fill color of the histogram 
             title = "Histogram (binwidth = 4)"  # Title of the histogram
@@ -574,7 +575,7 @@ PlotBox <- ggboxplot(tb,
             color = "black",  # Set the color of the box plot to black
             fill = "lightpink",  # Set the fill color of the box plot 
             add = "jitter",  # Add jitter to show individual data points
-            title = "Boxplot of Mileage, using ggpubr"  
+            title = "Boxplot of Mileage"  
 )
 
 # Combine the plots using ggarrange()
@@ -603,28 +604,28 @@ For the histogram, we can adjust bin width, color, and number of bins, or define
 
 ## References
 
-**ggplot2:**
+ggplot2:
 
-\[1\] Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer-Verlag New York. <https://ggplot2.tidyverse.org>
+\[1\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. Retrieved from <https://ggplot2.tidyverse.org>
 
 Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
 
-Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=ggplot2
+Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=ggplot2>
 
-Wickham, H., et al. (2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=dplyr
+Wickham, H., et al. (2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=dplyr>
 
 Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
-Wickham, H., et al. (2020). tibble: Simple Data Frames (Version 3.0.3) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=tibble
+Wickham, H., et al. (2020). tibble: Simple Data Frames (Version 3.0.3) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=tibble>
 
-**ggpubr:**
+ggpubr:
 
-\[2\] Kassambara A (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.
+\[2\] Kassambara, A. (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R Package Version 0.6.0. Retrieved from <https://rpkgs.datanovia.com/ggpubr/.>
 
-**ggthemes**
+ggthemes:
 
-\[3\] Arnold, J.B. (2020). ggthemes: Extra Themes, Scales and Geoms for 'ggplot2' (Version 4.2.0) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=ggthemes
+\[3\] Arnold, J.B. (2020). ggthemes: Extra Themes, Scales and Geoms for 'ggplot2' (Version 4.2.0) \[Computer Software\]. Retrieved from <https://CRAN.R-project.org/package=ggthemes>
 
-**ggbeeswarm**
+ggbeeswarm:
 
-\[4\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R package version 0.6.0. https://CRAN.R-project.org/package=ggbeeswarm
+\[4\] Eklund, A. (2020). ggbeeswarm: Categorical Scatter (Violin Point) Plots. R Package Version 0.6.0. Retrieved from <https://CRAN.R-project.org/package=ggbeeswarm>
