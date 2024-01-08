@@ -1,6 +1,6 @@
 # Bivariate Continuous data (Part 2 of 4)
 
-**Chapter 13, *Last updated: Jan 03, 2024***
+**Chapter 13.**
 
 This chapter explores **Categorical** x **Continuous** data using the **`dplyr`** and **`ggplot2`** packages.
 

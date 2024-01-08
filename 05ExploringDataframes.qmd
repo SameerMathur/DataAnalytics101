@@ -1,6 +1,6 @@
-# Exploring Dataframes
+# Exploring Dataframes (Part 1 of 2)
 
-**Chapter 5, *Last updated: Jan 1, 2023.***
+**Chapter 5.**
 
 This chapter delves into an in-depth examination of dataframes in R.
 

@@ -1,6 +1,6 @@
 # Three Dimensional (3D) Data
 
-**Chapter 16, *Last updated: Jan 04, 2024***
+**Chapter 16.**
 
 ## Overview of R packages for 3D Plots
 

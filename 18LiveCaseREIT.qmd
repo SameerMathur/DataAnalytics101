@@ -1,6 +1,6 @@
 # Case (2 of 2): S&P500 Sector Analysis
 
-**Chapter 18, *Last updated: Jan 07, 2024***
+**Chapter 18.**
 
 ## Targeted Analysis of a Focal S&P 500 GICS Sector
 

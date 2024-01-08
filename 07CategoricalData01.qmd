@@ -1,6 +1,6 @@
 # Univariate Categorical data
 
-**Chapter 7, *Last updated: Jan 2, 2023.***
+**Chapter 7*.***
 
 ## Exploring Univariate Categorical Data
 

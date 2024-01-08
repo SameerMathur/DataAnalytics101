@@ -1,6 +1,6 @@
 # Bivariate Continuous data (Part 4 of 4)
 
-**Chapter 15, *Last updated: Jan 03, 2024***
+**Chapter 15.**
 
 ## Exploring bivariate Continuous x Continuous data, using **`ggplot2`**
 
@@ -378,7 +378,7 @@ coord_cartesian(ylim = c(min(tb$mpg), max(tb$mpg)),
                 xlim = c(min(tb$hp), max(tb$hp)))
 ```
 
-## Bubble Chart 
+## Bubble Chart
 
 ```{r}
 # Create a scatter plot using the 'ggscatter()' function    [3]

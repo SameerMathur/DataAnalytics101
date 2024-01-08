@@ -1,6 +1,6 @@
 # Bivariate Continuous data (Part 1 of 4)
 
-**Chapter 12, *Last updated: Jan 03, 2024***
+**Chapter 12.**
 
 1.  This chapter explores **Categorical** x **Continuous** data. It explains how to summarize and visualize *bivariate continuous data across categories*. Here, we delve into the intersection of continuous data and categorical variables, examining how continuous data can be split, summarized, and compared across different levels of one or more categorical variables.
 

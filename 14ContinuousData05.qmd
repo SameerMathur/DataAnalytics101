@@ -1,6 +1,6 @@
 # Bivariate Continuous data (Part 3 of 4)
 
-**Chapter 14, *Last updated: Jan 03, 2024***
+**Chapter 14.**
 
 ## Exploring bivariate Continuous x Continuous data
 
