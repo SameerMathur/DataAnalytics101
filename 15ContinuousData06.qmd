@@ -4,7 +4,7 @@
 
 ## Exploring bivariate Continuous x Continuous data, using **`ggplot2`**
 
-This chapter demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** packages to further explore the interaction between *bivariate continuous data*.
+This chapter covers exploring bivariate continuous data using `ggplot2` and `ggpubr` in R. It demonstrates creating scatter plots to analyze relationships between continuous variables, utilizing ggplot2's layering approach for plot construction. The chapter includes examples of customizing plots with labels, titles, point shapes, color gradients, and regression lines using `ggplot2` and `ggpubr` functions. It also explores visualizations involving categorical variables, demonstrating faceted plots and bubble charts with varying point sizes. The chapter emphasizes enhancing scatter plots with annotations, color coding based on categories, and various plotting techniques for insightful data presentation.
 
 **Data**: Suppose we run the following code to prepare the `mtcars` data for subsequent analysis and save it in a tibble called `tb`. \[1\]
 
@@ -12,8 +12,8 @@ This chapter demonstrates the use of the popular **`ggplot2`** and **`ggpubr`** 
 # Load the required libraries, suppressing annoying startup messages
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
 library(tibble, quietly = TRUE, warn.conflicts = FALSE)
-library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
-library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) 
+library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) 
 
 # Read the mtcars dataset into a tibble called tb
 data(mtcars)
@@ -32,7 +32,7 @@ tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
 # Create a scatter plot using ggplot2 library  [2]
 ggplot(data = tb,           # Specify the data frame 'tb' as the data source
        aes(x = hp, 
-           y = mpg)) +  # Define aesthetics: x-axis as 'hp' and y-axis as 'mpg'
+           y = mpg)) +  # x-axis as 'hp' and y-axis as 'mpg'
   geom_point() +             # Add points to the plot
   xlab("Horsepower of Engine") +  # Label the x-axis
   ylab("Miles per gallon") +     # Label the y-axis
@@ -55,10 +55,10 @@ ggplot(data = tb,           # Specify the data frame 'tb' as the data source
 -   Finally, the `ggtitle()` function is used to assign a title to the entire plot. In this instance, the title is set as "Scatter Plot of mpg vs. hp", clearly indicating the purpose and content of the visualization. \[2\]
 
 ```{r}
-# Load the 'ggpubr' library, which contains the 'ggscatter()' function   [3]
+# Load the 'ggpubr' library, which contains 'ggscatter()'
 library(ggpubr)
 
-# Create a scatter plot using the 'ggscatter()' function
+# Create a scatter plot using ggscatter()
 ggscatter(data = tb,        # Specify the data frame 'tb' as the data source
           x = "hp",         # Define the x-axis variable as "hp"
           y = "mpg",        # Define the y-axis variable as "mpg"
@@ -66,10 +66,12 @@ ggscatter(data = tb,        # Specify the data frame 'tb' as the data source
 ```
 
 ```{r}
-# Create a scatter plot using the 'ggscatter()' function from the 'ggpubr' package  [3]
+# Create a scatter plot using the 'ggscatter()' 
 # Set the x-axis variable to "hp" and the y-axis variable to "mpg"
 # Additionally, specify the color aesthetic to "mpg" (color points based on "mpg")
-ggscatter(data = tb, x = "hp", y = "mpg", color = "mpg") + 
+ggscatter(data = tb, 
+          x = "hp", y = "mpg", 
+          color = "mpg") + 
   gradient_color(c("blue", "gray", "red")) # Add a gradient color scheme [3]
 ```
 
@@ -78,7 +80,9 @@ ggscatter(data = tb, x = "hp", y = "mpg", color = "mpg") +
 library("ggExtra")
 
 # Create a scatter plot using the 'ggscatter()' function from 'ggpubr'
-p <- ggscatter(data = tb, x = "hp", y = "mpg", shape = 17)
+p <- ggscatter(data = tb, 
+               x = "hp", y = "mpg", 
+               shape = 17)
 
 # Change the marginal plot type to a boxplot using 'ggMarginal()'
 ggMarginal(p, type = "boxplot")
@@ -88,18 +92,21 @@ ggMarginal(p, type = "boxplot")
 # Load the 'ggExtra' library, which contains the 'ggMarginal()' function
 library("ggExtra")
 
-# Create a scatter plot using the 'ggscatter()' function from the 'ggpubr' package
-# Set the x-axis variable to "hp", the y-axis variable to "mpg", and color points based on "cyl"
-p <- ggscatter(data = tb, x = "hp", y = "mpg", color = "cyl")
+# Create a scatter plot using 'ggscatter()' 
+# Set x-axis as "hp", y-axis as "mpg", and color points as "cyl"
+p <- ggscatter(data = tb, 
+               x = "hp", y = "mpg", 
+               color = "cyl")
 
 # Change the marginal plot type to a boxplot using 'ggMarginal()'
-ggMarginal(p, type = "boxplot")
+ggMarginal(p, 
+           type = "boxplot")
 ```
 
 ### Scatterplot with Regression line using `ggplot2`
 
 ```{r message=FALSE}
-# Create a scatter plot using the 'ggplot()' function [2], [5]
+# Create a scatter plot using the 'ggplot()' function [2],[5]
 ggplot(data = tb, aes(x = hp, y = mpg)) + 
   geom_point() + # Add points to the plot
   geom_smooth(method = "lm",     # Add a linear regression line 
@@ -118,17 +125,17 @@ ggplot(tb, aes(x = hp, y = mpg)) +
               color = "red") +     # Set line color to red
   xlab("Horsepower of Engine") +   # Label the x-axis
   ylab("Miles per gallon") +       # Label the y-axis
-  ggtitle("Scatter Plot of mpg vs. hp with Regression Line") 
+  ggtitle("Plot of mpg vs. hp with Regression Line") 
 ```
 
 **Discussion**:
 
 -   `geom_smooth(method = "lm", se = FALSE, color = "blue")`: This function adds a smoothed conditional mean.
     -   The `method = "lm"` argument indicates that a linear model (i.e., a regression line) should be used for smoothing. This line will depict the overall trend in the data.
-    -   If `se = FALSE` then the standard error bands (which show the uncertainty around the regression line) aren't plotted. This determines whether or not the standard error bands (or confidence interval bands) are displayed around the smoothing line. In the case of linear regression (method = "lm"), these bands represent the 95% confidence interval around the predicted values. This means that if you were to repeatedly sample from the population and fit a regression model each time, you'd expect about 95% of the confidence intervals to contain the true regression line.
+    -   If `se = FALSE` then the standard error bands (which show the uncertainty around the regression line) aren't plotted. This determines whether or not the standard error bands (or confidence interval bands) are displayed around the smoothing line. In the case of linear regression (method = "lm"), these bands represent the 95% confidence interval around the predicted values. This means that if you were to repeatedly sample from the population and fit a regression model each time, you'd expect about 95% of the confidence intervals to contain the true regression line. \[3\],\[5\]
 
 ```{r}
-# Create a scatter plot using the 'ggscatter()' function from the 'ggpubr' package  [3], [5]
+# Create a scatter plot using ggscatter() 
 # Set the x-axis variable to "hp" and the y-axis variable to "mpg"
 ggscatter(tb, 
           x = "hp", 
@@ -140,7 +147,8 @@ ggscatter(tb,
 
 # Add the Pearson correlation coefficient to the plot
 # Specify the label coordinates for the correlation coefficient
-stat_cor(method = "pearson", label.x = 3, label.y = 30)
+stat_cor(method = "pearson", 
+         label.x = 3, label.y = 30)
 ```
 
 ## Scatterplots with Categorical Variables
@@ -150,8 +158,8 @@ stat_cor(method = "pearson", label.x = 3, label.y = 30)
 This will create a scatterplot of miles per gallon (`mpg`) against horsepower (`hp`), with each point colored according to the number of cylinders (`cyl`) in the engine.
 
 ```{r}
-# Create a scatter plot using the 'ggplot()' function from the 'ggplot2' library
-# Set the x-axis variable to "hp", the y-axis variable to "mpg", and color points by "cyl"
+# Create a scatter plot using the 'ggplot()' 
+# Set x-axis as "hp", y-axis as "mpg", and color points as "cyl"
 ggplot(tb, aes(x = hp, 
                y = mpg, 
                color = factor(cyl))) +
@@ -160,8 +168,8 @@ geom_point() +
   
 labs(x = "Horsepower of Engine", 
      y = "Miles per gallon") + # Label x-axis and y-axis 
-scale_color_discrete(name = "Cylinders")  +  # Customize the legend title
-ggtitle("Scatter Plot of mpg vs. hp, for cyl={4,6,8}") # Set the title 
+scale_color_discrete(name = "Cylinders")  +  # Customize  legend title
+ggtitle("Scatter Plot of mpg vs. hp, for cyl={4,6,8}")  
 
 ```
 
@@ -177,17 +185,17 @@ ggtitle("Scatter Plot of mpg vs. hp, for cyl={4,6,8}") # Set the title
 
 -   The `labs()` function provides a convenient way to label the axes. Here, the x-axis receives the label "Horsepower" and the y-axis is labeled "Miles per gallon".
 
--   The `scale_color_discrete()` function customizes the color scale for discrete variables. By specifying the `name` argument as "Cylinders", it ensures that the legend accompanying the color scale in the plot will be labeled as "Cylinders", making it clear to viewers that the colors of the points represent different cylinder counts.
+-   The `scale_color_discrete()` function customizes the color scale for discrete variables. By specifying the `name` argument as "Cylinders", it ensures that the legend accompanying the color scale in the plot will be labeled as "Cylinders", making it clear to viewers that the colors of the points represent different cylinder counts. \[3\]
 
 ```{r}
-# Load the 'ggpubr' library, which contains the 'ggscatter()' function  [3]
+# Load the 'ggpubr' library, which contains 'ggscatter()'
 library(ggpubr)
 
 # Create a scatter plot using the 'ggscatter()' function
 ggscatter(tb, 
           x = "hp", y = "mpg",
-          color = "cyl",  # Color points by groups "cyl"
-          shape = "cyl",  # Change point shape by groups "cyl"
+          color = "cyl",  # Color points by "cyl"
+          shape = "cyl",  # Change point shape by "cyl"
           rug = TRUE)    # Add marginal rugs
 ```
 
@@ -198,7 +206,7 @@ ggscatter(tb,
           x = "hp", y = "mpg",
           add = "reg.line",    # Add regression line
           color = "cyl",       # Color by groups "cyl"
-          shape = "cyl",       # Change point shape by groups "cyl"
+          shape = "cyl",       # Change point shape by "cyl"
           fullrange = TRUE,    # Extend the regression line
           rug = TRUE           # Add marginal rug (marginal density)
           ) +
@@ -225,15 +233,15 @@ ggscatter(tb,
 This will create a scatterplot of miles per gallon (mpg) against weight, with each plot faceted by the number of cylinders in the engine (cyl).
 
 ```{r warning=FALSE,message=FALSE}
-# Create a scatter plot using the 'ggplot()' function from the 'ggplot2' library
-# Set the x-axis variable to "hp", the y-axis variable to "mpg", and color points by "cyl"
+# Create a scatter plot using the 'ggplot()' 
+# Set x-axis as "hp", y-axis as "mpg", and color as "cyl"
 ggplot(tb, 
        aes(x = hp, 
            y = mpg, 
            color = cyl)) +
 # Add points to the plot
 geom_point() +
-# Facet the plot by the variable "cyl" (separate plots by "cyl")
+# Facet the plot by the variable "cyl" 
 facet_grid(. ~ cyl) + 
 ggtitle("Scatter Plot of mpg vs. hp, for cyl={4,6,8}")
 ```
@@ -257,22 +265,22 @@ ggtitle("Scatter Plot of mpg vs. hp, for cyl={4,6,8}")
 ggscatter(tb, 
           x = "hp", 
           y = "mpg",
-          color = "mpg", # Color points by the continuous variable "mpg"
+          color = "mpg", # Color points by "mpg"
           facet.by = "cyl") # Facet the plot by "cyl"
 ```
 
 ```{r}
-# Create a scatter plot using the 'ggplot()' function from the 'ggplot2' library
-# Set the x-axis variable to "hp", the y-axis variable to "mpg", and color points by "cyl"
+# Create a scatter plot using the 'ggplot()' function
+# Set x-axis as "hp", y-axis as "mpg", and color as "cyl"
 ggplot(tb, 
        aes(x = hp, 
            y = mpg, 
            color = cyl)) +
 # Add points to the plot
 geom_point() +
-# Facet the plot vertically by the variable "cyl" (separate plots by "cyl")
+# Facet the plot vertically by "cyl" 
 facet_grid(cyl ~ .) + 
-ggtitle("Scatter Plot of mpg vs. hp, Faceted Vertically by cyl")
+ggtitle("Scatter Plot of mpg vs. hp, faceted by cyl")
 ```
 
 **Discussion**:
@@ -284,16 +292,17 @@ ggtitle("Scatter Plot of mpg vs. hp, Faceted Vertically by cyl")
 -   Conversely, in the updated code with `facet_grid(cyl ~ .)`, the scatter plots are faceted vertically based on the unique values of the `cyl` variable; each unique cylinder count gets its own row.
 
 ```{r}
-# Create a scatter plot using the 'ggplot()' function from the 'ggplot2' library
-# Set the x-axis variable to "hp", the y-axis variable to "mpg", and color points by "cyl"
+# Create a scatter plot using the 'ggplot()'
+# Set x-axis as "hp", y-axis as "mpg", and color as "cyl"
 ggplot(tb, 
        aes(x = hp, 
            y = mpg, 
            color = cyl)) +
 # Add points to the plot
 geom_point() +
-# Wrap facets by the variable "cyl" with 3 columns (separate plots by "cyl")
-facet_wrap(~ cyl, ncol = 3) + 
+# Wrap facets by the variable "cyl" with 3 columns 
+facet_wrap(~ cyl, 
+           ncol = 3) + 
 ggtitle("Scatter Plot of mpg vs. hp, Wrapped Facets by cyl")
 ```
 
@@ -304,15 +313,15 @@ ggtitle("Scatter Plot of mpg vs. hp, Wrapped Facets by cyl")
 -   The `ncol = 3` argument specifies that up to three facets will be placed in a row before wrapping to the next row. You can adjust this as needed based on the number of levels in the faceting variable and the desired layout.
 
 ```{r}
-# Create a scatter plot using the 'ggplot()' function from the 'ggplot2' library
-# Set the x-axis variable to "hp", the y-axis variable to "mpg", and color points by "cyl"
+# Create a scatter plot using the 'ggplot()' 
+# Set x-axis as "hp", y-axis as "mpg", and color as "cyl"
 ggplot(tb, 
        aes(x = hp, 
            y = mpg, 
            color = cyl)) +
 # Add points to the plot
 geom_point() +
-# Facet the plot by the variables "cyl" and "gear" (separate plots by combinations of "cyl" and "gear")
+# Facet the plot by the variables "cyl" and "gear" 
 facet_grid(cyl ~ gear) + 
 ggtitle("Scatter Plot of mpg vs. hp, Faceted by cyl and gear")
 ```
@@ -334,10 +343,10 @@ ggtitle("Scatter Plot of mpg vs. hp, Faceted by cyl and gear")
     -   The resultant grid will represent combinations of `cyl` and `gear` values, with each cell in the grid showing the relationship between `hp` and `mpg` for a specific combination of `cyl` and `gear`. \[4\]
 
 ```{r}
-# Create a scatter plot using the 'ggscatter()' function    [3]
+# Create a scatter plot using the 'ggscatter()' function  
 # Set the x-axis variable to "hp" and the y-axis variable to "mpg"
 # Color points by the categorical variables "cyl" and "gear"
-# Facet the plot by the combinations of "cyl" and "gear" (separate plots by combinations)
+# Facet the plot by the combinations of "cyl" and "gear" 
 ggscatter(tb, 
           x = "hp", y = "mpg",
           color = "cyl",
@@ -384,11 +393,13 @@ coord_cartesian(ylim = c(min(tb$mpg), max(tb$mpg)),
 # Create a scatter plot using the 'ggscatter()' function    [3]
 # Set the x-axis variable to "hp" and the y-axis variable to "mpg"
 # Color points by the categorical variable "cyl"
-# Adjust point size based on the continuous variable "wt" and set transparency (alpha) to 0.5
+# Adjust point size based on the continuous variable "wt" 
+# and set transparency (alpha) to 0.5
 ggscatter(tb, 
           x = "hp", y = "mpg",
           color = "cyl",
-          size = "wt", alpha = 0.5) + 
+          size = "wt", 
+          alpha = 0.5) + 
 
 # Adjust the range of point sizes for better visualization
 scale_size(range = c(0.5, 15))
@@ -396,78 +407,74 @@ scale_size(range = c(0.5, 15))
 
 ## Summary of Chapter 15 -- Bivariate Continuous data (Part 4 of 4)
 
-This chapter provides a comprehensive guide to exploring bivariate continuous data using R's ggplot2 and ggpubr packages, focusing on the 'mtcars' dataset. Initially, the data is formatted into a tibble, and key variables are transformed into factors for nuanced analysis. The chapter emphasizes scatterplot creation using ggplot2, illustrating the relationship between variables like horsepower (hp) and miles per gallon (mpg). Techniques such as custom labeling, adding regression lines, and layering are demonstrated to enhance plot interpretability. ggplot2's layering approach is highlighted for its effectiveness in building complex plots incrementally.
+This chapter provides a comprehensive guide to exploring bivariate continuous data using R's `ggplot2` and `ggpubr` packages. Initially, the data is formatted into a tibble, and key variables are transformed into factors for nuanced analysis. The chapter emphasizes scatterplot creation using `ggplot2`, illustrating the relationship. Techniques such as custom labeling, adding regression lines, and layering are demonstrated to enhance plot interpretability. `ggplot2`'s layering approach is highlighted for its effectiveness in building complex plots incrementally.
 
-Further, the ggpubr package's ggscatter function is introduced for advanced scatterplot customization. This includes altering point shapes, adding marginal rugs, regression lines, and correlation coefficients. The integration of categorical variables into scatter plots is extensively discussed. This involves coloring points by categories like the number of cylinders and employing various faceting techniques to compare data across categories. Advanced topics like point annotations, point repelling for clarity, and bubble charts where point sizes vary with a continuous variable are also covered. These techniques provide a multi-dimensional view of the data, showcasing the versatility of ggplot2 and ggpubr in visual data analysis.
-
-Overall, the chapter equips readers with the skills to create and enhance scatter plots in R, offering insightful methods for detailed bivariate data analysis.
+Further, the `ggpubr` package's `ggscatter()` function is introduced for advanced scatterplot customization. This includes altering point shapes, adding marginal rugs, regression lines, and correlation coefficients. The integration of categorical variables into scatter plots is extensively discussed. This involves coloring points by categories like the number of cylinders and employing various faceting techniques to compare data across categories. Advanced topics like point annotations, point repelling for clarity, and bubble charts where point sizes vary with a continuous variable are also covered. These techniques provide a multi-dimensional view of the data, showcasing the versatility of `ggplot2` and `ggpubr` in visual data analysis. Overall, the chapter equips readers with the skills to create and enhance scatter plots in R, offering insightful methods for detailed bivariate data analysis.
 
 ## References
 
-**Basic R programmng**
+Basic R Programming
 
-\[1\] Chambers, J. M. (2008). *Software for data analysis: programming with R* (Vol. 2, No. 1). New York: Springer.
+\[1\] Chambers, J. M. (2008). *Software for data analysis: Programming with R* (Vol. 2, No. 1). Springer.
 
-Crawley, M. J. (2012). *The R book*. John Wiley & Sons.
+Crawley, M. J. (2012). *The R book*. John Wiley & Sons.
 
-Gardener, M. (2012). *Beginning R: the statistical programming language*. John Wiley & Sons.
+Gardener, M. (2012). *Beginning R: The statistical programming language*. John Wiley & Sons.
 
-Grolemund, G. (2014). *Hands-on programming with R: Write your own functions and simulations*. " O'Reilly Media, Inc.".
+Grolemund, G. (2014). *Hands-on programming with R: Write your own functions and simulations*. O'Reilly Media, Inc.
 
-Kabacoff, R. (2022). *R in action: data analysis and graphics with R and Tidyverse*. Simon and Schuster.
+Kabacoff, R. (2022). *R in action: Data analysis and graphics with R and Tidyverse*. Simon and Schuster.
 
-Peng, R. D. (2016). *R programming for data science* (pp. 86-181). Victoria, BC, Canada: Leanpub.
+Peng, R. D. (2016). *R programming for data science*. Leanpub.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+R Core Team (2020). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. Retrieved from <https://www.R-project.org/>
 
-Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, *517*(7532), 109-110.
+Tippmann, S. (2015). Programming tools: Adventures with R. *Nature*, 517(7532), 109-110.
 
-Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. " O'Reilly Media, Inc.".
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for data science*. O'Reilly Media, Inc.
 
-**ggplot2:**
+ggplot2
 
-\[2\] Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer-Verlag New York. <https://ggplot2.tidyverse.org>
+\[2\] Wickham, H. (2016). *ggplot2: Elegant Graphics for Data Analysis*. Springer-Verlag New York. Retrieved from <https://ggplot2.tidyverse.org>
 
-Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
+Wickham, H., & Grolemund, G. (2016). *R for Data Science: Import, Tidy, Transform, Visualize, and Model Data*. O'Reilly Media.
 
-Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=ggplot2
+Wickham, H. (2020). *ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics* (Version 3.3.2) \[Computer software\]. Retrieved from <https://CRAN.R-project.org/package=ggplot2>
 
-Wickham, H., et al. (2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=dplyr
+Wickham, H., et al. (2020). *dplyr: A Grammar of Data Manipulation* (Version 1.0.2) \[Computer software\]. Retrieved from <https://CRAN.R-project.org/package=dplyr>
 
-Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
+Wilkinson, L. (2005). *The Grammar of Graphics* (2nd ed.). Springer-Verlag.
 
-Wickham, H., et al. (2020). tibble: Simple Data Frames (Version 3.0.3) \[Computer software\]. Retrieved from https://CRAN.R-project.org/package=tibble
+Wickham, H., et al. (2020). *tibble: Simple Data Frames* (Version 3.0.3) \[Computer software\]. Retrieved from <https://CRAN.R-project.org/package=tibble>
 
-**ggpubr:**
+ggpubr
 
-\[3\] Kassambara A (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R package version 0.6.0, https://rpkgs.datanovia.com/ggpubr/.
+\[3\] Kassambara, A. (2023). *ggpubr: 'ggplot2' Based Publication Ready Plots*. R package version 0.6.0. Retrieved from <https://rpkgs.datanovia.com/ggpubr/>
 
-**Statistics using R**
+Statistics using R
 
-\[4\] Braun, W. J., & Murdoch, D. J. (2021). *A first course in statistical programming with R*. Cambridge University Press.
+\[4\] Braun, W. J., & Murdoch, D. J. (2021). *A first course in statistical programming with R*. Cambridge University Press.
 
-Cohen, Y., & Cohen, J. Y. (2008). *Statistics and Data with R: An applied approach through examples*. John Wiley & Sons.
+Cohen, Y., & Cohen, J. Y. (2008). *Statistics and Data with R: An applied approach through examples*. John Wiley & Sons.
 
-Dalgaard, P. (2008). *Introductory statistics with R*. springer publication.
+Dalgaard, P. (2008). *Introductory statistics with R*. Springer.
 
-Davies, T. M. (2016). *The book of R: a first course in programming and statistics*. No Starch Press.
+Davies, T. M. (2016). *The book of R: A first course in programming and statistics*. No Starch Press.
 
-Everitt, B. S., & Hothorn, T. (2014). A Handbook of Statistical Analyses Using R. Chapman and Hall/CRC.
+Everitt, B. S., & Hothorn, T. (2014). *A Handbook of Statistical Analyses Using R*. Chapman and Hall/CRC.
 
-Field, A., Miles, J., & Field, Z. (2012). Discovering statistics using R. Sage Publications.
+Field, A., Miles, J., & Field, Z. (2012). *Discovering statistics using R*. Sage Publications.
 
-Fox, J., & Weisberg, S. (2018). *An R companion to applied regression*. Sage publications.
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. *The American Statistician*, 50(4), 361-365.
 
-Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365.
+Matloff, N. (2011). *The art of R programming: A tour of statistical software design*. No Starch Press.
 
-Matloff, N. (2011). *The art of R programming: A tour of statistical software design*. No Starch Press.
+R Core Team (2020). *R: A language and environment for statistical computing*. R Foundation for Statistical Computing. Retrieved from <https://www.R-project.org/>
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
+Schumacker, R. E. (2014). *Learning statistics using R*. Sage Publications.
 
-Schumacker, R. E. (2014). *Learning statistics using R*. Sage Publications.
+Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springer Science & Business Media.
 
-Schumacker, R., & Tomek, S. (2013). *Understanding statistics using R*. Springer Science & Business Media.
+Regression
 
-**Regression:**
-
-\[5\] Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.
+\[5\] Fox, J., & Weisberg, S. (2011). *An R Companion to Applied Regression* (2nd ed.). Sage.

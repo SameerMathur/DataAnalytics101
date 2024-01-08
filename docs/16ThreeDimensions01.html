@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -312,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Chapter 16.</strong></p>
 <section id="overview-of-r-packages-for-3d-plots" class="level2">
 <h2 class="anchored" data-anchor-id="overview-of-r-packages-for-3d-plots">Overview of R packages for 3D Plots</h2>
-<p>This chapter demonstrates how to create 3D plots in R.</p>
+<p>This chapter demonstrates how to create 3D plots in R. This chapter demonstrates creating 3D plots in R, focusing on ggplot2 and scatterplot3d packages. It begins by discussing the ggplot2 package’s limitations in producing true 3D plots, though it can simulate 3D effects using size, color, and transparency. The chapter then introduces the scatterplot3d package for creating genuine 3D scatter plots. This package is highlighted for its simplicity and effectiveness in visualizing data in three dimensions.</p>
 <p><strong><code>ggplot2</code></strong></p>
 <p>The ggplot2 package in R is primarily designed for creating 2D plots. However, we can simulate 3D effects, even though it won’t provide true 3D plots. [1]</p>
 <p><strong><code>scatterplot3d</code></strong></p>
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The rgl package in R is a powerful tool for creating interactive 3D plots. It allows real-time interaction with the plots, where users can zoom, rotate, and pan the visualization to explore the data in three dimensions. This package provides various functionalities to create a variety of 3D plots, including scatter plots, surface plots, line plots, bar plots. [3]</p>
 <p>In this chapter, we focus our attention on ggplot2 and scatterplot3d packages.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries for 3D plots, suppressing annoying startup messages</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the required libraries for 3D plots, suppressing startup messages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scatterplot3d, <span class="at">quietly =</span> <span class="cn">TRUE</span>, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Data</strong>: Suppose we run the following code to prepare the <code>mtcars</code> data for subsequent analysis and save it in a tibble called <code>tb</code>.</p>
@@ -569,24 +569,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="summary-of-chapter-16-three-dimensional-3d-data" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-16-three-dimensional-3d-data">Summary of Chapter 16 – Three Dimensional (3D) Data</h2>
 <p>This chapter provides an insightful exploration into the creation of 3D plots using R, focusing on the ggplot2 and scatterplot3d packages.</p>
-<p><strong>ggplot2</strong>: The chapter begins by highlighting that ggplot2, primarily known for 2D plots, can be used to simulate 3D effects. This is demonstrated through a scatter plot example where visual cues like point size and color gradients are employed to give an illusion of depth. By mapping variables such as horsepower to these visual elements in the ‘mtcars’ dataset, the plot achieves a 3D-like effect on a 2D plane.</p>
-<p><strong>scatterplot3d</strong>: The scatterplot3d package, specifically designed for 3D scatter plots, is explored next. The chapter illustrates its straightforward application in creating 3D plots with the mtcars data, considering variables like weight, miles per gallon, and horsepower. It delves into various enhancements like coloring points based on categorical variables (e.g., the number of cylinders), changing point styles to distinguish data points, highlighting specific points for emphasis, and adding legends for clarity. The chapter also demonstrates how to incorporate a linear regression plane into the scatter plot, adding an analytical dimension to the visual representation.</p>
+<p><strong>ggplot2</strong>: The chapter begins by highlighting that <code>ggplot2</code>, primarily known for 2D plots, can be used to simulate 3D effects. This is demonstrated through a scatter plot example where visual cues like point size and color gradients are employed to give an illusion of depth. By mapping variables such as horsepower to these visual elements in the ‘mtcars’ dataset, the plot achieves a 3D-like effect on a 2D plane.</p>
+<p><strong>scatterplot3d</strong>: The <code>scatterplot3d</code> package, specifically designed for 3D scatter plots, is explored next. The chapter illustrates its straightforward application in creating 3D plots with the mtcars data, considering variables like weight, miles per gallon, and horsepower. It delves into various enhancements like coloring points based on categorical variables (e.g., the number of cylinders), changing point styles to distinguish data points, highlighting specific points for emphasis, and adding legends for clarity. The chapter also demonstrates how to incorporate a linear regression plane into the scatter plot, adding an analytical dimension to the visual representation.</p>
 <p>Throughout the chapter, code examples and discussions are provided to guide the reader on how to effectively use these packages for 3D plotting in R. The focus is on practical application, offering readers the tools to transform standard 2D visualizations into more engaging and informative 3D plots. This approach not only enhances the visual appeal of the data but also allows for a more nuanced understanding of complex relationships within the dataset.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p><strong>ggplot2:</strong></p>
-<p>[1] Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></p>
-<p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
-<p>Wickham, H. (2020). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics (Version 3.3.2) [Computer software]. Retrieved from https://CRAN.R-project.org/package=ggplot2</p>
-<p>Wickham, H., et al.&nbsp;(2020). dplyr: A Grammar of Data Manipulation (Version 1.0.2) [Computer software]. Retrieved from https://CRAN.R-project.org/package=dplyr</p>
-<p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
-<p>Wickham, H., et al.&nbsp;(2020). tibble: Simple Data Frames (Version 3.0.3) [Computer software]. Retrieved from https://CRAN.R-project.org/package=tibble</p>
-<p>[2] Ligges, U., Maechler, M., Schnackenberg, S., &amp; Ligges, M. U. (2018). Package ‘scatterplot3d’.&nbsp;<em>Recuperado de https://cran. rproject. org/web/packages/scatterplot3d/scatterplot3d. pdf</em>.</p>
-<p>Ligges, U., &amp; Mächler, M. (2002).&nbsp;<em>Scatterplot3d-an r package for visualizing multivariate data</em>&nbsp;(No.&nbsp;2002, 22). Technical report.</p>
-<p>[3] Adler, D., Nenadic, O., &amp; Zucchini, W. (2003, March). Rgl: A r-library for 3d visualization with opengl. In&nbsp;<em>Proceedings of the 35th symposium of the interface: computing science and statistics, Salt Lake City</em>&nbsp;(Vol. 35, pp.&nbsp;1-11).</p>
-<p><strong>Regression:</strong></p>
-<p>[4] Fox, J. and Weisberg, S. (2011). An R Companion to Applied Regression, Second Edition. Thousand Oaks CA: Sage.</p>
+<p>ggplot2</p>
+<p>Wickham, H. (2016). <em>ggplot2: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. Retrieved from <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></p>
+<p>Wickham, H., &amp; Grolemund, G. (2016). <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly Media.</p>
+<p>Wickham, H. (2020). <em>ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em> (Version 3.3.2) [Computer software]. Retrieved from <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a></p>
+<p>Wickham, H., et al.&nbsp;(2020). <em>dplyr: A Grammar of Data Manipulation</em> (Version 1.0.2) [Computer software]. Retrieved from <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
+<p>Wilkinson, L. (2005). <em>The Grammar of Graphics</em> (2nd ed.). Springer-Verlag.</p>
+<p>Wickham, H., et al.&nbsp;(2020). <em>tibble: Simple Data Frames</em> (Version 3.0.3) [Computer software]. Retrieved from <a href="https://CRAN.R-project.org/package=tibble" class="uri">https://CRAN.R-project.org/package=tibble</a></p>
+<p>Ligges, U., Maechler, M., Schnackenberg, S., &amp; Ligges, M. U. (2018). <em>Package ‘scatterplot3d’</em>. Retrieved from <a href="https://cran.rproject.org/web/packages/scatterplot3d/scatterplot3d.pdf" class="uri">https://cran.rproject.org/web/packages/scatterplot3d/scatterplot3d.pdf</a></p>
+<p>Ligges, U., &amp; Mächler, M. (2002). <em>Scatterplot3d - an R package for visualizing multivariate data</em>. Technical report, 2002, 22.</p>
+<p>3D Visualization</p>
+<p>Adler, D., Nenadic, O., &amp; Zucchini, W. (2003, March). <em>Rgl: A R-library for 3D visualization with OpenGL</em>. In Proceedings of the 35th Symposium of the Interface: Computing Science and Statistics, Salt Lake City (Vol. 35, pp.&nbsp;1-11).</p>
+<p>Regression</p>
+<p>Fox, J., &amp; Weisberg, S. (2011). <em>An R Companion to Applied Regression</em> (2nd ed.). Sage.</p>
 
 
 </section>
