@@ -16,7 +16,7 @@ The R programming language includes a number of data structures that are frequen
 
 6.  **List**: A list is an object that may comprise elements of various data types, including vectors, matrices, data frames, and even other lists. The `list()` function can be used to construct lists, while indexing can be used to access individual elements.
 
-These data structures are helpful for storing and manipulating data in R, and they can be utilized in numerous applications, such as statistical analysis and data visualization. We will focus our attention on Vectors, Factors and Dataframes, since these are the three most popular data structures. \[1\]
+These data structures are helpful for storing and manipulating data in R, and they can be utilized in numerous applications, such as statistical analysis and data visualization. We will focus our attention on Vectors, Factors and Dataframes, since these are the three most popular data structures. \[1\] \[4\]
 
 ## Vectors
 
@@ -24,7 +24,7 @@ These data structures are helpful for storing and manipulating data in R, and th
 
 2.  A vector can be created using the `c()` function.
 
-3.  R supports two forms of vectors: atomic vectors and lists. Atomic vectors are limited to containing elements of a single data type, such as numeric or character. Lists, on the other hand, can contain elements of various data types and structures. \[2\]
+3.  R supports two forms of vectors: atomic vectors and lists. Atomic vectors are limited to containing elements of a single data type, such as numeric or character. Lists, on the other hand, can contain elements of various data types and structures. \[2\] \[4\]
 
 ### Vectors in R
 
@@ -358,11 +358,11 @@ correlation_ages_females <- cor(ages, females)
 print(correlation_ages_females)
 ```
 
-Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways. \[2\]
+Thus, we note that the R programming language provides a wide range of statistical operations that can be performed on vectors for data analysis and modeling. Vectors are clearly a potent and versatile data structure that can be utilized in a variety of ways. \[2\] \[4\]
 
 ### Strings
 
-Here are some common string operations that can be conducted using the provided vector examples. \[3\]
+Here are some common string operations that can be conducted using the provided vector examples. \[3\] \[4\]
 
 1.  **Substring**: The `substr()` function can be used to extract a substring from a character vector. To extract the first three characters of each name in the "names" vector, for instance, we can use:
 
@@ -465,3 +465,23 @@ Author Unknown. (n.d.). Chapter 14 Descriptive Statistics for a Vector. *Basic R
 \[3\] [An(other) introduction to R](https://bookdown.org). (n.d.). Chapter 6 String manipulation with stringr and regular expressions. Retrieved from [bookdown.org](https://bookdown.org).
 
 Smith, O. (n.d.). Strings in R Tutorial. DataCamp. Retrieved from [DataCamp](https://www.datacamp.com/community/tutorials/strings-in-r).
+
+Basic R Programming
+
+\[4\] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No. 1). New York: Springer.
+
+Crawley, M. J. (2012). The R Book. John Wiley & Sons.
+
+Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley & Sons.
+
+Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O'Reilly Media, Inc.
+
+Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.
+
+Peng, R. D. (2016). R Programming for Data Science (pp. 86-181). Victoria, BC, Canada: Leanpub.
+
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <https://www.R-project.org/.>
+
+Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.
+
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science. O'Reilly Media, Inc.

@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -330,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>A dataframe is a two-dimensional table-like data structure in R that stores data in rows and columns, with distinct data types for each column.</p></li>
 <li><p>Similar to a spreadsheet or a SQL table, it is one of the most frequently employed data structures in R. Each column in a data.frame is a constant-length vector, and each row represents an observation or case.</p></li>
 <li><p>Dataframe objects can be created in R using the <code>data.frame()</code> function or by importing data from external sources such as CSV files, Excel spreadsheets, or databases.</p></li>
-<li><p>R has many useful built-in methods and functions for manipulating and summarizing data stored in dataframes, including subsetting, merging, filtering, and aggregation. [1]</p></li>
+<li><p>R has many useful built-in methods and functions for manipulating and summarizing data stored in dataframes, including subsetting, merging, filtering, and aggregation. [1] [6]</p></li>
 </ol>
 <section id="creating-a-dataframe-using-raw-data" class="level3">
 <h3 class="anchored" data-anchor-id="creating-a-dataframe-using-raw-data">Creating a dataframe using raw data</h3>
@@ -409,7 +409,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="the-mtcars-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="the-mtcars-dataset">The <code>mtcars</code> dataset</h3>
-<p>The <code>mtcars</code> dataset inbuilt in R comprises data on the fuel consumption and other characteristics of 32 different automobile models. [2]</p>
+<p>The <code>mtcars</code> dataset inbuilt in R comprises data on the fuel consumption and other characteristics of 32 different automobile models. [2] [6]</p>
 <p>Here is a concise description of the 11 <code>mtcars</code> data columns:</p>
 <ol type="1">
 <li><p><code>mpg</code>: Miles per gallon (fuel efficiency)</p></li>
@@ -447,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reading-different-file-formats-into-a-dataframe" class="level2">
 <h2 class="anchored" data-anchor-id="reading-different-file-formats-into-a-dataframe">Reading different file formats into a dataframe</h2>
 <ol type="1">
-<li><p>We examine how to read data into a dataframe in R when the original data is stored in prominent file formats such as CSV, Excel, and Google Sheets. [3]</p></li>
+<li><p>We examine how to read data into a dataframe in R when the original data is stored in prominent file formats such as CSV, Excel, and Google Sheets. [3] [6]</p></li>
 <li><p>Before learning how to accomplish this, it is necessary to comprehend how to configure the Working Directory in R.</p></li>
 </ol>
 <section id="working-directory" class="level3">
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#setwd("C:/Users/YourUserName/Desktop")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="6" type="1">
-<li>We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. [3]</li>
+<li>We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. [3] [6]</li>
 </ol>
 </section>
 <section id="reading-a-csv-file-into-a-dataframe" class="level3">
@@ -487,14 +487,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ol start="4" type="1">
 <li><p>In this example, the <code>read.csv()</code> function reads the mtcars.csv file into a data frame named <code>df_csv</code>.</p></li>
-<li><p>If the file is not in the current working directory, the complete file path must be specified in the <code>read.csv()</code> function argument; otherwise, an error will occur. [3]</p></li>
+<li><p>If the file is not in the current working directory, the complete file path must be specified in the <code>read.csv()</code> function argument; otherwise, an error will occur. [3] [6]</p></li>
 </ol>
 </section>
 <section id="reading-an-excel-xlsx-file-into-a-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="reading-an-excel-xlsx-file-into-a-dataframe">Reading an Excel (xlsx) file into a dataframe</h3>
 <ol type="1">
 <li><p>Suppose we wish to import a Microsoft Excel file named <code>mtcars.xlsx</code>, located in the Working Directory.</p></li>
-<li><p>We can use the <code>read_excel</code> function in the R package <code>readxl</code>, illustrated as follows. [3]</p></li>
+<li><p>We can use the <code>read_excel</code> function in the R package <code>readxl</code>, illustrated as follows. [3] [6]</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
@@ -504,7 +504,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="reading-a-google-sheet-into-a-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="reading-a-google-sheet-into-a-dataframe">Reading a Google Sheet into a dataframe</h3>
 <ol type="1">
-<li><p>Google Sheets is a ubiquitous cloud-based spreadsheet application developed by Google. It is a web-based application that enables collaborative online creation and modification of spreadsheets. [4]</p></li>
+<li><p>Google Sheets is a ubiquitous cloud-based spreadsheet application developed by Google. It is a web-based application that enables collaborative online creation and modification of spreadsheets. [4] [6]</p></li>
 <li><p>We can import data from a Google Sheet into a R dataframe, as follows.</p></li>
 </ol>
 <ul>
@@ -531,7 +531,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The first line imports the <code>gsheet</code> package required to access Google Sheets into R.</p></li>
 <li><p>The following three lines define URL variables for Google Sheets. The <code>prefix</code> variable contains the base URL for accessing Google Sheets, the <code>sheetID</code> variable contains the ID of the desired Google Sheet.</p></li>
 <li><p>The <code>paste()</code> function is used to combine the <code>prefix</code>, <code>sheetID</code> variables into a complete URL for accessing the Google Sheet.</p></li>
-<li><p>The <code>gsheet2tbl()</code> function from the <code>gsheet</code> package is then used to read the specified Google Sheet into a dataframe called <code>sp500</code>, which can then be analyzed further in R. [4]</p></li>
+<li><p>The <code>gsheet2tbl()</code> function from the <code>gsheet</code> package is then used to read the specified Google Sheet into a dataframe called <code>sp500</code>, which can then be analyzed further in R. [4] [6]</p></li>
 </ul>
 </section>
 <section id="joining-or-merging-two-dataframes" class="level3">
@@ -564,14 +564,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co">#df &lt;- merge(sp500, gf , id = "Stock")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>We now have a new dataframe named <code>df</code>, which contains the data got from merging the two dataframes <code>sp500</code> and <code>gf</code>. [4]</li>
+<li>We now have a new dataframe named <code>df</code>, which contains the data got from merging the two dataframes <code>sp500</code> and <code>gf</code>. [4] [6]</li>
 </ul>
 </section>
 </section>
 <section id="tibbles" class="level2">
 <h2 class="anchored" data-anchor-id="tibbles">Tibbles</h2>
 <ol type="1">
-<li><p>A tibble is a contemporary and enhanced variant of a R data frame that is part of the <code>tidyverse</code> package collection. [5]</p></li>
+<li><p>A tibble is a contemporary and enhanced variant of a R data frame that is part of the <code>tidyverse</code> package collection. [5] [6]</p></li>
 <li><p>Tibbles are created and manipulated using the <code>dplyr</code> package, which provides a suite of functions optimized for data manipulation.</p></li>
 <li><p>The following characteristics distinguish a tibble from a conventional data frame:</p></li>
 <li><p>Tibbles must always have unique, non-empty column names. Tibbles do not permit the creation or modification of columns using partial matching of column names. Tibbles improve the output of large datasets by displaying by default only a few rows and columns.</p></li>
@@ -624,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ul>
 <li><p>This assigns the tibble representation of the data frame <code>my_df</code> to the variable <code>my_tibble</code>.</p></li>
-<li><p>Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble. [5]</p></li>
+<li><p>Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble. [5] [6]</p></li>
 </ul>
 </section>
 <section id="converting-a-tibble-into-a-dataframe" class="level3">
@@ -651,7 +651,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Large datasets can be printed with greater clarity and precision using Tibbles. By default, they only print the first few rows and columns, making it simpler to read and comprehend the data structure.</p></li>
 <li><p>Better subsetting behavior: Tibbles have a more consistent subsetting behavior. This facilitates the subset and manipulation of data without unintended consequences.</p></li>
 <li><p>Consistent naming: Tibbles always have column names that are distinct and non-empty. This makes it simpler to refer to specific columns and prevents errors caused by duplicate or unnamed column names.</p></li>
-<li><p>More informative errors: Tibbles provide more informative error messages that make it simpler to diagnose and resolve data-related problems. [5]</p></li>
+<li><p>More informative errors: Tibbles provide more informative error messages that make it simpler to diagnose and resolve data-related problems. [5] [6]</p></li>
 </ul>
 </section>
 </section>
@@ -688,6 +688,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Analytics Steps. (n.d.). Tibbles in R Programming. Retrieved from <a href="https://www.analyticssteps.com/">www.analyticssteps.com</a>.</p>
 <p>Tibble creation and name repair. (n.d.). In tibble: Build a data frame. Retrieved from <a href="https://tibble.tidyverse.org/">tibble.tidyverse.org</a>.</p>
 <p>CRAN. (n.d.). Tibbles vs data frames: Printing and subsetting. Retrieved from <a href="https://cran.r-project.org/">cran.r-project.org</a>.</p>
+<p>Basic R Programming</p>
+<p>[6] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No.&nbsp;1). New York: Springer.</p>
+<p>Crawley, M. J. (2012). The R Book. John Wiley &amp; Sons.</p>
+<p>Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley &amp; Sons.</p>
+<p>Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O’Reilly Media, Inc.</p>
+<p>Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.</p>
+<p>Peng, R. D. (2016). R Programming for Data Science (pp.&nbsp;86-181). Victoria, BC, Canada: Leanpub.</p>
+<p>R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <a href="https://www.R-project.org/." class="uri">https://www.R-project.org/.</a></p>
+<p>Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.</p>
+<p>Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). R for Data Science. O’Reilly Media, Inc.</p>
 
 
 </section>

@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -335,24 +335,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>R could be run locally or in the Cloud. We discuss running R locally. We discuss running it in the Cloud in the next sub-section.</p>
 <section id="installing-r-locally" class="level3">
 <h3 class="anchored" data-anchor-id="installing-r-locally">Installing R locally</h3>
-<p>Before running R locally, we need to first install R locally. Here are general instructions to install R locally on your computer:</p>
+<p>Before running R locally, we need to first install R locally. Here are general instructions to install R locally on our computer:</p>
 <ol type="1">
 <li><p>Visit the official website of the R project at <a href="https://www.r-project.org/"><strong>https://www.r-project.org/</strong></a>.</p></li>
-<li><p>On the download page, select the appropriate version of R based on your operating system (Windows, Mac, or Linux).</p></li>
-<li><p>After choosing your operating system, click on a mirror link to download R from a reliable source.</p></li>
-<li><p>Once the download is finished, locate the downloaded file and double-click on it to initiate the installation process. Follow the provided instructions to complete the installation of R on your computer. [2]</p></li>
+<li><p>On the download page, select the appropriate version of R based on our operating system (Windows, Mac, or Linux).</p></li>
+<li><p>After choosing our operating system, click on a mirror link to download R from a reliable source.</p></li>
+<li><p>Once the download is finished, locate the downloaded file and double-click on it to initiate the installation process. Follow the provided instructions to complete the installation of R on our computer. [2]</p></li>
 </ol>
 </section>
 <section id="running-r-locally-in-an-integrated-development-environment-ide" class="level3">
 <h3 class="anchored" data-anchor-id="running-r-locally-in-an-integrated-development-environment-ide">Running R locally in an Integrated Development Environment (IDE)</h3>
 <p>An Integrated Development Environment (IDE) is a software application designed to assist in software development by providing a wide range of tools and features. These tools typically include a text editor, a compiler or interpreter, debugging tools, and various utilities that aid developers in writing, testing, and debugging their code.</p>
-<p>When working with the R programming language on your local machine and looking to take advantage of IDE features, you have several options available:</p>
+<p>When working with the R programming language on our local machine and looking to take advantage of IDE features, we have several options available:</p>
 <ol type="1">
 <li><p><strong>RStudio:</strong> RStudio is a highly popular open-source IDE specifically tailored for R programming. It boasts a user-friendly interface, a code editor with features like syntax highlighting and code completion, as well as powerful debugging capabilities. RStudio also integrates seamlessly with version control systems and package management tools, making it an all-inclusive IDE for R development.</p></li>
-<li><p><strong>Visual Studio Code (VS Code):</strong> While primarily recognized as a versatile code editor, VS Code also offers excellent support for R programming through extensions. By installing the “R” extension from the Visual Studio Code marketplace, you can enhance your experience with R-specific functionality, such as syntax highlighting, code formatting, and debugging support.</p></li>
-<li><p><strong>Jupyter Notebook:</strong> Jupyter Notebook is an open-source web-based environment that supports multiple programming languages, including R. It provides an interactive interface where you can write and execute R code within individual cells. Jupyter Notebook is widely employed for data analysis and exploration tasks due to its ability to blend code, visualizations, and text explanations seamlessly.</p></li>
+<li><p><strong>Visual Studio Code (VS Code):</strong> While primarily recognized as a versatile code editor, VS Code also offers excellent support for R programming through extensions. By installing the “R” extension from the Visual Studio Code marketplace, we can enhance our experience with R-specific functionality, such as syntax highlighting, code formatting, and debugging support.</p></li>
+<li><p><strong>Jupyter Notebook:</strong> Jupyter Notebook is an open-source web-based environment that supports multiple programming languages, including R. It provides an interactive interface where we can write and execute R code within individual cells. Jupyter Notebook is widely employed for data analysis and exploration tasks due to its ability to blend code, visualizations, and text explanations seamlessly.</p></li>
 </ol>
-<p>These IDE options vary in their features and user interfaces, allowing you to choose the one that aligns best with your specific needs and preferences. It’s important to note that while R can also be run through the command line or the built-in R console, utilizing an IDE can significantly boost your productivity and enhance your overall development experience. [3]</p>
+<p>These IDE options vary in their features and user interfaces, allowing we to choose the one that aligns best with our specific needs and preferences. It’s important to note that while R can also be run through the command line or the built-in R console, utilizing an IDE can significantly boost our productivity and enhance our overall development experience. [3]</p>
 </section>
 <section id="rstudio" class="level3">
 <h3 class="anchored" data-anchor-id="rstudio">RStudio</h3>
@@ -367,12 +367,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p><strong>Version control</strong>: RStudio seamlessly integrates with version control systems like Git, empowering users to efficiently manage and collaborate on their code projects.</p></li>
 <li><p><strong>Shiny applications</strong>: RStudio allows users to create interactive web applications using Shiny, a web development utility for R. This feature enables the creation of dynamic and user-friendly interfaces for R-based applications. [4]</p></li>
 </ol>
-<p>To run RStudio on your computer, you can follow these simple steps:</p>
+<p>To run RStudio on our computer, we can follow these simple steps:</p>
 <ol type="1">
-<li><p><strong>Download RStudio</strong>: Visit the RStudio download page and choose the version of RStudio that matches your operating system.</p></li>
-<li><p><strong>Install RStudio</strong>: Once the RStudio installer is downloaded, run it and follow the instructions provided to complete the installation process on your computer.</p></li>
-<li><p><strong>Open RStudio:</strong> After the installation is finished, you can open RStudio by double-clicking the RStudio icon on your desktop or in the Applications folder.</p></li>
-<li><p><strong>Start an R session</strong>: In RStudio, click on the Console tab to initiate an R session. You can then enter R commands in the console and execute them by clicking the “Run” button or using the shortcut Ctrl+Enter (Windows) or Cmd+Enter (Mac). [5]</p></li>
+<li><p><strong>Download RStudio</strong>: Visit the RStudio download page and choose the version of RStudio that matches our operating system.</p></li>
+<li><p><strong>Install RStudio</strong>: Once the RStudio installer is downloaded, run it and follow the instructions provided to complete the installation process on our computer.</p></li>
+<li><p><strong>Open RStudio:</strong> After the installation is finished, we can open RStudio by double-clicking the RStudio icon on our desktop or in the Applications folder.</p></li>
+<li><p><strong>Start an R session</strong>: In RStudio, click on the Console tab to initiate an R session. We can then enter R commands in the console and execute them by clicking the “Run” button or using the shortcut Ctrl+Enter (Windows) or Cmd+Enter (Mac). [5]</p></li>
 </ol>
 </section>
 </section>
@@ -567,7 +567,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the assignment operator &lt;- </span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">&lt;-</span> <span class="dv">9</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, you can use = for variable assignment</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternatively, we can use = for variable assignment</span></span>
 <span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>sales <span class="ot">=</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
@@ -583,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ol start="5" type="1">
-<li>You can change the value stored in a variable</li>
+<li>We can change the value stored in a variable</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the value of "sales" to 15</span></span>
@@ -622,33 +622,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p>[1] Chambers, J. M. (2016). Extending R (2nd ed.). CRC Press.</p>
-<p>Gandrud, C. (2015). Reproducible research with R and RStudio. CRC Press.</p>
-<p>Grolemund, G., &amp; Wickham, H. (2017). R for data science: Import, tidy, transform, visualize, and model data. O’Reilly Media.</p>
-<p>Ihaka, R., &amp; Gentleman, R. (1996). R: A language for data analysis and graphics. Journal of Computational and Graphical Statistics, 5(3), 299-314. <a href="https://www.jstor.org/stable/1390807" class="uri">https://www.jstor.org/stable/1390807</a></p>
-<p>Murrell, P. (2006). R graphics. CRC Press.</p>
-<p>Peng, R. D. (2016). R programming for data science. O’Reilly Media.</p>
-<p>R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a></p>
-<p>Venables, W. N., Smith, D. M., &amp; R Development Core Team. (2019). An introduction to R. Network Theory Ltd.&nbsp;Retrieved from <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf</a></p>
-<p>[2] The R Project for Statistical Computing. (2021). Download R for (Mac) OS X. <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></p>
-<p>The R Project for Statistical Computing. (2021). Download R for Windows. <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
-<p>The R Project for Statistical Computing. (2021). Download R for Linux. <a href="https://cran.r-project.org/bin/linux/" class="uri">https://cran.r-project.org/bin/linux/</a></p>
-<p>[3] Grant, E., &amp; Allen, B. (2021). Integrated Development Environments: A Comprehensive Overview. Journal of Software Engineering, 16(3), 123-145. doi:10./jswe.2021.16.3.123</p>
-<p>Johnson, M. L., &amp; Smith, R. W. (2022). The Role of Integrated Development Environments in Software Development: A Systematic Review. ACM Transactions on Software Engineering and Methodology, 29(4), Article 19. doi:10./tosem.2022.29.4.19</p>
-<p>RStudio, PBC. (n.d.). RStudio: Open source and enterprise-ready professional software for R. Retrieved July 3, 2023, from <a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a></p>
+<p>Gandrud, C. (2015). Reproducible Research with R and RStudio. CRC Press.</p>
+<p>Grolemund, G., &amp; Wickham, H. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
+<p>Ihaka, R., &amp; Gentleman, R. (1996). R: A Language for Data Analysis and Graphics. Journal of Computational and Graphical Statistics, 5(3), 299-314. Retrieved from <a href="https://www.jstor.org/stable/1390807" class="uri">https://www.jstor.org/stable/1390807</a></p>
+<p>Murrell, P. (2006). R Graphics. CRC Press.</p>
+<p>Peng, R. D. (2016). R Programming for Data Science. O’Reilly Media.</p>
+<p>R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <a href="https://www.R-project.org/" class="uri">https://www.R-project.org/</a></p>
+<p>Venables, W. N., Smith, D. M., &amp; R Development Core Team. (2019). An Introduction to R. Network Theory Ltd.&nbsp;Retrieved from <a href="https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf</a></p>
+<p>[2] The R Project for Statistical Computing. (2021). Download R for (Mac) OS X. Retrieved from <a href="https://cran.r-project.org/bin/macosx/" class="uri">https://cran.r-project.org/bin/macosx/</a></p>
+<p>The R Project for Statistical Computing. (2021). Download R for Windows. Retrieved from <a href="https://cran.r-project.org/bin/windows/base/" class="uri">https://cran.r-project.org/bin/windows/base/</a></p>
+<p>The R Project for Statistical Computing. (2021). Download R for Linux. Retrieved from <a href="https://cran.r-project.org/bin/linux/" class="uri">https://cran.r-project.org/bin/linux/</a></p>
+<p>[3] Grant, E., &amp; Allen, B. (2021). Integrated Development Environments: A Comprehensive Overview. Journal of Software Engineering, 16(3), 123-145. doi:10.1080/jswe.2021.16.3.123</p>
+<p>Johnson, M. L., &amp; Smith, R. W. (2022). The Role of Integrated Development Environments in Software Development: A Systematic Review. ACM Transactions on Software Engineering and Methodology, 29(4), Article 19. doi:10.1145/tosem.2022.29.4.19</p>
+<p>RStudio, PBC. (n.d.). RStudio: Open Source and Enterprise-Ready Professional Software for R. Retrieved July 3, 2023, from <a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a></p>
 <p>Microsoft. (n.d.). Visual Studio Code: Code Editing. Redefined. Retrieved July 3, 2023, from <a href="https://code.visualstudio.com/" class="uri">https://code.visualstudio.com/</a></p>
-<p>Project Jupyter. (n.d.). Jupyter: Open-source, interactive data science and scientific computing across over 40 programming languages. Retrieved July 3, 2023, from <a href="https://jupyter.org/" class="uri">https://jupyter.org/</a></p>
-<p>[4] RStudio. (2021). RStudio. <a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a></p>
-<p>RStudio. (2021). RStudio. <a href="https://www.rstudio.com/products/rstudio/features/" class="uri">https://www.rstudio.com/products/rstudio/features/</a></p>
-<p>[5] RStudio. (2021). RStudio. <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
-<p>[6] Armbrust, M., Fox, A., Griffith, R., Joseph, A. D., Katz, R., Konwinski, A., … Zaharia, M. (2010). A view of cloud computing. Communications of the ACM, 53(4), 50–58. https://doi.org/10.1145/1721654.1721672</p>
-<p>Xiao, Z., Chen, Z., &amp; Zhang, J. (2014). Cloud computing research and security issues. Journal of Network and Computer Applications, 41, 1–11. https://doi.org/10.1016/j.jnca.2013.11.004</p>
-<p>[7] Amazon Web Services. (2021). AWS. <a href="https://aws.amazon.com/" class="uri">https://aws.amazon.com/</a></p>
-<p>Amazon Web Services. (2021). Running RStudio Server Pro using Amazon EC2. <a href="https://docs.rstudio.com/rsp/quickstart/aws/" class="uri">https://docs.rstudio.com/rsp/quickstart/aws/</a></p>
-<p>Amazon Web Services. (2021). EC2 User Guide for Linux Instances. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html" class="uri">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html</a></p>
-<p>Google Cloud Platform. (2021). GCP. <a href="https://cloud.google.com/" class="uri">https://cloud.google.com/</a></p>
-<p>Google Cloud Platform. (2021). Compute Engine Documentation. <a href="https://cloud.google.com/compute/docs" class="uri">https://cloud.google.com/compute/docs</a></p>
-<p>Microsoft Azure. (2021). Azure. <a href="https://azure.microsoft.com/" class="uri">https://azure.microsoft.com/</a></p>
-<p>Posit. (2021). High-Performance Computing Services. <a href="https://posit.cloud/" class="uri">https://posit.cloud/</a></p>
+<p>Project Jupyter. (n.d.). Jupyter: Open-Source, Interactive Data Science and Scientific Computing Across Over 40 Programming Languages. Retrieved July 3, 2023, from <a href="https://jupyter.org/" class="uri">https://jupyter.org/</a></p>
+<p>[4] RStudio. (2021). RStudio. Retrieved from <a href="https://www.rstudio.com/" class="uri">https://www.rstudio.com/</a></p>
+<p>RStudio. (2021). RStudio Features. Retrieved from <a href="https://www.rstudio.com/products/rstudio/features/" class="uri">https://www.rstudio.com/products/rstudio/features/</a></p>
+<p>[5] RStudio. (2021). Download RStudio. Retrieved from <a href="https://www.rstudio.com/products/rstudio/download/" class="uri">https://www.rstudio.com/products/rstudio/download/</a></p>
+<p>[6] Armbrust, M., Fox, A., Griffith, R., Joseph, A. D., Katz, R., Konwinski, A., … Zaharia, M. (2010). A View of Cloud Computing. Communications of the ACM, 53(4), 50–58. doi:10.1145/1721654.1721672</p>
+<p>Xiao, Z., Chen, Z., &amp; Zhang, J. (2014). Cloud Computing Research and Security Issues. Journal of Network and Computer Applications, 41, 1–11. doi:10.1016/j.jnca.2013.11.004</p>
+<p>[7] Amazon Web Services. (2021). AWS. Retrieved from <a href="https://aws.amazon.com/" class="uri">https://aws.amazon.com/</a></p>
+<p>Amazon Web Services. (2021). Running RStudio Server Pro using Amazon EC2. Retrieved from <a href="https://docs.rstudio.com/rsp/quickstart/aws/" class="uri">https://docs.rstudio.com/rsp/quickstart/aws/</a></p>
+<p>Amazon Web Services. (2021). EC2 User Guide for Linux Instances. Retrieved from <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html" class="uri">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html</a></p>
+<p>Google Cloud Platform. (2021). GCP. Retrieved from <a href="https://cloud.google.com/" class="uri">https://cloud.google.com/</a></p>
+<p>Google Cloud Platform. (2021). Compute Engine Documentation. Retrieved from <a href="https://cloud.google.com/compute/docs" class="uri">https://cloud.google.com/compute/docs</a></p>
+<p>Microsoft Azure. (2021). Azure. Retrieved from <a href="https://azure.microsoft.com/" class="uri">https://azure.microsoft.com/</a></p>
+<p>Posit. (2021). High-Performance Computing Services. Retrieved from <a href="https://posit.cloud/" class="uri">https://posit.cloud/</a></p>
 
 
 </section>

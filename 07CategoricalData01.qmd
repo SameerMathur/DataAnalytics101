@@ -6,7 +6,7 @@
 
 This chapter explores how to summarize and visualize *univariate, categorical* data.
 
-1.  Categorical data is a type of data that can be divided into categories or groups. labels or categorical codes like "male" and "female," "red," "green," and "blue," or "A," "B," and "C" are frequently used to describe category data. This data type is commonly employed in research and statistics where you can categorize the data under various headings depending on their features, characteristics, or any other parameters \[1\]
+1.  Categorical data is a type of data that can be divided into categories or groups. labels or categorical codes like "male" and "female," "red," "green," and "blue," or "A," "B," and "C" are frequently used to describe category data. This data type is commonly employed in research and statistics where we can categorize the data under various headings depending on their features, characteristics, or any other parameters \[1\]
 
 2.  There are several typical examples of categorical data.:
 
@@ -27,7 +27,7 @@ It is important to understand nominal and ordinal data.
 
     -   Ordinal data is frequently utilised to describe groups or categories that can be rated or sorted, such as educational level {high school, college, graduate school}, or movie reviews {G, PG, PG-13, R, NC-17}. \[2\]
 
-## Factor Variables in R
+## Factor variables in R
 
 1.  "**Factor**" is a term specifically used in R programming language to handle categorical data. Factors are the data objects which are used to categorize the data and store it as levels. They can store both strings and integers. They are useful in data analysis for statistical modeling. \[3\]
 
@@ -67,7 +67,7 @@ attach(tb)
 
 5.  The above code reads the `mtcars` data into a tibble named `tb` and transforms certain variables from the tibble into factors (categorical variables), using the `as.factor()` function. Specifically, the `cyl` (cylinders), `vs` (engine shape), `am` (transmission type), and `gear` (number of gears) variables are transformed into factors. This change is useful for subsequent analyses that need to recognize these variables as categorical data, rather than numerical data. \[3\]
 
-## Analysis of a univariate Factor Variable
+## Analysis of a univariate Factor variable
 
 1.  Recall that in the `mtcars` dataset, `cyl` stands for the number of cylinders in the car's engine. By transforming `cyl` into a factor variable, we are recognizing it as a categorical variable, which means we're acknowledging that it consists of several distinct categories or levels. Each category or level corresponds to a specific number of cylinders a car might have. \[3\]
 
@@ -155,7 +155,7 @@ tb$cyl %>%
 
 -   The final output is a table displaying the percentage of cars that have 4, 6, and 8 cylinders, respectively. Each percentage is rounded to two decimal places. The proportion of each category or group of categories, rounded to two decimal places, is presented. For instance, in this data, 43.75% of automobiles have 8 cylinders. \[3\]
 
-## Visualization of a univariate Factor Variable
+## Visualization of a univariate Factor variable
 
 ### Barplot
 
@@ -238,13 +238,13 @@ pie(cyl_counts,
 
 -   While both bar plots and pie charts can be used to visualize the same data, they each have their strengths and limitations. Bar plots are typically better for comparing absolute counts or proportions across levels, whereas pie charts may be more intuitive when demonstrating the part-whole relationship. \[4\]
 
-## Visualization of a univariate Factor data using `ggplot2` package
+## Visualization of a univariate Factor variable using `ggplot2`
 
-### Overview of **ggplot2** package
+### Overview of **`ggplot2`** package
 
 -   The `ggplot2` package, part of the tidyverse collection of R packages, is a powerful and flexible tool for creating a wide range of visualizations in R. It is built on the principles of the Grammar of Graphics, which provides a coherent system for describing and building graphs. \[5\]
 
--   At the heart of `ggplot2` is the idea of mapping data to visual elements. This approach encourages you to think about the relationship between your data and the visual representation, making it easier to create complex and customized graphs.
+-   At the heart of `ggplot2` is the idea of mapping data to visual elements. This approach encourages us to think about the relationship between our data and the visual representation, making it easier to create complex and customized graphs.
 
 Key elements of `ggplot2` include:
 
@@ -277,7 +277,7 @@ ggplot(data = tb,  # Specify the data frame 'tb'
 
 **Discussion**:
 
--   `library(ggplot2)`: This line loads the `ggplot2` package into your R session. The ggplot2 package provides a powerful framework for creating diverse and sophisticated graphics in R.
+-   `library(ggplot2)`: This line loads the `ggplot2` package into our R session. The ggplot2 package provides a powerful framework for creating diverse and sophisticated graphics in R.
 
 -   `ggplot(data = tb, aes(x = cyl)) +`: This line initiates the creation of a ggplot object. The `ggplot()` function takes as arguments the data frame to use (`tb` in this case) and an aesthetics mapping function `aes()`, which maps the `cyl` variable to the x-axis of the plot. The + sign indicates that more layers will be added to this initial ggplot object.
 
@@ -311,7 +311,7 @@ ggplot(data = tb, aes(x = cyl)) + # Initialize ggplot
 
 -   We can also customize the appearance of the text labels using the various arguments to `geom_text()`, such as `size`, `color`, `fontface`, and so on. \[5\]
 
-### Pie chart using **ggpie**
+### Pie chart using **`ggpie`**
 
 1.  *Aside*: Unfortunately, the `ggplot2` package doesn't directly support pie charts, because they are generally not as effective at displaying data as other types of plots.
 
@@ -394,13 +394,13 @@ ggpie(data = cyl_counts,
 
 The chapter presents an overview of categorical data, focusing on its two main types, nominal and ordinal. It explains how categorical data categorizes information into distinct groups, a key aspect in various analytical fields. Nominal data, which includes categories without a natural order like gender or hair color, and ordinal data, comprising ordered categories such as survey responses or clothing sizes, are thoroughly explored.
 
-Emphasis is placed on the use of factor variables in R for effective management of categorical data, with practical application demonstrated using the factor() function on the mtcars dataset. The chapter further delves into analyzing univariate factor variables, employing frequency tables for data summarization and utilizing proportions and percentages for a more nuanced understanding of data distribution.
+Emphasis is placed on the use of factor variables in R for effective management of categorical data, with practical application demonstrated using the `factor()` function. The chapter further delves into analyzing univariate factor variables, employing frequency tables for data summarization and utilizing proportions and percentages for a more nuanced understanding of data distribution.
 
-Visualization techniques using R's ggplot2 package are introduced, highlighting its capability for creating versatile visualizations, particularly bar plots. The chapter also addresses the limitations of ggplot2 in creating pie charts and suggests using the ggpie() function from the ggpubr package as a workaround, allowing for the effective representation of data proportions in a pie chart format.
+Visualization techniques using R's `ggplot2` package are introduced, highlighting its capability for creating versatile visualizations, particularly bar plots. The chapter also addresses the limitations of `ggplot2` in creating pie charts and suggests using the `ggpie()` function from the `ggpubr` package as a workaround, allowing for the effective representation of data proportions in a pie chart format.
 
 ## References
 
-**Categorical Data Analysis:**
+Categorical Data Analysis:
 
 \[1\] Diez, D. M., Barr, C. D., & Çetinkaya-Rundel, M. (2012). OpenIntro Statistics (2nd ed.). OpenIntro.
 
@@ -408,46 +408,46 @@ Visualization techniques using R's ggplot2 package are introduced, highlighting 
 
 Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html>
 
-Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate Data Analysis (8th ed.). Cengage Learning.
 
 Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.
 
 Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
 
-**Basic R programmng:**
+Basic R Programming:
 
 \[3\] Crawley, M. J. (2007). The R Book. Wiley.
 
 Friendly, M., & Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.
 
-Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
+Kabacoff, R. I. (2015). R in Action: Data Analysis and Graphics with R (2nd ed.). Manning Publications.
 
-**Data Visualization:**
+Data Visualization:
 
 \[4\] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O'Reilly Media.
 
 Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.
 
-Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
+Healy, K., & Lenard, M. T. (2014). A Practical Guide to Creating Better Looking Plots in R. University of Oregon. Retrieved from <https://escholarship.org/uc/item/07m6r>
 
 Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.
 
-Heiberger, R. M., & Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
+Heiberger, R. M., & Robbins, N. B. (2014). Design of Diverging Stacked Bar Charts for Likert Scales and Other Applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
 
 Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data & Analytics Series.
 
-Unwin, A. (2015). Graphical data analysis with R. CRC Press.
+Unwin, A. (2015). Graphical Data Analysis with R. CRC Press.
 
 Wilke, C. O. (2019). Fundamentals of Data Visualization. O'Reilly Media.
 
-**ggplot2:**
+ggplot2:
 
-\[5\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
+\[5\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. Retrieved from <https://ggplot2.tidyverse.org.>
 
 Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
 
 Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
-**ggpubr:**
+ggpubr:
 
-\[6\] Kassambara A (2023). *ggpubr: 'ggplot2' Based Publication Ready Plots*. R package version 0.6.0, <https://rpkgs.datanovia.com/ggpubr/>.
+\[6\] Kassambara, A. (2023). ggpubr: 'ggplot2' Based Publication Ready Plots. R Package Version 0.6.0. Retrieved from <https://rpkgs.datanovia.com/ggpubr/.>

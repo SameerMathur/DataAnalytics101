@@ -4,7 +4,7 @@
 
 ## Exploring Bivariate Categorical Data
 
-This chapter explores how to summarize and visualize *Bivariate, categorical* data. It builds on the previous chapter, which taught how to summarize and visualize *univariate, categorical* data.
+This chapter explores how to summarize and visualize *bivariate, categorical* data. It builds on the previous chapter, which taught how to summarize and visualize *univariate, categorical* data.
 
 1.  Bivariate categorical data analysis involves examining the **relationship between two categorical variables**. For instance, we might examine the relationship between a person's gender (male, female, or non-binary) and whether they own a car (yes or no). By exploring these two categorical variables together, we can discern potential correlations or associations.
 
@@ -305,7 +305,7 @@ barplot(freqInverted,
 5.  **Stacked Barplot**
 
 ```{r}
-# Generate a frequency table by number of cylinders ('cyl') and transmission ('am') 
+# Generate a frequency table by cylinders ('cyl') and transmission ('am') 
 freq <- table(tb$cyl, tb$am)
 freq  # Display the frequency table
 
@@ -346,9 +346,9 @@ barplot(freqInverted,
 
 6.  The grouped bar plot helps in comparing the number of cylinders across transmission types side by side, while the stacked bar plot gives an overall comparison in terms of total number of cars, with the frequency of each cylinder type stacked on top of the other. The choice between a stacked and a grouped bar plot would depend on the specific aspects of the data one would want to highlight. Taken together, grouped and stacked bar plots offer visually appealing and intuitive methods for presenting bivariate categorical data, allowing us to understand and analyze relationships between categorical variables in a meaningful way. \[3\]
 
-### Using **ggplot2**
+### Using **`ggplot2`**
 
-**Grouped Barplot using ggplot2**
+**Grouped Barplot using `ggplot2`**
 
 -   We demonstrate how to create a Grouped Barplot of Car Count by transmission and cylinders
 
@@ -371,7 +371,7 @@ df$Transmission <- factor(df$Transmission,
                           labels = c("Automatic", "Manual"))
 ```
 
-2.  Create a Grouped Barplot using ggplot2 \[4\]
+2.  Create a Grouped Barplot using `ggplot2` \[4\]
 
 ```{r}
 library(ggplot2)
@@ -435,7 +435,7 @@ df_inverted$Cylinders <- factor(df_inverted$Cylinders)
 
 ```
 
-5.  Create a Grouped Barplot using ggplot2 \[4\]
+5.  Create a Grouped Barplot using `ggplot2` \[4\]
 
 ```{r}
 # Create the Grouped Barplot using ggplot2
@@ -470,7 +470,7 @@ ggplot(df_inverted,
 
 -   To create a stacked bar plot with `ggplot2`, we apply the `geom_bar()` function but without the dodge positioning this time, since we want the bars stacked. \[4\]
 
-7.  Create a Stacked Barplot using ggplot2
+7.  Create a Stacked Barplot using `ggplot2`
 
 ```{r}
 library(ggplot2)
@@ -623,62 +623,74 @@ ggplot(data = tb) +
 
 In this chapter, we delve into an extensive exploration of various methods for visualizing bivariate categorical data using R, which include but are not limited to grouped bar plots, stacked bar plots, and mosaic plots.
 
-An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced ggplot2 library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage. The `ggplot2` library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.
+An explanation is provided to distinguish between grouped and stacked bar plots, further supported by the inclusion of coding examples and variations in parameters. Both base R functions and the more advanced `ggplot2` library serve as instrumental tools to depict these techniques, furnishing readers with a comprehensive understanding of their practical usage. The `ggplot2` library further elevates the possibilities by offering enhanced customization capabilities and superior control over aesthetics. Detailed coding examples are presented again to explain both the grouped and stacked bar plots within this library.
 
 The chapter also introduces mosaic plots as another way of visualizing bivariate categorical data and discusses how mosaic plots can provide a visual representation of the frequency or proportion of different categories within variables. The use of the base R `mosaicplot()` function is exemplified, followed by the demonstration of the `mosaic()` function in the `vcd` package and the `ggmosaic` package, bringing full circle the spectrum of visualizations covered for bivariate categorical data.
 
 ## References
 
-**Categorical Data Analysis:**
+Categorical Data Analysis:
 
 \[1\] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
 
 Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html>
 
-Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate Data Analysis (8th ed.). Cengage Learning.
 
 Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.
 
 Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
 
-**Basic R programmng:**
+Basic R Programming:
 
-\[2\] Crawley, M. J. (2007). The R Book. Wiley.
+\[2\] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No. 1). Springer.
 
-Friendly, M., & Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.
+Crawley, M. J. (2012). The R Book. John Wiley & Sons.
 
-Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
+Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley & Sons.
 
-**Data Visualization:**
+Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O'Reilly Media, Inc.
+
+Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.
+
+Peng, R. D. (2016). R Programming for Data Science (pp. 86-181). Leanpub.
+
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing. Retrieved from <https://www.R-project.org/.>
+
+Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.
+
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science. O'Reilly Media, Inc.
+
+Data Visualization:
 
 \[3\] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O'Reilly Media.
 
 Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.
 
-Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
+Healy, K., & Lenard, M. T. (2014). A Practical Guide to Creating Better Looking Plots in R. University of Oregon. Retrieved from <https://escholarship.org/uc/item/07m6r>
 
 Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.
 
-Heiberger, R. M., & Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
+Heiberger, R. M., & Robbins, N. B. (2014). Design of Diverging Stacked Bar Charts for Likert Scales and Other Applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
 
 Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data & Analytics Series.
 
-Unwin, A. (2015). Graphical data analysis with R. CRC Press.
+Unwin, A. (2015). Graphical Data Analysis with R. CRC Press.
 
 Wilke, C. O. (2019). Fundamentals of Data Visualization. O'Reilly Media.
 
-**ggplot2:**
+ggplot2:
 
-\[4\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
+\[4\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. Retrieved from <https://ggplot2.tidyverse.org.>
 
 Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
 
 Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
-**Mosaic plot:**
+Mosaic Plot:
 
-\[5\] Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.
+\[5\] Friendly, M. (1994). Mosaic Displays for Multi-Way Contingency Tables. Journal of the American Statistical Association, 89(425), 190-200.
 
-Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
+Hartigan, J. A., & Kleiner, B. (1981). Mosaics for Contingency Tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
 
-Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd
+Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R Package Version 1.4-8. Retrieved from <https://CRAN.R-project.org/package=vcd>

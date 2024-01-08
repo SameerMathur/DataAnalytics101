@@ -38,23 +38,23 @@ There are numerous advantages to using R packages:
 
 1.  The `install.packages()` function can be employed to install R packages.
 
-2.  For instance, to install the `ggplot2` package in R, you would execute the following code:
+2.  For instance, to install the `ggplot2` package in R, we would execute the following code:
 
 ```{r, eval=FALSE}
 install.packages("ggplot2")
 ```
 
-3.  Executing the code provided will download and install the `ggplot2` package, along with any necessary dependencies, on your system.
+3.  Executing the code provided will download and install the `ggplot2` package, along with any necessary dependencies, on our system.
 
-4.  It's important to remember that a package needs to be installed only once on your system. Once installed, you can easily import the package into your R session using the `library()` function.
+4.  It's important to remember that a package needs to be installed only once on our system. Once installed, we can easily import the package into our R session using the `library()` function.
 
-5.  For example, to import the `ggplot2` package in R, you can execute the following code:
+5.  For example, to import the `ggplot2` package in R, we can execute the following code:
 
 ```{r}
 library(ggplot2)
 ```
 
-6.  By executing the provided code, you will enable access to the functions and datasets of the `ggplot2` package for use within your R session.
+6.  By executing the provided code, we will enable access to the functions and datasets of the `ggplot2` package for use within our R session.
 
 ### Popular R Packages
 
@@ -98,11 +98,11 @@ Here, the command `library(ggplot2)` loads the `ggplot2` package, making its fun
 
 ### Getting help
 
-If you require assistance with an R package, there are several avenues you can explore:
+If we require assistance with an R package, there are several avenues we can explore:
 
-1.  **Documentation**: Most R packages include comprehensive documentation that covers functions, datasets, and usage examples. To access the documentation, you can use the `help()` function or type `?package_name` directly in the R console, replacing `package_name` with the specific package you want to learn more about.
+1.  **Documentation**: Most R packages include comprehensive documentation that covers functions, datasets, and usage examples. To access the documentation, we can use the `help()` function or type `?package_name` directly in the R console, replacing `package_name` with the specific package we want to learn more about.
 
-2.  **Integrated help system:** R provides an integrated help system that offers documentation and demonstrations for functions and packages. To access this help system, you can use the commands `help(topic)` or `?topic` in the R console, where `topic` represents the name of the function or package you require assistance with.
+2.  **Integrated help system:** R provides an integrated help system that offers documentation and demonstrations for functions and packages. To access this help system, we can use the commands `help(topic)` or `?topic` in the R console, where `topic` represents the name of the function or package we require assistance with.
 
 3.  **Online Resources:** Numerous online resources are available for obtaining help with R packages. Blogs, forums, and question-and-answer platforms like Stack Overflow offer valuable insights and solutions to specific problems. These platforms are particularly helpful for finding answers to specific questions and obtaining general guidance on package usage. \[3\]
 
@@ -122,24 +122,24 @@ For users who encounter challenges, the chapter recommends consulting the docume
 
 \[1\] Hadley, W., & Chang, W. (2018). R Packages. O'Reilly Media.
 
-Hester, J., & Wickham, H. (2018). R Packages: A guide based on modern practices. O'Reilly Media.
+Hester, J., & Wickham, H. (2018). R Packages: A Guide Based on Modern Practices. O'Reilly Media.
 
 Wickham, H. (2015). R Packages: Organize, Test, Document, and Share Your Code. O'Reilly Media.
 
-\[2\] Wickham, H., François, R., Henry, L., & Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R package version 1.0.7. Retrieved from [**https://CRAN.R-project.org/package=dplyr**](https://cran.r-project.org/package=dplyr)
+\[2\] Wickham, H., François, R., Henry, L., & Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R Package Version 1.0.7. Retrieved from <https://CRAN.R-project.org/package=dplyr>
 
-Wickham, H., & Henry, L. (2020). tidyr: Tidy Messy Data. R package version 1.1.4. Retrieved from [**https://CRAN.R-project.org/package=tidyr**](https://cran.r-project.org/package=tidyr)
+Wickham, H., & Henry, L. (2020). tidyr: Tidy Messy Data. R Package Version 1.1.4. Retrieved from <https://CRAN.R-project.org/package=tidyr>
 
-Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., & Woo, K. (2021). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. R package version 3.3.5. Retrieved from [**https://CRAN.R-project.org/package=ggplot2**](https://cran.r-project.org/package=ggplot2)
+Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., & Woo, K. (2021). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. R Package Version 3.3.5. Retrieved from <https://CRAN.R-project.org/package=ggplot2>
 
-Wickham, H. (2019). reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package. R package version 1.4.4. Retrieved from [**https://CRAN.R-project.org/package=reshape2**](https://cran.r-project.org/package=reshape2)
+Wickham, H. (2019). reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package. R Package Version 1.4.4. Retrieved from <https://CRAN.R-project.org/package=reshape2>
 
-Dowle, M., Srinivasan, A., Gorecki, J., Chirico, M., Stetsenko, P., Short, T., \... & Lianoglou, S. (2021). data.table: Extension of **`data.frame`**. R package version 1.14.0. Retrieved from [**https://CRAN.R-project.org/package=data.table**](https://cran.r-project.org/package=data.table)
+Dowle, M., Srinivasan, A., Gorecki, J., Chirico, M., Stetsenko, P., Short, T., ... & Lianoglou, S. (2021). data.table: Extension of data.frame. R Package Version 1.14.0. Retrieved from <https://CRAN.R-project.org/package=data.table>
 
 Grolemund, G., & Wickham, H. (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25.
 
-Wickham, H. (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R package version 1.4.0. Retrieved from [**https://CRAN.R-project.org/package=stringr**](https://cran.r-project.org/package=stringr)
+Wickham, H. (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R Package Version 1.4.0. Retrieved from <https://CRAN.R-project.org/package=stringr>
 
-Sievert, C. (2021). plotly: Create Interactive Web Graphics via 'plotly.js'. R package version 4.10.0. Retrieved from [**https://CRAN.R-project.org/package=plotly**](https://cran.r-project.org/package=plotly)
+Sievert, C. (2021). plotly: Create Interactive Web Graphics via 'plotly.js'. R Package Version 4.10.0. Retrieved from <https://CRAN.R-project.org/package=plotly>
 
-\[3\] R Core Team. (2021). Writing R Extensions. Retrieved from [**https://cran.r-project.org/doc/manuals/r-release/R-exts.html**](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
+\[3\] R Core Team. (2021). Writing R Extensions. Retrieved from <https://cran.r-project.org/doc/manuals/r-release/R-exts.html>

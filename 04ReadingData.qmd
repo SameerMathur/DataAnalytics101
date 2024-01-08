@@ -12,7 +12,7 @@ Dataframes and Tibbles are frequently employed data structures in R for storing 
 
 3.  Dataframe objects can be created in R using the `data.frame()` function or by importing data from external sources such as CSV files, Excel spreadsheets, or databases.
 
-4.  R has many useful built-in methods and functions for manipulating and summarizing data stored in dataframes, including subsetting, merging, filtering, and aggregation. \[1\]
+4.  R has many useful built-in methods and functions for manipulating and summarizing data stored in dataframes, including subsetting, merging, filtering, and aggregation. \[1\] \[6\]
 
 ### Creating a dataframe using raw data
 
@@ -71,7 +71,7 @@ summary(women)
 
 ### The `mtcars` dataset
 
-The `mtcars` dataset inbuilt in R comprises data on the fuel consumption and other characteristics of 32 different automobile models. \[2\]
+The `mtcars` dataset inbuilt in R comprises data on the fuel consumption and other characteristics of 32 different automobile models. \[2\] \[6\]
 
 Here is a concise description of the 11 `mtcars` data columns:
 
@@ -104,7 +104,7 @@ str(mtcars)
 
 ## Reading different file formats into a dataframe
 
-1.  We examine how to read data into a dataframe in R when the original data is stored in prominent file formats such as CSV, Excel, and Google Sheets. \[3\]
+1.  We examine how to read data into a dataframe in R when the original data is stored in prominent file formats such as CSV, Excel, and Google Sheets. \[3\] \[6\]
 
 2.  Before learning how to accomplish this, it is necessary to comprehend how to configure the Working Directory in R.
 
@@ -128,7 +128,7 @@ getwd()
 #setwd("C:/Users/YourUserName/Desktop")
 ```
 
-6.  We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. \[3\]
+6.  We should choose an easily-remembered and accessible working directory to store our R scripts and data files. Additionally, we should avoid using spaces, special characters, and non-ASCII characters in file paths, as these can cause file handling issues in R. \[3\] \[6\]
 
 ### Reading a CSV file into a dataframe
 
@@ -146,13 +146,13 @@ df_csv <- read.csv("mtcars.csv")
 
 4.  In this example, the `read.csv()` function reads the mtcars.csv file into a data frame named `df_csv`.
 
-5.  If the file is not in the current working directory, the complete file path must be specified in the `read.csv()` function argument; otherwise, an error will occur. \[3\]
+5.  If the file is not in the current working directory, the complete file path must be specified in the `read.csv()` function argument; otherwise, an error will occur. \[3\] \[6\]
 
 ### Reading an Excel (xlsx) file into a dataframe
 
 1.  Suppose we wish to import a Microsoft Excel file named `mtcars.xlsx`, located in the Working Directory.
 
-2.  We can use the `read_excel` function in the R package `readxl`, illustrated as follows. \[3\]
+2.  We can use the `read_excel` function in the R package `readxl`, illustrated as follows. \[3\] \[6\]
 
 ```{r eval=FALSE}
 library(readxl)
@@ -161,7 +161,7 @@ df_xlsx <- read_excel("mtcars.xlsx")
 
 ### Reading a Google Sheet into a dataframe
 
-1.  Google Sheets is a ubiquitous cloud-based spreadsheet application developed by Google. It is a web-based application that enables collaborative online creation and modification of spreadsheets. \[4\]
+1.  Google Sheets is a ubiquitous cloud-based spreadsheet application developed by Google. It is a web-based application that enables collaborative online creation and modification of spreadsheets. \[4\] \[6\]
 
 2.  We can import data from a Google Sheet into a R dataframe, as follows.
 
@@ -194,7 +194,7 @@ sp500 <- gsheet2tbl(url500)
 
 -   The `paste()` function is used to combine the `prefix`, `sheetID` variables into a complete URL for accessing the Google Sheet.
 
--   The `gsheet2tbl()` function from the `gsheet` package is then used to read the specified Google Sheet into a dataframe called `sp500`, which can then be analyzed further in R. \[4\]
+-   The `gsheet2tbl()` function from the `gsheet` package is then used to read the specified Google Sheet into a dataframe called `sp500`, which can then be analyzed further in R. \[4\] \[6\]
 
 ### Joining or Merging two dataframes
 
@@ -229,11 +229,11 @@ gf <- gsheet2tbl(url)
 #df <- merge(sp500, gf , id = "Stock")
 ```
 
--   We now have a new dataframe named `df`, which contains the data got from merging the two dataframes `sp500` and `gf`. \[4\]
+-   We now have a new dataframe named `df`, which contains the data got from merging the two dataframes `sp500` and `gf`. \[4\] \[6\]
 
 ## Tibbles
 
-1.  A tibble is a contemporary and enhanced variant of a R data frame that is part of the `tidyverse` package collection. \[5\]
+1.  A tibble is a contemporary and enhanced variant of a R data frame that is part of the `tidyverse` package collection. \[5\] \[6\]
 
 2.  Tibbles are created and manipulated using the `dplyr` package, which provides a suite of functions optimized for data manipulation.
 
@@ -276,7 +276,7 @@ my_tibble
 
 -   This assigns the tibble representation of the data frame `my_df` to the variable `my_tibble`.
 
--   Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble. \[5\]
+-   Note that the resulting tibble has the same column names and data as the original data frame, but has the additional characteristics and behaviors of a tibble. \[5\] \[6\]
 
 ### Converting a tibble into a dataframe
 
@@ -298,7 +298,7 @@ my_df
 
 -   Consistent naming: Tibbles always have column names that are distinct and non-empty. This makes it simpler to refer to specific columns and prevents errors caused by duplicate or unnamed column names.
 
--   More informative errors: Tibbles provide more informative error messages that make it simpler to diagnose and resolve data-related problems. \[5\]
+-   More informative errors: Tibbles provide more informative error messages that make it simpler to diagnose and resolve data-related problems. \[5\] \[6\]
 
 ## Summary of Chapter 4 -- Reading Data into R
 
@@ -359,3 +359,23 @@ Analytics Steps. (n.d.). Tibbles in R Programming. Retrieved from [www.analytics
 Tibble creation and name repair. (n.d.). In tibble: Build a data frame. Retrieved from [tibble.tidyverse.org](https://tibble.tidyverse.org/).
 
 CRAN. (n.d.). Tibbles vs data frames: Printing and subsetting. Retrieved from [cran.r-project.org](https://cran.r-project.org/).
+
+Basic R Programming
+
+\[6\] Chambers, J. M. (2008). Software for Data Analysis: Programming with R (Vol. 2, No. 1). New York: Springer.
+
+Crawley, M. J. (2012). The R Book. John Wiley & Sons.
+
+Gardener, M. (2012). Beginning R: The Statistical Programming Language. John Wiley & Sons.
+
+Grolemund, G. (2014). Hands-On Programming with R: Write Your Own Functions and Simulations. O'Reilly Media, Inc.
+
+Kabacoff, R. (2022). R in Action: Data Analysis and Graphics with R and Tidyverse. Simon and Schuster.
+
+Peng, R. D. (2016). R Programming for Data Science (pp. 86-181). Victoria, BC, Canada: Leanpub.
+
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <https://www.R-project.org/.>
+
+Tippmann, S. (2015). Programming Tools: Adventures with R. Nature, 517(7532), 109-110.
+
+Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science. O'Reilly Media, Inc.

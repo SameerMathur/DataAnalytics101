@@ -26,29 +26,29 @@ R could be run locally or in the Cloud. We discuss running R locally. We discuss
 
 ### Installing R locally
 
-Before running R locally, we need to first install R locally. Here are general instructions to install R locally on your computer:
+Before running R locally, we need to first install R locally. Here are general instructions to install R locally on our computer:
 
 1.  Visit the official website of the R project at [**https://www.r-project.org/**](https://www.r-project.org/).
 
-2.  On the download page, select the appropriate version of R based on your operating system (Windows, Mac, or Linux).
+2.  On the download page, select the appropriate version of R based on our operating system (Windows, Mac, or Linux).
 
-3.  After choosing your operating system, click on a mirror link to download R from a reliable source.
+3.  After choosing our operating system, click on a mirror link to download R from a reliable source.
 
-4.  Once the download is finished, locate the downloaded file and double-click on it to initiate the installation process. Follow the provided instructions to complete the installation of R on your computer. \[2\]
+4.  Once the download is finished, locate the downloaded file and double-click on it to initiate the installation process. Follow the provided instructions to complete the installation of R on our computer. \[2\]
 
 ### Running R locally in an Integrated Development Environment (IDE)
 
 An Integrated Development Environment (IDE) is a software application designed to assist in software development by providing a wide range of tools and features. These tools typically include a text editor, a compiler or interpreter, debugging tools, and various utilities that aid developers in writing, testing, and debugging their code.
 
-When working with the R programming language on your local machine and looking to take advantage of IDE features, you have several options available:
+When working with the R programming language on our local machine and looking to take advantage of IDE features, we have several options available:
 
 1.  **RStudio:** RStudio is a highly popular open-source IDE specifically tailored for R programming. It boasts a user-friendly interface, a code editor with features like syntax highlighting and code completion, as well as powerful debugging capabilities. RStudio also integrates seamlessly with version control systems and package management tools, making it an all-inclusive IDE for R development.
 
-2.  **Visual Studio Code (VS Code):** While primarily recognized as a versatile code editor, VS Code also offers excellent support for R programming through extensions. By installing the "R" extension from the Visual Studio Code marketplace, you can enhance your experience with R-specific functionality, such as syntax highlighting, code formatting, and debugging support.
+2.  **Visual Studio Code (VS Code):** While primarily recognized as a versatile code editor, VS Code also offers excellent support for R programming through extensions. By installing the "R" extension from the Visual Studio Code marketplace, we can enhance our experience with R-specific functionality, such as syntax highlighting, code formatting, and debugging support.
 
-3.  **Jupyter Notebook:** Jupyter Notebook is an open-source web-based environment that supports multiple programming languages, including R. It provides an interactive interface where you can write and execute R code within individual cells. Jupyter Notebook is widely employed for data analysis and exploration tasks due to its ability to blend code, visualizations, and text explanations seamlessly.
+3.  **Jupyter Notebook:** Jupyter Notebook is an open-source web-based environment that supports multiple programming languages, including R. It provides an interactive interface where we can write and execute R code within individual cells. Jupyter Notebook is widely employed for data analysis and exploration tasks due to its ability to blend code, visualizations, and text explanations seamlessly.
 
-These IDE options vary in their features and user interfaces, allowing you to choose the one that aligns best with your specific needs and preferences. It's important to note that while R can also be run through the command line or the built-in R console, utilizing an IDE can significantly boost your productivity and enhance your overall development experience. \[3\]
+These IDE options vary in their features and user interfaces, allowing we to choose the one that aligns best with our specific needs and preferences. It's important to note that while R can also be run through the command line or the built-in R console, utilizing an IDE can significantly boost our productivity and enhance our overall development experience. \[3\]
 
 ### RStudio
 
@@ -70,15 +70,15 @@ Some notable features of RStudio include:
 
 7.  **Shiny applications**: RStudio allows users to create interactive web applications using Shiny, a web development utility for R. This feature enables the creation of dynamic and user-friendly interfaces for R-based applications. \[4\]
 
-To run RStudio on your computer, you can follow these simple steps:
+To run RStudio on our computer, we can follow these simple steps:
 
-1.  **Download RStudio**: Visit the RStudio download page and choose the version of RStudio that matches your operating system.
+1.  **Download RStudio**: Visit the RStudio download page and choose the version of RStudio that matches our operating system.
 
-2.  **Install RStudio**: Once the RStudio installer is downloaded, run it and follow the instructions provided to complete the installation process on your computer.
+2.  **Install RStudio**: Once the RStudio installer is downloaded, run it and follow the instructions provided to complete the installation process on our computer.
 
-3.  **Open RStudio:** After the installation is finished, you can open RStudio by double-clicking the RStudio icon on your desktop or in the Applications folder.
+3.  **Open RStudio:** After the installation is finished, we can open RStudio by double-clicking the RStudio icon on our desktop or in the Applications folder.
 
-4.  **Start an R session**: In RStudio, click on the Console tab to initiate an R session. You can then enter R commands in the console and execute them by clicking the "Run" button or using the shortcut Ctrl+Enter (Windows) or Cmd+Enter (Mac). \[5\]
+4.  **Start an R session**: In RStudio, click on the Console tab to initiate an R session. We can then enter R commands in the console and execute them by clicking the "Run" button or using the shortcut Ctrl+Enter (Windows) or Cmd+Enter (Mac). \[5\]
 
 ## Running R in the Cloud
 
@@ -244,7 +244,7 @@ cor(x, y)
 ```{r}
 # Using the assignment operator <- 
 sales <- 9
-# Alternatively, you can use = for variable assignment
+# Alternatively, we can use = for variable assignment
 sales = 9
 ```
 
@@ -259,7 +259,7 @@ sales = 9
 2 * sales
 ```
 
-5.  You can change the value stored in a variable
+5.  We can change the value stored in a variable
 
 ```{r}
 # Change the value of "sales" to 15
@@ -295,56 +295,56 @@ To summarize, this chapter introduces the R programming language, its developmen
 
 \[1\] Chambers, J. M. (2016). Extending R (2nd ed.). CRC Press.
 
-Gandrud, C. (2015). Reproducible research with R and RStudio. CRC Press.
+Gandrud, C. (2015). Reproducible Research with R and RStudio. CRC Press.
 
-Grolemund, G., & Wickham, H. (2017). R for data science: Import, tidy, transform, visualize, and model data. O'Reilly Media.
+Grolemund, G., & Wickham, H. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
 
-Ihaka, R., & Gentleman, R. (1996). R: A language for data analysis and graphics. Journal of Computational and Graphical Statistics, 5(3), 299-314. <https://www.jstor.org/stable/1390807>
+Ihaka, R., & Gentleman, R. (1996). R: A Language for Data Analysis and Graphics. Journal of Computational and Graphical Statistics, 5(3), 299-314. Retrieved from <https://www.jstor.org/stable/1390807>
 
-Murrell, P. (2006). R graphics. CRC Press.
+Murrell, P. (2006). R Graphics. CRC Press.
 
-Peng, R. D. (2016). R programming for data science. O'Reilly Media.
+Peng, R. D. (2016). R Programming for Data Science. O'Reilly Media.
 
-R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. <https://www.R-project.org/>
+R Core Team. (2020). R: A Language and Environment for Statistical Computing. R Foundation for Statistical Computing, Vienna, Austria. Retrieved from <https://www.R-project.org/>
 
-Venables, W. N., Smith, D. M., & R Development Core Team. (2019). An introduction to R. Network Theory Ltd. Retrieved from <https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf>
+Venables, W. N., Smith, D. M., & R Development Core Team. (2019). An Introduction to R. Network Theory Ltd. Retrieved from <https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf>
 
-\[2\] The R Project for Statistical Computing. (2021). Download R for (Mac) OS X. <https://cran.r-project.org/bin/macosx/>
+\[2\] The R Project for Statistical Computing. (2021). Download R for (Mac) OS X. Retrieved from <https://cran.r-project.org/bin/macosx/>
 
-The R Project for Statistical Computing. (2021). Download R for Windows. <https://cran.r-project.org/bin/windows/base/>
+The R Project for Statistical Computing. (2021). Download R for Windows. Retrieved from <https://cran.r-project.org/bin/windows/base/>
 
-The R Project for Statistical Computing. (2021). Download R for Linux. <https://cran.r-project.org/bin/linux/>
+The R Project for Statistical Computing. (2021). Download R for Linux. Retrieved from <https://cran.r-project.org/bin/linux/>
 
-\[3\] Grant, E., & Allen, B. (2021). Integrated Development Environments: A Comprehensive Overview. Journal of Software Engineering, 16(3), 123-145. doi:10./jswe.2021.16.3.123
+\[3\] Grant, E., & Allen, B. (2021). Integrated Development Environments: A Comprehensive Overview. Journal of Software Engineering, 16(3), 123-145. doi:10.1080/jswe.2021.16.3.123
 
-Johnson, M. L., & Smith, R. W. (2022). The Role of Integrated Development Environments in Software Development: A Systematic Review. ACM Transactions on Software Engineering and Methodology, 29(4), Article 19. doi:10./tosem.2022.29.4.19
+Johnson, M. L., & Smith, R. W. (2022). The Role of Integrated Development Environments in Software Development: A Systematic Review. ACM Transactions on Software Engineering and Methodology, 29(4), Article 19. doi:10.1145/tosem.2022.29.4.19
 
-RStudio, PBC. (n.d.). RStudio: Open source and enterprise-ready professional software for R. Retrieved July 3, 2023, from <https://www.rstudio.com/>
+RStudio, PBC. (n.d.). RStudio: Open Source and Enterprise-Ready Professional Software for R. Retrieved July 3, 2023, from <https://www.rstudio.com/>
 
 Microsoft. (n.d.). Visual Studio Code: Code Editing. Redefined. Retrieved July 3, 2023, from <https://code.visualstudio.com/>
 
-Project Jupyter. (n.d.). Jupyter: Open-source, interactive data science and scientific computing across over 40 programming languages. Retrieved July 3, 2023, from <https://jupyter.org/>
+Project Jupyter. (n.d.). Jupyter: Open-Source, Interactive Data Science and Scientific Computing Across Over 40 Programming Languages. Retrieved July 3, 2023, from <https://jupyter.org/>
 
-\[4\] RStudio. (2021). RStudio. <https://www.rstudio.com/>
+\[4\] RStudio. (2021). RStudio. Retrieved from <https://www.rstudio.com/>
 
-RStudio. (2021). RStudio. <https://www.rstudio.com/products/rstudio/features/>
+RStudio. (2021). RStudio Features. Retrieved from <https://www.rstudio.com/products/rstudio/features/>
 
-\[5\] RStudio. (2021). RStudio. <https://www.rstudio.com/products/rstudio/download/>
+\[5\] RStudio. (2021). Download RStudio. Retrieved from <https://www.rstudio.com/products/rstudio/download/>
 
-\[6\] Armbrust, M., Fox, A., Griffith, R., Joseph, A. D., Katz, R., Konwinski, A., ... Zaharia, M. (2010). A view of cloud computing. Communications of the ACM, 53(4), 50--58. https://doi.org/10.1145/1721654.1721672
+\[6\] Armbrust, M., Fox, A., Griffith, R., Joseph, A. D., Katz, R., Konwinski, A., ... Zaharia, M. (2010). A View of Cloud Computing. Communications of the ACM, 53(4), 50--58. doi:10.1145/1721654.1721672
 
-Xiao, Z., Chen, Z., & Zhang, J. (2014). Cloud computing research and security issues. Journal of Network and Computer Applications, 41, 1--11. https://doi.org/10.1016/j.jnca.2013.11.004
+Xiao, Z., Chen, Z., & Zhang, J. (2014). Cloud Computing Research and Security Issues. Journal of Network and Computer Applications, 41, 1--11. doi:10.1016/j.jnca.2013.11.004
 
-\[7\] Amazon Web Services. (2021). AWS. <https://aws.amazon.com/>
+\[7\] Amazon Web Services. (2021). AWS. Retrieved from <https://aws.amazon.com/>
 
-Amazon Web Services. (2021). Running RStudio Server Pro using Amazon EC2. <https://docs.rstudio.com/rsp/quickstart/aws/>
+Amazon Web Services. (2021). Running RStudio Server Pro using Amazon EC2. Retrieved from <https://docs.rstudio.com/rsp/quickstart/aws/>
 
-Amazon Web Services. (2021). EC2 User Guide for Linux Instances. <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html>
+Amazon Web Services. (2021). EC2 User Guide for Linux Instances. Retrieved from <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html>
 
-Google Cloud Platform. (2021). GCP. <https://cloud.google.com/>
+Google Cloud Platform. (2021). GCP. Retrieved from <https://cloud.google.com/>
 
-Google Cloud Platform. (2021). Compute Engine Documentation. <https://cloud.google.com/compute/docs>
+Google Cloud Platform. (2021). Compute Engine Documentation. Retrieved from <https://cloud.google.com/compute/docs>
 
-Microsoft Azure. (2021). Azure. <https://azure.microsoft.com/>
+Microsoft Azure. (2021). Azure. Retrieved from <https://azure.microsoft.com/>
 
-Posit. (2021). High-Performance Computing Services. <https://posit.cloud/>
+Posit. (2021). High-Performance Computing Services. Retrieved from <https://posit.cloud/>

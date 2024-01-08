@@ -106,7 +106,7 @@ ftable(gear ~ cyl + am,
 
 -   In both scenarios, a `ftable` provides a more compact view of the three-way relationship among the `gear`, `cyl`, and `am` variables. However, the orientation of the variables in the rows and columns changes, providing different views of the data and potentially making certain patterns more evident depending on the question we're trying to answer.
 
--   The exact choice between `ftable(gear + cyl ~ am, data = tb)` and `ftable(gear ~ cyl + am, data = tb)` will depend on what specific relationships you're most interested in exploring in your data. \[2\]
+-   The exact choice between `ftable(gear + cyl ~ am, data = tb)` and `ftable(gear ~ cyl + am, data = tb)` will depend on what specific relationships we are most interested in exploring in our data. \[2\]
 
 ### Visualization using a Faceted Bar Plot in `ggplot`
 
@@ -328,58 +328,58 @@ In essence, this chapter provides a robust understanding of multivariate categor
 
 ## References
 
-**Categorical Data Analysis:**
+Categorical Data Analysis:
 
 \[1\] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.
 
 Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html>
 
-Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.
+Hair, J. F., Black, W. C., Babin, B. J., & Anderson, R. E. (2018). Multivariate Data Analysis (8th ed.). Cengage Learning.
 
 Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.
 
 Tang, W., Tang, Y., & Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.
 
-**R programmng:**
+R Programming:
 
 \[2\] Crawley, M. J. (2007). The R Book. Wiley.
 
 Friendly, M., & Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.
 
-Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.
+Kabacoff, R. I. (2015). R in Action: Data Analysis and Graphics with R (2nd ed.). Manning Publications.
 
-R Core Team. (2020). ftable: Flat Contingency Tables. In R Documentation. Retrieved from https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ftable
+R Core Team. (2020). ftable: Flat Contingency Tables. In R Documentation. Retrieved from <https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/ftable>
 
-**Data Visualization:**
+Data Visualization:
 
 \[3\] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O'Reilly Media.
 
 Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.
 
-Healy, K., & Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r
+Healy, K., & Lenard, M. T. (2014). A Practical Guide to Creating Better Looking Plots in R. University of Oregon. Retrieved from <https://escholarship.org/uc/item/07m6r>
 
 Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.
 
-Heiberger, R. M., & Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
+Heiberger, R. M., & Robbins, N. B. (2014). Design of Diverging Stacked Bar Charts for Likert Scales and Other Applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.
 
 Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data & Analytics Series.
 
-Unwin, A. (2015). Graphical data analysis with R. CRC Press.
+Unwin, A. (2015). Graphical Data Analysis with R. CRC Press.
 
 Wilke, C. O. (2019). Fundamentals of Data Visualization. O'Reilly Media.
 
-**ggplot2:**
+ggplot2:
 
-\[4\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.
+\[4\] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. Retrieved from <https://ggplot2.tidyverse.org.>
 
 Wickham, H., & Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.
 
 Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.
 
-**Mosaic plot:**
+Mosaic Plot:
 
-\[5\] Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
+\[5\] Hartigan, J. A., & Kleiner, B. (1981). Mosaics for Contingency Tables. In Computer Science and Statistics: Proceedings of the 13th Symposium on the Interface (pp. 268-273).
 
-Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R package version 1.4-8. https://CRAN.R-project.org/package=vcd
+Meyer, D., Zeileis, A., & Hornik, K. (2020). vcd: Visualizing Categorical Data. R Package Version 1.4-8. Retrieved from <https://CRAN.R-project.org/package=vcd>
 
-Friendly, M. (1994). Mosaic displays for multi-way contingency tables. Journal of the American Statistical Association, 89(425), 190-200.
+Friendly, M. (1994). Mosaic Displays for Multi-Way Contingency Tables. Journal of the American Statistical Association, 89(425), 190-200.

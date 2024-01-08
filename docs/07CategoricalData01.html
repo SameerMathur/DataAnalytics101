@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -289,19 +289,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#exploring-univariate-categorical-data" id="toc-exploring-univariate-categorical-data" class="nav-link" data-scroll-target="#exploring-univariate-categorical-data">Exploring Univariate Categorical Data</a></li>
   <li><a href="#types-of-categorical-data-nominal-ordinal-data" id="toc-types-of-categorical-data-nominal-ordinal-data" class="nav-link" data-scroll-target="#types-of-categorical-data-nominal-ordinal-data">Types of Categorical Data – Nominal, Ordinal Data</a></li>
-  <li><a href="#factor-variables-in-r" id="toc-factor-variables-in-r" class="nav-link" data-scroll-target="#factor-variables-in-r">Factor Variables in R</a></li>
-  <li><a href="#analysis-of-a-univariate-factor-variable" id="toc-analysis-of-a-univariate-factor-variable" class="nav-link" data-scroll-target="#analysis-of-a-univariate-factor-variable">Analysis of a univariate Factor Variable</a></li>
+  <li><a href="#factor-variables-in-r" id="toc-factor-variables-in-r" class="nav-link" data-scroll-target="#factor-variables-in-r">Factor variables in R</a></li>
+  <li><a href="#analysis-of-a-univariate-factor-variable" id="toc-analysis-of-a-univariate-factor-variable" class="nav-link" data-scroll-target="#analysis-of-a-univariate-factor-variable">Analysis of a univariate Factor variable</a></li>
   <li><a href="#summarizing-a-univariate-factor-variable" id="toc-summarizing-a-univariate-factor-variable" class="nav-link" data-scroll-target="#summarizing-a-univariate-factor-variable">Summarizing a univariate Factor Variable</a></li>
-  <li><a href="#visualization-of-a-univariate-factor-variable" id="toc-visualization-of-a-univariate-factor-variable" class="nav-link" data-scroll-target="#visualization-of-a-univariate-factor-variable">Visualization of a univariate Factor Variable</a>
+  <li><a href="#visualization-of-a-univariate-factor-variable" id="toc-visualization-of-a-univariate-factor-variable" class="nav-link" data-scroll-target="#visualization-of-a-univariate-factor-variable">Visualization of a univariate Factor variable</a>
   <ul class="collapse">
   <li><a href="#barplot" id="toc-barplot" class="nav-link" data-scroll-target="#barplot">Barplot</a></li>
   <li><a href="#pie-chart" id="toc-pie-chart" class="nav-link" data-scroll-target="#pie-chart">Pie chart</a></li>
   </ul></li>
-  <li><a href="#visualization-of-a-univariate-factor-data-using-ggplot2-package" id="toc-visualization-of-a-univariate-factor-data-using-ggplot2-package" class="nav-link" data-scroll-target="#visualization-of-a-univariate-factor-data-using-ggplot2-package">Visualization of a univariate Factor data using <code>ggplot2</code> package</a>
+  <li><a href="#visualization-of-a-univariate-factor-variable-using-ggplot2" id="toc-visualization-of-a-univariate-factor-variable-using-ggplot2" class="nav-link" data-scroll-target="#visualization-of-a-univariate-factor-variable-using-ggplot2">Visualization of a univariate Factor variable using <code>ggplot2</code></a>
   <ul class="collapse">
-  <li><a href="#overview-of-ggplot2-package" id="toc-overview-of-ggplot2-package" class="nav-link" data-scroll-target="#overview-of-ggplot2-package">Overview of <strong>ggplot2</strong> package</a></li>
+  <li><a href="#overview-of-ggplot2-package" id="toc-overview-of-ggplot2-package" class="nav-link" data-scroll-target="#overview-of-ggplot2-package">Overview of <strong><code>ggplot2</code></strong> package</a></li>
   <li><a href="#bar-plot-using-ggplot2-package" id="toc-bar-plot-using-ggplot2-package" class="nav-link" data-scroll-target="#bar-plot-using-ggplot2-package">Bar Plot using <code>ggplot2</code> package</a></li>
-  <li><a href="#pie-chart-using-ggpie" id="toc-pie-chart-using-ggpie" class="nav-link" data-scroll-target="#pie-chart-using-ggpie">Pie chart using <strong>ggpie</strong></a></li>
+  <li><a href="#pie-chart-using-ggpie" id="toc-pie-chart-using-ggpie" class="nav-link" data-scroll-target="#pie-chart-using-ggpie">Pie chart using <strong><code>ggpie</code></strong></a></li>
   </ul></li>
   <li><a href="#summary-of-chapter-7-univariate-categorical-data" id="toc-summary-of-chapter-7-univariate-categorical-data" class="nav-link" data-scroll-target="#summary-of-chapter-7-univariate-categorical-data">Summary of Chapter 7 – Univariate Categorical data</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -321,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="exploring-univariate-categorical-data">Exploring Univariate Categorical Data</h2>
 <p>This chapter explores how to summarize and visualize <em>univariate, categorical</em> data.</p>
 <ol type="1">
-<li><p>Categorical data is a type of data that can be divided into categories or groups. labels or categorical codes like “male” and “female,” “red,” “green,” and “blue,” or “A,” “B,” and “C” are frequently used to describe category data. This data type is commonly employed in research and statistics where you can categorize the data under various headings depending on their features, characteristics, or any other parameters [1]</p></li>
+<li><p>Categorical data is a type of data that can be divided into categories or groups. labels or categorical codes like “male” and “female,” “red,” “green,” and “blue,” or “A,” “B,” and “C” are frequently used to describe category data. This data type is commonly employed in research and statistics where we can categorize the data under various headings depending on their features, characteristics, or any other parameters [1]</p></li>
 <li><p>There are several typical examples of categorical data.:</p>
 <ul>
 <li>Gender (male, female)</li>
@@ -345,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="factor-variables-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="factor-variables-in-r">Factor Variables in R</h2>
+<h2 class="anchored" data-anchor-id="factor-variables-in-r">Factor variables in R</h2>
 <ol type="1">
 <li><p>“<strong>Factor</strong>” is a term specifically used in R programming language to handle categorical data. Factors are the data objects which are used to categorize the data and store it as levels. They can store both strings and integers. They are useful in data analysis for statistical modeling. [3]</p></li>
 <li><p>A factor variable has <strong>levels</strong>, which are the distinct categories of the variable. For instance, if we have a factor variable named “color”, the levels might be “red,” “blue,” and “green.” Each level corresponds to a category in the categorical data. Creation of a factor variable in R can be done as follows:</p></li>
@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 </section>
 <section id="analysis-of-a-univariate-factor-variable" class="level2">
-<h2 class="anchored" data-anchor-id="analysis-of-a-univariate-factor-variable">Analysis of a univariate Factor Variable</h2>
+<h2 class="anchored" data-anchor-id="analysis-of-a-univariate-factor-variable">Analysis of a univariate Factor variable</h2>
 <ol type="1">
 <li><p>Recall that in the <code>mtcars</code> dataset, <code>cyl</code> stands for the number of cylinders in the car’s engine. By transforming <code>cyl</code> into a factor variable, we are recognizing it as a categorical variable, which means we’re acknowledging that it consists of several distinct categories or levels. Each category or level corresponds to a specific number of cylinders a car might have. [3]</p></li>
 <li><p>Notice that in order to convert <code>cyl</code> into a factor variable in R, we have used the following line of code, which modifies the <code>cyl</code> column in the mtcars data frame (or tibble), transforming it from a numerical variable into a factor variable.</p></li>
@@ -485,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="visualization-of-a-univariate-factor-variable" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-of-a-univariate-factor-variable">Visualization of a univariate Factor Variable</h2>
+<h2 class="anchored" data-anchor-id="visualization-of-a-univariate-factor-variable">Visualization of a univariate Factor variable</h2>
 <section id="barplot" class="level3">
 <h3 class="anchored" data-anchor-id="barplot">Barplot</h3>
 <ul>
@@ -573,13 +573,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="visualization-of-a-univariate-factor-data-using-ggplot2-package" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-of-a-univariate-factor-data-using-ggplot2-package">Visualization of a univariate Factor data using <code>ggplot2</code> package</h2>
+<section id="visualization-of-a-univariate-factor-variable-using-ggplot2" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-of-a-univariate-factor-variable-using-ggplot2">Visualization of a univariate Factor variable using <code>ggplot2</code></h2>
 <section id="overview-of-ggplot2-package" class="level3">
-<h3 class="anchored" data-anchor-id="overview-of-ggplot2-package">Overview of <strong>ggplot2</strong> package</h3>
+<h3 class="anchored" data-anchor-id="overview-of-ggplot2-package">Overview of <strong><code>ggplot2</code></strong> package</h3>
 <ul>
 <li><p>The <code>ggplot2</code> package, part of the tidyverse collection of R packages, is a powerful and flexible tool for creating a wide range of visualizations in R. It is built on the principles of the Grammar of Graphics, which provides a coherent system for describing and building graphs. [5]</p></li>
-<li><p>At the heart of <code>ggplot2</code> is the idea of mapping data to visual elements. This approach encourages you to think about the relationship between your data and the visual representation, making it easier to create complex and customized graphs.</p></li>
+<li><p>At the heart of <code>ggplot2</code> is the idea of mapping data to visual elements. This approach encourages us to think about the relationship between our data and the visual representation, making it easier to create complex and customized graphs.</p></li>
 </ul>
 <p>Key elements of <code>ggplot2</code> include:</p>
 <ol type="1">
@@ -622,7 +622,7 @@ Attaching package: 'ggplot2'</code></pre>
 </div>
 <p><strong>Discussion</strong>:</p>
 <ul>
-<li><p><code>library(ggplot2)</code>: This line loads the <code>ggplot2</code> package into your R session. The ggplot2 package provides a powerful framework for creating diverse and sophisticated graphics in R.</p></li>
+<li><p><code>library(ggplot2)</code>: This line loads the <code>ggplot2</code> package into our R session. The ggplot2 package provides a powerful framework for creating diverse and sophisticated graphics in R.</p></li>
 <li><p><code>ggplot(data = tb, aes(x = cyl)) +</code>: This line initiates the creation of a ggplot object. The <code>ggplot()</code> function takes as arguments the data frame to use (<code>tb</code> in this case) and an aesthetics mapping function <code>aes()</code>, which maps the <code>cyl</code> variable to the x-axis of the plot. The + sign indicates that more layers will be added to this initial ggplot object.</p></li>
 <li><p><code>geom_bar() +</code>: This line adds a layer to the ggplot object to create a bar plot. The geom_bar() function by default will create a bar plot where the height of the bars corresponds to the count of each category in the data.</p></li>
 <li><p><code>labs(title = "Bar Plot of Cylinders", x = "Cylinders", y = "Count")</code>: This line adds labels to the plot. The <code>labs()</code> function is used to set the title of the plot and the labels for the x and y axes. The title of the plot is set as “Bar Plot of Cylinders”, the x-axis is labeled as “Cylinders”, and the y-axis is labeled as “Count”.</p></li>
@@ -653,7 +653,7 @@ Attaching package: 'ggplot2'</code></pre>
 </ul>
 </section>
 <section id="pie-chart-using-ggpie" class="level3">
-<h3 class="anchored" data-anchor-id="pie-chart-using-ggpie">Pie chart using <strong>ggpie</strong></h3>
+<h3 class="anchored" data-anchor-id="pie-chart-using-ggpie">Pie chart using <strong><code>ggpie</code></strong></h3>
 <ol type="1">
 <li><p><em>Aside</em>: Unfortunately, the <code>ggplot2</code> package doesn’t directly support pie charts, because they are generally not as effective at displaying data as other types of plots.</p></li>
 <li><p>The <code>ggpie()</code> function is part of the <code>ggpubr</code> package in R, a package that provides a set of functions to enhance the visual appeal and usability of <code>ggplot2</code> plots It specifically enables the creation of pie charts within the <code>ggplot2</code> framework. [6]</p></li>
@@ -732,37 +732,37 @@ Attaching package: 'ggplot2'</code></pre>
 <section id="summary-of-chapter-7-univariate-categorical-data" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-chapter-7-univariate-categorical-data">Summary of Chapter 7 – Univariate Categorical data</h2>
 <p>The chapter presents an overview of categorical data, focusing on its two main types, nominal and ordinal. It explains how categorical data categorizes information into distinct groups, a key aspect in various analytical fields. Nominal data, which includes categories without a natural order like gender or hair color, and ordinal data, comprising ordered categories such as survey responses or clothing sizes, are thoroughly explored.</p>
-<p>Emphasis is placed on the use of factor variables in R for effective management of categorical data, with practical application demonstrated using the factor() function on the mtcars dataset. The chapter further delves into analyzing univariate factor variables, employing frequency tables for data summarization and utilizing proportions and percentages for a more nuanced understanding of data distribution.</p>
-<p>Visualization techniques using R’s ggplot2 package are introduced, highlighting its capability for creating versatile visualizations, particularly bar plots. The chapter also addresses the limitations of ggplot2 in creating pie charts and suggests using the ggpie() function from the ggpubr package as a workaround, allowing for the effective representation of data proportions in a pie chart format.</p>
+<p>Emphasis is placed on the use of factor variables in R for effective management of categorical data, with practical application demonstrated using the <code>factor()</code> function. The chapter further delves into analyzing univariate factor variables, employing frequency tables for data summarization and utilizing proportions and percentages for a more nuanced understanding of data distribution.</p>
+<p>Visualization techniques using R’s <code>ggplot2</code> package are introduced, highlighting its capability for creating versatile visualizations, particularly bar plots. The chapter also addresses the limitations of <code>ggplot2</code> in creating pie charts and suggests using the <code>ggpie()</code> function from the <code>ggpubr</code> package as a workaround, allowing for the effective representation of data proportions in a pie chart format.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
-<p><strong>Categorical Data Analysis:</strong></p>
+<p>Categorical Data Analysis:</p>
 <p>[1] Diez, D. M., Barr, C. D., &amp; Çetinkaya-Rundel, M. (2012). OpenIntro Statistics (2nd ed.). OpenIntro.</p>
 <p>[2] Agresti, A. (2018). An Introduction to Categorical Data Analysis (3rd ed.). Wiley.</p>
 <p>Boston University School of Public Health. (2016). Analysis of Categorical Data. Retrieved from <a href="https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html" class="uri">https://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/R/R6_CategoricalDataAnalysis/R6_CategoricalDataAnalysis2.html</a></p>
-<p>Hair, J. F., Black, W. C., Babin, B. J., &amp; Anderson, R. E. (2018). Multivariate data analysis (8th ed.). Cengage Learning.</p>
+<p>Hair, J. F., Black, W. C., Babin, B. J., &amp; Anderson, R. E. (2018). Multivariate Data Analysis (8th ed.). Cengage Learning.</p>
 <p>Sheskin, D. J. (2011). Handbook of Parametric and Nonparametric Statistical Procedures (5th ed.). Chapman and Hall/CRC.</p>
 <p>Tang, W., Tang, Y., &amp; Song, X. (2012). Applied Categorical and Count Data Analysis. Chapman and Hall/CRC.</p>
-<p><strong>Basic R programmng:</strong></p>
+<p>Basic R Programming:</p>
 <p>[3] Crawley, M. J. (2007). The R Book. Wiley.</p>
 <p>Friendly, M., &amp; Meyer, D. (2016). Discrete Data Analysis with R: Visualization and Modeling Techniques for Categorical and Count Data. Chapman and Hall/CRC.</p>
-<p>Kabacoff, R. I. (2015). R in Action: Data analysis and graphics with R (2nd ed.). Manning Publications.</p>
-<p><strong>Data Visualization:</strong></p>
+<p>Kabacoff, R. I. (2015). R in Action: Data Analysis and Graphics with R (2nd ed.). Manning Publications.</p>
+<p>Data Visualization:</p>
 <p>[4] Chang, W. (2018). R Graphics Cookbook: Practical Recipes for Visualizing Data. O’Reilly Media.</p>
 <p>Friendly, M. (2000). Visualizing Categorical Data. SAS Institute.</p>
-<p>Healy, K., &amp; Lenard, M. T. (2014). A practical guide to creating better looking plots in R. University of Oregon. https://escholarship.org/uc/item/07m6r</p>
+<p>Healy, K., &amp; Lenard, M. T. (2014). A Practical Guide to Creating Better Looking Plots in R. University of Oregon. Retrieved from <a href="https://escholarship.org/uc/item/07m6r" class="uri">https://escholarship.org/uc/item/07m6r</a></p>
 <p>Healy, K. (2018). Data Visualization: A Practical Introduction. Princeton University Press.</p>
-<p>Heiberger, R. M., &amp; Robbins, N. B. (2014). Design of diverging stacked bar charts for Likert scales and other applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.</p>
+<p>Heiberger, R. M., &amp; Robbins, N. B. (2014). Design of Diverging Stacked Bar Charts for Likert Scales and Other Applications. Journal of Statistical Software, 57(5), 1-32. doi: 10.18637/jss.v057.i05.</p>
 <p>Lander, J. P. (2019). R for Everyone: Advanced Analytics and Graphics (2nd ed.). Addison-Wesley Data &amp; Analytics Series.</p>
-<p>Unwin, A. (2015). Graphical data analysis with R. CRC Press.</p>
+<p>Unwin, A. (2015). Graphical Data Analysis with R. CRC Press.</p>
 <p>Wilke, C. O. (2019). Fundamentals of Data Visualization. O’Reilly Media.</p>
-<p><strong>ggplot2:</strong></p>
-<p>[5] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4, https://ggplot2.tidyverse.org.</p>
+<p>ggplot2:</p>
+<p>[5] Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York. ISBN 978-3-319-24277-4. Retrieved from <a href="https://ggplot2.tidyverse.org." class="uri">https://ggplot2.tidyverse.org.</a></p>
 <p>Wickham, H., &amp; Grolemund, G. (2016). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O’Reilly Media.</p>
 <p>Wilkinson, L. (2005). The Grammar of Graphics (2nd ed.). Springer-Verlag.</p>
-<p><strong>ggpubr:</strong></p>
-<p>[6] Kassambara A (2023).&nbsp;<em>ggpubr: ‘ggplot2’ Based Publication Ready Plots</em>. R package version 0.6.0,&nbsp;<a href="https://rpkgs.datanovia.com/ggpubr/" class="uri">https://rpkgs.datanovia.com/ggpubr/</a>.</p>
+<p>ggpubr:</p>
+<p>[6] Kassambara, A. (2023). ggpubr: ‘ggplot2’ Based Publication Ready Plots. R Package Version 0.6.0. Retrieved from <a href="https://rpkgs.datanovia.com/ggpubr/." class="uri">https://rpkgs.datanovia.com/ggpubr/.</a></p>
 
 
 </section>

@@ -192,13 +192,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05ExploringDataframes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring Dataframes</span></a>
+ <span class="menu-text">Exploring Dataframes (Part 1 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06ExploringTibbles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exploring <em>tibbles</em> &amp; <em>dplyr</em></span></a>
+ <span class="menu-text">Exploring Dataframes (Part 2 of 2)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -341,21 +341,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="installing-a-r-package">Installing a R Package</h2>
 <ol type="1">
 <li><p>The <code>install.packages()</code> function can be employed to install R packages.</p></li>
-<li><p>For instance, to install the <code>ggplot2</code> package in R, you would execute the following code:</p></li>
+<li><p>For instance, to install the <code>ggplot2</code> package in R, we would execute the following code:</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="3" type="1">
-<li><p>Executing the code provided will download and install the <code>ggplot2</code> package, along with any necessary dependencies, on your system.</p></li>
-<li><p>It’s important to remember that a package needs to be installed only once on your system. Once installed, you can easily import the package into your R session using the <code>library()</code> function.</p></li>
-<li><p>For example, to import the <code>ggplot2</code> package in R, you can execute the following code:</p></li>
+<li><p>Executing the code provided will download and install the <code>ggplot2</code> package, along with any necessary dependencies, on our system.</p></li>
+<li><p>It’s important to remember that a package needs to be installed only once on our system. Once installed, we can easily import the package into our R session using the <code>library()</code> function.</p></li>
+<li><p>For example, to import the <code>ggplot2</code> package in R, we can execute the following code:</p></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="6" type="1">
-<li>By executing the provided code, you will enable access to the functions and datasets of the <code>ggplot2</code> package for use within your R session.</li>
+<li>By executing the provided code, we will enable access to the functions and datasets of the <code>ggplot2</code> package for use within our R session.</li>
 </ol>
 <section id="popular-r-packages" class="level3">
 <h3 class="anchored" data-anchor-id="popular-r-packages">Popular R Packages</h3>
@@ -394,10 +394,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Here, the command <code>library(ggplot2)</code> loads the <code>ggplot2</code> package, making its functions available for use.</p>
 <section id="getting-help" class="level3">
 <h3 class="anchored" data-anchor-id="getting-help">Getting help</h3>
-<p>If you require assistance with an R package, there are several avenues you can explore:</p>
+<p>If we require assistance with an R package, there are several avenues we can explore:</p>
 <ol type="1">
-<li><p><strong>Documentation</strong>: Most R packages include comprehensive documentation that covers functions, datasets, and usage examples. To access the documentation, you can use the <code>help()</code> function or type <code>?package_name</code> directly in the R console, replacing <code>package_name</code> with the specific package you want to learn more about.</p></li>
-<li><p><strong>Integrated help system:</strong> R provides an integrated help system that offers documentation and demonstrations for functions and packages. To access this help system, you can use the commands <code>help(topic)</code> or <code>?topic</code> in the R console, where <code>topic</code> represents the name of the function or package you require assistance with.</p></li>
+<li><p><strong>Documentation</strong>: Most R packages include comprehensive documentation that covers functions, datasets, and usage examples. To access the documentation, we can use the <code>help()</code> function or type <code>?package_name</code> directly in the R console, replacing <code>package_name</code> with the specific package we want to learn more about.</p></li>
+<li><p><strong>Integrated help system:</strong> R provides an integrated help system that offers documentation and demonstrations for functions and packages. To access this help system, we can use the commands <code>help(topic)</code> or <code>?topic</code> in the R console, where <code>topic</code> represents the name of the function or package we require assistance with.</p></li>
 <li><p><strong>Online Resources:</strong> Numerous online resources are available for obtaining help with R packages. Blogs, forums, and question-and-answer platforms like Stack Overflow offer valuable insights and solutions to specific problems. These platforms are particularly helpful for finding answers to specific questions and obtaining general guidance on package usage. [3]</p></li>
 </ol>
 </section>
@@ -413,17 +413,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p>[1] Hadley, W., &amp; Chang, W. (2018). R Packages. O’Reilly Media.</p>
-<p>Hester, J., &amp; Wickham, H. (2018). R Packages: A guide based on modern practices. O’Reilly Media.</p>
+<p>Hester, J., &amp; Wickham, H. (2018). R Packages: A Guide Based on Modern Practices. O’Reilly Media.</p>
 <p>Wickham, H. (2015). R Packages: Organize, Test, Document, and Share Your Code. O’Reilly Media.</p>
-<p>[2] Wickham, H., François, R., Henry, L., &amp; Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R package version 1.0.7. Retrieved from <a href="https://cran.r-project.org/package=dplyr"><strong>https://CRAN.R-project.org/package=dplyr</strong></a></p>
-<p>Wickham, H., &amp; Henry, L. (2020). tidyr: Tidy Messy Data. R package version 1.1.4. Retrieved from <a href="https://cran.r-project.org/package=tidyr"><strong>https://CRAN.R-project.org/package=tidyr</strong></a></p>
-<p>Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., &amp; Woo, K. (2021). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. R package version 3.3.5. Retrieved from <a href="https://cran.r-project.org/package=ggplot2"><strong>https://CRAN.R-project.org/package=ggplot2</strong></a></p>
-<p>Wickham, H. (2019). reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package. R package version 1.4.4. Retrieved from <a href="https://cran.r-project.org/package=reshape2"><strong>https://CRAN.R-project.org/package=reshape2</strong></a></p>
-<p>Dowle, M., Srinivasan, A., Gorecki, J., Chirico, M., Stetsenko, P., Short, T., ... &amp; Lianoglou, S. (2021). data.table: Extension of <strong><code>data.frame</code></strong>. R package version 1.14.0. Retrieved from <a href="https://cran.r-project.org/package=data.table"><strong>https://CRAN.R-project.org/package=data.table</strong></a></p>
+<p>[2] Wickham, H., François, R., Henry, L., &amp; Müller, K. (2021). dplyr: A Grammar of Data Manipulation. R Package Version 1.0.7. Retrieved from <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
+<p>Wickham, H., &amp; Henry, L. (2020). tidyr: Tidy Messy Data. R Package Version 1.1.4. Retrieved from <a href="https://CRAN.R-project.org/package=tidyr" class="uri">https://CRAN.R-project.org/package=tidyr</a></p>
+<p>Wickham, H., Chang, W., Henry, L., Pedersen, T. L., Takahashi, K., Wilke, C., &amp; Woo, K. (2021). ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics. R Package Version 3.3.5. Retrieved from <a href="https://CRAN.R-project.org/package=ggplot2" class="uri">https://CRAN.R-project.org/package=ggplot2</a></p>
+<p>Wickham, H. (2019). reshape2: Flexibly Reshape Data: A Reboot of the Reshape Package. R Package Version 1.4.4. Retrieved from <a href="https://CRAN.R-project.org/package=reshape2" class="uri">https://CRAN.R-project.org/package=reshape2</a></p>
+<p>Dowle, M., Srinivasan, A., Gorecki, J., Chirico, M., Stetsenko, P., Short, T., … &amp; Lianoglou, S. (2021). data.table: Extension of data.frame. R Package Version 1.14.0. Retrieved from <a href="https://CRAN.R-project.org/package=data.table" class="uri">https://CRAN.R-project.org/package=data.table</a></p>
 <p>Grolemund, G., &amp; Wickham, H. (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25.</p>
-<p>Wickham, H. (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R package version 1.4.0. Retrieved from <a href="https://cran.r-project.org/package=stringr"><strong>https://CRAN.R-project.org/package=stringr</strong></a></p>
-<p>Sievert, C. (2021). plotly: Create Interactive Web Graphics via ‘plotly.js’. R package version 4.10.0. Retrieved from <a href="https://cran.r-project.org/package=plotly"><strong>https://CRAN.R-project.org/package=plotly</strong></a></p>
-<p>[3] R Core Team. (2021). Writing R Extensions. Retrieved from <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html"><strong>https://cran.r-project.org/doc/manuals/r-release/R-exts.html</strong></a></p>
+<p>Wickham, H. (2019). stringr: Simple, Consistent Wrappers for Common String Operations. R Package Version 1.4.0. Retrieved from <a href="https://CRAN.R-project.org/package=stringr" class="uri">https://CRAN.R-project.org/package=stringr</a></p>
+<p>Sievert, C. (2021). plotly: Create Interactive Web Graphics via ‘plotly.js’. R Package Version 4.10.0. Retrieved from <a href="https://CRAN.R-project.org/package=plotly" class="uri">https://CRAN.R-project.org/package=plotly</a></p>
+<p>[3] R Core Team. (2021). Writing R Extensions. Retrieved from <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-exts.html</a></p>
 
 
 </section>

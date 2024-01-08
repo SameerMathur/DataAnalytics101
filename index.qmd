@@ -30,11 +30,11 @@ Chapter 3 focuses on vectors, a fundamental data structure in R, explaining thei
 
 Chapter 4 delves into managing data frames in R, particularly reading various file formats into data frames and the concept of tibbles. It discusses managing the working directory, reading CSV and Excel files, and merging data frames. The chapter introduces tibbles as a modern version of data frames, explaining their creation and manipulation using the dplyr package. It emphasizes the importance of tibbles in data storage and analysis, providing a foundation for further exploration of data.
 
-### **Chapter 5 -- Exploring Dataframes**
+### **Chapter 5 -- Exploring Dataframes** (Part 1 of 2)
 
 Chapter 5 provides a comprehensive guide to exploring dataframes in R. It covers basic functions for examining dataframes, accessing data using indexing, and understanding data structures like factors. The chapter explores logical operations, statistical analysis functions, and custom function creation. It emphasizes the importance of dataframes in R for data analysis and visualization, offering practical examples and tips for effective data management.
 
-### **Chapter 6 -- Exploring Tibbles & dplyr**
+### **Chapter 6 --** Exploring Dataframes (Part 2 of 2)
 
 Chapter 6 discusses tibbles and the `dplyr` package in R, in detail. Tibbles, an enhanced version of data frames, offer improved features for data management. The chapter focuses on `dplyr`, a tool for efficient data manipulation, highlighting key functions like `filter(), select(), arrange(), mutate()`, and `summarise()`, along with the pipe operator `%>%`. It provides practical examples to demonstrate `dplyr'`s capabilities in data manipulation and management, emphasizing its importance in the R environment.
 
