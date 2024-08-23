@@ -1,8 +1,8 @@
 # Exploring R Packages
 
-**Chapter 2*.***
+**Chapter 2.***
 
-1.  R packages are collections of code, data, and documentation that enhance the capabilities of R, a programming language and software environment used for statistical computing and graphics.
+1.  R packages are collections of code, data, and documentation that enhance the capabilities of R, a programming language and software environment used for statistical computing and graphics!
 
 2.  R packages are created by R users and developers and provide additional tools, functions, and datasets that serve various purposes, such as data analysis, visualization, and machine learning.
 
