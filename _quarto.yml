@@ -10,7 +10,7 @@ website:
   margin-header: |
     ![](BookCover101.png)  
   page-footer:
-    background: "blue"
+    background: "red"
     center: 
       - text: "Sameer Mathur"
         href: https://www.qatar.cmu.edu/directory/sameer-mathur/
