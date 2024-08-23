@@ -1,5 +1,5 @@
 
-### BEGIN yaml FOR BOOK'S WEBSITE (Aug 23, 2024) ###
+### BEGIN yaml FOR BOOK'S WEBSITE (Aug 23, 2024)###
 project:
   type: website
   output-dir: docs
@@ -62,15 +62,15 @@ website:
       - 14ContinuousData05.qmd
       - 15ContinuousData06.qmd
       - 16ThreeDimensions01.qmd
-      - 17LiveCase01.qmd
-      - 18LiveCaseREIT.qmd
+#      - 17LiveCase01.qmd
+#      - 18LiveCaseREIT.qmd
 
 ### END yaml FOR BOOK'S WEBSITE ###
 
 format:
   html:
     theme: united
-    toc: true # may need to comment this out to revert this back to the book
+#    toc: true # may need to comment this out to revert this back to the book
     fig-width: 8
     fig-height: 4
     code-fold: false
