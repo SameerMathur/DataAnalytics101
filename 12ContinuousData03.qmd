@@ -51,7 +51,8 @@ names(A0) <- c("Cylinders", "Mean_mpg")
 
 # Displaying the aggregated data using 'kable' from the knitr package.
 # Setting the number of digits to 2 for formatting and adding a caption.
-kable(A0, digits=2, caption = "Mean of Mileage (mpg) by Cylinder (cyl=4,6,8)") 
+kable(A0, digits=2, 
+      caption = "Mean of Mileage (mpg) by Cylinder (cyl=4,6,8)") 
 
 ```
 
@@ -103,6 +104,7 @@ library(psych)
 # statistics of 'mpg' grouped by 'cyl'. 
 A2 <- describeBy(mpg, cyl)
 print(A2)
+
 ```
 
 6.  **Discussion**:
@@ -635,7 +637,7 @@ Schumacker, R., & Tomek, S. (2013). Understanding Statistics Using R. Springer S
 
 ## Appendix
 
-#### Appendix A1
+**Appendix A1**
 
 Visualizing histograms of car mileage (`mpg`) broken down by transmission (`am`=0,1)
 
@@ -663,7 +665,7 @@ for (i in 1:length(split_data)) {
 }
 ```
 
-#### Appendix A2
+**Appendix A2**
 
 Visualizing Probability Density Function (PDF) of car milegage (`mpg`) broken down by transmission (`am`=0,1), using for loop
 
@@ -696,7 +698,7 @@ for (i in 1:length(split_data)) {
 }
 ```
 
-#### Appendix A3
+**Appendix A3**
 
 Visualizing Probability Density Function (PDF) of car milegage (`mpg`) broken down by transmission (`am`=0,1), overlapping PDFs on the same plot
 
@@ -741,7 +743,7 @@ legend("topright",
        border = "black")
 ```
 
-#### Appendix A4
+**Appendix A4**
 
 ```{r}
 # Split the data by 'am' variable

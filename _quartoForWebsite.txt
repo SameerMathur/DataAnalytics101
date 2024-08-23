@@ -1,11 +1,11 @@
 
-### BEGIN yaml FOR BOOK'S WEBSITE (Dec 30, 2023) ###
+### BEGIN yaml FOR BOOK'S WEBSITE (Jan 8, 2024) ###
 project:
   type: website
   output-dir: docs
 
 website:
-  title: "Data Analytics 101 -- Exploratory Data Analysis using R"
+  title: "Data Analytics 101 -- Exploratory Data Analysis using R."
 
   margin-header: |
     ![](BookCover101.png)  
@@ -64,7 +64,6 @@ website:
       - 16ThreeDimensions01.qmd
       - 17LiveCase01.qmd
       - 18LiveCaseREIT.qmd
-#      - 19LiveCase03.qmd
 
 ### END yaml FOR BOOK'S WEBSITE ###
 

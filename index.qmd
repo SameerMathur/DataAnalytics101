@@ -1,6 +1,6 @@
 # Overview {.unnumbered}
 
-This book teaches Exploratory Data Analysis (EDA) using the R programming language. Designed for novices, this book serves as a detailed guide to understanding and harnessing the power of R programming for summarizing and visualizing data.
+This book teaches Exploratory Data Analysis (EDA) using the R programming language. Designed for novices, this book serves as a guide to understanding and harnessing the power of R programming for summarizing and visualizing data!
 
 The book begins by laying a solid foundation in R programming, addressing its history, installation, and basic usage. It progresses into the exploration of R packages, vital tools for extending R's capabilities, and delves into the intricacies of data structures, with a special focus on vectors and their varied applications.
 

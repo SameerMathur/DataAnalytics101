@@ -40,15 +40,15 @@ The broad purpose of this Case Study is to review and analyze the different sect
 
 ```{r, warning=FALSE}
 # Load the required libraries, suppressing annoying startup messages
-library(dplyr, quietly = TRUE, warn.conflicts = FALSE) # For data manipulation
-library(tibble, quietly = TRUE, warn.conflicts = FALSE) # For data manipulation
-library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
-library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # For data visualization
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE) # data manipulation
+library(tibble, quietly = TRUE, warn.conflicts = FALSE) # data manipulation
+library(ggplot2, quietly = TRUE, warn.conflicts = FALSE) # data visualization
+library(ggpubr, quietly = TRUE, warn.conflicts = FALSE) # data visualization
 
-library(gsheet, quietly = TRUE, warn.conflicts = FALSE) # For Google Sheets
-library(rmarkdown, quietly = TRUE, warn.conflicts = FALSE) # For writing
-library(knitr, quietly = TRUE, warn.conflicts = FALSE) # For tables
-library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # For tables
+library(gsheet, quietly = TRUE, warn.conflicts = FALSE) # Google Sheets
+library(rmarkdown, quietly = TRUE, warn.conflicts = FALSE) # writing
+library(knitr, quietly = TRUE, warn.conflicts = FALSE) # tables
+library(kableExtra, quietly = TRUE, warn.conflicts = FALSE) # tables
 library(scales)  # For formatting currency
 ```
 
@@ -74,7 +74,7 @@ library(gsheet)
 prefix <- "https://docs.google.com/spreadsheets/d/"
 sheetID <- "14mUlNNpeuV2RouT9MKaAWKUpvjRijzQu40DdWJgyKPQ"
 url500 <- paste(prefix,sheetID) # Form the URL to connect to
-sp500Data <- gsheet2tbl(url500) # Read it into a tibble called sp500Data
+sp500Data <- gsheet2tbl(url500) # Read it into a tibble 
 ```
 
 2.  **Note**: This data is current, as of **`r sp500Data$Date[1]`**
@@ -121,7 +121,8 @@ dim(sp500)
 sp500 %>%
   select(Stock, Description, GICSSector) %>%
   head(10) %>%
-  kable("html", caption = "The first 10 companies in the S&P500 dataset") %>% 
+  kable("html", 
+        caption = "The first 10 companies in the S&P500") %>% 
   kable_styling()
 ```
 
@@ -315,7 +316,7 @@ library(dplyr)
 sp500 <- sp500 %>%
   mutate(Low52WkPerc = round((Price - Low52Wk) * 100 / Low52Wk, 2),
          High52WkPerc = round((High52Wk - Price) * 100 / High52Wk, 2),
-         MarketCapBillions = round(MarketCap / 1e9, 3) # Convert MarketCap to billions
+         MarketCapBillions = round(MarketCap / 1e9, 3) # MarketCap to billions
          )
 ```
 
@@ -327,9 +328,9 @@ library(scales)  # For formatting currency
 
 sp500 <- sp500 %>%
   mutate(
-    Price = scales::dollar(round(Price, 2)),  # format the Price as a dollar amount
-    High52Wk = scales::dollar(round(High52Wk, 2)),  # format the 52 Week High 
-    Low52Wk = scales::dollar(round(Low52Wk, 2))  # format the 52 Week Low 
+    Price = scales::dollar(round(Price, 2)),  # format the Price as $
+    High52Wk = scales::dollar(round(High52Wk, 2)),  # format 52 Week High 
+    Low52Wk = scales::dollar(round(Low52Wk, 2))  # format 52 Week Low 
   )
 ```
 
@@ -379,7 +380,7 @@ library(dplyr)    # For data manipulation
 
 sp500 %>%
   mutate(
-    # Reorder the 'GICSSector' factor levels based on the count of each sector
+    # Reorder the 'GICSSector' factor levels based on each sector
     # 'table(GICSSector)[GICSSector]' calculates the frequency of each sector
     # 'reorder' reorders the levels of 'GICSSector' based on these frequencies
     GICSSector = reorder(GICSSector, 
@@ -451,7 +452,8 @@ top_stocks_by_sector <- sp500 %>%
 # Select only the specified columns and create a table using kable
 top_stocks_by_sector %>%
   select(GICSSector, Stock, StockName, MarketCapBillions) %>%
-  kable("html", caption = "Top Two Stocks by Market Capitalization, for each GICS Sector") %>%
+  kable("html", 
+        caption = "Top Two Stocks by Market Cap, for each Sector") %>%
   kable_styling()
 ```
 
@@ -467,7 +469,7 @@ Table 2
 library(dplyr)
 library(kableExtra)
 
-# Calculate Q1, Median, and Q3 for Low52WkPerc and High52WkPerc within each GICS sector
+# Q1, Median, Q3 for Low52WkPerc, High52WkPerc within each sector
 sector_summary_stats <- sp500 %>%
   group_by(GICSSector) %>%
   summarise(
@@ -495,8 +497,8 @@ sector_summary_stats <- sector_summary_stats %>%
 # Create a formatted table using kable
 sector_summary_stats %>%
   kable("html", 
-        caption = "Q1, Median, and Q3 of Low52WkPerc and High52WkPerc by GICS Sector, Sorted by Low Q1") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+        caption = "Q1, Median, Q3 of Low52WkPerc, High52WkPerc") %>%
+  kable_styling()
 
 ```
 
@@ -516,7 +518,9 @@ plot_data <- sector_summary_stats %>%
   )
 
 # Create a scatterplot with larger circle sizes
-ggplot(plot_data, aes(x = Low_Q1_numeric, y = High_Q3_numeric, color = GICSSector)) +
+ggplot(plot_data, 
+       aes(x = Low_Q1_numeric, y = High_Q3_numeric, 
+           color = GICSSector)) +
   geom_point(size = 4) +  # Increase the size of the points
   labs(
     title = "Scatterplot of Low Q1 vs High Q3 by GICS Sector",
@@ -576,7 +580,7 @@ median_financials <- sp500 %>%
     Med_OPM = round(median(OperatingMargin, na.rm = TRUE), 1),
     Med_NPM = round(median(NetMargin, na.rm = TRUE), 1)
   ) %>%
-  arrange(desc(Med_ROE)) # Sort the table based on Median ROE in descending order
+  arrange(desc(Med_ROE)) # Sort the table based on Median ROE
 
 # Create a formatted table using kable
 median_financials %>%
@@ -599,8 +603,6 @@ We also review how the Earnings Per Share have increased or decreased across the
 library(dplyr)
 library(kableExtra)
 
-# Assuming 'sp500' is your dataset and it includes the columns PE, PB, EPS_QYOY, and EPS_YOY
-
 # Calculate the median values for Earnings related metrics
 median_earnings <- sp500 %>%
   group_by(GICSSector) %>%
@@ -615,9 +617,8 @@ median_earnings <- sp500 %>%
 # Create a formatted table using kable
 median_earnings %>%
   kable("html", 
-        caption = "Median Earnings Metrics (PE, PB, EPS_QYOY, EPS_YOY) by GICS Sector") %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
-
+        caption = "Earnings Metrics (PE, PB, EPS_QYOY, EPS_YOY)") %>%
+  kable_styling()
 
 ```
 

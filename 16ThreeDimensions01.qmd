@@ -129,16 +129,16 @@ We can color points by a variable, for example, by the number of cylinders (cyl)
 # Load the scatterplot3d library for 3D plotting
 library(scatterplot3d)
 
-# Create a 3D scatter plot using the tb tibble, with points colored by the number of cylinders
+# Create a 3D scatter plot, with points colored by cylinders
 sp32 <- scatterplot3d(x = tb$wt, 
                       y = tb$mpg, 
                       z = tb$hp, 
-                      color = as.numeric(tb$cyl),  # Color points by the number of cylinders
+                      color = as.numeric(tb$cyl),  # Color by cyl
                       pch = 16,  # Use a specific point symbol
                       xlab = "Weight", 
                       ylab = "Miles Per Gallon", 
                       zlab = "Horsepower",
-                      main = "3D Scatter Plot Colored by Number of Cylinders")
+                      main = "3D Scatter Plot Colored by Cylinders")
 
 ```
 
@@ -177,12 +177,12 @@ We can change the point style to better distinguish between data points. \[2\]
 sp34 <- scatterplot3d(x = tb$wt, 
                       y = tb$mpg, 
                       z = tb$hp, 
-                      pch = as.numeric(tb$cyl),  # Set point shapes based on the number of cylinders
-                      color = "blue",  # Set the point color to blue
+                      pch = as.numeric(tb$cyl),  # point shapes 
+                      color = "blue",  # point color to blue
                       xlab = "Weight", 
                       ylab = "Miles per Gallon", 
                       zlab = "Horsepower",
-                      main = "3D Scatter Plot with Different Point Styles")
+                      main = "3D Scatter Plot with Point Styles")
 
 # Get unique cylinder values and corresponding point shapes
 cylinders <- unique(tb$cyl)
@@ -190,8 +190,8 @@ shapes <- as.numeric(cylinders)
 
 # Add a legend for point shapes
 legend("right", 
-       legend = as.character(cylinders),  # Display cylinder values as legend labels
-       pch = shapes,  # Use corresponding point shapes as legend symbols
+       legend = as.character(cylinders),  # cylinders 
+       pch = shapes,  # Use point shapes as legend 
        title = "Cylinders")  # Set legend title
 
 ```
@@ -228,16 +228,17 @@ legend("right",
 We can can highlight specific points, for example, cars with 4 cylinders, by changing their color or size. \[2\]
 
 ```{r}
-# Create a scatterplot3d with specific point highlighting based on the number of cylinders
+# Create a scatterplot3d with specific point highlighting 
 sp35 <- scatterplot3d(x = tb$wt,
                       y = tb$mpg, 
                       z = tb$hp, 
                       pch = 16,  # Use a specific point shape
-                      color = ifelse(tb$cyl == 4, "red", "blue"),  # Color points based on the number of cylinders
+                      color = ifelse(tb$cyl == 4, "red", "blue"),  
+                      # Color points based on the number of cylinders
                       xlab = "Weight", 
                       ylab = "Miles per Gallon", 
                       zlab = "Horsepower",
-                      main = "3D Scatter Plot Highlighting Specific Points")
+                      main = "3D Scatter Plot Highlighting Points")
 ```
 
 **Add Regression Plane:**
@@ -250,10 +251,12 @@ library(scatterplot3d)
 # Create a 3D scatter plot
 sp36 <- scatterplot3d(x = tb$wt, y = tb$mpg, z = tb$hp, 
                      pch = 16, color = "blue",
-                     xlab = "Weight", ylab = "Miles per Gallon", zlab = "Horsepower",
+                     xlab = "Weight", 
+                     ylab = "Miles per Gallon", 
+                     zlab = "Horsepower",
                      main = "3D Scatter Plot with Regression Plane")
                      
-# Fit a linear model and add a regression plane to the 3D scatter plot
+# Fit a linear model and add a regression plane to 3D plot
 model <- lm(hp ~ wt + mpg, data = tb)
 sp36$plane3d(model)
 ```

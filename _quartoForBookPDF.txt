@@ -1,11 +1,13 @@
-### BEGIN yaml FOR BOOK'S PDF FILE (30 Dec 2023) ###
+### BEGIN yaml FOR BOOK'S PDF FILE (23 Aug 2024) ###
 project:
   type: book
+
+prefer-html: true
 
 book:
   title: "Data Analytics 101 -- Exploratory Data Analysis using R programming."
   author: "Sameer Mathur, Aryeman Gupta Mathur"
-  date: "30 Dec 2023"
+  date: "23 August 2024"
   cover-image: BookCover.png
   chapters:
     - index.qmd
