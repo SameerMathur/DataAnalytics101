@@ -58,37 +58,6 @@ tb$gear <- as.factor(tb$gear) # gear = {3,4,5}, number of gears
 
 Note that it is inconvenient to create Stem-and-Leaf plots using `ggplot2`.
 
-### Bee Swarm plot using `ggbeeswarm`
-
-1.  The bee swarm plot is an alternative to the box plot, where each point is plotted in a manner that avoids overlap.
-
-2.  We use the `ggbeeswarm` package on the `mpg` column of the `tb` tibble.
-
-```{r}
-# Load necessary libraries
-library(ggplot2)
-library(ggbeeswarm) # Provides the geom_beeswarm() function
-
-# Create a bee swarm plot for visualizing the distribution of mpg
-ggplot(tb, 
-       aes(x = 1,  # Dummy x-axis value
-           y = mpg)) +  # mpg values on the y-axis
-  geom_beeswarm() +  # Use beeswarm plot  points
-  labs(title = "Bee Swarm plot of Miles Per Gallon (mpg)",  
-       y = "Miles Per Gallon (mpg)") +  # Label for the y-axis
-  theme_minimal()  # theme for a clean and clear presentation
-```
-
-3.  Discussion:
-
--   Initially, we declare our dataset and the aesthetic mappings, defining how variables in the data are visually represented. For the bee swarm plot, we only need a y aesthetic, which is `mpg`. We set the x aesthetic to 1 as a placeholder, because bee swarm plots require an x aesthetic, but we only have one variable.
-
--   Following that, we append a bee swarm plot using the `geom_beeswarm()` function.
-
--   We use the `labs()` function to label the plot.
-
--   We then adopt a minimalist theme by using `theme_minimal()` to give our plot a sleek and simple look. \[4\]
-
 ## Histogram using `ggplot2`
 
 ### Histogram with binwidth
@@ -445,6 +414,42 @@ ggviolin(tb,
 
 -   In summary, the code generates a horizontal violin plot for the "mpg" variable from the `tb` dataset. The violin plot showcases the distribution of the "mpg" variable, colored in light pink with a light blue boxplot added inside. The rug adds an additional layer of visualization, showing the actual data points along the axis. \[2\]
 
+
+
+
+## Bee Swarm plot using `ggbeeswarm`
+
+1.  The bee swarm plot is an alternative to the box plot, where each point is plotted in a manner that avoids overlap.
+
+2.  We use the `ggbeeswarm` package on the `mpg` column of the `tb` tibble.
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(ggbeeswarm) # Provides the geom_beeswarm() function
+
+# Create a bee swarm plot for visualizing the distribution of mpg
+ggplot(tb, 
+       aes(x = 1,  # Dummy x-axis value
+           y = mpg)) +  # mpg values on the y-axis
+  geom_beeswarm() +  # Use beeswarm plot  points
+  labs(title = "Bee Swarm plot of Miles Per Gallon (mpg)",  
+       y = "Miles Per Gallon (mpg)") +  # Label for the y-axis
+  theme_minimal()  # theme for a clean and clear presentation
+```
+
+3.  Discussion:
+
+-   Initially, we declare our dataset and the aesthetic mappings, defining how variables in the data are visually represented. For the bee swarm plot, we only need a y aesthetic, which is `mpg`. We set the x aesthetic to 1 as a placeholder, because bee swarm plots require an x aesthetic, but we only have one variable.
+
+-   Following that, we append a bee swarm plot using the `geom_beeswarm()` function.
+
+-   We use the `labs()` function to label the plot.
+
+-   We then adopt a minimalist theme by using `theme_minimal()` to give our plot a sleek and simple look. \[4\]
+
+
+
 ## Quantile-Quantile (Q-Q) Plots using `ggplot2`
 
 1.  Recall that a Q-Q plot is a graphical method for comparing two probability distributions by plotting their quantiles against each other. The following code generates a Quantile-Quantile (Q-Q) plot using `ggplot2`. \[1\]
@@ -470,7 +475,9 @@ ggplot(tb, aes(sample = mpg)) +
 
 -   In summary, this code produces a Q-Q plot for the "mpg" variable from the `tb` dataset. The plot compares the quantiles of "mpg" against the quantiles of a theoretical distribution, often the standard normal distribution. \[1\]
 
-## Bar Plot visualizing the Mean and SD using `ggplot2`
+## Visualizing Summary Statistics
+
+### Bar Plot visualizing the Mean and SD using `ggplot2`
 
 1.  We can create a Bar Plot to visualize the mean of a continuous variable. \[1\]
 
