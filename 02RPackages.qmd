@@ -1,6 +1,6 @@
 # Exploring R Packages
 
-**Chapter 2!!***
+**Chapter 2**
 
 1.  R packages are collections of code, data, and documentation that enhance the capabilities of R, a programming language and software environment used for statistical computing and graphics!
 
